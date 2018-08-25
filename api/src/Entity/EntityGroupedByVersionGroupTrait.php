@@ -23,7 +23,7 @@ trait EntityGroupedByVersionGroupTrait
     /**
      * @return VersionGroup
      */
-    public function getVersionGroup(): VersionGroup
+    public function getVersionGroup(): ?VersionGroup
     {
         return $this->versionGroup;
     }
@@ -33,7 +33,7 @@ trait EntityGroupedByVersionGroupTrait
      *
      * @return self
      */
-    public function setVersionGroup(VersionGroup $versionGroup): self
+    public function setVersionGroup(?VersionGroup $versionGroup): self
     {
         $this->versionGroup = $versionGroup;
 

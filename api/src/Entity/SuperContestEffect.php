@@ -28,7 +28,7 @@ class SuperContestEffect extends AbstractDexEntity implements EntityHasFlavorTex
     /**
      * @return int
      */
-    public function getAppeal(): int
+    public function getAppeal(): ?int
     {
         return $this->appeal;
     }

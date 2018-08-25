@@ -12,12 +12,12 @@ interface EntityGroupedByVersionGroupInterface
     /**
      * @return VersionGroup
      */
-    public function getVersionGroup(): VersionGroup;
+    public function getVersionGroup(): ?VersionGroup;
 
     /**
      * @param VersionGroup $versionGroup
      *
      * @return self
      */
-    public function setVersionGroup(VersionGroup $versionGroup);
+    public function setVersionGroup(?VersionGroup $versionGroup);
 }

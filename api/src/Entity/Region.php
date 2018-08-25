@@ -21,7 +21,7 @@ class Region extends AbstractDexEntity implements EntityHasNameInterface, Entity
     /**
      * @var Collection|VersionGroup[]
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\VersionGroup")
+     * @ORM\ManyToMany(targetEntity="App\Entity\VersionGroup", mappedBy="regions")
      */
     protected $versionGroups;
 
@@ -42,7 +42,7 @@ class Region extends AbstractDexEntity implements EntityHasNameInterface, Entity
     }
 
     /**
-     * @param array|\iterable $versionGroups
+     * @param array|\iterable|VersionGroup[] $versionGroups
      *
      * @return self
      */
@@ -64,13 +64,14 @@ class Region extends AbstractDexEntity implements EntityHasNameInterface, Entity
     {
         if (!$this->versionGroups->contains($versionGroup)) {
             $this->versionGroups->add($versionGroup);
+            $versionGroup->addRegion($this);
         }
 
         return $this;
     }
 
     /**
-     * @param array|\iterable $versionGroups
+     * @param array|\iterable|VersionGroup[] $versionGroups
      *
      * @return self
      */
@@ -92,6 +93,7 @@ class Region extends AbstractDexEntity implements EntityHasNameInterface, Entity
     {
         if ($this->versionGroups->contains($versionGroup)) {
             $this->versionGroups->removeElement($versionGroup);
+            $versionGroup->removeRegion($this);
         }
 
         return $this;

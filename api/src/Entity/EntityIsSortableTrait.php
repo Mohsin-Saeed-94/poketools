@@ -21,7 +21,7 @@ trait EntityIsSortableTrait
     /**
      * @return int
      */
-    public function getPosition(): int
+    public function getPosition(): ?int
     {
         return $this->position;
     }

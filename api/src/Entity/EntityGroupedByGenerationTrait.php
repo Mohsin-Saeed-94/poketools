@@ -23,7 +23,7 @@ trait EntityGroupedByGenerationTrait
     /**
      * @return Generation
      */
-    public function getGeneration(): Generation
+    public function getGeneration(): ?Generation
     {
         return $this->generation;
     }
@@ -33,7 +33,7 @@ trait EntityGroupedByGenerationTrait
      *
      * @return self
      */
-    public function setGeneration(Generation $generation): self
+    public function setGeneration(?Generation $generation): self
     {
         $this->generation = $generation;
 

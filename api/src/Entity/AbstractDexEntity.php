@@ -5,7 +5,6 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use Ramsey\Uuid\Uuid;
 
 abstract class AbstractDexEntity
 {
@@ -14,16 +13,15 @@ abstract class AbstractDexEntity
 
     /**
      * @ORM\Id()
-     * @ORM\Column(type="uuid_binary_ordered_time", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator")
+     * @ORM\Column(type="integer", unique=true)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @return Uuid
+     * @return int
      */
-    public function getId(): Uuid
+    public function getId(): int
     {
         return $this->id;
     }
