@@ -5,13 +5,19 @@ services:
     image: ${CONTAINER_REGISTRY_BASE}/php
     build:
       context: ./api
+      dockerfile: Dockerfile.${BUILD_ENV:-prod}
       target: api_platform_php
+      args:
+        - BUILD_ENV=prod
+        - XDEBUG_REMOTE_HOST
       cache_from:
         - ${CONTAINER_REGISTRY_BASE}/php
         - ${CONTAINER_REGISTRY_BASE}/nginx
         - ${CONTAINER_REGISTRY_BASE}/varnish
     depends_on:
       - db
+    environment:
+      - PHP_IDE_CONFIG
     env_file:
       - ./api/.env
     # Comment out these volumes in production
@@ -24,7 +30,10 @@ services:
     image: ${CONTAINER_REGISTRY_BASE}/nginx
     build:
       context: ./api
+      dockerfile: Dockerfile.${BUILD_ENV:-prod}
       target: api_platform_nginx
+      args:
+        - BUILD_ENV=prod
       cache_from:
         - ${CONTAINER_REGISTRY_BASE}/php
         - ${CONTAINER_REGISTRY_BASE}/nginx
@@ -33,7 +42,7 @@ services:
       - php
     # Comment out this volume in production
     volumes:
-      - ./api/public:/srv/api/public:ro
+      - ./api:/srv/api:rw,cached
     ports:
       - "8080:80"
 
@@ -41,7 +50,10 @@ services:
     image: ${CONTAINER_REGISTRY_BASE}/varnish
     build:
       context: ./api
+      dockerfile: Dockerfile.${BUILD_ENV:-prod}
       target: api_platform_varnish
+      args:
+        - BUILD_ENV=prod
       cache_from:
         - ${CONTAINER_REGISTRY_BASE}/php
         - ${CONTAINER_REGISTRY_BASE}/nginx
