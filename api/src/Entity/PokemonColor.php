@@ -29,7 +29,7 @@ class PokemonColor extends AbstractDexEntity implements EntityHasNameInterface, 
     /**
      * @return string
      */
-    public function getCssColor(): string
+    public function getCssColor(): ?string
     {
         return $this->cssColor;
     }
