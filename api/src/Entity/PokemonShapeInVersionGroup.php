@@ -13,13 +13,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @method PokemonShape getParent()
  * @method self setParent(PokemonShape $parent)
  */
-class PokemonShapeInVersionGroup extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDescriptionInterface, EntityHasIconInterface, EntityHasParentInterface
+class PokemonShapeInVersionGroup extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDescriptionInterface, EntityHasIconInterface, EntityHasParentInterface, EntityGroupedByVersionGroupInterface
 {
 
     use EntityHasNameAndSlugTrait;
     use EntityHasDescriptionTrait;
     use EntityHasIconTrait;
     use EntityHasParentTrait;
+    use EntityGroupedByVersionGroupTrait;
 
     /**
      * @var PokemonShape
@@ -39,7 +40,7 @@ class PokemonShapeInVersionGroup extends AbstractDexEntity implements EntityHasN
     /**
      * @return string
      */
-    public function getTaxonomyName(): string
+    public function getTaxonomyName(): ?string
     {
         return $this->taxonomyName;
     }

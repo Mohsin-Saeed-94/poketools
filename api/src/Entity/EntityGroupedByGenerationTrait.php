@@ -39,4 +39,9 @@ trait EntityGroupedByGenerationTrait
 
         return $this;
     }
+
+    public function getGroup(): GroupableInterface
+    {
+        return $this->getGeneration();
+    }
 }

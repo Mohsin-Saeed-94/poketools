@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\GenerationRepository")
  */
-class Generation extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface
+class Generation extends AbstractDexEntity implements GroupableInterface, EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface
 {
 
     use EntityHasNameAndSlugTrait;

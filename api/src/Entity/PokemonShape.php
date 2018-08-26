@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,17 +17,25 @@ use Doctrine\ORM\Mapping as ORM;
  * @method self addChildren(Collection | PokemonShapeInVersionGroup $children)
  * @method self removeChild(PokemonShapeInVersionGroup $child)
  * @method self removeChildren(Collection | PokemonShapeInVersionGroup[] $children)
+ * @method PokemonShapeInVersionGroup findChildByGrouping(VersionGroup $group)
  */
-class PokemonShape extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasChildrenInterface
+class PokemonShape extends AbstractDexEntity implements EntityHasChildrenInterface
 {
 
-    use EntityHasNameAndSlugTrait;
     use EntityHasChildrenTrait;
 
     /**
      * @var Collection|PokemonShapeInVersionGroup[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonShapeInVersionGroup", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonShapeInVersionGroup", mappedBy="parent", cascade={"all"})
      */
     protected $children;
+
+    /**
+     * PokemonShape constructor.
+     */
+    public function __construct()
+    {
+        $this->children = new ArrayCollection();
+    }
 }

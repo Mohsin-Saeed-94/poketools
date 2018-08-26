@@ -85,4 +85,24 @@ trait EntityHasChildrenTrait
 
         return $this;
     }
+
+    /**
+     * @param GroupableInterface $group
+     *
+     * @return EntityGroupedInterface|null
+     */
+    public function findChildByGrouping(GroupableInterface $group)
+    {
+        $children = $this->children->filter(
+            function (EntityGroupedInterface $entity) use ($group) {
+                return ($entity->getGroup() === $group);
+            }
+        );
+
+        if ($children->isEmpty()) {
+            return null;
+        } else {
+            return $children->first();
+        }
+    }
 }

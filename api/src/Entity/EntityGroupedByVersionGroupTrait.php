@@ -39,4 +39,8 @@ trait EntityGroupedByVersionGroupTrait
 
         return $this;
     }
+
+    public function getGroup():GroupableInterface {
+        return $this->getVersionGroup();
+    }
 }

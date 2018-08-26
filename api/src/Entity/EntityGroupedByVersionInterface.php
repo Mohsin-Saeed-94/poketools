@@ -6,7 +6,7 @@ namespace App\Entity;
 /**
  * Entities groupable by Version.
  */
-interface EntityGroupedByVersionInterface
+interface EntityGroupedByVersionInterface extends EntityGroupedInterface
 {
 
     /**
@@ -20,4 +20,10 @@ interface EntityGroupedByVersionInterface
      * @return self
      */
     public function setVersion(Version $version);
+
+    /**
+     * {@inheritdoc}
+     * @return Version
+     */
+    public function getGroup(): GroupableInterface;
 }

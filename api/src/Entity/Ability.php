@@ -17,6 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @method self addChildren(Collection | AbilityInVersionGroup $children)
  * @method self removeChild(AbilityInVersionGroup $child)
  * @method self removeChildren(Collection | AbilityInVersionGroup[] $children)
+ * @method AbilityInVersionGroup findChildByGrouping(VersionGroup $group)
  */
 class Ability extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasChildrenInterface
 {

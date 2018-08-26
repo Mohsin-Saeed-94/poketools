@@ -6,7 +6,7 @@ namespace App\Entity;
 /**
  * Entities groupable by Generation.
  */
-interface EntityGroupedByGenerationInterface
+interface EntityGroupedByGenerationInterface extends EntityGroupedInterface
 {
 
     /**
@@ -20,4 +20,10 @@ interface EntityGroupedByGenerationInterface
      * @return self
      */
     public function setGeneration(?Generation $generation);
+
+    /**
+     * {@inheritdoc}
+     * @return Generation
+     */
+    public function getGroup(): GroupableInterface;
 }

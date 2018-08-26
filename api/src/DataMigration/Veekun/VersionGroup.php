@@ -33,8 +33,8 @@ class VersionGroup extends AbstractDataMigration implements DataMigrationInterfa
         $statement = $sourceDriver->getConnection()->prepare(
             <<<SQL
 SELECT "version_groups"."id",
-       group_concat("versions"."identifier", '-') AS "identifier",
-       group_concat("version_names"."name", '/') AS "name",
+       replace(group_concat(DISTINCT "versions"."identifier"), ',', '-') AS "identifier",
+       replace(group_concat(DISTINCT "version_names"."name"), ',', '/') AS "name",
        "version_groups"."order",
        "version_groups"."generation_id" AS "generation",
        group_concat(DISTINCT "regions"."identifier") AS "regions"

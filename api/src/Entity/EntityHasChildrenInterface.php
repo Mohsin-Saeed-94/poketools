@@ -32,4 +32,11 @@ interface EntityHasChildrenInterface
      * @return self
      */
     public function removeChild(EntityHasParentInterface $child);
+
+    /**
+     * @param GroupableInterface $group
+     *
+     * @return EntityGroupedInterface|null
+     */
+    public function findChildByGrouping(GroupableInterface $group);
 }
