@@ -15,6 +15,7 @@
         "php": "^7.2.0",
         "ext-iconv": "*",
         "api-platform/api-pack": "^1.1",
+        "cweagans/composer-patches": "^1.6",
         "doctrine/annotations": "^1.6",
         "dragoonboots/a2b": "@dev",
         "guzzlehttp/guzzle": "^6.3",
@@ -38,6 +39,7 @@
     },
     "config": {
         "preferred-install": {
+            "knplabs/doctrine-behaviors": "source",
             "*": "dist"
         },
         "sort-packages": true
@@ -75,6 +77,12 @@
         "symfony/symfony": "*"
     },
     "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patches": {
+            "knplabs/doctrine-behaviors": {
+                "Make behavior subscribers search used traits": "patches/doctrine-behaviors-recursive-traits.patch"
+            }
+        },
         "symfony": {
             "allow-contrib": "true"
         }

@@ -1,0 +1,41 @@
+Index: src/Reflection/ClassAnalyzer.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Reflection/ClassAnalyzer.php	(date 1506538393000)
++++ src/Reflection/ClassAnalyzer.php	(date 1535316588000)
+@@ -28,12 +28,31 @@
+         }
+ 
+         $parentClass = $class->getParentClass();
++        $usedTraits = $class->getTraits();
+ 
+-        if ((false === $isRecursive) || (false === $parentClass) || (null === $parentClass)) {
++        if (false === $isRecursive) {
+             return false;
+         }
+ 
+-        return $this->hasTrait($parentClass, $traitName, $isRecursive);
++        // Check parent class
++        if (false !== $parentClass && !is_null($parentClass)) {
++            $parentHasTrait = $this->hasTrait($parentClass, $traitName, $isRecursive);
++            if (true === $parentHasTrait) {
++                return true;
++            }
++        }
++
++        // Check used traits
++        if (!empty($usedTraits)) {
++            foreach ($usedTraits as $usedTrait) {
++                $usedTraitHasTrait = $this->hasTrait($usedTrait, $traitName, $isRecursive);
++                if (true === $usedTraitHasTrait) {
++                    return true;
++                }
++            }
++        }
++
++        return false;
+     }
+ 
+     /**
