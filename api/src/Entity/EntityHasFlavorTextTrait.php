@@ -33,7 +33,11 @@ trait EntityHasFlavorTextTrait
      */
     public function setFlavorText(?string $flavorText): self
     {
-        $this->flavorText = $flavorText;
+        if ($flavorText === '') {
+            $this->flavorText = null;
+        } else {
+            $this->flavorText = $flavorText;
+        }
 
         return $this;
     }

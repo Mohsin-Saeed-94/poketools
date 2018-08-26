@@ -10,9 +10,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\MoveCategoryRepository")
  */
-class MoveCategory extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface
+class MoveCategory extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface, EntityHasDescriptionInterface
 {
 
     use EntityHasNameAndSlugTrait;
     use EntityIsSortableTrait;
+    use EntityHasDescriptionTrait;
 }

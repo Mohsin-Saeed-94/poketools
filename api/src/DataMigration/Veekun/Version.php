@@ -63,12 +63,6 @@ SQL
         unset($sourceData['id']);
         $destinationData = array_merge($sourceData, $destinationData);
 
-        // The versions are ordered in the query; set the order based on that
-        // order.
-        static $order = 1;
-        $destinationData['order'] = $order;
-        $order++;
-
         return $destinationData;
     }
 }

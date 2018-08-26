@@ -7,17 +7,17 @@ use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
 
 /**
- * Region migration.
+ * Move Category migration.
  *
  * @DataMigration(
- *     name="Region",
- *     source="csv:///%kernel.project_dir%/resources/data/region.csv",
+ *     name="Move Category",
+ *     source="csv:///%kernel.project_dir%/resources/data/move_category.csv",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/Region",
+ *     destination="doctrine:///App/Entity/MoveCategory",
  *     destinationIds={@IdField(name="id")}
  * )
  */
-class Region extends AbstractDoctrineDataMigration implements DataMigrationInterface
+class MoveCategory extends AbstractDoctrineDataMigration implements DataMigrationInterface
 {
 
     /**
@@ -31,16 +31,16 @@ class Region extends AbstractDoctrineDataMigration implements DataMigrationInter
         $position++;
 
         $properties = array_keys($sourceData);
-        $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
 
         return $destinationData;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function defaultResult()
     {
-        return new \App\Entity\Region();
+        return new \App\Entity\MoveCategory();
     }
 }

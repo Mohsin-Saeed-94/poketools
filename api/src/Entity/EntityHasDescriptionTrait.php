@@ -37,7 +37,11 @@ trait EntityHasDescriptionTrait
      */
     public function setShortDescription(?string $shortDescription): self
     {
-        $this->shortDescription = $shortDescription;
+        if ($shortDescription === '') {
+            $this->shortDescription = null;
+        } else {
+            $this->shortDescription = $shortDescription;
+        }
 
         return $this;
     }
@@ -57,7 +61,11 @@ trait EntityHasDescriptionTrait
      */
     public function setDescription(?string $description): self
     {
-        $this->description = $description;
+        if ($description === '') {
+            $this->description = null;
+        } else {
+            $this->description = $description;
+        }
 
         return $this;
     }
