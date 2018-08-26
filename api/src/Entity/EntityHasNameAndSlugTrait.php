@@ -3,9 +3,7 @@
 
 namespace App\Entity;
 
-use Knp\DoctrineBehaviors\Model\Sluggable\SluggableMethods;
-use Knp\DoctrineBehaviors\Model\Sluggable\SluggableProperties;
-use Symfony\Component\Validator\Constraints as Assert;
+use Knp\DoctrineBehaviors\Model\Sluggable\Sluggable;
 
 /**
  * Default implementation of App\Entity\EntityHasSlugInterface
@@ -17,8 +15,7 @@ trait EntityHasNameAndSlugTrait
 {
 
     use EntityHasNameTrait;
-    use SluggableProperties;
-    use SluggableMethods;
+    use Sluggable;
 
     /**
      * {@inheritdoc}
