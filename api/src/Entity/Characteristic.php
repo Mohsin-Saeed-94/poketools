@@ -10,10 +10,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\CharacteristicRepository")
  */
-class Characteristic extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasFlavorTextInterface
+class Characteristic extends AbstractDexEntity implements EntityHasFlavorTextInterface
 {
 
-    use EntityHasNameAndSlugTrait;
     use EntityHasFlavorTextTrait;
 
     /**
@@ -36,7 +35,7 @@ class Characteristic extends AbstractDexEntity implements EntityHasNameInterface
     /**
      * @return Stat
      */
-    public function getStat(): Stat
+    public function getStat(): ?Stat
     {
         return $this->stat;
     }
@@ -56,7 +55,7 @@ class Characteristic extends AbstractDexEntity implements EntityHasNameInterface
     /**
      * @return int
      */
-    public function getIvDeterminator(): int
+    public function getIvDeterminator(): ?int
     {
         return $this->ivDeterminator;
     }

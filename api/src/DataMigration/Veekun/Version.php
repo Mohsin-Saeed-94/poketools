@@ -34,6 +34,7 @@ class Version extends AbstractDataMigration implements DataMigrationInterface
             <<<SQL
 SELECT "versions"."id",
        "versions"."identifier",
+       version_groups.identifier as "version_group",
        "version_names"."name"
 FROM "versions"
      JOIN "version_names"

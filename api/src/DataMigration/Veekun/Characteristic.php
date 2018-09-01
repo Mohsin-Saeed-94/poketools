@@ -35,7 +35,7 @@ class Characteristic extends AbstractDataMigration implements DataMigrationInter
 SELECT "characteristics"."id",
        "stats"."identifier" AS "stat",
        "characteristics"."gene_mod_5" AS "iv_determinator",
-       "characteristic_text"."message"
+       "characteristic_text"."message" as "flavor_text"
 FROM "characteristics"
      JOIN "characteristic_text"
          ON "characteristics"."id" = "characteristic_text"."characteristic_id"

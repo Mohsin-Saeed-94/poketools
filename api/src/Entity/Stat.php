@@ -22,7 +22,7 @@ class Stat extends AbstractDexEntity implements EntityHasNameInterface, EntityHa
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass")
      */
-    protected $moveDamageClass;
+    protected $damageClass;
 
     /**
      * @var bool
@@ -34,19 +34,19 @@ class Stat extends AbstractDexEntity implements EntityHasNameInterface, EntityHa
     /**
      * @return MoveDamageClass
      */
-    public function getMoveDamageClass(): MoveDamageClass
+    public function getDamageClass(): ?MoveDamageClass
     {
-        return $this->moveDamageClass;
+        return $this->damageClass;
     }
 
     /**
-     * @param MoveDamageClass $moveDamageClass
+     * @param MoveDamageClass $damageClass
      *
      * @return self
      */
-    public function setMoveDamageClass(MoveDamageClass $moveDamageClass): self
+    public function setDamageClass(?MoveDamageClass $damageClass): self
     {
-        $this->moveDamageClass = $moveDamageClass;
+        $this->damageClass = $damageClass;
 
         return $this;
     }
