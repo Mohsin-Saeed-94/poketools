@@ -77,8 +77,8 @@ SELECT "version_groups"."identifier" AS "version_group",
            WHEN min("changelog"."id") IS NULL
                  THEN "ability_prose"."short_effect"
            ELSE substr("changelog"."effect", 1, instr("changelog"."effect", '.'))
-       END AS "short_effect",
-       coalesce("changelog"."effect", "ability_prose"."effect") AS "effect",
+       END AS "short_description",
+       coalesce("changelog"."effect", "ability_prose"."effect") AS "description",
        "ability_flavor_text"."flavor_text"
 FROM "abilities"
      JOIN "version_groups"
@@ -119,8 +119,11 @@ SQL
     public function transform($sourceData, $destinationData)
     {
         $destinationData['identifier'] = $sourceData['identifier'];
+        unset($sourceData['identifier']);
         $versionGroupData = $this->getData($sourceData['id']);
+        unset($sourceData['id']);
         foreach ($versionGroupData as $versionGroupRow) {
+            $versionGroupRow = array_merge($sourceData, $versionGroupRow);
             $versionGroup = $versionGroupRow['version_group'];
             unset($versionGroupRow['version_group']);
 

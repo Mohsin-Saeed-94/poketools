@@ -20,10 +20,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @method self removeChildren(Collection | AbilityInVersionGroup[] $children)
  * @method AbilityInVersionGroup findChildByGrouping(VersionGroup $group)
  */
-class Ability extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasChildrenInterface
+class Ability extends AbstractDexEntity implements EntityHasChildrenInterface
 {
-
-    use EntityHasNameAndSlugTrait;
     use EntityHasChildrenTrait;
 
     /**

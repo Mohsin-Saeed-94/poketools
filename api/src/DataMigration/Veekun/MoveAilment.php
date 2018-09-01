@@ -34,11 +34,13 @@ class MoveAilment extends AbstractDataMigration implements DataMigrationInterfac
             <<<SQL
 SELECT "move_meta_ailments"."id",
        "move_meta_ailments"."identifier",
-       "move_meta_ailment_names"."name"
+       "move_meta_ailment_names"."name",
+       0 AS "volatile"
 FROM "move_meta_ailments"
      JOIN "move_meta_ailment_names"
          ON "move_meta_ailments"."id" = "move_meta_ailment_names"."move_meta_ailment_id"
 WHERE "move_meta_ailment_names"."local_language_id" = 9;
+
 SQL
         );
         $sourceDriver->setStatement($statement);
@@ -58,6 +60,7 @@ SQL
     public function transform($sourceData, $destinationData)
     {
         unset($sourceData['id']);
+        $sourceData['volatile'] = (int)$sourceData['volatile'];
         $destinationData = array_merge($sourceData, $destinationData);
 
         return $destinationData;

@@ -69,8 +69,8 @@ SELECT "version_groups"."identifier" AS "version_group",
            WHEN min("changelog"."id") IS NULL
                  THEN "move_effect_prose"."short_effect"
            ELSE substr("changelog"."effect", 1, instr("changelog"."effect", '.'))
-       END AS "short_effect",
-       coalesce("changelog"."effect", "move_effect_prose"."effect") AS "effect"
+       END AS "short_description",
+       coalesce("changelog"."effect", "move_effect_prose"."effect") AS "description"
 FROM "move_effects"
      JOIN "version_groups"
      JOIN "move_effect_prose"
@@ -138,6 +138,6 @@ SQL
      */
     public function configureDestination(DestinationDriverInterface $destinationDriver)
     {
-        $destinationDriver->setOption('refs', ['exclude' => ['`.+\.short_effect`']]);
+        $destinationDriver->setOption('refs', ['exclude' => ['`.+\.short_description`']]);
     }
 }
