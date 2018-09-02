@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Common status ailments moves can inflict on a single Pokémon, including major
  * ailments like paralysis and minor ailments like trapping.
  *
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\MoveAilmentRepository")
  */
 class MoveAilment extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDescriptionInterface, EntityIsSortableInterface

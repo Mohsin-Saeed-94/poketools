@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Flavor text hinting at which stat contains a Pokémon's highest IV.
  *
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\CharacteristicRepository")
  */
 class Characteristic extends AbstractDexEntity implements EntityHasFlavorTextInterface

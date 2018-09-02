@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * The shape of a Pokémon’s body. Appears in the Pokédex starting with
  * Generation IV.
  *
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\PokemonShapeInVersionGroupRepository")
  *
  * @method PokemonShape getParent()

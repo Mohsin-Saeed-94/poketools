@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * An effect a move can have when used in the Super Contest.
  *
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\SuperContestEffectRepository")
  */
 class SuperContestEffect extends AbstractDexEntity implements EntityHasFlavorTextInterface, EntityHasDescriptionInterface
