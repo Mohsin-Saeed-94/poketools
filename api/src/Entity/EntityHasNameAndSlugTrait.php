@@ -13,9 +13,15 @@ use Knp\DoctrineBehaviors\Model\Sluggable\Sluggable;
  */
 trait EntityHasNameAndSlugTrait
 {
-
     use EntityHasNameTrait;
     use Sluggable;
+
+    /**
+     * URL slug (not necessarily unique)
+     *
+     * @var string
+     */
+    protected $slug;
 
     /**
      * {@inheritdoc}

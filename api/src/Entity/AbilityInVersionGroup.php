@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
+ * An ability a Pokémon can have, such as Static or Pressure.
+ *
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\AbilityInVersionGroupRepository")
  *

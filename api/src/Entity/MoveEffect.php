@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * An effect of a move.
+ *
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\MoveEffectRepository")
  */

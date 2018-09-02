@@ -13,6 +13,8 @@ trait EntityHasIconTrait
 {
 
     /**
+     * Entity icon
+     *
      * @var null|string
      *
      * @ORM\Column(type="string", nullable=true)

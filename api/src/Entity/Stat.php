@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
+ * A Stat, such as Attack or Speed.
+ *
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\StatRepository")
  */
@@ -18,6 +21,8 @@ class Stat extends AbstractDexEntity implements EntityHasNameInterface, EntityHa
     use EntityIsSortableTrait;
 
     /**
+     * The damage class this stat affects
+     *
      * @var MoveDamageClass
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass")
@@ -25,6 +30,8 @@ class Stat extends AbstractDexEntity implements EntityHasNameInterface, EntityHa
     protected $damageClass;
 
     /**
+     * Does this stat only apply in battle?
+     *
      * @var bool
      *
      * @ORM\Column(type="boolean")

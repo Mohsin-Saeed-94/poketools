@@ -3,6 +3,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -13,10 +14,14 @@ trait EntityHasNameTrait
 {
 
     /**
+     * Entity name
+     *
      * @var string
      *
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
+     *
+     * @ApiProperty(iri="http://schema.org/name")
      */
     protected $name;
 

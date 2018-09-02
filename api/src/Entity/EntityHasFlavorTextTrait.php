@@ -12,6 +12,8 @@ trait EntityHasFlavorTextTrait
 {
 
     /**
+     * In-game flavor text describing this entity
+     *
      * @var null|string
      *
      * @ORM\Column(type="text", nullable=true)

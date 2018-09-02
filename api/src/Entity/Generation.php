@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * A Generation of the Pokémon franchise.
+ *
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\GenerationRepository")
  */
@@ -19,6 +22,8 @@ class Generation extends AbstractDexEntity implements GroupableInterface, Entity
     use EntityIsSortableTrait;
 
     /**
+     * Generation number
+     *
      * @var int
      *
      * @ORM\Column(type="integer")
@@ -27,6 +32,8 @@ class Generation extends AbstractDexEntity implements GroupableInterface, Entity
     protected $number;
 
     /**
+     * Version groups that are part of this generation
+     *
      * @var VersionGroup[]|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\VersionGroup", mappedBy="generation")

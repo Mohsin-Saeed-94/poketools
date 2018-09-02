@@ -3,6 +3,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,9 +13,13 @@ trait EntityIsSortableTrait
 {
 
     /**
+     * Sort position
+     *
      * @var int
      *
      * @ORM\Column(type="integer")
+     *
+     * @ApiProperty(iri="http://schema.org/position")
      */
     protected $position = 0;
 

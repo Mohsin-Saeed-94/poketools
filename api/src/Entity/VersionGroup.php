@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -21,6 +22,18 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
     use EntityIsSortableTrait;
 
     /**
+     * The generation this version group belongs to
+     *
+     * @var Generation
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Generation", inversedBy="versionGroups")
+     * @Assert\NotNull()
+     */
+    protected $generation;
+
+    /**
+     * Versions in this version group
+     *
      * @var Version[]|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Version", mappedBy="versionGroup")
@@ -28,6 +41,8 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
     protected $versions;
 
     /**
+     * Regions available in this version group
+     *
      * @var Region[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Region", inversedBy="versionGroups")

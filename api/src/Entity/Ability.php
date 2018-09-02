@@ -10,6 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
+ * An ability a Pokémon can have, such as Static or Pressure.
+ *
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\AbilityRepository")
  *

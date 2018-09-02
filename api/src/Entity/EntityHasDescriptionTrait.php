@@ -9,6 +9,8 @@ trait EntityHasDescriptionTrait
 {
 
     /**
+     * Shortened or summary of this entity
+     *
      * @var null|string
      *
      * @ORM\Column(type="text", nullable=true)
@@ -16,6 +18,8 @@ trait EntityHasDescriptionTrait
     protected $shortDescription;
 
     /**
+     * Description of this entity
+     *
      * @var null|string
      *
      * @ORM\Column(type="text", nullable=true)

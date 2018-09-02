@@ -3,6 +3,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 
@@ -12,6 +13,8 @@ abstract class AbstractDexEntity
     use Timestampable;
 
     /**
+     * Unique Id
+     *
      * @ORM\Id()
      * @ORM\Column(type="integer", unique=true)
      * @ORM\GeneratedValue(strategy="AUTO")
