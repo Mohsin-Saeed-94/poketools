@@ -30,7 +30,7 @@ class MoveLearnMethod extends AbstractDataMigration implements DataMigrationInte
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "pokemon_move_methods"."id",
        "pokemon_move_methods"."identifier",
@@ -50,15 +50,13 @@ GROUP BY "pokemon_move_methods"."id"
 ORDER BY "sort";
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "pokemon_move_methods";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

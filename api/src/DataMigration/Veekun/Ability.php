@@ -46,7 +46,7 @@ class Ability extends AbstractDataMigration implements DataMigrationInterface
     {
         $this->connection = $sourceDriver->getConnection();
 
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "abilities"."id",
        "abilities"."identifier",
@@ -56,19 +56,16 @@ FROM "abilities"
          ON "abilities"."id" = "ability_names"."ability_id"
 WHERE "ability_names"."local_language_id" = 9
   AND "is_main_series" = 1;
-
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "abilities"
 WHERE "is_main_series" = 1;
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
 
         $this->versionGroupStatement = $sourceDriver->getConnection()->prepare(
             <<<SQL

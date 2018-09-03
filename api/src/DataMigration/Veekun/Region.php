@@ -30,7 +30,7 @@ class Region extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "regions"."id",
        "regions"."identifier",
@@ -40,16 +40,14 @@ FROM "regions"
 WHERE "region_names"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT
     count(*)
 FROM "regions"
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

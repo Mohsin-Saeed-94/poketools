@@ -30,7 +30,7 @@ class ItemFlingEffect extends AbstractDataMigration implements DataMigrationInte
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "item_fling_effects"."id",
        "item_fling_effects"."identifier",
@@ -41,15 +41,13 @@ FROM "item_fling_effects"
 WHERE "item_fling_effect_prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "item_fling_effects";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

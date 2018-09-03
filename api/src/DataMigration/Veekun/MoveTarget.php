@@ -30,7 +30,7 @@ class MoveTarget extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "move_targets"."id",
        "move_targets"."identifier",
@@ -42,15 +42,13 @@ FROM "move_targets"
 WHERE "move_target_prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "move_targets";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

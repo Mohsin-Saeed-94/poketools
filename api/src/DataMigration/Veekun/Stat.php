@@ -30,7 +30,7 @@ class Stat extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "stats"."id",
        "stats"."identifier",
@@ -46,15 +46,13 @@ WHERE "stat_names"."local_language_id" = 9
 ORDER BY coalesce("stats"."game_index", 65535), "stats"."id";
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "stats";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

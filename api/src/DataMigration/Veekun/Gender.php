@@ -30,22 +30,20 @@ class Gender extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "genders"."id",
        "genders"."identifier"
 FROM "genders";
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "genders";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

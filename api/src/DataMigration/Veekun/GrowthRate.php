@@ -30,7 +30,7 @@ class GrowthRate extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "growth_rates"."id",
        "growth_rates"."identifier",
@@ -42,15 +42,13 @@ FROM "growth_rates"
 WHERE "growth_rate_prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "growth_rates";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

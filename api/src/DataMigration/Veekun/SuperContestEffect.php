@@ -30,7 +30,7 @@ class SuperContestEffect extends AbstractDataMigration implements DataMigrationI
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "super_contest_effects"."id",
        "super_contest_effects"."appeal",
@@ -40,15 +40,13 @@ FROM "super_contest_effects"
 WHERE "prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "super_contest_effects"
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

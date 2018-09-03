@@ -30,7 +30,7 @@ class PokeathlonStat extends AbstractDataMigration implements DataMigrationInter
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "pokeathlon_stats"."id",
        "pokeathlon_stats"."identifier",
@@ -40,15 +40,13 @@ FROM "pokeathlon_stats"
 WHERE "pokeathlon_stat_names"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "pokeathlon_stats";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

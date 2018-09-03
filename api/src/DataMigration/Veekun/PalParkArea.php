@@ -30,7 +30,7 @@ class PalParkArea extends AbstractDataMigration implements DataMigrationInterfac
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "pal_park_areas"."id",
        "pal_park_areas"."identifier",
@@ -41,15 +41,13 @@ FROM "pal_park_areas"
 WHERE "pal_park_area_names"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "pal_park_areas";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

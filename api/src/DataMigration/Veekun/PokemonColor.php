@@ -30,7 +30,7 @@ class PokemonColor extends AbstractDataMigration implements DataMigrationInterfa
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "pokemon_colors"."id",
        "pokemon_colors"."identifier",
@@ -40,15 +40,13 @@ FROM "pokemon_colors"
 WHERE "pokemon_color_names"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "pokemon_colors";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

@@ -31,7 +31,7 @@ class MoveDamageClass extends AbstractDataMigration implements DataMigrationInte
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "move_damage_classes"."id",
        "move_damage_classes"."identifier",
@@ -43,15 +43,13 @@ FROM "move_damage_classes"
 WHERE "move_damage_class_prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "move_damage_classes";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

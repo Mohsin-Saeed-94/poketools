@@ -30,7 +30,7 @@ class EvolutionTrigger extends AbstractDataMigration implements DataMigrationInt
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "evolution_triggers"."id",
        "evolution_triggers"."identifier",
@@ -41,15 +41,13 @@ FROM "evolution_triggers"
 WHERE "evolution_trigger_prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "evolution_triggers";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

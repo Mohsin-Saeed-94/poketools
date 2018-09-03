@@ -30,7 +30,7 @@ class MoveAilment extends AbstractDataMigration implements DataMigrationInterfac
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "move_meta_ailments"."id",
        "move_meta_ailments"."identifier",
@@ -43,15 +43,13 @@ WHERE "move_meta_ailment_names"."local_language_id" = 9;
 
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "move_meta_ailments";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

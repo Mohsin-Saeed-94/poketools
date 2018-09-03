@@ -37,7 +37,7 @@ class MoveCategory extends AbstractDataMigration implements DataMigrationInterfa
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 WITH RECURSIVE "identifier_explode"("cat_id", "identifier", "rest") AS (SELECT "id", '', "identifier" || '+'
                                                                         FROM "move_meta_categories"
@@ -56,9 +56,8 @@ WHERE "identifier_explode"."identifier" <> ''
 ORDER BY "move_meta_categories"."id";
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 WITH RECURSIVE "identifier_explode"("cat_id", "identifier", "rest") AS (SELECT "id", '', "identifier" || '+'
                                                                         FROM "move_meta_categories"
@@ -76,7 +75,6 @@ FROM "move_meta_categories"
 WHERE "identifier_explode"."identifier" <> '';
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

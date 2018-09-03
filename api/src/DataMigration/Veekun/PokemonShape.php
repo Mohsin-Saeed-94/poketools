@@ -35,7 +35,7 @@ class PokemonShape extends AbstractDataMigration implements DataMigrationInterfa
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "pokemon_shapes"."id",
        "pokemon_shapes"."identifier",
@@ -48,15 +48,13 @@ FROM "pokemon_shapes"
 WHERE "pokemon_shape_prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "pokemon_shapes";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
 
         // Store a list of version groups that have shapes.
         $this->versionGroups = $sourceDriver->getConnection()->query(

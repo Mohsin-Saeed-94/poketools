@@ -6,7 +6,6 @@ use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\AbstractDataMigration;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
-use DragoonBoots\A2B\Drivers\DestinationDriverInterface;
 use DragoonBoots\A2B\Drivers\Source\DbalSourceDriver;
 use DragoonBoots\A2B\Drivers\SourceDriverInterface;
 
@@ -31,7 +30,7 @@ class BattleStyle extends AbstractDataMigration implements DataMigrationInterfac
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "move_battle_styles"."id",
        "move_battle_styles"."identifier",
@@ -42,15 +41,13 @@ FROM "move_battle_styles"
 WHERE "move_battle_style_prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "move_battle_styles";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

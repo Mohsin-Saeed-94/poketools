@@ -30,7 +30,7 @@ class MoveFlag extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "move_flags"."id",
        "move_flags"."identifier",
@@ -42,15 +42,13 @@ FROM "move_flags"
 WHERE "move_flag_prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "move_flags";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

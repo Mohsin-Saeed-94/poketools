@@ -46,21 +46,19 @@ class MoveEffect extends AbstractDataMigration implements DataMigrationInterface
     {
         $this->connection = $sourceDriver->getConnection();
 
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "move_effects"."id"
 FROM "move_effects";
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "move_effects";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
 
         $this->versionGroupStatement = $sourceDriver->getConnection()->prepare(
             <<<SQL

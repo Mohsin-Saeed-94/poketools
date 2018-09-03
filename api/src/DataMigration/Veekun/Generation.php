@@ -30,7 +30,7 @@ class Generation extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT
     "generations"."id",
@@ -42,16 +42,14 @@ FROM "generations"
 WHERE "local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT
     count(*)
 FROM "generations"
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

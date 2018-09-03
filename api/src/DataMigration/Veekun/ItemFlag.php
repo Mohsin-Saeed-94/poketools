@@ -30,7 +30,7 @@ class ItemFlag extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "item_flags"."id",
        "item_flags"."identifier",
@@ -42,15 +42,13 @@ FROM "item_flags"
 WHERE "item_flag_prose"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "item_flags";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

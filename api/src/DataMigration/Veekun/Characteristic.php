@@ -30,7 +30,7 @@ class Characteristic extends AbstractDataMigration implements DataMigrationInter
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "characteristics"."id",
        "stats"."identifier" AS "stat",
@@ -45,15 +45,13 @@ WHERE "characteristic_text"."local_language_id" = 9
 ORDER BY "iv_determinator", "stats"."id";
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "characteristics";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

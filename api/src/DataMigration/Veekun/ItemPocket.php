@@ -40,7 +40,7 @@ class ItemPocket extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "item_pockets"."id",
        "item_pockets"."identifier",
@@ -51,15 +51,13 @@ FROM "item_pockets"
 WHERE "item_pocket_names"."local_language_id" = 9;
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "item_pockets";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
 
         // Store a list of version groups with special bags
         $this->versionGroups = $sourceDriver->getConnection()->query(

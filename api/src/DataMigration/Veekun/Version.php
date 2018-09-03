@@ -30,7 +30,7 @@ class Version extends AbstractDataMigration implements DataMigrationInterface
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "versions"."id",
        "versions"."identifier",
@@ -45,15 +45,13 @@ WHERE "version_names"."local_language_id" = 9
 ORDER BY "version_groups"."order", "versions"."id";
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "versions";
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**

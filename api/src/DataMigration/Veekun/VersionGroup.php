@@ -30,7 +30,7 @@ class VersionGroup extends AbstractDataMigration implements DataMigrationInterfa
      */
     public function configureSource(SourceDriverInterface $sourceDriver)
     {
-        $statement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setStatement(
             <<<SQL
 SELECT "version_groups"."id",
        replace(group_concat(DISTINCT "versions"."identifier"), ',', '-') AS "identifier",
@@ -52,15 +52,13 @@ GROUP BY "version_groups"."id"
 ORDER BY "version_groups"."order", "versions"."id", "regions"."id";
 SQL
         );
-        $sourceDriver->setStatement($statement);
 
-        $countStatement = $sourceDriver->getConnection()->prepare(
+        $sourceDriver->setCountStatement(
             <<<SQL
 SELECT count(*)
 FROM "version_groups"
 SQL
         );
-        $sourceDriver->setCountStatement($countStatement);
     }
 
     /**
