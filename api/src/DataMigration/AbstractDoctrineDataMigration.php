@@ -32,14 +32,18 @@ abstract class AbstractDoctrineDataMigration extends AbstractDataMigration
     /**
      * Merge properties similar to array_merge().
      *
-     * @param string[] $properties
      * @param array    $sourceData
      * @param object   $destinationData
+     * @param string[] $properties
      *
      * @return object
      */
-    protected function mergeProperties(array $properties, array $sourceData, object $destinationData)
+    protected function mergeProperties(array $sourceData, object $destinationData, array $properties = [])
     {
+        if (empty($properties)) {
+            $properties = array_keys($sourceData);
+        }
+
         foreach ($properties as $property) {
             $current = $this->propertyAccess->getValue($destinationData, $property);
             if (isset($sourceData[$property]) && !$current) {

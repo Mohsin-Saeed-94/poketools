@@ -49,9 +49,8 @@ class MoveEffect extends AbstractDoctrineDataMigration implements DataMigrationI
      */
     protected function transformVersionGroup($sourceData, $destinationData)
     {
-        $properties = array_keys($sourceData);
         /** @var MoveEffectInVersionGroup $destinationData */
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData);
 
         return $destinationData;
     }

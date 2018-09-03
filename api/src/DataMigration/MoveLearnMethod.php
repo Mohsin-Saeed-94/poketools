@@ -33,7 +33,7 @@ class MoveLearnMethod extends AbstractDoctrineDataMigration implements DataMigra
             'position',
             'description',
         ];
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData, $properties);
 
         return $destinationData;
     }

@@ -29,7 +29,7 @@ class SuperContestEffect extends AbstractDoctrineDataMigration implements DataMi
             'flavor_text',
             'appeal',
         ];
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData, $properties);
 
         return $destinationData;
     }

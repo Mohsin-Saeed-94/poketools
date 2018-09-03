@@ -49,9 +49,8 @@ class PokemonShape extends AbstractDoctrineDataMigration implements DataMigratio
      */
     protected function transformVersionGroup($sourceData, $destinationData)
     {
-        $properties = array_keys($sourceData);
         /** @var PokemonShapeInVersionGroup $destinationData */
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData);
 
         return $destinationData;
     }

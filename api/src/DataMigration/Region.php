@@ -30,8 +30,7 @@ class Region extends AbstractDoctrineDataMigration implements DataMigrationInter
         $sourceData['position'] = $position;
         $position++;
 
-        $properties = array_keys($sourceData);
-        $this->mergeProperties($properties, $sourceData, $destinationData);
+        $this->mergeProperties($sourceData, $destinationData);
 
         return $destinationData;
     }

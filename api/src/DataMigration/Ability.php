@@ -49,9 +49,8 @@ class Ability extends AbstractDoctrineDataMigration implements DataMigrationInte
      */
     protected function transformVersionGroup($sourceData, $destinationData)
     {
-        $properties = array_keys($sourceData);
         /** @var AbilityInVersionGroup $destinationData */
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData);
 
         return $destinationData;
     }

@@ -29,8 +29,7 @@ class Characteristic extends AbstractDoctrineDataMigration implements DataMigrat
     {
         $sourceData['stat'] = $this->referenceStore->get(Stat::class, ['identifier' => $sourceData['stat']]);
 
-        $properties = array_keys($sourceData);
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData);
 
         return $destinationData;
     }

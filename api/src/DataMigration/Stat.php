@@ -37,8 +37,7 @@ class Stat extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             $sourceData['damage_class'] = null;
         }
 
-        $properties = array_keys($sourceData);
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData);
 
         return $destinationData;
     }

@@ -39,7 +39,7 @@ class VersionGroup extends AbstractDoctrineDataMigration implements DataMigratio
             'position',
             'generation',
         ];
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData, $properties);
         foreach ($sourceData['regions'] as $regionIdentifier) {
             $destinationData->addRegion($this->referenceStore->get(Region::class, ['identifier' => $regionIdentifier]));
         }

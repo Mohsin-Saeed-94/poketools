@@ -32,7 +32,7 @@ class Generation extends AbstractDoctrineDataMigration implements DataMigrationI
             'number',
             'position',
         ];
-        $this->mergeProperties($properties, $sourceData, $destinationData);
+        $this->mergeProperties($sourceData, $destinationData, $properties);
 
         return $destinationData;
     }

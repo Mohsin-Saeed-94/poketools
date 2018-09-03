@@ -31,8 +31,7 @@ class MoveDamageClass extends AbstractDoctrineDataMigration implements DataMigra
         $sourceData['position'] = $position;
         $position++;
 
-        $properties = array_keys($sourceData);
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData);
 
         return $destinationData;
     }

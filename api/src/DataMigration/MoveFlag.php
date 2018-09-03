@@ -27,8 +27,7 @@ class MoveFlag extends AbstractDoctrineDataMigration implements DataMigrationInt
     {
         unset($sourceData['identifier']);
 
-        $properties = array_keys($sourceData);
-        $destinationData = $this->mergeProperties($properties, $sourceData, $destinationData);
+        $destinationData = $this->mergeProperties($sourceData, $destinationData);
 
         return $destinationData;
     }
