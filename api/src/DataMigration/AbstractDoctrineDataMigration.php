@@ -45,10 +45,7 @@ abstract class AbstractDoctrineDataMigration extends AbstractDataMigration
         }
 
         foreach ($properties as $property) {
-            $current = $this->propertyAccess->getValue($destinationData, $property);
-            if (isset($sourceData[$property]) && !$current) {
-                $this->propertyAccess->setValue($destinationData, $property, $sourceData[$property]);
-            }
+            $this->propertyAccess->setValue($destinationData, $property, $sourceData[$property]);
         }
 
         return $destinationData;
