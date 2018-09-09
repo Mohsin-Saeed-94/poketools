@@ -3,23 +3,23 @@
 
 namespace App\Entity;
 
+use Gedmo\Sluggable\Sluggable;
+
 /**
  * Entities that have slugs.
  */
-interface EntityHasSlugInterface
+interface EntityHasSlugInterface extends Sluggable
 {
-    // These getters and setters don't type hint at all to be compatible with
-    // Knp\DoctrineBehaviors\Model\Sluggable\Sluggable.
 
     /**
      * @return null|string
      */
-    public function getSlug();
+    public function getSlug(): ?string;
 
     /**
      * @param null|string $slug
      *
      * @return self
      */
-    public function setSlug($slug);
+    public function setSlug(?string $slug);
 }

@@ -3,7 +3,7 @@
 
 namespace App\Entity;
 
-use Knp\DoctrineBehaviors\Model\Sluggable\Sluggable;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,57 +15,35 @@ use Doctrine\ORM\Mapping as ORM;
 trait EntityHasNameAndSlugTrait
 {
     use EntityHasNameTrait;
-    use Sluggable {
-        generateSlug as baseGenerateSlug;
-        setSlug as baseSetSlug;
-    }
 
     /**
-     * URL slug (not necessarily unique)
+     * URL slug
      *
-     * @var string
+     * @var string|null
+     *
+     * @ORM\Column(type="string", unique=true)
+     *
+     * @Gedmo\Slug(fields={"name"}, handlers={@Gedmo\SlugHandler(class="App\Handler\SluggableGroupedHandler")})
      */
     protected $slug;
 
     /**
-     * Store if the user has set a custom slug
+     * @return null|string
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param null|string $slug
      *
-     * @var bool
-     *
-     * @ORM\Column(type="boolean")
+     * @return self
      */
-    private $customSlug = false;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSluggableFields()
+    public function setSlug(?string $slug): self
     {
-        return ['name'];
+        $this->slug = $slug;
+
+        return $this;
     }
-
-    /**
-     * Only generate slugs if one has not been custom set
-     */
-    public function generateSlug()
-    {
-        if (!$this->customSlug || empty($this->slug)) {
-            $this->baseGenerateSlug();
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSlug($slug)
-    {
-        $this->baseSetSlug($slug);
-
-        if (empty($slug)) {
-            $this->customSlug = false;
-        } else {
-            $this->customSlug = true;
-        }
-    }
-
 }

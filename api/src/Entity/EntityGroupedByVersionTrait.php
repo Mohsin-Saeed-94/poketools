@@ -44,4 +44,9 @@ trait EntityGroupedByVersionTrait
     {
         return $this->getVersion();
     }
+
+    public static function getGroupField(): string
+    {
+        return 'version';
+    }
 }

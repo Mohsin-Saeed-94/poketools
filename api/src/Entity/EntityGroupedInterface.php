@@ -15,4 +15,11 @@ interface EntityGroupedInterface
      * @return GroupableInterface
      */
     public function getGroup(): GroupableInterface;
+
+    /**
+     * Get the name of the field used for grouping.
+     *
+     * @return string
+     */
+    public static function getGroupField(): string;
 }

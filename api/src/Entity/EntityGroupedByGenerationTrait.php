@@ -44,4 +44,9 @@ trait EntityGroupedByGenerationTrait
     {
         return $this->getGeneration();
     }
+
+    public static function getGroupField(): string
+    {
+        return 'generation';
+    }
 }

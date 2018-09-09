@@ -9,4 +9,8 @@ namespace App\Entity;
 interface GroupableInterface
 {
 
+    /**
+     * @return string
+     */
+    public function getSlug(): ?string;
 }

@@ -4,12 +4,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 
 abstract class AbstractDexEntity
 {
-
-    use Timestampable;
 
     /**
      * Unique Id
