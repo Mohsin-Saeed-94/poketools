@@ -46,7 +46,8 @@ class SluggableGroupedHandler extends RelativeSlugHandler
         if (!isset($groupedEntities[$className])) {
             $hasParentEntity = ($refl->implementsInterface(EntityHasParentInterface::class));
             $isGrouped = ($refl->implementsInterface(EntityGroupedInterface::class));
-            if ($hasParentEntity && $isGrouped) {
+            $groupFieldDefined = ($refl->hasMethod('getGroupField'));
+            if (($hasParentEntity && $isGrouped) || $groupFieldDefined) {
                 $computedOptions = [];
                 $computedOptions['relationField'] = call_user_func(
                     $refl->getMethod('getGroupField')
