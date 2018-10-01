@@ -71,6 +71,10 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
             }
 
             $area->setSlug($areaIdentifier);
+            if (!isset($areaData['default'])) {
+                $areaData['default'] = false;
+            }
+
             /** @var LocationArea $area */
             $area = $this->mergeProperties($areaData, $area);
             $destinationData->addArea($area);

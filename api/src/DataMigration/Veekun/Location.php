@@ -56,7 +56,8 @@ SELECT "locations"."id",
        "locations"."identifier",
        "regions"."id" AS "region_id",
        "regions"."identifier" AS "region",
-       "location_names"."name"
+       "location_names"."name",
+       "location_names"."subtitle"
 FROM "locations"
      JOIN "location_names"
          ON "locations"."id" = "location_names"."location_id"
@@ -111,6 +112,11 @@ SQL
 
         $regionId = $sourceData['region_id'];
         unset($sourceData['region_id']);
+
+        if ($sourceData['subtitle']) {
+            $sourceData['name'] .= ' ('.$sourceData['subtitle'].')';
+        }
+        unset($sourceData['subtitle']);
 
         $this->areasStatement->execute(['location' => $locationId]);
         $this->areasStatement->setFetchMode(FetchMode::ASSOCIATIVE);
