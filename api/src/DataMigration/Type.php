@@ -30,10 +30,6 @@ class Type extends AbstractDoctrineDataMigration implements DataMigrationInterfa
         $destinationData->setSlug($sourceData['identifier']);
         unset($sourceData['identifier']);
 
-        static $position = 1;
-        $sourceData['position'] = $position;
-        $position++;
-
         if ($sourceData['damage_class']) {
             $sourceData['damage_class'] = $this->referenceStore->get(MoveDamageClass::class, ['identifier' => $sourceData['damage_class']]);
         } else {

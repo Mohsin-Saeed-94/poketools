@@ -8,11 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TypeRepository")
  */
-class Type extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface
+class Type extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface
 {
 
     use EntityHasNameAndSlugTrait;
-    use EntityIsSortableTrait;
 
     /**
      * The damage class this type’s moves had before Generation 4, if applicable
