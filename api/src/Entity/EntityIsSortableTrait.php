@@ -17,7 +17,6 @@ trait EntityIsSortableTrait
      * @var int
      *
      * @ORM\Column(type="integer")
-     *
      */
     protected $position = 0;
 
