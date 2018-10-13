@@ -18,6 +18,8 @@ services:
       - db
     environment:
       - PHP_IDE_CONFIG
+      - BLACKFIRE_CLIENT_ID
+      - BLACKFIRE_CLIENT_TOKEN
     env_file:
       - ./api/.env
     # Comment out these volumes in production
@@ -128,6 +130,14 @@ services:
       - "444:444"
       - "8443:8443"
       - "8444:8444"
+
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+      - BLACKFIRE_SERVER_ID
+      - BLACKFIRE_SERVER_TOKEN
+    ports:
+      - "8707:8707"
 
 volumes:
   db-data: {}

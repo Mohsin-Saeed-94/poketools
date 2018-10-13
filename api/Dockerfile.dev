@@ -63,6 +63,18 @@ RUN XDEBUG_PATH=$(find /usr/local/lib/php/extensions/ -name xdebug.so); \
         echo "xdebug.remote_host=\"${XDEBUG_REMOTE_HOST}\"" > /usr/local/etc/php/conf.d/xdebug.ini; \
     fi
 
+# Add Blackfire Probe
+RUN set -eux; \
+    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
+    curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/$version; \
+    mkdir -p /tmp/blackfire; \
+    tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp/blackfire; \
+    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
+    printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > /usr/local/etc/php/conf.d/blackfire.ini; \
+    curl -A "Docker" -L https://blackfire.io/api/v1/releases/client/linux_static/amd64 | tar zxp -C /tmp/blackfire; \
+    mv /tmp/blackfire/blackfire /usr/bin/blackfire; \
+    rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
+
 # Install composer inside the PHP container
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 #COPY docker/php/get-composer.sh /tmp/get-composer.sh
