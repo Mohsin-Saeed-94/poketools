@@ -9,7 +9,7 @@ red-blue: &red-blue
     - damage
     - ailment
   hits: &red-blue.hits 1
-  turns: &red-blue.hits 1
+  turns: &red-blue.turns 1
   type: &red-blue.type electric
   power: &red-blue.power 40
   pp: &red-blue.pp 30
@@ -18,7 +18,7 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
   damage_class: &red-blue.damage_class special
   effect: &red-blue.effect 7
-  effect_chance: &red-blue.ailment_chance 10
+  effect_chance: &red-blue.effect_chance 10
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -27,7 +27,7 @@ gold-silver: &gold-silver
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -36,7 +36,7 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: |
     An attack that may
     cause paralysis.
@@ -48,7 +48,7 @@ ruby-sapphire: &ruby-sapphire
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -57,9 +57,9 @@ ruby-sapphire: &ruby-sapphire
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *red-blue.effect_chance
   contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: *red-blue.hits
+  contest_effect: &ruby-sapphire.contest_effect 1
   flavor_text: |
     An electrical attack that
     may paralyze the foe.
@@ -73,7 +73,7 @@ firered-leafgreen:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -82,13 +82,12 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: |
     An electric shock
     attack that may
     also leave the foe
     paralyzed.
-    
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   ailment: *red-blue.ailment
@@ -96,7 +95,7 @@ diamond-pearl: &diamond-pearl
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -105,7 +104,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *red-blue.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
@@ -122,7 +121,7 @@ heartgold-soulsilver:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -131,7 +130,7 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *red-blue.name
@@ -140,7 +139,7 @@ black-white: &black-white
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -149,7 +148,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: |
     A jolt of electricity is hurled
     at the target to inflict damage. It may
@@ -162,7 +161,7 @@ x-y:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -171,7 +170,7 @@ x-y:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: &x-y.flavor_text |
     A jolt of electricity crashes down on
     the target to inflict damage. This may
@@ -183,7 +182,7 @@ omega-ruby-alpha-sapphire:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -192,9 +191,9 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *red-blue.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *red-blue.hits
+  contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
   name: *red-blue.name
@@ -203,7 +202,7 @@ sun-moon: &sun-moon
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -212,7 +211,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: |
     A jolt of electricity crashes down on the target to
     inflict damage. This may also leave the target

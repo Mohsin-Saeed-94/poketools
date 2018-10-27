@@ -205,9 +205,9 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     /**
      * TM/HM Data
      *
-     * @TODO Add this
+     * @var Machine|null
      *
-     * @var null
+     * @ORM\OneToOne(targetEntity="App\Entity\Machine", mappedBy="move", cascade={"all"})
      */
     protected $machine;
 
@@ -738,21 +738,22 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     }
 
     /**
-     * @return null
+     * @return Machine|null
      */
-    public function getMachine()
+    public function getMachine(): ?Machine
     {
         return $this->machine;
     }
 
     /**
-     * @param null $machine
+     * @param Machine|null $machine
      *
      * @return self
      */
-    public function setMachine($machine)
+    public function setMachine(?Machine $machine): self
     {
         $this->machine = $machine;
+        $machine->setMove($this);
 
         return $this;
     }

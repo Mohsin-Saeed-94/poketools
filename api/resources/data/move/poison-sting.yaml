@@ -9,8 +9,8 @@ red-blue: &red-blue
     - damage
     - ailment
   hits: &red-blue.hits 1
-  turns: &red-blue.hits 1
-  type: &red-blue.ailment poison
+  turns: &red-blue.turns 1
+  type: &red-blue.type poison
   power: &red-blue.power 15
   pp: &red-blue.pp 35
   accuracy: &red-blue.accuracy 100
@@ -27,8 +27,8 @@ gold-silver: &gold-silver
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
-  type: *red-blue.ailment
+  turns: *red-blue.turns
+  type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -36,7 +36,7 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: &gold-silver.effect_chance 30
   flavor_text: |
     An attack that may
     poison the target.
@@ -48,8 +48,8 @@ ruby-sapphire: &ruby-sapphire
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
-  type: *red-blue.ailment
+  turns: *red-blue.turns
+  type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -57,7 +57,7 @@ ruby-sapphire: &ruby-sapphire
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 9
   flavor_text: |
@@ -71,8 +71,8 @@ colosseum: &colosseum
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
-  type: *red-blue.ailment
+  turns: *red-blue.turns
+  type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -80,7 +80,7 @@ colosseum: &colosseum
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *red-blue.name
@@ -89,8 +89,8 @@ firered-leafgreen:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
-  type: *red-blue.ailment
+  turns: *red-blue.turns
+  type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -98,13 +98,12 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The foe is stabbed
     with a toxic barb,
     etc. It may poison
     the foe.
-    
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   ailment: *red-blue.ailment
@@ -112,8 +111,8 @@ diamond-pearl: &diamond-pearl
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
-  type: *red-blue.ailment
+  turns: *red-blue.turns
+  type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -121,7 +120,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 19
   flavor_text: &diamond-pearl.flavor_text |
@@ -138,8 +137,8 @@ heartgold-soulsilver:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
-  type: *red-blue.ailment
+  turns: *red-blue.turns
+  type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -147,7 +146,7 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *red-blue.name
@@ -156,8 +155,8 @@ black-white: &black-white
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
-  type: *red-blue.ailment
+  turns: *red-blue.turns
+  type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -165,7 +164,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &black-white.flavor_text |
     The user stabs the target
     with a poisonous stinger.
@@ -179,8 +178,8 @@ omega-ruby-alpha-sapphire:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
-  type: *red-blue.ailment
+  turns: *red-blue.turns
+  type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -188,7 +187,7 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
@@ -199,8 +198,8 @@ sun-moon: &sun-moon
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
-  type: *red-blue.ailment
+  turns: *red-blue.turns
+  type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -208,7 +207,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user stabs the target with a poisonous stinger.
     This may also poison the target.

@@ -254,47 +254,6 @@ SQL
         return $destinationData;
     }
 
-    private function buildRangeString(int $min, int $max)
-    {
-        if ($min === $max) {
-            return $min;
-        } else {
-            return "$min-$max";
-        }
-    }
-
-    /**
-     * @param array $data
-     *
-     * @return array
-     */
-    private function removeNulls(array $data)
-    {
-        return array_filter(
-            $data,
-            function ($value) {
-                return !is_null($value);
-            }
-        );
-    }
-
-    /**
-     * @param array $data
-     * @param array $fields
-     *
-     * @return array
-     */
-    private function convertToInts(array $data, array $fields)
-    {
-        foreach ($fields as $field) {
-            if (isset($data[$field])) {
-                $data[$field] = (int)$data[$field];
-            }
-        }
-
-        return $data;
-    }
-
     /**
      * {@inheritdoc}
      * @param YamlDestinationDriver $destinationDriver

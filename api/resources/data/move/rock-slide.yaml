@@ -7,7 +7,7 @@ red-blue: &red-blue
   categories: &red-blue.categories
     - damage
   hits: &red-blue.hits 1
-  turns: &red-blue.hits 1
+  turns: &red-blue.turns 1
   type: &red-blue.type rock
   power: &red-blue.power 75
   pp: &red-blue.pp 10
@@ -15,8 +15,8 @@ red-blue: &red-blue
   priority: &red-blue.priority 0
   target: &red-blue.target all-opponents
   damage_class: &red-blue.damage_class physical
-  effect: &red-blue.hits 1
-  effect_chance: &red-blue.priority 0
+  effect: 1
+  effect_chance: 0
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -24,7 +24,7 @@ gold-silver: &gold-silver
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -33,7 +33,7 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: &gold-silver.effect 32
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: &gold-silver.effect_chance 30
   flavor_text: |
     An attack that may
     cause flinching.
@@ -44,7 +44,7 @@ ruby-sapphire: &ruby-sapphire
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -53,7 +53,7 @@ ruby-sapphire: &ruby-sapphire
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type tough
   contest_effect: &ruby-sapphire.contest_effect 5
   flavor_text: |
@@ -66,7 +66,7 @@ colosseum: &colosseum
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -75,7 +75,7 @@ colosseum: &colosseum
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *red-blue.name
@@ -83,7 +83,7 @@ firered-leafgreen:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -92,20 +92,19 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     Large boulders are
     hurled at the foe.
     It may make the
     foe flinch.
-    
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -114,9 +113,9 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  super_contest_effect: *ruby-sapphire.contest_effect
+  super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
     Large boulders are
     hurled at the foe to
@@ -130,7 +129,7 @@ heartgold-soulsilver:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -139,7 +138,7 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *red-blue.name
@@ -147,7 +146,7 @@ black-white: &black-white
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -156,7 +155,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     Large boulders are hurled at the opposing
     team to inflict damage. It may also make
@@ -168,7 +167,7 @@ x-y:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -177,7 +176,7 @@ x-y:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     Large boulders are hurled at the opposing
     Pokémon to inflict damage. This may also make
@@ -188,7 +187,7 @@ omega-ruby-alpha-sapphire:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -197,7 +196,7 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
@@ -207,7 +206,7 @@ sun-moon: &sun-moon
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -216,7 +215,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     Large boulders are hurled at the opposing Pokémon
     to inflict damage. This may also make the opposing

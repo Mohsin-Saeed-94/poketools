@@ -7,14 +7,14 @@ gold-silver: &gold-silver
   categories: &gold-silver.categories
     - damage
   hits: &gold-silver.hits 1
-  turns: &gold-silver.hits 1
+  turns: &gold-silver.turns 1
   type: &gold-silver.type fighting
   pp: &gold-silver.pp 15
   accuracy: &gold-silver.accuracy 100
   priority: &gold-silver.priority 0
   target: &gold-silver.target selected-pokemon
   damage_class: &gold-silver.damage_class physical
-  effect: &gold-silver.accuracy 100
+  effect: &gold-silver.effect 100
   flavor_text: |
     Stronger if the
     user's HP is low.
@@ -24,14 +24,14 @@ ruby-sapphire: &ruby-sapphire
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.accuracy
+  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 28
   flavor_text: |
@@ -43,29 +43,29 @@ colosseum: &colosseum
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.accuracy
+  effect: *gold-silver.effect
 xd: *colosseum
-firered-leafgreen: &firered-leafgreen
+firered-leafgreen:
   name: *gold-silver.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.accuracy
-  flavor_text: &firered-leafgreen.flavor_text |
+  effect: *gold-silver.effect
+  flavor_text: |
     An all-out attack
     that becomes more
     powerful the less
@@ -75,32 +75,49 @@ diamond-pearl: &diamond-pearl
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.accuracy
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
-  super_contest_effect: *gold-silver.pp
-  flavor_text: *firered-leafgreen.flavor_text
+  super_contest_effect: 15
+  flavor_text: &diamond-pearl.flavor_text |
+    An all-out attack
+    that becomes more
+    powerful the less
+    HP the user has.
 platinum: *diamond-pearl
-heartgold-soulsilver: *firered-leafgreen
+heartgold-soulsilver:
+  name: *gold-silver.name
+  flags: *gold-silver.flags
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  accuracy: *gold-silver.accuracy
+  priority: *gold-silver.priority
+  target: *gold-silver.target
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
+  flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *gold-silver.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.accuracy
+  effect: *gold-silver.effect
   flavor_text: &black-white.flavor_text |
     An all-out attack that becomes more
     powerful the less HP the user has.
@@ -111,14 +128,14 @@ omega-ruby-alpha-sapphire:
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.accuracy
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
@@ -127,14 +144,14 @@ sun-moon: &sun-moon
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.accuracy
+  effect: *gold-silver.effect
   flavor_text: |
     An all-out attack that becomes more powerful the
     less HP the user has.

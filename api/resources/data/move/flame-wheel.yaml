@@ -11,7 +11,7 @@ gold-silver: &gold-silver
     - damage
     - ailment
   hits: &gold-silver.hits 1
-  turns: &gold-silver.hits 1
+  turns: &gold-silver.turns 1
   type: &gold-silver.type fire
   power: &gold-silver.power 60
   pp: &gold-silver.pp 25
@@ -20,7 +20,7 @@ gold-silver: &gold-silver
   target: &gold-silver.target selected-pokemon
   damage_class: &gold-silver.damage_class special
   effect: &gold-silver.effect 126
-  effect_chance: &gold-silver.ailment_chance 10
+  effect_chance: &gold-silver.effect_chance 10
   flavor_text: |
     An attack that may
     cause a burn.
@@ -32,7 +32,7 @@ ruby-sapphire: &ruby-sapphire
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
@@ -41,9 +41,9 @@ ruby-sapphire: &ruby-sapphire
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: *gold-silver.hits
+  contest_effect: &ruby-sapphire.contest_effect 1
   flavor_text: |
     A fiery charge attack that
     may inflict a burn.
@@ -55,7 +55,7 @@ colosseum: &colosseum
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
@@ -64,7 +64,7 @@ colosseum: &colosseum
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.ailment_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *gold-silver.name
@@ -73,7 +73,7 @@ firered-leafgreen:
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
@@ -82,13 +82,12 @@ firered-leafgreen:
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user makes a
     fiery charge at the
     foe. It may cause
     a burn.
-    
 diamond-pearl: &diamond-pearl
   name: *gold-silver.name
   ailment: *gold-silver.ailment
@@ -96,7 +95,7 @@ diamond-pearl: &diamond-pearl
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
@@ -105,7 +104,7 @@ diamond-pearl: &diamond-pearl
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class physical
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 7
   flavor_text: &diamond-pearl.flavor_text |
@@ -122,7 +121,7 @@ heartgold-soulsilver:
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
@@ -131,7 +130,7 @@ heartgold-soulsilver:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *gold-silver.name
@@ -140,7 +139,7 @@ black-white: &black-white
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
@@ -149,7 +148,7 @@ black-white: &black-white
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user cloaks itself in fire and
     charges at the target.
@@ -162,7 +161,7 @@ x-y:
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
@@ -171,7 +170,7 @@ x-y:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The user cloaks itself in fire and
     charges at the target.
@@ -183,7 +182,7 @@ omega-ruby-alpha-sapphire:
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
@@ -192,9 +191,9 @@ omega-ruby-alpha-sapphire:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *gold-silver.hits
+  contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
   name: *gold-silver.name
@@ -203,7 +202,7 @@ sun-moon: &sun-moon
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
@@ -212,7 +211,7 @@ sun-moon: &sun-moon
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user cloaks itself in fire and charges at the
     target. This may also leave the target with a burn.

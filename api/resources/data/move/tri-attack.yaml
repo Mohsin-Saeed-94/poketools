@@ -9,7 +9,7 @@ red-blue: &red-blue
     - damage
     - ailment
   hits: &red-blue.hits 1
-  turns: &red-blue.hits 1
+  turns: &red-blue.turns 1
   type: &red-blue.type normal
   power: &red-blue.power 80
   pp: &red-blue.pp 10
@@ -17,8 +17,8 @@ red-blue: &red-blue
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
   damage_class: &red-blue.damage_class physical
-  effect: &red-blue.hits 1
-  effect_chance: &red-blue.priority 0
+  effect: 1
+  effect_chance: 0
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -27,7 +27,7 @@ gold-silver: &gold-silver
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -36,7 +36,7 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: &gold-silver.effect 37
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: &gold-silver.effect_chance 20
   flavor_text: |
     Fires three kinds
     of beams at once.
@@ -48,7 +48,7 @@ ruby-sapphire: &ruby-sapphire
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -57,7 +57,7 @@ ruby-sapphire: &ruby-sapphire
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 8
   flavor_text: |
@@ -71,7 +71,7 @@ colosseum: &colosseum
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -80,7 +80,7 @@ colosseum: &colosseum
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *red-blue.name
@@ -89,7 +89,7 @@ firered-leafgreen:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -98,13 +98,12 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A simultaneous
     3-beam attack that
     may paralyze, burn,
     or freeze the foe.
-    
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   ailment: *red-blue.ailment
@@ -112,7 +111,7 @@ diamond-pearl: &diamond-pearl
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -121,7 +120,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class special
   effect: *gold-silver.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
@@ -138,7 +137,7 @@ heartgold-soulsilver:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -147,7 +146,7 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *red-blue.name
@@ -156,7 +155,7 @@ black-white: &black-white
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -165,7 +164,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &black-white.flavor_text |
     The user strikes with a simultaneous
     three-beam attack. May also burn, freeze,
@@ -179,7 +178,7 @@ omega-ruby-alpha-sapphire:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -188,7 +187,7 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
@@ -199,7 +198,7 @@ sun-moon: &sun-moon
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -208,7 +207,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.ailment_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user strikes with a simultaneous three-beam
     attack. May also burn, freeze, or paralyze the target.

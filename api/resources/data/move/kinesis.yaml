@@ -7,7 +7,7 @@ red-blue: &red-blue
   categories: &red-blue.categories
     - net-good-stats
   hits: &red-blue.hits 1
-  turns: &red-blue.hits 1
+  turns: &red-blue.turns 1
   type: &red-blue.type psychic
   pp: &red-blue.pp 15
   accuracy: &red-blue.accuracy 80
@@ -21,7 +21,7 @@ gold-silver: &gold-silver
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -38,7 +38,7 @@ ruby-sapphire: &ruby-sapphire
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -47,10 +47,10 @@ ruby-sapphire: &ruby-sapphire
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: *red-blue.effect
+  contest_effect: &ruby-sapphire.contest_effect 24
   contest_use_before: &ruby-sapphire.contest_use_before
     - confusion
-    - *red-blue.type
+    - psychic
     - teleport
     - future-sight
   flavor_text: |
@@ -64,7 +64,7 @@ firered-leafgreen:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -77,13 +77,12 @@ firered-leafgreen:
     the foe by bending
     a spoon. It may
     lower accuracy.
-    
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -105,7 +104,7 @@ heartgold-soulsilver:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -119,7 +118,7 @@ black-white: &black-white
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -137,7 +136,7 @@ x-y:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -154,7 +153,7 @@ omega-ruby-alpha-sapphire:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -163,7 +162,7 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *red-blue.effect
+  contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
@@ -171,7 +170,7 @@ sun-moon: &sun-moon
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy

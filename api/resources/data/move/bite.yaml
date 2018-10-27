@@ -9,7 +9,7 @@ red-blue: &red-blue
   categories: &red-blue.categories
     - damage
   hits: &red-blue.hits 1
-  turns: &red-blue.hits 1
+  turns: &red-blue.turns 1
   type: normal
   power: &red-blue.power 60
   pp: &red-blue.pp 25
@@ -26,7 +26,7 @@ gold-silver: &gold-silver
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: &gold-silver.type dark
   power: *red-blue.power
   pp: *red-blue.pp
@@ -35,7 +35,7 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: &gold-silver.damage_class special
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: &gold-silver.effect_chance 30
   flavor_text: |
     An attack that may
     cause flinching.
@@ -46,7 +46,7 @@ ruby-sapphire: &ruby-sapphire
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *gold-silver.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -55,7 +55,7 @@ ruby-sapphire: &ruby-sapphire
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type tough
   contest_effect: &ruby-sapphire.contest_effect 5
   flavor_text: |
@@ -68,7 +68,7 @@ colosseum: &colosseum
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *gold-silver.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -77,7 +77,7 @@ colosseum: &colosseum
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *red-blue.name
@@ -85,7 +85,7 @@ firered-leafgreen:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *gold-silver.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -94,20 +94,19 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user bites with
     vicious fangs.
     It may make the
     foe flinch.
-    
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *gold-silver.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -116,9 +115,9 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  super_contest_effect: *ruby-sapphire.contest_effect
+  super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
     The foe is bitten with
     viciously sharp fangs.
@@ -131,7 +130,7 @@ heartgold-soulsilver:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *gold-silver.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -140,7 +139,7 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *red-blue.name
@@ -148,7 +147,7 @@ black-white: &black-white
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *gold-silver.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -157,7 +156,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is bitten
     with viciously sharp fangs.
@@ -169,7 +168,7 @@ x-y:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *gold-silver.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -178,7 +177,7 @@ x-y:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is bitten
     with viciously sharp fangs.
@@ -189,7 +188,7 @@ omega-ruby-alpha-sapphire:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *gold-silver.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -198,7 +197,7 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
@@ -208,7 +207,7 @@ sun-moon: &sun-moon
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *gold-silver.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -217,7 +216,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is bitten with viciously sharp fangs.
     This may also make the target flinch.

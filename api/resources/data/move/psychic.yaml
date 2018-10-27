@@ -8,10 +8,10 @@ red-blue: &red-blue
     - damage
     - lower
   hits: &red-blue.hits 1
-  turns: &red-blue.hits 1
+  turns: &red-blue.turns 1
   type: &red-blue.type psychic
   power: &red-blue.power 90
-  pp: &red-blue.stat_change_chance 10
+  pp: &red-blue.pp 10
   accuracy: &red-blue.accuracy 100
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
@@ -25,16 +25,16 @@ gold-silver: &gold-silver
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: &gold-silver.effect_chance 10
   flavor_text: |
     An attack that may
     lower SPCL.DEF.
@@ -45,16 +45,16 @@ ruby-sapphire: &ruby-sapphire
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 5
   contest_use_before: &ruby-sapphire.contest_use_before
@@ -72,16 +72,16 @@ colosseum: &colosseum
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *red-blue.name
@@ -89,38 +89,37 @@ firered-leafgreen:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A strong telekinetic
     attack. It may also
     lower the foe’s
     SP. DEF stat.
-    
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
   flavor_text: &diamond-pearl.flavor_text |
@@ -136,16 +135,16 @@ heartgold-soulsilver:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *red-blue.name
@@ -153,16 +152,16 @@ black-white: &black-white
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is hit by a strong telekinetic
     force. It may also reduce the target’s
@@ -174,16 +173,16 @@ x-y:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is hit by a strong telekinetic
     force. This may also lower the target’s
@@ -194,16 +193,16 @@ omega-ruby-alpha-sapphire:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
@@ -214,16 +213,16 @@ sun-moon: &sun-moon
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.stat_change_chance
+  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is hit by a strong telekinetic force.
     This may also lower the target’s Sp. Def stat.

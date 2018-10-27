@@ -7,7 +7,7 @@ red-blue: &red-blue
   categories: &red-blue.categories
     - damage
   hits: &red-blue.hits 1
-  turns: &red-blue.hits 1
+  turns: &red-blue.turns 1
   type: &red-blue.type ground
   power: &red-blue.power 65
   pp: &red-blue.pp 20
@@ -16,7 +16,7 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
   damage_class: &red-blue.damage_class physical
   effect: &red-blue.effect 32
-  effect_chance: &red-blue.flinch_chance 10
+  effect_chance: &red-blue.effect_chance 10
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -24,7 +24,7 @@ gold-silver: &gold-silver
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -33,7 +33,7 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: |
     An attack that may
     cause flinching.
@@ -44,7 +44,7 @@ ruby-sapphire: &ruby-sapphire
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -53,9 +53,9 @@ ruby-sapphire: &ruby-sapphire
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *red-blue.effect_chance
   contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: *red-blue.flinch_chance
+  contest_effect: &ruby-sapphire.contest_effect 10
   contest_use_before: &ruby-sapphire.contest_use_before
     - bonemerang
     - bone-rush
@@ -71,7 +71,7 @@ firered-leafgreen:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -80,20 +80,19 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: |
     The foe is clubbed
     with a bone held in
     hand. It may make
     the foe flinch.
-    
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -102,7 +101,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *red-blue.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
@@ -117,7 +116,7 @@ heartgold-soulsilver:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -126,7 +125,7 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *red-blue.name
@@ -134,7 +133,7 @@ black-white: &black-white
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -143,7 +142,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: |
     The user clubs the target with a bone.
     It may also make the target flinch.
@@ -154,7 +153,7 @@ x-y:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -163,7 +162,7 @@ x-y:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: &x-y.flavor_text |
     The user clubs the target with a bone.
     This may also make the target flinch.
@@ -173,7 +172,7 @@ omega-ruby-alpha-sapphire:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -182,9 +181,9 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *red-blue.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *red-blue.flinch_chance
+  contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
@@ -193,7 +192,7 @@ sun-moon: &sun-moon
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.hits
+  turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -202,7 +201,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *red-blue.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.flinch_chance
+  effect_chance: *red-blue.effect_chance
   flavor_text: |
     The user clubs the target with a bone. This may also
     make the target flinch.

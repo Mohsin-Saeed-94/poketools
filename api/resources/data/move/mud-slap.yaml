@@ -8,16 +8,16 @@ gold-silver: &gold-silver
     - damage
     - lower
   hits: &gold-silver.hits 1
-  turns: &gold-silver.hits 1
+  turns: &gold-silver.turns 1
   type: &gold-silver.type ground
   power: &gold-silver.power 20
   pp: &gold-silver.pp 10
-  accuracy: &gold-silver.stat_change_chance 100
+  accuracy: &gold-silver.accuracy 100
   priority: &gold-silver.priority 0
   target: &gold-silver.target selected-pokemon
   damage_class: &gold-silver.damage_class physical
   effect: &gold-silver.effect 74
-  effect_chance: &gold-silver.stat_change_chance 100
+  effect_chance: &gold-silver.effect_chance 100
   flavor_text: |
     Reduces the foe's
     accuracy.
@@ -28,18 +28,18 @@ ruby-sapphire: &ruby-sapphire
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
-  accuracy: *gold-silver.stat_change_chance
+  accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: *gold-silver.pp
+  contest_effect: &ruby-sapphire.contest_effect 10
   contest_use_before: &ruby-sapphire.contest_use_before
     - sand-attack
     - mud-sport
@@ -53,16 +53,16 @@ colosseum: &colosseum
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
-  accuracy: *gold-silver.stat_change_chance
+  accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *gold-silver.name
@@ -70,38 +70,37 @@ firered-leafgreen:
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
-  accuracy: *gold-silver.stat_change_chance
+  accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     Mud is hurled in
     the foe’s face to
     inflict damage and
     lower its accuracy.
-    
 diamond-pearl: &diamond-pearl
   name: *gold-silver.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
-  accuracy: *gold-silver.stat_change_chance
+  accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class special
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
@@ -116,16 +115,16 @@ heartgold-soulsilver:
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
-  accuracy: *gold-silver.stat_change_chance
+  accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *gold-silver.name
@@ -133,16 +132,16 @@ black-white: &black-white
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
-  accuracy: *gold-silver.stat_change_chance
+  accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &black-white.flavor_text |
     The user hurls mud in the target’s face to
     inflict damage and lower its accuracy.
@@ -154,18 +153,18 @@ omega-ruby-alpha-sapphire:
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
-  accuracy: *gold-silver.stat_change_chance
+  accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *gold-silver.pp
+  contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
@@ -174,16 +173,16 @@ sun-moon: &sun-moon
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
-  turns: *gold-silver.hits
+  turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
   pp: *gold-silver.pp
-  accuracy: *gold-silver.stat_change_chance
+  accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  effect_chance: *gold-silver.stat_change_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user hurls mud in the target’s face to inflict
     damage and lower its accuracy.

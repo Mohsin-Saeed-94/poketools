@@ -86,23 +86,25 @@ class Move extends AbstractDoctrineDataMigration implements DataMigrationInterfa
         if (isset($sourceData['contest_effect'])) {
             $sourceData['contest_effect'] = $this->referenceStore->get(ContestEffect::class, ['id' => $sourceData['contest_effect']]);
         }
-        if (isset($sourceData['contest_use_before'])) {
-            foreach ($sourceData['contest_use_before'] as &$contestUseBefore) {
-                /** @var \App\Entity\Move $contestUseBefore */
-                $contestUseBefore = $this->referenceStore->get(Move::class, ['identifier' => $contestUseBefore], true);
-                $contestUseBefore = $contestUseBefore->findChildByGrouping($sourceData['version_group']);
-            }
-        }
+        unset($sourceData['contest_use_before']);
+        //        if (isset($sourceData['contest_use_before'])) {
+        //            foreach ($sourceData['contest_use_before'] as &$contestUseBefore) {
+        //                /** @var \App\Entity\Move $contestUseBefore */
+        //                $contestUseBefore = $this->referenceStore->get(Move::class, ['identifier' => $contestUseBefore], true);
+        //                $contestUseBefore = $contestUseBefore->findChildByGrouping($sourceData['version_group']);
+        //            }
+        //        }
         if (isset($sourceData['super_contest_effect'])) {
             $sourceData['super_contest_effect'] = $this->referenceStore->get(SuperContestEffect::class, ['id' => $sourceData['super_contest_effect']]);
         }
-        if (isset($sourceData['super_contest_use_before'])) {
-            foreach ($sourceData['super_contest_use_before'] as &$superContestUseBefore) {
-                /** @var \App\Entity\Move $superContestUseBefore */
-                $superContestUseBefore = $this->referenceStore->get(Move::class, ['identifier' => $superContestUseBefore], true);
-                $superContestUseBefore = $superContestUseBefore->findChildByGrouping($sourceData['version_group']);
-            }
-        }
+        unset($sourceData['super_contest_use_before']);
+        //        if (isset($sourceData['super_contest_use_before'])) {
+        //            foreach ($sourceData['super_contest_use_before'] as &$superContestUseBefore) {
+        //                /** @var \App\Entity\Move $superContestUseBefore */
+        //                $superContestUseBefore = $this->referenceStore->get(Move::class, ['identifier' => $superContestUseBefore], true);
+        //                $superContestUseBefore = $superContestUseBefore->findChildByGrouping($sourceData['version_group']);
+        //            }
+        //        }
 
         /** @var MoveInVersionGroup $destinationData */
         $destinationData = $this->mergeProperties($sourceData, $destinationData);
