@@ -18,7 +18,7 @@ class Type extends AbstractDexEntity implements EntityHasNameInterface, EntityHa
      *
      * @var MoveDamageClass|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageclass")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass")
      */
     protected $damageClass;
 

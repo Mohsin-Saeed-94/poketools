@@ -12,11 +12,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity(repositoryClass="App\Repository\PokedexRepository")
  */
-class Pokedex extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDescriptionInterface
+class Pokedex extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDescriptionInterface, EntityHasDefaultInterface
 {
 
     use EntityHasNameAndSlugTrait;
     use EntityHasDescriptionTrait;
+    use EntityHasDefaultTrait;
 
     /**
      * @var Region[]|Collection

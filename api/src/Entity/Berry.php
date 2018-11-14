@@ -56,7 +56,7 @@ class Berry extends AbstractDexEntity
      *
      * @var Length
      *
-     * @ORM\Column(type="object")
+     * @ORM\Column(type="safe_object")
      * @Assert\NotBlank()
      */
     protected $size;
@@ -79,7 +79,7 @@ class Berry extends AbstractDexEntity
      *
      * @var Time
      *
-     * @ORM\Column(type="object")
+     * @ORM\Column(type="safe_object")
      * @Assert\NotBlank()
      */
     protected $growthTime;

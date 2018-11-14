@@ -11,9 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @method Collection|MoveInVersionGroup[] getChildren()
  * @method self addChild(MoveInVersionGroup $child)
- * @method self addChildren(Collection | MoveInVersionGroup[] $children)
+ * @method self addChildren(Collection|MoveInVersionGroup[] $children)
  * @method self removeChild(MoveInVersionGroup $child)
- * @method self removeChildren(Collection | MoveInVersionGroup[] $children)
+ * @method self removeChildren(Collection|MoveInVersionGroup[] $children)
  * @method MoveInVersionGroup findChildByGrouping(VersionGroup $group)
  */
 class Move extends AbstractDexEntity implements EntityHasChildrenInterface
