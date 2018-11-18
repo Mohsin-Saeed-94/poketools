@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -16,6 +17,20 @@ class EncounterConditionState extends AbstractDexEntity implements EntityHasName
     use EntityHasNameAndSlugTrait;
     use EntityIsSortableTrait;
     use EntityHasDefaultTrait;
+
+    /**
+     * URL slug
+     *
+     * @var string|null
+     *
+     * @ORM\Column(type="string", unique=true)
+     *
+     * @Gedmo\Slug(fields={"name"}, handlers={@Gedmo\SlugHandler(class="Gedmo\Sluggable\Handler\RelativeSlugHandler", options={
+     *       @Gedmo\SlugHandlerOption(name="relationField", value="condition"),
+     *       @Gedmo\SlugHandlerOption(name="relationSlugField", value="slug")
+     *     })})
+     */
+    protected $slug;
 
     /**
      * The encounter condition this state belongs to

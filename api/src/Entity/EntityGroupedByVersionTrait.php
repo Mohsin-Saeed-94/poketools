@@ -15,7 +15,7 @@ trait EntityGroupedByVersionTrait
     /**
      * @var Version
      *
-     * @ORM\ManyToOne(targetEntity="EntityGroupedByVersion")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Version")
      * @Assert\NotNull()
      */
     protected $version;

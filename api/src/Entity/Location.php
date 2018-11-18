@@ -11,6 +11,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * A place in the Pokémon world.
  *
  * @ORM\Entity(repositoryClass="App\Repository\LocationInVersionGroupRepository")
+ *
+ * @method Collection|LocationInVersionGroup[] getChildren()
+ * @method self addChild(LocationInVersionGroup $child)
+ * @method self addChildren(Collection|LocationInVersionGroup $children)
+ * @method self removeChild(LocationInVersionGroup $child)
+ * @method self removeChildren(Collection|LocationInVersionGroup[] $children)
+ * @method LocationInVersionGroup findChildByGrouping(VersionGroup $group)
  */
 class Location extends AbstractDexEntity implements EntityHasChildrenInterface
 {
