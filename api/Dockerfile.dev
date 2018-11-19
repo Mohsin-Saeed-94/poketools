@@ -55,7 +55,8 @@ RUN set -eux; \
 	\
 	apk del .build-deps
 
-COPY docker/php/php.ini /usr/local/etc/php/php.ini
+RUN ln -s $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
+COPY docker/php/api-platform.ini $PHP_INI_DIR/conf.d/
 
 ARG XDEBUG_REMOTE_HOST
 RUN XDEBUG_PATH=$(find /usr/local/lib/php/extensions/ -name xdebug.so); \
