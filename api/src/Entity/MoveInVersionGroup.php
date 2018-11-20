@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A technique or attack a Pokémon can learn to use.
@@ -37,7 +38,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var Type
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Type")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Type", fetch="EAGER")
      * @Assert\NotBlank()
      */
     protected $type;
@@ -90,7 +91,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var MoveTarget
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\MoveTarget")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MoveTarget", fetch="EAGER")
      * @Assert\NotBlank()
      */
     protected $target;
@@ -102,7 +103,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var MoveDamageClass
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass", fetch="EAGER")
      * @Assert\NotBlank()
      */
     protected $damageClass;
@@ -112,7 +113,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var MoveEffectInVersionGroup
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\MoveEffectInVersionGroup")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MoveEffectInVersionGroup", fetch="EAGER")
      * @Assert\NotBlank()
      */
     protected $effect;
@@ -134,7 +135,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var ContestType|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ContestType")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ContestType", fetch="EAGER")
      */
     protected $contestType;
 
@@ -143,7 +144,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var ContestEffect|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ContestEffect")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ContestEffect", fetch="EAGER")
      */
     protected $contestEffect;
 
@@ -152,7 +153,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var SuperContestEffect|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\SuperContestEffect")
+     * @ORM\ManyToOne(targetEntity="App\Entity\SuperContestEffect", fetch="EAGER")
      */
     protected $superContestEffect;
 
@@ -216,7 +217,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var MoveFlag[]|Collection
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\MoveFlag")
+     * @ORM\ManyToMany(targetEntity="App\Entity\MoveFlag", fetch="EAGER")
      */
     protected $flags;
 
@@ -225,7 +226,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var MoveStatChange[]|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\MoveStatChange", mappedBy="move", cascade={"ALL"})
+     * @ORM\OneToMany(targetEntity="App\Entity\MoveStatChange", mappedBy="move", cascade={"ALL"}, fetch="EAGER")
      */
     protected $statChanges;
 
@@ -244,7 +245,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var MoveCategory[]|Collection
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\MoveCategory")
+     * @ORM\ManyToMany(targetEntity="App\Entity\MoveCategory", fetch="EAGER")
      */
     protected $categories;
 
@@ -253,7 +254,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @var MoveAilment|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\MoveAilment")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MoveAilment", fetch="EAGER")
      */
     protected $ailment;
 

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Validator\IsExpression;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Growth rate of a Pokémon, i.e. the EXP to level function.

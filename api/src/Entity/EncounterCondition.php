@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A condition in the game world that affects Pokémon encounters, such as time
@@ -22,7 +23,7 @@ class EncounterCondition extends AbstractDexEntity implements EntityHasNameInter
     /**
      * @var Collection|EncounterConditionState[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\EncounterConditionState", mappedBy="condition", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="App\Entity\EncounterConditionState", mappedBy="condition", cascade={"all"}, fetch="EAGER")
      * @Assert\NotBlank()
      */
     protected $states;

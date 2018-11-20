@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PokemonStatRepository")
@@ -24,7 +25,7 @@ class PokemonStat implements EntityIsSortableInterface
     /**
      * @var Stat
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Stat")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Stat", fetch="EAGER")
      * @ORM\Id()
      */
     protected $stat;

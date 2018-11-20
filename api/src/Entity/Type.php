@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TypeRepository")
@@ -18,7 +19,7 @@ class Type extends AbstractDexEntity implements EntityHasNameInterface, EntityHa
      *
      * @var MoveDamageClass|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass", fetch="EAGER")
      */
     protected $damageClass;
 

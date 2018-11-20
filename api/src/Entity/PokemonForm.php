@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * An individual form of a Pokémon.
@@ -62,7 +63,7 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
     /**
      * @var Collection|PokemonFormPokeathlonStat[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonFormPokeathlonStat", mappedBy="pokemonForm", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonFormPokeathlonStat", mappedBy="pokemonForm", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $pokeathlonStats;

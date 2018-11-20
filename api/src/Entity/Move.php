@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MoveRepository")
@@ -24,7 +25,7 @@ class Move extends AbstractDexEntity implements EntityHasChildrenInterface
     /**
      * @var Collection|MoveInVersionGroup[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\MoveInVersionGroup", mappedBy="parent", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="App\Entity\MoveInVersionGroup", mappedBy="parent", cascade={"all"}, fetch="EAGER")
      */
     protected $children;
 

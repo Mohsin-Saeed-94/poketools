@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Data for the Pal Park mini-game in Generation IV.
@@ -24,7 +25,7 @@ class PokemonPalParkData
     /**
      * @var PalParkArea
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\PalParkArea")
+     * @ORM\ManyToOne(targetEntity="App\Entity\PalParkArea", fetch="EAGER")
      * @ORM\Id()
      */
     protected $area;

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A set of rules governing type efficacy.
@@ -26,7 +27,7 @@ class TypeChart extends AbstractDexEntity
     /**
      * @var TypeEfficacy[]|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\TypeEfficacy", mappedBy="typeChart", cascade={"ALL"})
+     * @ORM\OneToMany(targetEntity="App\Entity\TypeEfficacy", mappedBy="typeChart", cascade={"ALL"}, fetch="EAGER")
      */
     protected $efficacies;
 

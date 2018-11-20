@@ -9,6 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use PhpUnitsOfMeasure\PhysicalQuantity\Length;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Pokémon are defined as a form with different types, moves, or other game-
@@ -103,7 +104,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @var PokemonColor|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\PokemonColor")
+     * @ORM\ManyToOne(targetEntity="App\Entity\PokemonColor", fetch="EAGER")
      */
     protected $color;
 
@@ -112,7 +113,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @var PokemonShapeInVersionGroup|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\PokemonShapeInVersionGroup")
+     * @ORM\ManyToOne(targetEntity="App\Entity\PokemonShapeInVersionGroup", fetch="EAGER")
      */
     protected $shape;
 
@@ -121,7 +122,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @var PokemonHabitat|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\PokemonHabitat")
+     * @ORM\ManyToOne(targetEntity="App\Entity\PokemonHabitat", fetch="EAGER")
      */
     protected $habitat;
 
@@ -184,7 +185,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @var GrowthRate
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\GrowthRate")
+     * @ORM\ManyToOne(targetEntity="App\Entity\GrowthRate", fetch="EAGER")
      */
     protected $growthRate;
 
@@ -220,7 +221,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     /**
      * @var Collection|PokemonFlavorText[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonFlavorText", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonFlavorText", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $flavorText;
@@ -228,14 +229,14 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     /**
      * @var Collection|EggGroup[]
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\EggGroup")
+     * @ORM\ManyToMany(targetEntity="App\Entity\EggGroup", fetch="EAGER")
      */
     protected $eggGroups;
 
     /**
      * @var PokemonPalParkData
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\PokemonPalParkData", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\PokemonPalParkData", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      */
     protected $palParkData;
 
@@ -273,21 +274,21 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     /**
      * @var Collection|PokemonWildHeldItem[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonWildHeldItem", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonWildHeldItem", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      */
     protected $wildHeldItems;
 
     /**
      * @var Collection|PokemonMove[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonMove", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonMove", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      */
     protected $moves;
 
     /**
      * @var Collection|PokemonStat[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonStat", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonStat", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $stats;
@@ -295,7 +296,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     /**
      * @var Collection|PokemonType[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonType", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonType", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $types;
@@ -310,7 +311,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     /**
      * @var Collection|PokemonForm[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonForm", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonForm", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"isDefault" = "DESC", "position" = "ASC"})
      */
     protected $forms;

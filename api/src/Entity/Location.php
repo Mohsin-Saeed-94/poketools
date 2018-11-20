@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A place in the Pokémon world.
@@ -27,7 +28,7 @@ class Location extends AbstractDexEntity implements EntityHasChildrenInterface
     /**
      * @var Collection|LocationInVersionGroup[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\LocationInVersionGroup", mappedBy="parent", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="App\Entity\LocationInVersionGroup", mappedBy="parent", cascade={"all"}, fetch="EAGER")
      */
     protected $children;
 

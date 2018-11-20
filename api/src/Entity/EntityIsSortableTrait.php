@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Default implementation of App\Entity\EntityIsSortableInterface
@@ -17,6 +18,8 @@ trait EntityIsSortableTrait
      * @var int
      *
      * @ORM\Column(type="integer")
+     *
+     * @Groups("read")
      */
     protected $position = 0;
 

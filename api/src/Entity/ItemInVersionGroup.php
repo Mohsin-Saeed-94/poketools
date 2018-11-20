@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * An Item from the games, like “Poké Ball” or “Bicycle”.
@@ -42,7 +43,7 @@ class ItemInVersionGroup extends AbstractDexEntity implements
     /**
      * @var ItemCategory
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ItemCategory")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ItemCategory", fetch="EAGER")
      * @Assert\NotBlank()
      */
     protected $category;
@@ -50,7 +51,7 @@ class ItemInVersionGroup extends AbstractDexEntity implements
     /**
      * @var ItemPocketInVersionGroup
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ItemPocketInVersionGroup")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ItemPocketInVersionGroup", fetch="EAGER")
      */
     protected $pocket;
 
@@ -79,7 +80,7 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      *
      * @var ItemFlingEffect|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ItemFlingEffect")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ItemFlingEffect", fetch="EAGER")
      */
     protected $flingEffect;
 
@@ -98,21 +99,21 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      *
      * @var Collection|ItemFlag[]
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\ItemFlag")
+     * @ORM\ManyToMany(targetEntity="App\Entity\ItemFlag", fetch="EAGER")
      */
     protected $flags;
 
     /**
      * @var Berry|null
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\Berry", inversedBy="item", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Berry", inversedBy="item", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
      */
     protected $berry;
 
     /**
      * @var Machine|null
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\Machine", inversedBy="item", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Machine", inversedBy="item", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
      */
     protected $machine;
 

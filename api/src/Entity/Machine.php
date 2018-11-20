@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A TM or HM; numbered item that can teach a move to a Pokémon.
@@ -43,7 +44,7 @@ class Machine extends AbstractDexEntity
     /**
      * @var MoveInVersionGroup
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\MoveInVersionGroup", inversedBy="machine")
+     * @ORM\OneToOne(targetEntity="App\Entity\MoveInVersionGroup", inversedBy="machine", fetch="EAGER")
      * @Assert\NotBlank()
      */
     protected $move;

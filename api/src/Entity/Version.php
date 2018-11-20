@@ -2,12 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
+ * A Pokemon game version.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\VersionRepository")
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}}
+ * )
  */
 class Version extends AbstractDexEntity implements GroupableInterface, EntityHasNameInterface, EntityHasSlugInterface, EntityGroupedByVersionGroupInterface, EntityIsSortableInterface
 {

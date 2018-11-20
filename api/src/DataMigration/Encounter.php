@@ -21,7 +21,7 @@ use DragoonBoots\A2B\Exception\MigrationException;
  *         "App\DataMigration\Version",
  *         "App\DataMigration\Location",
  *         "App\DataMigration\EncounterMethod",
- *         "App\DataMigration\Pokemon",
+ *         "App\DataMigration\PokemonSpecies",
  *         "App\DataMigration\EncounterCondition"
  *     }
  * )

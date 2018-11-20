@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Default implementation of App\Entity\EntityHasFlavorTextInterface
@@ -17,6 +18,8 @@ trait EntityHasFlavorTextTrait
      * @var null|string
      *
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @Groups("read")
      */
     protected $flavorText;
 

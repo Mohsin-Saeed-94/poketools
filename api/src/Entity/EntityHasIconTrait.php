@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -19,6 +20,8 @@ trait EntityHasIconTrait
      *
      * @ORM\Column(type="string", nullable=true)
      * @Assert\Url()
+     *
+     * @Groups("read")
      */
     protected $icon;
 

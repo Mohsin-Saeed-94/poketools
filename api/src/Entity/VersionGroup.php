@@ -2,14 +2,23 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
+ * A set of games that are part of the same release, differing only in trivial
+ * ways (e.g. Pokemon available).
+ *
  * @ORM\Entity(repositoryClass="App\Repository\VersionGroupRepository")
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}}
+ * )
  */
 class VersionGroup extends AbstractDexEntity implements GroupableInterface, EntityHasNameInterface, EntityHasSlugInterface, EntityGroupedByGenerationInterface, EntityIsSortableInterface
 {
@@ -33,7 +42,9 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
      *
      * @var Version[]|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Version", mappedBy="versionGroup")
+     * @ORM\OneToMany(targetEntity="App\Entity\Version", mappedBy="versionGroup", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $versions;
 

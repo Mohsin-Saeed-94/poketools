@@ -5,6 +5,7 @@ namespace App\Entity;
 use Cake\Chronos\Chronos;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A Time of Day

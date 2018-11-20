@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * An effect of a move.
@@ -20,7 +21,7 @@ class MoveEffect extends AbstractDexEntity implements EntityHasChildrenInterface
     /**
      * @var Collection|MoveEffectInVersionGroup[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\MoveEffectInVersionGroup", mappedBy="parent", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="App\Entity\MoveEffectInVersionGroup", mappedBy="parent", cascade={"all"}, fetch="EAGER")
      */
     protected $children;
 

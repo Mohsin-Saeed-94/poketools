@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Validator\CssColor as AssertCssColor;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * The “Pokédex color” of a Pokémon species. Usually based on the Pokémon’s

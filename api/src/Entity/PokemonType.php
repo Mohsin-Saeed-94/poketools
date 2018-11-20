@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PokemonTypeRepository")
@@ -23,7 +24,7 @@ class PokemonType implements EntityIsSortableInterface
     /**
      * @var Type
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Type")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Type", fetch="EAGER")
      * @ORM\Id()
      */
     protected $type;

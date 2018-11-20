@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use PhpUnitsOfMeasure\PhysicalQuantity\Length;
 use PhpUnitsOfMeasure\PhysicalQuantity\Time;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A Berry, consumable item that grows on trees.
@@ -130,7 +131,7 @@ class Berry extends AbstractDexEntity
     /**
      * @var Collection|BerryFlavorLevel[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\BerryFlavorLevel", mappedBy="berry", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\BerryFlavorLevel", mappedBy="berry", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
      */
     protected $flavors;
 

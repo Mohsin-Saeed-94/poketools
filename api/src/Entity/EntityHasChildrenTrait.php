@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Default implementation of App\Entity\EntityHasChildrenInterface
@@ -17,6 +18,8 @@ trait EntityHasChildrenTrait
 
     /**
      * @var Collection
+     *
+     * @Groups("read")
      */
     protected $children;
 

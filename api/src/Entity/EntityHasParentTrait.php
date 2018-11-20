@@ -3,6 +3,8 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * Default implementation of App\Entity\EntityHasParentInterface
  *

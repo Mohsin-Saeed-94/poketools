@@ -2,15 +2,21 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A Generation of the Pokémon franchise.
  *
  * @ORM\Entity(repositoryClass="App\Repository\GenerationRepository")
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}}
+ * )
  */
 class Generation extends AbstractDexEntity implements GroupableInterface, EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface
 {
@@ -19,12 +25,25 @@ class Generation extends AbstractDexEntity implements GroupableInterface, Entity
     use EntityIsSortableTrait;
 
     /**
+     * URL slug
+     *
+     * @var string|null
+     *
+     * @ORM\Column(type="string", unique=true)
+     *
+     * @Gedmo\Slug(fields={"number"}, handlers={@Gedmo\SlugHandler(class="App\Handler\SluggableGroupedHandler")})
+     */
+    protected $slug;
+
+    /**
      * Generation number
      *
      * @var int
      *
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $number;
 
@@ -33,7 +52,9 @@ class Generation extends AbstractDexEntity implements GroupableInterface, Entity
      *
      * @var VersionGroup[]|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\VersionGroup", mappedBy="generation")
+     * @ORM\OneToMany(targetEntity="App\Entity\VersionGroup", mappedBy="generation", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $versionGroups;
 

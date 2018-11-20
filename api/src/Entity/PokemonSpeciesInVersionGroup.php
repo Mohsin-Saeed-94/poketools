@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A Pokémon species is a single named entity in the Pokédex.
@@ -33,7 +34,7 @@ class PokemonSpeciesInVersionGroup extends AbstractDexEntity implements EntityHa
     /**
      * @var Collection|PokemonSpeciesPokedexNumber[]
      *
-     * @ORM\OneToMany(targetEntity="PokemonSpeciesPokedexNumber", mappedBy="species", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="PokemonSpeciesPokedexNumber", mappedBy="species", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"isDefault" = "DESC"})
      */
     protected $numbers;
@@ -41,7 +42,7 @@ class PokemonSpeciesInVersionGroup extends AbstractDexEntity implements EntityHa
     /**
      * @var Collection|Pokemon[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Pokemon", mappedBy="species", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Pokemon", mappedBy="species", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"isDefault" = "DESC"})
      */
     protected $pokemon;

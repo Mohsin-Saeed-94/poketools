@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A single possible encounter with a pokemon
@@ -65,7 +66,7 @@ class Encounter extends AbstractDexEntity implements EntityGroupedByVersionInter
     /**
      * @var EncounterConditionState|Collection
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\EncounterConditionState")
+     * @ORM\ManyToMany(targetEntity="App\Entity\EncounterConditionState", fetch="EAGER")
      */
     protected $conditions;
 
