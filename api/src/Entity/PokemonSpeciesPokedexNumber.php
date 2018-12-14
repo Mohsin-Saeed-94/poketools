@@ -28,6 +28,8 @@ class PokemonSpeciesPokedexNumber implements EntityHasDefaultInterface
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Pokedex")
      * @ORM\Id()
+     *
+     * @Groups("read")
      */
     protected $pokedex;
 
@@ -35,6 +37,8 @@ class PokemonSpeciesPokedexNumber implements EntityHasDefaultInterface
      * @var int
      *
      * @ORM\Column(type="integer")
+     *
+     * @Groups("read")
      */
     protected $number;
 

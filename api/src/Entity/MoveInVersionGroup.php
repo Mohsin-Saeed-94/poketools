@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Embeddable\Range;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * A technique or attack a Pokémon can learn to use.
@@ -16,6 +20,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @method Move getParent()
  * @method self setParent(Move $parent)
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true}
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"versionGroup": "exact"})
  */
 class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInterface, EntityGroupedByVersionGroupInterface, EntityHasNameInterface, EntityHasSlugInterface, EntityHasDescriptionInterface, EntityHasFlavorTextInterface
 {
@@ -40,6 +49,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Type", fetch="EAGER")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $type;
 
@@ -50,6 +61,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $power;
 
@@ -61,6 +74,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $pp;
 
@@ -74,6 +89,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min="0", max="100")
+     *
+     * @Groups("read")
      */
     protected $accuracy;
 
@@ -83,6 +100,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var int
      *
      * @ORM\Column(type="integer")
+     *
+     * @Groups("read")
      */
     protected $priority;
 
@@ -93,6 +112,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveTarget", fetch="EAGER")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $target;
 
@@ -105,6 +126,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass", fetch="EAGER")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $damageClass;
 
@@ -115,6 +138,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveEffectInVersionGroup", fetch="EAGER")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $effect;
 
@@ -126,6 +151,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $effectChance;
 
@@ -136,6 +163,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var ContestType|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\ContestType", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $contestType;
 
@@ -145,6 +174,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var ContestEffect|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\ContestEffect", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $contestEffect;
 
@@ -154,6 +185,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var SuperContestEffect|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\SuperContestEffect", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $superContestEffect;
 
@@ -168,6 +201,9 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *     joinColumns={@ORM\JoinColumn(name="move_in_version_group_first_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="move_in_version_group_second_id", referencedColumnName="id")}
      * )
+     *
+     * @Groups("read")
+     * @MaxDepth(1)
      */
     protected $contestUseBefore;
 
@@ -177,6 +213,9 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var MoveInVersionGroup[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\MoveInVersionGroup", mappedBy="contestUseBefore")
+     *
+     * @Groups("read")
+     * @MaxDepth(1)
      */
     protected $contestUseAfter;
 
@@ -191,6 +230,9 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *     joinColumns={@ORM\JoinColumn(name="move_in_version_group_first_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="move_in_version_group_second_id", referencedColumnName="id")}
      * )
+     *
+     * @Groups("read")
+     * @MaxDepth(1)
      */
     protected $superContestUseBefore;
 
@@ -200,6 +242,9 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var MoveInVersionGroup[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\MoveInVersionGroup", mappedBy="superContestUseBefore")
+     *
+     * @Groups("read")
+     * @MaxDepth(1)
      */
     protected $superContestUseAfter;
 
@@ -209,6 +254,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var Machine|null
      *
      * @ORM\OneToOne(targetEntity="App\Entity\Machine", mappedBy="move", cascade={"all"})
+     *
+     * @Groups("read")
      */
     protected $machine;
 
@@ -218,6 +265,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var MoveFlag[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\MoveFlag", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $flags;
 
@@ -227,6 +276,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var MoveStatChange[]|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\MoveStatChange", mappedBy="move", cascade={"ALL"}, fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $statChanges;
 
@@ -237,6 +288,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $statChangeChance;
 
@@ -246,6 +299,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var MoveCategory[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\MoveCategory", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $categories;
 
@@ -255,6 +310,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var MoveAilment|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveAilment", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $ailment;
 
@@ -265,6 +322,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min="0", max="100")
+     *
+     * @Groups("read")
      */
     protected $ailmentChance;
 
@@ -274,6 +333,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var Range
      *
      * @ORM\Embedded(class="App\Entity\Embeddable\Range")
+     *
+     * @Groups("read")
      */
     protected $hits;
 
@@ -283,6 +344,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      * @var Range
      *
      * @ORM\Embedded(class="App\Entity\Embeddable\Range")
+     *
+     * @Groups("read")
      */
     protected $turns;
 
@@ -293,6 +356,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $drain;
 
@@ -303,6 +368,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $recoil;
 
@@ -313,6 +380,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $healing;
 
@@ -323,6 +392,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $critRateBonus;
 
@@ -333,6 +404,8 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $flinchChance;
 

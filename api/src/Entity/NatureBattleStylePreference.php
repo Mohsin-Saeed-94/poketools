@@ -30,6 +30,8 @@ class NatureBattleStylePreference
      * @ORM\ManyToOne(targetEntity="App\Entity\BattleStyle")
      * @ORM\Id()
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $battleStyle;
 
@@ -39,6 +41,8 @@ class NatureBattleStylePreference
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      * @Assert\Range(min="0", max="100")
+     *
+     * @Groups("read")
      */
     protected $lowHpChance;
 
@@ -48,6 +52,8 @@ class NatureBattleStylePreference
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      * @Assert\Range(min="0", max="100")
+     *
+     * @Groups("read")
      */
     protected $highHpChance;
 

@@ -7,6 +7,7 @@ namespace App\Entity\PokemonEvolutionCondition;
 use App\Entity\PokemonEvolutionCondition;
 use App\Entity\Type;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -22,6 +23,8 @@ class PartyTypeEvolutionCondition extends PokemonEvolutionCondition
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Type")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $partyType;
 

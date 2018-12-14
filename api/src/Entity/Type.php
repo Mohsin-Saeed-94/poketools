@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TypeRepository")
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}}
+ * )
  */
 class Type extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface
 {
@@ -20,6 +25,8 @@ class Type extends AbstractDexEntity implements EntityHasNameInterface, EntityHa
      * @var MoveDamageClass|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $damageClass;
 
@@ -30,6 +37,8 @@ class Type extends AbstractDexEntity implements EntityHasNameInterface, EntityHa
      * @var bool
      *
      * @ORM\Column(type="boolean")
+     *
+     * @Groups("read")
      */
     protected $hidden = false;
 

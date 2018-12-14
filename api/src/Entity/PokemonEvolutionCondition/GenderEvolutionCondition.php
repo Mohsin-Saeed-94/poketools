@@ -7,6 +7,7 @@ namespace App\Entity\PokemonEvolutionCondition;
 use App\Entity\Gender;
 use App\Entity\PokemonEvolutionCondition;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * The Pokémon must be this gender.
@@ -20,6 +21,8 @@ class GenderEvolutionCondition extends PokemonEvolutionCondition
      * @var Gender
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Gender")
+     *
+     * @Groups("read")
      */
     protected $gender;
 

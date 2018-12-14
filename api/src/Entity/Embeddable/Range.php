@@ -4,6 +4,7 @@
 namespace App\Entity\Embeddable;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A range of values
@@ -19,6 +20,8 @@ class Range
      * @var int
      *
      * @ORM\Column(type="integer")
+     *
+     * @Groups("read")
      */
     protected $min;
 
@@ -28,6 +31,8 @@ class Range
      * @var int
      *
      * @ORM\Column(type="integer")
+     *
+     * @Groups("read")
      */
     protected $max;
 
@@ -49,6 +54,8 @@ class Range
 
     /**
      * @return string
+     *
+     * @Groups("read")
      */
     public function __toString(): string
     {

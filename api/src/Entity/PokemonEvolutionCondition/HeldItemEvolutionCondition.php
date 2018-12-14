@@ -6,6 +6,7 @@ namespace App\Entity\PokemonEvolutionCondition;
 use App\Entity\ItemInVersionGroup;
 use App\Entity\PokemonEvolutionCondition;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -21,6 +22,8 @@ class HeldItemEvolutionCondition extends PokemonEvolutionCondition
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\ItemInVersionGroup")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $heldItem;
 

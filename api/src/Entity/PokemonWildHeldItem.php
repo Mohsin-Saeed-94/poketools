@@ -25,6 +25,8 @@ class PokemonWildHeldItem
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Version")
      * @ORM\Id()
+     *
+     * @Groups("read")
      */
     protected $version;
 
@@ -33,6 +35,8 @@ class PokemonWildHeldItem
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\ItemInVersionGroup", fetch="EAGER")
      * @ORM\Id()
+     *
+     * @Groups("read")
      */
     protected $item;
 
@@ -41,6 +45,8 @@ class PokemonWildHeldItem
      *
      * @ORM\Column(type="integer")
      * @Assert\Range(min="0", max="100")
+     *
+     * @Groups("read")
      */
     protected $rate;
 

@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * An Item from the games, like “Poké Ball” or “Bicycle”.
@@ -15,6 +18,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @method Item getParent()
  * @method self setParent(Item $parent)
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}}
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"versionGroup": "exact"})
  */
 class ItemInVersionGroup extends AbstractDexEntity implements
     EntityHasNameInterface,
@@ -45,6 +53,8 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\ItemCategory", fetch="EAGER")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $category;
 
@@ -52,6 +62,8 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      * @var ItemPocketInVersionGroup
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\ItemPocketInVersionGroup", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $pocket;
 
@@ -62,6 +74,8 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $buy;
 
@@ -72,6 +86,8 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $sell;
 
@@ -81,6 +97,8 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      * @var ItemFlingEffect|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\ItemFlingEffect", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $flingEffect;
 
@@ -91,6 +109,8 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
+     *
+     * @Groups("read")
      */
     protected $flingPower;
 
@@ -100,6 +120,8 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      * @var Collection|ItemFlag[]
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\ItemFlag", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $flags;
 
@@ -107,6 +129,8 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      * @var Berry|null
      *
      * @ORM\OneToOne(targetEntity="App\Entity\Berry", inversedBy="item", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $berry;
 
@@ -114,6 +138,8 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      * @var Machine|null
      *
      * @ORM\OneToOne(targetEntity="App\Entity\Machine", inversedBy="item", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $machine;
 

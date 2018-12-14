@@ -26,6 +26,8 @@ class PokemonType implements EntityIsSortableInterface
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Type", fetch="EAGER")
      * @ORM\Id()
+     *
+     * @Groups("read")
      */
     protected $type;
 

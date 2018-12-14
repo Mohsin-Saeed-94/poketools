@@ -20,7 +20,7 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
     /**
      * @var LocationInVersionGroup
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\LocationInVersionGroup")
+     * @ORM\ManyToOne(targetEntity="App\Entity\LocationInVersionGroup", inversedBy="areas")
      * @Assert\NotNull
      */
     protected $location;

@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 
 /**
@@ -16,6 +19,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @method Location getParent()
  * @method self setParent(Location $parent)
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}}
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"versionGroup": "exact"})
  */
 class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParentInterface, EntityHasNameInterface, EntityHasSlugInterface, EntityGroupedByVersionGroupInterface
 {
@@ -44,6 +52,8 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
      *
      * @ORM\OneToMany(targetEntity="App\Entity\LocationArea", mappedBy="location", cascade={"ALL"}, fetch="EAGER")
      * @Assert\NotBlank
+     *
+     * @Groups("read")
      */
     protected $areas;
 

@@ -6,6 +6,7 @@ namespace App\Entity\PokemonEvolutionCondition;
 use App\Entity\PokemonEvolutionCondition;
 use App\Entity\Weather;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -21,6 +22,8 @@ class OverworldWeatherEvolutionCondition extends PokemonEvolutionCondition
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Weather")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $overworldWeather;
 

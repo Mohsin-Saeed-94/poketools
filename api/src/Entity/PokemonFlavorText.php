@@ -27,6 +27,8 @@ class PokemonFlavorText implements EntityHasFlavorTextInterface, EntityIsSortabl
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Version")
      * @ORM\Id()
+     *
+     * @Groups("read")
      */
     protected $version;
 

@@ -2,16 +2,24 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * A collection of Pokémon species ordered in a particular way.
  *
  * @ORM\Entity(repositoryClass="App\Repository\PokedexRepository")
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}}
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"versionGroups": "exact"})
  */
 class Pokedex extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDescriptionInterface, EntityHasDefaultInterface
 {

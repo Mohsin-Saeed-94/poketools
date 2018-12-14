@@ -28,6 +28,10 @@ class SafeObjectType extends ObjectType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
+        if (is_null($value)) {
+            return null;
+        }
+
         return parent::convertToPHPValue(base64_decode($value, true), $platform);
     }
 

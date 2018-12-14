@@ -28,6 +28,8 @@ class PokemonFormPokeathlonStat implements EntityIsSortableInterface
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\PokeathlonStat")
      * @ORM\Id()
+     *
+     * @Groups("read")
      */
     protected $pokeathlonStat;
 
@@ -37,6 +39,8 @@ class PokemonFormPokeathlonStat implements EntityIsSortableInterface
      * @ORM\Embedded(class="App\Entity\Embeddable\Range")
      * @Assert\NotBlank()
      * @Assert\Expression("value.getMin() >= 0 && value.getMax() <= 5")
+     *
+     * @Groups("read")
      */
     protected $range;
 
@@ -45,6 +49,8 @@ class PokemonFormPokeathlonStat implements EntityIsSortableInterface
      *
      * @ORM\Column(type="integer")
      * @Assert\Range(min="0", max="5")
+     *
+     * @Groups("read")
      */
     protected $baseValue;
 

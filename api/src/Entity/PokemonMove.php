@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PokemonMoveRepository")
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true}
+ * )
  */
 class PokemonMove extends AbstractDexEntity implements EntityIsSortableInterface
 {
@@ -17,7 +22,7 @@ class PokemonMove extends AbstractDexEntity implements EntityIsSortableInterface
     /**
      * @var Pokemon
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pokemon")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pokemon", inversedBy="moves")
      */
     protected $pokemon;
 
@@ -25,6 +30,8 @@ class PokemonMove extends AbstractDexEntity implements EntityIsSortableInterface
      * @var MoveInVersionGroup
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveInVersionGroup")
+     *
+     * @Groups("read")
      */
     protected $move;
 
@@ -32,6 +39,8 @@ class PokemonMove extends AbstractDexEntity implements EntityIsSortableInterface
      * @var MoveLearnMethod
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveLearnMethod")
+     *
+     * @Groups("read")
      */
     protected $learnMethod;
 
@@ -40,6 +49,8 @@ class PokemonMove extends AbstractDexEntity implements EntityIsSortableInterface
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min="0", max="100")
+     *
+     * @Groups("read")
      */
     protected $level;
 
@@ -47,6 +58,8 @@ class PokemonMove extends AbstractDexEntity implements EntityIsSortableInterface
      * @var ItemInVersionGroup|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\ItemInVersionGroup")
+     *
+     * @Groups("read")
      */
     protected $machine;
 

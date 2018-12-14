@@ -27,6 +27,8 @@ class PokemonStat implements EntityIsSortableInterface
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Stat", fetch="EAGER")
      * @ORM\Id()
+     *
+     * @Groups("read")
      */
     protected $stat;
 
@@ -35,6 +37,8 @@ class PokemonStat implements EntityIsSortableInterface
      *
      * @ORM\Column(type="integer")
      * @Assert\Range(min="0", max="255")
+     *
+     * @Groups("read")
      */
     protected $baseValue;
 
@@ -43,6 +47,8 @@ class PokemonStat implements EntityIsSortableInterface
      *
      * @ORM\Column(type="integer")
      * @Assert\Range(min="-255", max="255")
+     *
+     * @Groups("read")
      */
     protected $effortChange;
 

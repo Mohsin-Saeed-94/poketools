@@ -26,6 +26,8 @@ class PokemonAbility implements EntityIsSortableInterface
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\AbilityInVersionGroup")
      * @ORM\Id()
+     *
+     * @Groups("read")
      */
     protected $ability;
 
@@ -33,6 +35,8 @@ class PokemonAbility implements EntityIsSortableInterface
      * @var bool
      *
      * @ORM\Column(type="boolean")
+     *
+     * @Groups("read")
      */
     protected $hidden = false;
 

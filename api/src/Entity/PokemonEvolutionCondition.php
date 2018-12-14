@@ -19,7 +19,7 @@ class PokemonEvolutionCondition extends AbstractDexEntity
     /**
      * @var Pokemon
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pokemon")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pokemon", inversedBy="evolutionConditions")
      * @Assert\NotBlank()
      */
     protected $pokemon;
@@ -29,6 +29,8 @@ class PokemonEvolutionCondition extends AbstractDexEntity
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\EvolutionTrigger")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $evolutionTrigger;
 

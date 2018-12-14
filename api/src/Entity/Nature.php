@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,6 +13,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * A nature a Pokémon can have, such as Calm or Brave.
  *
  * @ORM\Entity(repositoryClass="App\Repository\NatureRepository")
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}}
+ * )
  */
 class Nature extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface
 {
@@ -25,6 +30,8 @@ class Nature extends AbstractDexEntity implements EntityHasNameInterface, Entity
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Stat", fetch="EAGER")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $statIncreased;
 
@@ -35,6 +42,8 @@ class Nature extends AbstractDexEntity implements EntityHasNameInterface, Entity
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Stat", fetch="EAGER")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $statDecreased;
 
@@ -45,6 +54,8 @@ class Nature extends AbstractDexEntity implements EntityHasNameInterface, Entity
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\BerryFlavor", fetch="EAGER")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $flavorLikes;
 
@@ -55,6 +66,8 @@ class Nature extends AbstractDexEntity implements EntityHasNameInterface, Entity
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\BerryFlavor", fetch="EAGER")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $flavorHates;
 
@@ -62,6 +75,8 @@ class Nature extends AbstractDexEntity implements EntityHasNameInterface, Entity
      * @var NatureBattleStylePreference[]|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\NatureBattleStylePreference", mappedBy="nature", cascade={"ALL"}, fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $battleStylePreferences;
 
@@ -69,6 +84,8 @@ class Nature extends AbstractDexEntity implements EntityHasNameInterface, Entity
      * @var NaturePokeathlonStatChange[]|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\NaturePokeathlonStatChange", mappedBy="nature", cascade={"ALL"}, fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $pokeathlonStatChanges;
 

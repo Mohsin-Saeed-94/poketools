@@ -9,6 +9,7 @@ use App\Entity\PokemonEvolutionCondition;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -24,6 +25,8 @@ class LocationEvolutionCondition extends PokemonEvolutionCondition
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\LocationInVersionGroup")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $locations;
 

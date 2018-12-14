@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +22,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass="App\Repository\PokemonRepository")
  *
  * @Gedmo\Tree(type="materializedPath")
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true}
+ * )
  */
 class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface, EntityHasDefaultInterface
 {
@@ -96,6 +102,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var Collection|PokemonEvolutionCondition[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonEvolutionCondition", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
+     *
+     * @Groups("read")
      */
     protected $evolutionConditions;
 
@@ -105,6 +113,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var PokemonColor|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\PokemonColor", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $color;
 
@@ -114,6 +124,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var PokemonShapeInVersionGroup|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\PokemonShapeInVersionGroup", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $shape;
 
@@ -123,6 +135,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var PokemonHabitat|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\PokemonHabitat", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $habitat;
 
@@ -133,6 +147,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min="0", max="100")
+     *
+     * @Groups("read")
      */
     protected $femaleRate;
 
@@ -143,6 +159,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @ORM\Column(type="integer")
      * @Assert\Range(min="0", max="255")
+     *
+     * @Groups("read")
      */
     protected $captureRate;
 
@@ -153,6 +171,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min="0", max="255")
+     *
+     * @Groups("read")
      */
     protected $happiness;
 
@@ -165,6 +185,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var bool
      *
      * @ORM\Column(type="boolean")
+     *
+     * @Groups("read")
      */
     protected $baby = false;
 
@@ -177,6 +199,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var int|null
      *
      * @ORM\Column(type="integer", nullable=true)
+     *
+     * @Groups("read")
      */
     protected $hatchSteps;
 
@@ -186,6 +210,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var GrowthRate
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\GrowthRate", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $growthRate;
 
@@ -196,6 +222,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var bool
      *
      * @ORM\Column(type="boolean")
+     *
+     * @Groups("read")
      */
     protected $formsSwitchable = false;
 
@@ -206,6 +234,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var string
      *
      * @ORM\Column(type="text")
+     *
+     * @Groups("read")
      */
     protected $genus;
 
@@ -215,6 +245,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var string|null
      *
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @Groups("read")
      */
     protected $formsNote;
 
@@ -223,6 +255,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonFlavorText", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
+     *
+     * @Groups("read")
      */
     protected $flavorText;
 
@@ -230,6 +264,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var Collection|EggGroup[]
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\EggGroup", fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $eggGroups;
 
@@ -237,6 +273,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var PokemonPalParkData
      *
      * @ORM\OneToOne(targetEntity="App\Entity\PokemonPalParkData", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $palParkData;
 
@@ -244,6 +282,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var Length
      *
      * @ORM\Column(type="safe_object")
+     *
+     * @Groups("read")
      */
     protected $height;
 
@@ -251,6 +291,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var Mass
      *
      * @ORM\Column(type="safe_object")
+     *
+     * @Groups("read")
      */
     protected $weight;
 
@@ -260,6 +302,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var int
      *
      * @ORM\Column(type="integer")
+     *
+     * @Groups("read")
      */
     protected $experience;
 
@@ -268,6 +312,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonAbility", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
+     *
+     * @Groups("read")
      */
     protected $abilities;
 
@@ -275,6 +321,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var Collection|PokemonWildHeldItem[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonWildHeldItem", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
+     *
+     * @Groups("read")
      */
     protected $wildHeldItems;
 
@@ -282,6 +330,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var Collection|PokemonMove[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonMove", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
+     *
+     * @ApiSubresource()
      */
     protected $moves;
 
@@ -290,6 +340,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonStat", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
+     *
+     * @Groups("read")
      */
     protected $stats;
 
@@ -298,6 +350,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonType", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
+     *
+     * @Groups("read")
      */
     protected $types;
 
@@ -305,14 +359,18 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var bool
      *
      * @ORM\Column(type="boolean")
+     *
+     * @Groups("read")
      */
     protected $mega = false;
 
     /**
      * @var Collection|PokemonForm[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonForm", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonForm", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
      * @ORM\OrderBy({"isDefault" = "DESC", "position" = "ASC"})
+     *
+     * @ApiSubresource()
      */
     protected $forms;
 

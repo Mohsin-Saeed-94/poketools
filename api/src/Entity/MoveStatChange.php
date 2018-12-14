@@ -17,7 +17,7 @@ class MoveStatChange
     /**
      * @var MoveInVersionGroup
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\MoveInVersionGroup")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MoveInVersionGroup", inversedBy="statChanges")
      * @ORM\Id()
      * @Assert\NotBlank()
      */
@@ -29,6 +29,8 @@ class MoveStatChange
      * @ORM\ManyToOne(targetEntity="App\Entity\Stat")
      * @ORM\Id()
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $stat;
 
@@ -38,6 +40,8 @@ class MoveStatChange
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      * @Assert\Range(min="-10", max="10")
+     *
+     * @Groups("read")
      */
     protected $change;
 

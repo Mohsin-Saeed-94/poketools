@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,6 +17,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * have one form to represent their lone “normal” form.
  *
  * @ORM\Entity(repositoryClass="App\Repository\PokemonFormRepository")
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true}
+ * )
  */
 class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDefaultInterface, EntityIsSortableInterface
 {
@@ -50,6 +55,8 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
      *
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $formName;
 
@@ -57,6 +64,8 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
      * @var bool
      *
      * @ORM\Column(type="boolean")
+     *
+     * @Groups("read")
      */
     protected $battleOnly = false;
 
@@ -65,6 +74,8 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonFormPokeathlonStat", mappedBy="pokemonForm", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
+     *
+     * @Groups("read")
      */
     protected $pokeathlonStats;
 

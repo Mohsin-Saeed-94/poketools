@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 
 /**
@@ -14,6 +17,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @method Ability getParent()
  * @method self setParent(Ability $parent)
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}}
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"versionGroup": "exact"})
  */
 class AbilityInVersionGroup extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityGroupedByVersionGroupInterface, EntityHasFlavorTextInterface, EntityHasDescriptionInterface, EntityHasParentInterface
 {

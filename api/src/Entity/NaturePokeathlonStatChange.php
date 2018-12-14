@@ -29,6 +29,8 @@ class NaturePokeathlonStatChange
      * @ORM\ManyToOne(targetEntity="App\Entity\PokeathlonStat")
      * @ORM\Id()
      * @Assert\NotBlank()
+     *
+     * @Groups("read")
      */
     protected $pokeathlonStat;
 
@@ -38,6 +40,8 @@ class NaturePokeathlonStatChange
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      * @Assert\Range(min="-5", max="5")
+     *
+     * @Groups("read")
      */
     protected $maxChange;
 

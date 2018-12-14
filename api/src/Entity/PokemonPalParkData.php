@@ -27,6 +27,8 @@ class PokemonPalParkData
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\PalParkArea", fetch="EAGER")
      * @ORM\Id()
+     *
+     * @Groups("read")
      */
     protected $area;
 
@@ -37,6 +39,8 @@ class PokemonPalParkData
      *
      * @ORM\Column(type="integer")
      * @Assert\Range(min="0", max="100")
+     *
+     * @Groups("read")
      */
     protected $score;
 
@@ -47,6 +51,8 @@ class PokemonPalParkData
      *
      * @ORM\Column(type="integer")
      * @Assert\Range(min="0", max="100")
+     *
+     * @Groups("read")
      */
     protected $rate;
 
