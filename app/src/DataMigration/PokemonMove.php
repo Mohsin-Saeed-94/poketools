@@ -25,7 +25,7 @@ use DragoonBoots\A2B\Exception\MigrationException;
  *     destinationIds={
  *         @IdField(name="id")
  *     },
- *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DbalDestinationDriver",
+ *     destinationDriver="App\A2B\Drivers\Destination\DbalDestinationDriver",
  *     depends={
  *         "App\DataMigration\PokemonSpecies",
  *         "App\DataMigration\Move",

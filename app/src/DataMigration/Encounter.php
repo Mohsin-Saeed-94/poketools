@@ -2,10 +2,12 @@
 
 namespace App\DataMigration;
 
+use App\A2B\Drivers\Destination\DbalDestinationDriver;
 use App\Entity\Embeddable\Range;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
+use DragoonBoots\A2B\Drivers\DestinationDriverInterface;
 use DragoonBoots\A2B\Exception\MigrationException;
 
 /**
@@ -15,8 +17,9 @@ use DragoonBoots\A2B\Exception\MigrationException;
  *     name="Encounter",
  *     source="csv:///%kernel.project_dir%/resources/data/encounter.csv",
  *     sourceIds={@IdField(name="id")},
- *     destination="doctrine:///App/Entity/Encounter",
+ *     destination="encounter",
  *     destinationIds={@IdField(name="id")},
+ *     destinationDriver="App\A2B\Drivers\Destination\DbalDestinationDriver",
  *     depends={
  *         "App\DataMigration\Version",
  *         "App\DataMigration\Location",
@@ -28,6 +31,23 @@ use DragoonBoots\A2B\Exception\MigrationException;
  */
 class Encounter extends AbstractDoctrineDataMigration implements DataMigrationInterface
 {
+    /**
+     * @inheritDoc
+     *
+     * @param DbalDestinationDriver $destinationDriver
+     */
+    public function configureDestination(DestinationDriverInterface $destinationDriver)
+    {
+        parent::configureDestination($destinationDriver);
+
+        $destinationDriver->addTable(
+            'encounter_encounter_condition_state',
+            [
+                'encounter_id',
+                'encounter_condition_state_id',
+            ]
+        );
+    }
 
     /**
      * {@inheritdoc}
@@ -45,18 +65,23 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
             }
         }
         $sourceData = $this->removeNulls($sourceData);
-
         $encounterId = $sourceData['id'];
-        unset($sourceData['id']);
+        $destinationData['encounter']['id'] = $sourceData['id'];
+        $destinationData['encounter']['chance'] = $sourceData['chance'];
+        if (isset($sourceData['note'])) {
+            $destinationData['encounter']['note'] = $sourceData['note'];
+        }
+
+        // Position
         static $position = 1;
-        $sourceData['position'] = $position;
+        $destinationData['encounter']['position'] = $position;
         $position++;
 
         // Version
         /** @var \App\Entity\Version $version */
         $version = $this->referenceStore->get(Version::class, ['identifier' => $sourceData['version']]);
         $versionGroup = $version->getVersionGroup();
-        $sourceData['version'] = $version;
+        $destinationData['encounter']['version_id'] = $version->getId();
 
         // Location Area
         /** @var \App\Entity\Location $location */
@@ -70,13 +95,21 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
             }
         }
         if (is_null($locationArea)) {
-            throw new MigrationException(sprintf('Encounter %u occurs in location "%s", area "%s".  The area does not exist.', $encounterId, $location->getName(), $sourceData['area']));
+            throw new MigrationException(
+                sprintf(
+                    'Encounter %u occurs in location "%s", area "%s".  The area does not exist.',
+                    $encounterId,
+                    $location->getName(),
+                    $sourceData['area']
+                )
+            );
         }
-        $sourceData['location_area'] = $locationArea;
-        unset($sourceData['location'], $sourceData['area']);
+        $destinationData['encounter']['location_area_id'] = $locationArea->getId();
 
         // Method
-        $sourceData['method'] = $this->referenceStore->get(EncounterMethod::class, ['identifier' => $sourceData['method']]);
+        /** @var \App\Entity\EncounterMethod $encounterMethod */
+        $encounterMethod = $this->referenceStore->get(EncounterMethod::class, ['identifier' => $sourceData['method']]);
+        $destinationData['encounter']['method_id'] = $encounterMethod->getId();
 
         // Pokemon
         /** @var \App\Entity\PokemonSpecies $species */
@@ -90,13 +123,20 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
             }
         }
         if (is_null($pokemon)) {
-            throw new MigrationException(sprintf('Encounter %u is with the pokemon "%s".  The pokemon does not exist.', $encounterId, $sourceData['pokemon']));
+            throw new MigrationException(
+                sprintf(
+                    'Encounter %u is with the pokemon "%s".  The pokemon does not exist.',
+                    $encounterId,
+                    $sourceData['pokemon']
+                )
+            );
         }
-        $sourceData['pokemon'] = $pokemon;
-        unset($sourceData['species']);
+        $destinationData['encounter']['pokemon_id'] = $pokemon->getId();
 
         // Level range
-        $sourceData['level'] = Range::fromString($sourceData['level']);
+        $levelRange = Range::fromString($sourceData['level']);
+        $destinationData['encounter']['level_min'] = $levelRange->getMin();
+        $destinationData['encounter']['level_max'] = $levelRange->getMax();
 
         // Conditions
         if (isset($sourceData['conditions'])) {
@@ -115,14 +155,20 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
                     }
                 }
                 if (is_null($state)) {
-                    throw new MigrationException(sprintf('Encounter %u requires the state "%s".  The state does not exist.', $encounterId, $stateIdentifier));
+                    throw new MigrationException(
+                        sprintf(
+                            'Encounter %u requires the state "%s".  The state does not exist.',
+                            $encounterId,
+                            $stateIdentifier
+                        )
+                    );
                 }
-                $condition = $state;
+                $destinationData['encounter_encounter_condition_state'][] = [
+                    'encounter_id' => $encounterId,
+                    'encounter_condition_state_id' => $state->getId(),
+                ];
             }
-            $sourceData['conditions'] = $conditions;
         }
-
-        $destinationData = $this->mergeProperties($sourceData, $destinationData);
 
         return $destinationData;
     }
@@ -132,6 +178,9 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
      */
     public function defaultResult()
     {
-        return new \App\Entity\Encounter();
+        return [
+            'encounter' => [],
+            'encounter_encounter_condition_state' => [],
+        ];
     }
 }
