@@ -1,0 +1,16 @@
+version: "3"
+services:
+  db:
+    image: postgres:11
+    restart: always
+    environment:
+      POSTGRES_USER: poketools
+      POSTGRES_PASSWORD: secret
+    networks:
+      - poketools
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - "54321:5432"
+networks:
+  poketools:

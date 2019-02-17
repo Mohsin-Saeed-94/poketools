@@ -1,0 +1,5 @@
+XSym
+0083
+1b52b69d3888671769527ae6590eae48
+/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/codecs.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

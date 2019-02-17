@@ -1,0 +1,273 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The database schema &#8212; pokedex 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The pokédex tables" href="main-tables.html" />
+    <link rel="prev" title="Using pokedex" href="usage.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="main-tables.html" title="The pokédex tables"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Using pokedex"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pokedex 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-database-schema">
+<h1>The database schema<a class="headerlink" href="#the-database-schema" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="main-tables.html">The pokédex tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#pokemon">Pokémon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonspecies">PokemonSpecies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemon">Pokemon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonform">PokemonForm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-evolutionchain">EvolutionChain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonevolution">PokemonEvolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#moves">Moves</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-move">Move</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-moveeffect">MoveEffect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-movemeta">MoveMeta</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#items">Items</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-item">Item</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-berry">Berry</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#types">Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-type">Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#abilities">Abilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-ability">Ability</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#language">Language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-language">Language</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#version-stuff">Version stuff</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-generation">Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-versiongroup">VersionGroup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokedex">Pokedex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-region">Region</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#encounters">Encounters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-location">Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-locationarea">LocationArea</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-locationareaencounterrate">LocationAreaEncounterRate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-encounter">Encounter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-encountercondition">EncounterCondition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-encounterconditionvalue">EncounterConditionValue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-encountermethod">EncounterMethod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-encounterslot">EncounterSlot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#contests">Contests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-contestcombo">ContestCombo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-contesteffect">ContestEffect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-supercontestcombo">SuperContestCombo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-supercontesteffect">SuperContestEffect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#enum-tables">Enum tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-berryfirmness">BerryFirmness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-contesttype">ContestType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-egggroup">EggGroup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-evolutiontrigger">EvolutionTrigger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-gender">Gender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-growthrate">GrowthRate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-itemcategory">ItemCategory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-itemflingeffect">ItemFlingEffect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-itempocket">ItemPocket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-movebattlestyle">MoveBattleStyle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-movedamageclass">MoveDamageClass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-movemetaailment">MoveMetaAilment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-movemetacategory">MoveMetaCategory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-movetarget">MoveTarget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-nature">Nature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-palparkarea">PalParkArea</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemoncolor">PokemonColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonmovemethod">PokemonMoveMethod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonshape">PokemonShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-stat">Stat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#changelogs">Changelogs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-abilitychangelog">AbilityChangelog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-moveeffectchangelog">MoveEffectChangelog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-movechangelog">MoveChangelog</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#flavor-text">Flavor text</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-itemflavortext">ItemFlavorText</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-abilityflavortext">AbilityFlavorText</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-moveflavortext">MoveFlavorText</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonspeciesflavortext">PokemonSpeciesFlavorText</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#association-tables">Association tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-berryflavor">BerryFlavor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-encounterconditionvaluemap">EncounterConditionValueMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-itemflag">ItemFlag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-itemflagmap">ItemFlagMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-machine">Machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-moveflag">MoveFlag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-moveflagmap">MoveFlagMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-movemetastatchange">MoveMetaStatChange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-naturebattlestylepreference">NatureBattleStylePreference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-naturepokeathlonstat">NaturePokeathlonStat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokeathlonstat">PokeathlonStat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokedexversiongroup">PokedexVersionGroup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonability">PokemonAbility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonegggroup">PokemonEggGroup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonformpokeathlonstat">PokemonFormPokeathlonStat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonhabitat">PokemonHabitat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonmove">PokemonMove</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonstat">PokemonStat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonitem">PokemonItem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemontype">PokemonType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-typeefficacy">TypeEfficacy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-versiongrouppokemonmovemethod">VersionGroupPokemonMoveMethod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-versiongroupregion">VersionGroupRegion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#index-maps">Index maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-itemgameindex">ItemGameIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-locationgameindex">LocationGameIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemondexnumber">PokemonDexNumber</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemonformgeneration">PokemonFormGeneration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-pokemongameindex">PokemonGameIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-typegameindex">TypeGameIndex</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#mics-tables">Mics tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-experience">Experience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-palpark">PalPark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-characteristic">Characteristic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-tables.html#conquest-tables">Conquest tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestepisode">ConquestEpisode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestepisodewarrior">ConquestEpisodeWarrior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestkingdom">ConquestKingdom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestmaxlink">ConquestMaxLink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestmovedata">ConquestMoveData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestmovedisplacement">ConquestMoveDisplacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestmoveeffect">ConquestMoveEffect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestmoverange">ConquestMoveRange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestpokemonability">ConquestPokemonAbility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestpokemonevolution">ConquestPokemonEvolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestpokemonmove">ConquestPokemonMove</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestpokemonstat">ConquestPokemonStat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conqueststat">ConquestStat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquesttransformationpokemon">ConquestTransformationPokemon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquesttransformationwarrior">ConquestTransformationWarrior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestwarrior">ConquestWarrior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestwarriorarchetype">ConquestWarriorArchetype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestwarriorrank">ConquestWarriorRank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestwarriorrankstatmap">ConquestWarriorRankStatMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestwarriorskill">ConquestWarriorSkill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestwarriorspecialty">ConquestWarriorSpecialty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestwarriorstat">ConquestWarriorStat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main-tables.html#dex-table-conquestwarriortransformation">ConquestWarriorTransformation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="previous chapter">Using pokedex</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="main-tables.html"
+                        title="next chapter">The pokédex tables</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/schema.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="main-tables.html" title="The pokédex tables"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Using pokedex"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pokedex 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.8.
+    </div>
+  </body>
+</html>
