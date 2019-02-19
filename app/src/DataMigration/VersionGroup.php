@@ -16,6 +16,7 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *     destination="doctrine:///App/Entity/VersionGroup",
  *     destinationIds={@IdField(name="id")},
  *     depends={
+ *         "App\DataMigration\Feature",
  *         "App\DataMigration\Generation",
  *         "App\DataMigration\Region"
  *     }
@@ -27,8 +28,6 @@ class VersionGroup extends AbstractDoctrineDataMigration implements DataMigratio
     /**
      * {@inheritdoc}
      * @param \App\Entity\VersionGroup $destinationData
-     *
-     * @todo Migrate features
      */
     public function transform($sourceData, $destinationData)
     {
@@ -42,6 +41,11 @@ class VersionGroup extends AbstractDoctrineDataMigration implements DataMigratio
         $destinationData = $this->mergeProperties($sourceData, $destinationData, $properties);
         foreach ($sourceData['regions'] as $regionIdentifier) {
             $destinationData->addRegion($this->referenceStore->get(Region::class, ['identifier' => $regionIdentifier]));
+        }
+        foreach ($sourceData['features'] as $featureIdentifier) {
+            $destinationData->addFeature(
+                $this->referenceStore->get(Feature::class, ['identifier' => $featureIdentifier])
+            );
         }
 
         return $destinationData;

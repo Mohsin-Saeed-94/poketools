@@ -47,4 +47,32 @@ class VersionRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * Get a list of all versions grouped by generation.
+     *
+     * The result is a multi-dimensional array.  The first level is keyed by
+     * generation name, the second level is a list of versions in that generation.
+     *
+     * @return array
+     */
+    public function findAllVersionsGroupedByGeneration(): array
+    {
+        $qb = $this->createQueryBuilder('version');
+        $qb->addSelect('version_group')->addSelect('generation')
+            ->join('version.versionGroup', 'version_group')
+            ->join('version_group.generation', 'generation')
+            ->orderBy('version.position');
+        $q = $qb->getQuery();
+        /** @var Version[] $results */
+        $results = $q->execute();
+
+        $groupedResults = [];
+        foreach ($results as $version) {
+            $generation = $version->getVersionGroup()->getGeneration();
+            $groupedResults[$generation->getName()][] = $version;
+        }
+
+        return $groupedResults;
+    }
 }

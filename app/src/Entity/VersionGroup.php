@@ -50,12 +50,21 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
     protected $regions;
 
     /**
+     * A list of features in this version group
+     *
+     * @var Feature[]|Collection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Feature")
+     */
+    protected $features;
+
+    /**
      * VersionGroup constructor.
      */
     public function __construct()
     {
         $this->versions = new ArrayCollection();
         $this->regions = new ArrayCollection();
+        $this->features = new ArrayCollection();
     }
 
     /**
@@ -64,6 +73,20 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
     public function getVersions()
     {
         return $this->versions;
+    }
+
+    /**
+     * @param array|\iterable|Version[] $versions
+     *
+     * @return self
+     */
+    public function addVersions($versions): self
+    {
+        foreach ($versions as $version) {
+            $this->addVersion($version);
+        }
+
+        return $this;
     }
 
     /**
@@ -86,10 +109,10 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
      *
      * @return self
      */
-    public function addVersions($versions): self
+    public function removeVersions($versions): self
     {
         foreach ($versions as $version) {
-            $this->addVersion($version);
+            $this->removeVersion($version);
         }
 
         return $this;
@@ -111,39 +134,11 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
     }
 
     /**
-     * @param array|\iterable|Version[] $versions
-     *
-     * @return self
-     */
-    public function removeVersions($versions): self
-    {
-        foreach ($versions as $version) {
-            $this->removeVersion($version);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Region[]|Collection
      */
     public function getRegions()
     {
         return $this->regions;
-    }
-
-    /**
-     * @param Region $region
-     *
-     * @return self
-     */
-    public function addRegion(Region $region): self
-    {
-        if (!$this->regions->contains($region)) {
-            $this->regions->add($region);
-        }
-
-        return $this;
     }
 
     /**
@@ -165,10 +160,10 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
      *
      * @return self
      */
-    public function removeRegion(Region $region): self
+    public function addRegion(Region $region): self
     {
-        if ($this->regions->contains($region)) {
-            $this->regions->removeElement($region);
+        if (!$this->regions->contains($region)) {
+            $this->regions->add($region);
         }
 
         return $this;
@@ -186,5 +181,55 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
         }
 
         return $this;
+    }
+
+    /**
+     * @param Region $region
+     *
+     * @return self
+     */
+    public function removeRegion(Region $region): self
+    {
+        if ($this->regions->contains($region)) {
+            $this->regions->removeElement($region);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Feature $feature
+     *
+     * @return self
+     */
+    public function addFeature(Feature $feature): self
+    {
+        if (!$this->features->contains($feature)) {
+            $this->features->add($feature);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Feature $feature
+     *
+     * @return self
+     */
+    public function removeFeature(Feature $feature): self
+    {
+        if ($this->features->contains($feature)) {
+            $this->features->removeElement($feature);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Feature[]|Collection
+     */
+    public function getFeatures()
+    {
+        return $this->features;
     }
 }
