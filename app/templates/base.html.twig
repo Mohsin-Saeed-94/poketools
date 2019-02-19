@@ -1,3 +1,4 @@
+{% set active_version = version.slug|default(default_version) %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,25 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}{{ app_name }}{% endblock %}</title>
     {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('other') }}
     {% endblock %}
 </head>
-<body>
+
+<body{% if version is defined %} data-active-version="{{ version.slug }}"{% endif %}{% if uri_template is defined %} data-uri-template="{{ uri_template }}"{% endif %}>
+{# Navbar #}
 <nav class="navbar pkt-navbar-main navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="{{ path('front') }}">{{ app_name }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#pkt-navbar-content"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="pkt-navbar-content">
+        <form class="form-inline">
+            <select class="form-control" id="pkt-version-select" aria-label="Choose Version">
+                {% for generation_name, versions in version_list() %}
+                    {# /** @var \App\Entity\Version[] versions */ #}
+                    <optgroup label="{{ generation_name }}">
+                        {% for list_version in versions %}
+                            <option{% if list_version.slug == active_version %} selected{% endif %}
+                                    value="{{ list_version.slug }}">{{ list_version.name }}</option>
+                        {% endfor %}
+                    </optgroup>
+                {% endfor %}
+            </select>
+        </form>
         {{ knp_menu_render('navbar') }}
     </div>
 </nav>
+
+{# Flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+{# Main content #}
 <main class="container">
     {% block body %}{% endblock %}
 </main>
+
 {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('other') }}
 {% endblock %}
 </body>
 </html>

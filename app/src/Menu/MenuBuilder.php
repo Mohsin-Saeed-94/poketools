@@ -7,22 +7,29 @@ namespace App\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Main Menu Builder
  */
 class MenuBuilder
 {
+    /**
+     * @var FactoryInterface
+     */
     private $factory;
+
+    private $urlGenerator;
 
     /**
      * MenuBuilder constructor.
      *
      * @param FactoryInterface $factory
      */
-    public function __construct(FactoryInterface $factory)
+    public function __construct(FactoryInterface $factory, UrlGeneratorInterface $urlGenerator)
     {
         $this->factory = $factory;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -42,7 +49,14 @@ class MenuBuilder
         $menu->addChild('Items', ['uri' => '#']);
         $menu->addChild('Locations', ['uri' => '#']);
         $menu->addChild('Natures', ['uri' => '#']);
-        $menu->addChild('Abilities', ['uri' => '#']);
+        $abilitiesUri = $this->urlGenerator->generate('ability_index', ['version_slug' => '__VERSION__']);
+        $menu->addChild(
+            'Abilities',
+            [
+                'uri' => '#',
+                'linkAttributes' => ['data-uri-template' => $abilitiesUri],
+            ]
+        );
 
         return $menu;
     }

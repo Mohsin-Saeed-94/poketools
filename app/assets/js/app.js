@@ -1,14 +1,31 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
-
-// any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.scss');
-
 const $ = require('jquery');
 require('bootstrap');
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+$(document).ready(function () {
+    const navbarLinks = $('.pkt-navbar-main ul.navbar-nav a.nav-link');
+    const versionSelector = $('#pkt-version-select');
+
+    function updateNavVersionLinks() {
+        const selectedVersion = versionSelector.val();
+
+        for (let link of navbarLinks) {
+            if (link.dataset.uriTemplate !== undefined) {
+                link.href = link.dataset.uriTemplate.replace('__VERSION__', selectedVersion);
+            }
+        }
+    }
+
+    // Version selector value change
+    versionSelector.change(function () {
+        const selectedVersion = versionSelector.val();
+
+        updateNavVersionLinks();
+        if (document.body.dataset.uriTemplate !== undefined) {
+            // Redirect to the proper page.
+            window.location = document.body.dataset.uriTemplate.replace('__VERSION__', selectedVersion);
+        }
+    });
+
+    updateNavVersionLinks();
+});

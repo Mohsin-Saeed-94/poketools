@@ -36,7 +36,7 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
      *
      * @var Version[]|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Version", mappedBy="versionGroup", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\Version", mappedBy="versionGroup")
      */
     protected $versions;
 
@@ -231,5 +231,19 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
     public function getFeatures()
     {
         return $this->features;
+    }
+
+    /**
+     * @param string $feature
+     *
+     * @return bool
+     */
+    public function hasFeatureString(string $feature): bool
+    {
+        return $this->features->exists(
+            function ($key, Feature $value) use ($feature) {
+                return $value->getSlug() === $feature;
+            }
+        );
     }
 }

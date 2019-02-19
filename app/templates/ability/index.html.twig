@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abilities{% endblock %}
+
+{% block body %}
+    <h1>Abilities</h1>
+    {% if not version.versionGroup.featureString('abilities') %}
+        <p class="pkt-ability-none">This version does not have Abilities.</p>
+    {% else %}
+        <div id="pkt-ability-table" data-table-settings="{{ datatable_settings(ability_table)|e('html_attr') }}"></div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('ability_index') }}
+{% endblock %}
