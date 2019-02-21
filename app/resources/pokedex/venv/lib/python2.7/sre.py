@@ -1,5 +1,0 @@
-XSym
-0080
-4f9ffecdbe4de669a5fae869fa1cc68b
-/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre.py
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

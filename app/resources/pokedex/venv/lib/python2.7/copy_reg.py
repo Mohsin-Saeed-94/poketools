@@ -1,5 +1,0 @@
-XSym
-0085
-a8de58b84f2bfad855856c9c2fa88812
-/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/copy_reg.py
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

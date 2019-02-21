@@ -1,5 +1,0 @@
-XSym
-0090
-d57cae05a847821126e0c4a79a9d7a6c
-/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_constants.py
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
