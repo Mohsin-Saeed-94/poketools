@@ -1,0 +1,26 @@
+@mixin sorting-icon($icon) {
+    &:after {
+        @extend %fa-icon;
+        @extend .fas;
+
+        padding-left: map-get($spacers, 1);
+        vertical-align: text-bottom;
+        content: fa-content($icon);
+    }
+}
+
+table.data-table {
+    th.sorting {
+        & {
+            @include sorting-icon($fa-var-sort);
+        }
+
+        &_asc {
+            @include sorting-icon($fa-var-sort-down);
+        }
+
+        &_desc {
+            @include sorting-icon($fa-var-sort-up);
+        }
+    }
+}

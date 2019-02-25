@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PokemonAbilityRepository")
@@ -57,26 +56,6 @@ class PokemonAbility implements EntityIsSortableInterface
     }
 
     /**
-     * @return AbilityInVersionGroup
-     */
-    public function getAbility(): ?AbilityInVersionGroup
-    {
-        return $this->ability;
-    }
-
-    /**
-     * @param AbilityInVersionGroup $ability
-     *
-     * @return self
-     */
-    public function setAbility(AbilityInVersionGroup $ability): self
-    {
-        $this->ability = $ability;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isHidden(): bool
@@ -92,6 +71,34 @@ class PokemonAbility implements EntityIsSortableInterface
     public function setHidden(bool $hidden): self
     {
         $this->hidden = $hidden;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getAbility()->getName() ?? 'None';
+    }
+
+    /**
+     * @return AbilityInVersionGroup
+     */
+    public function getAbility(): ?AbilityInVersionGroup
+    {
+        return $this->ability;
+    }
+
+    /**
+     * @param AbilityInVersionGroup $ability
+     *
+     * @return self
+     */
+    public function setAbility(AbilityInVersionGroup $ability): self
+    {
+        $this->ability = $ability;
 
         return $this;
     }

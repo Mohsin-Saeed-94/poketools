@@ -37,6 +37,17 @@ services:
       - '@a2b.league.uri.parser'
       - '@doctrine.dbal.connection_factory'
   
+  # Current version, only available after controller resolution
+  app.active_version:
+    class: App\Entity\Version
+    public: true
+    synthetic: true
+  
+  App\CommonMark\Extension\PoketoolsCommonMarkExtension:
+  App\CommonMark\Inline\Parser\CloseBracketInternalLinkParser:
+    arguments:
+      $version: '@app.active_version'
+  
   # VENDORS
   PhpScience\TextRank\Tool\StopWords\English:
   PhpScience\TextRank\TextRankFacade:
@@ -44,3 +55,20 @@ services:
       - method: setStopWords
         arguments:
           - '@PhpScience\TextRank\Tool\StopWords\English'
+  
+  League\CommonMark\Environment:
+    calls:
+      - method: addExtension
+        arguments:
+          - '@App\CommonMark\Extension\PoketoolsCommonMarkExtension'
+  League\CommonMark\DocParser:
+    arguments:
+      - '@League\CommonMark\Environment'
+  League\CommonMark\HtmlRenderer:
+    arguments:
+      - '@League\CommonMark\Environment'
+  League\CommonMark\CommonMarkConverter:
+    arguments:
+      - html_input: strip
+        allow_unsafe_links: false
+      - '@League\CommonMark\Environment'

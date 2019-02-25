@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Abilities{% endblock %}
+
+{% block body %}
+    <h1>{{ ability.name }}</h1>
+    <p class="pkt-ability-view-lead">{{ ability.flavorText }}</p>
+
+    <h2>Description</h2>
+    <p class="pkt-ability-view-description">{{ ability.description|markdown }}</p>
+
+    <h2>Pokèmon</h2>
+    <div class="pkt-pokemon-index-table">
+        {{ datatable.datatable(pokemon_table, 'pkt-ability-view-pokemon') }}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('ability_view') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('ability_view') }}
+{% endblock %}

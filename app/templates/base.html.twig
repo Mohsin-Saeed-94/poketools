@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}{{ app_name }}{% endblock %}</title>
+    <title>{{ app_name }} - {% block title %}{% endblock %}</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('other') }}
     {% endblock %}
@@ -12,7 +12,7 @@
 
 <body{% if version is defined %} data-active-version="{{ version.slug }}"{% endif %}{% if uri_template is defined %} data-uri-template="{{ uri_template }}"{% endif %}>
 {# Navbar #}
-<nav class="navbar pkt-navbar-main navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar pkt-navbar-main navbar-expand-lg navbar-dark bg-primary fixed-top">
     <a class="navbar-brand" href="{{ path('front') }}">{{ app_name }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#pkt-navbar-content"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,6 +49,11 @@
 <main class="container">
     {% block body %}{% endblock %}
 </main>
+
+{# Footer #}
+<footer class="navbar navbar-dark bg-dark fixed-bottom">
+    <span class="navbar-text"><a href="{{ path('page_credits') }}">Credits</a></span>
+</footer>
 
 {% block javascripts %}
     {{ encore_entry_script_tags('other') }}

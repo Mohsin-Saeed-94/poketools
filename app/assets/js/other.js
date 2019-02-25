@@ -3,3 +3,4 @@
  */
 
 require('./app');
+require('../css/app.scss');

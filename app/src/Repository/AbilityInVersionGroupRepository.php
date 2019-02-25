@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\AbilityInVersionGroup;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,4 +48,28 @@ class AbilityInVersionGroupRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param string $slug
+     * @param Version $version
+     *
+     * @return AbilityInVersionGroup|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByVersion(string $slug, Version $version): ?AbilityInVersionGroup
+    {
+        $qb = $this->createQueryBuilder('ability_in_version_group');
+        $qb->join('ability_in_version_group.versionGroup', 'version_group')
+            ->andWhere('ability_in_version_group.slug = :slug')
+            ->andWhere(':version MEMBER OF version_group.versions');
+        $q = $qb->getQuery();
+        $q->execute(
+            [
+                'slug' => $slug,
+                'version' => $version,
+            ]
+        );
+
+        return $q->getOneOrNullResult();
+    }
 }

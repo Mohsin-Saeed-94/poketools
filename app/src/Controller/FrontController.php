@@ -12,8 +12,21 @@ class FrontController extends AbstractController
      */
     public function index()
     {
-        return $this->render('front/index.html.twig', [
-            'controller_name' => 'FrontController',
-        ]);
+        return $this->render(
+            'front/index.html.twig',
+            [
+                'controller_name' => 'FrontController',
+            ]
+        );
+    }
+
+    /**
+     * @Route("/credits", name="page_credits")
+     */
+    public function credits()
+    {
+        return $this->render(
+            'front/credits.html.twig'
+        );
     }
 }

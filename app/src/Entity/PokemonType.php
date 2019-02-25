@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PokemonTypeRepository")
@@ -47,6 +46,14 @@ class PokemonType implements EntityIsSortableInterface
         $this->pokemon = $pokemon;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getType()->getName() ?? 'None';
     }
 
     /**

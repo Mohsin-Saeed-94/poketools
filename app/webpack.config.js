@@ -23,9 +23,10 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .createSharedEntry('app', './assets/js/app.js')
+    // .createSharedEntry('app', './assets/js/app.js')
     .addEntry('other', './assets/js/other.js')
     .addEntry('ability_index', './assets/js/ability_index.js')
+    .addEntry('ability_view', './assets/js/ability_view.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -53,18 +54,18 @@ Encore
         images: {limit: 4096}
     })
 
-// uncomment if you use TypeScript
-//.enableTypeScriptLoader()
+    // uncomment if you use TypeScript
+    //.enableTypeScriptLoader()
 
-// uncomment if you're having problems with a jQuery plugin
-.autoProvidejQuery()
+    // uncomment if you're having problems with a jQuery plugin
+    .autoProvidejQuery()
 
-// uncomment if you use API Platform Admin (composer req api-admin)
-//.enableReactPreset()
-//.addEntry('admin', './assets/js/admin.js')
+    // uncomment if you use API Platform Admin (composer req api-admin)
+    //.enableReactPreset()
+    //.addEntry('admin', './assets/js/admin.js')
 
-// split chunks
-// .splitEntryChunks()
+    // split chunks
+    .splitEntryChunks()
 ;
 
 module.exports = Encore.getWebpackConfig();

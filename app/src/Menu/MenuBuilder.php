@@ -49,7 +49,7 @@ class MenuBuilder
         $menu->addChild('Items', ['uri' => '#']);
         $menu->addChild('Locations', ['uri' => '#']);
         $menu->addChild('Natures', ['uri' => '#']);
-        $abilitiesUri = $this->urlGenerator->generate('ability_index', ['version_slug' => '__VERSION__']);
+        $abilitiesUri = $this->urlGenerator->generate('ability_index', ['versionSlug' => '__VERSION__']);
         $menu->addChild(
             'Abilities',
             [

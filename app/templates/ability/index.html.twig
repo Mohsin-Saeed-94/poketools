@@ -1,14 +1,21 @@
 {% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
 
 {% block title %}Abilities{% endblock %}
 
 {% block body %}
     <h1>Abilities</h1>
     {% if not version.versionGroup.featureString('abilities') %}
-        <p class="pkt-ability-none">This version does not have Abilities.</p>
+        <p class="pkt-ability-index-none">This version does not have Abilities.</p>
     {% else %}
-        <div id="pkt-ability-table" data-table-settings="{{ datatable_settings(ability_table)|e('html_attr') }}"></div>
+        <div class="pkt-ability-index-table">
+            {{ datatable.datatable(ability_table, 'pkt-ability-index-table') }}
+        </div>
     {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('ability_index') }}
 {% endblock %}
 
 {% block javascripts %}
