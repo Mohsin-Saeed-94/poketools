@@ -9,6 +9,8 @@ require('datatables-bundle/datatables');
 
 $(document).ready(function () {
     const abilityTable = $('#pkt-ability-index-table');
-    const tableSettings = abilityTable.data('table-settings');
-    abilityTable.initDataTables(tableSettings);
+    if (abilityTable.length > 0) {
+        const tableSettings = abilityTable.data('table-settings');
+        abilityTable.initDataTables(tableSettings);
+    }
 });

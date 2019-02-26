@@ -9,6 +9,8 @@ require('datatables-bundle/datatables');
 
 $(document).ready(function () {
     const natureTable = $('#pkt-nature-index-table');
-    const tableSettings = natureTable.data('table-settings');
-    natureTable.initDataTables(tableSettings);
+    if (natureTable.length > 0) {
+        const tableSettings = natureTable.data('table-settings');
+        natureTable.initDataTables(tableSettings);
+    }
 });

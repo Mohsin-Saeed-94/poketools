@@ -4,6 +4,16 @@
 {% block title %}Natures - {{ nature.name }}{% endblock %}
 
 {% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('nature_index', {'versionSlug': version.slug}) }}">Natures</a>
+            </li>
+            <li class="breadcrumb-item active">{{ nature.name }}</li>
+        </ol>
+    </nav>
+
     <h1>{{ nature.name }}</h1>
     {% set sameStats = nature.statIncreased is same as(nature.statDecreased)
         and nature.flavorLikes is same as(nature.flavorHates) %}
