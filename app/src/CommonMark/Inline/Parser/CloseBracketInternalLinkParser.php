@@ -16,6 +16,7 @@ use League\CommonMark\Inline\Element\Text;
 use League\CommonMark\Inline\Parser\CloseBracketParser;
 use League\CommonMark\InlineParserContext;
 use League\CommonMark\Util\RegexHelper;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -28,6 +29,11 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
     protected const BRACKET_OPEN = '{';
 
     protected const BRACKET_CLOSE = '}';
+
+    /**
+     * @var LoggerInterface
+     */
+    protected $logger;
 
     /**
      * @var UrlGeneratorInterface
@@ -63,12 +69,18 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
     /**
      * CloseBracketInternalLinkParser constructor.
      *
+     * @param LoggerInterface $logger
      * @param UrlGeneratorInterface $urlGenerator
      * @param EntityManagerInterface $em
      * @param Version $version
      */
-    public function __construct(UrlGeneratorInterface $urlGenerator, EntityManagerInterface $em, Version $version)
-    {
+    public function __construct(
+        LoggerInterface $logger,
+        UrlGeneratorInterface $urlGenerator,
+        EntityManagerInterface $em,
+        Version $version
+    ) {
+        $this->logger = $logger;
         $this->urlGenerator = $urlGenerator;
         $this->em = $em;
         $this->currentVersion = $version;
@@ -139,6 +151,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
             return false;
         }
         $cursor->advance();
+
         // Don't support title text here.
 
         return ['url' => $dest, 'title' => null];
@@ -184,7 +197,13 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
             return null;
         }
 
-        return $this->getUri($refParts['category'], $refParts['slug']);
+        $uri = $this->getUri($refParts['category'], $refParts['slug']);
+        if ($uri === null) {
+            // Help with finding bad links in the data.
+            $this->logger->warning(sprintf('Could not find destination for internal link: "%s".', $ref));
+        }
+
+        return $uri;
     }
 
     /**
@@ -216,8 +235,12 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
             case 'mechanic':
                 return $this->getMechanicLink($slug);
             case 'ability':
-                $this->currentEntity = $this->em->getRepository(AbilityInVersionGroup::class)
+                $entity = $this->em->getRepository(AbilityInVersionGroup::class)
                     ->findOneByVersion($slug, $this->currentVersion);
+                if ($entity === null) {
+                    return null;
+                }
+                $this->currentEntity = $entity;
 
                 return $this->urlGenerator->generate(
                     'ability_view',

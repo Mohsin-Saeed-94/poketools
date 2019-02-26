@@ -23,7 +23,7 @@ class Version extends AbstractDexEntity implements GroupableInterface, EntityHas
      *
      * @var VersionGroup
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\VersionGroup", inversedBy="versions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\VersionGroup", inversedBy="versions", fetch="EAGER")
      * @Assert\NotNull()
      */
     protected $versionGroup;

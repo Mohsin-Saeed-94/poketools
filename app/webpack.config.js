@@ -27,6 +27,8 @@ Encore
     .addEntry('other', './assets/js/other.js')
     .addEntry('ability_index', './assets/js/ability_index.js')
     .addEntry('ability_view', './assets/js/ability_view.js')
+    .addEntry('nature_index', './assets/js/nature_index.js')
+    .addEntry('nature_view', './assets/js/nature_view.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app

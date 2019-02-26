@@ -25,6 +25,14 @@ trait EntityHasNameTrait
     /**
      * @return string
      */
+    public function __toString()
+    {
+        return $this->getName() ?? 'None';
+    }
+
+    /**
+     * @return string
+     */
     public function getName(): ?string
     {
         return $this->name;
@@ -40,13 +48,5 @@ trait EntityHasNameTrait
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getName();
     }
 }

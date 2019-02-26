@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 /**
@@ -14,6 +15,18 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('version_list', [AppExtensionRuntime::class, 'versionList']),
+        ];
+    }
+
+    public function getFilters(): array
+    {
+        return [
+            new TwigFilter(
+                'type_emblem', [AppExtensionRuntime::class, 'typeEmblem'], [
+                    'needs_environment' => true,
+                    'is_safe' => ['html'],
+                ]
+            ),
         ];
     }
 }

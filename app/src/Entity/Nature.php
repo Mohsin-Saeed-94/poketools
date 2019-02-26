@@ -60,14 +60,14 @@ class Nature extends AbstractDexEntity implements EntityHasNameInterface, Entity
     /**
      * @var NatureBattleStylePreference[]|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\NatureBattleStylePreference", mappedBy="nature", cascade={"ALL"}, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\NatureBattleStylePreference", mappedBy="nature", cascade={"ALL"})
      */
     protected $battleStylePreferences;
 
     /**
      * @var NaturePokeathlonStatChange[]|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\NaturePokeathlonStatChange", mappedBy="nature", cascade={"ALL"}, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\NaturePokeathlonStatChange", mappedBy="nature", cascade={"ALL"})
      */
     protected $pokeathlonStatChanges;
 

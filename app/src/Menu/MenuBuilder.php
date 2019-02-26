@@ -41,6 +41,7 @@ class MenuBuilder
      */
     public function navbarMenu(array $options): ItemInterface
     {
+        // In all of these menus, set "data-uri-template" to replace "__VERSION__" with the version slug.
         $menu = $this->factory->createItem('root')
             ->setChildrenAttribute('class', 'navbar-nav');
         $menu->addChild('Pokèmon', ['uri' => '#']);
@@ -48,7 +49,14 @@ class MenuBuilder
         $menu->addChild('Types', ['uri' => '#']);
         $menu->addChild('Items', ['uri' => '#']);
         $menu->addChild('Locations', ['uri' => '#']);
-        $menu->addChild('Natures', ['uri' => '#']);
+        $naturesUri = $this->urlGenerator->generate('nature_index', ['versionSlug' => '__VERSION__']);
+        $menu->addChild(
+            'Natures',
+            [
+                'uri' => '#',
+                'linkAttributes' => ['data-uri-template' => $naturesUri],
+            ]
+        );
         $abilitiesUri = $this->urlGenerator->generate('ability_index', ['versionSlug' => '__VERSION__']);
         $menu->addChild(
             'Abilities',

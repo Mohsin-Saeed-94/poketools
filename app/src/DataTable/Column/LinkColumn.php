@@ -63,6 +63,10 @@ class LinkColumn extends TextColumn
      */
     protected function render($value, $context)
     {
+        if (empty($value)) {
+            return parent::render($value, $context);
+        }
+
         $value = parent::render($value, $context);
 
         if (isset($this->options['uri'])) {
@@ -76,7 +80,7 @@ class LinkColumn extends TextColumn
 
         $linkClassName = $this->options['linkClassName'];
         if (($linkClassName !== null) && is_callable($linkClassName)) {
-            $linkClassName = $linkClassName($context);
+            $linkClassName = $linkClassName($context, $value);
         }
 
         return $this->twigEnvironment->render(

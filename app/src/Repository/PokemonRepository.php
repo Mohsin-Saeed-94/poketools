@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\AbilityInVersionGroup;
 use App\Entity\Pokemon;
+use App\Entity\Stat;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -102,5 +104,100 @@ class PokemonRepository extends ServiceEntityRepository
         $q->execute();
 
         return (int)$q->getSingleScalarResult();
+    }
+
+    /**
+     * @param Version $version
+     * @param Stat $highStat
+     *   The stat that should be the highest
+     * @param Stat $lowStat
+     *   The stat that should be the lowest.
+     *
+     * @return array
+     */
+    public function findMatchingStats(Version $version, Stat $highStat, Stat $lowStat): array
+    {
+        $qb = $this->createQueryBuilder('pokemon');
+        $qb->addSelect('pokemon_stats')
+            ->join('pokemon.stats', 'pokemon_stats')
+            ->join('pokemon.species', 'species')
+            ->where('species.versionGroup = :versionGroup')
+            ->orderBy('species.position')
+            ->addOrderBy('pokemon.position')
+            ->setParameter('versionGroup', $version->getVersionGroup());
+
+        $q = $qb->getQuery();
+        $q->execute();
+        /** @var Pokemon[] $results */
+        $results = $q->getResult();
+
+        // Filter the results down.
+        if ($highStat === $lowStat) {
+            // The largest standard deviation for stats to be considered "similar"
+            $deviationLimit = 5;
+            $filterCallback = function (Pokemon $pokemon) use ($deviationLimit) {
+                $statVals = [];
+                foreach ($pokemon->getStats() as $pokemonStat) {
+                    $statVals[] = $pokemonStat->getBaseValue();
+                }
+                $statDeviation = $this->standardDeviation($statVals);
+
+                return $statDeviation <= $deviationLimit;
+            };
+        } else {
+            $filterCallback = function (Pokemon $pokemon) use ($highStat, $lowStat) {
+                $pokemonHighStat = null;
+                $pokemonHighStatVal = PHP_INT_MIN;
+                $pokemonLowStat = null;
+                $pokemonLowStatVal = PHP_INT_MAX;
+                foreach ($pokemon->getStats() as $pokemonStat) {
+                    if ($pokemonStat->getBaseValue() > $pokemonHighStatVal) {
+                        $pokemonHighStat = $pokemonStat->getStat();
+                        $pokemonHighStatVal = $pokemonStat->getBaseValue();
+                    }
+                    if ($pokemonStat->getBaseValue() < $pokemonLowStatVal) {
+                        $pokemonLowStat = $pokemonStat->getStat();
+                        $pokemonLowStatVal = $pokemonStat->getBaseValue();
+                    }
+                }
+
+                return $pokemonHighStat === $highStat && $pokemonLowStat === $lowStat;
+            };
+        }
+        $results = array_filter($results, $filterCallback);
+
+        return $results;
+    }
+
+    /**
+     * Polyfill for stats_standard_deviation()
+     *
+     * @see http://php.net/manual/en/function.stats-standard-deviation.php
+     *
+     * @param array $set
+     *
+     * @return int
+     *
+     * @throws \InvalidArgumentException
+     *   Thrown when $set is empty.
+     */
+    private function standardDeviation(array $set): int
+    {
+        if (function_exists('stats_standard_deviation')) {
+            return stats_standard_deviation($set);
+        }
+
+        $n = count($set);
+        if ($n === 0) {
+            throw new \InvalidArgumentException('The array has zero elements');
+        }
+        $mean = array_sum($set) / $n;
+        $carry = 0.0;
+        foreach ($set as $val) {
+            $d = ((double)$val) - $mean;
+            $carry += $d * $d;
+        }
+
+        return sqrt($carry / $n);
     }
 }

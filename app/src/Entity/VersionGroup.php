@@ -53,7 +53,7 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
      * A list of features in this version group
      *
      * @var Feature[]|Collection
-     * @ORM\ManyToMany(targetEntity="App\Entity\Feature")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Feature", fetch="EAGER")
      */
     protected $features;
 

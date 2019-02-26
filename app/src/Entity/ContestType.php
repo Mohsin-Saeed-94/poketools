@@ -21,7 +21,7 @@ class ContestType extends AbstractDexEntity implements EntityHasNameInterface, E
      *
      * @var BerryFlavor
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\BerryFlavor")
+     * @ORM\OneToOne(targetEntity="App\Entity\BerryFlavor", inversedBy="contestType")
      */
     protected $berryFlavor;
 

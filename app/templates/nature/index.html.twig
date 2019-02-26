@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Natures{% endblock %}
+
+{% block body %}
+    <h1>Natures</h1>
+    {% if not version.versionGroup.featureString('natures') %}
+        <p class="pkt-nature-index-none">This version does not have Natures.</p>
+    {% else %}
+        <div class="pkt-nature-index-table">
+            {{ datatable.datatable(nature_table, 'pkt-nature-index-table') }}
+        </div>
+
+        <h2>Characteristics</h2>
+        <p>Characteristics are the in-game hints to a Pokèmon's highest IV and its value.</p>
+        <div class="table-responsive">
+            <table class="table pkt-nature-index-characteristics">
+                <thead>
+                <th>
+                    Last Digit &rarr;<br>
+                    Stat &darr;
+                </th>
+                {% for iv_determinator in iv_determinators %}
+                    <th>{{ iv_determinator }} or {{ iv_determinator + 5 }}</th>
+                {% endfor %}
+                </thead>
+                <tbody>
+                {% for stat in stats %}
+                    <tr>
+                        <th>{{ stat }}</th>
+                        {% for characteristic in characteristics if characteristic.stat is same as(stat) %}
+                            <td>{{ characteristic.flavorText }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('nature_index') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('nature_index') }}
+{% endblock %}

@@ -9,7 +9,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 /**
  * @method Characteristic|null find($id, $lockMode = null, $lockVersion = null)
  * @method Characteristic|null findOneBy(array $criteria, array $orderBy = null)
- * @method Characteristic[]    findAll()
  * @method Characteristic[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class CharacteristicRepository extends ServiceEntityRepository
@@ -47,4 +46,38 @@ class CharacteristicRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return Characteristic[]
+     */
+    public function findAll()
+    {
+        $qb = $this->createQueryBuilder('characteristic');
+        $qb->addSelect('stat')
+            ->join('characteristic.stat', 'stat')
+            ->orderBy('stat.position')
+            ->orderBy('characteristic.ivDeterminator');
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getResult();
+    }
+
+    /**
+     * @return int[]
+     */
+    public function findAllIvDeterminators()
+    {
+        $qb = $this->createQueryBuilder('characteristic');
+        $qb->distinct()->select('characteristic.ivDeterminator')
+            ->orderBy('characteristic.ivDeterminator');
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return array_column($q->getScalarResult(), 'ivDeterminator');
+    }
 }

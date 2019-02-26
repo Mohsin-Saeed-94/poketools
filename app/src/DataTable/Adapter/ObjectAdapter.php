@@ -138,7 +138,7 @@ class ObjectAdapter implements AdapterInterface
     {
         if (is_callable($this->data)) {
             // Rely upon the data function to page the data if requested.
-            return call_user_func($this->data, $start, $length);
+            $this->data = call_user_func($this->data, $start, $length);
         }
 
         if ($length > 0) {

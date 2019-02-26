@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Natures - {{ nature.name }}{% endblock %}
+
+{% block body %}
+    <h1>{{ nature.name }}</h1>
+    {% set sameStats = nature.statIncreased is same as(nature.statDecreased)
+        and nature.flavorLikes is same as(nature.flavorHates) %}
+    {% if sameStats %}
+        <p>This Nature has no effect on stats.</p>
+    {% else %}
+        <table class="pkt-infolist pkt-nature-view-statchanges">
+            <tr>
+                <th>Stat Changes</th>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>{{ nature.statIncreased }} +10%</li>
+                        <li>{{ nature.statDecreased }} &minus;10%</li>
+                    </ul>
+                </td>
+            </tr>
+            {% set showContestInfo = version.versionGroup.featureString('contests')
+                or version.versionGroup.featureString('super-contests') %}
+            <tr>
+                <th>Flavor Preferences</th>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>
+                            Likes {{ nature.flavorLikes }}
+                            {% if showContestInfo %}
+                                (Helps increase {{ nature.flavorLikes.contestType|type_emblem }})
+                            {% endif %}
+                        </li>
+                        <li>
+                            Hates {{ nature.flavorHates }}
+                            {% if showContestInfo %}
+                                (Bad for {{ nature.flavorHates.contestType|type_emblem }})
+                            {% endif %}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+
+    {# Battle Style Preferences #}
+    {% if version.versionGroup.featureString('battle-palace') %}
+        <h2>Battle Style Preferences</h2>
+        <table class="pkt-infolist pkt-nature-view-battlestyleprefs">
+            <tr>
+                <th>&geq; 50% HP</th>
+                <td>
+                    <ul class="list-unstyled">
+                        {% for battle_style_preference in nature.battleStylePreferences %}
+                            <li>
+                                {{ battle_style_preference.highHpChance }}% {{ battle_style_preference.battleStyle }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>&lt; 50% HP</th>
+                <td>
+                    <ul class="list-unstyled">
+                        {% for battle_style_preference in nature.battleStylePreferences %}
+                            <li>
+                                {{ battle_style_preference.lowHpChance }}% {{ battle_style_preference.battleStyle }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+
+    {# Pokeathlon stats #}
+    {% if version.versionGroup.featureString('pokeathlon') %}
+        <h2>Pokèathlon Stat Modifiers</h2>
+        <ul class="pkt-nature-view-pokeathlon">
+            {% for pokeathlon_stat_change in nature.pokeathlonStatChanges %}
+                <li>Up to {{ pokeathlon_stat_change.maxChange }} {{ pokeathlon_stat_change.pokeathlonStat }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {# Pokemon table #}
+    <h2>Pokèmon</h2>
+    <p>
+        {% if sameStats %}
+            This is a list of Pokèmon with similar stats.
+        {% else %}
+            This is a list of Pokèmon with high {{ nature.statIncreased }} and low {{ nature.statDecreased }}.
+        {% endif %}
+    </p>
+    {{ datatable.datatable(pokemon_table, 'pkt-nature-view-pokemon') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('nature_view') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('nature_view') }}
+{% endblock %}
