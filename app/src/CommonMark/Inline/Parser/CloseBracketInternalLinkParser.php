@@ -9,6 +9,7 @@ namespace App\CommonMark\Inline\Parser;
 use App\Entity\AbilityInVersionGroup;
 use App\Entity\EntityHasNameInterface;
 use App\Entity\Version;
+use App\Repository\SlugAndVersionInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use League\CommonMark\Cursor;
 use League\CommonMark\Inline\Element\Link;
@@ -226,6 +227,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
         // Make sure version is available if necessary.
         $requiresVersion = [
             'ability',
+            'nature',
         ];
         if ($this->currentVersion === null && in_array($category, $requiresVersion, true)) {
             return null;
@@ -235,18 +237,27 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
             case 'mechanic':
                 return $this->getMechanicLink($slug);
             case 'ability':
-                $entity = $this->em->getRepository(AbilityInVersionGroup::class)
-                    ->findOneByVersion($slug, $this->currentVersion);
-                if ($entity === null) {
+                if ($this->getEntityForLink(AbilityInVersionGroup::class, $slug, $this->currentVersion) === null) {
                     return null;
                 }
-                $this->currentEntity = $entity;
 
                 return $this->urlGenerator->generate(
                     'ability_view',
                     [
                         'versionSlug' => $this->currentVersion->getSlug(),
                         'abilitySlug' => $slug,
+                    ]
+                );
+            case 'nature':
+                if ($this->getEntityForLink(AbilityInVersionGroup::class, $slug, $this->currentVersion) === null) {
+                    return null;
+                }
+
+                return $this->urlGenerator->generate(
+                    'nature_view',
+                    [
+                        'versionSlug' => $this->currentVersion->getSlug(),
+                        'natureSlug' => $slug,
                     ]
                 );
         }
@@ -266,6 +277,31 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
         $slug = rawurlencode($slug);
 
         return sprintf('https://bulbapedia.bulbagarden.net/wiki/Special:Search/%s', $slug);
+    }
+
+    /**
+     * Get an entity by slug and version.
+     *
+     * This will also set the internal entity state variable.
+     *
+     * @param string $type
+     *   An entity type whose repository implements App\Repository\SlugAndVersionInterface.
+     * @param string $slug
+     * @param Version $version
+     *
+     * @return object|null
+     */
+    protected function getEntityForLink(string $type, string $slug, Version $version): ?object
+    {
+        /** @var SlugAndVersionInterface $repo */
+        $repo = $this->em->getRepository($type);
+        $entity = $repo->findOneByVersion($slug, $version);
+        if ($entity === null) {
+            return null;
+        }
+        $this->currentEntity = $entity;
+
+        return $entity;
     }
 
 }

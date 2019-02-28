@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method AbilityInVersionGroup[]    findAll()
  * @method AbilityInVersionGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AbilityInVersionGroupRepository extends ServiceEntityRepository
+class AbilityInVersionGroupRepository extends ServiceEntityRepository implements SlugAndVersionInterface
 {
     public function __construct(RegistryInterface $registry)
     {
