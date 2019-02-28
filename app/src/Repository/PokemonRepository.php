@@ -134,10 +134,14 @@ class PokemonRepository extends ServiceEntityRepository
         // Filter the results down.
         if ($highStat === $lowStat) {
             // The largest standard deviation for stats to be considered "similar"
-            $deviationLimit = 5;
+            $deviationLimit = 7;
             $filterCallback = function (Pokemon $pokemon) use ($deviationLimit) {
                 $statVals = [];
                 foreach ($pokemon->getStats() as $pokemonStat) {
+                    if ($pokemonStat->getStat()->getSlug() === 'hp') {
+                        // Ignore HP.
+                        continue;
+                    }
                     $statVals[] = $pokemonStat->getBaseValue();
                 }
                 $statDeviation = $this->standardDeviation($statVals);
@@ -151,6 +155,10 @@ class PokemonRepository extends ServiceEntityRepository
                 $pokemonLowStat = null;
                 $pokemonLowStatVal = PHP_INT_MAX;
                 foreach ($pokemon->getStats() as $pokemonStat) {
+                    if ($pokemonStat->getStat()->getSlug() === 'hp') {
+                        // Ignore HP.
+                        continue;
+                    }
                     if ($pokemonStat->getBaseValue() > $pokemonHighStatVal) {
                         $pokemonHighStat = $pokemonStat->getStat();
                         $pokemonHighStatVal = $pokemonStat->getBaseValue();
