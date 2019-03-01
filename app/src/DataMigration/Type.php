@@ -27,6 +27,10 @@ class Type extends AbstractDoctrineDataMigration implements DataMigrationInterfa
      */
     public function transform($sourceData, $destinationData)
     {
+        static $position = 0;
+        $destinationData->setPosition($position);
+        $position++;
+
         $destinationData->setSlug($sourceData['identifier']);
         unset($sourceData['identifier']);
 

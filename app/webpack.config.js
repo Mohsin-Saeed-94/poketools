@@ -29,6 +29,7 @@ Encore
     .addEntry('ability_view', './assets/js/ability_view.js')
     .addEntry('nature_index', './assets/js/nature_index.js')
     .addEntry('nature_view', './assets/js/nature_view.js')
+    .addEntry('type_index', './assets/js/type_index.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app

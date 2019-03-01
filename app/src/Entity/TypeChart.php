@@ -27,6 +27,7 @@ class TypeChart extends AbstractDexEntity
      * @var TypeEfficacy[]|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\TypeEfficacy", mappedBy="typeChart", cascade={"ALL"}, fetch="EAGER")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $efficacies;
 
@@ -106,6 +107,33 @@ class TypeChart extends AbstractDexEntity
     }
 
     /**
+     * Sort the internal list of efficacies by attacking type, then defending type.
+     *
+     * This method should be called after updating effacies before committing
+     * changes.
+     */
+    public function sortEfficacies(): void
+    {
+        /** @var TypeEfficacy[]|\Traversable|\ArrayIterator $it */
+        $it = $this->efficacies->getIterator();
+        $it->uasort(
+            function (TypeEfficacy $a, TypeEfficacy $b) {
+                if ($a->getAttackingType() !== $b->getAttackingType()) {
+                    return $a->getAttackingType()->getPosition() - $b->getAttackingType()->getPosition();
+                }
+
+                return $a->getDefendingType()->getPosition() - $b->getDefendingType()->getPosition();
+            }
+        );
+        $it->rewind();
+        foreach ($it as $k => $typeEfficacy) {
+            $typeEfficacy->setPosition($k);
+        }
+
+        $this->efficacies = new ArrayCollection(iterator_to_array($it));
+    }
+
+    /**
      * @return Type[]|Collection
      */
     public function getTypes(): Collection
@@ -117,8 +145,14 @@ class TypeChart extends AbstractDexEntity
             $types[$efficacy->getDefendingType()
                 ->getId()] = $efficacy->getDefendingType();
         }
+        usort(
+            $types,
+            function (Type $a, Type $b) {
+                return $a->getPosition() - $b->getPosition();
+            }
+        );
 
-        return new ArrayCollection(array_values(array_reverse($types)));
+        return new ArrayCollection(array_values($types));
     }
 
     /**
@@ -127,5 +161,50 @@ class TypeChart extends AbstractDexEntity
     public function getEfficacies()
     {
         return $this->efficacies;
+    }
+
+    /**
+     * @param Type $type
+     *
+     * @return TypeEfficacy[]|Collection
+     */
+    public function getEfficaciesForAttackingType(Type $type): Collection
+    {
+        return $this->efficacies->filter(
+            function (TypeEfficacy $efficacy) use ($type) {
+                return $efficacy->getAttackingType() === $type;
+            }
+        );
+    }
+
+    /**
+     * @param Type $type
+     *
+     * @return TypeEfficacy[]|Collection
+     */
+    public function getEfficaciesForDefendingType(Type $type): Collection
+    {
+        return $this->efficacies->filter(
+            function (TypeEfficacy $efficacy) use ($type) {
+                return $efficacy->getDefendingType() === $type;
+            }
+        );
+    }
+
+    /**
+     * @param Type $attackingType
+     * @param Type $defendingType
+     *
+     * @return TypeEfficacy|null
+     */
+    public function getEfficacyForMatchup(Type $attackingType, Type $defendingType): ?TypeEfficacy
+    {
+        foreach ($this->efficacies as $efficacy) {
+            if ($efficacy->getAttackingType() === $attackingType && $efficacy->getDefendingType() === $defendingType) {
+                return $efficacy;
+            }
+        }
+
+        return null;
     }
 }

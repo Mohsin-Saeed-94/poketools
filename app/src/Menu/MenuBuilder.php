@@ -46,7 +46,14 @@ class MenuBuilder
             ->setChildrenAttribute('class', 'navbar-nav');
         $menu->addChild('Pokèmon', ['uri' => '#']);
         $menu->addChild('Moves', ['uri' => '#']);
-        $menu->addChild('Types', ['uri' => '#']);
+        $typesUri = $this->urlGenerator->generate('type_index', ['versionSlug' => '__VERSION__']);
+        $menu->addChild(
+            'Types',
+            [
+                'uri' => $typesUri,
+                'linkAttributes' => ['data-uri-template' => $typesUri],
+            ]
+        );
         $menu->addChild('Items', ['uri' => '#']);
         $menu->addChild('Locations', ['uri' => '#']);
         $naturesUri = $this->urlGenerator->generate('nature_index', ['versionSlug' => '__VERSION__']);

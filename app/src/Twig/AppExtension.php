@@ -27,6 +27,12 @@ class AppExtension extends AbstractExtension
                     'is_safe' => ['html'],
                 ]
             ),
+            new TwigFilter(
+                'type_efficacy', [AppExtensionRuntime::class, 'typeEfficacy'], [
+                    'needs_environment' => true,
+                    'is_safe' => ['html'],
+                ]
+            ),
         ];
     }
 }

@@ -37,6 +37,7 @@ class NatureController extends AbstractDexController
      *
      * @param DataTableFactory $dataTableFactory
      * @param NatureRepository $natureRepo
+     * @param CharacteristicRepository $characteristicRepo
      */
     public function __construct(
         DataTableFactory $dataTableFactory,

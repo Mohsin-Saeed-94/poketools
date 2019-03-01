@@ -10,8 +10,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity(repositoryClass="App\Repository\TypeEfficacyRepository")
  */
-class TypeEfficacy
+class TypeEfficacy implements EntityIsSortableInterface
 {
+    // This allows the type chart to be pre-sorted during data migration and avoid having to
+    // join with the types.
+    use EntityIsSortableTrait;
 
     /**
      * @var TypeChart

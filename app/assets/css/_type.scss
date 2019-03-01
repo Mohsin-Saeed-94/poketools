@@ -1,0 +1,69 @@
+$color-type: (
+    normal: #9B9B6B,
+    fighting: #903028,
+    flying: #A890F0,
+    poison: #A040A0,
+    ground: #E0C068,
+    rock: #B8A038,
+    bug: #A8B820,
+    ghost: #705898,
+    steel: #8D8DA5,
+    fire: #F05030,
+    water: #6890F0,
+    grass: #78C850,
+    electric: #F8D030,
+    psychic: #F85888,
+    ice: #98D8D8,
+    dragon: #7038F8,
+    dark: #705848,
+    fairy: #F8A0E0,
+    unknown: #68A090,
+    shadow: #403246,
+    beauty: #6890F0,
+    cool: #F05030,
+    cute: #F85888,
+    smart: #78C850,
+    tough: #F8D030,
+);
+
+$color-efficacy: (
+    0: $gray-500,
+    25: $pink,
+    50: $red,
+    100: $body-color,
+    200: $green,
+    400: $teal,
+);
+@each $type in map_keys($color-type) {
+    .pkt-type-emblem-#{$type} {
+        display: inline-block;
+        min-width: 3rem;
+        min-height: 1rem;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        text-align: center;
+        font-weight: bold;
+        // Reducing the font size slightly allows for the same apparent size while
+        // allowing for a small amount of padding to the next line.
+        font-size: 92%;
+        font-variant-caps: small-caps;
+        border-radius: 0.5rem;
+        background-color: map_get($color-type, $type);
+        font-variant-numeric: diagonal-fractions;
+
+        &, a, & a {
+            @if (lightness(map_get($color-type, $type)) > 80%) {
+                color: #252525;
+            } @else {
+                color: #F9F9F9;
+            }
+        }
+    }
+}
+
+@each $efficacy in map_keys($color-efficacy) {
+    .pkt-type-efficacy-#{$efficacy} {
+        font-weight: bold;
+        color: map_get($color-efficacy, $efficacy);
+    }
+}

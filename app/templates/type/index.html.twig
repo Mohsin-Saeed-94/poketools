@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Types{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item active">Types</li>
+        </ol>
+    </nav>
+
+    <h1>Types</h1>
+    <div class="table-responsive">
+        <table class="table pkt-type-index-typechart">
+            <thead>
+            <tr>
+                <th>
+                    Defending&nbsp;&rarr;<br>
+                    Attacking&nbsp;&darr;
+                </th>
+                {% for type in types %}
+                    <th class="pkt-type-index-typechart-defending">{{ type|type_emblem }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for attackingType in types %}
+                <tr>
+                    <th class="pkt-type-index-typechart-attacking">{{ attackingType|type_emblem }}</th>
+                    {% for defendingType in types %}
+                        {% set efficacy = type_chart.efficacyForMatchup(attackingType, defendingType) %}
+                        <td class="pkt-type-index-typechart-efficacy{% if defendingType == attackingType %} pkt-type-index-typechart-sametype{% endif %}">
+                            {{ efficacy|type_efficacy }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('type_index') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('type_index') }}
+{% endblock %}

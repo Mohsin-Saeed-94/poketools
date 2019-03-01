@@ -45,6 +45,7 @@ class TypeChart extends AbstractDoctrineDataMigration implements DataMigrationIn
                 $this->addEfficacyForTypes($destinationData, $attackingType, $defendingType, $efficacy);
             }
         }
+        $destinationData->sortEfficacies();
 
         return $destinationData;
     }
@@ -55,7 +56,7 @@ class TypeChart extends AbstractDoctrineDataMigration implements DataMigrationIn
      * @param Type                  $defendingType
      * @param int                   $efficacy
      */
-    protected function addEfficacyForTypes(\App\Entity\TypeChart &$destinationData, Type $attackingType, Type $defendingType, int $efficacy)
+    protected function addEfficacyForTypes(\App\Entity\TypeChart $destinationData, Type $attackingType, Type $defendingType, int $efficacy)
     {
         // Update the existing efficacy, if already stored.
         foreach ($destinationData->getEfficacies() as $existingTypeEfficacy) {

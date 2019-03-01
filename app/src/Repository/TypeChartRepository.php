@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\TypeChart;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,4 +48,23 @@ class TypeChartRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param Version $version
+     *
+     * @return TypeChart|null
+     */
+    public function findOneByVersion(Version $version): ?TypeChart
+    {
+        $qb = $this->createQueryBuilder('type_chart');
+        $qb->join('type_chart.versionGroups', 'version_groups')
+            ->andWhere(':version MEMBER OF version_groups.versions')
+            ->setMaxResults(1)
+            ->setParameter('version', $version);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getOneOrNullResult();
+    }
 }
