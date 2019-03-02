@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Types - {{ type.name }}{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item"><a href="{{ path('type_index', {'versionSlug': version.slug}) }}">Types</a></li>
+            <li class="breadcrumb-item active">{{ type.name }}</li>
+        </ol>
+    </nav>
+
+    <h1>
+        Types - {{ type|type_emblem(false) }}
+        {% if not version.versionGroup.featureString('move-damage-class') %}
+            (<img class="pkt-icon" src="{{ asset('build/static/damage_class/'~type.damageClass.slug~'.svg') }}"
+                  alt="{{ type.damageClass.name }} class">)
+        {% endif %}
+    </h1>
+
+    <h2>Efficacy</h2>
+    <h3>Attacking</h3>
+    {{ damage_chart_attacking(type) }}
+    <h3>Defending</h3>
+    {{ damage_chart_defending(type) }}
+
+    <h2>Pokèmon</h2>
+    {{ datatable.datatable(pokemon_table, 'pkt-type-view-pokemon') }}
+
+    <h2>Moves</h2>
+    {{ datatable.datatable(move_table, 'pkt-type-view-moves') }}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('type_view') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('type_view') }}
+{% endblock %}

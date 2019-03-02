@@ -141,7 +141,7 @@ class ObjectAdapter implements AdapterInterface
             $this->data = call_user_func($this->data, $start, $length);
         }
 
-        if ($length > 0) {
+        if ($length > 0 && count($this->data) > $length) {
             // Only get a portion of the data.
             return array_slice($this->data, $start, $length);
         }

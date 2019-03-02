@@ -1,14 +1,11 @@
 <?php
-/**
- * @file AbilityPokemonTableType.php
- */
 
 namespace App\DataTable\Type;
 
 
+use App\DataTable\Adapter\ObjectAdapter;
 use App\Entity\AbilityInVersionGroup;
 use App\Entity\Version;
-use App\Repository\PokemonRepository;
 use Omines\DataTablesBundle\DataTable;
 
 /**
@@ -16,20 +13,6 @@ use Omines\DataTablesBundle\DataTable;
  */
 class AbilityPokemonTableType extends PokemonTableType
 {
-    /**
-     * @var PokemonRepository
-     */
-    private $pokemonRepo;
-
-    /**
-     * AbilityPokemonTableType constructor.
-     *
-     * @param PokemonRepository $pokemonRepo
-     */
-    public function __construct(PokemonRepository $pokemonRepo)
-    {
-        $this->pokemonRepo = $pokemonRepo;
-    }
 
     /**
      * {@inheritdoc}
@@ -43,7 +26,8 @@ class AbilityPokemonTableType extends PokemonTableType
         /** @var AbilityInVersionGroup $ability */
         $ability = $options['ability'];
 
-        $dataTable->getAdapter()->configure(
+        $dataTable->setName(self::class)->createAdapter(
+            ObjectAdapter::class,
             [
                 'data' => function (int $start, int $limit) use ($ability) {
                     return $this->pokemonRepo->findWithAbility($ability, $start, $limit);

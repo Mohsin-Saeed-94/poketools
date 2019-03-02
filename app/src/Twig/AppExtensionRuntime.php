@@ -9,6 +9,8 @@ namespace App\Twig;
 use App\Entity\ContestType;
 use App\Entity\Type;
 use App\Entity\TypeEfficacy;
+use App\Entity\Version;
+use App\Repository\TypeChartRepository;
 use App\Repository\VersionRepository;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -22,16 +24,40 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     /**
      * @var VersionRepository
      */
-    private $versionRepository;
+    private $versionRepo;
+
+    /**
+     * @var TypeChartRepository
+     */
+    private $typeChartRepo;
+
+    /**
+     * @var Version
+     */
+    private $activeVersion;
+
+    /**
+     * @var string
+     */
+    private $defaultVersionSlug;
 
     /**
      * AppExtensionRuntime constructor.
      *
-     * @param VersionRepository $versionRepository
+     * @param VersionRepository $versionRepo
+     * @param Version $activeVersion
+     * @param string $defaultVersionSlug
      */
-    public function __construct(VersionRepository $versionRepository)
-    {
-        $this->versionRepository = $versionRepository;
+    public function __construct(
+        VersionRepository $versionRepo,
+        TypeChartRepository $typeChartRepo,
+        ?Version $activeVersion,
+        string $defaultVersionSlug
+    ) {
+        $this->versionRepo = $versionRepo;
+        $this->typeChartRepo = $typeChartRepo;
+        $this->activeVersion = $activeVersion;
+        $this->defaultVersionSlug = $defaultVersionSlug;
     }
 
     /**
@@ -39,28 +65,123 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
      *
      * @return \App\Entity\Version[]
      */
-    public function versionList()
+    public function versionList(): array
     {
-        return $this->versionRepository->findAllVersionsGroupedByGeneration();
+        return $this->versionRepo->findAllVersionsGroupedByGeneration();
     }
 
     /**
      * @param \Twig_Environment $twig
-     * @param Type|ContestType $value
+     * @param array $context
+     * @param Type $value
      *
      * @return string
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function typeEmblem(\Twig_Environment $twig, $value)
+    public function damageChartAttacking(\Twig_Environment $twig, array $context, Type $value): string
+    {
+        $version = $this->resolveActiveVersion($context);
+        $typeChart = $this->typeChartRepo->findOneByVersion($version);
+
+        return $twig->render(
+            '_functions/damage_chart_attacking.html.twig',
+            [
+                'version' => $version,
+                'attacking_type' => $value,
+                'type_chart' => $typeChart,
+            ]
+        );
+    }
+
+    /**
+     * @param \Twig_Environment $twig
+     * @param array $context
+     * @param Type $value
+     *
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function damageChartDefending(\Twig_Environment $twig, array $context, Type $value): string
+    {
+        $version = $this->resolveActiveVersion($context);
+        $typeChart = $this->typeChartRepo->findOneByVersion($version);
+
+        return $twig->render(
+            '_functions/damage_chart_defending.html.twig',
+            [
+                'version' => $version,
+                'defending_type' => $value,
+                'type_chart' => $typeChart,
+            ]
+        );
+    }
+
+    /**
+     * @param array $context
+     *
+     * @return Version|mixed|null
+     */
+    protected function resolveActiveVersion(array $context)
+    {
+        if (isset($context['version'])) {
+            $version = $context['version'];
+        } elseif (isset($this->activeVersion)) {
+            $version = $this->activeVersion;
+        } else {
+            $version = $this->getDefaultVersion();
+        }
+
+        return $version;
+    }
+
+    /**
+     * Laxy load the default version only when it is needed.
+     *
+     * @return Version
+     */
+    protected function getDefaultVersion(): Version
+    {
+        static $version = null;
+        if ($version === null) {
+            $version = $this->versionRepo->findOneBy(['slug' => $this->defaultVersionSlug]);
+        }
+
+        return $version;
+    }
+
+    /**
+     * @param \Twig_Environment $twig
+     * @param array $context
+     * @param Type|ContestType $value
+     *
+     * @param bool $link
+     *
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function typeEmblem(\Twig_Environment $twig, array $context, $value, bool $link = true): string
     {
         if (!$value instanceof Type && !$value instanceof ContestType) {
             $type = is_object($value) ? get_class($value) : gettype($value);
             throw new \InvalidArgumentException('Argument to type must be a Type or ContestType, got '.$type);
         }
 
-        return $twig->render('_filters/type_emblem.twig', ['value' => $value]);
+        $version = $this->resolveActiveVersion($context);
+
+        return $twig->render(
+            '_filters/type_emblem.twig',
+            [
+                'value' => $value,
+                'version' => $version,
+                'link' => $link,
+            ]
+        );
     }
 
     /**
@@ -72,7 +193,7 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function typeEfficacy(\Twig_Environment $twig, TypeEfficacy $value)
+    public function typeEfficacy(\Twig_Environment $twig, TypeEfficacy $value): string
     {
         switch ($value->getEfficacy()) {
             case 25:

@@ -1,3 +1,4 @@
+// Colors
 $color-type: (
     normal: #9B9B6B,
     fighting: #903028,
@@ -27,10 +28,10 @@ $color-type: (
 );
 
 $color-efficacy: (
-    0: $gray-500,
+    0: $black,
     25: $pink,
     50: $red,
-    100: $body-color,
+    100: $gray-500,
     200: $green,
     400: $teal,
 );
@@ -51,12 +52,10 @@ $color-efficacy: (
         background-color: map_get($color-type, $type);
         font-variant-numeric: diagonal-fractions;
 
-        &, a, & a {
-            @if (lightness(map_get($color-type, $type)) > 80%) {
-                color: #252525;
-            } @else {
-                color: #F9F9F9;
-            }
+        @if (lightness(map_get($color-type, $type)) > 80%) {
+            color: $gray-700;
+        } @else {
+            color: $gray-100;
         }
     }
 }
@@ -65,5 +64,21 @@ $color-efficacy: (
     .pkt-type-efficacy-#{$efficacy} {
         font-weight: bold;
         color: map_get($color-efficacy, $efficacy);
+    }
+}
+
+
+// Display formatting
+td.pkt-type-chart-efficacy {
+    text-align: center;
+}
+
+table.pkt-type-chart-matchup {
+    @extend .table-sm;
+
+    font-size: $font-size-sm;
+
+    &-vertical {
+        width: auto;
     }
 }

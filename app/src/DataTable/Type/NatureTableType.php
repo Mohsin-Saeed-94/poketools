@@ -1,7 +1,4 @@
 <?php
-/**
- * @file AbilityTableType.php
- */
 
 namespace App\DataTable\Type;
 
@@ -32,7 +29,7 @@ class NatureTableType implements DataTableTypeInterface
         $showContestInfo = $version->getVersionGroup()->hasFeatureString('contests')
             || $version->getVersionGroup()->hasFeatureString('super-contests');
 
-        $dataTable->add(
+        $dataTable->setName(self::class)->add(
             'name',
             LinkColumn::class,
             [

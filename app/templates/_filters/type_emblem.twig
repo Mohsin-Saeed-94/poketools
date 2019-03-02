@@ -1,2 +1,9 @@
-{# @todo Type link #}
-<a href="#" class="pkt-type-emblem-{{ value.slug }}">{{ value.name }}</a>
+{%- if link %}
+    {%- set tag = 'a' %}
+{%- else %}
+    {%- set tag = 'span' %}
+{%- endif %}
+<{{ tag }} {% if link %}href="{{ path('type_view', {'versionSlug': version.slug, 'typeSlug': value.slug}) }}"{% endif %}
+class="pkt-type-emblem-{{ value.slug }}">
+{{ value.name }}
+</{{ tag }}>

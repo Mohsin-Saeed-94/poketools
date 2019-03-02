@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\AbilityInVersionGroup;
 use App\Entity\Pokemon;
 use App\Entity\Stat;
+use App\Entity\Type;
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -55,6 +56,55 @@ class PokemonRepository extends ServiceEntityRepository
     */
 
     /**
+     * @param Version $version
+     * @param int $start
+     * @param int $limit
+     *
+     * @return Pokemon[]
+     */
+    public function findWithVersion(Version $version, int $start = 0, int $limit = 0): array
+    {
+        $qb = $this->createQueryBuilder('pokemon');
+        $this->filterWithVersion($qb, $version);
+        $this->pageQuery($qb, $start, $limit);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getResult();
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param Version $version
+     */
+    protected function filterWithVersion(QueryBuilder $qb, Version $version): void
+    {
+        $qb->join('pokemon.species', 'pokemon_species')
+            ->join('pokemon_species.versionGroup', 'version_group')
+            ->andWhere(':version MEMBER OF version_group.versions')
+            ->setParameter('version', $version);
+    }
+
+    /**
+     * @param Version $version
+     *
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countWithVersion(Version $version): int
+    {
+        $qb = $this->createQueryBuilder('pokemon');
+        $qb->select('COUNT(pokemon.id)');
+        $this->filterWithVersion($qb, $version);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return (int)$q->getSingleScalarResult();
+    }
+
+    /**
      * @param AbilityInVersionGroup $abilityInVersionGroup
      *
      * @param int $start
@@ -80,7 +130,7 @@ class PokemonRepository extends ServiceEntityRepository
      * @param QueryBuilder $qb
      * @param AbilityInVersionGroup $abilityInVersionGroup
      */
-    protected function filterWithAbility(QueryBuilder $qb, AbilityInVersionGroup $abilityInVersionGroup)
+    protected function filterWithAbility(QueryBuilder $qb, AbilityInVersionGroup $abilityInVersionGroup): void
     {
         $qb->join('pokemon.abilities', 'pokemon_abilities')
             ->join('pokemon.species', 'pokemon_species')
@@ -207,5 +257,60 @@ class PokemonRepository extends ServiceEntityRepository
         }
 
         return sqrt($carry / $n);
+    }
+
+    /**
+     * @param Version $version
+     * @param Type $type
+     * @param int $start
+     * @param int $limit
+     *
+     * @return Pokemon[]
+     */
+    public function findWithType(Version $version, Type $type, int $start = 0, int $limit = 0): array
+    {
+        $qb = $this->createQueryBuilder('pokemon');
+        $this->filterWithType($qb, $version, $type);
+        $qb->addOrderBy('pokemon_species.position')
+            ->addOrderBy('pokemon.position');
+        $this->pageQuery($qb, $start, $limit);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getResult();
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param Version $version
+     * @param Type $type
+     */
+    protected function filterWithType(QueryBuilder $qb, Version $version, Type $type): void
+    {
+        $this->filterWithVersion($qb, $version);
+        $qb->join('pokemon.types', 'pokemon_types')
+            ->join('pokemon_types.type', 'type')
+            ->andWhere(':type = type')
+            ->setParameter('type', $type);
+    }
+
+    /**
+     * @param Version $version
+     * @param Type $type
+     *
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countWithType(Version $version, Type $type): int
+    {
+        $qb = $this->createQueryBuilder('pokemon');
+        $qb->select('COUNT(pokemon.id)');
+        $this->filterWithType($qb, $version, $type);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return (int)$q->getSingleScalarResult();
     }
 }

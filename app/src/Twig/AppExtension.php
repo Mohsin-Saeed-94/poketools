@@ -15,6 +15,22 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('version_list', [AppExtensionRuntime::class, 'versionList']),
+            new TwigFunction(
+                'damage_chart_attacking', [AppExtensionRuntime::class, 'damageChartAttacking'],
+                [
+                    'needs_environment' => true,
+                    'needs_context' => true,
+                    'is_safe' => ['html'],
+                ]
+            ),
+            new TwigFunction(
+                'damage_chart_defending', [AppExtensionRuntime::class, 'damageChartDefending'],
+                [
+                    'needs_environment' => true,
+                    'needs_context' => true,
+                    'is_safe' => ['html'],
+                ]
+            ),
         ];
     }
 
@@ -24,6 +40,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter(
                 'type_emblem', [AppExtensionRuntime::class, 'typeEmblem'], [
                     'needs_environment' => true,
+                    'needs_context' => true,
                     'is_safe' => ['html'],
                 ]
             ),

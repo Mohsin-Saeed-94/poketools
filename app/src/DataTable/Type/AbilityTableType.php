@@ -1,7 +1,4 @@
 <?php
-/**
- * @file AbilityTableType.php
- */
 
 namespace App\DataTable\Type;
 
@@ -29,7 +26,7 @@ class AbilityTableType implements DataTableTypeInterface
         /** @var Version $version */
         $version = $options['version'];
 
-        $dataTable->add(
+        $dataTable->setName(self::class)->add(
             'name',
             LinkColumn::class,
             [

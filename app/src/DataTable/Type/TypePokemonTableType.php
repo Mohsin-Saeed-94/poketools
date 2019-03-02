@@ -4,15 +4,16 @@ namespace App\DataTable\Type;
 
 
 use App\DataTable\Adapter\ObjectAdapter;
-use App\Entity\Nature;
+use App\Entity\Type;
 use App\Entity\Version;
 use Omines\DataTablesBundle\DataTable;
 
 /**
- * Pokemon Table for Nature view
+ * Pokemon Table for Type view
  */
-class NaturePokemonTableType extends PokemonTableType
+class TypePokemonTableType extends PokemonTableType
 {
+
     /**
      * {@inheritdoc}
      */
@@ -22,18 +23,17 @@ class NaturePokemonTableType extends PokemonTableType
 
         /** @var Version $version */
         $version = $options['version'];
-        /** @var Nature $nature */
-        $nature = $options['nature'];
+        /** @var Type $type */
+        $type = $options['type'];
 
         $dataTable->setName(self::class)->createAdapter(
             ObjectAdapter::class,
             [
-                'data' => function (int $start, int $limit) use ($version, $nature) {
-                    return $this->pokemonRepo->findMatchingStats(
-                        $version,
-                        $nature->getStatIncreased(),
-                        $nature->getStatDecreased()
-                    );
+                'data' => function (int $start, int $limit) use ($version, $type) {
+                    return $this->pokemonRepo->findWithType($version, $type, $start, $limit);
+                },
+                'count' => function () use ($version, $type) {
+                    return $this->pokemonRepo->countWithType($version, $type);
                 },
             ]
         );

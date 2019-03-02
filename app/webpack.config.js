@@ -11,7 +11,7 @@ Encore
     // copy static files
     .copyFiles({
         from: './assets/static',
-        to: 'images/[path][name].[ext]'
+        to: 'static/[path][name].[ext]'
     })
 
     /*
@@ -30,6 +30,7 @@ Encore
     .addEntry('nature_index', './assets/js/nature_index.js')
     .addEntry('nature_view', './assets/js/nature_view.js')
     .addEntry('type_index', './assets/js/type_index.js')
+    .addEntry('type_view', './assets/js/type_view.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -54,7 +55,7 @@ Encore
     // inline files where sensible
     .configureUrlLoader({
         fonts: {limit: 4096},
-        images: {limit: 4096}
+        images: {limit: 8192}
     })
 
     // uncomment if you use TypeScript

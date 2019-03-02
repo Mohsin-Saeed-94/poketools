@@ -1,0 +1,29 @@
+<div class="table-responsive d-none d-md-block">
+    <table class="table pkt-type-chart-matchup">
+        <thead>
+        <tr>
+            {% for attacking_type in type_chart.types %}
+                <th>{{ attacking_type|type_emblem }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for attacking_type in type_chart.types %}
+                <td class="pkt-type-chart-efficacy">{{ type_chart.efficacyForMatchup(attacking_type, defending_type)|type_efficacy }}</td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+</div>
+{# Vertical format, for smaller screens #}
+<div class="table-responsive d-md-none">
+    <table class="table pkt-type-chart-matchup pkt-type-chart-matchup-vertical">
+        {% for attacking_type in type_chart.types %}
+            <tr>
+                <th>{{ attacking_type|type_emblem }}</th>
+                <td class="pkt-type-chart-efficacy">{{ type_chart.efficacyForMatchup(attacking_type, defending_type)|type_efficacy }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
