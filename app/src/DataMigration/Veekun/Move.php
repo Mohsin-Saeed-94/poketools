@@ -33,6 +33,11 @@ class Move extends AbstractDataMigration implements DataMigrationInterface
     protected $versionGroupData;
 
     /**
+     * @var Statement
+     */
+    protected $statChangeData;
+
+    /**
      * {@inheritdoc}
      * @param DbalSourceDriver $sourceDriver
      */
@@ -192,6 +197,16 @@ GROUP BY "version_groups"."id"
 ORDER BY "version_groups"."order";
 SQL
         );
+
+        $this->statChangeData = $sourceDriver->getConnection()->prepare(
+            <<<SQL
+SELECT "stats"."identifier" AS "stat",
+       "move_meta_stat_changes"."change"
+FROM "move_meta_stat_changes"
+       JOIN "stats" ON "move_meta_stat_changes"."stat_id" = "stats"."id"
+WHERE "move_meta_stat_changes"."move_id" = :move;
+SQL
+        );
     }
 
     /**
@@ -212,6 +227,11 @@ SQL
             $sourceData['flags'] = explode(',', $sourceData['flags']);
         }
 
+        $this->statChangeData->execute(['move' => $moveId]);
+        foreach ($this->statChangeData as $statChangeSourceData) {
+            $sourceData['stat_changes'][$statChangeSourceData['stat']] = (int)$statChangeSourceData['change'];
+        }
+
         $sourceData = $this->removeNulls($sourceData);
         $intFields = [
             'drain',
@@ -230,10 +250,16 @@ SQL
             unset($versionGroupSourceData['version_group']);
 
             if (isset($versionGroupSourceData['contest_use_before'])) {
-                $versionGroupSourceData['contest_use_before'] = explode(',', $versionGroupSourceData['contest_use_before']);
+                $versionGroupSourceData['contest_use_before'] = explode(
+                    ',',
+                    $versionGroupSourceData['contest_use_before']
+                );
             }
             if (isset($versionGroupSourceData['super_contest_use_before'])) {
-                $versionGroupSourceData['super_contest_use_before'] = explode(',', $versionGroupSourceData['super_contest_use_before']);
+                $versionGroupSourceData['super_contest_use_before'] = explode(
+                    ',',
+                    $versionGroupSourceData['super_contest_use_before']
+                );
             }
 
             $versionGroupSourceData = $this->removeNulls($versionGroupSourceData);
@@ -248,7 +274,11 @@ SQL
                 'super_contest_effect',
             ];
             $versionGroupSourceData = $this->convertToInts($versionGroupSourceData, $intFields);
-            $destinationData[$versionGroup] = array_merge($sourceData, $versionGroupSourceData, $destinationData[$versionGroup] ?? []);
+            $destinationData[$versionGroup] = array_merge(
+                $sourceData,
+                $versionGroupSourceData,
+                $destinationData[$versionGroup] ?? []
+            );
         }
 
         return $destinationData;

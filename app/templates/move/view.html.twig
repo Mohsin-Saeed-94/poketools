@@ -1,0 +1,307 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Moves - {{ move.name }}{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('move_index', {'versionSlug': version.slug}) }}">Moves</a>
+            </li>
+            <li class="breadcrumb-item active">{{ move.name }}</li>
+        </ol>
+    </nav>
+
+    <h1>Moves - {{ move.name }}</h1>
+    <p class="pkt-move-view-categories">
+        Categories: {{ move.categories|join(', ') }}
+    </p>
+    <p class="pkt-move-view-flavortext">{{ move.flavorText }}</p>
+
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Stats</h2>
+            <table class="pkt-infolist pkt-move-view-stats">
+                <tr>
+                    <th>Type</th>
+                    <td>{{ move.type|type_emblem }}</td>
+                </tr>
+                <tr>
+                    <th>Class</th>
+                    <td>
+                        <img class="pkt-icon"
+                             src="{{ asset('build/static/damage_class/'~move.damageClass.slug~'.svg') }}"
+                             alt="{{ move.damageClass.name }}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Power</th>
+                    <td>{{ move.power|default('–') }}</td>
+                </tr>
+                <tr>
+                    <th>Accuracy</th>
+                    <td>{{ move.accuracy|default('–') }}</td>
+                </tr>
+                <tr>
+                    <th>PP</th>
+                    <td>{{ move.pp|default('–') }}</td>
+                </tr>
+                <tr>
+                    <th>Target</th>
+                    <td>{{ move.target }}</td>
+                </tr>
+                <tr>
+                    <th>Priority</th>
+                    <td>
+                        {% if move.priority == 0 %}
+                            Normal
+                        {% else %}
+                            {{ move.priority }}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md">
+            <h2>Special Effects</h2>
+            {% if move.ailment
+                or move.flinchChance
+                or move.statChanges is not empty
+                or move.critRateBonus
+                or move.hits.min != 1 or move.hits.max != 1
+                or move.turns.min != 1 or move.hits.max != 1
+                or move.recoil
+                or move.drain
+                or move.healing %}
+                <ul class="pkt-move-view-specialeffects">
+                    {# Inflicts ailment #}
+                    {% if move.ailment %}
+                        <li>
+                            {%- set ailmentLink = '['~move.ailment.name~']{mechanic:'~move.ailment.slug~'}' %}
+                            Inflicts {{ ailmentLink|markdown(false) }} on the target(s).
+                            {% if move.ailmentChance %}
+                                ({{ move.ailmentChance }}% chance)
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                    {# Stat changes #}
+                    {% for stat_change in move.statChanges %}
+                        <li>
+                            {% if stat_change.change < 0 %}
+                                {{ stat_change.stat }} decreased by <span
+                                    class="pkt-value-negative">{{ stat_change.change|abs }}</span>.
+                            {% else %}
+                                {{ stat_change.stat }} increased by <span
+                                    class="pkt-value-positive">{{ stat_change.change }}</span>.
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    {# Critical rate change #}
+                    {% if move.critRateBonus %}
+                        <li>
+                            {{ '[Critical hit]{mechanic:critical-hit}'|markdown(false) }}
+                            rate increased by {{ move.critRateBonus }}%.
+                        </li>
+                    {% endif %}
+                    {# Multiple hits #}
+                    {% if move.hits.min != 1 or move.hits.max != 1 %}
+                        <li>
+                            Hits {{ move.hits }} times.
+                        </li>
+                    {% endif %}
+                    {# Multiple turns #}
+                    {% if move.turns.min != 1 or move.hits.max != 1 %}
+                        <li>
+                            Lasts {{ move.turns }} turns.
+                        </li>
+                    {% endif %}
+                    {# Recoil damage #}
+                    {% if move.recoil %}
+                        <li>
+                            User takes {{ move.recoil }}% of damage given as recoil.
+                        </li>
+                    {% endif %}
+                    {# Drain (a.k.a. Absorb #}
+                    {% if move.drain %}
+                        <li>
+                            User heals itself by {{ move.drain }}% of the damage inflicted.
+                        </li>
+                    {% endif %}
+                    {# Healing (not to be confused with Drain) #}
+                    {% if move.healing %}
+                        <li>
+                            {% if move.healing < 0 %}
+                                User loses {{ move.healing|abs }}% of its max HP.
+                            {% else %}
+                                User heals itself by {{ move.healing }}% of its max HP.
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                </ul>
+            {% else %}
+                <p>This move has no special effects.</p>
+            {% endif %}
+        </div>
+        <div class="col-md">
+            <h2>Flags</h2>
+            {% if move.flags|length > 0 %}
+                <ul class="pkt-move-view-flags">
+                    {% for flag in move.flags %}
+                        <li>
+                            {{ flag.name }}
+                            <p class="small">{{ flag.description|markdown(false) }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No special flags apply to this move.</p>
+            {% endif %}
+        </div>
+        {% if version.versionGroup.featureString('contests') %}
+            <div class="col-lg">
+                <h2>Contest</h2>
+                <table class="pkt-move-view-contest pkt-infolist">
+                    <tr>
+                        <th>Type</th>
+                        <td>{{ move.contestType|type_emblem }}</td>
+                    </tr>
+                    <tr>
+                        <th>Appeal</th>
+                        <td>
+                            <span aria-label="{{ move.contestEffect.appeal }}">
+                            {% for i in range(1, move.contestEffect.appeal) %}<i class="far fa-heart"></i>{% endfor %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Jam</th>
+                        <td>
+                            <span aria-label="{{ move.contestEffect.jam }}">
+                            {% for i in range(1, move.contestEffect.jam) %}<i class="fas fa-heart"></i>{% endfor %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Game Desc</th>
+                        <td>{{ move.contestEffect.flavorText }}</td>
+                    </tr>
+                    {% if move.contestUseBefore is not empty %}
+                        <tr>
+                            <th>Use before</th>
+                            <td>
+                                <ul class="list-unstyled">
+                                    {% for useBeforeMove in move.contestUseBefore %}
+                                        <li>
+                                            <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useBeforeMove.slug}) }}">
+                                                {{ useBeforeMove }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% if move.contestUseAfter is not empty %}
+                        <tr>
+                            <th>Use after</th>
+                            <td>
+                                <ul class="list-unstyled">
+                                    {% for useAfterMove in move.contestUseAfter %}
+                                        <li>
+                                            <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useAfterMove.slug}) }}">
+                                                {{ useAfterMove }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endif %}
+                </table>
+            </div>
+        {% endif %}
+        {% if version.versionGroup.featureString('super-contests') %}
+            <div class="col-lg">
+                <h2>Super Contest</h2>
+                <table class="pkt-move-view-supercontest pkt-infolist">
+                    <tr>
+                        <th>Type</th>
+                        <td>{{ move.contestType|type_emblem }}</td>
+                    </tr>
+                    <tr>
+                        <th>Appeal</th>
+                        <td>
+                            <span aria-label="{{ move.superContestEffect.appeal }}">
+                            {% for i in range(1, move.superContestEffect.appeal) %}<i
+                                    class="far fa-heart"></i>{% endfor %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Game Desc</th>
+                        <td>{{ move.superContestEffect.flavorText }}</td>
+                    </tr>
+                    {% if move.superContestUseBefore is not empty %}
+                        <tr>
+                            <th>Use before</th>
+                            <td>
+                                <ul class="list-unstyled">
+                                    {% for useBeforeMove in move.contestUseBefore %}
+                                        <li>
+                                            <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useBeforeMove.slug}) }}">
+                                                {{ useBeforeMove }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% if move.superContestUseAfter is not empty %}
+                        <tr>
+                            <th>Use after</th>
+                            <td>
+                                <ul class="list-unstyled">
+                                    {% for useAfterMove in move.contestUseAfter %}
+                                        <li>
+                                            <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useAfterMove.slug}) }}">
+                                                {{ useAfterMove }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endif %}
+                </table>
+            </div>
+        {% endif %}
+    </div>
+
+    <h2>Description</h2>
+    <div class="pkt-move-view-description">
+        {{ (move.description|default(move.effect.description))|replace({'$effect_chance': move.effectChance})|markdown }}
+    </div>
+
+    <h2>Similar moves</h2>
+    <p>These moves have the same effect, but their stats and effect chances may differ.</p>
+    {{ datatable.datatable(similar_move_table, 'pkt-move-view-similarmoves') }}
+
+    <h2>Pokèmon</h2>
+    {% for learn_method in move_learn_methods %}
+        <h3>{{ learn_method.name }}</h3>
+        <p>{{ learn_method.description }}</p>
+        {{ datatable.datatable(pokemon_tables[learn_method.slug], 'pkt-move-view-pokemon-'~learn_method.slug) }}
+    {% endfor %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('move_view') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('move_view') }}
+{% endblock %}

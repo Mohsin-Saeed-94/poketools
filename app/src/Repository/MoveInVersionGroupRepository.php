@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\MoveInVersionGroup;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -12,7 +13,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method MoveInVersionGroup[]    findAll()
  * @method MoveInVersionGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MoveInVersionGroupRepository extends ServiceEntityRepository
+class MoveInVersionGroupRepository extends ServiceEntityRepository implements SlugAndVersionInterface
 {
     public function __construct(RegistryInterface $registry)
     {
@@ -47,4 +48,22 @@ class MoveInVersionGroupRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findOneByVersion(string $slug, Version $version): ?MoveInVersionGroup
+    {
+        $qb = $this->createQueryBuilder('move');
+        $qb->join('move.versionGroup', 'version_group')
+            ->andWhere('move.slug = :slug')
+            ->andWhere(':version MEMBER OF version_group.versions')
+            ->setParameter('slug', $slug)
+            ->setParameter('version', $version);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getOneOrNullResult();
+    }
 }

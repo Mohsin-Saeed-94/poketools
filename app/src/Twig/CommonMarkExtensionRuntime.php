@@ -24,8 +24,20 @@ class CommonMarkExtensionRuntime implements RuntimeExtensionInterface
         $this->markdown = $markdown;
     }
 
-    public function markdown(string $value)
+    /**
+     * @param string $value
+     * @param bool $paragraph
+     *   Should the output be wrapped in `<p>` tags?
+     *
+     * @return string
+     */
+    public function markdown(string $value, bool $paragraph = true)
     {
-        return $this->markdown->convertToHtml($value);
+        $html = trim($this->markdown->convertToHtml($value));
+        if (!$paragraph) {
+            $html = preg_replace('`(?:^<p>)|(?:</p>$)`', '', $html);
+        }
+
+        return $html;
     }
 }

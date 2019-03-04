@@ -61,27 +61,6 @@ class Machine extends AbstractDexEntity
     }
 
     /**
-     * @return ItemInVersionGroup
-     */
-    public function getItem(): ?ItemInVersionGroup
-    {
-        return $this->item;
-    }
-
-    /**
-     * @param ItemInVersionGroup $item
-     *
-     * @return self
-     */
-    public function setItem(ItemInVersionGroup $item): self
-    {
-        $this->item = $item;
-        $item->setMachine($this);
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getType(): ?string
@@ -137,6 +116,43 @@ class Machine extends AbstractDexEntity
     public function setMove(MoveInVersionGroup $move): self
     {
         $this->move = $move;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->getItem()->getName();
+    }
+
+    /**
+     * @return ItemInVersionGroup
+     */
+    public function getItem(): ?ItemInVersionGroup
+    {
+        return $this->item;
+    }
+
+    /**
+     * @param ItemInVersionGroup $item
+     *
+     * @return self
+     */
+    public function setItem(ItemInVersionGroup $item): self
+    {
+        $this->item = $item;
+        $item->setMachine($this);
 
         return $this;
     }

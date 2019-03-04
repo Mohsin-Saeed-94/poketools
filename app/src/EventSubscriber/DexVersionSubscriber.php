@@ -2,6 +2,8 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\Version;
+use App\Repository\VersionRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
@@ -17,23 +19,56 @@ class DexVersionSubscriber implements EventSubscriberInterface
     private $container;
 
     /**
+     * @var Version
+     */
+    private $defaultVersion;
+
+    /**
      * DexVersionSubscriber constructor.
      *
      * @param ContainerInterface $container
+     * @param VersionRepository $versionRepo
+     * @param string $defaultVersionSlug
      */
-    public function __construct(ContainerInterface $container)
-    {
+    public function __construct(
+        ContainerInterface $container,
+        VersionRepository $versionRepo,
+        string $defaultVersionSlug
+    ) {
         $this->container = $container;
+        $this->defaultVersion = $versionRepo->findOneBy(['slug' => $defaultVersionSlug]);
     }
 
-    public static function getSubscribedEvents()
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents(): array
     {
         return [
+            'kernel.request' => ['onKernelRequest', 0],
             'kernel.controller' => ['onKernelController', -10],
         ];
     }
 
-    public function onKernelController(FilterControllerEvent $event)
+    /**
+     * Event handler for kernel.request
+     *
+     * Makes the default version entity available everywhere.  It will be replaced
+     * later if a version is defined in the route.
+     */
+    public function onKernelRequest(): void
+    {
+        $this->container->set('app.active_version', $this->defaultVersion);
+    }
+
+    /**
+     * Event handler for kernel.controller
+     *
+     * Makes the resolved version available everywhere.
+     *
+     * @param FilterControllerEvent $event
+     */
+    public function onKernelController(FilterControllerEvent $event): void
     {
         if ($event->getRequest()->attributes->has('version')) {
             $this->container->set('app.active_version', $event->getRequest()->attributes->get('version'));

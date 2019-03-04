@@ -8,6 +8,8 @@ namespace App\CommonMark\Inline\Parser;
 
 use App\Entity\AbilityInVersionGroup;
 use App\Entity\EntityHasNameInterface;
+use App\Entity\MoveInVersionGroup;
+use App\Entity\TypeChart;
 use App\Entity\Version;
 use App\Repository\SlugAndVersionInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -227,7 +229,9 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
         // Make sure version is available if necessary.
         $requiresVersion = [
             'ability',
+            'move',
             'nature',
+            'type',
         ];
         if ($this->currentVersion === null && in_array($category, $requiresVersion, true)) {
             return null;
@@ -248,6 +252,18 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
                         'abilitySlug' => $slug,
                     ]
                 );
+            case 'move':
+                if ($this->getEntityForLink(MoveInVersionGroup::class, $slug, $this->currentVersion) === null) {
+                    return null;
+                }
+
+                return $this->urlGenerator->generate(
+                    'move_view',
+                    [
+                        'versionSlug' => $this->currentVersion->getSlug(),
+                        'moveSlug' => $slug,
+                    ]
+                );
             case 'nature':
                 if ($this->getEntityForLink(AbilityInVersionGroup::class, $slug, $this->currentVersion) === null) {
                     return null;
@@ -258,6 +274,21 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
                     [
                         'versionSlug' => $this->currentVersion->getSlug(),
                         'natureSlug' => $slug,
+                    ]
+                );
+            case 'type':
+                $typeChartRepo = $this->em->getRepository(TypeChart::class);
+                $type = $typeChartRepo->findTypeInTypeChart($slug, $this->currentVersion);
+                if ($type === null) {
+                    return null;
+                }
+                $this->currentEntity = $type;
+
+                return $this->urlGenerator->generate(
+                    'type_view',
+                    [
+                        'versionSlug' => $this->currentVersion->getSlug(),
+                        'typeSlug' => $slug,
                     ]
                 );
         }

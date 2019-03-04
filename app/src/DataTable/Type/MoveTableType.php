@@ -5,7 +5,6 @@ namespace App\DataTable\Type;
 
 use App\DataTable\Column\LinkColumn;
 use App\DataTable\Column\MarkdownColumn;
-use App\Entity\ContestType;
 use App\Entity\MoveInVersionGroup;
 use App\Entity\Version;
 use Doctrine\ORM\QueryBuilder;
@@ -37,7 +36,13 @@ class MoveTableType implements DataTableTypeInterface
             LinkColumn::class,
             [
                 'label' => 'Name',
-                'uri' => '#',
+                'route' => 'move_view',
+                'routeParams' => [
+                    'versionSlug' => $version->getSlug(),
+                    'moveSlug' => function (MoveInVersionGroup $context) {
+                        return $context->getSlug();
+                    },
+                ],
                 'className' => 'pkt-move-index-table-name',
             ]
         )->add(
@@ -46,7 +51,7 @@ class MoveTableType implements DataTableTypeInterface
             [
                 'label' => 'Type',
                 'propertyPath' => 'type',
-                'orderField' => 'move.type.position',
+                'orderField' => 'type.position',
                 'route' => 'type_view',
                 'routeParams' => [
                     'versionSlug' => $version->getSlug(),
@@ -58,28 +63,7 @@ class MoveTableType implements DataTableTypeInterface
                     return sprintf('pkt-type-emblem-%s', $context->getType()->getSlug());
                 },
             ]
-        );
-        if ($version->getVersionGroup()->hasFeatureString('contests')
-            || $version->getVersionGroup()->hasFeatureString('super-contests')) {
-            $dataTable->add(
-                'contestType',
-                LinkColumn::class,
-                [
-                    'label' => 'Contest',
-                    'propertyPath' => 'contestType',
-                    // @todo Type link
-                    'uri' => '#',
-                    'orderField' => 'contest_type.position',
-                    'data' => function (MoveInVersionGroup $context, ContestType $value) {
-                        return $value->getName();
-                    },
-                    'linkClassName' => function (MoveInVersionGroup $context, string $value) {
-                        return sprintf('pkt-type-emblem-%s', $context->getContestType()->getSlug());
-                    },
-                ]
-            );
-        }
-        $dataTable->add(
+        )->add(
             'damageClass',
             TwigColumn::class,
             [
@@ -153,14 +137,12 @@ class MoveTableType implements DataTableTypeInterface
             ->addSelect('effect')
             ->addSelect('damage_class')
             ->addSelect('type')
-            ->addSelect('contest_type')
             ->from(MoveInVersionGroup::class, 'move')
             ->join('move.versionGroup', 'version_group')
             ->join('move.effect', 'effect')
             ->leftJoin('move.damageClass', 'damage_class')
             ->join('move.type', 'type')
             ->leftJoin('type.damageClass', 'type_damage_class')
-            ->leftJoin('move.contestType', 'contest_type')
             ->andWhere(':version MEMBER OF version_group.versions')
             ->setParameter('version', $version);
     }

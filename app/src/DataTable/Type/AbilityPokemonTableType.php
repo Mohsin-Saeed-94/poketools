@@ -3,9 +3,11 @@
 namespace App\DataTable\Type;
 
 
-use App\DataTable\Adapter\ObjectAdapter;
 use App\Entity\AbilityInVersionGroup;
+use App\Entity\Pokemon;
 use App\Entity\Version;
+use Doctrine\ORM\QueryBuilder;
+use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
 use Omines\DataTablesBundle\DataTable;
 
 /**
@@ -27,13 +29,14 @@ class AbilityPokemonTableType extends PokemonTableType
         $ability = $options['ability'];
 
         $dataTable->setName(self::class)->createAdapter(
-            ObjectAdapter::class,
+            ORMAdapter::class,
             [
-                'data' => function (int $start, int $limit) use ($ability) {
-                    return $this->pokemonRepo->findWithAbility($ability, $start, $limit);
-                },
-                'count' => function () use ($ability) {
-                    return $this->pokemonRepo->countWithAbility($ability);
+                'entity' => Pokemon::class,
+                'query' => function (QueryBuilder $qb) use ($version, $ability) {
+                    $this->query($qb, $version);
+                    $qb->join('pokemon.abilities', 'pokemon_abilities')
+                        ->andWhere('pokemon_abilities.ability = :ability')
+                        ->setParameter('ability', $ability);
                 },
             ]
         );

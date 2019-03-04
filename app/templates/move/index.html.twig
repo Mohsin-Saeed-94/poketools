@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Moves{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item active">Moves</li>
+        </ol>
+    </nav>
+
+    <h1>Moves</h1>
+    {{ datatable.datatable(move_table, 'pkt-move-index-table') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('move_index') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('move_index') }}
+{% endblock %}

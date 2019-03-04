@@ -4,6 +4,7 @@ namespace App\DataMigration;
 
 use App\Entity\Embeddable\Range;
 use App\Entity\MoveInVersionGroup;
+use App\Entity\MoveStatChange;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
@@ -28,6 +29,7 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *       "App\DataMigration\ContestType",
  *       "App\DataMigration\ContestEffect",
  *       "App\DataMigration\SuperContestEffect",
+ *       "App\DataMigration\Stat",
  *       "App\DataMigration\Type"
  *     }
  * )
@@ -91,6 +93,24 @@ class Move extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             $sourceData['super_contest_effect'] = $this->referenceStore->get(SuperContestEffect::class, ['id' => $sourceData['super_contest_effect']]);
         }
         unset($sourceData['super_contest_use_before']);
+        if (isset($sourceData['stat_changes'])) {
+            foreach ($sourceData['stat_changes'] as $statIdentifier => &$change) {
+                $statChange = null;
+                foreach ($destinationData->getStatChanges() as $testStatChange) {
+                    if ($testStatChange->getStat()->getSlug()) {
+                        $statChange = $testStatChange;
+                        break;
+                    }
+                }
+                if (!isset($statChange)) {
+                    $statChange = new MoveStatChange();
+                    $statChange->setStat($this->referenceStore->get(Stat::class, ['identifier' => $statIdentifier]));
+                }
+                $statChange->setChange($change);
+                $change = $statChange;
+            }
+            $sourceData['stat_changes'] = array_values($sourceData['stat_changes']);
+        }
 
         /** @var MoveInVersionGroup $destinationData */
         $destinationData = $this->mergeProperties($sourceData, $destinationData);

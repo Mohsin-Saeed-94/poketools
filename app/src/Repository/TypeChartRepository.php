@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Type;
 use App\Entity\TypeChart;
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -48,6 +49,33 @@ class TypeChartRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * Find a type in a given type chart.
+     *
+     * @param string $typeSlug
+     * @param Version $version
+     *
+     * @return Type|null
+     */
+    public function findTypeInTypeChart(string $typeSlug, Version $version): ?Type
+    {
+        // Find the applicable type chart.
+        $typeChart = $this->findOneByVersion($version);
+        if ($typeChart === null) {
+            return null;
+        }
+
+        $type = null;
+        foreach ($typeChart->getTypes() as $testType) {
+            if ($testType->getSlug() === $typeSlug) {
+                $type = $testType;
+                break;
+            }
+        }
+
+        return $type;
+    }
 
     /**
      * @param Version $version

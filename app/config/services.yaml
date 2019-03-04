@@ -48,6 +48,10 @@ services:
     arguments:
       $version: '@app.active_version'
   
+  App\EventSubscriber\DexVersionSubscriber:
+    arguments:
+      $defaultVersionSlug: '%default_version%'
+  
   App\Twig\AppExtensionRuntime:
     arguments:
       $activeVersion: '@app.active_version'

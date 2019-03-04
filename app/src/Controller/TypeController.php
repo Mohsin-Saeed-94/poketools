@@ -76,15 +76,8 @@ class TypeController extends AbstractDexController
      */
     public function view(Request $request, Version $version, string $typeSlug): Response
     {
-        $typeChart = $this->typeChartRepo->findOneByVersion($version);
-        $type = null;
-        foreach ($typeChart->getTypes() as $testType) {
-            if ($testType->getSlug() === $typeSlug) {
-                $type = $testType;
-                break;
-            }
-        }
-        if (!isset($type)) {
+        $type = $this->typeChartRepo->findTypeInTypeChart($typeSlug, $version);
+        if ($type === null) {
             throw new NotFoundHttpException();
         }
 

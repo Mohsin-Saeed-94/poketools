@@ -45,7 +45,14 @@ class MenuBuilder
         $menu = $this->factory->createItem('root')
             ->setChildrenAttribute('class', 'navbar-nav');
         $menu->addChild('Pokèmon', ['uri' => '#']);
-        $menu->addChild('Moves', ['uri' => '#']);
+        $movesUri = $this->urlGenerator->generate('move_index', ['versionSlug' => '__VERSION__']);
+        $menu->addChild(
+            'Moves',
+            [
+                'uri' => $movesUri,
+                'linkAttributes' => ['data-uri-template' => $movesUri],
+            ]
+        );
         $typesUri = $this->urlGenerator->generate('type_index', ['versionSlug' => '__VERSION__']);
         $menu->addChild(
             'Types',

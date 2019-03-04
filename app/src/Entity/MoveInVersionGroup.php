@@ -795,7 +795,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     }
 
     /**
-     * @return null
+     * @return MoveStatChange[]|Collection
      */
     public function getStatChanges()
     {
@@ -803,28 +803,29 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     }
 
     /**
-     * @param MoveStatChange $move
+     * @param MoveStatChange $statChange
      *
      * @return self
      */
-    public function addStatChange(MoveStatChange $move): self
+    public function addStatChange(MoveStatChange $statChange): self
     {
-        if (!$this->statChanges->contains($move)) {
-            $this->statChanges->add($move);
+        if (!$this->statChanges->contains($statChange)) {
+            $this->statChanges->add($statChange);
+            $statChange->setMove($this);
         }
 
         return $this;
     }
 
     /**
-     * @param MoveStatChange $move
+     * @param MoveStatChange $statChange
      *
      * @return self
      */
-    public function removeStatChange(MoveStatChange $move): self
+    public function removeStatChange(MoveStatChange $statChange): self
     {
-        if ($this->statChanges->contains($move)) {
-            $this->statChanges->removeElement($move);
+        if ($this->statChanges->contains($statChange)) {
+            $this->statChanges->removeElement($statChange);
         }
 
         return $this;

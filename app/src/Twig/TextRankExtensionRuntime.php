@@ -38,9 +38,9 @@ class TextRankExtensionRuntime implements RuntimeExtensionInterface
      *
      * @return array
      */
-    public function highlights(string $text): array
+    public function highlights(?string $text): array
     {
-        return $this->textRank->getHighlights($text);
+        return $text === null ? [] : $this->textRank->getHighlights($text);
     }
 
     /**
@@ -52,9 +52,9 @@ class TextRankExtensionRuntime implements RuntimeExtensionInterface
      *
      * @return array
      */
-    public function keywords(string $text): array
+    public function keywords(?string $text): array
     {
-        return $this->textRank->getOnlyKeyWords($text);
+        return $text === null ? [] : $this->textRank->getOnlyKeyWords($text);
     }
 
     /**
@@ -66,8 +66,8 @@ class TextRankExtensionRuntime implements RuntimeExtensionInterface
      *
      * @return string
      */
-    public function summarize(string $text): string
+    public function summarize(?string $text): string
     {
-        return implode(' ', $this->textRank->summarizeTextBasic($text));
+        return $text === null ? '' : implode(' ', $this->textRank->summarizeTextBasic($text));
     }
 }

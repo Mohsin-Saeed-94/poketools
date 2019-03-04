@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\MoveInVersionGroup;
+use App\Entity\MoveLearnMethod;
 use App\Entity\PokemonMove;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -47,4 +49,25 @@ class PokemonMoveRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param MoveInVersionGroup $move
+     * @param MoveLearnMethod $learnMethod
+     *
+     * @return int
+     */
+    public function countByMoveAndLearnMethod(MoveInVersionGroup $move, MoveLearnMethod $learnMethod): int
+    {
+        $qb = $this->createQueryBuilder('pokemon_move');
+        $qb->select('COUNT(pokemon_move)')
+            ->where('pokemon_move.move = :move')
+            ->andWhere('pokemon_move.learnMethod = :learnMethod')
+            ->setParameter('move', $move)
+            ->setParameter('learnMethod', $learnMethod);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getSingleScalarResult();
+    }
 }

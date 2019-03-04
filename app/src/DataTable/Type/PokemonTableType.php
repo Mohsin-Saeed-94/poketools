@@ -3,15 +3,16 @@
 namespace App\DataTable\Type;
 
 
-use App\DataTable\Adapter\ObjectAdapter;
 use App\DataTable\Column\CollectionColumn;
 use App\DataTable\Column\LinkColumn;
+use App\Entity\Pokemon;
 use App\Entity\PokemonAbility;
 use App\Entity\PokemonStat;
-use App\Entity\PokemonType;
 use App\Entity\Version;
 use App\Repository\PokemonRepository;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\QueryBuilder;
+use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
 use Omines\DataTablesBundle\Column\TextColumn;
 use Omines\DataTablesBundle\DataTable;
 use Omines\DataTablesBundle\DataTableTypeInterface;
@@ -52,7 +53,8 @@ class PokemonTableType implements DataTableTypeInterface
                 'label' => 'Name',
                 // @todo Pokemon link
                 'uri' => '#',
-                'orderable' => true,
+                'orderable' => false,
+//                'orderField' => 'pokemon.name',
                 'className' => 'pkt-pokemon-index-table-name',
             ]
         )->add(
@@ -60,18 +62,19 @@ class PokemonTableType implements DataTableTypeInterface
             CollectionColumn::class,
             [
                 'label' => 'Type',
-                'orderable' => true,
+                'propertyPath' => 'types',
+//                'orderable' => true,
                 'className' => 'pkt-pokemon-index-table-type',
                 'childType' => LinkColumn::class,
                 'childOptions' => [
                     'route' => 'type_view',
                     'routeParams' => [
                         'versionSlug' => $version->getSlug(),
-                        'typeSlug' => function (PokemonType $pokemonType) {
+                        'typeSlug' => function ($pokemonType, $value) {
                             return $pokemonType->getType()->getSlug();
                         },
                     ],
-                    'linkClassName' => function (PokemonType $pokemonType): ?string {
+                    'linkClassName' => function ($pokemonType, $value): ?string {
                         return sprintf('pkt-type-emblem-%s', $pokemonType->getType()->getSlug());
                     },
                 ],
@@ -83,15 +86,16 @@ class PokemonTableType implements DataTableTypeInterface
                 CollectionColumn::class,
                 [
                     'label' => 'Abilities',
-                    'orderable' => true,
+//                    'orderable' => true,
+                    'propertyPath' => 'abilities',
                     'className' => 'pkt-pokemon-index-table-ability',
                     'childType' => LinkColumn::class,
                     'childOptions' => [
                         'route' => 'ability_view',
                         'routeParams' => [
                             'versionSlug' => $version->getSlug(),
-                            'abilitySlug' => function (PokemonAbility $context, $value) {
-                                return $context->getAbility()->getSlug();
+                            'abilitySlug' => function (PokemonAbility $pokemonAbility) {
+                                return $pokemonAbility->getAbility()->getSlug();
                             },
                         ],
                         'linkClassName' => function (PokemonAbility $pokemonAbility): ?string {
@@ -111,7 +115,7 @@ class PokemonTableType implements DataTableTypeInterface
             [
                 'label' => 'HP',
                 'propertyPath' => 'stats',
-                'orderable' => true,
+//                'orderable' => true,
                 'className' => 'pkt-pokemon-index-table-hp',
                 'data' => function ($context, $value) {
                     return $this->renderPokemonStat($this->filterStatsCollection('hp', $value));
@@ -123,7 +127,7 @@ class PokemonTableType implements DataTableTypeInterface
             [
                 'label' => 'Atk.',
                 'propertyPath' => 'stats',
-                'orderable' => true,
+//                'orderable' => true,
                 'className' => 'pkt-pokemon-index-table-attack',
                 'data' => function ($context, $value) {
                     return $this->renderPokemonStat($this->filterStatsCollection('attack', $value));
@@ -135,7 +139,7 @@ class PokemonTableType implements DataTableTypeInterface
             [
                 'label' => 'Def.',
                 'propertyPath' => 'stats',
-                'orderable' => true,
+//                'orderable' => true,
                 'className' => 'pkt-pokemon-index-table-defense',
                 'data' => function ($context, $value) {
                     return $this->renderPokemonStat($this->filterStatsCollection('defense', $value));
@@ -147,7 +151,7 @@ class PokemonTableType implements DataTableTypeInterface
             [
                 'label' => 'Sp. Atk.',
                 'propertyPath' => 'stats',
-                'orderable' => true,
+//                'orderable' => true,
                 'className' => 'pkt-pokemon-index-table-specialattack',
                 'data' => function ($context, $value) {
                     return $this->renderPokemonStat($this->filterStatsCollection('special-attack', $value));
@@ -159,7 +163,7 @@ class PokemonTableType implements DataTableTypeInterface
             [
                 'label' => 'Sp. Def.',
                 'propertyPath' => 'stats',
-                'orderable' => true,
+//                'orderable' => true,
                 'className' => 'pkt-pokemon-index-table-specialdefense',
                 'data' => function ($context, $value) {
                     return $this->renderPokemonStat($this->filterStatsCollection('special-defense', $value));
@@ -171,7 +175,7 @@ class PokemonTableType implements DataTableTypeInterface
             [
                 'label' => 'Spd',
                 'propertyPath' => 'stats',
-                'orderable' => true,
+//                'orderable' => true,
                 'className' => 'pkt-pokemon-index-table-speed',
                 'data' => function ($context, $value) {
                     return $this->renderPokemonStat($this->filterStatsCollection('speed', $value));
@@ -182,17 +186,19 @@ class PokemonTableType implements DataTableTypeInterface
             TextColumn::class,
             [
                 'label' => 'Total',
-                'orderable' => true,
+                'propertyPath' => 'stats',
+//                'orderable' => true,
                 'className' => 'pkt-pokemon-index-table-total',
-            ]
-        )->addOrderBy('name')->createAdapter(
-            ObjectAdapter::class,
-            [
-                'data' => function (int $start, int $limit) use ($version) {
-                    return $this->pokemonRepo->findWithVersion($version, $start, $limit);
+                'data' => function (Pokemon $context, Collection $value) {
+                    return $context->getStatTotal();
                 },
-                'count' => function () use ($version) {
-                    return $this->pokemonRepo->countWithVersion($version);
+            ]
+        )->createAdapter(
+            ORMAdapter::class,
+            [
+                'entity' => Pokemon::class,
+                'query' => function (QueryBuilder $qb) use ($version) {
+                    $this->query($qb, $version);
                 },
             ]
         );
@@ -227,5 +233,21 @@ class PokemonTableType implements DataTableTypeInterface
         }
 
         return null;
+    }
+
+    protected function query(QueryBuilder $qb, Version $version): void
+    {
+        if (!$qb->getDQLPart('from')) {
+            $qb->from(Pokemon::class, 'pokemon');
+        }
+        $qb->distinct()
+            ->addSelect('pokemon')
+            ->addSelect('pokemon_species')
+            ->join('pokemon.species', 'pokemon_species')
+            ->join('pokemon_species.versionGroup', 'version_group')
+            ->andWhere(':version MEMBER OF version_group.versions')
+            ->addOrderBy('pokemon_species.position')
+            ->addOrderBy('pokemon.position')
+            ->setParameter('version', $version);
     }
 }

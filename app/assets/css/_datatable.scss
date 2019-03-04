@@ -1,5 +1,5 @@
 @mixin sorting-icon($icon) {
-    &:after {
+    &::after {
         @extend %fa-icon;
         @extend .fas;
 
@@ -10,17 +10,30 @@
 }
 
 table.data-table {
-    th.sorting {
-        & {
-            @include sorting-icon($fa-var-sort);
-        }
+    th {
+        &.sorting {
+            & {
+                @include sorting-icon($fa-var-sort);
+            }
 
-        &_asc {
-            @include sorting-icon($fa-var-sort-down);
-        }
+            &_asc {
+                @include sorting-icon($fa-var-sort-down);
+            }
 
-        &_desc {
-            @include sorting-icon($fa-var-sort-up);
+            &_desc {
+                @include sorting-icon($fa-var-sort-up);
+            }
+        }
+    }
+
+    .dataTables_processing {
+        &::before {
+            @extend %fa-icon;
+            @extend .fas;
+            @extend .fa-spin;
+
+            padding: map-get($spacers, 1);
+            content: fa-content($fa-var-circle-notch);
         }
     }
 }

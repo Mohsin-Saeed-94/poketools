@@ -271,6 +271,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
      * @var Collection|PokemonMove[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonMove", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $moves;
 
