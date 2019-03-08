@@ -8,6 +8,7 @@ namespace App\CommonMark\Inline\Parser;
 
 use App\Entity\AbilityInVersionGroup;
 use App\Entity\EntityHasNameInterface;
+use App\Entity\ItemInVersionGroup;
 use App\Entity\MoveInVersionGroup;
 use App\Entity\TypeChart;
 use App\Entity\Version;
@@ -229,6 +230,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
         // Make sure version is available if necessary.
         $requiresVersion = [
             'ability',
+            'item',
             'move',
             'nature',
             'type',
@@ -250,6 +252,18 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
                     [
                         'versionSlug' => $this->currentVersion->getSlug(),
                         'abilitySlug' => $slug,
+                    ]
+                );
+            case 'item':
+                if ($this->getEntityForLink(ItemInVersionGroup::class, $slug, $this->currentVersion) === null) {
+                    return null;
+                }
+
+                return $this->urlGenerator->generate(
+                    'item_view',
+                    [
+                        'versionSlug' => $this->currentVersion->getSlug(),
+                        'itemSlug' => $slug,
                     ]
                 );
             case 'move':

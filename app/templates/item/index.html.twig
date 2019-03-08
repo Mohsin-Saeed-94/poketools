@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Items{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item active">Items</li>
+        </ol>
+    </nav>
+
+    <h1>Items</h1>
+    {% for pocket in pockets %}
+        {% if pockets|length > 1 %}
+            <h2>{{ pocket.name }}</h2>
+        {% endif %}
+        {{ datatable.datatable(item_tables[pocket.slug], 'pkt-item-index-table-'~pocket.slug) }}
+    {% endfor %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('item_index') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('item_index') }}
+{% endblock %}

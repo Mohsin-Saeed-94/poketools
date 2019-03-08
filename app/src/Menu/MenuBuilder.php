@@ -61,7 +61,16 @@ class MenuBuilder
                 'linkAttributes' => ['data-uri-template' => $typesUri],
             ]
         );
-        $menu->addChild('Items', ['uri' => '#']);
+        $itemsUri = $this->urlGenerator->generate('item_index', ['versionSlug' => '__VERSION__']);
+        $menu->addChild(
+            'Items',
+            [
+                'uri' => $itemsUri,
+                'linkAttributes' => [
+                    'data-uri-template' => $itemsUri,
+                ],
+            ]
+        );
         $menu->addChild('Locations', ['uri' => '#']);
         $naturesUri = $this->urlGenerator->generate('nature_index', ['versionSlug' => '__VERSION__']);
         $menu->addChild(

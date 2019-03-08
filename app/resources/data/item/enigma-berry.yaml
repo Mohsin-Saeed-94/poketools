@@ -1,6 +1,7 @@
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name 'Enigma Berry'
   category: &ruby-sapphire.category other
+  pocket: &ruby-sapphire.pocket berries
   buy: &ruby-sapphire.buy 20
   sell: &ruby-sapphire.sell 10
   flags: &ruby-sapphire.flags
@@ -25,15 +26,16 @@ ruby-sapphire: &ruby-sapphire
       sour: 0
     harvest: 1-5
   flavor_text: |
-    A hold item that
-    sharply boosts a
-    stat in a pinch.
+    POKéBLOCK ingredient.
+    Plant in loamy soil
+    to grow a mystery.
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   flags: *ruby-sapphire.flags
@@ -41,11 +43,13 @@ firered-leafgreen:
   description: *ruby-sapphire.description
   berry: *ruby-sapphire.berry
   flavor_text: |
-    When held by a POKéMON, it sharply
-    raises one stat in a pinch.
+    Can be ground up into a powder as
+    an ingredient for medicine.
+    
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -55,13 +59,14 @@ diamond-pearl: &diamond-pearl
   description: *ruby-sapphire.description
   berry: *ruby-sapphire.berry
   flavor_text: |
-    A Poffin ingredient.
-    If held by a Pokémon, it sharply raises
-    one of its stats in a pinch.
+    A Poffin ingredient. If held by a
+    Pokémon, it restores its HP if it is
+    hit by a foe’s supereffective attack.
 platinum: *diamond-pearl
-heartgold-soulsilver: &heartgold-soulsilver
+heartgold-soulsilver:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -71,13 +76,30 @@ heartgold-soulsilver: &heartgold-soulsilver
   description: *ruby-sapphire.description
   berry: *ruby-sapphire.berry
   flavor_text: |
-    If held by a Pokémon, it sharply raises
-    one of its stats in a pinch.
-black-white: *heartgold-soulsilver
-black-2-white-2: *heartgold-soulsilver
+    If held by a Pokémon, it restores
+    its HP if it is hit by a foe’s
+    supereffective attack.
+black-white: &black-white
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 10
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: *ruby-sapphire.berry
+  flavor_text: |
+    If held by a Pokémon, it restores
+    its HP if it is hit by any
+    supereffective attack.
+black-2-white-2: *black-white
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -88,12 +110,13 @@ x-y: &x-y
   berry: *ruby-sapphire.berry
   flavor_text: |
     A Berry to be consumed by Pokémon.
-    If a Pokémon holds one, one of its stats
-    will sharply increase when it’s in a pinch.
+    If a Pokémon holds one, being hit by a
+    supereffective attack will restore its HP.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -117,6 +140,6 @@ sun-moon: &sun-moon
     harvest: 1-5
   flavor_text: |
     A Berry to be consumed by Pokémon. If a Pokémon
-    holds one, one of its stats will sharply increase
-    when it’s in a pinch.
+    holds one, being hit by a supereffective attack will
+    restore its HP.
 ultra-sun-ultra-moon: *sun-moon

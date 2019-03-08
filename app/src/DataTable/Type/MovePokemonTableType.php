@@ -18,14 +18,11 @@ use Omines\DataTablesBundle\DataTable;
  */
 class MovePokemonTableType extends PokemonTableType
 {
-
     /**
      * {@inheritdoc}
      */
     public function configure(DataTable $dataTable, array $options)
     {
-
-
         /** @var Version $version */
         $version = $options['version'];
         /** @var MoveInVersionGroup $move */
@@ -57,7 +54,7 @@ class MovePokemonTableType extends PokemonTableType
                 'machine',
                 TextColumn::class,
                 [
-                    'label' => '#',
+                    'label' => 'Machine',
                     'propertyPath' => 'moves',
                     'data' => function (Pokemon $pokemon) use ($move, $learnMethod) {
                         /** @var PokemonMove $pokemonMove */

@@ -1,12 +1,15 @@
 gold-silver: &gold-silver
   name: &gold-silver.name 'Sun Stone'
   category: &gold-silver.category evolution
+  pocket: &gold-silver.pocket misc
   buy: &gold-silver.buy 3000
   sell: &gold-silver.sell 1500
-  short_description: &gold-silver.short_description 'Evolves a Cottonee into Whimsicott, a Gloom into Bellossom, a Petilil into Lilligant, or a Sunkern into Sunflora.'
+  short_description: &gold-silver.short_description 'Evolves certain Pokèmon.'
   description: &gold-silver.description |
-    Used on a party Pokémon
-    :   Evolves a []{pokemon:cottonee} into []{pokemon:whimsicott}, a []{pokemon:gloom} into []{pokemon:bellossom}, a []{pokemon:petilil} into []{pokemon:lilligant}, or a []{pokemon:sunkern} into []{pokemon:sunflora}.
+    When this item is used on some Pokèmon, the Pokèmon will evolve.  Below is a list
+    of compatible Pokèmon.
+    
+    {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "sun-stone"})}}
   flavor_text: |
     Evolves certain
     kinds of Pokémon
@@ -14,6 +17,7 @@ crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
   category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   flags: &ruby-sapphire.flags
@@ -21,26 +25,30 @@ ruby-sapphire: &ruby-sapphire
   short_description: *gold-silver.short_description
   description: *gold-silver.description
   flavor_text: |
-    Repels weak wild
-    POKéMON for 100
-    steps.
+    Makes certain
+    species of POKéMON
+    evolve.
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *gold-silver.name
   category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   flags: *ruby-sapphire.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
   flavor_text: |
-    Prevents weak wild POKéMON from
-    appearing for 100 steps.
+    A peculiar stone that makes certain
+    species of POKéMON evolve.
+    It is as red as the sun.
+    
 diamond-pearl: &diamond-pearl
   name: *gold-silver.name
   category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   fling_effect: damage
@@ -49,9 +57,9 @@ diamond-pearl: &diamond-pearl
   short_description: *gold-silver.short_description
   description: *gold-silver.description
   flavor_text: |
-    An item that prevents weak wild
-    Pokémon from appearing for 100 steps
-    after its use.
+    A peculiar stone that makes certain
+    species of Pokémon evolve.
+    It is as red as the sun.
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
@@ -59,6 +67,7 @@ black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *gold-silver.name
   category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   fling_effect: damage
@@ -67,13 +76,14 @@ x-y: &x-y
   short_description: *gold-silver.short_description
   description: *gold-silver.description
   flavor_text: |
-    An item that prevents any low-level
-    wild Pokémon from jumping out at
-    you for 100 steps after its use.
+    A peculiar stone that can make
+    certain species of Pokémon evolve.
+    It burns as red as the evening sun.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *gold-silver.name
   category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   fling_effect: damage
@@ -82,6 +92,6 @@ sun-moon: &sun-moon
   short_description: *gold-silver.short_description
   description: *gold-silver.description
   flavor_text: |
-    An item that prevents any low-level wild Pokémon
-    from jumping out at you for a while.
+    A peculiar stone that can make certain species of
+    Pokémon evolve. It burns as red as the evening sun.
 ultra-sun-ultra-moon: *sun-moon

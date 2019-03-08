@@ -1,6 +1,7 @@
 diamond-pearl: &diamond-pearl
   name: &diamond-pearl.name 'Jaboca Berry'
   category: &diamond-pearl.category other
+  pocket: &diamond-pearl.pocket berries
   buy: &diamond-pearl.buy 20
   sell: &diamond-pearl.sell 10
   fling_effect: damage
@@ -28,12 +29,13 @@ diamond-pearl: &diamond-pearl
     harvest: 1-5
   flavor_text: |
     A Poffin ingredient. If held by a
-    Pokémon, it gets to move first just
-    once in a pinch.
+    Pokémon, and if a foe’s physical attack
+    lands, the foe also takes damage.
 platinum: *diamond-pearl
-heartgold-soulsilver: &heartgold-soulsilver
+heartgold-soulsilver:
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -43,13 +45,31 @@ heartgold-soulsilver: &heartgold-soulsilver
   description: *diamond-pearl.description
   berry: *diamond-pearl.berry
   flavor_text: |
-    If held by a Pokémon, it gets to move
-    first just once in a pinch.
-black-white: *heartgold-soulsilver
-black-2-white-2: *heartgold-soulsilver
+    If held by a Pokémon and a foe’s
+    physical attack lands, the foe also
+    takes damage.
+    
+black-white: &black-white
+  name: *diamond-pearl.name
+  category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
+  fling_effect: damage
+  fling_power: 10
+  flags: *diamond-pearl.flags
+  short_description: *diamond-pearl.short_description
+  description: *diamond-pearl.description
+  berry: *diamond-pearl.berry
+  flavor_text: |
+    If held by a Pokémon and a physical
+    attack lands, the attacker also
+    takes damage.
+black-2-white-2: *black-white
 x-y: &x-y
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -60,12 +80,13 @@ x-y: &x-y
   berry: *diamond-pearl.berry
   flavor_text: |
     A Berry to be consumed by Pokémon.
-    If a Pokémon holds one, it will be able to
-    move first just once when it’s in a pinch.
+    If a physical attack hits the Pokémon
+    holding it, the attacker will also be hurt.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -88,7 +109,7 @@ sun-moon: &sun-moon
       sour: 10
     harvest: 1-5
   flavor_text: |
-    A Berry to be consumed by Pokémon. If a Pokémon
-    holds one, it will be able to move first just once
-    when it’s in a pinch.
+    A Berry to be consumed by Pokémon. If a physical
+    attack hits the Pokémon holding it, the attacker will
+    also be hurt.
 ultra-sun-ultra-moon: *sun-moon

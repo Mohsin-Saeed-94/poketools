@@ -1,16 +1,20 @@
 red-blue: &red-blue
   name: &red-blue.name 'Leaf Stone'
   category: &red-blue.category evolution
+  pocket: &red-blue.pocket misc
   buy: &red-blue.buy 3000
   sell: &red-blue.sell 1500
-  short_description: &red-blue.short_description 'Evolves an Exeggcute into Exeggutor, a Gloom into Vileplume, a Nuzleaf into Shiftry, a Pansage into Simisage, or a Weepinbell into Victreebel.'
+  short_description: &red-blue.short_description 'Evolves certain Pokèmon.'
   description: &red-blue.description |
-    Used on a party Pokémon
-    :   Evolves an []{pokemon:exeggcute} into []{pokemon:exeggutor}, a []{pokemon:gloom} into []{pokemon:vileplume}, a []{pokemon:nuzleaf} into []{pokemon:shiftry}, a []{pokemon:pansage} into []{pokemon:simisage}, or a []{pokemon:weepinbell} into []{pokemon:victreebel}.
+    When this item is used on some Pokèmon, the Pokèmon will evolve.  Below is a list
+    of compatible Pokèmon.
+    
+    {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "leaf-stone"})}}
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
   category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
   short_description: *red-blue.short_description
@@ -22,6 +26,7 @@ crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
   flags: &ruby-sapphire.flags
@@ -38,6 +43,7 @@ xd: *ruby-sapphire
 firered-leafgreen:
   name: *red-blue.name
   category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
   flags: *ruby-sapphire.flags
@@ -46,10 +52,12 @@ firered-leafgreen:
   flavor_text: |
     A peculiar stone that makes certain
     species of POKéMON evolve.
-    It is a clear light blue.
+    It has a leaf pattern.
+    
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
   fling_effect: damage
@@ -60,7 +68,7 @@ diamond-pearl: &diamond-pearl
   flavor_text: |
     A peculiar stone that makes certain
     species of Pokémon evolve.
-    It is a clear, light blue.
+    It has a leaf pattern.
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
@@ -68,6 +76,7 @@ black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *red-blue.name
   category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
   fling_effect: damage
@@ -78,11 +87,12 @@ x-y: &x-y
   flavor_text: |
     A peculiar stone that can make
     certain species of Pokémon evolve.
-    It is the blue of a pool of clear water.
+    It has an unmistakable leaf pattern.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *red-blue.name
   category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
   fling_effect: damage
@@ -92,6 +102,6 @@ sun-moon: &sun-moon
   description: *red-blue.description
   flavor_text: |
     A peculiar stone that can make certain species of
-    Pokémon evolve. It is the blue of a pool of
-    clear water.
+    Pokémon evolve. It has an unmistakable
+    leaf pattern.
 ultra-sun-ultra-moon: *sun-moon

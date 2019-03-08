@@ -1,6 +1,7 @@
-diamond-pearl:
+diamond-pearl: &diamond-pearl
   name: &diamond-pearl.name Metronome
   category: &diamond-pearl.category held-items
+  pocket: &diamond-pearl.pocket misc
   buy: &diamond-pearl.buy 4000
   sell: &diamond-pearl.sell 2000
   fling_effect: damage
@@ -11,13 +12,14 @@ diamond-pearl:
   short_description: &diamond-pearl.short_description 'Held: Consectutive uses of the same attack have a cumulative damage boost of 10%. Maximum 100% boost.'
   description: &diamond-pearl.description 'Held: Each time the holder uses the same move consecutively, its power is increased by another 10% of its original, to a maximum of 100%.'
   flavor_text: |
-    An item to be held by a Pokémon.
-    If the holder moves after the foe, its
-    critical-hit ratio will be boosted.
-    
-platinum: &platinum
+    A Pokémon hold item that boosts a move
+    used consecutively. Its effect is
+    reset if another move is used.
+platinum: *diamond-pearl
+heartgold-soulsilver: &heartgold-soulsilver
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -26,28 +28,15 @@ platinum: &platinum
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
-    An item to be held by a Pokémon.
-    If the holder moves after the foe, its
-    accuracy will be boosted.
-heartgold-soulsilver: *platinum
-black-white: &black-white
-  name: *diamond-pearl.name
-  category: *diamond-pearl.category
-  buy: *diamond-pearl.buy
-  sell: *diamond-pearl.sell
-  fling_effect: damage
-  fling_power: 30
-  flags: *diamond-pearl.flags
-  short_description: *diamond-pearl.short_description
-  description: *diamond-pearl.description
-  flavor_text: |
-    An item to be held by a Pokémon.
-    If the holder moves after its
-    target, its accuracy will be boosted.
-black-2-white-2: *black-white
+    A Pokémon held item that boosts a move
+    used consecutively. Its effect is
+    reset if another move is used.
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -57,12 +46,13 @@ x-y: &x-y
   description: *diamond-pearl.description
   flavor_text: |
     An item to be held by a Pokémon.
-    If the holder moves after its target
-    moves, its accuracy will be boosted.
+    It boosts moves used consecutively,
+    but only until a different move is used.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -71,7 +61,7 @@ sun-moon: &sun-moon
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
-    An item to be held by a Pokémon. If the holder
-    moves after its target moves, its accuracy will
-    be boosted.
+    An item to be held by a Pokémon. It boosts moves
+    used consecutively, but only until a different move
+    is used.
 ultra-sun-ultra-moon: *sun-moon

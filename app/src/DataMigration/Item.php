@@ -28,6 +28,7 @@ use PhpUnitsOfMeasure\PhysicalQuantity\Time;
  *         "App\DataMigration\ItemCategory",
  *         "App\DataMigration\ItemFlingEffect",
  *         "App\DataMigration\ItemFlag",
+ *         "App\DataMigration\ItemPocket",
  *         "App\DataMigration\BerryFirmness",
  *         "App\DataMigration\BerryFlavor",
  *         "App\DataMigration\Type",
@@ -55,6 +56,9 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             }
 
             $versionGroupSourceData['category'] = $this->referenceStore->get(ItemCategory::class, ['identifier' => $versionGroupSourceData['category']]);
+            /** @var \App\Entity\ItemPocket $itemPocket */
+            $itemPocket = $this->referenceStore->get(ItemPocket::class, ['identifier' => $versionGroupSourceData['pocket']]);
+            $versionGroupSourceData['pocket'] = $itemPocket->findChildByGrouping($versionGroup);
 
             if (isset($versionGroupSourceData['fling_effect'])) {
                 $versionGroupSourceData['fling_effect'] = $this->referenceStore->get(ItemFlingEffect::class, ['identifier' => $versionGroupSourceData['fling_effect']]);

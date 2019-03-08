@@ -25,7 +25,6 @@ use App\Entity\PokemonEvolutionCondition\TradedForSpeciesEvolutionCondition;
 use App\Entity\PokemonEvolutionCondition\TriggerItemEvolutionCondition;
 use App\Entity\PokemonSpeciesInVersionGroup;
 use App\Entity\VersionGroup;
-use Doctrine\Common\Collections\ArrayCollection;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
@@ -69,32 +68,47 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     public function transform($sourceData, $destinationData)
     {
         unset($sourceData['identifier']);
+        $changed = false;
         foreach ($sourceData as $versionGroup => $versionGroupData) {
             /** @var \App\Entity\VersionGroup $versionGroup */
-            $versionGroup = $this->referenceStore->get(\App\DataMigration\VersionGroup::class, ['identifier' => $versionGroup]);
+            $versionGroup = $this->referenceStore->get(
+                \App\DataMigration\VersionGroup::class,
+                ['identifier' => $versionGroup]
+            );
             $speciesInVersionGroup = $destinationData->findChildByGrouping($versionGroup);
             if (!$this->transformSpecies($versionGroupData, $speciesInVersionGroup, $versionGroup)) {
-                return null;
+                continue;
             }
-
+            $changed = true;
         }
 
-        return $destinationData;
+        if ($changed) {
+            // Only return an entity if changes have been made.  This saves on
+            // ORM overhead.
+
+            return $destinationData;
+        }
+
+        return null;
     }
 
     /**
-     * @param array                        $sourceData
+     * @param array $sourceData
      * @param PokemonSpeciesInVersionGroup $destinationData
-     * @param VersionGroup                 $versionGroup
+     * @param VersionGroup $versionGroup
      *
      * @return PokemonSpeciesInVersionGroup|null
      */
-    protected function transformSpecies(array $sourceData, PokemonSpeciesInVersionGroup $destinationData, VersionGroup $versionGroup): ?PokemonSpeciesInVersionGroup
-    {
+    protected function transformSpecies(
+        array $sourceData,
+        PokemonSpeciesInVersionGroup $destinationData,
+        VersionGroup $versionGroup
+    ): ?PokemonSpeciesInVersionGroup {
+        $changed = false;
         foreach ($sourceData['pokemon'] as $pokemonIdentifier => $pokemonSourceData) {
             if (!isset($pokemonSourceData['evolution_parent'])) {
                 // This Pokemon does not evolve from anything; skip
-                return null;
+                continue;
             }
 
             $pokemon = null;
@@ -108,9 +122,17 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
                 $this->nonexistantPokemon();
             }
             $this->transformPokemon($pokemonSourceData, $pokemon, $versionGroup);
+            $changed = true;
         }
 
-        return $destinationData;
+        if ($changed) {
+            // Only return an entity if changes have been made.  This saves on
+            // ORM overhead.
+
+            return $destinationData;
+        }
+
+        return null;
     }
 
     /**
@@ -123,8 +145,8 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param array        $sourceData
-     * @param Pokemon      $destinationData
+     * @param array $sourceData
+     * @param Pokemon $destinationData
      * @param VersionGroup $versionGroup
      *
      * @return Pokemon|null
@@ -132,14 +154,23 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function transformPokemon(array $sourceData, Pokemon $destinationData, VersionGroup $versionGroup): ?Pokemon
-    {
+    protected function transformPokemon(
+        array $sourceData,
+        Pokemon $destinationData,
+        VersionGroup $versionGroup
+    ): ?Pokemon {
         /** @var \App\Entity\PokemonSpecies $evolutionParentSpecies */
         $evolvesFrom = explode('/', $sourceData['evolution_parent']);
         $evolutionParentSpecies = $this->referenceStore->get(PokemonSpecies::class, ['identifier' => $evolvesFrom[0]]);
         $evolutionParentSpecies = $evolutionParentSpecies->findChildByGrouping($versionGroup);
         if (!$evolutionParentSpecies) {
-            throw new \DomainException(sprintf('"%s" does not exist in the "%s" version group.', $sourceData['evolution_parent'], $versionGroup->getName()));
+            throw new \DomainException(
+                sprintf(
+                    '"%s" does not exist in the "%s" version group.',
+                    $sourceData['evolution_parent'],
+                    $versionGroup->getName()
+                )
+            );
         }
         $evolutionParentPokemon = null;
         foreach ($evolutionParentSpecies->getPokemon() as $checkPokemon) {
@@ -149,13 +180,22 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
             }
         }
         if (!$evolutionParentPokemon) {
-            throw new \DomainException(sprintf('"%s" does not exist in the "%s" version group.', $sourceData['evolution_parent'], $versionGroup->getName()));
+            throw new \DomainException(
+                sprintf(
+                    '"%s" does not exist in the "%s" version group.',
+                    $sourceData['evolution_parent'],
+                    $versionGroup->getName()
+                )
+            );
         }
         $sourceData['evolution_parent'] = $evolutionParentPokemon;
 
         $pokemonEvolutionConditions = [];
         foreach ($sourceData['evolution_conditions'] as $trigger => $conditions) {
-            $trigger = $this->referenceStore->get(\App\DataMigration\EvolutionTrigger::class, ['identifier' => $trigger]);
+            $trigger = $this->referenceStore->get(
+                \App\DataMigration\EvolutionTrigger::class,
+                ['identifier' => $trigger]
+            );
             if (empty($conditions)) {
                 $conditions['no_conditions'] = [];
             }
@@ -163,7 +203,13 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
                 if (!is_array($values)) {
                     $values = [$values];
                 }
-                $pokemonEvolutionConditions[] = $this->createEvolutionCondition($destinationData, $versionGroup, $trigger, $condition, $values);
+                $pokemonEvolutionConditions[] = $this->createEvolutionCondition(
+                    $destinationData,
+                    $versionGroup,
+                    $trigger,
+                    $condition,
+                    $values
+                );
             }
         }
         $sourceData['evolution_conditions'] = $pokemonEvolutionConditions;
@@ -179,16 +225,21 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param Pokemon          $pokemon
-     * @param VersionGroup     $versionGroup
+     * @param Pokemon $pokemon
+     * @param VersionGroup $versionGroup
      * @param EvolutionTrigger $trigger
-     * @param string           $conditionName
-     * @param array            $values
+     * @param string $conditionName
+     * @param array $values
      *
      * @return PokemonEvolutionCondition
      */
-    protected function createEvolutionCondition(Pokemon $pokemon, VersionGroup $versionGroup, EvolutionTrigger $trigger, string $conditionName, array $values): PokemonEvolutionCondition
-    {
+    protected function createEvolutionCondition(
+        Pokemon $pokemon,
+        VersionGroup $versionGroup,
+        EvolutionTrigger $trigger,
+        string $conditionName,
+        array $values
+    ): PokemonEvolutionCondition {
         /** @var string[] $conditionClassMap */
         // @formatter:off
         $conditionClassMap = [
@@ -258,7 +309,13 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
             $condition->setEvolutionTrigger($trigger);
         }
 
-        $condition = call_user_func($createConditionCallableMap[$conditionName], $trigger, $condition, $versionGroup, $values);
+        $condition = call_user_func(
+            $createConditionCallableMap[$conditionName],
+            $trigger,
+            $condition,
+            $versionGroup,
+            $values
+        );
 
         return $condition;
     }
@@ -272,33 +329,41 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger                  $trigger
+     * @param EvolutionTrigger $trigger
      * @param ConsoleInvertedEvolutionCondition $condition
-     * @param VersionGroup                      $versionGroup
-     * @param bool[]                            $value
+     * @param VersionGroup $versionGroup
+     * @param bool[] $value
      *
      * @return ConsoleInvertedEvolutionCondition
      */
-    protected function consoleInvertedEvolutionCondition(EvolutionTrigger $trigger, ConsoleInvertedEvolutionCondition $condition, VersionGroup $versionGroup, array $value): ConsoleInvertedEvolutionCondition
-    {
+    protected function consoleInvertedEvolutionCondition(
+        EvolutionTrigger $trigger,
+        ConsoleInvertedEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): ConsoleInvertedEvolutionCondition {
         $condition->setConsoleInverted(array_pop($value));
 
         return $condition;
     }
 
     /**
-     * @param EvolutionTrigger         $trigger
+     * @param EvolutionTrigger $trigger
      * @param GenderEvolutionCondition $condition
-     * @param VersionGroup             $versionGroup
-     * @param string[]                 $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return GenderEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function genderEvolutionCondition(EvolutionTrigger $trigger, GenderEvolutionCondition $condition, VersionGroup $versionGroup, array $value): GenderEvolutionCondition
-    {
+    protected function genderEvolutionCondition(
+        EvolutionTrigger $trigger,
+        GenderEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): GenderEvolutionCondition {
         /** @var \App\Entity\Gender $gender */
         $gender = $this->referenceStore->get(Gender::class, ['identifier' => array_pop($value)]);
         $condition->setGender($gender);
@@ -307,24 +372,34 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger           $trigger
+     * @param EvolutionTrigger $trigger
      * @param HeldItemEvolutionCondition $condition
-     * @param VersionGroup               $versionGroup
-     * @param string[]                   $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return HeldItemEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function heldItemEvolutionCondition(EvolutionTrigger $trigger, HeldItemEvolutionCondition $condition, VersionGroup $versionGroup, array $value): HeldItemEvolutionCondition
-    {
+    protected function heldItemEvolutionCondition(
+        EvolutionTrigger $trigger,
+        HeldItemEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): HeldItemEvolutionCondition {
         $itemName = array_pop($value);
         /** @var \App\Entity\Item $item */
         $item = $this->referenceStore->get(Item::class, ['identifier' => $itemName]);
         $item = $item->findChildByGrouping($versionGroup);
         if (!$item) {
-            throw new \DomainException(sprintf('The item "%s" is not available in the version group "%s".', $itemName, $versionGroup->getName()));
+            throw new \DomainException(
+                sprintf(
+                    'The item "%s" is not available in the version group "%s".',
+                    $itemName,
+                    $versionGroup->getName()
+                )
+            );
         }
         $condition->setHeldItem($item);
 
@@ -332,24 +407,34 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger            $trigger
+     * @param EvolutionTrigger $trigger
      * @param KnowsMoveEvolutionCondition $condition
-     * @param VersionGroup                $versionGroup
-     * @param string[]                    $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return KnowsMoveEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function knowsMoveEvolutionCondition(EvolutionTrigger $trigger, KnowsMoveEvolutionCondition $condition, VersionGroup $versionGroup, array $value): KnowsMoveEvolutionCondition
-    {
+    protected function knowsMoveEvolutionCondition(
+        EvolutionTrigger $trigger,
+        KnowsMoveEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): KnowsMoveEvolutionCondition {
         $moveName = array_pop($value);
         /** @var \App\Entity\Move $move */
         $move = $this->referenceStore->get(Move::class, ['identifier' => $moveName]);
         $move = $move->findChildByGrouping($versionGroup);
         if (!$move) {
-            throw new \DomainException(sprintf('The move "%s" is not available in the version group "%s".', $moveName, $versionGroup->getName()));
+            throw new \DomainException(
+                sprintf(
+                    'The move "%s" is not available in the version group "%s".',
+                    $moveName,
+                    $versionGroup->getName()
+                )
+            );
         }
         $condition->setKnowsMove($move);
 
@@ -357,18 +442,22 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger                $trigger
+     * @param EvolutionTrigger $trigger
      * @param KnowsMoveTypeEvolutionCondition $condition
-     * @param VersionGroup                    $versionGroup
-     * @param string[]                        $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return KnowsMoveTypeEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function knowsMoveTypeEvolutionCondition(EvolutionTrigger $trigger, KnowsMoveTypeEvolutionCondition $condition, VersionGroup $versionGroup, array $value): KnowsMoveTypeEvolutionCondition
-    {
+    protected function knowsMoveTypeEvolutionCondition(
+        EvolutionTrigger $trigger,
+        KnowsMoveTypeEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): KnowsMoveTypeEvolutionCondition {
         /** @var \App\Entity\Type $type */
         $type = $this->referenceStore->get(Type::class, ['identifier' => array_pop($value)]);
         $condition->setKnowsMoveType($type);
@@ -377,25 +466,35 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger           $trigger
+     * @param EvolutionTrigger $trigger
      * @param LocationEvolutionCondition $condition
-     * @param VersionGroup               $versionGroup
-     * @param string[]                   $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return LocationEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function locationEvolutionCondition(EvolutionTrigger $trigger, LocationEvolutionCondition $condition, VersionGroup $versionGroup, array $value): LocationEvolutionCondition
-    {
+    protected function locationEvolutionCondition(
+        EvolutionTrigger $trigger,
+        LocationEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): LocationEvolutionCondition {
         $locations = [];
         foreach ($value as $locationName) {
             /** @var \App\Entity\Location $location */
             $location = $this->referenceStore->get(Location::class, ['identifier' => $locationName]);
             $location = $location->findChildByGrouping($versionGroup);
             if (!$location) {
-                throw new \DomainException(sprintf('The location "%s" is not available in the version group "%s".', $locationName, $versionGroup->getName()));
+                throw new \DomainException(
+                    sprintf(
+                        'The location "%s" is not available in the version group "%s".',
+                        $locationName,
+                        $versionGroup->getName()
+                    )
+                );
             }
             $locations[] = $location;
         }
@@ -406,91 +505,115 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger                   $trigger
+     * @param EvolutionTrigger $trigger
      * @param MinimumAffectionEvolutionCondition $condition
-     * @param VersionGroup                       $versionGroup
-     * @param int[]                              $value
+     * @param VersionGroup $versionGroup
+     * @param int[] $value
      *
      * @return MinimumAffectionEvolutionCondition
      */
-    protected function minimumAffectionEvolutionCondition(EvolutionTrigger $trigger, MinimumAffectionEvolutionCondition $condition, VersionGroup $versionGroup, array $value): MinimumAffectionEvolutionCondition
-    {
+    protected function minimumAffectionEvolutionCondition(
+        EvolutionTrigger $trigger,
+        MinimumAffectionEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): MinimumAffectionEvolutionCondition {
         $condition->setMinimumAffection(array_pop($value));
 
         return $condition;
     }
 
     /**
-     * @param EvolutionTrigger                $trigger
+     * @param EvolutionTrigger $trigger
      * @param MinimumBeautyEvolutionCondition $condition
-     * @param VersionGroup                    $versionGroup
-     * @param int[]                           $value
+     * @param VersionGroup $versionGroup
+     * @param int[] $value
      *
      * @return MinimumBeautyEvolutionCondition
      */
-    protected function minimumBeautyEvolutionCondition(EvolutionTrigger $trigger, MinimumBeautyEvolutionCondition $condition, VersionGroup $versionGroup, array $value): MinimumBeautyEvolutionCondition
-    {
+    protected function minimumBeautyEvolutionCondition(
+        EvolutionTrigger $trigger,
+        MinimumBeautyEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): MinimumBeautyEvolutionCondition {
         $condition->setMinimumBeauty(array_pop($value));
 
         return $condition;
     }
 
     /**
-     * @param EvolutionTrigger                   $trigger
+     * @param EvolutionTrigger $trigger
      * @param MinimumHappinessEvolutionCondition $condition
-     * @param VersionGroup                       $versionGroup
-     * @param int[]                              $value
+     * @param VersionGroup $versionGroup
+     * @param int[] $value
      *
      * @return MinimumHappinessEvolutionCondition
      */
-    protected function minimumHappinessEvolutionCondition(EvolutionTrigger $trigger, MinimumHappinessEvolutionCondition $condition, VersionGroup $versionGroup, array $value): MinimumHappinessEvolutionCondition
-    {
+    protected function minimumHappinessEvolutionCondition(
+        EvolutionTrigger $trigger,
+        MinimumHappinessEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): MinimumHappinessEvolutionCondition {
         $condition->setMinimumHappiness(array_pop($value));
 
         return $condition;
     }
 
     /**
-     * @param EvolutionTrigger               $trigger
+     * @param EvolutionTrigger $trigger
      * @param MinimumLevelEvolutionCondition $condition
-     * @param VersionGroup                   $versionGroup
-     * @param int[]                          $value
+     * @param VersionGroup $versionGroup
+     * @param int[] $value
      *
      * @return MinimumLevelEvolutionCondition
      */
-    protected function minimumLevelEvolutionCondition(EvolutionTrigger $trigger, MinimumLevelEvolutionCondition $condition, VersionGroup $versionGroup, array $value): MinimumLevelEvolutionCondition
-    {
+    protected function minimumLevelEvolutionCondition(
+        EvolutionTrigger $trigger,
+        MinimumLevelEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): MinimumLevelEvolutionCondition {
         $condition->setMinimumLevel(array_pop($value));
 
         return $condition;
     }
 
     /**
-     * @param EvolutionTrigger               $trigger
+     * @param EvolutionTrigger $trigger
      * @param NoConditionsEvolutionCondition $condition
-     * @param VersionGroup                   $versionGroup
-     * @param array                          $value
+     * @param VersionGroup $versionGroup
+     * @param array $value
      *
      * @return NoConditionsEvolutionCondition
      */
-    protected function noConditionsEvolutionCondition(EvolutionTrigger $trigger, NoConditionsEvolutionCondition $condition, VersionGroup $versionGroup, array $value): NoConditionsEvolutionCondition
-    {
+    protected function noConditionsEvolutionCondition(
+        EvolutionTrigger $trigger,
+        NoConditionsEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): NoConditionsEvolutionCondition {
         return $condition;
     }
 
     /**
-     * @param EvolutionTrigger                   $trigger
+     * @param EvolutionTrigger $trigger
      * @param OverworldWeatherEvolutionCondition $condition
-     * @param VersionGroup                       $versionGroup
-     * @param string[]                           $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return OverworldWeatherEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function overworldWeatherEvolutionCondition(EvolutionTrigger $trigger, OverworldWeatherEvolutionCondition $condition, VersionGroup $versionGroup, array $value): OverworldWeatherEvolutionCondition
-    {
+    protected function overworldWeatherEvolutionCondition(
+        EvolutionTrigger $trigger,
+        OverworldWeatherEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): OverworldWeatherEvolutionCondition {
         /** @var \App\Entity\Weather $weather */
         $weather = $this->referenceStore->get(Weather::class, ['identifier' => array_pop($value)]);
         $condition->setOverworldWeather($weather);
@@ -499,24 +622,34 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger               $trigger
+     * @param EvolutionTrigger $trigger
      * @param PartySpeciesEvolutionCondition $condition
-     * @param VersionGroup                   $versionGroup
-     * @param string[]                       $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return PartySpeciesEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function partySpeciesEvolutionCondition(EvolutionTrigger $trigger, PartySpeciesEvolutionCondition $condition, VersionGroup $versionGroup, array $value): PartySpeciesEvolutionCondition
-    {
+    protected function partySpeciesEvolutionCondition(
+        EvolutionTrigger $trigger,
+        PartySpeciesEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): PartySpeciesEvolutionCondition {
         $speciesName = array_pop($value);
         /** @var \App\Entity\PokemonSpecies $species */
         $species = $this->referenceStore->get(PokemonSpecies::class, ['identifier' => $speciesName]);
         $species = $species->findChildByGrouping($versionGroup);
         if (!$species) {
-            throw new \DomainException(sprintf('The species "%s" is not available in the version group "%s".', $speciesName, $versionGroup->getName()));
+            throw new \DomainException(
+                sprintf(
+                    'The species "%s" is not available in the version group "%s".',
+                    $speciesName,
+                    $versionGroup->getName()
+                )
+            );
         }
         $condition->setPartySpecies($species);
 
@@ -524,18 +657,22 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger            $trigger
+     * @param EvolutionTrigger $trigger
      * @param PartyTypeEvolutionCondition $condition
-     * @param VersionGroup                $versionGroup
-     * @param string[]                    $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return PartyTypeEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function partyTypeEvolutionCondition(EvolutionTrigger $trigger, PartyTypeEvolutionCondition $condition, VersionGroup $versionGroup, array $value): PartyTypeEvolutionCondition
-    {
+    protected function partyTypeEvolutionCondition(
+        EvolutionTrigger $trigger,
+        PartyTypeEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): PartyTypeEvolutionCondition {
         /** @var \App\Entity\Type $type */
         $type = $this->referenceStore->get(Type::class, ['identifier' => array_pop($value)]);
         $condition->setPartyType($type);
@@ -544,36 +681,45 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger                          $trigger
+     * @param EvolutionTrigger $trigger
      * @param PhysicalStatsDifferenceEvolutionCondition $condition
-     * @param VersionGroup                              $versionGroup
-     * @param int[]                                     $value
+     * @param VersionGroup $versionGroup
+     * @param int[] $value
      *
      * @return PhysicalStatsDifferenceEvolutionCondition
      */
-    protected function physicalStatsDifferenceEvolutionCondition(EvolutionTrigger $trigger, PhysicalStatsDifferenceEvolutionCondition $condition, VersionGroup $versionGroup, array $value): PhysicalStatsDifferenceEvolutionCondition
-    {
+    protected function physicalStatsDifferenceEvolutionCondition(
+        EvolutionTrigger $trigger,
+        PhysicalStatsDifferenceEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): PhysicalStatsDifferenceEvolutionCondition {
         $condition->setPhysicalStatsDifference(array_pop($value));
 
         return $condition;
     }
 
     /**
-     * @param EvolutionTrigger            $trigger
+     * @param EvolutionTrigger $trigger
      * @param TimeOfDayEvolutionCondition $condition
-     * @param VersionGroup                $versionGroup
-     * @param string[]                    $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return TimeOfDayEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function timeOfDayEvolutionCondition(EvolutionTrigger $trigger, TimeOfDayEvolutionCondition $condition, VersionGroup $versionGroup, array $value): TimeOfDayEvolutionCondition
-    {
+    protected function timeOfDayEvolutionCondition(
+        EvolutionTrigger $trigger,
+        TimeOfDayEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): TimeOfDayEvolutionCondition {
         /** @var \App\Entity\TimeOfDay $time */
         $time = $this->referenceStore->get(
-            TimeOfDay::class, [
+            TimeOfDay::class,
+            [
                 'generation' => $versionGroup->getGeneration()->getNumber(),
                 'identifier' => array_pop($value),
             ]
@@ -584,24 +730,34 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger                   $trigger
+     * @param EvolutionTrigger $trigger
      * @param TradedForSpeciesEvolutionCondition $condition
-     * @param VersionGroup                       $versionGroup
-     * @param string[]                           $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return TradedForSpeciesEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function tradedForSpeciesEvolutionCondition(EvolutionTrigger $trigger, TradedForSpeciesEvolutionCondition $condition, VersionGroup $versionGroup, array $value): TradedForSpeciesEvolutionCondition
-    {
+    protected function tradedForSpeciesEvolutionCondition(
+        EvolutionTrigger $trigger,
+        TradedForSpeciesEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): TradedForSpeciesEvolutionCondition {
         $speciesName = array_pop($value);
         /** @var \App\Entity\PokemonSpecies $species */
         $species = $this->referenceStore->get(PokemonSpecies::class, ['identifier' => $speciesName]);
         $species = $species->findChildByGrouping($versionGroup);
         if (!$species) {
-            throw new \DomainException(sprintf('The species "%s" is not available in the version group "%s".', $speciesName, $versionGroup->getName()));
+            throw new \DomainException(
+                sprintf(
+                    'The species "%s" is not available in the version group "%s".',
+                    $speciesName,
+                    $versionGroup->getName()
+                )
+            );
         }
         $condition->setTradedForSpecies($species);
 
@@ -609,24 +765,34 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     }
 
     /**
-     * @param EvolutionTrigger              $trigger
+     * @param EvolutionTrigger $trigger
      * @param TriggerItemEvolutionCondition $condition
-     * @param VersionGroup                  $versionGroup
-     * @param string[]                      $value
+     * @param VersionGroup $versionGroup
+     * @param string[] $value
      *
      * @return TriggerItemEvolutionCondition
      * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function triggerItemEvolutionCondition(EvolutionTrigger $trigger, TriggerItemEvolutionCondition $condition, VersionGroup $versionGroup, array $value): TriggerItemEvolutionCondition
-    {
+    protected function triggerItemEvolutionCondition(
+        EvolutionTrigger $trigger,
+        TriggerItemEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): TriggerItemEvolutionCondition {
         $itemName = array_pop($value);
         /** @var \App\Entity\Item $item */
         $item = $this->referenceStore->get(Item::class, ['identifier' => $itemName]);
         $item = $item->findChildByGrouping($versionGroup);
         if (!$item) {
-            throw new \DomainException(sprintf('The item "%s" is not available in the version group "%s".', $itemName, $versionGroup->getName()));
+            throw new \DomainException(
+                sprintf(
+                    'The item "%s" is not available in the version group "%s".',
+                    $itemName,
+                    $versionGroup->getName()
+                )
+            );
         }
         $condition->setTriggerItem($item);
 

@@ -5,7 +5,39 @@
 
     width: auto;
 
-    th::after {
-        content: ":";
+    th {
+        white-space: nowrap;
+
+        &::after {
+            content: ":";
+        }
+    }
+
+    // Nested infolist need help to not create extra space everywhere.
+    td .pkt-infolist {
+        margin: 0;
+        padding: 0;
+
+        tr:first-of-type {
+            th, td {
+                padding-top: 0;
+            }
+        }
+
+        tr:last-of-type {
+            th, td {
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+
+.pkt-flaglist {
+    .pkt-flag-description {
+        @extend .small;
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
     }
 }

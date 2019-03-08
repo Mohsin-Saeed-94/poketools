@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ItemPocketInVersionGroup;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,4 +48,23 @@ class ItemPocketInVersionGroupRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param Version $version
+     *
+     * @return ItemPocketInVersionGroup[]
+     */
+    public function findByVersion(Version $version)
+    {
+        $qb = $this->createQueryBuilder('pocket');
+        $qb->join('pocket.versionGroup', 'version_group')
+            ->where(':version MEMBER OF version_group.versions')
+            ->orderBy('pocket.position')
+            ->setParameter('version', $version);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getResult();
+    }
 }

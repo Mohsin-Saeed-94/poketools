@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ItemInVersionGroup;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -12,7 +13,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method ItemInVersionGroup[]    findAll()
  * @method ItemInVersionGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ItemInVersionGroupRepository extends ServiceEntityRepository
+class ItemInVersionGroupRepository extends ServiceEntityRepository implements SlugAndVersionInterface
 {
     public function __construct(RegistryInterface $registry)
     {
@@ -47,4 +48,22 @@ class ItemInVersionGroupRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findOneByVersion(string $slug, Version $version): ?ItemInVersionGroup
+    {
+        $qb = $this->createQueryBuilder('item');
+        $qb->join('item.versionGroup', 'version_group')
+            ->where(':version MEMBER OF version_group.versions')
+            ->andWhere('item.slug = :slug')
+            ->setParameter('version', $version)
+            ->setParameter('slug', $slug);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getOneOrNullResult();
+    }
 }

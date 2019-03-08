@@ -1,8 +1,8 @@
-{% macro datatable(data_table, table_id) %}
+{% macro datatable(data_table, table_id, settings) %}
     <div id="{{ table_id }}"
          class="pkt-datatable-container"
-         data-table-settings="{{ datatable_settings(data_table)|e('html_attr') }}">
-        <i class="pkt-icon-loading"></i>
+         data-table-settings="{{ datatable_settings(data_table)|e('html_attr') }}"{% if settings %} data-table-custom="{{ settings|json_encode|e('html_attr') }}"{% endif %}>
+        <i class="fas fa-circle-notch fa-spin"></i>
         Loading data...
     </div>
 {% endmacro %}

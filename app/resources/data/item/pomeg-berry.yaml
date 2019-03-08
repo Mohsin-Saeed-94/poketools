@@ -1,6 +1,7 @@
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name 'Pomeg Berry'
   category: &ruby-sapphire.category effort-drop
+  pocket: &ruby-sapphire.pocket berries
   buy: &ruby-sapphire.buy 20
   sell: &ruby-sapphire.sell 10
   short_description: &ruby-sapphire.short_description 'Drops HP Effort Values by 10 and raises happiness.'
@@ -25,13 +26,27 @@ ruby-sapphire: &ruby-sapphire
   flavor_text: |
     POKéBLOCK ingredient.
     Plant in loamy soil
-    to grow PINAP.
-emerald: *ruby-sapphire
+    to grow POMEG.
+emerald:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: *ruby-sapphire.berry
+  flavor_text: |
+    Makes a POKéMON
+    friendly but lowers
+    base HP.
+    
 colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   short_description: *ruby-sapphire.short_description
@@ -40,9 +55,11 @@ firered-leafgreen:
   flavor_text: |
     Can be ground up into a powder as
     an ingredient for medicine.
+    
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -51,13 +68,14 @@ diamond-pearl: &diamond-pearl
   description: *ruby-sapphire.description
   berry: *ruby-sapphire.berry
   flavor_text: |
-    A Poffin ingredient.
-    Bury it in soft soil to grow a
-    Pinap Plant.
+    A Poffin ingredient. Using it on a
+    Pokémon makes it more friendly, but
+    it also lowers its base HP.
 platinum: *diamond-pearl
-heartgold-soulsilver:
+heartgold-soulsilver: &heartgold-soulsilver
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -66,27 +84,14 @@ heartgold-soulsilver:
   description: *ruby-sapphire.description
   berry: *ruby-sapphire.berry
   flavor_text: |
-    In the Sinnoh region, they like to make
-    sweets known as Poffins with this Berry
-    and feed them to their Pokémon.
-black-white: &black-white
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  fling_effect: damage
-  fling_power: 10
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
-  flavor_text: |
-    A Berry which is very rare in the
-    Unova region.
-    A maniac will buy it for a high price.
-black-2-white-2: *black-white
+    Using it on a Pokémon makes it more
+    friendly, but it also lowers its base HP.
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -95,13 +100,14 @@ x-y: &x-y
   description: *ruby-sapphire.description
   berry: *ruby-sapphire.berry
   flavor_text: |
-    A Berry to be used in cooking.
-    This Berry is very rare and hard
-    to obtain in the Unova region.
+    A Berry to be consumed by Pokémon.
+    Using it on a Pokémon makes it more
+    friendly but lowers its base HP.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -123,6 +129,7 @@ sun-moon: &sun-moon
       sour: 0
     harvest: 1-5
   flavor_text: |
-    Used to make Pokéblocks that will enhance your
-    Toughness. Its yellow flesh is sour when eaten.
+    A Berry to be consumed by Pokémon. Using it on a
+    Pokémon makes it more friendly but lowers its
+    base HP.
 ultra-sun-ultra-moon: *sun-moon

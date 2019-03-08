@@ -9,11 +9,6 @@ require('datatables.net-fixedheader-bs4');
 require('datatables-bundle/datatables');
 
 $(document).ready(function () {
-    // const similarMoveTable = $('#pkt-move-view-similarmoves');
-    // if (similarMoveTable.length > 0) {
-    //     const tableSettings = similarMoveTable.data('table-settings');
-    //     similarMoveTable.initDataTables(tableSettings);
-    // }
     const tables = $('.pkt-datatable-container');
     for (let table of tables) {
         const tableSettings = $(table).data('table-settings');

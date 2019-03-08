@@ -1,20 +1,23 @@
 diamond-pearl: &diamond-pearl
   name: &diamond-pearl.name 'Oval Stone'
   category: &diamond-pearl.category evolution
+  pocket: &diamond-pearl.pocket misc
   buy: &diamond-pearl.buy 2000
   sell: &diamond-pearl.sell 1000
   fling_effect: damage
   fling_power: 80
   flags: &diamond-pearl.flags
     - underground
-  short_description: &diamond-pearl.short_description 'Level-up during Day on a Happiny: Holder evolves into Chansey.'
+  short_description: &diamond-pearl.short_description 'Evolves certain Pokèmon.'
   description: &diamond-pearl.description |
-    Held by []{pokemon:happiny}
-    :   Holder evolves into []{pokemon:chansey} when it levels up during the daytime.
+    When this item is used on some Pokèmon, the Pokèmon will evolve.  Below is a list
+    of compatible Pokèmon.
+    
+    {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "oval-stone"})}}
   flavor_text: |
     A peculiar stone that makes certain
     species of Pokémon evolve.
-    It sparkles like eyes.
+    It is shaped like an egg.
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
@@ -22,6 +25,7 @@ black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -32,11 +36,12 @@ x-y: &x-y
   flavor_text: |
     A peculiar stone that can make
     certain species of Pokémon evolve.
-    It sparkles like a glittering eye.
+    It’s as round as a Pokémon Egg.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -46,5 +51,5 @@ sun-moon: &sun-moon
   description: *diamond-pearl.description
   flavor_text: |
     A peculiar stone that can make certain species of
-    Pokémon evolve. It sparkles like a glittering eye.
+    Pokémon evolve. It’s as round as a Pokémon Egg.
 ultra-sun-ultra-moon: *sun-moon

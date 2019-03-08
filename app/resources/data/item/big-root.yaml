@@ -1,6 +1,7 @@
 diamond-pearl: &diamond-pearl
   name: &diamond-pearl.name 'Big Root'
   category: &diamond-pearl.category held-items
+  pocket: &diamond-pearl.pocket misc
   buy: &diamond-pearl.buy 4000
   sell: &diamond-pearl.sell 2000
   fling_effect: damage
@@ -11,16 +12,31 @@ diamond-pearl: &diamond-pearl
   short_description: &diamond-pearl.short_description 'Held: Increases HP recovered from draining moves, Ingrain, and Aqua Ring by 3/10 (30%).'
   description: &diamond-pearl.description 'Held: HP restored from Absorb, Aqua Ring, Drain Punch, Dream Eater, Giga Drain, Ingrain, Leech Life, Leech Seed, and Mega Drain is increased by 30%.  Damage inflicted is not affected.'
   flavor_text: |
-    A tough, discarded carapace to be held
-    by a Pokémon. It enables the holder to
-    switch with a waiting Pokémon in battle.
+    A Pokémon hold item that boosts the
+    power of HP-stealing moves to let the
+    holder recover more HP.
 platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+heartgold-soulsilver: &heartgold-soulsilver
+  name: *diamond-pearl.name
+  category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
+  fling_effect: damage
+  fling_power: 10
+  flags: *diamond-pearl.flags
+  short_description: *diamond-pearl.short_description
+  description: *diamond-pearl.description
+  flavor_text: |
+    A Pokémon held item that boosts the
+    power of HP-stealing moves to let the
+    holder recover more HP.
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -30,12 +46,13 @@ x-y: &x-y
   description: *diamond-pearl.description
   flavor_text: |
     An item to be held by a Pokémon.
-    This discarded carapace enables the
-    holder to switch out of battle without fail.
+    It boosts the power of HP-stealing
+    moves so the holder recovers more HP.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *diamond-pearl.name
   category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   fling_effect: damage
@@ -44,7 +61,7 @@ sun-moon: &sun-moon
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
-    An item to be held by a Pokémon. This discarded
-    carapace enables the holder to switch out of battle
-    without fail.
+    An item to be held by a Pokémon. It boosts the
+    amount of HP the holder recovers from 
+    HP-stealing moves.
 ultra-sun-ultra-moon: *sun-moon

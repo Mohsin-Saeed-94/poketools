@@ -28,6 +28,7 @@ services:
   # as action arguments even if you don't extend any base controller class
   App\Controller\:
     resource: '../src/Controller'
+    public: true
     tags: ['controller.service_arguments']
   
   # add more service definitions when explicit configuration is needed
@@ -44,6 +45,14 @@ services:
     synthetic: true
   
   App\CommonMark\Extension\PoketoolsCommonMarkExtension:
+  App\CommonMark\Block\Parser\CallableParser:
+    arguments:
+      $version: '@app.active_version'
+      $fragmentHandler: '@fragment.handler'
+      $jsonEncoder: '@serializer.encoder.json'
+  App\CommonMark\Block\Renderer\CallableRenderer:
+    arguments:
+      $fragmentHandler: '@fragment.handler'
   App\CommonMark\Inline\Parser\CloseBracketInternalLinkParser:
     arguments:
       $version: '@app.active_version'

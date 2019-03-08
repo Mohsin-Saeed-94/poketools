@@ -19,16 +19,16 @@
                     Defending&nbsp;&rarr;<br>
                     Attacking&nbsp;&darr;
                 </th>
-                {% for type in types %}
+                {% for type in types if not type.hidden %}
                     <th class="pkt-type-index-typechart-defending">{{ type|type_emblem }}</th>
                 {% endfor %}
             </tr>
             </thead>
             <tbody>
-            {% for attackingType in types %}
+            {% for attackingType in types if not attackingType.hidden %}
                 <tr>
                     <th class="pkt-type-index-typechart-attacking">{{ attackingType|type_emblem }}</th>
-                    {% for defendingType in types %}
+                    {% for defendingType in types if not defendingType.hidden %}
                         {% set efficacy = type_chart.efficacyForMatchup(attackingType, defendingType) %}
                         <td class="pkt-type-index-typechart-efficacy{% if defendingType == attackingType %} pkt-type-index-typechart-sametype{% endif %}">
                             {{ efficacy|type_efficacy }}

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Controller\ItemController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -105,14 +106,16 @@ class ItemInVersionGroup extends AbstractDexEntity implements
     /**
      * @var Berry|null
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\Berry", inversedBy="item", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
+     * @ORM\OneToOne(targetEntity="App\Entity\Berry", inversedBy="item", cascade={"all"}, orphanRemoval=true,
+     *     fetch="EAGER")
      */
     protected $berry;
 
     /**
      * @var Machine|null
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\Machine", inversedBy="item", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
+     * @ORM\OneToOne(targetEntity="App\Entity\Machine", inversedBy="item", cascade={"all"}, orphanRemoval=true,
+     *     fetch="EAGER")
      */
     protected $machine;
 

@@ -14,9 +14,9 @@
 
     <h1>
         Types - {{ type|type_emblem(false) }}
-        {% if not version.versionGroup.featureString('move-damage-class') %}
-            (<img class="pkt-icon" src="{{ asset('build/static/damage_class/'~type.damageClass.slug~'.svg') }}"
-                  alt="{{ type.damageClass.name }} class">)
+        {% if not version.versionGroup.featureString('move-damage-class') and type.damageClass %}
+            (<i class="pkt-icon pkt-icon-damageclass-{{ type.damageClass.slug }}"></i><span
+                class="sr-only">{{ type.damageClass.name }} class</span>)
         {% endif %}
     </h1>
 

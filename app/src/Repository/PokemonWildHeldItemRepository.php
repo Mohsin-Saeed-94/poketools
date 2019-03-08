@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\ItemInVersionGroup;
 use App\Entity\PokemonWildHeldItem;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,4 +49,29 @@ class PokemonWildHeldItemRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param ItemInVersionGroup $item
+     * @param Version $version
+     *
+     * @return PokemonWildHeldItem[]
+     */
+    public function findByItemAndVersion(ItemInVersionGroup $item, Version $version)
+    {
+        $qb = $this->createQueryBuilder('held_item');
+        $qb->join('held_item.pokemon', 'pokemon')
+            ->join('pokemon.species', 'species')
+            ->where('held_item.item = :item')
+            ->andWhere('held_item.version = :version')
+            ->orderBy('species.position')
+            ->addOrderBy('pokemon.position')
+            ->addOrderBy('held_item.rate')
+            ->setParameter('item', $item)
+            ->setParameter('version', $version);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getResult();
+    }
 }

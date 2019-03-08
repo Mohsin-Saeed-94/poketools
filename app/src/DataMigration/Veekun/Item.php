@@ -82,6 +82,7 @@ SELECT "items"."id",
        group_concat(DISTINCT "version_groups"."identifier") AS "version_groups",
        "item_names"."name",
        "item_categories"."identifier" AS "category",
+       "item_pockets"."identifier" AS "pocket",
        nullif("items"."cost", 0) AS "buy",
        nullif("items"."cost"/ 2, 0) AS "sell",
        "item_fling_effects"."identifier" AS "fling_effect",
@@ -102,6 +103,8 @@ FROM "items"
           ON "items"."id" = "item_names"."item_id"
      JOIN "item_categories"
           ON "items"."category_id" = "item_categories"."id"
+     JOIN "item_pockets"
+          ON "item_categories"."pocket_id" = "item_pockets"."id"
      LEFT OUTER JOIN "item_fling_effects"
                      ON "items"."fling_effect_id" = "item_fling_effects"."id"
      LEFT OUTER JOIN "item_prose"
@@ -257,6 +260,29 @@ SQL
         );
         unset($sourceData['version_groups']);
 
+        if (preg_match('`^(?P<base>.+ium-z)--bag$`', $destinationData['identifier'], $matches) === 1) {
+            // There are two entries for all z-crystals because that's how the
+            // game things about them internally.  However, that's not helpful,
+            // so skip one of them.
+            return null;
+        }
+        if ($sourceData['category'] === 'z-crystals') {
+            $sourceData['pocket'] = 'z-crystals';
+        }
+
+        // Force a special description for all evolution items to display a list
+        // of Pokemon that can use them.
+//        if ($sourceData['category'] === 'evolution') {
+//            $sourceData['short_description'] = 'Evolves certain Pokèmon.';
+//            $sourceData['description'] = <<<EOT
+//When this item is used on some Pokèmon, the Pokèmon will evolve.  Below is a list
+//of compatible Pokèmon.
+//
+//{{App\Controller\ItemController::evolutionPokemon({"itemSlug": "${destinationData['identifier']}"})}}
+//EOT;
+//
+//        }
+
         if (isset($sourceData['flags'])) {
             $sourceData['flags'] = array_merge(explode(',', $sourceData['flags']), $destinationData['flags'] ?? []);
         }
@@ -269,10 +295,19 @@ SQL
             );
             $this->berryFlavorData->execute(['item' => $itemId]);
             $sourceData['berry']['flavors'] = $this->berryFlavorData->fetchAll(FetchMode::ASSOCIATIVE);
-            $sourceData['berry']['flavors'] = array_combine(array_column($sourceData['berry']['flavors'], 'flavor'), array_column($sourceData['berry']['flavors'], 'level'));
-            $sourceData['berry']['flavors'] = $this->convertToInts($sourceData['berry']['flavors'], array_keys($sourceData['berry']['flavors']));
+            $sourceData['berry']['flavors'] = array_combine(
+                array_column($sourceData['berry']['flavors'], 'flavor'),
+                array_column($sourceData['berry']['flavors'], 'level')
+            );
+            $sourceData['berry']['flavors'] = $this->convertToInts(
+                $sourceData['berry']['flavors'],
+                array_keys($sourceData['berry']['flavors'])
+            );
 
-            $sourceData['berry']['harvest'] = $this->buildRangeString($sourceData['berry']['harvest_min'], $sourceData['berry']['harvest_max']);
+            $sourceData['berry']['harvest'] = $this->buildRangeString(
+                $sourceData['berry']['harvest_min'],
+                $sourceData['berry']['harvest_max']
+            );
             unset($sourceData['berry']['harvest_min'], $sourceData['berry']['harvest_max']);
 
             $berryIntFields = [
@@ -286,40 +321,49 @@ SQL
         }
         unset($sourceData['is_berry']);
 
+        $this->flavorTextData->execute(['item' => $itemId]);
         if ($sourceData['is_machine']) {
             $this->machineData->execute(['item' => $itemId]);
             $machineData = $this->arrayKeyBy($this->machineData->fetchAll(FetchMode::ASSOCIATIVE), 'version_group');
             $flavorTextData = [];
         } else {
             $machineData = null;
-            $flavorTextData = $this->arrayKeyBy($this->flavorTextData->fetchAll(FetchMode::ASSOCIATIVE), 'version_group');
+            $flavorTextData = $this->arrayKeyBy(
+                $this->flavorTextData->fetchAll(FetchMode::ASSOCIATIVE),
+                'version_group'
+            );
         }
         unset($sourceData['is_machine']);
-        $this->flavorTextData->execute(['item' => $itemId]);
 
         // Veekun is missing a lot of flavor text; make some substitutions if
         // it makes sense.
         if (!isset($flavorTextData['omega-ruby-alpha-sapphire'])
             && isset($flavorTextData['x-y'])
-            && in_array('omega-ruby-alpha-sapphire', $versionGroups)
-            && in_array('x-y', $versionGroups)) {
+            && in_array('omega-ruby-alpha-sapphire', $versionGroups, true)
+            && in_array('x-y', $versionGroups, true)) {
             $flavorTextData['omega-ruby-alpha-sapphire'] = $flavorTextData['x-y'];
         }
         if (!isset($flavorTextData['colosseum'])
             && isset($flavorTextData['ruby-sapphire'])
-            && in_array('colosseum', $versionGroups)
-            && in_array('ruby-sapphire', $versionGroups)) {
+            && in_array('colosseum', $versionGroups, true)
+            && in_array('ruby-sapphire', $versionGroups, true)) {
             $flavorTextData['colosseum'] = $flavorTextData['ruby-sapphire'];
         }
         if (!isset($flavorTextData['xd'])
             && isset($flavorTextData['ruby-sapphire'])
-            && in_array('xd', $versionGroups)
-            && in_array('ruby-sapphire', $versionGroups)) {
+            && in_array('xd', $versionGroups, true)
+            && in_array('ruby-sapphire', $versionGroups, true)) {
             $flavorTextData['xd'] = $flavorTextData['ruby-sapphire'];
+        }
+        if (!isset($flavorTextData['sun-moon'])
+            && isset($flavorTextData['ultra-sun-ultra-moon'])
+            && in_array('sun-moon', $versionGroups, true)
+            && in_array('ultra-sun-ultra-moon', $versionGroups, true)) {
+            $flavorTextData['sun-moon'] = $flavorTextData['ultra-sun-ultra-moon'];
         }
 
         // Take the machine category from the identifier to be more specific.
-        if ($sourceData['category'] == 'all-machines') {
+        if ($sourceData['category'] === 'all-machines') {
             $sourceData['category'] = substr($destinationData['identifier'], 0, 2);
         }
 
@@ -349,34 +393,63 @@ SQL
 
             // Do not insert data if this is an HM and this version group does
             // not have HMs.
-            if (isset($machineData[$versionGroup])) {
-                if ($machineData[$versionGroup]['type'] == 'HM' && !in_array($versionGroup, $this->hmVersionGroups)) {
-                    continue;
-                }
+            if (isset($machineData[$versionGroup])
+                && $machineData[$versionGroup]['type'] === 'HM'
+                && !in_array(
+                    $versionGroup,
+                    $this->hmVersionGroups,
+                    true
+                )) {
+                continue;
             }
 
             $versionGroupSourceData = $sourceData;
 
             // Remove fling info if this version group doesn't have fling.
-            if (!in_array($versionGroup, $this->flingVersionGroups)) {
+            if (!in_array($versionGroup, $this->flingVersionGroups, true)) {
                 unset($versionGroupSourceData['fling_effect'], $versionGroupSourceData['fling_power']);
             }
 
             // Remove berry water info from Gen 7 games
             if (isset($versionGroupSourceData['berry'])
                 && in_array(
-                    $versionGroup, ['sun-moon', 'ultra-sun-ultra-moon']
+                    $versionGroup,
+                    ['sun-moon', 'ultra-sun-ultra-moon']
                 )) {
                 unset($versionGroupSourceData['berry']['water']);
             }
 
-            $destinationData[$versionGroup] = array_merge($versionGroupSourceData, $destinationData[$versionGroup] ?? []);
-            if (!isset($destinationData[$versionGroup]['flavor_text']) && isset($flavorTextData[$versionGroup])) {
+            $destinationData[$versionGroup] = array_merge(
+                $versionGroupSourceData,
+                $destinationData[$versionGroup] ?? []
+            );
+            if (isset($flavorTextData[$versionGroup]) && !isset($destinationData[$versionGroup]['flavor_text'])) {
                 $destinationData[$versionGroup]['flavor_text'] = $flavorTextData[$versionGroup]['flavor_text'];
             }
             if (isset($machineData[$versionGroup])) {
                 $machineData[$versionGroup]['number'] = (int)$machineData[$versionGroup]['number'];
-                $destinationData[$versionGroup]['machine'] = array_merge($machineData[$versionGroup], $destinationData[$versionGroup]['machine'] ?? []);
+                $destinationData[$versionGroup]['machine'] = array_merge(
+                    $machineData[$versionGroup],
+                    $destinationData[$versionGroup]['machine'] ?? []
+                );
+                if (!isset($destinationData[$versionGroup]['short_description'])) {
+                    $destinationData[$versionGroup]['short_description'] = sprintf(
+                        'Teaches []{move:%s} to a compatible Pokèmon.',
+                        $machineData[$versionGroup]['move']
+                    );
+                }
+                if (!isset($destinationData[$versionGroup]['description'])) {
+                    $destinationData[$versionGroup]['description'] = sprintf(
+                        <<<EOT
+Teaches []{move:%s} to a compatible Pokèmon.
+
+{{App\Controller\ItemController::tmPokemon({"itemSlug": "%s"})}}
+EOT
+                        ,
+                        $machineData[$versionGroup]['move'],
+                        $destinationData['identifier']
+                    );
+                }
             }
         }
 
@@ -388,12 +461,12 @@ SQL
      *
      * All values of the column must be a valid array key (i.e. a string or int).
      *
-     * @param array      $array
+     * @param array $array
      * @param int|string $key
      *
      * @return array
      */
-    protected function arrayKeyBy(array $array, $key)
+    protected function arrayKeyBy(array $array, $key): array
     {
         $new = [];
         foreach ($array as &$item) {
@@ -402,7 +475,7 @@ SQL
 
             $new[$keyValue] = $item;
         }
-        unset($array);
+        unset($item);
 
         return $new;
     }
@@ -414,7 +487,8 @@ SQL
     public function configureDestination(DestinationDriverInterface $destinationDriver)
     {
         $destinationDriver->setOption(
-            'refs', [
+            'refs',
+            [
                 'exclude' => [
                     '`^.+\.(?:fling_.+|berry\..+)`',
                 ],

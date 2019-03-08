@@ -1,0 +1,206 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Items - {{ item.name }}{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('item_index', {'versionSlug': version.slug}) }}">Items</a>
+            </li>
+            <li class="breadcrumb-item active">{{ item.name }}</li>
+        </ol>
+    </nav>
+
+    <h1>{{ item.name }}</h1>
+    <div class="pkt-item-view-flavortext">
+        {{ item.flavorText }}
+    </div>
+
+    <div class="row">
+        <div class="col-md">
+            <h2>Stats</h2>
+            <table class="pkt-infolist">
+                <tr>
+                    <th>Buy</th>
+                    <td>
+                        {% if item.buy %}
+                            <i class="pkt-icon pkt-icon-pokedollar"></i>{{ item.buy }}
+                        {% else %}
+                            Cannot be purchased.
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Sell</th>
+                    <td>
+                        {% if item.sell %}
+                            <i class="pkt-icon pkt-icon-pokedollar"></i>{{ item.sell }}
+                        {% else %}
+                            Cannot be sold.
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if item.flingEffect %}
+                    <tr>
+                        <th>Fling</th>
+                        <td>
+                            <table class="pkt-infolist">
+                                <tr>
+                                    <th>Power</th>
+                                    <td>{{ item.flingPower }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Effect</th>
+                                    <td>{{ item.flingEffect.description|markdown }}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if wild_held_items|length > 0 %}
+                    <tr>
+                        <th>
+                            <a href="#" data-toggle="tooltip"
+                               title="When encountered in the wild, these Pokèmon have a chance of holding this item.">
+                                Held</a></th>
+                        <td>
+                            <table class="pkt-infolist">
+                                {% for wild_held_item in wild_held_items %}
+                                    <tr>
+                                        {# @todo icons #}
+                                        <td>{{ wild_held_item.pokemon }}:</td>
+                                        {# @todo gauge #}
+                                        <td>{{ wild_held_item.rate }}%</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                {% endif %}
+            </table>
+        </div>
+
+        <div class="col-md">
+            <h2>Flags</h2>
+            {% if item.flags|length > 0 %}
+                <ul class="pkt-flaglist pkt-item-view-flags">
+                    {% for flag in item.flags %}
+                        <li>
+                            <div class="pkt-flag-name">{{ flag.name }}</div>
+                            <div class="pkt-flag-description">{{ flag.description|markdown }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No special flags apply to this item.</p>
+            {% endif %}
+        </div>
+
+        {% if item.berry %}
+            <div class="col-md">
+                <h2>Berry</h2>
+                <table class="pkt-infolist">
+                    <tr>
+                        <th>Firmness</th>
+                        <td>{{ item.berry.firmness }}</td>
+                    </tr>
+                    <tr>
+                        <th>Size</th>
+                        <td>{{ item.berry.size }}</td>
+                    </tr>
+                    <tr>
+                        <th>Harvest</th>
+                        <td>{{ item.berry.harvest }}</td>
+                    </tr>
+                    <tr>
+                        <th>Growth Time</th>
+                        <td>
+                            {# @todo Make this number version-group specific #}
+                            {{ item.berry.growthTime }}
+                        </td>
+                    </tr>
+                    {% if item.berry.water %}
+                        <tr>
+                            <th><a href="#" data-toggle="tooltip"
+                                   title="The speed at which this Berry dries out the soil as it grows. A higher rate means the soil dries more quickly.">
+                                    Water</a></th>
+                            <td>{{ item.berry.water }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if item.berry.weeds %}
+                        <tr>
+                            <th><a href="#" data-toggle="tooltip"
+                                   title="How susceptible this Berry is to weeds.  A higher value means weeding the plant increases the yield more.">
+                                    Weeds
+                                </a></th>
+                            <td>{{ item.berry.weeds }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if item.berry.pests %}
+                        <tr>
+                            <th><a href="#" data-toggle="tooltip"
+                                   title="How susceptible this Berry is to pests.  A higher value means removing pests near the plant increases the yield more.">
+                                    Pests
+                                </a></th>
+                            <td>{{ item.berry.pests }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if item.berry.smoothness %}
+                        <tr>
+                            <th>Smoothness</th>
+                            <td>{{ item.berry.smoothness }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if item.berry.naturalGiftType %}
+                        <tr>
+                            <th>Natural Gift</th>
+                            <td>
+                                <table class="pkt-infolist">
+                                    <tr>
+                                        <th>Power</th>
+                                        <td>{{ item.berry.naturalGiftPower }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Type</th>
+                                        <td>{{ item.berry.naturalGiftType|type_emblem }}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% if item.berry.flavors|length > 0 %}
+                        <tr>
+                            <th>Flavors</th>
+                            <td>
+                                <table class="pkt-infolist">
+                                    {% for flavor in item.berry.flavors %}
+                                        <tr>
+                                            <td>{{ flavor.flavor }}:</td>
+                                            <td>{{ flavor.level }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </td>
+                        </tr>
+                    {% endif %}
+                </table>
+            </div>
+        {% endif %}
+    </div>
+
+    <h2>Description</h2>
+    <div class="pkt-item-view-description">
+        {{ item.description|markdown }}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('item_view') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('item_view') }}
+{% endblock %}

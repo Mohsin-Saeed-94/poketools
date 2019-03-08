@@ -27,12 +27,14 @@ Encore
     .addEntry('other', './assets/js/other.js')
     .addEntry('ability_index', './assets/js/ability_index.js')
     .addEntry('ability_view', './assets/js/ability_view.js')
+    .addEntry('item_index', './assets/js/item_index.js')
+    .addEntry('item_view', './assets/js/item_view.js')
+    .addEntry('move_index', './assets/js/move_index.js')
+    .addEntry('move_view', './assets/js/move_view.js')
     .addEntry('nature_index', './assets/js/nature_index.js')
     .addEntry('nature_view', './assets/js/nature_view.js')
     .addEntry('type_index', './assets/js/type_index.js')
     .addEntry('type_view', './assets/js/type_view.js')
-    .addEntry('move_index', './assets/js/move_index.js')
-    .addEntry('move_view', './assets/js/move_view.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app

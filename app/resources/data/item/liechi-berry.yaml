@@ -1,6 +1,7 @@
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name 'Liechi Berry'
   category: &ruby-sapphire.category in-a-pinch
+  pocket: &ruby-sapphire.pocket berries
   buy: &ruby-sapphire.buy 20
   sell: &ruby-sapphire.sell 10
   flags: &ruby-sapphire.flags
@@ -24,13 +25,31 @@ ruby-sapphire: &ruby-sapphire
       bitter: 0
       sour: 0
     harvest: 1-5
+  flavor_text: |
+    A hold item that
+    raises ATTACK in
+    a pinch.
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
 xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
+firered-leafgreen:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: *ruby-sapphire.berry
+  flavor_text: |
+    When held by a POKéMON, it raises
+    the ATTACK stat in a pinch.
+    
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: berry-effect
@@ -40,13 +59,14 @@ diamond-pearl: &diamond-pearl
   description: *ruby-sapphire.description
   berry: *ruby-sapphire.berry
   flavor_text: |
-    A Poffin ingredient. If held by a
-    Pokémon, it weakens a foe’s
-    Normal-type attack.
+    A Poffin ingredient.
+    If held by a Pokémon, it raises its
+    Attack stat in a pinch.
 platinum: *diamond-pearl
-heartgold-soulsilver:
+heartgold-soulsilver: &heartgold-soulsilver
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: berry-effect
@@ -56,26 +76,14 @@ heartgold-soulsilver:
   description: *ruby-sapphire.description
   berry: *ruby-sapphire.berry
   flavor_text: |
-    If held by a Pokémon, it weakens a foe’s
-    Normal-type attack.
-black-white: &black-white
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  fling_effect: berry-effect
-  fling_power: 10
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
-  flavor_text: |
-    Weakens a Normal-type attack against
-    the Pokémon holding this berry.
-black-2-white-2: *black-white
+    If held by a Pokémon, it raises its
+    Attack stat in a pinch.
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: berry-effect
@@ -85,13 +93,14 @@ x-y: &x-y
   description: *ruby-sapphire.description
   berry: *ruby-sapphire.berry
   flavor_text: |
-    If held by a Pokémon, this Berry
-    will lessen the damage taken
-    from one Normal-type attack.
+    A Berry to be consumed by Pokémon.
+    If a Pokémon holds one, its Attack
+    stat will increase when it’s in a pinch.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: berry-effect
@@ -114,6 +123,7 @@ sun-moon: &sun-moon
       sour: 0
     harvest: 1-5
   flavor_text: |
-    If held by a Pokémon, this Berry will lessen the
-    damage taken from one Normal-type attack.
+    A Berry to be consumed by Pokémon. If a Pokémon
+    holds one, its Attack stat will increase when it’s in
+    a pinch.
 ultra-sun-ultra-moon: *sun-moon
