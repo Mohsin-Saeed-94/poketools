@@ -31,9 +31,13 @@
                 <tr>
                     <th>Class</th>
                     <td>
-                        <img class="pkt-icon"
-                             src="{{ asset('build/static/damage_class/'~move.damageClass.slug~'.svg') }}"
-                             alt="{{ move.damageClass.name }}">
+                        {%- if version.versionGroup.featureString('move-damage-class') %}
+                            {%- set damage_class = move.damageClass %}
+                        {%- else %}
+                            {%- set damage_class = move.type.damageClass %}
+                        {%- endif %}
+                        <i class="pkt-icon pkt-icon-damageclass-{{ damage_class.slug }}"></i>
+                        <span class="sr-only">{{ damage_class.name }} class</span>
                     </td>
                 </tr>
                 <tr>
