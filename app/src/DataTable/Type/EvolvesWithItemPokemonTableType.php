@@ -30,6 +30,7 @@ class EvolvesWithItemPokemonTableType extends PokemonTableType
         $item = $options['item'];
 
         $dataTable->add(
+            // @todo pokemon link
             'evolutionParent',
             LinkColumn::class,
             [

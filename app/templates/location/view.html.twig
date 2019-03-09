@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Locations - {{ location.name }}{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('location_index', {'versionSlug': version.slug}) }}">Locations</a>
+            </li>
+            <li class="breadcrumb-item active">{{ location.name }}</li>
+        </ol>
+    </nav>
+
+    <h1>{{ location.name }}</h1>
+    {% for area in location.areas %}
+        {% if location.areas|length > 1 %}
+            <h2>{{ area.name }}</h2>
+        {% endif %}
+
+        {{ datatable.datatable(encounter_tables[area.slug], 'pkt-location-view-encounters-'~random()) }}
+    {% endfor %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('location_view') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('location_view') }}
+{% endblock %}

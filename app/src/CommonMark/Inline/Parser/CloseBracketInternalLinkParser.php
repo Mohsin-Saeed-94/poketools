@@ -9,6 +9,7 @@ namespace App\CommonMark\Inline\Parser;
 use App\Entity\AbilityInVersionGroup;
 use App\Entity\EntityHasNameInterface;
 use App\Entity\ItemInVersionGroup;
+use App\Entity\LocationInVersionGroup;
 use App\Entity\MoveInVersionGroup;
 use App\Entity\TypeChart;
 use App\Entity\Version;
@@ -231,6 +232,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
         $requiresVersion = [
             'ability',
             'item',
+            'location',
             'move',
             'nature',
             'type',
@@ -244,7 +246,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
                 return $this->getMechanicLink($slug);
             case 'ability':
                 if ($this->getEntityForLink(AbilityInVersionGroup::class, $slug, $this->currentVersion) === null) {
-                    return null;
+                    return $this->noEntityFound();
                 }
 
                 return $this->urlGenerator->generate(
@@ -256,7 +258,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
                 );
             case 'item':
                 if ($this->getEntityForLink(ItemInVersionGroup::class, $slug, $this->currentVersion) === null) {
-                    return null;
+                    return $this->noEntityFound();
                 }
 
                 return $this->urlGenerator->generate(
@@ -266,9 +268,21 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
                         'itemSlug' => $slug,
                     ]
                 );
+            case 'location':
+                if ($this->getEntityForLink(LocationInVersionGroup::class, $slug, $this->currentVersion) === null) {
+                    return $this->noEntityFound();
+                }
+
+                return $this->urlGenerator->generate(
+                    'location_view',
+                    [
+                        'versionSlug' => $this->currentVersion->getSlug(),
+                        'locationSlug' => $slug,
+                    ]
+                );
             case 'move':
                 if ($this->getEntityForLink(MoveInVersionGroup::class, $slug, $this->currentVersion) === null) {
-                    return null;
+                    return $this->noEntityFound();
                 }
 
                 return $this->urlGenerator->generate(
@@ -280,7 +294,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
                 );
             case 'nature':
                 if ($this->getEntityForLink(AbilityInVersionGroup::class, $slug, $this->currentVersion) === null) {
-                    return null;
+                    return $this->noEntityFound();
                 }
 
                 return $this->urlGenerator->generate(
@@ -294,7 +308,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
                 $typeChartRepo = $this->em->getRepository(TypeChart::class);
                 $type = $typeChartRepo->findTypeInTypeChart($slug, $this->currentVersion);
                 if ($type === null) {
-                    return null;
+                    return $this->noEntityFound();
                 }
                 $this->currentEntity = $type;
 
@@ -347,6 +361,16 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
         $this->currentEntity = $entity;
 
         return $entity;
+    }
+
+    /**
+     * @return null
+     */
+    protected function noEntityFound()
+    {
+        $this->currentEntity = null;
+
+        return null;
     }
 
 }

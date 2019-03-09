@@ -25,6 +25,7 @@ class MenuBuilder
      * MenuBuilder constructor.
      *
      * @param FactoryInterface $factory
+     * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(FactoryInterface $factory, UrlGeneratorInterface $urlGenerator)
     {
@@ -71,7 +72,14 @@ class MenuBuilder
                 ],
             ]
         );
-        $menu->addChild('Locations', ['uri' => '#']);
+        $locationsUri = $this->urlGenerator->generate('location_index', ['versionSlug' => '__VERSION__']);
+        $menu->addChild(
+            'Locations',
+            [
+                'uri' => $locationsUri,
+                'linkAttributes' => ['data-uri-template' => $locationsUri],
+            ]
+        );
         $naturesUri = $this->urlGenerator->generate('nature_index', ['versionSlug' => '__VERSION__']);
         $menu->addChild(
             'Natures',

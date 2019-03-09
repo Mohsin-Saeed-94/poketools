@@ -41,7 +41,7 @@ class Encounter extends AbstractDexEntity implements EntityGroupedByVersionInter
     /**
      * @var Pokemon
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pokemon")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pokemon", inversedBy="encounters")
      * @Assert\NotBlank()
      */
     protected $pokemon;

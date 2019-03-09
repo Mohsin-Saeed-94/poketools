@@ -189,8 +189,14 @@ class PokemonTableType implements DataTableTypeInterface
                 'propertyPath' => 'stats',
 //                'orderable' => true,
                 'className' => 'pkt-pokemon-index-table-total',
-                'data' => function (Pokemon $context, Collection $value) {
-                    return $context->getStatTotal();
+                'data' => function ($context, Collection $value) {
+                    $total = 0;
+                    foreach ($value as $pokemonStat) {
+                        /** @var PokemonStat $pokemonStat */
+                        $total += $pokemonStat->getBaseValue();
+                    }
+
+                    return $total;
                 },
             ]
         )->createAdapter(

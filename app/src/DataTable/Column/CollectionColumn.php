@@ -66,6 +66,10 @@ class CollectionColumn extends AbstractColumn
             $items[] = $column->transform($item, $childContext);
         }
 
+        if (is_callable($this->options['render'])) {
+            $items = call_user_func($this->options['render'], $items, $context);
+        }
+
         return $this->twigEnvironment->render(
             self::TEMPLATE_PATH,
             [

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Locations{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item active">Locations</li>
+        </ol>
+    </nav>
+
+    <h1>Locations</h1>
+    {% for region in regions %}
+        <h2>{{ region.name }}</h2>
+        <ul class="pkt-location-index-list">
+            {% for location in locations[region.slug] %}
+                <li>
+                    <a href="{{ path('location_view', {'versionSlug': version.slug, 'locationSlug': location.slug}) }}">
+                        {{ location.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('location_index') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('location_index') }}
+{% endblock %}

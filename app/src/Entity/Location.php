@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * A place in the Pokémon world.
  *
- * @ORM\Entity(repositoryClass="App\Repository\LocationInVersionGroupRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\LocationRepository")
  *
  * @method Collection|LocationInVersionGroup[] getChildren()
  * @method self addChild(LocationInVersionGroup $child)

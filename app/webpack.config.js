@@ -29,6 +29,8 @@ Encore
     .addEntry('ability_view', './assets/js/ability_view.js')
     .addEntry('item_index', './assets/js/item_index.js')
     .addEntry('item_view', './assets/js/item_view.js')
+    .addEntry('location_index', './assets/js/location_index.js')
+    .addEntry('location_view', './assets/js/location_view.js')
     .addEntry('move_index', './assets/js/move_index.js')
     .addEntry('move_view', './assets/js/move_view.js')
     .addEntry('nature_index', './assets/js/nature_index.js')

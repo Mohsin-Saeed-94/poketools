@@ -2,21 +2,23 @@
 
 namespace App\Repository;
 
-use App\Entity\Location;
+use App\Entity\LocationInVersionGroup;
+use App\Entity\Region;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Location|null find($id, $lockMode = null, $lockVersion = null)
- * @method Location|null findOneBy(array $criteria, array $orderBy = null)
- * @method Location[]    findAll()
- * @method Location[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method LocationInVersionGroup|null find($id, $lockMode = null, $lockVersion = null)
+ * @method LocationInVersionGroup|null findOneBy(array $criteria, array $orderBy = null)
+ * @method LocationInVersionGroup[]    findAll()
+ * @method LocationInVersionGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LocationInVersionGroupRepository extends ServiceEntityRepository
+class LocationInVersionGroupRepository extends ServiceEntityRepository implements SlugAndVersionInterface
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Location::class);
+        parent::__construct($registry, LocationInVersionGroup::class);
     }
 
 //    /**
@@ -47,4 +49,45 @@ class LocationInVersionGroupRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param Version $version
+     * @param Region $region
+     *
+     * @return LocationInVersionGroup[]
+     */
+    public function findByVersionAndRegion(Version $version, Region $region): array
+    {
+        $qb = $this->createQueryBuilder('location');
+        $qb->join('location.versionGroup', 'version_group')
+            ->andWhere('location.region = :region')
+            ->andWhere(':version MEMBER OF version_group.versions')
+            ->setParameter('region', $region)
+            ->setParameter('version', $version);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return LocationInVersionGroup|null
+     */
+    public function findOneByVersion(string $slug, Version $version)
+    {
+        $qb = $this->createQueryBuilder('location');
+        $qb->join('location.versionGroup', 'version_group')
+            ->andWhere('location.slug = :slug')
+            ->andWhere(':version MEMBER OF version_group.versions')
+            ->setParameter('slug', $slug)
+            ->setParameter('version', $version);
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getOneOrNullResult();
+    }
 }

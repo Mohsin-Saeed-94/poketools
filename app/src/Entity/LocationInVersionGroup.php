@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * A place in the Pokémon world.
  *
- * @ORM\Entity(repositoryClass="App\Repository\LocationRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\LocationInVersionGroupRepository")
  *
  * @method Location getParent()
  * @method self setParent(Location $parent)

@@ -10,7 +10,6 @@ use App\Entity\Version;
 use App\Repository\ItemInVersionGroupRepository;
 use App\Repository\ItemPocketInVersionGroupRepository;
 use App\Repository\MoveLearnMethodRepository;
-use App\Repository\PokemonRepository;
 use App\Repository\PokemonWildHeldItemRepository;
 use Omines\DataTablesBundle\DataTableFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -53,7 +52,7 @@ class ItemController extends AbstractDexController
      * @param ItemInVersionGroupRepository $itemRepo
      * @param ItemPocketInVersionGroupRepository $pocketRepo
      * @param PokemonWildHeldItemRepository $heldItemRepo
-     * @param PokemonRepository $pokemonRepo
+     * @param MoveLearnMethodRepository $moveLearnMethodRepo
      */
     public function __construct(
         DataTableFactory $dataTableFactory,

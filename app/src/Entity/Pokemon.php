@@ -301,6 +301,14 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     protected $mega = false;
 
     /**
+     * @var Collection|Encounter[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Encounter", mappedBy="pokemon", cascade={"REMOVE"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "ASC"})
+     */
+    protected $encounters;
+
+    /**
      * @var Collection|PokemonForm[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PokemonForm", mappedBy="pokemon", cascade={"ALL"}, orphanRemoval=true)
@@ -322,6 +330,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
         $this->moves = new ArrayCollection();
         $this->stats = new ArrayCollection();
         $this->types = new ArrayCollection();
+        $this->encounters = new ArrayCollection();
         $this->forms = new ArrayCollection();
     }
 
@@ -1108,6 +1117,43 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     public function setMega(bool $mega): self
     {
         $this->mega = $mega;
+
+        return $this;
+    }
+
+    /**
+     * @return Encounter[]|Collection
+     */
+    public function getEncounters()
+    {
+        return $this->encounters;
+    }
+
+    /**
+     * @param Encounter $encounter
+     *
+     * @return self
+     */
+    public function addEncounter(Encounter $encounter): self
+    {
+        if (!$this->encounters->contains($encounter)) {
+            $this->encounters->add($encounter);
+            $encounter->setPokemon($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Encounter $encounter
+     *
+     * @return self
+     */
+    public function removeEncounter(Encounter $encounter): self
+    {
+        if ($this->encounters->contains($encounter)) {
+            $this->encounters->removeElement($encounter);
+        }
 
         return $this;
     }
