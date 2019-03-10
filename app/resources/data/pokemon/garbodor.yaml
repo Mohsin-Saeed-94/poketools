@@ -69,16 +69,19 @@ black-white:
           It clenches opponents with its left arm
           and finishes them off with foul-smelling
           poison gas belched from its mouth.
+          
         white: |
           They absorb garbage and make it part
           of their bodies. They shoot a poisonous
           liquid from their right-hand fingertips.
+          
       forms: &black-white.pokemon.garbodor.forms
         garbodor:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.garbodor.forms.garbodor.form_name 'Default Form'
           default: *black-white.pokemon.garbodor.default
-          battle_only: false
+          battle_only: &black-white.pokemon.garbodor.forms.garbodor.battle_only false
+          icon: gen5/garbodor-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -116,10 +119,12 @@ black-2-white-2:
           Consuming garbage makes
           new kinds of poison gases
           and liquids inside their bodies.
+          
         white-2: |
           Consuming garbage makes
           new kinds of poison gases
           and liquids inside their bodies.
+          
       forms: *black-white.pokemon.garbodor.forms
 x-y:
   name: *black-white.name
@@ -161,10 +166,18 @@ x-y:
           It clenches opponents with its left arm and finishes
           them off with foul-smelling poison gas belched from
           its mouth.
+          
         'y': |
           Consuming garbage makes new kinds of poison
           gases and liquids inside their bodies.
-      forms: *black-white.pokemon.garbodor.forms
+          
+      forms: &x-y.pokemon.garbodor.forms
+        garbodor:
+          name: *black-white.name
+          form_name: *black-white.pokemon.garbodor.forms.garbodor.form_name
+          default: *black-white.pokemon.garbodor.default
+          battle_only: *black-white.pokemon.garbodor.forms.garbodor.battle_only
+          icon: garbodor-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -199,10 +212,12 @@ omega-ruby-alpha-sapphire:
           It clenches opponents with its left arm and finishes
           them off with foul-smelling poison gas belched from
           its mouth.
+          
         alpha-sapphire: |
           Consuming garbage makes new kinds of poison
           gases and liquids inside their bodies.
-      forms: *black-white.pokemon.garbodor.forms
+          
+      forms: *x-y.pokemon.garbodor.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -239,7 +254,8 @@ sun-moon:
           For a time, their numbers increased explosively
           in Alola. Since the arrival of Grimer, their
           population has decreased dramatically.
-      forms: *black-white.pokemon.garbodor.forms
+          
+      forms: *x-y.pokemon.garbodor.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -274,4 +290,5 @@ ultra-sun-ultra-moon:
           It locks opponents in place with its left hand,
           immobilizing them by entirely dousing their
           bodies with poisonous liquid.
-      forms: *black-white.pokemon.garbodor.forms
+          
+      forms: *x-y.pokemon.garbodor.forms

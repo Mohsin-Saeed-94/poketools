@@ -62,16 +62,19 @@ black-white:
           Its red core functions as an energy
           tank. It fires the charged energy
           through its spikes into an area.
+          
         white: |
           The gear with the red core is
           rotated at high speed for a
           rapid energy charge.
+          
       forms: &black-white.pokemon.klinklang.forms
         klinklang:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.klinklang.forms.klinklang.form_name 'Default Form'
           default: *black-white.pokemon.klinklang.default
-          battle_only: false
+          battle_only: &black-white.pokemon.klinklang.forms.klinklang.battle_only false
+          icon: gen5/klinklang-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,10 +108,12 @@ black-2-white-2:
           The minigear spins at high speed. Then
           the energy from the red core charges
           the minigear to make it ready to fire.
+          
         white-2: |
           The minigear spins at high speed. Then
           the energy from the red core charges
           the minigear to make it ready to fire.
+          
       forms: *black-white.pokemon.klinklang.forms
 x-y:
   name: *black-white.name
@@ -142,10 +147,18 @@ x-y:
         x: |
           The gear with the red core is rotated at high speed
           for a rapid energy charge.
+          
         'y': |
           Its red core functions as an energy tank. It fires the
           charged energy through its spikes into an area.
-      forms: *black-white.pokemon.klinklang.forms
+          
+      forms: &x-y.pokemon.klinklang.forms
+        klinklang:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klinklang.forms.klinklang.form_name
+          default: *black-white.pokemon.klinklang.default
+          battle_only: *black-white.pokemon.klinklang.forms.klinklang.battle_only
+          icon: klinklang-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -177,10 +190,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The gear with the red core is rotated at high speed
           for a rapid energy charge.
+          
         alpha-sapphire: |
           Its red core functions as an energy tank. It fires the
           charged energy through its spikes into an area.
-      forms: *black-white.pokemon.klinklang.forms
+          
+      forms: *x-y.pokemon.klinklang.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -207,5 +222,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.klinklang.stats
       abilities: *black-white.pokemon.klinklang.abilities
       evolution_conditions: *black-white.pokemon.klinklang.evolution_conditions
-      forms: *black-white.pokemon.klinklang.forms
+      forms: *x-y.pokemon.klinklang.forms
 ultra-sun-ultra-moon: *sun-moon

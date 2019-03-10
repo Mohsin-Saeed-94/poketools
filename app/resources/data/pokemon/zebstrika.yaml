@@ -67,16 +67,19 @@ black-white:
           They have lightning-like movements.
           When Zebstrika run at full speed,
           the sound of thunder reverberates.
+          
         white: |
           This ill-tempered Pokémon is dangerous
           because when it’s angry, it shoots
           lightning from its mane in all directions.
+          
       forms: &black-white.pokemon.zebstrika.forms
         zebstrika:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.zebstrika.forms.zebstrika.form_name 'Default Form'
           default: *black-white.pokemon.zebstrika.default
-          battle_only: false
+          battle_only: &black-white.pokemon.zebstrika.forms.zebstrika.battle_only false
+          icon: gen5/zebstrika-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -114,10 +117,12 @@ black-2-white-2:
           When this ill-tempered Pokémon
           runs wild, it shoots lightning
           from its mane in all directions.
+          
         white-2: |
           When this ill-tempered Pokémon
           runs wild, it shoots lightning
           from its mane in all directions.
+          
       forms: *black-white.pokemon.zebstrika.forms
 x-y:
   name: *black-white.name
@@ -152,11 +157,19 @@ x-y:
         x: |
           When this ill-tempered Pokémon runs wild, it
           shoots lightning from its mane in all directions.
+          
         'y': |
           They have lightning-like movements.
           When Zebstrika run at full speed, the sound of
           thunder reverberates.
-      forms: *black-white.pokemon.zebstrika.forms
+          
+      forms: &x-y.pokemon.zebstrika.forms
+        zebstrika:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zebstrika.forms.zebstrika.form_name
+          default: *black-white.pokemon.zebstrika.default
+          battle_only: *black-white.pokemon.zebstrika.forms.zebstrika.battle_only
+          icon: zebstrika-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -189,11 +202,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           When this ill-tempered Pokémon runs wild, it
           shoots lightning from its mane in all directions.
+          
         alpha-sapphire: |
           They have lightning-like movements.
           When Zebstrika run at full speed, the sound of
           thunder reverberates.
-      forms: *black-white.pokemon.zebstrika.forms
+          
+      forms: *x-y.pokemon.zebstrika.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -221,5 +236,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.zebstrika.stats
       abilities: *black-white.pokemon.zebstrika.abilities
       evolution_conditions: *black-white.pokemon.zebstrika.evolution_conditions
-      forms: *black-white.pokemon.zebstrika.forms
+      forms: *x-y.pokemon.zebstrika.forms
 ultra-sun-ultra-moon: *sun-moon

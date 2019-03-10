@@ -62,16 +62,19 @@ black-white:
           By changing the direction in which it
           rotates, it communicates its feelings to
           others. When angry, it rotates faster.
+          
         white: |
           Spinning minigears are rotated at high
           speed and repeatedly fired away. It is
           dangerous if the gears don’t return.
+          
       forms: &black-white.pokemon.klang.forms
         klang:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.klang.forms.klang.form_name 'Default Form'
           default: *black-white.pokemon.klang.default
-          battle_only: false
+          battle_only: &black-white.pokemon.klang.forms.klang.battle_only false
+          icon: gen5/klang-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,10 +108,12 @@ black-2-white-2:
           A minigear and big gear comprise its
           body. If the minigear it launches at
           a foe doesn’t return, it will die.
+          
         white-2: |
           A minigear and big gear comprise its
           body. If the minigear it launches at
           a foe doesn’t return, it will die.
+          
       forms: *black-white.pokemon.klang.forms
 x-y:
   name: *black-white.name
@@ -143,11 +148,19 @@ x-y:
           By changing the direction in which it rotates,
           it communicates its feelings to others. When angry,
           it rotates faster.
+          
         'y': |
           A minigear and big gear comprise its body. If the
           minigear it launches at a foe doesn’t return, it
           will die.
-      forms: *black-white.pokemon.klang.forms
+          
+      forms: &x-y.pokemon.klang.forms
+        klang:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klang.forms.klang.form_name
+          default: *black-white.pokemon.klang.default
+          battle_only: *black-white.pokemon.klang.forms.klang.battle_only
+          icon: klang-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -180,11 +193,13 @@ omega-ruby-alpha-sapphire:
           By changing the direction in which it rotates,
           it communicates its feelings to others. When angry,
           it rotates faster.
+          
         alpha-sapphire: |
           A minigear and big gear comprise its body. If the
           minigear it launches at a foe doesn’t return, it
           will die.
-      forms: *black-white.pokemon.klang.forms
+          
+      forms: *x-y.pokemon.klang.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -211,5 +226,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.klang.stats
       abilities: *black-white.pokemon.klang.abilities
       evolution_conditions: *black-white.pokemon.klang.evolution_conditions
-      forms: *black-white.pokemon.klang.forms
+      forms: *x-y.pokemon.klang.forms
 ultra-sun-ultra-moon: *sun-moon

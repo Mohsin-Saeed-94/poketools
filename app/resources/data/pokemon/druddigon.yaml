@@ -64,16 +64,19 @@ black-white:
           It warms its body by absorbing sunlight
           with its wings. When its body temperature
           falls, it can no longer move.
+          
         white: |
           It races through narrow caves, using
           its sharp claws to catch prey. The skin
           on its face is harder than a rock.
+          
       forms: &black-white.pokemon.druddigon.forms
         druddigon:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.druddigon.forms.druddigon.form_name 'Default Form'
           default: *black-white.pokemon.druddigon.default
-          battle_only: false
+          battle_only: &black-white.pokemon.druddigon.forms.druddigon.battle_only false
+          icon: gen5/druddigon-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,10 +112,12 @@ black-2-white-2:
           It runs through the narrow tunnels
           formed by Excadrill and Onix.
           It uses its sharp claws to catch prey.
+          
         white-2: |
           It runs through the narrow tunnels
           formed by Excadrill and Onix.
           It uses its sharp claws to catch prey.
+          
       forms: *black-white.pokemon.druddigon.forms
 x-y:
   name: *black-white.name
@@ -150,11 +155,19 @@ x-y:
           It races through narrow caves, using its sharp claws
           to catch prey. The skin on its face is harder than
           a rock.
+          
         'y': |
           It warms its body by absorbing sunlight with its
           wings. When its body temperature falls, it can no
           longer move.
-      forms: *black-white.pokemon.druddigon.forms
+          
+      forms: &x-y.pokemon.druddigon.forms
+        druddigon:
+          name: *black-white.name
+          form_name: *black-white.pokemon.druddigon.forms.druddigon.form_name
+          default: *black-white.pokemon.druddigon.default
+          battle_only: *black-white.pokemon.druddigon.forms.druddigon.battle_only
+          icon: druddigon-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -187,11 +200,13 @@ omega-ruby-alpha-sapphire:
           It races through narrow caves, using its sharp claws
           to catch prey. The skin on its face is harder than
           a rock.
+          
         alpha-sapphire: |
           It warms its body by absorbing sunlight with its
           wings. When its body temperature falls, it can no
           longer move.
-      forms: *black-white.pokemon.druddigon.forms
+          
+      forms: *x-y.pokemon.druddigon.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -219,7 +234,7 @@ sun-moon:
       abilities: *black-white.pokemon.druddigon.abilities
       wild_held_items:
         moon: *black-white.pokemon.druddigon.wild_held_items.black
-      forms: *black-white.pokemon.druddigon.forms
+      forms: *x-y.pokemon.druddigon.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -252,4 +267,5 @@ ultra-sun-ultra-moon:
           The red skin on its face is harder than rock.
           In narrow caves, it squares off against its
           enemies and charges face-first right into them.
-      forms: *black-white.pokemon.druddigon.forms
+          
+      forms: *x-y.pokemon.druddigon.forms

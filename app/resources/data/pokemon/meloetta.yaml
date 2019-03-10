@@ -58,15 +58,17 @@ black-white:
           Its melodies are sung with a special
           vocalization method that can control
           the feelings of those who hear it.
+          
         white: |
           Many famous songs have been inspired
           by the melodies that Meloetta plays.
       forms: &black-white.pokemon.meloetta-aria.forms
         meloetta-aria:
-          name: 'Aria Meloetta'
-          form_name: 'Aria Forme'
+          name: &black-white.pokemon.meloetta-aria.forms.meloetta-aria.name 'Aria Meloetta'
+          form_name: &black-white.pokemon.meloetta-aria.forms.meloetta-aria.form_name 'Aria Forme'
           default: *black-white.pokemon.meloetta-aria.default
-          battle_only: false
+          battle_only: &black-white.pokemon.meloetta-aria.forms.meloetta-aria.battle_only false
+          icon: gen5/meloetta-aria.png
     meloetta-pirouette:
       genus: *black-white.pokemon.meloetta-aria.genus
       color: *black-white.pokemon.meloetta-aria.color
@@ -112,9 +114,10 @@ black-white:
       forms: &black-white.pokemon.meloetta-pirouette.forms
         meloetta-pirouette:
           name: *black-white.pokemon.meloetta-pirouette.name
-          form_name: 'Pirouette Forme'
+          form_name: &black-white.pokemon.meloetta-pirouette.forms.meloetta-pirouette.form_name 'Pirouette Forme'
           default: *black-white.pokemon.meloetta-aria.default
-          battle_only: true
+          battle_only: &black-white.pokemon.meloetta-pirouette.forms.meloetta-pirouette.battle_only true
+          icon: gen5/meloetta-pirouette.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -150,6 +153,7 @@ black-2-white-2:
           The melodies sung by Meloetta have
           the power to make Pokémon that
           hear them happy or sad.
+          
         white-2: |
           The melodies sung by Meloetta have
           the power to make Pokémon that
@@ -212,11 +216,18 @@ x-y:
         x: |
           The melodies sung by Meloetta have the power to
           make Pokémon that hear them happy or sad.
+          
         'y': |
           Its melodies are sung with a special vocalization
           method that can control the feelings of those who
           hear it.
-      forms: *black-white.pokemon.meloetta-aria.forms
+      forms: &x-y.pokemon.meloetta-aria.forms
+        meloetta-aria:
+          name: *black-white.pokemon.meloetta-aria.forms.meloetta-aria.name
+          form_name: *black-white.pokemon.meloetta-aria.forms.meloetta-aria.form_name
+          default: *black-white.pokemon.meloetta-aria.default
+          battle_only: *black-white.pokemon.meloetta-aria.forms.meloetta-aria.battle_only
+          icon: meloetta-aria.png
     meloetta-pirouette:
       genus: *black-white.pokemon.meloetta-aria.genus
       color: *black-white.pokemon.meloetta-aria.color
@@ -240,7 +251,13 @@ x-y:
       abilities: *black-white.pokemon.meloetta-aria.abilities
       wild_held_items: *x-y.pokemon.meloetta-aria.wild_held_items
       flavor_text: *x-y.pokemon.meloetta-aria.flavor_text
-      forms: *black-white.pokemon.meloetta-pirouette.forms
+      forms: &x-y.pokemon.meloetta-pirouette.forms
+        meloetta-pirouette:
+          name: *black-white.pokemon.meloetta-pirouette.name
+          form_name: *black-white.pokemon.meloetta-pirouette.forms.meloetta-pirouette.form_name
+          default: *black-white.pokemon.meloetta-aria.default
+          battle_only: *black-white.pokemon.meloetta-pirouette.forms.meloetta-pirouette.battle_only
+          icon: meloetta-pirouette.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -271,11 +288,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The melodies sung by Meloetta have the power to
           make Pokémon that hear them happy or sad.
+          
         alpha-sapphire: |
           Its melodies are sung with a special vocalization
           method that can control the feelings of those who
           hear it.
-      forms: *black-white.pokemon.meloetta-aria.forms
+      forms: *x-y.pokemon.meloetta-aria.forms
     meloetta-pirouette:
       genus: *black-white.pokemon.meloetta-aria.genus
       color: *black-white.pokemon.meloetta-aria.color
@@ -298,7 +316,7 @@ omega-ruby-alpha-sapphire:
       stats: *black-white.pokemon.meloetta-pirouette.stats
       abilities: *black-white.pokemon.meloetta-aria.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.meloetta-aria.flavor_text
-      forms: *black-white.pokemon.meloetta-pirouette.forms
+      forms: *x-y.pokemon.meloetta-pirouette.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -327,7 +345,7 @@ sun-moon:
       wild_held_items: &sun-moon.pokemon.meloetta-aria.wild_held_items
         moon: &sun-moon.pokemon.meloetta-aria.wild_held_items.moon
           star-piece: 5
-      forms: *black-white.pokemon.meloetta-aria.forms
+      forms: *x-y.pokemon.meloetta-aria.forms
     meloetta-pirouette:
       genus: *black-white.pokemon.meloetta-aria.genus
       color: *black-white.pokemon.meloetta-aria.color
@@ -350,7 +368,7 @@ sun-moon:
       stats: *black-white.pokemon.meloetta-pirouette.stats
       abilities: *black-white.pokemon.meloetta-aria.abilities
       wild_held_items: *sun-moon.pokemon.meloetta-aria.wild_held_items
-      forms: *black-white.pokemon.meloetta-pirouette.forms
+      forms: *x-y.pokemon.meloetta-pirouette.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -378,7 +396,7 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.meloetta-aria.abilities
       wild_held_items: &ultra-sun-ultra-moon.pokemon.meloetta-aria.wild_held_items
         ultra-sun: *sun-moon.pokemon.meloetta-aria.wild_held_items.moon
-      forms: *black-white.pokemon.meloetta-aria.forms
+      forms: *x-y.pokemon.meloetta-aria.forms
     meloetta-pirouette:
       genus: *black-white.pokemon.meloetta-aria.genus
       color: *black-white.pokemon.meloetta-aria.color
@@ -401,4 +419,4 @@ ultra-sun-ultra-moon:
       stats: *black-white.pokemon.meloetta-pirouette.stats
       abilities: *black-white.pokemon.meloetta-aria.abilities
       wild_held_items: *ultra-sun-ultra-moon.pokemon.meloetta-aria.wild_held_items
-      forms: *black-white.pokemon.meloetta-pirouette.forms
+      forms: *x-y.pokemon.meloetta-pirouette.forms

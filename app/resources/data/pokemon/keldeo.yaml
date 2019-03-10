@@ -54,16 +54,18 @@ black-white:
           By blasting water from its hooves, it can
           glide across water. It excels at using
           leg moves while battling.
+          
         white: |
           It crosses the world, running over
           the surfaces of oceans and rivers.
           It appears at scenic waterfronts.
       forms: &black-white.pokemon.keldeo-ordinary.forms
         keldeo-ordinary:
-          name: 'Ordinary Keldeo'
-          form_name: 'Ordinary Form'
+          name: &black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.name 'Ordinary Keldeo'
+          form_name: &black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.form_name 'Ordinary Form'
           default: *black-white.pokemon.keldeo-ordinary.default
           battle_only: &black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only false
+          icon: gen5/keldeo-ordinary.png
     keldeo-resolute:
       genus: *black-white.pokemon.keldeo-ordinary.genus
       color: *black-white.pokemon.keldeo-ordinary.color
@@ -88,9 +90,10 @@ black-white:
       forms: &black-white.pokemon.keldeo-resolute.forms
         keldeo-resolute:
           name: *black-white.pokemon.keldeo-resolute.name
-          form_name: 'Resolute Form'
+          form_name: &black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name 'Resolute Form'
           default: *black-white.pokemon.keldeo-ordinary.default
           battle_only: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only
+          icon: gen5/keldeo-resolute.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -123,6 +126,7 @@ black-2-white-2:
           When it is resolute, its body fills
           with power and it becomes swifter.
           Its jumps are then too fast to follow.
+          
         white-2: |
           When it is resolute, its body fills
           with power and it becomes swifter.
@@ -181,11 +185,18 @@ x-y:
         x: |
           It crosses the world, running over the surfaces of
           oceans and rivers. It appears at scenic waterfronts.
+          
         'y': |
           When it is resolute, its body fills with power and it
           becomes swifter. Its jumps are then too fast
           to follow.
-      forms: *black-white.pokemon.keldeo-ordinary.forms
+      forms: &x-y.pokemon.keldeo-ordinary.forms
+        keldeo-ordinary:
+          name: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.name
+          form_name: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.form_name
+          default: *black-white.pokemon.keldeo-ordinary.default
+          battle_only: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only
+          icon: keldeo-ordinary.png
     keldeo-resolute:
       genus: *black-white.pokemon.keldeo-ordinary.genus
       color: *black-white.pokemon.keldeo-ordinary.color
@@ -208,7 +219,13 @@ x-y:
       stats: *black-white.pokemon.keldeo-ordinary.stats
       abilities: *black-white.pokemon.keldeo-ordinary.abilities
       flavor_text: *x-y.pokemon.keldeo-ordinary.flavor_text
-      forms: *black-white.pokemon.keldeo-resolute.forms
+      forms: &x-y.pokemon.keldeo-resolute.forms
+        keldeo-resolute:
+          name: *black-white.pokemon.keldeo-resolute.name
+          form_name: *black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name
+          default: *black-white.pokemon.keldeo-ordinary.default
+          battle_only: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only
+          icon: keldeo-resolute.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -239,11 +256,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It crosses the world, running over the surfaces of
           oceans and rivers. It appears at scenic waterfronts.
+          
         alpha-sapphire: |
           When it is resolute, its body fills with power and it
           becomes swifter. Its jumps are then too fast
           to follow.
-      forms: *black-white.pokemon.keldeo-ordinary.forms
+      forms: *x-y.pokemon.keldeo-ordinary.forms
     keldeo-resolute:
       genus: *black-white.pokemon.keldeo-ordinary.genus
       color: *black-white.pokemon.keldeo-ordinary.color
@@ -266,7 +284,7 @@ omega-ruby-alpha-sapphire:
       stats: *black-white.pokemon.keldeo-ordinary.stats
       abilities: *black-white.pokemon.keldeo-ordinary.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.keldeo-ordinary.flavor_text
-      forms: *black-white.pokemon.keldeo-resolute.forms
+      forms: *x-y.pokemon.keldeo-resolute.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -292,7 +310,7 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.keldeo-ordinary.mega
       stats: *black-white.pokemon.keldeo-ordinary.stats
       abilities: *black-white.pokemon.keldeo-ordinary.abilities
-      forms: *black-white.pokemon.keldeo-ordinary.forms
+      forms: *x-y.pokemon.keldeo-ordinary.forms
     keldeo-resolute:
       genus: *black-white.pokemon.keldeo-ordinary.genus
       color: *black-white.pokemon.keldeo-ordinary.color
@@ -314,5 +332,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.keldeo-ordinary.mega
       stats: *black-white.pokemon.keldeo-ordinary.stats
       abilities: *black-white.pokemon.keldeo-ordinary.abilities
-      forms: *black-white.pokemon.keldeo-resolute.forms
+      forms: *x-y.pokemon.keldeo-resolute.forms
 ultra-sun-ultra-moon: *sun-moon

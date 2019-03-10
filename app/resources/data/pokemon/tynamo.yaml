@@ -53,16 +53,19 @@ black-white:
           While one alone doesn’t have much power,
           a chain of many Tynamo can be as
           powerful as lightning.
+          
         white: |
           These Pokémon move in schools. They
           have an electricity-generating organ, so
           they discharge electricity if in danger.
+          
       forms: &black-white.pokemon.tynamo.forms
         tynamo:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.tynamo.forms.tynamo.form_name 'Default Form'
           default: *black-white.pokemon.tynamo.default
-          battle_only: false
+          battle_only: &black-white.pokemon.tynamo.forms.tynamo.battle_only false
+          icon: gen5/tynamo-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -95,10 +98,12 @@ black-2-white-2:
           One alone can emit only a trickle of
           electricity, so a group of them gathers
           to unleash a powerful electric shock.
+          
         white-2: |
           One alone can emit only a trickle of
           electricity, so a group of them gathers
           to unleash a powerful electric shock.
+          
       forms: *black-white.pokemon.tynamo.forms
 x-y:
   name: *black-white.name
@@ -131,11 +136,19 @@ x-y:
         x: |
           While one alone doesn’t have much power, a chain
           of many Tynamo can be as powerful as lightning.
+          
         'y': |
           One alone can emit only a trickle of electricity,
           so a group of them gathers to unleash a powerful
           electric shock.
-      forms: *black-white.pokemon.tynamo.forms
+          
+      forms: &x-y.pokemon.tynamo.forms
+        tynamo:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tynamo.forms.tynamo.form_name
+          default: *black-white.pokemon.tynamo.default
+          battle_only: *black-white.pokemon.tynamo.forms.tynamo.battle_only
+          icon: tynamo-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -166,11 +179,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           While one alone doesn’t have much power, a chain
           of many Tynamo can be as powerful as lightning.
+          
         alpha-sapphire: |
           One alone can emit only a trickle of electricity,
           so a group of them gathers to unleash a powerful
           electric shock.
-      forms: *black-white.pokemon.tynamo.forms
+          
+      forms: *x-y.pokemon.tynamo.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -196,5 +211,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.tynamo.mega
       stats: *black-white.pokemon.tynamo.stats
       abilities: *black-white.pokemon.tynamo.abilities
-      forms: *black-white.pokemon.tynamo.forms
+      forms: *x-y.pokemon.tynamo.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -63,16 +63,19 @@ black-white:
           It uses an up-tempo song and dance
           to drive away the bird Pokémon that
           prey on its flower seeds.
+          
         white: |
           Arid regions are their habitat.
           They move rhythmically, making
           a sound similar to maracas.
+          
       forms: &black-white.pokemon.maractus.forms
         maractus:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.maractus.forms.maractus.form_name 'Default Form'
           default: *black-white.pokemon.maractus.default
-          battle_only: false
+          battle_only: &black-white.pokemon.maractus.forms.maractus.battle_only false
+          icon: gen5/maractus-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           When it moves rhythmically,
           it makes a sound similar to maracas,
           making the surprised Pokémon flee.
+          
         white-2: |
           When it moves rhythmically,
           it makes a sound similar to maracas,
           making the surprised Pokémon flee.
+          
       forms: *black-white.pokemon.maractus.forms
 x-y:
   name: *black-white.name
@@ -147,10 +152,18 @@ x-y:
         x: |
           It uses an up-tempo song and dance to drive away
           the bird Pokémon that prey on its flower seeds.
+          
         'y': |
           Arid regions are their habitat. They move
           rhythmically, making a sound similar to maracas.
-      forms: *black-white.pokemon.maractus.forms
+          
+      forms: &x-y.pokemon.maractus.forms
+        maractus:
+          name: *black-white.name
+          form_name: *black-white.pokemon.maractus.forms.maractus.form_name
+          default: *black-white.pokemon.maractus.default
+          battle_only: *black-white.pokemon.maractus.forms.maractus.battle_only
+          icon: maractus-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -181,10 +194,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It uses an up-tempo song and dance to drive away
           the bird Pokémon that prey on its flower seeds.
+          
         alpha-sapphire: |
           Arid regions are their habitat. They move
           rhythmically, making a sound similar to maracas.
-      forms: *black-white.pokemon.maractus.forms
+          
+      forms: *x-y.pokemon.maractus.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -212,7 +227,7 @@ sun-moon:
       abilities: *black-white.pokemon.maractus.abilities
       wild_held_items:
         moon: *black-white.pokemon.maractus.wild_held_items.black
-      forms: *black-white.pokemon.maractus.forms
+      forms: *x-y.pokemon.maractus.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -240,4 +255,4 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.maractus.abilities
       wild_held_items:
         ultra-sun: *black-white.pokemon.maractus.wild_held_items.black
-      forms: *black-white.pokemon.maractus.forms
+      forms: *x-y.pokemon.maractus.forms

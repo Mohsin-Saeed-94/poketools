@@ -58,16 +58,19 @@ black-white:
           It can dig through the ground
           at a speed of 30 mph. It could give
           a car running aboveground a good race.
+          
         white: |
           It makes its way swiftly through the soil
           by putting both claws together and
           rotating at high speed.
+          
       forms: &black-white.pokemon.drilbur.forms
         drilbur:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.drilbur.forms.drilbur.form_name 'Default Form'
           default: *black-white.pokemon.drilbur.default
-          battle_only: false
+          battle_only: &black-white.pokemon.drilbur.forms.drilbur.battle_only false
+          icon: gen5/drilbur-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -100,10 +103,12 @@ black-2-white-2:
           By spinning its body, it can dig
           straight through the ground
           at a speed of 30 mph.
+          
         white-2: |
           By spinning its body, it can dig
           straight through the ground
           at a speed of 30 mph.
+          
       forms: *black-white.pokemon.drilbur.forms
 x-y:
   name: *black-white.name
@@ -136,10 +141,18 @@ x-y:
         x: |
           It makes its way swiftly through the soil by putting
           both claws together and rotating at high speed.
+          
         'y': |
           By spinning its body, it can dig straight through the
           ground at a speed of 30 mph.
-      forms: *black-white.pokemon.drilbur.forms
+          
+      forms: &x-y.pokemon.drilbur.forms
+        drilbur:
+          name: *black-white.name
+          form_name: *black-white.pokemon.drilbur.forms.drilbur.form_name
+          default: *black-white.pokemon.drilbur.default
+          battle_only: *black-white.pokemon.drilbur.forms.drilbur.battle_only
+          icon: drilbur-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -170,10 +183,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It makes its way swiftly through the soil by putting
           both claws together and rotating at high speed.
+          
         alpha-sapphire: |
           By spinning its body, it can dig straight through the
           ground at a speed of 30 mph.
-      forms: *black-white.pokemon.drilbur.forms
+          
+      forms: *x-y.pokemon.drilbur.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -199,5 +214,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.drilbur.mega
       stats: *black-white.pokemon.drilbur.stats
       abilities: *black-white.pokemon.drilbur.abilities
-      forms: *black-white.pokemon.drilbur.forms
+      forms: *x-y.pokemon.drilbur.forms
 ultra-sun-ultra-moon: *sun-moon

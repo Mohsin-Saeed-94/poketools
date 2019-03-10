@@ -59,16 +59,19 @@ black-white:
           They drive away attackers by unleashing
           psychic power. They can use telepathy
           to talk with others.
+          
         white: |
           Because their bodies are enveloped
           in a special liquid, they can survive
           in any environment.
+          
       forms: &black-white.pokemon.solosis.forms
         solosis:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.solosis.forms.solosis.form_name 'Default Form'
           default: *black-white.pokemon.solosis.default
-          battle_only: false
+          battle_only: &black-white.pokemon.solosis.forms.solosis.battle_only false
+          icon: gen5/solosis-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,10 +108,12 @@ black-2-white-2:
           Because their bodies are enveloped
           in a special liquid, they are fine in any
           environment, no matter how severe.
+          
         white-2: |
           Because their bodies are enveloped
           in a special liquid, they are fine in any
           environment, no matter how severe.
+          
       forms: *black-white.pokemon.solosis.forms
 x-y:
   name: *black-white.name
@@ -143,10 +148,18 @@ x-y:
           Because their bodies are enveloped in a special
           liquid, they are fine in any environment, no matter
           how severe.
+          
         'y': |
           They drive away attackers by unleashing psychic
           power. They can use telepathy to talk with others.
-      forms: *black-white.pokemon.solosis.forms
+          
+      forms: &x-y.pokemon.solosis.forms
+        solosis:
+          name: *black-white.name
+          form_name: *black-white.pokemon.solosis.forms.solosis.form_name
+          default: *black-white.pokemon.solosis.default
+          battle_only: *black-white.pokemon.solosis.forms.solosis.battle_only
+          icon: solosis-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -179,10 +192,12 @@ omega-ruby-alpha-sapphire:
           Because their bodies are enveloped in a special
           liquid, they are fine in any environment, no matter
           how severe.
+          
         alpha-sapphire: |
           They drive away attackers by unleashing psychic
           power. They can use telepathy to talk with others.
-      forms: *black-white.pokemon.solosis.forms
+          
+      forms: *x-y.pokemon.solosis.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -208,5 +223,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.solosis.mega
       stats: *black-white.pokemon.solosis.stats
       abilities: *black-white.pokemon.solosis.abilities
-      forms: *black-white.pokemon.solosis.forms
+      forms: *x-y.pokemon.solosis.forms
 ultra-sun-ultra-moon: *sun-moon

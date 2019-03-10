@@ -53,16 +53,19 @@ black-white:
           This Pokémon brings victory. It is said
           that Trainers with Victini always win,
           regardless of the type of encounter.
+          
         white: |
           It creates an unlimited supply of
           energy inside its body, which it
           shares with those who touch it.
+          
       forms: &black-white.pokemon.victini.forms
         victini:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.victini.forms.victini.form_name 'Default Form'
           default: *black-white.pokemon.victini.default
-          battle_only: false
+          battle_only: &black-white.pokemon.victini.forms.victini.battle_only false
+          icon: gen5/victini-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -94,10 +97,12 @@ black-2-white-2:
           When it shares the infinite energy
           it creates, that being’s entire
           body will be overflowing with power.
+          
         white-2: |
           When it shares the infinite energy
           it creates, that being’s entire
           body will be overflowing with power.
+          
       forms: *black-white.pokemon.victini.forms
 x-y:
   name: *black-white.name
@@ -130,11 +135,19 @@ x-y:
           This Pokémon brings victory. It is said that Trainers
           with Victini always win, regardless of the type
           of encounter.
+          
         'y': |
           When it shares the infinite energy it creates,
           that being’s entire body will be overflowing
           with power.
-      forms: *black-white.pokemon.victini.forms
+          
+      forms: &x-y.pokemon.victini.forms
+        victini:
+          name: *black-white.name
+          form_name: *black-white.pokemon.victini.forms.victini.form_name
+          default: *black-white.pokemon.victini.default
+          battle_only: *black-white.pokemon.victini.forms.victini.battle_only
+          icon: victini-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -165,11 +178,13 @@ omega-ruby-alpha-sapphire:
           This Pokémon brings victory. It is said that Trainers
           with Victini always win, regardless of the type
           of encounter.
+          
         alpha-sapphire: |
           When it shares the infinite energy it creates,
           that being’s entire body will be overflowing
           with power.
-      forms: *black-white.pokemon.victini.forms
+          
+      forms: *x-y.pokemon.victini.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -194,5 +209,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.victini.mega
       stats: *black-white.pokemon.victini.stats
       abilities: *black-white.pokemon.victini.abilities
-      forms: *black-white.pokemon.victini.forms
+      forms: *x-y.pokemon.victini.forms
 ultra-sun-ultra-moon: *sun-moon

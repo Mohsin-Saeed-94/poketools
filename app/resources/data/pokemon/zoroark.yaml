@@ -57,16 +57,19 @@ black-white:
           Bonds between these Pokémon are very
           strong. It protects the safety of its
           pack by tricking its opponents.
+          
         white: |
           Each has the ability to fool a large
           group of people simultaneously. They
           protect their lair with illusory scenery.
+          
       forms: &black-white.pokemon.zoroark.forms
         zoroark:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.zoroark.forms.zoroark.form_name 'Default Form'
           default: *black-white.pokemon.zoroark.default
-          battle_only: false
+          battle_only: &black-white.pokemon.zoroark.forms.zoroark.battle_only false
+          icon: gen5/zoroark-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -101,10 +104,12 @@ black-2-white-2:
           Stories say those who tried
           to catch Zoroark were trapped
           in an illusion and punished.
+          
         white-2: |
           Stories say those who tried
           to catch Zoroark were trapped
           in an illusion and punished.
+          
       forms: *black-white.pokemon.zoroark.forms
 x-y:
   name: *black-white.name
@@ -141,11 +146,19 @@ x-y:
           Each has the ability to fool a large group of people
           simultaneously. They protect their lair with
           illusory scenery.
+          
         'y': |
           Bonds between these Pokémon are very strong.
           It protects the safety of its pack by tricking
           its opponents.
-      forms: *black-white.pokemon.zoroark.forms
+          
+      forms: &x-y.pokemon.zoroark.forms
+        zoroark:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zoroark.forms.zoroark.form_name
+          default: *black-white.pokemon.zoroark.default
+          battle_only: *black-white.pokemon.zoroark.forms.zoroark.battle_only
+          icon: zoroark-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -180,11 +193,13 @@ omega-ruby-alpha-sapphire:
           Each has the ability to fool a large group of people
           simultaneously. They protect their lair with
           illusory scenery.
+          
         alpha-sapphire: |
           Bonds between these Pokémon are very strong.
           It protects the safety of its pack by tricking
           its opponents.
-      forms: *black-white.pokemon.zoroark.forms
+          
+      forms: *x-y.pokemon.zoroark.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -212,7 +227,7 @@ sun-moon:
       stats: *black-white.pokemon.zoroark.stats
       abilities: *black-white.pokemon.zoroark.abilities
       evolution_conditions: *black-white.pokemon.zoroark.evolution_conditions
-      forms: *black-white.pokemon.zoroark.forms
+      forms: *x-y.pokemon.zoroark.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -245,4 +260,5 @@ ultra-sun-ultra-moon:
           It doesn’t just transform itself—it also has the
           power to make hundreds of people see
           its illusions.
-      forms: *black-white.pokemon.zoroark.forms
+          
+      forms: *x-y.pokemon.zoroark.forms

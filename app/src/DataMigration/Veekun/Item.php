@@ -70,6 +70,13 @@ class Item extends AbstractDataMigration implements DataMigrationInterface
     protected $hmVersionGroups = [];
 
     /**
+     * Version groups with item icons
+     *
+     * @var string[]
+     */
+    protected $iconVersionGroups = [];
+
+    /**
      * {@inheritdoc}
      * @param DbalSourceDriver $sourceDriver
      */
@@ -197,7 +204,8 @@ SELECT "version_groups"."identifier" AS "version_group",
                THEN "machines"."machine_number" - 100
            ELSE "machines"."machine_number"
        END AS "number",
-       "moves"."identifier" AS "move"
+       "moves"."identifier" AS "move",
+       coalesce("move_changelog"."type", "types"."identifier") AS "move_type"
 FROM "items"
      JOIN "machines"
           ON "items"."id" = "machines"."item_id"
@@ -205,6 +213,33 @@ FROM "items"
           ON "machines"."version_group_id" = "version_groups"."id"
      JOIN "moves"
           ON "machines"."move_id" = "moves"."id"
+     LEFT OUTER JOIN (
+                       SELECT "move_changelog"."move_id",
+                              "move_changelog"."changed_in_version_group_id",
+                              "version_groups"."order" AS "version_group_order",
+                              "types"."identifier" AS "type",
+                              "types"."damage_class_id" AS "type_damage_class_id",
+                              "move_changelog"."power",
+                              "move_changelog"."pp",
+                              "move_changelog"."accuracy",
+                              "move_changelog"."priority",
+                              "move_targets"."identifier" AS "target",
+                              "move_changelog"."effect_id" AS "effect",
+                              "move_changelog"."effect_chance"
+                       FROM "move_changelog"
+                            JOIN "version_groups"
+                                 ON "move_changelog"."changed_in_version_group_id" =
+                                     "version_groups"."id"
+                            LEFT OUTER JOIN "types"
+                                            ON "move_changelog"."type_id" = "types"."id"
+                            LEFT OUTER JOIN "move_targets"
+                                            ON "move_changelog"."target_id" = "move_targets"."id"
+                       ORDER BY "version_groups"."order" ASC
+                   ) "move_changelog"
+                   ON "move_changelog"."version_group_order" > "version_groups"."order" 
+                       AND "move_changelog"."move_id" = "machines"."move_id"
+     JOIN "types"
+          ON "moves"."type_id" = "types"."id"
 WHERE "items"."id" = :item
 SQL
         );
@@ -239,6 +274,16 @@ SQL
         );
         $hmVersionGroups->execute();
         $this->hmVersionGroups = $hmVersionGroups->fetchAll(FetchMode::COLUMN);
+
+        $iconVersionGroups = $sourceDriver->getConnection()->prepare(
+            <<<SQL
+SELECT "version_groups"."identifier"
+FROM "version_groups"
+WHERE "generation_id" >= 3;
+SQL
+        );
+        $iconVersionGroups->execute();
+        $this->iconVersionGroups = $iconVersionGroups->fetchAll(FetchMode::COLUMN);
     }
 
     /**
@@ -432,6 +477,7 @@ SQL
                     $machineData[$versionGroup],
                     $destinationData[$versionGroup]['machine'] ?? []
                 );
+                unset($destinationData[$versionGroup]['machine']['move_type']);
                 if (!isset($destinationData[$versionGroup]['short_description'])) {
                     $destinationData[$versionGroup]['short_description'] = sprintf(
                         'Teaches []{move:%s} to a compatible Pokèmon.',
@@ -450,6 +496,27 @@ EOT
                         $destinationData['identifier']
                     );
                 }
+            }
+            if (!isset($destinationData[$versionGroup]['icon'])
+                && in_array(
+                    $versionGroup,
+                    $this->iconVersionGroups,
+                    true
+                )) {
+                if (isset($machineData[$versionGroup])) {
+                    // Machines use a common icon based on the machine type and taught move type.
+                    $iconIdentifier = sprintf(
+                        '%s-%s',
+                        strtolower($machineData[$versionGroup]['type']),
+                        $machineData[$versionGroup]['move_type']
+                    );
+                } elseif (strpos($destinationData['identifier'], 'data-card-') === 0) {
+                    // All data cards use the same icon.
+                    $iconIdentifier = 'data-card';
+                } else {
+                    $iconIdentifier = $destinationData['identifier'];
+                }
+                $destinationData[$versionGroup]['icon'] = sprintf('%s.png', $iconIdentifier);
             }
         }
 

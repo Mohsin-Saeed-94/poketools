@@ -60,16 +60,19 @@ black-white:
           When its internal fire is burning, it
           cannot calm down and it runs around.
           When the fire diminishes, it falls asleep.
+          
         white: |
           Darumaka’s droppings are hot, so
           people used to put them in their
           clothes to keep themselves warm.
+          
       forms: &black-white.pokemon.darumaka.forms
         darumaka:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.darumaka.forms.darumaka.form_name 'Default Form'
           default: *black-white.pokemon.darumaka.default
-          battle_only: false
+          battle_only: &black-white.pokemon.darumaka.forms.darumaka.battle_only false
+          icon: gen5/darumaka-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,10 +108,12 @@ black-2-white-2:
           When it sleeps, it pulls its limbs
           into its body and its internal fire
           goes down to 1,100° F.
+          
         white-2: |
           When it sleeps, it pulls its limbs
           into its body and its internal fire
           goes down to 1,100° F.
+          
       forms: *black-white.pokemon.darumaka.forms
 x-y:
   name: *black-white.name
@@ -141,11 +146,19 @@ x-y:
         x: |
           Darumaka’s droppings are hot, so people used to
           put them in their clothes to keep themselves warm.
+          
         'y': |
           When it sleeps, it pulls its limbs into its
           body and its internal fire goes down to
           1,100 degrees Fahrenheit.
-      forms: *black-white.pokemon.darumaka.forms
+          
+      forms: &x-y.pokemon.darumaka.forms
+        darumaka:
+          name: *black-white.name
+          form_name: *black-white.pokemon.darumaka.forms.darumaka.form_name
+          default: *black-white.pokemon.darumaka.default
+          battle_only: *black-white.pokemon.darumaka.forms.darumaka.battle_only
+          icon: darumaka-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -176,11 +189,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Darumaka’s droppings are hot, so people used to
           put them in their clothes to keep themselves warm.
+          
         alpha-sapphire: |
           When it sleeps, it pulls its limbs into its
           body and its internal fire goes down to
           1,100 degrees Fahrenheit.
-      forms: *black-white.pokemon.darumaka.forms
+          
+      forms: *x-y.pokemon.darumaka.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -206,5 +221,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.darumaka.mega
       stats: *black-white.pokemon.darumaka.stats
       abilities: *black-white.pokemon.darumaka.abilities
-      forms: *black-white.pokemon.darumaka.forms
+      forms: *x-y.pokemon.darumaka.forms
 ultra-sun-ultra-moon: *sun-moon

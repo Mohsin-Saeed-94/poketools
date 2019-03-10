@@ -58,16 +58,19 @@ black-white:
           When attacked, it defends itself by
           closing the lid of its shell. It can spit
           a sticky, poisonous liquid.
+          
         white: |
           It evolves when bathed in an
           electric-like energy along with
           Karrablast. The reason is still unknown.
+          
       forms: &black-white.pokemon.shelmet.forms
         shelmet:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.shelmet.forms.shelmet.form_name 'Default Form'
           default: *black-white.pokemon.shelmet.default
-          battle_only: false
+          battle_only: &black-white.pokemon.shelmet.forms.shelmet.battle_only false
+          icon: gen5/shelmet-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -100,10 +103,12 @@ black-2-white-2:
           When it and Karrablast are together,
           and both receive electrical stimulation,
           they both evolve.
+          
         white-2: |
           When it and Karrablast are together,
           and both receive electrical stimulation,
           they both evolve.
+          
       forms: *black-white.pokemon.shelmet.forms
 x-y:
   name: *black-white.name
@@ -137,10 +142,18 @@ x-y:
         x: |
           When it and Karrablast are together, and both
           receive electrical stimulation, they both evolve.
+          
         'y': |
           It evolves when bathed in an electric-like energy
           along with Karrablast. The reason is still unknown.
-      forms: *black-white.pokemon.shelmet.forms
+          
+      forms: &x-y.pokemon.shelmet.forms
+        shelmet:
+          name: *black-white.name
+          form_name: *black-white.pokemon.shelmet.forms.shelmet.form_name
+          default: *black-white.pokemon.shelmet.default
+          battle_only: *black-white.pokemon.shelmet.forms.shelmet.battle_only
+          icon: shelmet-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -172,10 +185,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           When it and Karrablast are together, and both
           receive electrical stimulation, they both evolve.
+          
         alpha-sapphire: |
           It evolves when bathed in an electric-like energy
           along with Karrablast. The reason is still unknown.
-      forms: *black-white.pokemon.shelmet.forms
+          
+      forms: *x-y.pokemon.shelmet.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -201,5 +216,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.shelmet.mega
       stats: *black-white.pokemon.shelmet.stats
       abilities: *black-white.pokemon.shelmet.abilities
-      forms: *black-white.pokemon.shelmet.forms
+      forms: *x-y.pokemon.shelmet.forms
 ultra-sun-ultra-moon: *sun-moon

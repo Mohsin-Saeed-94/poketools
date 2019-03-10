@@ -64,15 +64,18 @@ black-white:
           This ominous Pokémon is feared.
           Through cities it wanders, searching
           for the spirits of the fallen.
+          
         white: |
           It arrives near the moment of death
           and steals spirit from the body.
+          
       forms: &black-white.pokemon.lampent.forms
         lampent:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.lampent.forms.lampent.form_name 'Default Form'
           default: *black-white.pokemon.lampent.default
-          battle_only: false
+          battle_only: &black-white.pokemon.lampent.forms.lampent.battle_only false
+          icon: gen5/lampent-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -107,10 +110,12 @@ black-2-white-2:
           The spirits it absorbs fuel its baleful
           fire. It hangs around hospitals waiting
           for people to pass on.
+          
         white-2: |
           The spirits it absorbs fuel its baleful
           fire. It hangs around hospitals waiting
           for people to pass on.
+          
       forms: *black-white.pokemon.lampent.forms
 x-y:
   name: *black-white.name
@@ -146,10 +151,18 @@ x-y:
         x: |
           The spirits it absorbs fuel its baleful fire. It hangs
           around hospitals waiting for people to pass on.
+          
         'y': |
           It arrives near the moment of death and steals spirit
           from the body.
-      forms: *black-white.pokemon.lampent.forms
+          
+      forms: &x-y.pokemon.lampent.forms
+        lampent:
+          name: *black-white.name
+          form_name: *black-white.pokemon.lampent.forms.lampent.form_name
+          default: *black-white.pokemon.lampent.default
+          battle_only: *black-white.pokemon.lampent.forms.lampent.battle_only
+          icon: lampent-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -183,10 +196,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The spirits it absorbs fuel its baleful fire. It hangs
           around hospitals waiting for people to pass on.
+          
         alpha-sapphire: |
           It arrives near the moment of death and steals spirit
           from the body.
-      forms: *black-white.pokemon.lampent.forms
+          
+      forms: *x-y.pokemon.lampent.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -214,5 +229,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.lampent.stats
       abilities: *black-white.pokemon.lampent.abilities
       evolution_conditions: *black-white.pokemon.lampent.evolution_conditions
-      forms: *black-white.pokemon.lampent.forms
+      forms: *x-y.pokemon.lampent.forms
 ultra-sun-ultra-moon: *sun-moon

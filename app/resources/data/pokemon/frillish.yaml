@@ -60,16 +60,19 @@ black-white:
           With its thin, veil-like arms wrapped
           around the body of its opponent,
           it sinks to the ocean floor.
+          
         white: |
           They paralyze prey with poison,
           then drag them down to their lairs,
           five miles below the surface.
+          
       forms: &black-white.pokemon.frillish.forms
         frillish:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.frillish.forms.frillish.form_name 'Default Form'
           default: *black-white.pokemon.frillish.default
-          battle_only: false
+          battle_only: &black-white.pokemon.frillish.forms.frillish.battle_only false
+          icon: gen5/frillish-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           If its veil-like arms stun and wrap
           a foe, that foe will be dragged miles
           below the surface, never to return.
+          
         white-2: |
           If its veil-like arms stun and wrap
           a foe, that foe will be dragged miles
           below the surface, never to return.
+          
       forms: *black-white.pokemon.frillish.forms
 x-y:
   name: *black-white.name
@@ -138,11 +143,19 @@ x-y:
         x: |
           They paralyze prey with poison, then drag them
           down to their lairs, five miles below the surface.
+          
         'y': |
           If its veil-like arms stun and wrap a foe, that foe will
           be dragged miles below the surface, never
           to return.
-      forms: *black-white.pokemon.frillish.forms
+          
+      forms: &x-y.pokemon.frillish.forms
+        frillish:
+          name: *black-white.name
+          form_name: *black-white.pokemon.frillish.forms.frillish.form_name
+          default: *black-white.pokemon.frillish.default
+          battle_only: *black-white.pokemon.frillish.forms.frillish.battle_only
+          icon: frillish-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -173,11 +186,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           They paralyze prey with poison, then drag them
           down to their lairs, five miles below the surface.
+          
         alpha-sapphire: |
           If its veil-like arms stun and wrap a foe, that foe will
           be dragged miles below the surface, never
           to return.
-      forms: *black-white.pokemon.frillish.forms
+          
+      forms: *x-y.pokemon.frillish.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -203,7 +218,7 @@ sun-moon:
       mega: *x-y.pokemon.frillish.mega
       stats: *black-white.pokemon.frillish.stats
       abilities: *black-white.pokemon.frillish.abilities
-      forms: *black-white.pokemon.frillish.forms
+      forms: *x-y.pokemon.frillish.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -234,4 +249,5 @@ ultra-sun-ultra-moon:
           It wraps its veillike arms and legs around prey
           swimming by and drags them down to the
           depths of the ocean.
-      forms: *black-white.pokemon.frillish.forms
+          
+      forms: *x-y.pokemon.frillish.forms

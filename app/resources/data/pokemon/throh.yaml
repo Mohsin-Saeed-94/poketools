@@ -64,16 +64,19 @@ black-white:
           When it tightens its belt, it becomes
           stronger. Wild Throh use vines to weave
           their own belts.
+          
         white: |
           When they encounter foes bigger than
           themselves, they try to throw them.
           They always travel in packs of five.
+          
       forms: &black-white.pokemon.throh.forms
         throh:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.throh.forms.throh.form_name 'Default Form'
           default: *black-white.pokemon.throh.default
-          battle_only: false
+          battle_only: &black-white.pokemon.throh.forms.throh.battle_only false
+          icon: gen5/throh-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,10 +112,12 @@ black-2-white-2:
           When it encounters a foe bigger than
           itself, it wants to throw it.
           It changes belts as it gets stronger.
+          
         white-2: |
           When it encounters a foe bigger than
           itself, it wants to throw it.
           It changes belts as it gets stronger.
+          
       forms: *black-white.pokemon.throh.forms
 x-y:
   name: *black-white.name
@@ -150,10 +155,18 @@ x-y:
         x: |
           When it tightens its belt, it becomes stronger. Wild
           Throh use vines to weave their own belts.
+          
         'y': |
           When it encounters a foe bigger than itself, it wants
           to throw it. It changes belts as it gets stronger.
-      forms: *black-white.pokemon.throh.forms
+          
+      forms: &x-y.pokemon.throh.forms
+        throh:
+          name: *black-white.name
+          form_name: *black-white.pokemon.throh.forms.throh.form_name
+          default: *black-white.pokemon.throh.default
+          battle_only: *black-white.pokemon.throh.forms.throh.battle_only
+          icon: throh-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -185,10 +198,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           When it tightens its belt, it becomes stronger. Wild
           Throh use vines to weave their own belts.
+          
         alpha-sapphire: |
           When it encounters a foe bigger than itself, it wants
           to throw it. It changes belts as it gets stronger.
-      forms: *black-white.pokemon.throh.forms
+          
+      forms: *x-y.pokemon.throh.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -216,7 +231,7 @@ sun-moon:
       abilities: *black-white.pokemon.throh.abilities
       wild_held_items:
         moon: *x-y.pokemon.throh.wild_held_items.x
-      forms: *black-white.pokemon.throh.forms
+      forms: *x-y.pokemon.throh.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -244,4 +259,4 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.throh.abilities
       wild_held_items:
         ultra-sun: *x-y.pokemon.throh.wild_held_items.x
-      forms: *black-white.pokemon.throh.forms
+      forms: *x-y.pokemon.throh.forms

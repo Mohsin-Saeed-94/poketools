@@ -63,16 +63,19 @@ black-white:
           When Reuniclus shake hands, a network
           forms between their brains, increasing
           their psychic power.
+          
         white: |
           These remarkably intelligent Pokémon
           fight by controlling arms that can
           grip with rock-crushing power.
+          
       forms: &black-white.pokemon.reuniclus.forms
         reuniclus:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.reuniclus.forms.reuniclus.form_name 'Default Form'
           default: *black-white.pokemon.reuniclus.default
-          battle_only: false
+          battle_only: &black-white.pokemon.reuniclus.forms.reuniclus.battle_only false
+          icon: gen5/reuniclus-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -111,10 +114,12 @@ black-2-white-2:
           They use psychic power to control their
           arms, which are made of a special liquid.
           They can crush boulders psychically.
+          
         white-2: |
           They use psychic power to control their
           arms, which are made of a special liquid.
           They can crush boulders psychically.
+          
       forms: *black-white.pokemon.reuniclus.forms
 x-y:
   name: *black-white.name
@@ -151,11 +156,19 @@ x-y:
           They use psychic power to control their arms,
           which are made of a special liquid. They can crush
           boulders psychically.
+          
         'y': |
           When Reuniclus shake hands, a network forms
           between their brains, increasing their
           psychic power.
-      forms: *black-white.pokemon.reuniclus.forms
+          
+      forms: &x-y.pokemon.reuniclus.forms
+        reuniclus:
+          name: *black-white.name
+          form_name: *black-white.pokemon.reuniclus.forms.reuniclus.form_name
+          default: *black-white.pokemon.reuniclus.default
+          battle_only: *black-white.pokemon.reuniclus.forms.reuniclus.battle_only
+          icon: reuniclus-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -190,11 +203,13 @@ omega-ruby-alpha-sapphire:
           They use psychic power to control their arms,
           which are made of a special liquid. They can crush
           boulders psychically.
+          
         alpha-sapphire: |
           When Reuniclus shake hands, a network forms
           between their brains, increasing their
           psychic power.
-      forms: *black-white.pokemon.reuniclus.forms
+          
+      forms: *x-y.pokemon.reuniclus.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -222,5 +237,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.reuniclus.stats
       abilities: *black-white.pokemon.reuniclus.abilities
       evolution_conditions: *black-white.pokemon.reuniclus.evolution_conditions
-      forms: *black-white.pokemon.reuniclus.forms
+      forms: *x-y.pokemon.reuniclus.forms
 ultra-sun-ultra-moon: *sun-moon

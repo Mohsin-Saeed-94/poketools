@@ -56,16 +56,19 @@ black-white:
           When its body temperature goes up, it
           turns into steam and vanishes. When its
           temperature lowers, it returns to ice.
+          
         white: |
           They are born in snow clouds.
           They use chains made of
           ice crystals to capture prey.
+          
       forms: &black-white.pokemon.cryogonal.forms
         cryogonal:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.cryogonal.forms.cryogonal.form_name 'Default Form'
           default: *black-white.pokemon.cryogonal.default
-          battle_only: false
+          battle_only: &black-white.pokemon.cryogonal.forms.cryogonal.battle_only false
+          icon: gen5/cryogonal-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -100,10 +103,12 @@ black-2-white-2:
           They are composed of ice crystals.
           They capture prey with chains of ice,
           freezing the prey at -148° F.
+          
         white-2: |
           They are composed of ice crystals.
           They capture prey with chains of ice,
           freezing the prey at -148° F.
+          
       forms: *black-white.pokemon.cryogonal.forms
 x-y:
   name: *black-white.name
@@ -139,11 +144,19 @@ x-y:
         x: |
           They are born in snow clouds. They use chains
           made of ice crystals to capture prey.
+          
         'y': |
           They are composed of ice crystals. They capture
           prey with chains of ice, freezing the prey at
           -148 degrees Fahrenheit.
-      forms: *black-white.pokemon.cryogonal.forms
+          
+      forms: &x-y.pokemon.cryogonal.forms
+        cryogonal:
+          name: *black-white.name
+          form_name: *black-white.pokemon.cryogonal.forms.cryogonal.form_name
+          default: *black-white.pokemon.cryogonal.default
+          battle_only: *black-white.pokemon.cryogonal.forms.cryogonal.battle_only
+          icon: cryogonal-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -174,11 +187,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           They are born in snow clouds. They use chains
           made of ice crystals to capture prey.
+          
         alpha-sapphire: |
           They are composed of ice crystals. They capture
           prey with chains of ice, freezing the prey at
           -148 degrees Fahrenheit.
-      forms: *black-white.pokemon.cryogonal.forms
+          
+      forms: *x-y.pokemon.cryogonal.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -205,7 +220,7 @@ sun-moon:
       abilities: *black-white.pokemon.cryogonal.abilities
       wild_held_items:
         moon: *black-white.pokemon.cryogonal.wild_held_items.black
-      forms: *black-white.pokemon.cryogonal.forms
+      forms: *x-y.pokemon.cryogonal.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -232,4 +247,4 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.cryogonal.abilities
       wild_held_items:
         ultra-sun: *black-white.pokemon.cryogonal.wild_held_items.black
-      forms: *black-white.pokemon.cryogonal.forms
+      forms: *x-y.pokemon.cryogonal.forms

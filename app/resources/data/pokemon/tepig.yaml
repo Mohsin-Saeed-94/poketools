@@ -56,16 +56,19 @@ black-white:
           It can deftly dodge its foe’s attacks
           while shooting fireballs from its nose.
           It roasts berries before it eats them.
+          
         white: |
           It blows fire through its nose.
           When it catches a cold, the fire
           becomes pitch-black smoke instead.
+          
       forms: &black-white.pokemon.tepig.forms
         tepig:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.tepig.forms.tepig.form_name 'Default Form'
           default: *black-white.pokemon.tepig.default
-          battle_only: false
+          battle_only: &black-white.pokemon.tepig.forms.tepig.battle_only false
+          icon: gen5/tepig-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -98,10 +101,12 @@ black-2-white-2:
           It loves to eat roasted berries,
           but sometimes it gets too excited
           and burns them to a crisp.
+          
         white-2: |
           It loves to eat roasted berries,
           but sometimes it gets too excited
           and burns them to a crisp.
+          
       forms: *black-white.pokemon.tepig.forms
 x-y:
   name: *black-white.name
@@ -135,10 +140,18 @@ x-y:
           It can deftly dodge its foe’s attacks while shooting
           fireballs from its nose. It roasts berries before it
           eats them.
+          
         'y': |
           It loves to eat roasted berries, but sometimes it
           gets too excited and burns them to a crisp.
-      forms: *black-white.pokemon.tepig.forms
+          
+      forms: &x-y.pokemon.tepig.forms
+        tepig:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tepig.forms.tepig.form_name
+          default: *black-white.pokemon.tepig.default
+          battle_only: *black-white.pokemon.tepig.forms.tepig.battle_only
+          icon: tepig-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -170,10 +183,12 @@ omega-ruby-alpha-sapphire:
           It can deftly dodge its foe’s attacks while shooting
           fireballs from its nose. It roasts berries before it
           eats them.
+          
         alpha-sapphire: |
           It loves to eat roasted berries, but sometimes it
           gets too excited and burns them to a crisp.
-      forms: *black-white.pokemon.tepig.forms
+          
+      forms: *x-y.pokemon.tepig.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -199,5 +214,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.tepig.mega
       stats: *black-white.pokemon.tepig.stats
       abilities: *black-white.pokemon.tepig.abilities
-      forms: *black-white.pokemon.tepig.forms
+      forms: *x-y.pokemon.tepig.forms
 ultra-sun-ultra-moon: *sun-moon

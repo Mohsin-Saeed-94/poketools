@@ -60,16 +60,19 @@ black-white:
         black: |
           Restored from a fossil, this Pokémon
           can dive to depths beyond half a mile.
+          
         white: |
           About 100 million years ago, these
           Pokémon swam in oceans. It is thought
           they also went on land to attack prey.
+          
       forms: &black-white.pokemon.tirtouga.forms
         tirtouga:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.tirtouga.forms.tirtouga.form_name 'Default Form'
           default: *black-white.pokemon.tirtouga.default
-          battle_only: false
+          battle_only: &black-white.pokemon.tirtouga.forms.tirtouga.battle_only false
+          icon: gen5/tirtouga-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           This Pokémon was restored from a fossil.
           It swam skillfully and dove
           to depths beyond half a mile.
+          
         white-2: |
           This Pokémon was restored from a fossil.
           It swam skillfully and dove
           to depths beyond half a mile.
+          
       forms: *black-white.pokemon.tirtouga.forms
 x-y:
   name: *black-white.name
@@ -139,10 +144,18 @@ x-y:
           About 100 million years ago, these Pokémon swam
           in oceans. It is thought they also went on land to
           attack prey.
+          
         'y': |
           Restored from a fossil, this Pokémon can dive to
           depths beyond half a mile.
-      forms: *black-white.pokemon.tirtouga.forms
+          
+      forms: &x-y.pokemon.tirtouga.forms
+        tirtouga:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tirtouga.forms.tirtouga.form_name
+          default: *black-white.pokemon.tirtouga.default
+          battle_only: *black-white.pokemon.tirtouga.forms.tirtouga.battle_only
+          icon: tirtouga-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -174,10 +187,12 @@ omega-ruby-alpha-sapphire:
           About 100 million years ago, these Pokémon swam
           in oceans. It is thought they also went on land to
           attack prey.
+          
         alpha-sapphire: |
           Restored from a fossil, this Pokémon can dive to
           depths beyond half a mile.
-      forms: *black-white.pokemon.tirtouga.forms
+          
+      forms: *x-y.pokemon.tirtouga.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -208,7 +223,8 @@ sun-moon:
           Reputed to be the ancestor of most turtle
           Pokémon, it lived in warm seas approximately
           a hundred million years ago.
-      forms: *black-white.pokemon.tirtouga.forms
+          
+      forms: *x-y.pokemon.tirtouga.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -239,4 +255,5 @@ ultra-sun-ultra-moon:
           It was restored from an ancient fossil. Tirtouga
           lived in the sea but came up onto the land to
           search for prey.
-      forms: *black-white.pokemon.tirtouga.forms
+          
+      forms: *x-y.pokemon.tirtouga.forms

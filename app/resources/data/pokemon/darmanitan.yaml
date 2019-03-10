@@ -65,16 +65,18 @@ black-white:
           Its internal fire burns at 2,500° F,
           making enough power that it can
           destroy a dump truck with one punch.
+          
         white: |
           When weakened in battle, it transforms
           into a stone statue. Then it sharpens
           its mind and fights on mentally.
       forms: &black-white.pokemon.darmanitan-standard.forms
         darmanitan-standard:
-          name: 'Standard Darmanitan'
-          form_name: 'Standard Mode'
+          name: &black-white.pokemon.darmanitan-standard.forms.darmanitan-standard.name 'Standard Darmanitan'
+          form_name: &black-white.pokemon.darmanitan-standard.forms.darmanitan-standard.form_name 'Standard Mode'
           default: *black-white.pokemon.darmanitan-standard.default
-          battle_only: false
+          battle_only: &black-white.pokemon.darmanitan-standard.forms.darmanitan-standard.battle_only false
+          icon: gen5/darmanitan-standard.png
     darmanitan-zen:
       genus: *black-white.pokemon.darmanitan-standard.genus
       evolution_parent: *black-white.pokemon.darmanitan-standard.evolution_parent
@@ -123,9 +125,10 @@ black-white:
       forms: &black-white.pokemon.darmanitan-zen.forms
         darmanitan-zen:
           name: *black-white.pokemon.darmanitan-zen.name
-          form_name: 'Zen Mode'
+          form_name: &black-white.pokemon.darmanitan-zen.forms.darmanitan-zen.form_name 'Zen Mode'
           default: *black-white.pokemon.darmanitan-standard.default
-          battle_only: true
+          battle_only: &black-white.pokemon.darmanitan-zen.forms.darmanitan-zen.battle_only true
+          icon: gen5/darmanitan-zen.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -164,6 +167,7 @@ black-2-white-2:
           When one is injured in a fierce battle,
           it hardens into a stone-like form.
           Then it meditates and sharpens its mind.
+          
         white-2: |
           When one is injured in a fierce battle,
           it hardens into a stone-like form.
@@ -230,11 +234,18 @@ x-y:
           When one is injured in a fierce battle, it hardens
           into a stone-like form. Then it meditates and
           sharpens its mind.
+          
         'y': |
           Its internal fire burns at 2,500 degrees Fahrenheit,
           making enough power that it can destroy a dump
           truck with one punch.
-      forms: *black-white.pokemon.darmanitan-standard.forms
+      forms: &x-y.pokemon.darmanitan-standard.forms
+        darmanitan-standard:
+          name: *black-white.pokemon.darmanitan-standard.forms.darmanitan-standard.name
+          form_name: *black-white.pokemon.darmanitan-standard.forms.darmanitan-standard.form_name
+          default: *black-white.pokemon.darmanitan-standard.default
+          battle_only: *black-white.pokemon.darmanitan-standard.forms.darmanitan-standard.battle_only
+          icon: darmanitan-standard.png
     darmanitan-zen:
       genus: *black-white.pokemon.darmanitan-standard.genus
       evolution_parent: *black-white.pokemon.darmanitan-standard.evolution_parent
@@ -260,7 +271,13 @@ x-y:
       abilities: *black-white.pokemon.darmanitan-standard.abilities
       evolution_conditions: *black-white.pokemon.darmanitan-standard.evolution_conditions
       flavor_text: *x-y.pokemon.darmanitan-standard.flavor_text
-      forms: *black-white.pokemon.darmanitan-zen.forms
+      forms: &x-y.pokemon.darmanitan-zen.forms
+        darmanitan-zen:
+          name: *black-white.pokemon.darmanitan-zen.name
+          form_name: *black-white.pokemon.darmanitan-zen.forms.darmanitan-zen.form_name
+          default: *black-white.pokemon.darmanitan-standard.default
+          battle_only: *black-white.pokemon.darmanitan-zen.forms.darmanitan-zen.battle_only
+          icon: darmanitan-zen.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -295,11 +312,12 @@ omega-ruby-alpha-sapphire:
           When one is injured in a fierce battle, it hardens
           into a stone-like form. Then it meditates and
           sharpens its mind.
+          
         alpha-sapphire: |
           Its internal fire burns at 2,500 degrees Fahrenheit,
           making enough power that it can destroy a dump
           truck with one punch.
-      forms: *black-white.pokemon.darmanitan-standard.forms
+      forms: *x-y.pokemon.darmanitan-standard.forms
     darmanitan-zen:
       genus: *black-white.pokemon.darmanitan-standard.genus
       evolution_parent: *black-white.pokemon.darmanitan-standard.evolution_parent
@@ -325,7 +343,7 @@ omega-ruby-alpha-sapphire:
       abilities: *black-white.pokemon.darmanitan-standard.abilities
       evolution_conditions: *black-white.pokemon.darmanitan-standard.evolution_conditions
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.darmanitan-standard.flavor_text
-      forms: *black-white.pokemon.darmanitan-zen.forms
+      forms: *x-y.pokemon.darmanitan-zen.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -354,7 +372,7 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.darmanitan-standard.stats
       abilities: *black-white.pokemon.darmanitan-standard.abilities
       evolution_conditions: *black-white.pokemon.darmanitan-standard.evolution_conditions
-      forms: *black-white.pokemon.darmanitan-standard.forms
+      forms: *x-y.pokemon.darmanitan-standard.forms
     darmanitan-zen:
       genus: *black-white.pokemon.darmanitan-standard.genus
       evolution_parent: *black-white.pokemon.darmanitan-standard.evolution_parent
@@ -379,5 +397,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.darmanitan-zen.stats
       abilities: *black-white.pokemon.darmanitan-standard.abilities
       evolution_conditions: *black-white.pokemon.darmanitan-standard.evolution_conditions
-      forms: *black-white.pokemon.darmanitan-zen.forms
+      forms: *x-y.pokemon.darmanitan-zen.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -60,16 +60,19 @@ black-white:
           Litwick shines a light that absorbs the
           life energy of people and Pokémon,
           which becomes the fuel that it burns.
+          
         white: |
           While shining a light and pretending
           to be a guide, it leeches off the life
           force of any who follow it.
+          
       forms: &black-white.pokemon.litwick.forms
         litwick:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.litwick.forms.litwick.form_name 'Default Form'
           default: *black-white.pokemon.litwick.default
-          battle_only: false
+          battle_only: &black-white.pokemon.litwick.forms.litwick.battle_only false
+          icon: gen5/litwick-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           Its flame is usually out, but it starts
           shining when it absorbs life force
           from people or Pokémon.
+          
         white-2: |
           Its flame is usually out, but it starts
           shining when it absorbs life force
           from people or Pokémon.
+          
       forms: *black-white.pokemon.litwick.forms
 x-y:
   name: *black-white.name
@@ -139,11 +144,19 @@ x-y:
         x: |
           While shining a light and pretending to be a guide,
           it leeches off the life force of any who follow it.
+          
         'y': |
           Litwick shines a light that absorbs the life energy of
           people and Pokémon, which becomes the fuel that
           it burns.
-      forms: *black-white.pokemon.litwick.forms
+          
+      forms: &x-y.pokemon.litwick.forms
+        litwick:
+          name: *black-white.name
+          form_name: *black-white.pokemon.litwick.forms.litwick.form_name
+          default: *black-white.pokemon.litwick.default
+          battle_only: *black-white.pokemon.litwick.forms.litwick.battle_only
+          icon: litwick-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -175,11 +188,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           While shining a light and pretending to be a guide,
           it leeches off the life force of any who follow it.
+          
         alpha-sapphire: |
           Litwick shines a light that absorbs the life energy of
           people and Pokémon, which becomes the fuel that
           it burns.
-      forms: *black-white.pokemon.litwick.forms
+          
+      forms: *x-y.pokemon.litwick.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -205,5 +220,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.litwick.mega
       stats: *black-white.pokemon.litwick.stats
       abilities: *black-white.pokemon.litwick.abilities
-      forms: *black-white.pokemon.litwick.forms
+      forms: *x-y.pokemon.litwick.forms
 ultra-sun-ultra-moon: *sun-moon

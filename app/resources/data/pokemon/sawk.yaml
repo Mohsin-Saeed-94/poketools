@@ -64,16 +64,19 @@ black-white:
           The sound of Sawk punching boulders
           and trees can be heard all the way from
           the mountains where they train.
+          
         white: |
           Tying their belts gets them pumped and
           makes their punches more destructive.
           Disturbing their training angers them.
+          
       forms: &black-white.pokemon.sawk.forms
         sawk:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.sawk.forms.sawk.form_name 'Default Form'
           default: *black-white.pokemon.sawk.default
-          battle_only: false
+          battle_only: &black-white.pokemon.sawk.forms.sawk.battle_only false
+          icon: gen5/sawk-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,10 +112,12 @@ black-2-white-2:
           Desiring the strongest karate chop,
           they seclude themselves in
           mountains and train without sleeping.
+          
         white-2: |
           Desiring the strongest karate chop,
           they seclude themselves in
           mountains and train without sleeping.
+          
       forms: *black-white.pokemon.sawk.forms
 x-y:
   name: *black-white.name
@@ -150,11 +155,19 @@ x-y:
         x: |
           Desiring the strongest karate chop, they seclude
           themselves in mountains and train without sleeping.
+          
         'y': |
           Tying their belts gets them pumped and makes their
           punches more destructive. Disturbing their training
           angers them.
-      forms: *black-white.pokemon.sawk.forms
+          
+      forms: &x-y.pokemon.sawk.forms
+        sawk:
+          name: *black-white.name
+          form_name: *black-white.pokemon.sawk.forms.sawk.form_name
+          default: *black-white.pokemon.sawk.default
+          battle_only: *black-white.pokemon.sawk.forms.sawk.battle_only
+          icon: sawk-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -186,11 +199,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Desiring the strongest karate chop, they seclude
           themselves in mountains and train without sleeping.
+          
         alpha-sapphire: |
           Tying their belts gets them pumped and makes their
           punches more destructive. Disturbing their training
           angers them.
-      forms: *black-white.pokemon.sawk.forms
+          
+      forms: *x-y.pokemon.sawk.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -218,7 +233,7 @@ sun-moon:
       abilities: *black-white.pokemon.sawk.abilities
       wild_held_items:
         moon: *x-y.pokemon.sawk.wild_held_items.x
-      forms: *black-white.pokemon.sawk.forms
+      forms: *x-y.pokemon.sawk.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -246,4 +261,4 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.sawk.abilities
       wild_held_items:
         ultra-sun: *x-y.pokemon.sawk.wild_held_items.x
-      forms: *black-white.pokemon.sawk.forms
+      forms: *x-y.pokemon.sawk.forms

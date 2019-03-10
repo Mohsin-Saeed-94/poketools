@@ -67,16 +67,19 @@ black-white:
           It flies across the sky at Mach speeds.
           Removing the seal on its chest makes
           its internal energy go out of control.
+          
         white: |
           It is said that Golurk were ordered
           to protect people and Pokémon
           by the ancient people who made them.
+          
       forms: &black-white.pokemon.golurk.forms
         golurk:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.golurk.forms.golurk.form_name 'Default Form'
           default: *black-white.pokemon.golurk.default
-          battle_only: false
+          battle_only: &black-white.pokemon.golurk.forms.golurk.battle_only false
+          icon: gen5/golurk-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -113,10 +116,12 @@ black-2-white-2:
           Golurk were created to protect
           people and Pokémon.
           They run on a mysterious energy.
+          
         white-2: |
           Golurk were created to protect
           people and Pokémon.
           They run on a mysterious energy.
+          
       forms: *black-white.pokemon.golurk.forms
 x-y:
   name: *black-white.name
@@ -155,11 +160,19 @@ x-y:
           It is said that Golurk were ordered to protect
           people and Pokémon by the ancient people who
           made them.
+          
         'y': |
           It flies across the sky at Mach speeds. Removing
           the seal on its chest makes its internal energy go
           out of control.
-      forms: *black-white.pokemon.golurk.forms
+          
+      forms: &x-y.pokemon.golurk.forms
+        golurk:
+          name: *black-white.name
+          form_name: *black-white.pokemon.golurk.forms.golurk.form_name
+          default: *black-white.pokemon.golurk.default
+          battle_only: *black-white.pokemon.golurk.forms.golurk.battle_only
+          icon: golurk-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -193,11 +206,13 @@ omega-ruby-alpha-sapphire:
           It is said that Golurk were ordered to protect
           people and Pokémon by the ancient people who
           made them.
+          
         alpha-sapphire: |
           It flies across the sky at Mach speeds. Removing
           the seal on its chest makes its internal energy go
           out of control.
-      forms: *black-white.pokemon.golurk.forms
+          
+      forms: *x-y.pokemon.golurk.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -226,7 +241,7 @@ sun-moon:
       wild_held_items:
         moon: *black-white.pokemon.golurk.wild_held_items.black
       evolution_conditions: *black-white.pokemon.golurk.evolution_conditions
-      forms: *black-white.pokemon.golurk.forms
+      forms: *x-y.pokemon.golurk.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -260,4 +275,5 @@ ultra-sun-ultra-moon:
           Some say that ancient people invented Golurk
           to serve as a laborer. It follows its master’s
           orders faithfully.
-      forms: *black-white.pokemon.golurk.forms
+          
+      forms: *x-y.pokemon.golurk.forms

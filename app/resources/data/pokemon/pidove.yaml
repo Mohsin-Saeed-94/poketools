@@ -60,16 +60,19 @@ black-white:
           Each follows its Trainer’s orders as
           best it can, but they sometimes fail to
           understand complicated commands.
+          
         white: |
           These Pokémon live in cities. They are
           accustomed to people. Flocks often
           gather in parks and plazas.
+          
       forms: &black-white.pokemon.pidove.forms
         pidove:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.pidove.forms.pidove.form_name 'Default Form'
           default: *black-white.pokemon.pidove.default
-          battle_only: false
+          battle_only: &black-white.pokemon.pidove.forms.pidove.battle_only false
+          icon: gen5/pidove-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           This very forgetful Pokémon will
           wait for a new order from its Trainer
           even though it already has one.
+          
         white-2: |
           This very forgetful Pokémon will
           wait for a new order from its Trainer
           even though it already has one.
+          
       forms: *black-white.pokemon.pidove.forms
 x-y:
   name: *black-white.name
@@ -139,10 +144,18 @@ x-y:
           This very forgetful Pokémon will wait for a new
           order from its Trainer even though it already
           has one.
+          
         'y': |
           These Pokémon live in cities. They are accustomed
           to people. Flocks often gather in parks and plazas.
-      forms: *black-white.pokemon.pidove.forms
+          
+      forms: &x-y.pokemon.pidove.forms
+        pidove:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pidove.forms.pidove.form_name
+          default: *black-white.pokemon.pidove.default
+          battle_only: *black-white.pokemon.pidove.forms.pidove.battle_only
+          icon: pidove-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -174,10 +187,12 @@ omega-ruby-alpha-sapphire:
           This very forgetful Pokémon will wait for a new
           order from its Trainer even though it already
           has one.
+          
         alpha-sapphire: |
           These Pokémon live in cities. They are accustomed
           to people. Flocks often gather in parks and plazas.
-      forms: *black-white.pokemon.pidove.forms
+          
+      forms: *x-y.pokemon.pidove.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -203,5 +218,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.pidove.mega
       stats: *black-white.pokemon.pidove.stats
       abilities: *black-white.pokemon.pidove.abilities
-      forms: *black-white.pokemon.pidove.forms
+      forms: *x-y.pokemon.pidove.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -54,16 +54,19 @@ black-white:
           It tends to bite everything, and it
           is not a picky eater. Approaching it
           carelessly is dangerous.
+          
         white: |
           They cannot see, so they tackle and bite
           to learn about their surroundings.
           Their bodies are covered in wounds.
+          
       forms: &black-white.pokemon.deino.forms
         deino:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.deino.forms.deino.form_name 'Default Form'
           default: *black-white.pokemon.deino.default
-          battle_only: false
+          battle_only: &black-white.pokemon.deino.forms.deino.battle_only false
+          icon: gen5/deino-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -96,10 +99,12 @@ black-2-white-2:
           Lacking sight, it’s unaware of its
           surroundings, so it bumps into things
           and eats anything that moves.
+          
         white-2: |
           Lacking sight, it’s unaware of its
           surroundings, so it bumps into things
           and eats anything that moves.
+          
       forms: *black-white.pokemon.deino.forms
 x-y:
   name: *black-white.name
@@ -134,11 +139,19 @@ x-y:
           They cannot see, so they tackle and bite to learn
           about their surroundings. Their bodies are covered
           in wounds.
+          
         'y': |
           Lacking sight, it’s unaware of its surroundings,
           so it bumps into things and eats anything
           that moves.
-      forms: *black-white.pokemon.deino.forms
+          
+      forms: &x-y.pokemon.deino.forms
+        deino:
+          name: *black-white.name
+          form_name: *black-white.pokemon.deino.forms.deino.form_name
+          default: *black-white.pokemon.deino.default
+          battle_only: *black-white.pokemon.deino.forms.deino.battle_only
+          icon: deino-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -171,11 +184,13 @@ omega-ruby-alpha-sapphire:
           They cannot see, so they tackle and bite to learn
           about their surroundings. Their bodies are covered
           in wounds.
+          
         alpha-sapphire: |
           Lacking sight, it’s unaware of its surroundings,
           so it bumps into things and eats anything
           that moves.
-      forms: *black-white.pokemon.deino.forms
+          
+      forms: *x-y.pokemon.deino.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -201,5 +216,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.deino.mega
       stats: *black-white.pokemon.deino.stats
       abilities: *black-white.pokemon.deino.abilities
-      forms: *black-white.pokemon.deino.forms
+      forms: *x-y.pokemon.deino.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -61,16 +61,19 @@ black-white:
           When its internal fire flares up, its
           movements grow sharper and faster.
           When in trouble, it emits smoke.
+          
         white: |
           Whatever it eats becomes fuel for the
           flame in its stomach. When it is angered,
           the intensity of the flame increases.
+          
       forms: &black-white.pokemon.pignite.forms
         pignite:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.pignite.forms.pignite.form_name 'Default Form'
           default: *black-white.pokemon.pignite.default
-          battle_only: false
+          battle_only: &black-white.pokemon.pignite.forms.pignite.battle_only false
+          icon: gen5/pignite-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,10 +108,12 @@ black-2-white-2:
           The more it eats, the more fuel it has
           to make the fire in its stomach stronger.
           This fills it with even more power.
+          
         white-2: |
           The more it eats, the more fuel it has
           to make the fire in its stomach stronger.
           This fills it with even more power.
+          
       forms: *black-white.pokemon.pignite.forms
 x-y:
   name: *black-white.name
@@ -144,10 +149,18 @@ x-y:
           The more it eats, the more fuel it has to make the
           fire in its stomach stronger. This fills it with even
           more power.
+          
         'y': |
           When its internal fire flares up, its movements grow
           sharper and faster. When in trouble, it emits smoke.
-      forms: *black-white.pokemon.pignite.forms
+          
+      forms: &x-y.pokemon.pignite.forms
+        pignite:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pignite.forms.pignite.form_name
+          default: *black-white.pokemon.pignite.default
+          battle_only: *black-white.pokemon.pignite.forms.pignite.battle_only
+          icon: pignite-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -181,10 +194,12 @@ omega-ruby-alpha-sapphire:
           The more it eats, the more fuel it has to make the
           fire in its stomach stronger. This fills it with even
           more power.
+          
         alpha-sapphire: |
           When its internal fire flares up, its movements grow
           sharper and faster. When in trouble, it emits smoke.
-      forms: *black-white.pokemon.pignite.forms
+          
+      forms: *x-y.pokemon.pignite.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -212,5 +227,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.pignite.stats
       abilities: *black-white.pokemon.pignite.abilities
       evolution_conditions: *black-white.pokemon.pignite.evolution_conditions
-      forms: *black-white.pokemon.pignite.forms
+      forms: *x-y.pokemon.pignite.forms
 ultra-sun-ultra-moon: *sun-moon

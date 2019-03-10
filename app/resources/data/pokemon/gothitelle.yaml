@@ -60,16 +60,19 @@ black-white:
           Starry skies thousands of light-years
           away are visible in the space distorted
           by their intense psychic power.
+          
         white: |
           They can predict the future from the
           placement and movement of the stars.
           They can see Trainers’ life spans.
+          
       forms: &black-white.pokemon.gothitelle.forms
         gothitelle:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.gothitelle.forms.gothitelle.form_name 'Default Form'
           default: *black-white.pokemon.gothitelle.default
-          battle_only: false
+          battle_only: &black-white.pokemon.gothitelle.forms.gothitelle.battle_only false
+          icon: gen5/gothitelle-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           It can see the future from the movement
           of the stars. When it learns its
           Trainer’s life span, it cries in sadness.
+          
         white-2: |
           It can see the future from the movement
           of the stars. When it learns its
           Trainer’s life span, it cries in sadness.
+          
       forms: *black-white.pokemon.gothitelle.forms
 x-y:
   name: *black-white.name
@@ -153,11 +158,19 @@ x-y:
           Starry skies thousands of light-years away are
           visible in the space distorted by their intense
           psychic power.
+          
         'y': |
           They can predict the future from the placement and
           movement of the stars. They can see Trainers’
           life spans.
-      forms: *black-white.pokemon.gothitelle.forms
+          
+      forms: &x-y.pokemon.gothitelle.forms
+        gothitelle:
+          name: *black-white.name
+          form_name: *black-white.pokemon.gothitelle.forms.gothitelle.form_name
+          default: *black-white.pokemon.gothitelle.default
+          battle_only: *black-white.pokemon.gothitelle.forms.gothitelle.battle_only
+          icon: gothitelle-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -192,11 +205,13 @@ omega-ruby-alpha-sapphire:
           Starry skies thousands of light-years away are
           visible in the space distorted by their intense
           psychic power.
+          
         alpha-sapphire: |
           They can predict the future from the placement and
           movement of the stars. They can see Trainers’
           life spans.
-      forms: *black-white.pokemon.gothitelle.forms
+          
+      forms: *x-y.pokemon.gothitelle.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -224,5 +239,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.gothitelle.stats
       abilities: *x-y.pokemon.gothitelle.abilities
       evolution_conditions: *black-white.pokemon.gothitelle.evolution_conditions
-      forms: *black-white.pokemon.gothitelle.forms
+      forms: *x-y.pokemon.gothitelle.forms
 ultra-sun-ultra-moon: *sun-moon

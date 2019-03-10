@@ -65,6 +65,7 @@ diamond-pearl:
           It lives in flower patches and
           avoids detection by curling up
           to look like a flowering plant.
+          
         pearl: |
           It can dissolve toxins in the air
           to instantly transform ruined land
@@ -75,6 +76,7 @@ diamond-pearl:
           form_name: &diamond-pearl.pokemon.shaymin-land.forms.shaymin-land.form_name 'Land Forme'
           default: *diamond-pearl.pokemon.shaymin-land.default
           battle_only: &diamond-pearl.pokemon.shaymin-land.forms.shaymin-land.battle_only false
+          icon: &diamond-pearl.pokemon.shaymin-land.forms.shaymin-land.icon gen5/shaymin-land.png
     shaymin-sky:
       genus: *diamond-pearl.pokemon.shaymin-land.genus
       shape: *diamond-pearl.pokemon.shaymin-land.shape
@@ -122,6 +124,7 @@ diamond-pearl:
           form_name: &diamond-pearl.pokemon.shaymin-sky.forms.shaymin-sky.form_name 'Sky Forme'
           default: *diamond-pearl.pokemon.shaymin-land.default
           battle_only: *diamond-pearl.pokemon.shaymin-land.forms.shaymin-land.battle_only
+          icon: &diamond-pearl.pokemon.shaymin-sky.forms.shaymin-sky.icon gen5/shaymin-sky.png
 platinum:
   name: *diamond-pearl.name
   position: *diamond-pearl.position
@@ -208,6 +211,7 @@ heartgold-soulsilver:
           The blooming of Gracidea flowers confers
           the power of flight upon it. Feelings 
           of gratitude are the message it delivers.
+          
         soulsilver: |
           The blooming of Gracidea flowers confers
           the power of flight upon it. Feelings 
@@ -234,6 +238,7 @@ heartgold-soulsilver:
             jump:
               base_value: 3
               range: 2-3
+          icon: *diamond-pearl.pokemon.shaymin-land.forms.shaymin-land.icon
     shaymin-sky:
       genus: *diamond-pearl.pokemon.shaymin-land.genus
       shape: *diamond-pearl.pokemon.shaymin-land.shape
@@ -277,6 +282,7 @@ heartgold-soulsilver:
             jump:
               base_value: 5
               range: 3-5
+          icon: *diamond-pearl.pokemon.shaymin-sky.forms.shaymin-sky.icon
 black-white:
   name: *diamond-pearl.name
   position: *diamond-pearl.position
@@ -310,6 +316,7 @@ black-white:
           The flowers all over its body burst
           into bloom if it is lovingly hugged
           and senses gratitude.
+          
         white: |
           The flowers all over its body burst
           into bloom if it is lovingly hugged
@@ -371,6 +378,7 @@ black-2-white-2:
           The flowers all over its body burst
           into bloom if it is lovingly hugged
           and senses gratitude.
+          
         white-2: |
           The flowers all over its body burst
           into bloom if it is lovingly hugged
@@ -432,11 +440,18 @@ x-y:
         x: |
           It can dissolve toxins in the air to instantly
           transform ruined land into a lush field of flowers.
+          
         'y': |
           The blooming of Gracidea flowers confers the
           power of flight upon it. Feelings of gratitude are
           the message it delivers.
-      forms: *diamond-pearl.pokemon.shaymin-land.forms
+      forms: &x-y.pokemon.shaymin-land.forms
+        shaymin-land:
+          name: *diamond-pearl.pokemon.shaymin-land.forms.shaymin-land.name
+          form_name: *diamond-pearl.pokemon.shaymin-land.forms.shaymin-land.form_name
+          default: *diamond-pearl.pokemon.shaymin-land.default
+          battle_only: *diamond-pearl.pokemon.shaymin-land.forms.shaymin-land.battle_only
+          icon: shaymin-land.png
     shaymin-sky:
       genus: *diamond-pearl.pokemon.shaymin-land.genus
       color: *black-white.pokemon.shaymin-land.color
@@ -460,7 +475,13 @@ x-y:
       abilities: *diamond-pearl.pokemon.shaymin-sky.abilities
       wild_held_items: *x-y.pokemon.shaymin-land.wild_held_items
       flavor_text: *x-y.pokemon.shaymin-land.flavor_text
-      forms: *diamond-pearl.pokemon.shaymin-sky.forms
+      forms: &x-y.pokemon.shaymin-sky.forms
+        shaymin-sky:
+          name: *diamond-pearl.pokemon.shaymin-sky.name
+          form_name: *diamond-pearl.pokemon.shaymin-sky.forms.shaymin-sky.form_name
+          default: *diamond-pearl.pokemon.shaymin-land.default
+          battle_only: *diamond-pearl.pokemon.shaymin-land.forms.shaymin-land.battle_only
+          icon: shaymin-sky.png
 omega-ruby-alpha-sapphire:
   name: *diamond-pearl.name
   position: *diamond-pearl.position
@@ -491,11 +512,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It can dissolve toxins in the air to instantly
           transform ruined land into a lush field of flowers.
+          
         alpha-sapphire: |
           The blooming of Gracidea flowers confers the
           power of flight upon it. Feelings of gratitude are
           the message it delivers.
-      forms: *diamond-pearl.pokemon.shaymin-land.forms
+      forms: *x-y.pokemon.shaymin-land.forms
     shaymin-sky:
       genus: *diamond-pearl.pokemon.shaymin-land.genus
       color: *black-white.pokemon.shaymin-land.color
@@ -518,7 +540,7 @@ omega-ruby-alpha-sapphire:
       stats: *diamond-pearl.pokemon.shaymin-sky.stats
       abilities: *diamond-pearl.pokemon.shaymin-sky.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.shaymin-land.flavor_text
-      forms: *diamond-pearl.pokemon.shaymin-sky.forms
+      forms: *x-y.pokemon.shaymin-sky.forms
 sun-moon:
   name: *diamond-pearl.name
   position: *diamond-pearl.position
@@ -547,7 +569,7 @@ sun-moon:
       wild_held_items: &sun-moon.pokemon.shaymin-land.wild_held_items
         moon: &sun-moon.pokemon.shaymin-land.wild_held_items.moon
           lum-berry: 5
-      forms: *diamond-pearl.pokemon.shaymin-land.forms
+      forms: *x-y.pokemon.shaymin-land.forms
     shaymin-sky:
       genus: *diamond-pearl.pokemon.shaymin-land.genus
       color: *black-white.pokemon.shaymin-land.color
@@ -570,7 +592,7 @@ sun-moon:
       stats: *diamond-pearl.pokemon.shaymin-sky.stats
       abilities: *diamond-pearl.pokemon.shaymin-sky.abilities
       wild_held_items: *sun-moon.pokemon.shaymin-land.wild_held_items
-      forms: *diamond-pearl.pokemon.shaymin-sky.forms
+      forms: *x-y.pokemon.shaymin-sky.forms
 ultra-sun-ultra-moon:
   name: *diamond-pearl.name
   position: *diamond-pearl.position
@@ -598,7 +620,7 @@ ultra-sun-ultra-moon:
       abilities: *diamond-pearl.pokemon.shaymin-land.abilities
       wild_held_items: &ultra-sun-ultra-moon.pokemon.shaymin-land.wild_held_items
         ultra-sun: *sun-moon.pokemon.shaymin-land.wild_held_items.moon
-      forms: *diamond-pearl.pokemon.shaymin-land.forms
+      forms: *x-y.pokemon.shaymin-land.forms
     shaymin-sky:
       genus: *diamond-pearl.pokemon.shaymin-land.genus
       color: *black-white.pokemon.shaymin-land.color
@@ -621,4 +643,4 @@ ultra-sun-ultra-moon:
       stats: *diamond-pearl.pokemon.shaymin-sky.stats
       abilities: *diamond-pearl.pokemon.shaymin-sky.abilities
       wild_held_items: *ultra-sun-ultra-moon.pokemon.shaymin-land.wild_held_items
-      forms: *diamond-pearl.pokemon.shaymin-sky.forms
+      forms: *x-y.pokemon.shaymin-sky.forms

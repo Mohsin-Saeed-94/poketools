@@ -70,16 +70,19 @@ black-white:
           Competing for territory, Crustle
           fight viciously. The one whose boulder
           is broken is the loser of the battle.
+          
         white: |
           It possesses legs of enormous strength,
           enabling it to carry heavy slabs for many
           days, even when crossing arid land.
+          
       forms: &black-white.pokemon.crustle.forms
         crustle:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.crustle.forms.crustle.form_name 'Default Form'
           default: *black-white.pokemon.crustle.default
-          battle_only: false
+          battle_only: &black-white.pokemon.crustle.forms.crustle.battle_only false
+          icon: gen5/crustle-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -117,10 +120,12 @@ black-2-white-2:
           When its boulder is broken
           in battles for territory, it feels
           unsure and begins to weaken.
+          
         white-2: |
           When its boulder is broken
           in battles for territory, it feels
           unsure and begins to weaken.
+          
       forms: *black-white.pokemon.crustle.forms
 x-y:
   name: *black-white.name
@@ -161,11 +166,19 @@ x-y:
           It possesses legs of enormous strength, enabling it
           to carry heavy slabs for many days, even when
           crossing arid land.
+          
         'y': |
           Competing for territory, Crustle fight viciously.
           The one whose boulder is broken is the loser of
           the battle.
-      forms: *black-white.pokemon.crustle.forms
+          
+      forms: &x-y.pokemon.crustle.forms
+        crustle:
+          name: *black-white.name
+          form_name: *black-white.pokemon.crustle.forms.crustle.form_name
+          default: *black-white.pokemon.crustle.default
+          battle_only: *black-white.pokemon.crustle.forms.crustle.battle_only
+          icon: crustle-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -200,11 +213,13 @@ omega-ruby-alpha-sapphire:
           It possesses legs of enormous strength, enabling it
           to carry heavy slabs for many days, even when
           crossing arid land.
+          
         alpha-sapphire: |
           Competing for territory, Crustle fight viciously.
           The one whose boulder is broken is the loser of
           the battle.
-      forms: *black-white.pokemon.crustle.forms
+          
+      forms: *x-y.pokemon.crustle.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -234,7 +249,7 @@ sun-moon:
       wild_held_items:
         moon: *x-y.pokemon.crustle.wild_held_items.x
       evolution_conditions: *black-white.pokemon.crustle.evolution_conditions
-      forms: *black-white.pokemon.crustle.forms
+      forms: *x-y.pokemon.crustle.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -264,4 +279,4 @@ ultra-sun-ultra-moon:
       wild_held_items:
         ultra-sun: *x-y.pokemon.crustle.wild_held_items.x
       evolution_conditions: *black-white.pokemon.crustle.evolution_conditions
-      forms: *black-white.pokemon.crustle.forms
+      forms: *x-y.pokemon.crustle.forms

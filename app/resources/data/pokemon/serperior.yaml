@@ -61,16 +61,19 @@ black-white:
           It can stop its opponents’
           movements with just a glare. It takes
           in solar energy and boosts it internally.
+          
         white: |
           They raise their heads to intimidate
           opponents but only give it their all
           when fighting a powerful opponent.
+          
       forms: &black-white.pokemon.serperior.forms
         serperior:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.serperior.forms.serperior.form_name 'Default Form'
           default: *black-white.pokemon.serperior.default
-          battle_only: false
+          battle_only: &black-white.pokemon.serperior.forms.serperior.battle_only false
+          icon: gen5/serperior-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,10 +108,12 @@ black-2-white-2:
           It only gives its all against strong
           opponents who are not fazed by the
           glare from Serperior’s noble eyes.
+          
         white-2: |
           It only gives its all against strong
           opponents who are not fazed by the
           glare from Serperior’s noble eyes.
+          
       forms: *black-white.pokemon.serperior.forms
 x-y:
   name: *black-white.name
@@ -144,11 +149,19 @@ x-y:
           It only gives its all against strong opponents who
           are not fazed by the glare from Serperior’s
           noble eyes.
+          
         'y': |
           It can stop its opponents’ movements with just a
           glare. It takes in solar energy and boosts
           it internally.
-      forms: *black-white.pokemon.serperior.forms
+          
+      forms: &x-y.pokemon.serperior.forms
+        serperior:
+          name: *black-white.name
+          form_name: *black-white.pokemon.serperior.forms.serperior.form_name
+          default: *black-white.pokemon.serperior.default
+          battle_only: *black-white.pokemon.serperior.forms.serperior.battle_only
+          icon: serperior-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -182,11 +195,13 @@ omega-ruby-alpha-sapphire:
           It only gives its all against strong opponents who
           are not fazed by the glare from Serperior’s
           noble eyes.
+          
         alpha-sapphire: |
           It can stop its opponents’ movements with just a
           glare. It takes in solar energy and boosts
           it internally.
-      forms: *black-white.pokemon.serperior.forms
+          
+      forms: *x-y.pokemon.serperior.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -214,5 +229,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.serperior.stats
       abilities: *black-white.pokemon.serperior.abilities
       evolution_conditions: *black-white.pokemon.serperior.evolution_conditions
-      forms: *black-white.pokemon.serperior.forms
+      forms: *x-y.pokemon.serperior.forms
 ultra-sun-ultra-moon: *sun-moon

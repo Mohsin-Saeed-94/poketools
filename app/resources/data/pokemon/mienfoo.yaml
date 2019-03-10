@@ -60,16 +60,19 @@ black-white:
           In fights, they dominate with onslaughts
           of flowing, continuous attacks. With
           their sharp claws, they cut enemies.
+          
         white: |
           They have mastered elegant combos.
           As they concentrate, their battle moves
           become swifter and more precise.
+          
       forms: &black-white.pokemon.mienfoo.forms
         mienfoo:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.mienfoo.forms.mienfoo.form_name 'Default Form'
           default: *black-white.pokemon.mienfoo.default
-          battle_only: false
+          battle_only: &black-white.pokemon.mienfoo.forms.mienfoo.battle_only false
+          icon: gen5/mienfoo-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           It takes pride in the speed at which it
           can use moves. What it loses in power,
           it makes up for in quantity.
+          
         white-2: |
           It takes pride in the speed at which it
           can use moves. What it loses in power,
           it makes up for in quantity.
+          
       forms: *black-white.pokemon.mienfoo.forms
 x-y:
   name: *black-white.name
@@ -140,11 +145,19 @@ x-y:
           It takes pride in the speed at which it can use
           moves. What it loses in power, it makes up for
           in quantity.
+          
         'y': |
           In fights, they dominate with onslaughts of flowing,
           continuous attacks. With their sharp claws, they
           cut enemies.
-      forms: *black-white.pokemon.mienfoo.forms
+          
+      forms: &x-y.pokemon.mienfoo.forms
+        mienfoo:
+          name: *black-white.name
+          form_name: *black-white.pokemon.mienfoo.forms.mienfoo.form_name
+          default: *black-white.pokemon.mienfoo.default
+          battle_only: *black-white.pokemon.mienfoo.forms.mienfoo.battle_only
+          icon: mienfoo-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -177,11 +190,13 @@ omega-ruby-alpha-sapphire:
           It takes pride in the speed at which it can use
           moves. What it loses in power, it makes up for
           in quantity.
+          
         alpha-sapphire: |
           In fights, they dominate with onslaughts of flowing,
           continuous attacks. With their sharp claws, they
           cut enemies.
-      forms: *black-white.pokemon.mienfoo.forms
+          
+      forms: *x-y.pokemon.mienfoo.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -207,7 +222,7 @@ sun-moon:
       mega: *x-y.pokemon.mienfoo.mega
       stats: *black-white.pokemon.mienfoo.stats
       abilities: *black-white.pokemon.mienfoo.abilities
-      forms: *black-white.pokemon.mienfoo.forms
+      forms: *x-y.pokemon.mienfoo.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -238,4 +253,5 @@ ultra-sun-ultra-moon:
           They can often be seen in packs in the morning,
           slowly moving their bodies through a series
           of poses.
-      forms: *black-white.pokemon.mienfoo.forms
+          
+      forms: *x-y.pokemon.mienfoo.forms

@@ -59,16 +59,19 @@ black-white:
         black: |
           The special membrane enveloping
           Alomomola has the ability to heal wounds.
+          
         white: |
           Floating in the open sea is how they live.
           When they find a wounded Pokémon,
           they embrace it and bring it to shore.
+          
       forms: &black-white.pokemon.alomomola.forms
         alomomola:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.alomomola.forms.alomomola.form_name 'Default Form'
           default: *black-white.pokemon.alomomola.default
-          battle_only: false
+          battle_only: &black-white.pokemon.alomomola.forms.alomomola.battle_only false
+          icon: gen5/alomomola-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -101,10 +104,12 @@ black-2-white-2:
           It gently holds injured and weak
           Pokémon in its fins. Its special
           membrane heals their wounds.
+          
         white-2: |
           It gently holds injured and weak
           Pokémon in its fins. Its special
           membrane heals their wounds.
+          
       forms: *black-white.pokemon.alomomola.forms
 x-y:
   name: *black-white.name
@@ -139,10 +144,18 @@ x-y:
           Floating in the open sea is how they live.
           When they find a wounded Pokémon,
           they embrace it and bring it to shore.
+          
         'y': |
           It gently holds injured and weak Pokémon in its
           fins. Its special membrane heals their wounds.
-      forms: *black-white.pokemon.alomomola.forms
+          
+      forms: &x-y.pokemon.alomomola.forms
+        alomomola:
+          name: *black-white.name
+          form_name: *black-white.pokemon.alomomola.forms.alomomola.form_name
+          default: *black-white.pokemon.alomomola.default
+          battle_only: *black-white.pokemon.alomomola.forms.alomomola.battle_only
+          icon: alomomola-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -175,10 +188,12 @@ omega-ruby-alpha-sapphire:
           Floating in the open sea is how they live.
           When they find a wounded Pokémon,
           they embrace it and bring it to shore.
+          
         alpha-sapphire: |
           It gently holds injured and weak Pokémon in its
           fins. Its special membrane heals their wounds.
-      forms: *black-white.pokemon.alomomola.forms
+          
+      forms: *x-y.pokemon.alomomola.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -208,7 +223,8 @@ sun-moon:
         moon: |
           They float upon the open sea. Many water
           Pokémon gather in the area around Alomomola.
-      forms: *black-white.pokemon.alomomola.forms
+          
+      forms: *x-y.pokemon.alomomola.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -239,4 +255,5 @@ ultra-sun-ultra-moon:
           Fishermen take them along on long voyages,
           because if you have an Alomomola with you,
           there’ll be no need for a doctor or medicine.
-      forms: *black-white.pokemon.alomomola.forms
+          
+      forms: *x-y.pokemon.alomomola.forms

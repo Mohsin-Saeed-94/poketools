@@ -61,16 +61,19 @@ black-white:
           When it is angered, the temperature
           of its head tuft reaches 600° F.
           It uses its tuft to roast berries.
+          
         white: |
           This Pokémon lives in caves
           in volcanoes. The fire within the
           tuft on its head can reach 600° F.
+          
       forms: &black-white.pokemon.pansear.forms
         pansear:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.pansear.forms.pansear.form_name 'Default Form'
           default: *black-white.pokemon.pansear.default
-          battle_only: false
+          battle_only: &black-white.pokemon.pansear.forms.pansear.battle_only false
+          icon: gen5/pansear-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -106,10 +109,12 @@ black-2-white-2:
           Very intelligent, it roasts
           berries before eating them.
           It likes to help people.
+          
         white-2: |
           Very intelligent, it roasts
           berries before eating them.
           It likes to help people.
+          
       forms: *black-white.pokemon.pansear.forms
 x-y:
   name: *black-white.name
@@ -143,11 +148,19 @@ x-y:
         x: |
           Very intelligent, it roasts berries before eating them.
           It likes to help people.
+          
         'y': |
           This Pokémon lives in caves in volcanoes.
           The fire within the tuft on its head can reach
           600 degrees Fahrenheit.
-      forms: *black-white.pokemon.pansear.forms
+          
+      forms: &x-y.pokemon.pansear.forms
+        pansear:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pansear.forms.pansear.form_name
+          default: *black-white.pokemon.pansear.default
+          battle_only: *black-white.pokemon.pansear.forms.pansear.battle_only
+          icon: pansear-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -179,11 +192,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Very intelligent, it roasts berries before eating them.
           It likes to help people.
+          
         alpha-sapphire: |
           This Pokémon lives in caves in volcanoes.
           The fire within the tuft on its head can reach
           600 degrees Fahrenheit.
-      forms: *black-white.pokemon.pansear.forms
+          
+      forms: *x-y.pokemon.pansear.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -209,5 +224,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.pansear.mega
       stats: *black-white.pokemon.pansear.stats
       abilities: *black-white.pokemon.pansear.abilities
-      forms: *black-white.pokemon.pansear.forms
+      forms: *x-y.pokemon.pansear.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -66,16 +66,19 @@ black-white:
           This Pokémon can easily melt holes in
           hard rocks with a liquid secreted from
           its mouth.
+          
         white: |
           It makes a hole in a suitable rock. If
           that rock breaks, the Pokémon remains
           agitated until it locates a replacement.
+          
       forms: &black-white.pokemon.dwebble.forms
         dwebble:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.dwebble.forms.dwebble.form_name 'Default Form'
           default: *black-white.pokemon.dwebble.default
-          battle_only: false
+          battle_only: &black-white.pokemon.dwebble.forms.dwebble.battle_only false
+          icon: gen5/dwebble-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -111,10 +114,12 @@ black-2-white-2:
           When it finds a stone of a suitable
           size, it secretes a liquid from its
           mouth to open up a hole to crawl into.
+          
         white-2: |
           When it finds a stone of a suitable
           size, it secretes a liquid from its
           mouth to open up a hole to crawl into.
+          
       forms: *black-white.pokemon.dwebble.forms
 x-y:
   name: *black-white.name
@@ -153,11 +158,19 @@ x-y:
           It makes a hole in a suitable rock. If that rock
           breaks, the Pokémon remains agitated until it
           locates a replacement.
+          
         'y': |
           When it finds a stone of a suitable size, it secretes
           a liquid from its mouth to open up a hole to
           crawl into.
-      forms: *black-white.pokemon.dwebble.forms
+          
+      forms: &x-y.pokemon.dwebble.forms
+        dwebble:
+          name: *black-white.name
+          form_name: *black-white.pokemon.dwebble.forms.dwebble.form_name
+          default: *black-white.pokemon.dwebble.default
+          battle_only: *black-white.pokemon.dwebble.forms.dwebble.battle_only
+          icon: dwebble-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -190,11 +203,13 @@ omega-ruby-alpha-sapphire:
           It makes a hole in a suitable rock. If that rock
           breaks, the Pokémon remains agitated until it
           locates a replacement.
+          
         alpha-sapphire: |
           When it finds a stone of a suitable size, it secretes
           a liquid from its mouth to open up a hole to
           crawl into.
-      forms: *black-white.pokemon.dwebble.forms
+          
+      forms: *x-y.pokemon.dwebble.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -222,7 +237,7 @@ sun-moon:
       abilities: *black-white.pokemon.dwebble.abilities
       wild_held_items:
         moon: *x-y.pokemon.dwebble.wild_held_items.x
-      forms: *black-white.pokemon.dwebble.forms
+      forms: *x-y.pokemon.dwebble.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -250,4 +265,4 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.dwebble.abilities
       wild_held_items:
         ultra-sun: *x-y.pokemon.dwebble.wild_held_items.x
-      forms: *black-white.pokemon.dwebble.forms
+      forms: *x-y.pokemon.dwebble.forms

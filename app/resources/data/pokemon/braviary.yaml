@@ -64,16 +64,19 @@ black-white:
           They fight for their friends without any
           thought about danger to themselves.
           One can carry a car while flying.
+          
         white: |
           The more scars they have, the more
           respect these brave soldiers of the sky 
           get from their peers.
+          
       forms: &black-white.pokemon.braviary.forms
         braviary:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.braviary.forms.braviary.form_name 'Default Form'
           default: *black-white.pokemon.braviary.default
-          battle_only: false
+          battle_only: &black-white.pokemon.braviary.forms.braviary.battle_only false
+          icon: gen5/braviary-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           For the sake of its friends, this brave
           warrior of the sky will not stop battling,
           even if injured.
+          
         white-2: |
           For the sake of its friends, this brave
           warrior of the sky will not stop battling,
           even if injured.
+          
       forms: *black-white.pokemon.braviary.forms
 x-y:
   name: *black-white.name
@@ -146,11 +151,19 @@ x-y:
         x: |
           For the sake of its friends, this brave warrior of the
           sky will not stop battling, even if injured.
+          
         'y': |
           They fight for their friends without any thought
           about danger to themselves. One can carry a car
           while flying.
-      forms: *black-white.pokemon.braviary.forms
+          
+      forms: &x-y.pokemon.braviary.forms
+        braviary:
+          name: *black-white.name
+          form_name: *black-white.pokemon.braviary.forms.braviary.form_name
+          default: *black-white.pokemon.braviary.default
+          battle_only: *black-white.pokemon.braviary.forms.braviary.battle_only
+          icon: braviary-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -183,11 +196,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           For the sake of its friends, this brave warrior of the
           sky will not stop battling, even if injured.
+          
         alpha-sapphire: |
           They fight for their friends without any thought
           about danger to themselves. One can carry a car
           while flying.
-      forms: *black-white.pokemon.braviary.forms
+          
+      forms: *x-y.pokemon.braviary.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -220,7 +235,8 @@ sun-moon:
           It’s thought that people disturbed their habitats
           in the past, so Braviary banded together to
           fight back.
-      forms: *black-white.pokemon.braviary.forms
+          
+      forms: *x-y.pokemon.braviary.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -253,4 +269,5 @@ ultra-sun-ultra-moon:
           The more scars it has on its front, the more
           heroic it’s considered to be. Those with many
           scars on their back are mocked by the flock.
-      forms: *black-white.pokemon.braviary.forms
+          
+      forms: *x-y.pokemon.braviary.forms

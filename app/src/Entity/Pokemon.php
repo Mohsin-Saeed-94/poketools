@@ -1159,14 +1159,6 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     }
 
     /**
-     * @return PokemonForm[]|Collection
-     */
-    public function getForms()
-    {
-        return $this->forms;
-    }
-
-    /**
      * @param PokemonForm $form
      *
      * @return self
@@ -1193,5 +1185,27 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
         }
 
         return $this;
+    }
+
+    /**
+     * @return PokemonForm
+     */
+    public function getDefaultForm(): PokemonForm
+    {
+        foreach ($this->getForms() as $form) {
+            if ($form->isDefault()) {
+                return $form;
+            }
+        }
+
+        return $this->getForms()->first();
+    }
+
+    /**
+     * @return PokemonForm[]|Collection
+     */
+    public function getForms()
+    {
+        return $this->forms;
     }
 }

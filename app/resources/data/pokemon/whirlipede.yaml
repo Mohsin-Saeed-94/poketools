@@ -69,16 +69,19 @@ black-white:
           Protected by a hard shell, it spins
           its body like a wheel and crashes
           furiously into its enemies.
+          
         white: |
           It is usually motionless, but when
           attacked, it rotates at high speed and
           then crashes into its opponent.
+          
       forms: &black-white.pokemon.whirlipede.forms
         whirlipede:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.whirlipede.forms.whirlipede.form_name 'Default Form'
           default: *black-white.pokemon.whirlipede.default
-          battle_only: false
+          battle_only: &black-white.pokemon.whirlipede.forms.whirlipede.battle_only false
+          icon: gen5/whirlipede-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -117,10 +120,12 @@ black-2-white-2:
           Storing energy for evolution, it sits.
           But, when predators approach, it
           moves to stab them with poison spikes.
+          
         white-2: |
           Storing energy for evolution, it sits.
           But, when predators approach, it
           moves to stab them with poison spikes.
+          
       forms: *black-white.pokemon.whirlipede.forms
 x-y:
   name: *black-white.name
@@ -159,11 +164,19 @@ x-y:
         x: |
           Protected by a hard shell, it spins its body like a
           wheel and crashes furiously into its enemies.
+          
         'y': |
           It is usually motionless, but when attacked,
           it rotates at high speed and then crashes into
           its opponent.
-      forms: *black-white.pokemon.whirlipede.forms
+          
+      forms: &x-y.pokemon.whirlipede.forms
+        whirlipede:
+          name: *black-white.name
+          form_name: *black-white.pokemon.whirlipede.forms.whirlipede.form_name
+          default: *black-white.pokemon.whirlipede.default
+          battle_only: *black-white.pokemon.whirlipede.forms.whirlipede.battle_only
+          icon: whirlipede-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -197,11 +210,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Protected by a hard shell, it spins its body like a
           wheel and crashes furiously into its enemies.
+          
         alpha-sapphire: |
           It is usually motionless, but when attacked,
           it rotates at high speed and then crashes into
           its opponent.
-      forms: *black-white.pokemon.whirlipede.forms
+          
+      forms: *x-y.pokemon.whirlipede.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -231,7 +246,7 @@ sun-moon:
       wild_held_items:
         moon: *black-2-white-2.pokemon.whirlipede.wild_held_items.black-2
       evolution_conditions: *black-white.pokemon.whirlipede.evolution_conditions
-      forms: *black-white.pokemon.whirlipede.forms
+      forms: *x-y.pokemon.whirlipede.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -261,4 +276,4 @@ ultra-sun-ultra-moon:
       wild_held_items:
         ultra-sun: *black-2-white-2.pokemon.whirlipede.wild_held_items.black-2
       evolution_conditions: *black-white.pokemon.whirlipede.evolution_conditions
-      forms: *black-white.pokemon.whirlipede.forms
+      forms: *x-y.pokemon.whirlipede.forms

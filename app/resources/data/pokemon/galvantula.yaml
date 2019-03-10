@@ -64,16 +64,19 @@ black-white:
           When attacked, they create an
           electric barrier by spitting out
           many electrically charged threads.
+          
         white: |
           They employ an electrically charged web
           to trap their prey. While it is immobilized
           by shock, they leisurely consume it.
+          
       forms: &black-white.pokemon.galvantula.forms
         galvantula:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.galvantula.forms.galvantula.form_name 'Default Form'
           default: *black-white.pokemon.galvantula.default
-          battle_only: false
+          battle_only: &black-white.pokemon.galvantula.forms.galvantula.battle_only false
+          icon: gen5/galvantula-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           It creates barriers from electrified silk
           that stun foes. This works as a weapon
           as well as a defense.
+          
         white-2: |
           It creates barriers from electrified silk
           that stun foes. This works as a weapon
           as well as a defense.
+          
       forms: *black-white.pokemon.galvantula.forms
 x-y:
   name: *black-white.name
@@ -147,10 +152,18 @@ x-y:
           They employ an electrically charged web to trap
           their prey. While it is immobilized by shock,
           they leisurely consume it.
+          
         'y': |
           When attacked, they create an electric barrier by
           spitting out many electrically charged threads.
-      forms: *black-white.pokemon.galvantula.forms
+          
+      forms: &x-y.pokemon.galvantula.forms
+        galvantula:
+          name: *black-white.name
+          form_name: *black-white.pokemon.galvantula.forms.galvantula.form_name
+          default: *black-white.pokemon.galvantula.default
+          battle_only: *black-white.pokemon.galvantula.forms.galvantula.battle_only
+          icon: galvantula-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -184,10 +197,12 @@ omega-ruby-alpha-sapphire:
           They employ an electrically charged web to trap
           their prey. While it is immobilized by shock,
           they leisurely consume it.
+          
         alpha-sapphire: |
           When attacked, they create an electric barrier by
           spitting out many electrically charged threads.
-      forms: *black-white.pokemon.galvantula.forms
+          
+      forms: *x-y.pokemon.galvantula.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -215,5 +230,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.galvantula.stats
       abilities: *black-white.pokemon.galvantula.abilities
       evolution_conditions: *black-white.pokemon.galvantula.evolution_conditions
-      forms: *black-white.pokemon.galvantula.forms
+      forms: *x-y.pokemon.galvantula.forms
 ultra-sun-ultra-moon: *sun-moon

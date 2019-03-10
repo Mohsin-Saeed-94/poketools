@@ -65,16 +65,19 @@ black-white:
           Its bite injects a potent poison, enough
           to paralyze large bird Pokémon that try
           to prey on it.
+          
         white: |
           It discovers what is going on around it
           by using the feelers on its head and tail.
           It is brutally aggressive.
+          
       forms: &black-white.pokemon.venipede.forms
         venipede:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.venipede.forms.venipede.form_name 'Default Form'
           default: *black-white.pokemon.venipede.default
-          battle_only: false
+          battle_only: &black-white.pokemon.venipede.forms.venipede.battle_only false
+          icon: gen5/venipede-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -111,10 +114,12 @@ black-2-white-2:
           Using the feelers on its head and tail,
           it picks up vibrations in the air to
           determine its prey’s location and state.
+          
         white-2: |
           Using the feelers on its head and tail,
           it picks up vibrations in the air to
           determine its prey’s location and state.
+          
       forms: *black-white.pokemon.venipede.forms
 x-y:
   name: *black-white.name
@@ -151,10 +156,18 @@ x-y:
         x: |
           It discovers what is going on around it by using the
           feelers on its head and tail. It is brutally aggressive.
+          
         'y': |
           Its bite injects a potent poison, enough to paralyze
           large bird Pokémon that try to prey on it.
-      forms: *black-white.pokemon.venipede.forms
+          
+      forms: &x-y.pokemon.venipede.forms
+        venipede:
+          name: *black-white.name
+          form_name: *black-white.pokemon.venipede.forms.venipede.form_name
+          default: *black-white.pokemon.venipede.default
+          battle_only: *black-white.pokemon.venipede.forms.venipede.battle_only
+          icon: venipede-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -186,10 +199,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It discovers what is going on around it by using the
           feelers on its head and tail. It is brutally aggressive.
+          
         alpha-sapphire: |
           Its bite injects a potent poison, enough to paralyze
           large bird Pokémon that try to prey on it.
-      forms: *black-white.pokemon.venipede.forms
+          
+      forms: *x-y.pokemon.venipede.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -217,7 +232,7 @@ sun-moon:
       abilities: *black-white.pokemon.venipede.abilities
       wild_held_items:
         moon: *black-2-white-2.pokemon.venipede.wild_held_items.black-2
-      forms: *black-white.pokemon.venipede.forms
+      forms: *x-y.pokemon.venipede.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -245,4 +260,4 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.venipede.abilities
       wild_held_items:
         ultra-sun: *black-2-white-2.pokemon.venipede.wild_held_items.black-2
-      forms: *black-white.pokemon.venipede.forms
+      forms: *x-y.pokemon.venipede.forms

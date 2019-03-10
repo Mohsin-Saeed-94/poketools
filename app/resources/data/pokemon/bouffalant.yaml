@@ -59,16 +59,19 @@ black-white:
           Their fluffy fur absorbs damage,
           even if they strike foes with a
           fierce headbutt.
+          
         white: |
           They charge wildly and headbutt
           everything. Their headbutts have enough
           destructive force to derail a train.
+          
       forms: &black-white.pokemon.bouffalant.forms
         bouffalant:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.bouffalant.forms.bouffalant.form_name 'Default Form'
           default: *black-white.pokemon.bouffalant.default
-          battle_only: false
+          battle_only: &black-white.pokemon.bouffalant.forms.bouffalant.battle_only false
+          icon: gen5/bouffalant-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -101,10 +104,12 @@ black-2-white-2:
           They are known to charge so wildly
           that if a train were to enter their
           territory, they would send it flying.
+          
         white-2: |
           They are known to charge so wildly
           that if a train were to enter their
           territory, they would send it flying.
+          
       forms: *black-white.pokemon.bouffalant.forms
 x-y:
   name: *black-white.name
@@ -138,10 +143,18 @@ x-y:
           They charge wildly and headbutt everything.
           Their headbutts have enough destructive force to
           derail a train.
+          
         'y': |
           Their fluffy fur absorbs damage, even if they strike
           foes with a fierce headbutt.
-      forms: *black-white.pokemon.bouffalant.forms
+          
+      forms: &x-y.pokemon.bouffalant.forms
+        bouffalant:
+          name: *black-white.name
+          form_name: *black-white.pokemon.bouffalant.forms.bouffalant.form_name
+          default: *black-white.pokemon.bouffalant.default
+          battle_only: *black-white.pokemon.bouffalant.forms.bouffalant.battle_only
+          icon: bouffalant-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -173,10 +186,12 @@ omega-ruby-alpha-sapphire:
           They charge wildly and headbutt everything.
           Their headbutts have enough destructive force to
           derail a train.
+          
         alpha-sapphire: |
           Their fluffy fur absorbs damage, even if they strike
           foes with a fierce headbutt.
-      forms: *black-white.pokemon.bouffalant.forms
+          
+      forms: *x-y.pokemon.bouffalant.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -202,5 +217,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.bouffalant.mega
       stats: *black-white.pokemon.bouffalant.stats
       abilities: *black-white.pokemon.bouffalant.abilities
-      forms: *black-white.pokemon.bouffalant.forms
+      forms: *x-y.pokemon.bouffalant.forms
 ultra-sun-ultra-moon: *sun-moon

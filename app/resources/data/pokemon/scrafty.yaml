@@ -69,16 +69,19 @@ black-white:
           Groups of them beat up anything
           that enters their territory. Each can
           spit acidic liquid from its mouth.
+          
         white: |
           It can smash concrete blocks with its
           kicking attacks. The one with the biggest
           crest is the group leader.
+          
       forms: &black-white.pokemon.scrafty.forms
         scrafty:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.scrafty.forms.scrafty.form_name 'Default Form'
           default: *black-white.pokemon.scrafty.default
-          battle_only: false
+          battle_only: &black-white.pokemon.scrafty.forms.scrafty.battle_only false
+          icon: gen5/scrafty-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -116,10 +119,12 @@ black-2-white-2:
           It pulls up its shed skin to protect
           itself while it kicks. The bigger the
           crest, the more respected it is.
+          
         white-2: |
           It pulls up its shed skin to protect
           itself while it kicks. The bigger the
           crest, the more respected it is.
+          
       forms: *black-white.pokemon.scrafty.forms
 x-y:
   name: *black-white.name
@@ -159,11 +164,19 @@ x-y:
           It pulls up its shed skin to protect itself while
           it kicks. The bigger the crest, the more respected
           it is.
+          
         'y': |
           It can smash concrete blocks with its kicking
           attacks. The one with the biggest crest is the
           group leader.
-      forms: *black-white.pokemon.scrafty.forms
+          
+      forms: &x-y.pokemon.scrafty.forms
+        scrafty:
+          name: *black-white.name
+          form_name: *black-white.pokemon.scrafty.forms.scrafty.form_name
+          default: *black-white.pokemon.scrafty.default
+          battle_only: *black-white.pokemon.scrafty.forms.scrafty.battle_only
+          icon: scrafty-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -198,11 +211,13 @@ omega-ruby-alpha-sapphire:
           It pulls up its shed skin to protect itself while
           it kicks. The bigger the crest, the more respected
           it is.
+          
         alpha-sapphire: |
           It can smash concrete blocks with its kicking
           attacks. The one with the biggest crest is the
           group leader.
-      forms: *black-white.pokemon.scrafty.forms
+          
+      forms: *x-y.pokemon.scrafty.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -232,7 +247,7 @@ sun-moon:
       wild_held_items:
         moon: *black-white.pokemon.scrafty.wild_held_items.black
       evolution_conditions: *black-white.pokemon.scrafty.evolution_conditions
-      forms: *black-white.pokemon.scrafty.forms
+      forms: *x-y.pokemon.scrafty.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -266,4 +281,5 @@ ultra-sun-ultra-moon:
         ultra-sun: |
           This Pokémon may be rude, but it takes very
           good care of its family, its friends, and its turf.
-      forms: *black-white.pokemon.scrafty.forms
+          
+      forms: *x-y.pokemon.scrafty.forms

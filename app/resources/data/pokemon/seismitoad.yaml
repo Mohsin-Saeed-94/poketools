@@ -68,16 +68,19 @@ black-white:
           They shoot paralyzing liquid from their
           head bumps. They use vibration to hurt
           their opponents.
+          
         white: |
           It increases the power of its punches by
           vibrating the bumps on its fists. It can
           turn a boulder to rubble with one punch.
+          
       forms: &black-white.pokemon.seismitoad.forms
         seismitoad:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.seismitoad.forms.seismitoad.form_name 'Default Form'
           default: *black-white.pokemon.seismitoad.default
-          battle_only: false
+          battle_only: &black-white.pokemon.seismitoad.forms.seismitoad.battle_only false
+          icon: gen5/seismitoad-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -116,10 +119,12 @@ black-2-white-2:
           By putting power into its bumps,
           it creates vibrations and increases
           the power of its punches.
+          
         white-2: |
           By putting power into its bumps,
           it creates vibrations and increases
           the power of its punches.
+          
       forms: *black-white.pokemon.seismitoad.forms
 x-y:
   name: *black-white.name
@@ -155,10 +160,18 @@ x-y:
           It increases the power of its punches by vibrating
           the bumps on its fists. It can turn a boulder to
           rubble with one punch.
+          
         'y': |
           They shoot paralyzing liquid from their head bumps.
           They use vibration to hurt their opponents.
-      forms: *black-white.pokemon.seismitoad.forms
+          
+      forms: &x-y.pokemon.seismitoad.forms
+        seismitoad:
+          name: *black-white.name
+          form_name: *black-white.pokemon.seismitoad.forms.seismitoad.form_name
+          default: *black-white.pokemon.seismitoad.default
+          battle_only: *black-white.pokemon.seismitoad.forms.seismitoad.battle_only
+          icon: seismitoad-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -192,10 +205,12 @@ omega-ruby-alpha-sapphire:
           It increases the power of its punches by vibrating
           the bumps on its fists. It can turn a boulder to
           rubble with one punch.
+          
         alpha-sapphire: |
           They shoot paralyzing liquid from their head bumps.
           They use vibration to hurt their opponents.
-      forms: *black-white.pokemon.seismitoad.forms
+          
+      forms: *x-y.pokemon.seismitoad.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -223,5 +238,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.seismitoad.stats
       abilities: *black-white.pokemon.seismitoad.abilities
       evolution_conditions: *black-white.pokemon.seismitoad.evolution_conditions
-      forms: *black-white.pokemon.seismitoad.forms
+      forms: *x-y.pokemon.seismitoad.forms
 ultra-sun-ultra-moon: *sun-moon

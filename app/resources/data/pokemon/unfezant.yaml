@@ -64,16 +64,19 @@ black-white:
           Males swing their head plumage to
           threaten opponents. The females’ flying
           abilities surpass those of the males.
+          
         white: |
           Males have plumage on their heads.
           They will never let themselves feel close
           to anyone other than their Trainers.
+          
       forms: &black-white.pokemon.unfezant.forms
         unfezant:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.unfezant.forms.unfezant.form_name 'Default Form'
           default: *black-white.pokemon.unfezant.default
-          battle_only: false
+          battle_only: &black-white.pokemon.unfezant.forms.unfezant.battle_only false
+          icon: gen5/unfezant-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           Males swing the plumage on
           their heads to threaten others,
           but females are better at flying.
+          
         white-2: |
           Males swing the plumage on
           their heads to threaten others,
           but females are better at flying.
+          
       forms: *black-white.pokemon.unfezant.forms
 x-y:
   name: *black-white.name
@@ -147,11 +152,19 @@ x-y:
           Males swing their head plumage to threaten
           opponents. The females’ flying abilities surpass
           those of the males.
+          
         'y': |
           Males have plumage on their heads. They will never
           let themselves feel close to anyone other than
           their Trainers.
-      forms: *black-white.pokemon.unfezant.forms
+          
+      forms: &x-y.pokemon.unfezant.forms
+        unfezant:
+          name: *black-white.name
+          form_name: *black-white.pokemon.unfezant.forms.unfezant.form_name
+          default: *black-white.pokemon.unfezant.default
+          battle_only: *black-white.pokemon.unfezant.forms.unfezant.battle_only
+          icon: unfezant-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -185,11 +198,13 @@ omega-ruby-alpha-sapphire:
           Males swing their head plumage to threaten
           opponents. The females’ flying abilities surpass
           those of the males.
+          
         alpha-sapphire: |
           Males have plumage on their heads. They will never
           let themselves feel close to anyone other than
           their Trainers.
-      forms: *black-white.pokemon.unfezant.forms
+          
+      forms: *x-y.pokemon.unfezant.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -217,5 +232,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.unfezant.stats
       abilities: *black-white.pokemon.unfezant.abilities
       evolution_conditions: *black-white.pokemon.unfezant.evolution_conditions
-      forms: *black-white.pokemon.unfezant.forms
+      forms: *x-y.pokemon.unfezant.forms
 ultra-sun-ultra-moon: *sun-moon

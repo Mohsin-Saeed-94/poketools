@@ -63,16 +63,19 @@ black-white:
           These Pokémon vanish and appear
           unexpectedly. Many Trainers are drawn
           to their beautiful form and fur.
+          
         white: |
           Stealthily, it sneaks up on its target,
           striking from behind before its victim
           has a chance to react.
+          
       forms: &black-white.pokemon.liepard.forms
         liepard:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.liepard.forms.liepard.form_name 'Default Form'
           default: *black-white.pokemon.liepard.default
-          battle_only: false
+          battle_only: &black-white.pokemon.liepard.forms.liepard.battle_only false
+          icon: gen5/liepard-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -107,10 +110,12 @@ black-2-white-2:
           Their beautiful form comes from
           the muscles they have developed.
           They run silently in the night.
+          
         white-2: |
           Their beautiful form comes from
           the muscles they have developed.
           They run silently in the night.
+          
       forms: *black-white.pokemon.liepard.forms
 x-y:
   name: *black-white.name
@@ -146,10 +151,18 @@ x-y:
         x: |
           Their beautiful form comes from the muscles they
           have developed. They run silently in the night.
+          
         'y': |
           Stealthily, it sneaks up on its target, striking from
           behind before its victim has a chance to react.
-      forms: *black-white.pokemon.liepard.forms
+          
+      forms: &x-y.pokemon.liepard.forms
+        liepard:
+          name: *black-white.name
+          form_name: *black-white.pokemon.liepard.forms.liepard.form_name
+          default: *black-white.pokemon.liepard.default
+          battle_only: *black-white.pokemon.liepard.forms.liepard.battle_only
+          icon: liepard-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -183,10 +196,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Their beautiful form comes from the muscles they
           have developed. They run silently in the night.
+          
         alpha-sapphire: |
           Stealthily, it sneaks up on its target, striking from
           behind before its victim has a chance to react.
-      forms: *black-white.pokemon.liepard.forms
+          
+      forms: *x-y.pokemon.liepard.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -214,5 +229,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.liepard.stats
       abilities: *black-white.pokemon.liepard.abilities
       evolution_conditions: *black-white.pokemon.liepard.evolution_conditions
-      forms: *black-white.pokemon.liepard.forms
+      forms: *x-y.pokemon.liepard.forms
 ultra-sun-ultra-moon: *sun-moon

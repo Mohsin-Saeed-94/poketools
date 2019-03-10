@@ -50,14 +50,16 @@ gold-silver:
           electricity.It may send out a
           jolt if amused
           or startled.
+          
         silver: |
           Despite its small
           size, it can zap
           even adult humans.However, if it
           does so, it also
           surprises itself.
+          
       forms: &gold-silver.pokemon.pichu.forms
-        pichu: &gold-silver.pokemon.pichu.forms.pichu
+        pichu:
           name: *gold-silver.name
           form_name: &gold-silver.pokemon.pichu.forms.pichu.form_name 'Default Form'
           default: *gold-silver.pokemon.pichu.default
@@ -92,6 +94,7 @@ crystal:
           power. Any kind ofshock causes it to
           discharge energy
           spontaneously.
+          
       forms: *gold-silver.pokemon.pichu.forms
 ruby-sapphire:
   name: *gold-silver.name
@@ -136,12 +139,20 @@ ruby-sapphire:
           more easily on days with thunderclouds
           or when the air is very dry.You can hear the crackling of static
           electricity coming off this POKéMON.
+          
         sapphire: |
           When PICHU plays with others, it may
           short out electricity with another
           PICHU, creating a shower of sparks.In that event, this POKéMON will begin
           crying, startled by the flash of sparks.
-      forms: *gold-silver.pokemon.pichu.forms
+          
+      forms: &ruby-sapphire.pokemon.pichu.forms
+        pichu: &ruby-sapphire.pokemon.pichu.forms.pichu
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.pichu.forms.pichu.form_name
+          default: *gold-silver.pokemon.pichu.default
+          battle_only: *gold-silver.pokemon.pichu.forms.pichu.battle_only
+          icon: &ruby-sapphire.pokemon.pichu.forms.pichu.icon gen5/pichu-default.png
 emerald:
   name: *gold-silver.name
   position: *gold-silver.position
@@ -175,7 +186,8 @@ emerald:
           When it is startled, it discharges power
           accidentally. It gets better at holding
           power as it grows older.
-      forms: *gold-silver.pokemon.pichu.forms
+          
+      forms: *ruby-sapphire.pokemon.pichu.forms
 firered-leafgreen:
   name: *gold-silver.name
   position: *gold-silver.position
@@ -207,11 +219,13 @@ firered-leafgreen:
           Despite its small size, it can zap even
           adult humans. However, if it does so, it
           also surprises itself.
+          
         leafgreen: |
           It is not yet skilled at storing
           electricity. It may send out a jolt if
           amused or startled.
-      forms: *gold-silver.pokemon.pichu.forms
+          
+      forms: *ruby-sapphire.pokemon.pichu.forms
 diamond-pearl:
   name: *gold-silver.name
   position: *gold-silver.position
@@ -247,17 +261,20 @@ diamond-pearl:
           The electric pouches on its cheeks
           are still small. They cannot store
           much electricity yet.
+          
         pearl: |
           It plays with others by touching
           tails and setting off sparks. This
           appears to be a test of courage.
+          
       forms: &diamond-pearl.pokemon.pichu.forms
-        pichu: *gold-silver.pokemon.pichu.forms.pichu
+        pichu: *ruby-sapphire.pokemon.pichu.forms.pichu
         pichu-spiky-eared:
           name: &diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.name 'Spiky-eared Pichu'
           form_name: &diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.form_name Spiky-eared
           default: &diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.default false
           battle_only: *gold-silver.pokemon.pichu.forms.pichu.battle_only
+          icon: &diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.icon gen5/pichu-spiky-eared.png
 platinum:
   name: *gold-silver.name
   position: *gold-silver.position
@@ -292,6 +309,7 @@ platinum:
           The electric sacs in its cheeks are
           small. If even a little electricity
           leaks, it becomes shocked.
+          
       forms: *diamond-pearl.pokemon.pichu.forms
 heartgold-soulsilver:
   name: *gold-silver.name
@@ -328,10 +346,12 @@ heartgold-soulsilver:
           It is not yet skilled at storing
           electricity. It may send out a
           jolt if amused or startled.
+          
         soulsilver: |
           Despite its small size, it can zap
           even adult humans. However, if it
           does so, it also surprises itself.
+          
       forms:
         pichu:
           name: *gold-silver.name
@@ -354,6 +374,7 @@ heartgold-soulsilver:
             jump:
               base_value: 3
               range: 2-3
+          icon: *ruby-sapphire.pokemon.pichu.forms.pichu.icon
         pichu-spiky-eared:
           name: *diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.name
           form_name: *diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.form_name
@@ -375,6 +396,7 @@ heartgold-soulsilver:
             jump:
               base_value: 3
               range: 2-4
+          icon: *diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.icon
 black-white:
   name: *gold-silver.name
   position: *gold-silver.position
@@ -410,10 +432,12 @@ black-white:
           The electric sacs in its cheeks are
           small. If even a little electricity
           leaks, it becomes shocked.
+          
         white: |
           The electric sacs in its cheeks are
           small. If even a little electricity
           leaks, it becomes shocked.
+          
       forms: *diamond-pearl.pokemon.pichu.forms
 colosseum: &colosseum
   name: *gold-silver.name
@@ -438,7 +462,7 @@ colosseum: &colosseum
       egg_groups: *gold-silver.pokemon.pichu.egg_groups
       stats: *gold-silver.pokemon.pichu.stats
       abilities: *ruby-sapphire.pokemon.pichu.abilities
-      forms: *gold-silver.pokemon.pichu.forms
+      forms: *ruby-sapphire.pokemon.pichu.forms
 xd: *colosseum
 black-2-white-2:
   name: *gold-silver.name
@@ -471,10 +495,12 @@ black-2-white-2:
           The electric sacs in its cheeks are
           small. If even a little electricity
           leaks, it becomes shocked.
+          
         white-2: |
           The electric sacs in its cheeks are
           small. If even a little electricity
           leaks, it becomes shocked.
+          
       forms: *diamond-pearl.pokemon.pichu.forms
 x-y:
   name: *gold-silver.name
@@ -509,10 +535,24 @@ x-y:
         x: |
           It plays with others by touching tails and setting off
           sparks. This appears to be a test of courage.
+          
         'y': |
           It is not yet skilled at storing electricity.
           It may send out a jolt if amused or startled.
-      forms: *diamond-pearl.pokemon.pichu.forms
+          
+      forms: &x-y.pokemon.pichu.forms
+        pichu:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.pichu.forms.pichu.form_name
+          default: *gold-silver.pokemon.pichu.default
+          battle_only: *gold-silver.pokemon.pichu.forms.pichu.battle_only
+          icon: pichu-default.png
+        pichu-spiky-eared:
+          name: *diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.name
+          form_name: *diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.form_name
+          default: *diamond-pearl.pokemon.pichu.forms.pichu-spiky-eared.default
+          battle_only: *gold-silver.pokemon.pichu.forms.pichu.battle_only
+          icon: pichu-spiky-eared.png
 omega-ruby-alpha-sapphire:
   name: *gold-silver.name
   position: *gold-silver.position
@@ -547,11 +587,13 @@ omega-ruby-alpha-sapphire:
           Pichu charges itself with electricity more easily on days with
           thunderclouds or when the air is very dry. You can hear the
           crackling of static electricity coming off this Pokémon.
+          
         alpha-sapphire: |
           When Pichu plays with others, it may short out electricity with
           another Pichu, creating a shower of sparks. In that event, this
           Pokémon will begin crying, startled by the flash of sparks.
-      forms: *diamond-pearl.pokemon.pichu.forms
+          
+      forms: *x-y.pokemon.pichu.forms
 sun-moon:
   name: *gold-silver.name
   position: *gold-silver.position
@@ -583,7 +625,7 @@ sun-moon:
           Despite this Pokémon’s cute appearance, those
           who want to live with one should prepare to be
           on the receiving end of its electric jolts.
-      forms: *diamond-pearl.pokemon.pichu.forms
+      forms: *x-y.pokemon.pichu.forms
 ultra-sun-ultra-moon:
   name: *gold-silver.name
   position: *gold-silver.position
@@ -615,4 +657,4 @@ ultra-sun-ultra-moon:
           It still can’t use electricity well. When it’s
           surprised or excited, it discharges
           electricity unintentionally.
-      forms: *diamond-pearl.pokemon.pichu.forms
+      forms: *x-y.pokemon.pichu.forms

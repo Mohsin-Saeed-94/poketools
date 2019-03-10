@@ -63,16 +63,19 @@ black-white:
           They greet one another by rubbing each
           other with their tails, which are always
           kept well groomed and clean.
+          
         white: |
           These Pokémon prefer a tidy habitat.
           They are always sweeping and dusting,
           using their tails as brooms.
+          
       forms: &black-white.pokemon.minccino.forms
         minccino:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.minccino.forms.minccino.form_name 'Default Form'
           default: *black-white.pokemon.minccino.default
-          battle_only: false
+          battle_only: &black-white.pokemon.minccino.forms.minccino.battle_only false
+          icon: gen5/minccino-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           Minccino greet each other
           by grooming one another
           thoroughly with their tails.
+          
         white-2: |
           Minccino greet each other
           by grooming one another
           thoroughly with their tails.
+          
       forms: *black-white.pokemon.minccino.forms
 x-y:
   name: *black-white.name
@@ -144,11 +149,19 @@ x-y:
         x: |
           Minccino greet each other by grooming one another
           thoroughly with their tails.
+          
         'y': |
           These Pokémon prefer a tidy habitat. They are
           always sweeping and dusting, using their tails
           as brooms.
-      forms: *black-white.pokemon.minccino.forms
+          
+      forms: &x-y.pokemon.minccino.forms
+        minccino:
+          name: *black-white.name
+          form_name: *black-white.pokemon.minccino.forms.minccino.form_name
+          default: *black-white.pokemon.minccino.default
+          battle_only: *black-white.pokemon.minccino.forms.minccino.battle_only
+          icon: minccino-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -179,11 +192,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Minccino greet each other by grooming one another
           thoroughly with their tails.
+          
         alpha-sapphire: |
           These Pokémon prefer a tidy habitat. They are
           always sweeping and dusting, using their tails
           as brooms.
-      forms: *black-white.pokemon.minccino.forms
+          
+      forms: *x-y.pokemon.minccino.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -209,7 +224,7 @@ sun-moon:
       mega: *x-y.pokemon.minccino.mega
       stats: *black-white.pokemon.minccino.stats
       abilities: *black-white.pokemon.minccino.abilities
-      forms: *black-white.pokemon.minccino.forms
+      forms: *x-y.pokemon.minccino.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -240,4 +255,5 @@ ultra-sun-ultra-moon:
           A clean freak that will not allow even the
           slightest mess, it uses its tail like a mop to
           thoroughly clean any and all filth.
-      forms: *black-white.pokemon.minccino.forms
+          
+      forms: *x-y.pokemon.minccino.forms

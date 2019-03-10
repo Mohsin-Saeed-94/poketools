@@ -64,16 +64,19 @@ black-white:
           They are kind but can be relentless
           when defending territory. They challenge
           foes with tusks that can cut steel.
+          
         white: |
           Their sturdy tusks will stay sharp even
           if used to cut steel beams. These
           Pokémon are covered in hard armor.
+          
       forms: &black-white.pokemon.haxorus.forms
         haxorus:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.haxorus.forms.haxorus.form_name 'Default Form'
           default: *black-white.pokemon.haxorus.default
-          battle_only: false
+          battle_only: &black-white.pokemon.haxorus.forms.haxorus.battle_only false
+          icon: gen5/haxorus-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           Its tusks are incredibly destructive.
           They can easily slice through a thick,
           sturdy steel column every time.
+          
         white-2: |
           Its tusks are incredibly destructive.
           They can easily slice through a thick,
           sturdy steel column every time.
+          
       forms: *black-white.pokemon.haxorus.forms
 x-y:
   name: *black-white.name
@@ -148,11 +153,19 @@ x-y:
           They are kind but can be relentless when defending
           territory. They challenge foes with tusks that can
           cut steel.
+          
         'y': |
           Their sturdy tusks will stay sharp even if used to cut
           steel beams. These Pokémon are covered in
           hard armor.
-      forms: *black-white.pokemon.haxorus.forms
+          
+      forms: &x-y.pokemon.haxorus.forms
+        haxorus:
+          name: *black-white.name
+          form_name: *black-white.pokemon.haxorus.forms.haxorus.form_name
+          default: *black-white.pokemon.haxorus.default
+          battle_only: *black-white.pokemon.haxorus.forms.haxorus.battle_only
+          icon: haxorus-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -187,11 +200,13 @@ omega-ruby-alpha-sapphire:
           They are kind but can be relentless when defending
           territory. They challenge foes with tusks that can
           cut steel.
+          
         alpha-sapphire: |
           Their sturdy tusks will stay sharp even if used to cut
           steel beams. These Pokémon are covered in
           hard armor.
-      forms: *black-white.pokemon.haxorus.forms
+          
+      forms: *x-y.pokemon.haxorus.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -219,5 +234,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.haxorus.stats
       abilities: *black-white.pokemon.haxorus.abilities
       evolution_conditions: *black-white.pokemon.haxorus.evolution_conditions
-      forms: *black-white.pokemon.haxorus.forms
+      forms: *x-y.pokemon.haxorus.forms
 ultra-sun-ultra-moon: *sun-moon

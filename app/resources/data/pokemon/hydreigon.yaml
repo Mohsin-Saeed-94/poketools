@@ -58,16 +58,19 @@ black-white:
           This brutal Pokémon travels the skies on
           its six wings. Anything that moves seems
           like a foe to it, triggering its attack.
+          
         white: |
           The heads on their arms do not have
           brains. They use all three heads to
           consume and destroy everything.
+          
       forms: &black-white.pokemon.hydreigon.forms
         hydreigon:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.hydreigon.forms.hydreigon.form_name 'Default Form'
           default: *black-white.pokemon.hydreigon.default
-          battle_only: false
+          battle_only: &black-white.pokemon.hydreigon.forms.hydreigon.battle_only false
+          icon: gen5/hydreigon-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           It responds to movement by attacking.
           This scary, three-headed Pokémon
           devours everything in its path!
+          
         white-2: |
           It responds to movement by attacking.
           This scary, three-headed Pokémon
           devours everything in its path!
+          
       forms: *black-white.pokemon.hydreigon.forms
 x-y:
   name: *black-white.name
@@ -142,11 +147,19 @@ x-y:
           The heads on their arms do not have brains.
           They use all three heads to consume and
           destroy everything.
+          
         'y': |
           It responds to movement by attacking. This scary,
           three-headed Pokémon devours everything in
           its path!
-      forms: *black-white.pokemon.hydreigon.forms
+          
+      forms: &x-y.pokemon.hydreigon.forms
+        hydreigon:
+          name: *black-white.name
+          form_name: *black-white.pokemon.hydreigon.forms.hydreigon.form_name
+          default: *black-white.pokemon.hydreigon.default
+          battle_only: *black-white.pokemon.hydreigon.forms.hydreigon.battle_only
+          icon: hydreigon-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -181,11 +194,13 @@ omega-ruby-alpha-sapphire:
           The heads on their arms do not have brains.
           They use all three heads to consume and
           destroy everything.
+          
         alpha-sapphire: |
           It responds to movement by attacking. This scary,
           three-headed Pokémon devours everything in
           its path!
-      forms: *black-white.pokemon.hydreigon.forms
+          
+      forms: *x-y.pokemon.hydreigon.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -213,5 +228,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.hydreigon.stats
       abilities: *black-white.pokemon.hydreigon.abilities
       evolution_conditions: *black-white.pokemon.hydreigon.evolution_conditions
-      forms: *black-white.pokemon.hydreigon.forms
+      forms: *x-y.pokemon.hydreigon.forms
 ultra-sun-ultra-moon: *sun-moon

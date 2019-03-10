@@ -68,16 +68,19 @@ black-white:
           Upon finding a small Pokémon, it weaves
           clothing for it from leaves, using the
           cutters on its arms and sticky silk.
+          
         white: |
           It keeps its eggs warm with heat from
           fermenting leaves. It also uses leaves
           to make warm wrappings for Sewaddle.
+          
       forms: &black-white.pokemon.leavanny.forms
         leavanny:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.leavanny.forms.leavanny.form_name 'Default Form'
           default: *black-white.pokemon.leavanny.default
-          battle_only: false
+          battle_only: &black-white.pokemon.leavanny.forms.leavanny.battle_only false
+          icon: gen5/leavanny-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -115,10 +118,12 @@ black-2-white-2:
           Upon finding a small Pokémon, it weaves
           clothing for it from leaves by using the
           sticky silk secreted from its mouth.
+          
         white-2: |
           Upon finding a small Pokémon, it weaves
           clothing for it from leaves by using the
           sticky silk secreted from its mouth.
+          
       forms: *black-white.pokemon.leavanny.forms
 x-y:
   name: *black-white.name
@@ -157,11 +162,19 @@ x-y:
           Upon finding a small Pokémon, it weaves clothing
           for it from leaves by using the sticky silk secreted
           from its mouth.
+          
         'y': |
           It keeps its eggs warm with heat from fermenting
           leaves. It also uses leaves to make warm wrappings
           for Sewaddle.
-      forms: *black-white.pokemon.leavanny.forms
+          
+      forms: &x-y.pokemon.leavanny.forms
+        leavanny:
+          name: *black-white.name
+          form_name: *black-white.pokemon.leavanny.forms.leavanny.form_name
+          default: *black-white.pokemon.leavanny.default
+          battle_only: *black-white.pokemon.leavanny.forms.leavanny.battle_only
+          icon: leavanny-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -195,11 +208,13 @@ omega-ruby-alpha-sapphire:
           Upon finding a small Pokémon, it weaves clothing
           for it from leaves by using the sticky silk secreted
           from its mouth.
+          
         alpha-sapphire: |
           It keeps its eggs warm with heat from fermenting
           leaves. It also uses leaves to make warm wrappings
           for Sewaddle.
-      forms: *black-white.pokemon.leavanny.forms
+          
+      forms: *x-y.pokemon.leavanny.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -229,7 +244,7 @@ sun-moon:
       wild_held_items:
         moon: *black-white.pokemon.leavanny.wild_held_items.black
       evolution_conditions: *black-white.pokemon.leavanny.evolution_conditions
-      forms: *black-white.pokemon.leavanny.forms
+      forms: *x-y.pokemon.leavanny.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -259,4 +274,4 @@ ultra-sun-ultra-moon:
       wild_held_items:
         ultra-sun: *black-white.pokemon.leavanny.wild_held_items.black
       evolution_conditions: *black-white.pokemon.leavanny.evolution_conditions
-      forms: *black-white.pokemon.leavanny.forms
+      forms: *x-y.pokemon.leavanny.forms

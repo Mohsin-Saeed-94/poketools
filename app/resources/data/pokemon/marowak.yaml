@@ -38,7 +38,7 @@ red-blue:
           effort_change: 0
       evolution_conditions: &red-blue.pokemon.marowak.evolution_conditions
         level-up:
-          minimum_level: 28
+          minimum_level: &red-blue.pokemon.marowak.evolution_conditions.level-up.minimum_level 28
       flavor_text:
         red: |
           The bone it holds
@@ -46,14 +46,16 @@ red-blue:
           It throws thebone skillfully
           like a boomerang
           to KO targets.
+          
         blue: |
           The bone it holds
           is its key weapon.
           It throws thebone skillfully
           like a boomerang
           to KO targets.
+          
       forms: &red-blue.pokemon.marowak.forms
-        marowak: &red-blue.pokemon.marowak.forms.marowak
+        marowak:
           name: *red-blue.name
           form_name: &red-blue.pokemon.marowak.forms.marowak.form_name 'Default Form'
           default: *red-blue.pokemon.marowak.default
@@ -83,6 +85,7 @@ yellow:
           adept with itsbone club. It has
           grown more vicious
           over the ages.
+          
       forms: *red-blue.pokemon.marowak.forms
 gold-silver:
   name: *red-blue.name
@@ -118,12 +121,14 @@ gold-silver:
           with the bone itcarries in order
           to tap out mes­
           sages to others.
+          
         silver: |
           It collects bones
           from an unknown
           place. A MAROWAKgraveyard exists
           somewhere in the
           world, rumors say.
+          
       forms: *red-blue.pokemon.marowak.forms
 crystal:
   name: *red-blue.name
@@ -156,6 +161,7 @@ crystal:
           tery just forMAROWAK. It gets
           its bones from
           those graves.
+          
       forms: *red-blue.pokemon.marowak.forms
 ruby-sapphire:
   name: *red-blue.name
@@ -203,12 +209,20 @@ ruby-sapphire:
           that has overcome its sadness at the
           loss of its mother and grown tough.This POKéMON’s tempered and hardened
           spirit is not easily broken.
+          
         sapphire: |
           MAROWAK is the evolved form of a CUBONE
           that has overcome its sadness at the
           loss of its mother and grown tough.This POKéMON’s tempered and hardened
           spirit is not easily broken.
-      forms: *red-blue.pokemon.marowak.forms
+          
+      forms: &ruby-sapphire.pokemon.marowak.forms
+        marowak:
+          name: *red-blue.name
+          form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
+          default: *red-blue.pokemon.marowak.default
+          battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
+          icon: &ruby-sapphire.pokemon.marowak.forms.marowak.icon gen5/marowak-default.png
 emerald:
   name: *red-blue.name
   position: *red-blue.position
@@ -243,7 +257,8 @@ emerald:
           that has grown tough by overcoming the
           grief of losing its mother. Its tempered
           and hardened spirit is not easily broken.
-      forms: *red-blue.pokemon.marowak.forms
+          
+      forms: *ruby-sapphire.pokemon.marowak.forms
 firered-leafgreen:
   name: *red-blue.name
   position: *red-blue.position
@@ -278,11 +293,13 @@ firered-leafgreen:
           It is small and was originally very weak.
           Its temperament turned ferocious when it
           began using bones.
+          
         leafgreen: |
           The bone it holds is its key weapon.
           It throws the bone skillfully like a
           boomerang to KO targets.
-      forms: *red-blue.pokemon.marowak.forms
+          
+      forms: *ruby-sapphire.pokemon.marowak.forms
 diamond-pearl:
   name: *red-blue.name
   position: *red-blue.position
@@ -317,11 +334,13 @@ diamond-pearl:
           From its birth, this savage Pokémon
           constantly holds bones. It is
           skilled in using them as weapons.
+          
         pearl: |
           From its birth, this savage Pokémon
           constantly holds bones. It is
           skilled in using them as weapons.
-      forms: *red-blue.pokemon.marowak.forms
+          
+      forms: *ruby-sapphire.pokemon.marowak.forms
 platinum:
   name: *red-blue.name
   position: *red-blue.position
@@ -355,7 +374,8 @@ platinum:
           From its birth, this savage Pokémon
           constantly holds bones. It is
           skilled in using them as weapons.
-      forms: *red-blue.pokemon.marowak.forms
+          
+      forms: *ruby-sapphire.pokemon.marowak.forms
 heartgold-soulsilver:
   name: *red-blue.name
   position: *red-blue.position
@@ -392,10 +412,12 @@ heartgold-soulsilver:
           It has been seen pounding boulders
           with the bone it carries in order
           to tap out messages to others.
+          
         soulsilver: |
           It collects bones from an unknown place.
           Some whisper that a MAROWAK graveyard
           exists somewhere in the world.
+          
       forms:
         marowak:
           name: *red-blue.name
@@ -418,6 +440,7 @@ heartgold-soulsilver:
             jump:
               base_value: 2
               range: 2
+          icon: *ruby-sapphire.pokemon.marowak.forms.marowak.icon
 black-white:
   name: *red-blue.name
   position: *red-blue.position
@@ -453,11 +476,13 @@ black-white:
           From its birth, this savage Pokémon
           constantly holds bones. It is
           skilled in using them as weapons.
+          
         white: |
           From its birth, this savage Pokémon
           constantly holds bones. It is
           skilled in using them as weapons.
-      forms: *red-blue.pokemon.marowak.forms
+          
+      forms: *ruby-sapphire.pokemon.marowak.forms
 colosseum: &colosseum
   name: *red-blue.name
   position: *red-blue.position
@@ -482,7 +507,7 @@ colosseum: &colosseum
       stats: *red-blue.pokemon.marowak.stats
       abilities: *ruby-sapphire.pokemon.marowak.abilities
       evolution_conditions: *red-blue.pokemon.marowak.evolution_conditions
-      forms: *red-blue.pokemon.marowak.forms
+      forms: *ruby-sapphire.pokemon.marowak.forms
 xd: *colosseum
 black-2-white-2:
   name: *red-blue.name
@@ -519,11 +544,13 @@ black-2-white-2:
           From its birth, this savage Pokémon
           constantly holds bones. It is
           skilled in using them as weapons.
+          
         white-2: |
           From its birth, this savage Pokémon
           constantly holds bones. It is
           skilled in using them as weapons.
-      forms: *red-blue.pokemon.marowak.forms
+          
+      forms: *ruby-sapphire.pokemon.marowak.forms
 x-y:
   name: *red-blue.name
   position: *red-blue.position
@@ -562,10 +589,18 @@ x-y:
           It is small and was originally very weak.
           Its temperament turned ferocious when it began
           using bones.
+          
         'y': |
           The bone it holds is its key weapon. It throws the
           bone skillfully like a boomerang to KO targets.
-      forms: *red-blue.pokemon.marowak.forms
+          
+      forms: &x-y.pokemon.marowak.forms
+        marowak:
+          name: *red-blue.name
+          form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
+          default: *red-blue.pokemon.marowak.default
+          battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
+          icon: marowak-default.png
 omega-ruby-alpha-sapphire:
   name: *red-blue.name
   position: *red-blue.position
@@ -600,11 +635,12 @@ omega-ruby-alpha-sapphire:
           its sadness at the loss of its mother and grown tough.
           This Pokémon’s tempered and hardened spirit is not
           easily broken.
+          
         alpha-sapphire: |
           Marowak is the evolved form of a Cubone that has overcome
           its sadness at the loss of its mother and grown tough. This
           Pokémon’s tempered and hardened spirit is not easily broken.
-      forms: *red-blue.pokemon.marowak.forms
+      forms: *x-y.pokemon.marowak.forms
 sun-moon:
   name: *red-blue.name
   position: *red-blue.position
@@ -639,7 +675,7 @@ sun-moon:
           This Pokémon is out for vengeance on its natural
           enemy, Mandibuzz. It throws bones like
           boomerangs to try to take it down.
-      forms: *red-blue.pokemon.marowak.forms
+      forms: *x-y.pokemon.marowak.forms
     marowak-alola:
       genus: *red-blue.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
@@ -670,7 +706,7 @@ sun-moon:
       wild_held_items: *sun-moon.pokemon.marowak.wild_held_items
       evolution_conditions: &sun-moon.pokemon.marowak-alola.evolution_conditions
         level-up:
-          minimum_level: 28
+          minimum_level: *red-blue.pokemon.marowak.evolution_conditions.level-up.minimum_level
           time_of_day: night
       flavor_text: *sun-moon.pokemon.marowak.flavor_text
       forms: &sun-moon.pokemon.marowak-alola.forms
@@ -679,6 +715,7 @@ sun-moon:
           form_name: 'Alola Form'
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
+          icon: marowak-alola.png
     marowak-totem:
       genus: *red-blue.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
@@ -704,7 +741,12 @@ sun-moon:
       evolution_conditions: *red-blue.pokemon.marowak.evolution_conditions
       flavor_text: *sun-moon.pokemon.marowak.flavor_text
       forms: &sun-moon.pokemon.marowak-totem.forms
-        marowak-totem: *red-blue.pokemon.marowak.forms.marowak
+        marowak-totem:
+          name: *red-blue.name
+          form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
+          default: *red-blue.pokemon.marowak.default
+          battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
+          icon: marowak-totem.png
 ultra-sun-ultra-moon:
   name: *red-blue.name
   position: *red-blue.position
@@ -739,7 +781,7 @@ ultra-sun-ultra-moon:
           It throws bones at Mandibuzz to knock it down.
           It’s thought that Marowak is trying to avenge
           its parent.
-      forms: *red-blue.pokemon.marowak.forms
+      forms: *x-y.pokemon.marowak.forms
     marowak-alola:
       genus: *red-blue.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent

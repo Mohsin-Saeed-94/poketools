@@ -58,16 +58,19 @@ black-white:
           The two minigears that mesh together
           are predetermined. Each will rebound
           from other minigears without meshing.
+          
         white: |
           Interlocking two bodies and
           spinning around generates
           the energy they need to live.
+          
       forms: &black-white.pokemon.klink.forms
         klink:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.klink.forms.klink.form_name 'Default Form'
           default: *black-white.pokemon.klink.default
-          battle_only: false
+          battle_only: &black-white.pokemon.klink.forms.klink.battle_only false
+          icon: gen5/klink-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -99,10 +102,12 @@ black-2-white-2:
           Two bodies comprise a fixed pair.
           They spin around each other
           to generate energy.
+          
         white-2: |
           Two bodies comprise a fixed pair.
           They spin around each other
           to generate energy.
+          
       forms: *black-white.pokemon.klink.forms
 x-y:
   name: *black-white.name
@@ -134,11 +139,19 @@ x-y:
         x: |
           Interlocking two bodies and spinning around
           generates the energy they need to live.
+          
         'y': |
           The two minigears that mesh together are
           predetermined. Each will rebound from other
           minigears without meshing.
-      forms: *black-white.pokemon.klink.forms
+          
+      forms: &x-y.pokemon.klink.forms
+        klink:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klink.forms.klink.form_name
+          default: *black-white.pokemon.klink.default
+          battle_only: *black-white.pokemon.klink.forms.klink.battle_only
+          icon: klink-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -168,11 +181,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Interlocking two bodies and spinning around
           generates the energy they need to live.
+          
         alpha-sapphire: |
           The two minigears that mesh together are
           predetermined. Each will rebound from other
           minigears without meshing.
-      forms: *black-white.pokemon.klink.forms
+          
+      forms: *x-y.pokemon.klink.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -197,5 +212,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.klink.mega
       stats: *black-white.pokemon.klink.stats
       abilities: *black-white.pokemon.klink.abilities
-      forms: *black-white.pokemon.klink.forms
+      forms: *x-y.pokemon.klink.forms
 ultra-sun-ultra-moon: *sun-moon

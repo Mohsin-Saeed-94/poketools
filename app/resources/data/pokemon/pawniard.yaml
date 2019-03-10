@@ -60,16 +60,19 @@ black-white:
           Blades comprise this Pokémon’s entire
           body. If battling dulls the blades, it
           sharpens them on stones by the river.
+          
         white: |
           They fight at Bisharp’s command.
           They cling to their prey and inflict
           damage by sinking their blades into it.
+          
       forms: &black-white.pokemon.pawniard.forms
         pawniard:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.pawniard.forms.pawniard.form_name 'Default Form'
           default: *black-white.pokemon.pawniard.default
-          battle_only: false
+          battle_only: &black-white.pokemon.pawniard.forms.pawniard.battle_only false
+          icon: gen5/pawniard-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           Ignoring their injuries, groups attack
           by sinking the blades that cover their
           bodies into their prey.
+          
         white-2: |
           Ignoring their injuries, groups attack
           by sinking the blades that cover their
           bodies into their prey.
+          
       forms: *black-white.pokemon.pawniard.forms
 x-y:
   name: *black-white.name
@@ -140,10 +145,18 @@ x-y:
           Blades comprise this Pokémon’s entire body.
           If battling dulls the blades, it sharpens them on
           stones by the river.
+          
         'y': |
           Ignoring their injuries, groups attack by sinking
           the blades that cover their bodies into their prey.
-      forms: *black-white.pokemon.pawniard.forms
+          
+      forms: &x-y.pokemon.pawniard.forms
+        pawniard:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pawniard.forms.pawniard.form_name
+          default: *black-white.pokemon.pawniard.default
+          battle_only: *black-white.pokemon.pawniard.forms.pawniard.battle_only
+          icon: pawniard-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -176,10 +189,12 @@ omega-ruby-alpha-sapphire:
           Blades comprise this Pokémon’s entire body.
           If battling dulls the blades, it sharpens them on
           stones by the river.
+          
         alpha-sapphire: |
           Ignoring their injuries, groups attack by sinking
           the blades that cover their bodies into their prey.
-      forms: *black-white.pokemon.pawniard.forms
+          
+      forms: *x-y.pokemon.pawniard.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -205,7 +220,7 @@ sun-moon:
       mega: *x-y.pokemon.pawniard.mega
       stats: *black-white.pokemon.pawniard.stats
       abilities: *black-white.pokemon.pawniard.abilities
-      forms: *black-white.pokemon.pawniard.forms
+      forms: *x-y.pokemon.pawniard.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -236,4 +251,5 @@ ultra-sun-ultra-moon:
           After shredding its prey, it sharpens its blades
           on a stone by the river. Each Pawniard has its
           own favorite sharpening stone.
-      forms: *black-white.pokemon.pawniard.forms
+          
+      forms: *x-y.pokemon.pawniard.forms

@@ -56,16 +56,19 @@ black-white:
           It fights using the scalchop on its
           stomach. In response to an attack,
           it retaliates immediately by slashing.
+          
         white: |
           The scalchop on its stomach is made from
           the same elements as claws. It detaches
           the scalchop for use as a blade.
+          
       forms: &black-white.pokemon.oshawott.forms
         oshawott:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.oshawott.forms.oshawott.form_name 'Default Form'
           default: *black-white.pokemon.oshawott.default
-          battle_only: false
+          battle_only: &black-white.pokemon.oshawott.forms.oshawott.battle_only false
+          icon: gen5/oshawott-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -98,10 +101,12 @@ black-2-white-2:
           The scalchop on its stomach isn’t
           just used for battle--it can be used
           to break open hard berries as well.
+          
         white-2: |
           The scalchop on its stomach isn’t
           just used for battle--it can be used
           to break open hard berries as well.
+          
       forms: *black-white.pokemon.oshawott.forms
 x-y:
   name: *black-white.name
@@ -135,11 +140,19 @@ x-y:
           The scalchop on its stomach isn’t just used for
           battle--it can be used to break open hard berries
           as well.
+          
         'y': |
           It fights using the scalchop on its stomach.
           In response to an attack, it retaliates immediately
           by slashing.
-      forms: *black-white.pokemon.oshawott.forms
+          
+      forms: &x-y.pokemon.oshawott.forms
+        oshawott:
+          name: *black-white.name
+          form_name: *black-white.pokemon.oshawott.forms.oshawott.form_name
+          default: *black-white.pokemon.oshawott.default
+          battle_only: *black-white.pokemon.oshawott.forms.oshawott.battle_only
+          icon: oshawott-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -171,11 +184,13 @@ omega-ruby-alpha-sapphire:
           The scalchop on its stomach isn’t just used for
           battle—it can be used to break open hard berries
           as well.
+          
         alpha-sapphire: |
           It fights using the scalchop on its stomach.
           In response to an attack, it retaliates immediately
           by slashing.
-      forms: *black-white.pokemon.oshawott.forms
+          
+      forms: *x-y.pokemon.oshawott.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -201,5 +216,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.oshawott.mega
       stats: *black-white.pokemon.oshawott.stats
       abilities: *black-white.pokemon.oshawott.abilities
-      forms: *black-white.pokemon.oshawott.forms
+      forms: *x-y.pokemon.oshawott.forms
 ultra-sun-ultra-moon: *sun-moon

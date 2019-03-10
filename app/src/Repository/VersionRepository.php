@@ -14,9 +14,22 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class VersionRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    /**
+     * @var string
+     */
+    private $defaultVersionSlug;
+
+    /**
+     * VersionRepository constructor.
+     *
+     * @param RegistryInterface $registry
+     * @param string $defaultVersionSlug
+     */
+    public function __construct(RegistryInterface $registry, string $defaultVersionSlug)
     {
         parent::__construct($registry, Version::class);
+
+        $this->defaultVersionSlug = $defaultVersionSlug;
     }
 
 //    /**
@@ -74,5 +87,13 @@ class VersionRepository extends ServiceEntityRepository
         }
 
         return $groupedResults;
+    }
+
+    /**
+     * @return Version
+     */
+    public function getDefaultVersion(): Version
+    {
+        return $this->findOneBy(['slug' => $this->defaultVersionSlug]);
     }
 }

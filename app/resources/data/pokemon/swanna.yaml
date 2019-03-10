@@ -65,16 +65,19 @@ black-white:
           Swanna start to dance at dusk.
           The one dancing in the middle is
           the leader of the flock.
+          
         white: |
           It administers sharp, powerful pecks
           with its bill. It whips its long neck to
           deliver forceful repeated strikes.
+          
       forms: &black-white.pokemon.swanna.forms
         swanna:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.swanna.forms.swanna.form_name 'Default Form'
           default: *black-white.pokemon.swanna.default
-          battle_only: false
+          battle_only: &black-white.pokemon.swanna.forms.swanna.battle_only false
+          icon: gen5/swanna-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,10 +112,12 @@ black-2-white-2:
           Despite their elegant appearance,
           they can flap their wings strongly
           and fly for thousands of miles.
+          
         white-2: |
           Despite their elegant appearance,
           they can flap their wings strongly
           and fly for thousands of miles.
+          
       forms: *black-white.pokemon.swanna.forms
 x-y:
   name: *black-white.name
@@ -148,10 +153,18 @@ x-y:
         x: |
           Despite their elegant appearance, they can flap
           their wings strongly and fly for thousands of miles.
+          
         'y': |
           Swanna start to dance at dusk. The one dancing in
           the middle is the leader of the flock.
-      forms: *black-white.pokemon.swanna.forms
+          
+      forms: &x-y.pokemon.swanna.forms
+        swanna:
+          name: *black-white.name
+          form_name: *black-white.pokemon.swanna.forms.swanna.form_name
+          default: *black-white.pokemon.swanna.default
+          battle_only: *black-white.pokemon.swanna.forms.swanna.battle_only
+          icon: swanna-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -185,10 +198,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Despite their elegant appearance, they can flap
           their wings strongly and fly for thousands of miles.
+          
         alpha-sapphire: |
           Swanna start to dance at dusk. The one dancing in
           the middle is the leader of the flock.
-      forms: *black-white.pokemon.swanna.forms
+          
+      forms: *x-y.pokemon.swanna.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -216,5 +231,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.swanna.stats
       abilities: *black-white.pokemon.swanna.abilities
       evolution_conditions: *black-white.pokemon.swanna.evolution_conditions
-      forms: *black-white.pokemon.swanna.forms
+      forms: *x-y.pokemon.swanna.forms
 ultra-sun-ultra-moon: *sun-moon

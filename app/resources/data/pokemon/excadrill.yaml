@@ -64,16 +64,19 @@ black-white:
           It can help in tunnel construction.
           Its drill has evolved into steel strong
           enough to bore through iron plates.
+          
         white: |
           More than 300 feet below the surface,
           they build mazelike nests. Their activity
           can be destructive to subway tunnels.
+          
       forms: &black-white.pokemon.excadrill.forms
         excadrill:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.excadrill.forms.excadrill.form_name 'Default Form'
           default: *black-white.pokemon.excadrill.default
-          battle_only: false
+          battle_only: &black-white.pokemon.excadrill.forms.excadrill.battle_only false
+          icon: gen5/excadrill-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           Forming a drill with its steel claws
           and head, it can bore through a steel
           plate, no matter how thick it is.
+          
         white-2: |
           Forming a drill with its steel claws
           and head, it can bore through a steel
           plate, no matter how thick it is.
+          
       forms: *black-white.pokemon.excadrill.forms
 x-y:
   name: *black-white.name
@@ -147,11 +152,19 @@ x-y:
           It can help in tunnel construction. Its drill has
           evolved into steel strong enough to bore through
           iron plates.
+          
         'y': |
           More than 300 feet below the surface, they build
           mazelike nests. Their activity can be destructive to
           subway tunnels.
-      forms: *black-white.pokemon.excadrill.forms
+          
+      forms: &x-y.pokemon.excadrill.forms
+        excadrill:
+          name: *black-white.name
+          form_name: *black-white.pokemon.excadrill.forms.excadrill.form_name
+          default: *black-white.pokemon.excadrill.default
+          battle_only: *black-white.pokemon.excadrill.forms.excadrill.battle_only
+          icon: excadrill-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -185,11 +198,13 @@ omega-ruby-alpha-sapphire:
           It can help in tunnel construction. Its drill has
           evolved into steel strong enough to bore through
           iron plates.
+          
         alpha-sapphire: |
           More than 300 feet below the surface, they build
           mazelike nests. Their activity can be destructive to
           subway tunnels.
-      forms: *black-white.pokemon.excadrill.forms
+          
+      forms: *x-y.pokemon.excadrill.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -217,5 +232,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.excadrill.stats
       abilities: *black-white.pokemon.excadrill.abilities
       evolution_conditions: *black-white.pokemon.excadrill.evolution_conditions
-      forms: *black-white.pokemon.excadrill.forms
+      forms: *x-y.pokemon.excadrill.forms
 ultra-sun-ultra-moon: *sun-moon

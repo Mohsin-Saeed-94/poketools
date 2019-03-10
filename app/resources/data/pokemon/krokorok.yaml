@@ -64,16 +64,19 @@ black-white:
           They live in groups of a few individuals.
           Protective membranes shield their eyes
           from sandstorms.
+          
         white: |
           The special membrane covering its eyes
           can sense the heat of objects, so it can
           see its surroundings even in darkness.
+          
       forms: &black-white.pokemon.krokorok.forms
         krokorok:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.krokorok.forms.krokorok.form_name 'Default Form'
           default: *black-white.pokemon.krokorok.default
-          battle_only: false
+          battle_only: &black-white.pokemon.krokorok.forms.krokorok.battle_only false
+          icon: gen5/krokorok-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           Protected by thin membranes, their eyes
           can see even in the dead of night.
           They live in groups of a few individuals.
+          
         white-2: |
           Protected by thin membranes, their eyes
           can see even in the dead of night.
           They live in groups of a few individuals.
+          
       forms: *black-white.pokemon.krokorok.forms
 x-y:
   name: *black-white.name
@@ -147,11 +152,19 @@ x-y:
         x: |
           They live in groups of a few individuals. Protective
           membranes shield their eyes from sandstorms.
+          
         'y': |
           The special membrane covering its eyes can sense
           the heat of objects, so it can see its surroundings
           even in darkness.
-      forms: *black-white.pokemon.krokorok.forms
+          
+      forms: &x-y.pokemon.krokorok.forms
+        krokorok:
+          name: *black-white.name
+          form_name: *black-white.pokemon.krokorok.forms.krokorok.form_name
+          default: *black-white.pokemon.krokorok.default
+          battle_only: *black-white.pokemon.krokorok.forms.krokorok.battle_only
+          icon: krokorok-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -185,11 +198,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           They live in groups of a few individuals. Protective
           membranes shield their eyes from sandstorms.
+          
         alpha-sapphire: |
           The special membrane covering its eyes can sense
           the heat of objects, so it can see its surroundings
           even in darkness.
-      forms: *black-white.pokemon.krokorok.forms
+          
+      forms: *x-y.pokemon.krokorok.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -225,7 +240,8 @@ sun-moon:
           Thanks to the special membrane covering its
           eyes, it can see its surroundings clearly, even in
           the middle of the night.
-      forms: *black-white.pokemon.krokorok.forms
+          
+      forms: *x-y.pokemon.krokorok.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -260,4 +276,5 @@ ultra-sun-ultra-moon:
           Krokorok really hates it when its body gets
           cold. On nights when the temperature drops,
           it digs deep into the desert sands.
-      forms: *black-white.pokemon.krokorok.forms
+          
+      forms: *x-y.pokemon.krokorok.forms

@@ -69,16 +69,19 @@ black-white:
           With quick movements, it chases down
           its foes, attacking relentlessly with
           its horns until it prevails.
+          
         white: |
           Highly aggressive, it uses the claws
           near its neck to dig into its opponents
           and poison them.
+          
       forms: &black-white.pokemon.scolipede.forms
         scolipede:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.scolipede.forms.scolipede.form_name 'Default Form'
           default: *black-white.pokemon.scolipede.default
-          battle_only: false
+          battle_only: &black-white.pokemon.scolipede.forms.scolipede.battle_only false
+          icon: gen5/scolipede-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -117,10 +120,12 @@ black-2-white-2:
           It clasps its prey with the claws
           on its neck until it stops moving.
           Then it finishes it off with deadly poison.
+          
         white-2: |
           It clasps its prey with the claws
           on its neck until it stops moving.
           Then it finishes it off with deadly poison.
+          
       forms: *black-white.pokemon.scolipede.forms
 x-y:
   name: *black-white.name
@@ -160,10 +165,18 @@ x-y:
           It clasps its prey with the claws on its neck until it
           stops moving. Then it finishes it off with
           deadly poison.
+          
         'y': |
           With quick movements, it chases down its foes,
           attacking relentlessly with its horns until it prevails.
-      forms: *black-white.pokemon.scolipede.forms
+          
+      forms: &x-y.pokemon.scolipede.forms
+        scolipede:
+          name: *black-white.name
+          form_name: *black-white.pokemon.scolipede.forms.scolipede.form_name
+          default: *black-white.pokemon.scolipede.default
+          battle_only: *black-white.pokemon.scolipede.forms.scolipede.battle_only
+          icon: scolipede-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -198,10 +211,12 @@ omega-ruby-alpha-sapphire:
           It clasps its prey with the claws on its neck until it
           stops moving. Then it finishes it off with
           deadly poison.
+          
         alpha-sapphire: |
           With quick movements, it chases down its foes,
           attacking relentlessly with its horns until it prevails.
-      forms: *black-white.pokemon.scolipede.forms
+          
+      forms: *x-y.pokemon.scolipede.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -231,7 +246,7 @@ sun-moon:
       wild_held_items:
         moon: *black-2-white-2.pokemon.scolipede.wild_held_items.black-2
       evolution_conditions: *black-white.pokemon.scolipede.evolution_conditions
-      forms: *black-white.pokemon.scolipede.forms
+      forms: *x-y.pokemon.scolipede.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -261,4 +276,4 @@ ultra-sun-ultra-moon:
       wild_held_items:
         ultra-sun: *black-2-white-2.pokemon.scolipede.wild_held_items.black-2
       evolution_conditions: *black-white.pokemon.scolipede.evolution_conditions
-      forms: *black-white.pokemon.scolipede.forms
+      forms: *x-y.pokemon.scolipede.forms

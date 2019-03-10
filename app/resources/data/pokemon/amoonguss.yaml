@@ -67,16 +67,19 @@ black-white:
           It lures prey close by dancing and
           waving its arm caps, which resemble
           Poké Balls, in a swaying motion.
+          
         white: |
           They show off their Poké Ball caps to
           lure prey, but very few Pokémon are
           fooled by this.
+          
       forms: &black-white.pokemon.amoonguss.forms
         amoonguss:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.amoonguss.forms.amoonguss.form_name 'Default Form'
           default: *black-white.pokemon.amoonguss.default
-          battle_only: false
+          battle_only: &black-white.pokemon.amoonguss.forms.amoonguss.battle_only false
+          icon: gen5/amoonguss-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -114,10 +117,12 @@ black-2-white-2:
           It moves the caps on both arms
           and does a dance to lure prey.
           It prefers damp places.
+          
         white-2: |
           It moves the caps on both arms
           and does a dance to lure prey.
           It prefers damp places.
+          
       forms: *black-white.pokemon.amoonguss.forms
 x-y:
   name: *black-white.name
@@ -158,11 +163,19 @@ x-y:
         x: |
           They show off their Poké Ball caps to lure prey,
           but very few Pokémon are fooled by this.
+          
         'y': |
           It lures prey close by dancing and waving its
           arm caps, which resemble Poké Balls, in a
           swaying motion.
-      forms: *black-white.pokemon.amoonguss.forms
+          
+      forms: &x-y.pokemon.amoonguss.forms
+        amoonguss:
+          name: *black-white.name
+          form_name: *black-white.pokemon.amoonguss.forms.amoonguss.form_name
+          default: *black-white.pokemon.amoonguss.default
+          battle_only: *black-white.pokemon.amoonguss.forms.amoonguss.battle_only
+          icon: amoonguss-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -196,11 +209,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           They show off their Poké Ball caps to lure prey,
           but very few Pokémon are fooled by this.
+          
         alpha-sapphire: |
           It lures prey close by dancing and waving its
           arm caps, which resemble Poké Balls, in a
           swaying motion.
-      forms: *black-white.pokemon.amoonguss.forms
+          
+      forms: *x-y.pokemon.amoonguss.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -230,7 +245,7 @@ sun-moon:
       wild_held_items:
         moon: *x-y.pokemon.amoonguss.wild_held_items.x
       evolution_conditions: *black-white.pokemon.amoonguss.evolution_conditions
-      forms: *black-white.pokemon.amoonguss.forms
+      forms: *x-y.pokemon.amoonguss.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -260,4 +275,4 @@ ultra-sun-ultra-moon:
       wild_held_items:
         ultra-sun: *x-y.pokemon.amoonguss.wild_held_items.x
       evolution_conditions: *black-white.pokemon.amoonguss.evolution_conditions
-      forms: *black-white.pokemon.amoonguss.forms
+      forms: *x-y.pokemon.amoonguss.forms

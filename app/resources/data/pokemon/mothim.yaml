@@ -65,16 +65,19 @@ diamond-pearl:
           It loves the honey of flowers
           and steals honey collected by
           COMBEE.
+          
         pearl: |
           It does not keep a nest. It flies
           over fields and mountains in
           constant search of floral honey.
+          
       forms: &diamond-pearl.pokemon.mothim.forms
-        mothim-plant: &diamond-pearl.pokemon.mothim.forms.mothim-plant
+        mothim-plant:
           name: *diamond-pearl.name
           form_name: &diamond-pearl.pokemon.mothim.forms.mothim-plant.form_name 'Default Form'
           default: *diamond-pearl.pokemon.mothim.default
           battle_only: &diamond-pearl.pokemon.mothim.forms.mothim-plant.battle_only false
+          icon: &diamond-pearl.pokemon.mothim.forms.mothim-plant.icon gen5/mothim-plant.png
 platinum:
   name: *diamond-pearl.name
   position: *diamond-pearl.position
@@ -110,6 +113,7 @@ platinum:
           While it loves floral honey, it won’t
           gather any itself. Instead, it
           plots to steal some from COMBEE.
+          
       forms: *diamond-pearl.pokemon.mothim.forms
 heartgold-soulsilver:
   name: *diamond-pearl.name
@@ -145,9 +149,11 @@ heartgold-soulsilver:
         heartgold: |
           It flutters around at night and
           steals honey from the COMBEE hive.
+          
         soulsilver: |
           It flutters around at night and
           steals honey from the COMBEE hive.
+          
       forms:
         mothim-plant:
           name: *diamond-pearl.name
@@ -170,6 +176,7 @@ heartgold-soulsilver:
             jump:
               base_value: 5
               range: 4-5
+          icon: *diamond-pearl.pokemon.mothim.forms.mothim-plant.icon
 black-white:
   name: *diamond-pearl.name
   position: *diamond-pearl.position
@@ -205,10 +212,12 @@ black-white:
           While it loves floral honey, it won’t
           gather any itself. Instead, it
           plots to steal some from Combee.
+          
         white: |
           While it loves floral honey, it won’t
           gather any itself. Instead, it
           plots to steal some from Combee.
+          
       forms: *diamond-pearl.pokemon.mothim.forms
 black-2-white-2:
   name: *diamond-pearl.name
@@ -245,10 +254,12 @@ black-2-white-2:
           While it loves floral honey, it won’t
           gather any itself. Instead, it
           plots to steal some from Combee.
+          
         white-2: |
           While it loves floral honey, it won’t
           gather any itself. Instead, it
           plots to steal some from Combee.
+          
       forms: *diamond-pearl.pokemon.mothim.forms
 x-y:
   name: *diamond-pearl.name
@@ -287,10 +298,18 @@ x-y:
         x: |
           It loves the honey of flowers and steals honey
           collected by Combee.
+          
         'y': |
           It flutters around at night and steals honey from
           the Combee hive.
-      forms: *diamond-pearl.pokemon.mothim.forms
+          
+      forms: &x-y.pokemon.mothim.forms
+        mothim-plant: &x-y.pokemon.mothim.forms.mothim-plant
+          name: *diamond-pearl.name
+          form_name: *diamond-pearl.pokemon.mothim.forms.mothim-plant.form_name
+          default: *diamond-pearl.pokemon.mothim.default
+          battle_only: *diamond-pearl.pokemon.mothim.forms.mothim-plant.battle_only
+          icon: mothim-plant.png
 omega-ruby-alpha-sapphire:
   name: *diamond-pearl.name
   position: *diamond-pearl.position
@@ -323,10 +342,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It loves the honey of flowers and steals honey
           collected by Combee.
+          
         alpha-sapphire: |
           It flutters around at night and steals honey from
           the Combee hive.
-      forms: *diamond-pearl.pokemon.mothim.forms
+          
+      forms: *x-y.pokemon.mothim.forms
 sun-moon:
   name: *diamond-pearl.name
   position: *diamond-pearl.position
@@ -357,13 +378,19 @@ sun-moon:
         moon: *diamond-pearl.pokemon.mothim.wild_held_items.diamond
       evolution_conditions: *diamond-pearl.pokemon.mothim.evolution_conditions
       forms: &sun-moon.pokemon.mothim.forms
-        mothim-plant: *diamond-pearl.pokemon.mothim.forms.mothim-plant
-        mothim-sandy: &sun-moon.pokemon.mothim.forms.mothim-sandy
+        mothim-plant: *x-y.pokemon.mothim.forms.mothim-plant
+        mothim-sandy:
           name: *diamond-pearl.name
           form_name: *diamond-pearl.pokemon.mothim.forms.mothim-plant.form_name
-          default: false
+          default: &sun-moon.pokemon.mothim.forms.mothim-sandy.default false
           battle_only: *diamond-pearl.pokemon.mothim.forms.mothim-plant.battle_only
-        mothim-trash: *sun-moon.pokemon.mothim.forms.mothim-sandy
+          icon: mothim-sandy.png
+        mothim-trash:
+          name: *diamond-pearl.name
+          form_name: *diamond-pearl.pokemon.mothim.forms.mothim-plant.form_name
+          default: *sun-moon.pokemon.mothim.forms.mothim-sandy.default
+          battle_only: *diamond-pearl.pokemon.mothim.forms.mothim-plant.battle_only
+          icon: mothim-trash.png
 ultra-sun-ultra-moon:
   name: *diamond-pearl.name
   position: *diamond-pearl.position

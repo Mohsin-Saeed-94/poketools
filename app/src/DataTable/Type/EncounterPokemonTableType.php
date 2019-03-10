@@ -7,6 +7,7 @@ use App\DataTable\Column\CollectionColumn;
 use App\Entity\Encounter;
 use App\Entity\LocationArea;
 use App\Entity\Version;
+use App\Helpers\Labeler;
 use App\Repository\PokemonRepository;
 use Doctrine\ORM\QueryBuilder;
 use League\CommonMark\CommonMarkConverter;
@@ -25,9 +26,16 @@ class EncounterPokemonTableType extends PokemonTableType
      */
     protected $markdown;
 
-    public function __construct(PokemonRepository $pokemonRepo, CommonMarkConverter $markdown)
+    /**
+     * EncounterPokemonTableType constructor.
+     *
+     * @param Labeler $labeler
+     * @param PokemonRepository $pokemonRepo
+     * @param CommonMarkConverter $markdown
+     */
+    public function __construct(Labeler $labeler, PokemonRepository $pokemonRepo, CommonMarkConverter $markdown)
     {
-        parent::__construct($pokemonRepo);
+        parent::__construct($labeler, $pokemonRepo);
 
         $this->markdown = $markdown;
     }

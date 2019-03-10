@@ -61,16 +61,18 @@ black-white:
           Lands visited by Landorus grant such
           bountiful crops that it has been hailed
           as “The Guardian of the Fields.”
+          
         white: |
           The energy that comes pouring from its
           tail increases the nutrition in the soil,
           making crops grow to great size.
       forms: &black-white.pokemon.landorus-incarnate.forms
         landorus-incarnate:
-          name: 'Incarnate Landorus'
-          form_name: 'Incarnate Forme'
+          name: &black-white.pokemon.landorus-incarnate.forms.landorus-incarnate.name 'Incarnate Landorus'
+          form_name: &black-white.pokemon.landorus-incarnate.forms.landorus-incarnate.form_name 'Incarnate Forme'
           default: *black-white.pokemon.landorus-incarnate.default
           battle_only: &black-white.pokemon.landorus-incarnate.forms.landorus-incarnate.battle_only false
+          icon: gen5/landorus-incarnate.png
     landorus-therian:
       genus: *black-white.pokemon.landorus-incarnate.genus
       color: *black-white.pokemon.landorus-incarnate.color
@@ -115,9 +117,10 @@ black-white:
       forms: &black-white.pokemon.landorus-therian.forms
         landorus-therian:
           name: *black-white.pokemon.landorus-therian.name
-          form_name: 'Therian Forme'
+          form_name: &black-white.pokemon.landorus-therian.forms.landorus-therian.form_name 'Therian Forme'
           default: *black-white.pokemon.landorus-incarnate.default
           battle_only: *black-white.pokemon.landorus-incarnate.forms.landorus-incarnate.battle_only
+          icon: gen5/landorus-therian.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -151,6 +154,7 @@ black-2-white-2:
           From the forces of lightning and wind,
           it creates energy to give nutrients to
           the soil and make the land abundant.
+          
         white-2: |
           From the forces of lightning and wind,
           it creates energy to give nutrients to
@@ -212,11 +216,18 @@ x-y:
           Lands visited by Landorus grant such bountiful
           crops that it has been hailed as “The Guardian of
           the Fields.”
+          
         'y': |
           From the forces of lightning and wind, it creates
           energy to give nutrients to the soil and make the
           land abundant.
-      forms: *black-white.pokemon.landorus-incarnate.forms
+      forms: &x-y.pokemon.landorus-incarnate.forms
+        landorus-incarnate:
+          name: *black-white.pokemon.landorus-incarnate.forms.landorus-incarnate.name
+          form_name: *black-white.pokemon.landorus-incarnate.forms.landorus-incarnate.form_name
+          default: *black-white.pokemon.landorus-incarnate.default
+          battle_only: *black-white.pokemon.landorus-incarnate.forms.landorus-incarnate.battle_only
+          icon: landorus-incarnate.png
     landorus-therian:
       genus: *black-white.pokemon.landorus-incarnate.genus
       color: *black-white.pokemon.landorus-incarnate.color
@@ -240,7 +251,13 @@ x-y:
       stats: *black-white.pokemon.landorus-therian.stats
       abilities: *black-white.pokemon.landorus-therian.abilities
       flavor_text: *x-y.pokemon.landorus-incarnate.flavor_text
-      forms: *black-white.pokemon.landorus-therian.forms
+      forms: &x-y.pokemon.landorus-therian.forms
+        landorus-therian:
+          name: *black-white.pokemon.landorus-therian.name
+          form_name: *black-white.pokemon.landorus-therian.forms.landorus-therian.form_name
+          default: *black-white.pokemon.landorus-incarnate.default
+          battle_only: *black-white.pokemon.landorus-incarnate.forms.landorus-incarnate.battle_only
+          icon: landorus-therian.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -273,11 +290,12 @@ omega-ruby-alpha-sapphire:
           Lands visited by Landorus grant such bountiful
           crops that it has been hailed as “The Guardian of
           the Fields.”
+          
         alpha-sapphire: |
           From the forces of lightning and wind, it creates
           energy to give nutrients to the soil and make the
           land abundant.
-      forms: *black-white.pokemon.landorus-incarnate.forms
+      forms: *x-y.pokemon.landorus-incarnate.forms
     landorus-therian:
       genus: *black-white.pokemon.landorus-incarnate.genus
       color: *black-white.pokemon.landorus-incarnate.color
@@ -301,7 +319,7 @@ omega-ruby-alpha-sapphire:
       stats: *black-white.pokemon.landorus-therian.stats
       abilities: *black-white.pokemon.landorus-therian.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.landorus-incarnate.flavor_text
-      forms: *black-white.pokemon.landorus-therian.forms
+      forms: *x-y.pokemon.landorus-therian.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -328,7 +346,7 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.landorus-incarnate.mega
       stats: *black-white.pokemon.landorus-incarnate.stats
       abilities: *black-white.pokemon.landorus-incarnate.abilities
-      forms: *black-white.pokemon.landorus-incarnate.forms
+      forms: *x-y.pokemon.landorus-incarnate.forms
     landorus-therian:
       genus: *black-white.pokemon.landorus-incarnate.genus
       color: *black-white.pokemon.landorus-incarnate.color
@@ -351,5 +369,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.landorus-incarnate.mega
       stats: *black-white.pokemon.landorus-therian.stats
       abilities: *black-white.pokemon.landorus-therian.abilities
-      forms: *black-white.pokemon.landorus-therian.forms
+      forms: *x-y.pokemon.landorus-therian.forms
 ultra-sun-ultra-moon: *sun-moon

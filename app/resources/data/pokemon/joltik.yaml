@@ -60,16 +60,19 @@ black-white:
           Joltik that live in cities have learned
           a technique for sucking electricity
           from the outlets in houses.
+          
         white: |
           They attach themselves to large-bodied
           Pokémon and absorb static electricity,
           which they store in an electric pouch.
+          
       forms: &black-white.pokemon.joltik.forms
         joltik:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.joltik.forms.joltik.form_name 'Default Form'
           default: *black-white.pokemon.joltik.default
-          battle_only: false
+          battle_only: &black-white.pokemon.joltik.forms.joltik.battle_only false
+          icon: gen5/joltik-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           Since it can’t generate its own
           electricity, it sticks onto large-bodied
           Pokémon and absorbs static electricity.
+          
         white-2: |
           Since it can’t generate its own
           electricity, it sticks onto large-bodied
           Pokémon and absorbs static electricity.
+          
       forms: *black-white.pokemon.joltik.forms
 x-y:
   name: *black-white.name
@@ -139,11 +144,19 @@ x-y:
           Since it can’t generate its own electricity, it sticks
           onto large-bodied Pokémon and absorbs
           static electricity.
+          
         'y': |
           They attach themselves to large-bodied Pokémon
           and absorb static electricity, which they store in an
           electric pouch.
-      forms: *black-white.pokemon.joltik.forms
+          
+      forms: &x-y.pokemon.joltik.forms
+        joltik:
+          name: *black-white.name
+          form_name: *black-white.pokemon.joltik.forms.joltik.form_name
+          default: *black-white.pokemon.joltik.default
+          battle_only: *black-white.pokemon.joltik.forms.joltik.battle_only
+          icon: joltik-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -175,11 +188,13 @@ omega-ruby-alpha-sapphire:
           Since it can’t generate its own electricity, it sticks
           onto large-bodied Pokémon and absorbs
           static electricity.
+          
         alpha-sapphire: |
           They attach themselves to large-bodied Pokémon
           and absorb static electricity, which they store in an
           electric pouch.
-      forms: *black-white.pokemon.joltik.forms
+          
+      forms: *x-y.pokemon.joltik.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -205,5 +220,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.joltik.mega
       stats: *black-white.pokemon.joltik.stats
       abilities: *black-white.pokemon.joltik.abilities
-      forms: *black-white.pokemon.joltik.forms
+      forms: *x-y.pokemon.joltik.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -65,16 +65,19 @@ black-white:
           When volcanic ash darkened the
           atmosphere, it is said that Volcarona’s
           fire provided a replacement for the sun.
+          
         white: |
           A sea of fire engulfs the surroundings
           of their battles, since they use their
           six wings to scatter their ember scales.
+          
       forms: &black-white.pokemon.volcarona.forms
         volcarona:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.volcarona.forms.volcarona.form_name 'Default Form'
           default: *black-white.pokemon.volcarona.default
-          battle_only: false
+          battle_only: &black-white.pokemon.volcarona.forms.volcarona.battle_only false
+          icon: gen5/volcarona-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -112,10 +115,12 @@ black-2-white-2:
           Thought to be an embodiment of the sun,
           it appeared during a bitterly cold winter
           and saved Pokémon from freezing.
+          
         white-2: |
           Thought to be an embodiment of the sun,
           it appeared during a bitterly cold winter
           and saved Pokémon from freezing.
+          
       forms: *black-white.pokemon.volcarona.forms
 x-y:
   name: *black-white.name
@@ -154,11 +159,19 @@ x-y:
           A sea of fire engulfs the surroundings of their
           battles, since they use their six wings to scatter
           their ember scales.
+          
         'y': |
           When volcanic ash darkened the atmosphere, it is
           said that Volcarona’s fire provided a replacement
           for the sun.
-      forms: *black-white.pokemon.volcarona.forms
+          
+      forms: &x-y.pokemon.volcarona.forms
+        volcarona:
+          name: *black-white.name
+          form_name: *black-white.pokemon.volcarona.forms.volcarona.form_name
+          default: *black-white.pokemon.volcarona.default
+          battle_only: *black-white.pokemon.volcarona.forms.volcarona.battle_only
+          icon: volcarona-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -192,11 +205,13 @@ omega-ruby-alpha-sapphire:
           A sea of fire engulfs the surroundings of their
           battles, since they use their six wings to scatter
           their ember scales.
+          
         alpha-sapphire: |
           When volcanic ash darkened the atmosphere, it is
           said that Volcarona’s fire provided a replacement
           for the sun.
-      forms: *black-white.pokemon.volcarona.forms
+          
+      forms: *x-y.pokemon.volcarona.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -227,7 +242,7 @@ sun-moon:
         moon: &sun-moon.pokemon.volcarona.wild_held_items.moon
           silver-powder: 5
       evolution_conditions: *black-white.pokemon.volcarona.evolution_conditions
-      forms: *black-white.pokemon.volcarona.forms
+      forms: *x-y.pokemon.volcarona.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -262,4 +277,5 @@ ultra-sun-ultra-moon:
           As it flies, it scatters its flaming scales. It was
           feared by ancient people, who referred to it as
           “the rage of the sun.”
-      forms: *black-white.pokemon.volcarona.forms
+          
+      forms: *x-y.pokemon.volcarona.forms

@@ -59,16 +59,19 @@ black-white:
           Using food stored in cheek pouches,
           they can keep watch for days. They use
           their tails to communicate with others.
+          
         white: |
           Extremely cautious, they take shifts to
           maintain a constant watch of their nest.
           They feel insecure without a lookout.
+          
       forms: &black-white.pokemon.patrat.forms
         patrat:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.patrat.forms.patrat.form_name 'Default Form'
           default: *black-white.pokemon.patrat.default
-          battle_only: false
+          battle_only: &black-white.pokemon.patrat.forms.patrat.battle_only false
+          icon: gen5/patrat-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -101,10 +104,12 @@ black-2-white-2:
           Extremely cautious, one of them
           will always be on the lookout, but it
           won’t notice a foe coming from behind.
+          
         white-2: |
           Extremely cautious, one of them
           will always be on the lookout, but it
           won’t notice a foe coming from behind.
+          
       forms: *black-white.pokemon.patrat.forms
 x-y:
   name: *black-white.name
@@ -139,11 +144,19 @@ x-y:
           Using food stored in cheek pouches, they can keep
           watch for days. They use their tails to communicate
           with others.
+          
         'y': |
           Extremely cautious, one of them will always be on
           the lookout, but it won’t notice a foe coming
           from behind.
-      forms: *black-white.pokemon.patrat.forms
+          
+      forms: &x-y.pokemon.patrat.forms
+        patrat:
+          name: *black-white.name
+          form_name: *black-white.pokemon.patrat.forms.patrat.form_name
+          default: *black-white.pokemon.patrat.default
+          battle_only: *black-white.pokemon.patrat.forms.patrat.battle_only
+          icon: patrat-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -176,11 +189,13 @@ omega-ruby-alpha-sapphire:
           Using food stored in cheek pouches, they can keep
           watch for days. They use their tails to communicate
           with others.
+          
         alpha-sapphire: |
           Extremely cautious, one of them will always be on
           the lookout, but it won’t notice a foe coming
           from behind.
-      forms: *black-white.pokemon.patrat.forms
+          
+      forms: *x-y.pokemon.patrat.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -206,5 +221,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.patrat.mega
       stats: *black-white.pokemon.patrat.stats
       abilities: *black-white.pokemon.patrat.abilities
-      forms: *black-white.pokemon.patrat.forms
+      forms: *x-y.pokemon.patrat.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -62,16 +62,19 @@ black-white:
           When its body dries out, it weakens.
           So, to prevent dehydration, it wraps
           itself in many layers of thin membrane.
+          
         white: |
           Having removed its heavy shell,
           it becomes very light and can fight
           with ninja-like movements.
+          
       forms: &black-white.pokemon.accelgor.forms
         accelgor:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.accelgor.forms.accelgor.form_name 'Default Form'
           default: *black-white.pokemon.accelgor.default
-          battle_only: false
+          battle_only: &black-white.pokemon.accelgor.forms.accelgor.battle_only false
+          icon: gen5/accelgor-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -106,10 +109,12 @@ black-2-white-2:
           When its body dries out, it weakens.
           So it wraps a membrane around itself
           for protection while it spits poison.
+          
         white-2: |
           When its body dries out, it weakens.
           So it wraps a membrane around itself
           for protection while it spits poison.
+          
       forms: *black-white.pokemon.accelgor.forms
 x-y:
   name: *black-white.name
@@ -145,11 +150,19 @@ x-y:
         x: |
           Having removed its heavy shell, it becomes very
           light and can fight with ninja-like movements.
+          
         'y': |
           When its body dries out, it weakens. So, to prevent
           dehydration, it wraps itself in many layers of
           thin membrane.
-      forms: *black-white.pokemon.accelgor.forms
+          
+      forms: &x-y.pokemon.accelgor.forms
+        accelgor:
+          name: *black-white.name
+          form_name: *black-white.pokemon.accelgor.forms.accelgor.form_name
+          default: *black-white.pokemon.accelgor.default
+          battle_only: *black-white.pokemon.accelgor.forms.accelgor.battle_only
+          icon: accelgor-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -183,11 +196,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Having removed its heavy shell, it becomes very
           light and can fight with ninja-like movements.
+          
         alpha-sapphire: |
           When its body dries out, it weakens. So, to prevent
           dehydration, it wraps itself in many layers of
           thin membrane.
-      forms: *black-white.pokemon.accelgor.forms
+          
+      forms: *x-y.pokemon.accelgor.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -215,5 +230,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.accelgor.stats
       abilities: *black-white.pokemon.accelgor.abilities
       evolution_conditions: *black-white.pokemon.accelgor.evolution_conditions
-      forms: *black-white.pokemon.accelgor.forms
+      forms: *x-y.pokemon.accelgor.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -59,16 +59,19 @@ black-white:
           When threatened, it attacks by
           shooting a barrage of spikes, which gives
           it a chance to escape by rolling away.
+          
         white: |
           They stick their spikes into cave
           walls and absorb the minerals
           they find in the rock.
+          
       forms: &black-white.pokemon.ferroseed.forms
         ferroseed:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.ferroseed.forms.ferroseed.form_name 'Default Form'
           default: *black-white.pokemon.ferroseed.default
-          battle_only: false
+          battle_only: &black-white.pokemon.ferroseed.forms.ferroseed.battle_only false
+          icon: gen5/ferroseed-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -104,10 +107,12 @@ black-2-white-2:
           It absorbs the iron it finds in the
           rock while clinging to the ceiling.
           It shoots spikes when in danger.
+          
         white-2: |
           It absorbs the iron it finds in the
           rock while clinging to the ceiling.
           It shoots spikes when in danger.
+          
       forms: *black-white.pokemon.ferroseed.forms
 x-y:
   name: *black-white.name
@@ -145,10 +150,18 @@ x-y:
           When threatened, it attacks by shooting a barrage
           of spikes, which gives it a chance to escape by
           rolling away.
+          
         'y': |
           It absorbs the iron it finds in the rock while clinging
           to the ceiling. It shoots spikes when in danger.
-      forms: *black-white.pokemon.ferroseed.forms
+          
+      forms: &x-y.pokemon.ferroseed.forms
+        ferroseed:
+          name: *black-white.name
+          form_name: *black-white.pokemon.ferroseed.forms.ferroseed.form_name
+          default: *black-white.pokemon.ferroseed.default
+          battle_only: *black-white.pokemon.ferroseed.forms.ferroseed.battle_only
+          icon: ferroseed-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -181,10 +194,12 @@ omega-ruby-alpha-sapphire:
           When threatened, it attacks by shooting a barrage
           of spikes, which gives it a chance to escape by
           rolling away.
+          
         alpha-sapphire: |
           It absorbs the iron it finds in the rock while clinging
           to the ceiling. It shoots spikes when in danger.
-      forms: *black-white.pokemon.ferroseed.forms
+          
+      forms: *x-y.pokemon.ferroseed.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -212,7 +227,7 @@ sun-moon:
       abilities: *black-white.pokemon.ferroseed.abilities
       wild_held_items:
         moon: *black-white.pokemon.ferroseed.wild_held_items.black
-      forms: *black-white.pokemon.ferroseed.forms
+      forms: *x-y.pokemon.ferroseed.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -240,4 +255,4 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.ferroseed.abilities
       wild_held_items:
         ultra-sun: *black-white.pokemon.ferroseed.wild_held_items.black
-      forms: *black-white.pokemon.ferroseed.forms
+      forms: *x-y.pokemon.ferroseed.forms

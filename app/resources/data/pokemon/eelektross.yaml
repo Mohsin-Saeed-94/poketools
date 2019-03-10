@@ -57,16 +57,19 @@ black-white:
           They crawl out of the ocean using their
           arms. They will attack prey on shore and
           immediately drag it into the ocean.
+          
         white: |
           With their sucker mouths, they
           suck in prey. Then they use their fangs
           to shock the prey with electricity.
+          
       forms: &black-white.pokemon.eelektross.forms
         eelektross:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.eelektross.forms.eelektross.form_name 'Default Form'
           default: *black-white.pokemon.eelektross.default
-          battle_only: false
+          battle_only: &black-white.pokemon.eelektross.forms.eelektross.battle_only false
+          icon: gen5/eelektross-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -101,10 +104,12 @@ black-2-white-2:
           It latches on to prey with its sucker
           mouth, sinking in its fangs and shocking
           the prey with powerful electricity.
+          
         white-2: |
           It latches on to prey with its sucker
           mouth, sinking in its fangs and shocking
           the prey with powerful electricity.
+          
       forms: *black-white.pokemon.eelektross.forms
 x-y:
   name: *black-white.name
@@ -140,11 +145,19 @@ x-y:
           With their sucker mouths, they suck in prey.
           Then they use their fangs to shock the prey
           with electricity.
+          
         'y': |
           They crawl out of the ocean using their arms.
           They will attack prey on shore and immediately drag
           it into the ocean.
-      forms: *black-white.pokemon.eelektross.forms
+          
+      forms: &x-y.pokemon.eelektross.forms
+        eelektross:
+          name: *black-white.name
+          form_name: *black-white.pokemon.eelektross.forms.eelektross.form_name
+          default: *black-white.pokemon.eelektross.default
+          battle_only: *black-white.pokemon.eelektross.forms.eelektross.battle_only
+          icon: eelektross-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -178,11 +191,13 @@ omega-ruby-alpha-sapphire:
           With their sucker mouths, they suck in prey.
           Then they use their fangs to shock the prey
           with electricity.
+          
         alpha-sapphire: |
           They crawl out of the ocean using their arms.
           They will attack prey on shore and immediately drag
           it into the ocean.
-      forms: *black-white.pokemon.eelektross.forms
+          
+      forms: *x-y.pokemon.eelektross.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -210,5 +225,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.eelektross.stats
       abilities: *black-white.pokemon.eelektross.abilities
       evolution_conditions: *black-white.pokemon.eelektross.evolution_conditions
-      forms: *black-white.pokemon.eelektross.forms
+      forms: *x-y.pokemon.eelektross.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -31,6 +31,13 @@ class AppExtension extends AbstractExtension
                     'is_safe' => ['html'],
                 ]
             ),
+            new TwigFunction(
+                'label_item', [AppExtensionRuntime::class, 'itemLabel'],
+                [
+                    'needs_context' => true,
+                    'is_safe' => ['html'],
+                ]
+            ),
         ];
     }
 

@@ -56,16 +56,19 @@ black-white:
           Their ribbonlike feelers increase their
           psychic power. They are always staring
           at something.
+          
         white: |
           They intently observe both Trainers and
           Pokémon. Apparently, they are looking
           at something that only Gothita can see.
+          
       forms: &black-white.pokemon.gothita.forms
         gothita:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.gothita.forms.gothita.form_name 'Default Form'
           default: *black-white.pokemon.gothita.default
-          battle_only: false
+          battle_only: &black-white.pokemon.gothita.forms.gothita.battle_only false
+          icon: gen5/gothita-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           It stares intently at everything.
           It can become so obsessed with
           watching that it doesn’t notice attacks.
+          
         white-2: |
           It stares intently at everything.
           It can become so obsessed with
           watching that it doesn’t notice attacks.
+          
       forms: *black-white.pokemon.gothita.forms
 x-y:
   name: *black-white.name
@@ -144,11 +149,19 @@ x-y:
         x: |
           Their ribbonlike feelers increase their psychic
           power. They are always staring at something.
+          
         'y': |
           They intently observe both Trainers and Pokémon.
           Apparently, they are looking at something that only
           Gothita can see.
-      forms: *black-white.pokemon.gothita.forms
+          
+      forms: &x-y.pokemon.gothita.forms
+        gothita:
+          name: *black-white.name
+          form_name: *black-white.pokemon.gothita.forms.gothita.form_name
+          default: *black-white.pokemon.gothita.default
+          battle_only: *black-white.pokemon.gothita.forms.gothita.battle_only
+          icon: gothita-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -180,11 +193,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Their ribbonlike feelers increase their psychic
           power. They are always staring at something.
+          
         alpha-sapphire: |
           They intently observe both Trainers and Pokémon.
           Apparently, they are looking at something that only
           Gothita can see.
-      forms: *black-white.pokemon.gothita.forms
+          
+      forms: *x-y.pokemon.gothita.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -210,5 +225,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.gothita.mega
       stats: *black-white.pokemon.gothita.stats
       abilities: *x-y.pokemon.gothita.abilities
-      forms: *black-white.pokemon.gothita.forms
+      forms: *x-y.pokemon.gothita.forms
 ultra-sun-ultra-moon: *sun-moon

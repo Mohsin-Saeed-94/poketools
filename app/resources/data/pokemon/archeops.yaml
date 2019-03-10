@@ -59,16 +59,19 @@ black-white:
           They are intelligent and will cooperate
           to catch prey. From the ground, they
           use a running start to take flight.
+          
         white: |
           It runs better than it flies.
           It catches prey by running at speeds
           comparable to those of an automobile.
+          
       forms: &black-white.pokemon.archeops.forms
         archeops:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.archeops.forms.archeops.form_name 'Default Form'
           default: *black-white.pokemon.archeops.default
-          battle_only: false
+          battle_only: &black-white.pokemon.archeops.forms.archeops.battle_only false
+          icon: gen5/archeops-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -103,10 +106,12 @@ black-2-white-2:
           It runs better than it flies.
           It takes off into the sky by
           running at a speed of 25 mph.
+          
         white-2: |
           It runs better than it flies.
           It takes off into the sky by
           running at a speed of 25 mph.
+          
       forms: *black-white.pokemon.archeops.forms
 x-y:
   name: *black-white.name
@@ -142,10 +147,18 @@ x-y:
           They are intelligent and will cooperate to catch
           prey. From the ground, they use a running start to
           take flight.
+          
         'y': |
           It runs better than it flies. It takes off into the sky
           by running at a speed of 25 mph.
-      forms: *black-white.pokemon.archeops.forms
+          
+      forms: &x-y.pokemon.archeops.forms
+        archeops:
+          name: *black-white.name
+          form_name: *black-white.pokemon.archeops.forms.archeops.form_name
+          default: *black-white.pokemon.archeops.default
+          battle_only: *black-white.pokemon.archeops.forms.archeops.battle_only
+          icon: archeops-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -179,10 +192,12 @@ omega-ruby-alpha-sapphire:
           They are intelligent and will cooperate to catch
           prey. From the ground, they use a running start to
           take flight.
+          
         alpha-sapphire: |
           It runs better than it flies. It takes off into the sky
           by running at a speed of 25 mph.
-      forms: *black-white.pokemon.archeops.forms
+          
+      forms: *x-y.pokemon.archeops.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -214,7 +229,8 @@ sun-moon:
         moon: |
           They hunted in flocks. When one Archeops had
           the prey cornered, another would swoop on it.
-      forms: *black-white.pokemon.archeops.forms
+          
+      forms: *x-y.pokemon.archeops.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -247,4 +263,5 @@ ultra-sun-ultra-moon:
           This ancient Pokémon’s plumage is delicate,
           so if anyone other than an experienced
           professional tries to restore it, they will fail.
-      forms: *black-white.pokemon.archeops.forms
+          
+      forms: *x-y.pokemon.archeops.forms

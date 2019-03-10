@@ -103,6 +103,11 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
      */
     protected $versionGroupPokedexes;
 
+    /**
+     * @var array
+     */
+    protected $oldMediaVersionGroups;
+
     protected $featureExclusions = [
         'color' => [
             'red-blue',
@@ -142,6 +147,12 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
         'happiness' => [
             'red-blue',
             'yellow',
+        ],
+        'icons' => [
+            'red-blue',
+            'yellow',
+            'gold-silver',
+            'crystal',
         ],
         'mega' => [
             'red-blue',
@@ -337,7 +348,10 @@ SQL
         $evolutionLocationVersionGroups->execute();
         $this->evolutionLocationVersionGroups = [];
         foreach ($evolutionLocationVersionGroups as $evolutionLocationVersionGroup) {
-            $this->evolutionLocationVersionGroups[$evolutionLocationVersionGroup['identifier']] = explode(',', $evolutionLocationVersionGroup['version_groups']);
+            $this->evolutionLocationVersionGroups[$evolutionLocationVersionGroup['identifier']] = explode(
+                ',',
+                $evolutionLocationVersionGroup['version_groups']
+            );
         }
 
         $evolutionSpeciesVersionGroups = $sourceDriver->getConnection()
@@ -395,7 +409,10 @@ SQL
         $evolutionSpeciesVersionGroups->execute();
         $this->evolutionSpeciesVersionGroups = [];
         foreach ($evolutionSpeciesVersionGroups as $evolutionSpeciesVersionGroup) {
-            $this->evolutionSpeciesVersionGroups[$evolutionSpeciesVersionGroup['identifier']] = explode(',', $evolutionSpeciesVersionGroup['version_groups']);
+            $this->evolutionSpeciesVersionGroups[$evolutionSpeciesVersionGroup['identifier']] = explode(
+                ',',
+                $evolutionSpeciesVersionGroup['version_groups']
+            );
         }
 
         $this->pokemonData = $sourceDriver->getConnection()->prepare(
@@ -499,6 +516,7 @@ SELECT "pokemon_forms"."id",
        group_concat(DISTINCT "version_groups"."identifier") AS "version_groups",
        coalesce("pokemon_form_names"."pokemon_name", "pokemon_species_names"."name") AS "name",
        coalesce("pokemon_form_names"."form_name", 'Default Form') AS "form_name",
+       coalesce("pokemon_forms"."form_identifier", 'default') AS "form_identifier",
        "pokemon_forms"."is_default" AS "default",
        "is_battle_only" AS "battle_only"
 FROM "pokemon_forms"
@@ -548,6 +566,16 @@ SQL
         foreach ($versionGroupsData as $row) {
             $this->versionGroupVersions[$row['version_group']] = explode(',', $row['versions']);
         }
+
+        $oldMediaVersionGroups = $sourceDriver->getConnection()->prepare(
+            <<<SQL
+SELECT "version_groups"."identifier"
+FROM "version_groups"
+WHERE "generation_id" <= 5;
+SQL
+        );
+        $oldMediaVersionGroups->execute();
+        $this->oldMediaVersionGroups = $oldMediaVersionGroups->fetchAll(FetchMode::COLUMN);
     }
 
     /**
@@ -577,12 +605,18 @@ SQL
         // Map flavor text by version
         $this->flavorTextData->execute(['species' => $speciesId]);
         $flavorTextData = $this->flavorTextData->fetchAll(FetchMode::ASSOCIATIVE);
-        $flavorTextData = array_combine(array_column($flavorTextData, 'version'), array_column($flavorTextData, 'flavor_text'));
+        $flavorTextData = array_combine(
+            array_column($flavorTextData, 'version'),
+            array_column($flavorTextData, 'flavor_text')
+        );
 
         // Map pokedex numbers by pokedex
         $this->pokedexNumbersData->execute(['species' => $speciesId]);
         $numbersData = $this->pokedexNumbersData->fetchAll(FetchMode::ASSOCIATIVE);
-        $pokedexNumbersData = array_combine(array_column($numbersData, 'pokedex'), array_column($numbersData, 'number'));
+        $pokedexNumbersData = array_combine(
+            array_column($numbersData, 'pokedex'),
+            array_column($numbersData, 'number')
+        );
         $pokedexNumbersData = $this->convertToInts($pokedexNumbersData, array_keys($pokedexNumbersData));
 
         // Map evolution data by trigger
@@ -655,7 +689,10 @@ SQL
                         foreach ($this->pokathlonStatData->fetchAll(FetchMode::ASSOCIATIVE) as $pokeathlonSourceData) {
                             $pokeathlonStat = $pokeathlonSourceData['pokeathlon_stat'];
                             unset($pokeathlonSourceData['pokeathlon_stat']);
-                            $pokeathlonSourceData['range'] = $this->buildRangeString($pokeathlonSourceData['min'], $pokeathlonSourceData['max']);
+                            $pokeathlonSourceData['range'] = $this->buildRangeString(
+                                $pokeathlonSourceData['min'],
+                                $pokeathlonSourceData['max']
+                            );
                             unset($pokeathlonSourceData['min'], $pokeathlonSourceData['max']);
                             $pokeathlonSourceData = $this->convertToInts($pokeathlonSourceData, ['base_value']);
 
@@ -663,6 +700,19 @@ SQL
                         }
                     }
 
+                    // Media
+                    if (!in_array($formVersionGroup, $this->featureExclusions['icons'], true)) {
+                        $versionGroupData['icon'] = sprintf(
+                            '%s-%s.png',
+                            $destinationData['identifier'],
+                            $versionGroupData['form_identifier']
+                        );
+                        if (in_array($formVersionGroup, $this->oldMediaVersionGroups, true)) {
+                            $versionGroupData['icon'] = 'gen5/'.$versionGroupData['icon'];
+                        }
+                    }
+
+                    unset($versionGroupData['form_identifier']);
                     $versionGroupFormData[$formVersionGroup][$formIdentifier] = $versionGroupData;
                 }
             }
@@ -719,7 +769,8 @@ SQL
                 $stat = $statData['stat'];
                 unset($statData['stat']);
                 $statData = $this->convertToInts(
-                    $statData, [
+                    $statData,
+                    [
                         'base_value',
                         'effort_change',
                     ]
@@ -774,7 +825,10 @@ SQL
                 }
 
                 if (isset($versionGroupData['evolution_parent'])
-                    && !in_array($pokemonVersionGroup, $this->evolutionSpeciesVersionGroups[$versionGroupData['evolution_parent']])) {
+                    && !in_array(
+                        $pokemonVersionGroup,
+                        $this->evolutionSpeciesVersionGroups[$versionGroupData['evolution_parent']]
+                    )) {
                     // This pokemon has no parent evolution in this version.  This is mostly
                     // for baby Pokemon added later.
                     unset($versionGroupData['evolution_parent']);
@@ -788,18 +842,30 @@ SQL
                     foreach ($evolutionConditions as $trigger => $evolutionConditionSet) {
                         foreach ($evolutionConditionSet as $evolutionCondition) {
                             if (isset($evolutionCondition['location'])
-                                && !in_array($pokemonVersionGroup, $this->evolutionLocationVersionGroups[$evolutionCondition['location']])) {
+                                && !in_array(
+                                    $pokemonVersionGroup,
+                                    $this->evolutionLocationVersionGroups[$evolutionCondition['location']]
+                                )) {
                                 continue;
                             } elseif (isset($evolutionCondition['party_species'])
-                                && !in_array($pokemonVersionGroup, $this->evolutionSpeciesVersionGroups[$evolutionCondition['party_species']])) {
+                                && !in_array(
+                                    $pokemonVersionGroup,
+                                    $this->evolutionSpeciesVersionGroups[$evolutionCondition['party_species']]
+                                )) {
                                 continue;
                             } elseif (isset($evolutionCondition['traded_for_species'])
-                                && !in_array($pokemonVersionGroup, $this->evolutionSpeciesVersionGroups[$evolutionCondition['traded_for_species']])) {
+                                && !in_array(
+                                    $pokemonVersionGroup,
+                                    $this->evolutionSpeciesVersionGroups[$evolutionCondition['traded_for_species']]
+                                )) {
                                 continue;
                             }
                             $versionGroupData['evolution_conditions'][$trigger][] = $evolutionCondition;
                         }
-                        $versionGroupData['evolution_conditions'][$trigger] = array_merge(...$versionGroupData['evolution_conditions'][$trigger]);
+                        $versionGroupData['evolution_conditions'][$trigger] = array_merge(
+                            ...
+                            $versionGroupData['evolution_conditions'][$trigger]
+                        );
                     }
                 }
 
@@ -809,9 +875,24 @@ SQL
                     }
                 }
 
-                $versionGroupData['forms'] = array_merge($versionGroupFormData[$pokemonVersionGroup], $destinationData[$pokemonVersionGroup]['pokemon'][$pokemonIdentifier]['forms'] ?? []);
+                foreach ($versionGroupFormData[$pokemonVersionGroup] as $formIdentifier => $formData) {
+                    $versionGroupData['forms'][$formIdentifier] = array_merge(
+                        $formData,
+                        $destinationData[$pokemonVersionGroup]['pokemon'][$pokemonIdentifier]['forms'][$formIdentifier] ?? []
+                    );
+                }
 
-                $versionGroupPokemonData[$pokemonVersionGroup][$pokemonIdentifier] = array_merge($versionGroupData, $destinationData[$pokemonVersionGroup]['pokemon'][$pokemonIdentifier] ?? []);
+                $pokemonFields = array_merge(
+                    array_keys($versionGroupData),
+                    array_keys($destinationData[$pokemonVersionGroup]['pokemon'][$pokemonIdentifier] ?? [])
+                );
+                $pokemonFields = array_unique($pokemonFields);
+                $pokemonFields = array_diff($pokemonFields, ['forms']);
+                $versionGroupPokemonData[$pokemonVersionGroup][$pokemonIdentifier] = $this->arrayMergeOnly(
+                    $pokemonFields,
+                    $versionGroupData,
+                    $destinationData[$pokemonVersionGroup]['pokemon'][$pokemonIdentifier] ?? []
+                );
             }
         }
         unset($pokemonSourceData, $pokemonData);
@@ -828,10 +909,35 @@ SQL
 
             $versionGroupData['pokemon'] = $versionGroupPokemonData[$versionGroup];
 
-            $destinationData[$versionGroup] = array_merge($versionGroupData, $destinationData[$versionGroup] ?? []);
+            $destinationData[$versionGroup] = $this->arrayMergeOnly(
+                ['name', 'position', 'numbers'],
+                $versionGroupData,
+                $destinationData[$versionGroup] ?? []
+            );
         }
 
         return $destinationData;
+    }
+
+    /**
+     * @param array $fields
+     * @param array ...$arrays
+     *
+     * @return array
+     */
+    protected function arrayMergeOnly(array $fields, ...$arrays): array
+    {
+        $arrays = array_reverse($arrays);
+        $out = array_pop($arrays);
+        while ($array = array_pop($arrays)) {
+            foreach ($fields as $field) {
+                if (isset($array[$field])) {
+                    $out[$field] = $array[$field];
+                }
+            }
+        }
+
+        return $out;
     }
 
     /**
@@ -841,7 +947,8 @@ SQL
     public function configureDestination(DestinationDriverInterface $destinationDriver)
     {
         $destinationDriver->setOption(
-            'refs', [
+            'refs',
+            [
                 'exclude' => [
                     '`.+stats\..+`',
                     '`.+pokeathlon_stats\..+`',

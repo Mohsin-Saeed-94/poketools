@@ -7,9 +7,11 @@ namespace App\Twig;
 
 
 use App\Entity\ContestType;
+use App\Entity\ItemInVersionGroup;
 use App\Entity\Type;
 use App\Entity\TypeEfficacy;
 use App\Entity\Version;
+use App\Helpers\Labeler;
 use App\Repository\TypeChartRepository;
 use App\Repository\VersionRepository;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -37,27 +39,28 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     private $activeVersion;
 
     /**
-     * @var string
+     * @var Labeler
      */
-    private $defaultVersionSlug;
+    private $labeler;
 
     /**
      * AppExtensionRuntime constructor.
      *
      * @param VersionRepository $versionRepo
+     * @param TypeChartRepository $typeChartRepo
      * @param Version $activeVersion
-     * @param string $defaultVersionSlug
+     * @param Labeler $labeler
      */
     public function __construct(
         VersionRepository $versionRepo,
         TypeChartRepository $typeChartRepo,
         ?Version $activeVersion,
-        string $defaultVersionSlug
+        Labeler $labeler
     ) {
         $this->versionRepo = $versionRepo;
         $this->typeChartRepo = $typeChartRepo;
         $this->activeVersion = $activeVersion;
-        $this->defaultVersionSlug = $defaultVersionSlug;
+        $this->labeler = $labeler;
     }
 
     /**
@@ -96,6 +99,24 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     }
 
     /**
+     * @param array $context
+     *
+     * @return Version|mixed|null
+     */
+    protected function resolveActiveVersion(array $context)
+    {
+        if (isset($context['version'])) {
+            $version = $context['version'];
+        } elseif (isset($this->activeVersion)) {
+            $version = $this->activeVersion;
+        } else {
+            $version = $this->versionRepo->getDefaultVersion();
+        }
+
+        return $version;
+    }
+
+    /**
      * @param \Twig_Environment $twig
      * @param array $context
      * @param Type $value
@@ -118,39 +139,6 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
                 'type_chart' => $typeChart,
             ]
         );
-    }
-
-    /**
-     * @param array $context
-     *
-     * @return Version|mixed|null
-     */
-    protected function resolveActiveVersion(array $context)
-    {
-        if (isset($context['version'])) {
-            $version = $context['version'];
-        } elseif (isset($this->activeVersion)) {
-            $version = $this->activeVersion;
-        } else {
-            $version = $this->getDefaultVersion();
-        }
-
-        return $version;
-    }
-
-    /**
-     * Laxy load the default version only when it is needed.
-     *
-     * @return Version
-     */
-    protected function getDefaultVersion(): Version
-    {
-        static $version = null;
-        if ($version === null) {
-            $version = $this->versionRepo->findOneBy(['slug' => $this->defaultVersionSlug]);
-        }
-
-        return $version;
     }
 
     /**
@@ -207,5 +195,18 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
         }
 
         return $twig->render('_filters/type_efficacy.twig', ['value' => $value, 'formatted' => $formatted]);
+    }
+
+    /**
+     * @param array $context
+     * @param ItemInVersionGroup $item
+     *
+     * @return string
+     */
+    public function itemLabel(array $context, ItemInVersionGroup $item): string
+    {
+        $version = $this->resolveActiveVersion($context);
+
+        return $this->labeler->item($item, $version);
     }
 }

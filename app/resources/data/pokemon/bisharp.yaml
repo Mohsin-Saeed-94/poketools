@@ -64,16 +64,19 @@ black-white:
           It leads a group of Pawniard.
           It battles to become the boss, but will
           be driven from the group if it loses.
+          
         white: |
           Bisharp pursues prey in the company of a
           large group of Pawniard. Then Bisharp
           finishes off the prey.
+          
       forms: &black-white.pokemon.bisharp.forms
         bisharp:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.bisharp.forms.bisharp.form_name 'Default Form'
           default: *black-white.pokemon.bisharp.default
-          battle_only: false
+          battle_only: &black-white.pokemon.bisharp.forms.bisharp.battle_only false
+          icon: gen5/bisharp-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           This pitiless Pokémon commands a group
           of Pawniard to hound prey into immobility.
           It then moves in to finish the prey off.
+          
         white-2: |
           This pitiless Pokémon commands a group
           of Pawniard to hound prey into immobility.
           It then moves in to finish the prey off.
+          
       forms: *black-white.pokemon.bisharp.forms
 x-y:
   name: *black-white.name
@@ -148,11 +153,19 @@ x-y:
           This pitiless Pokémon commands a group of
           Pawniard to hound prey into immobility. It then
           moves in to finish the prey off.
+          
         'y': |
           Bisharp pursues prey in the company of a large
           group of Pawniard. Then Bisharp finishes off
           the prey.
-      forms: *black-white.pokemon.bisharp.forms
+          
+      forms: &x-y.pokemon.bisharp.forms
+        bisharp:
+          name: *black-white.name
+          form_name: *black-white.pokemon.bisharp.forms.bisharp.form_name
+          default: *black-white.pokemon.bisharp.default
+          battle_only: *black-white.pokemon.bisharp.forms.bisharp.battle_only
+          icon: bisharp-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -187,11 +200,13 @@ omega-ruby-alpha-sapphire:
           This pitiless Pokémon commands a group of
           Pawniard to hound prey into immobility. It then
           moves in to finish the prey off.
+          
         alpha-sapphire: |
           Bisharp pursues prey in the company of a large
           group of Pawniard. Then Bisharp finishes off
           the prey.
-      forms: *black-white.pokemon.bisharp.forms
+          
+      forms: *x-y.pokemon.bisharp.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -219,7 +234,7 @@ sun-moon:
       stats: *black-white.pokemon.bisharp.stats
       abilities: *black-white.pokemon.bisharp.abilities
       evolution_conditions: *black-white.pokemon.bisharp.evolution_conditions
-      forms: *black-white.pokemon.bisharp.forms
+      forms: *x-y.pokemon.bisharp.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -252,4 +267,5 @@ ultra-sun-ultra-moon:
           No matter how strong the Bisharp, it’s said
           that if the blade on its head is chipped, it will
           retire from its position as the boss.
-      forms: *black-white.pokemon.bisharp.forms
+          
+      forms: *x-y.pokemon.bisharp.forms

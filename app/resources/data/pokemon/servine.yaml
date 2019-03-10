@@ -61,16 +61,19 @@ black-white:
           It moves along the ground as if sliding.
           Its swift movements befuddle its foes,
           and it then attacks with a vine whip.
+          
         white: |
           They avoid attacks by sinking into the
           shadows of thick foliage. They retaliate
           with masterful whipping techniques.
+          
       forms: &black-white.pokemon.servine.forms
         servine:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.servine.forms.servine.form_name 'Default Form'
           default: *black-white.pokemon.servine.default
-          battle_only: false
+          battle_only: &black-white.pokemon.servine.forms.servine.battle_only false
+          icon: gen5/servine-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,10 +108,12 @@ black-2-white-2:
           When it gets dirty, its leaves
           can’t be used in photosynthesis,
           so it always keeps itself clean.
+          
         white-2: |
           When it gets dirty, its leaves
           can’t be used in photosynthesis,
           so it always keeps itself clean.
+          
       forms: *black-white.pokemon.servine.forms
 x-y:
   name: *black-white.name
@@ -144,10 +149,18 @@ x-y:
           It moves along the ground as if sliding. Its swift
           movements befuddle its foes, and it then attacks
           with a vine whip.
+          
         'y': |
           When it gets dirty, its leaves can’t be used in
           photosynthesis, so it always keeps itself clean.
-      forms: *black-white.pokemon.servine.forms
+          
+      forms: &x-y.pokemon.servine.forms
+        servine:
+          name: *black-white.name
+          form_name: *black-white.pokemon.servine.forms.servine.form_name
+          default: *black-white.pokemon.servine.default
+          battle_only: *black-white.pokemon.servine.forms.servine.battle_only
+          icon: servine-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -181,10 +194,12 @@ omega-ruby-alpha-sapphire:
           It moves along the ground as if sliding. Its swift
           movements befuddle its foes, and it then attacks
           with a vine whip.
+          
         alpha-sapphire: |
           When it gets dirty, its leaves can’t be used in
           photosynthesis, so it always keeps itself clean.
-      forms: *black-white.pokemon.servine.forms
+          
+      forms: *x-y.pokemon.servine.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -212,5 +227,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.servine.stats
       abilities: *black-white.pokemon.servine.abilities
       evolution_conditions: *black-white.pokemon.servine.evolution_conditions
-      forms: *black-white.pokemon.servine.forms
+      forms: *x-y.pokemon.servine.forms
 ultra-sun-ultra-moon: *sun-moon

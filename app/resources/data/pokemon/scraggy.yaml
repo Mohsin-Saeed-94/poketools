@@ -65,16 +65,19 @@ black-white:
           Its skin has a rubbery elasticity, so
           it can reduce damage by defensively
           pulling its skin up to its neck.
+          
         white: |
           It immediately headbutts anyone that
           makes eye contact with it. Its skull is
           massively thick.
+          
       forms: &black-white.pokemon.scraggy.forms
         scraggy:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.scraggy.forms.scraggy.form_name 'Default Form'
           default: *black-white.pokemon.scraggy.default
-          battle_only: false
+          battle_only: &black-white.pokemon.scraggy.forms.scraggy.battle_only false
+          icon: gen5/scraggy-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -110,10 +113,12 @@ black-2-white-2:
           Proud of its sturdy skull,
           it suddenly headbutts everything,
           but its weight makes it unstable, too.
+          
         white-2: |
           Proud of its sturdy skull,
           it suddenly headbutts everything,
           but its weight makes it unstable, too.
+          
       forms: *black-white.pokemon.scraggy.forms
 x-y:
   name: *black-white.name
@@ -151,10 +156,18 @@ x-y:
           Its skin has a rubbery elasticity, so it can reduce
           damage by defensively pulling its skin up to
           its neck.
+          
         'y': |
           Proud of its sturdy skull, it suddenly headbutts
           everything, but its weight makes it unstable, too.
-      forms: *black-white.pokemon.scraggy.forms
+          
+      forms: &x-y.pokemon.scraggy.forms
+        scraggy:
+          name: *black-white.name
+          form_name: *black-white.pokemon.scraggy.forms.scraggy.form_name
+          default: *black-white.pokemon.scraggy.default
+          battle_only: *black-white.pokemon.scraggy.forms.scraggy.battle_only
+          icon: scraggy-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -187,10 +200,12 @@ omega-ruby-alpha-sapphire:
           Its skin has a rubbery elasticity, so it can reduce
           damage by defensively pulling its skin up to
           its neck.
+          
         alpha-sapphire: |
           Proud of its sturdy skull, it suddenly headbutts
           everything, but its weight makes it unstable, too.
-      forms: *black-white.pokemon.scraggy.forms
+          
+      forms: *x-y.pokemon.scraggy.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -218,7 +233,7 @@ sun-moon:
       abilities: *black-white.pokemon.scraggy.abilities
       wild_held_items:
         moon: *black-white.pokemon.scraggy.wild_held_items.black
-      forms: *black-white.pokemon.scraggy.forms
+      forms: *x-y.pokemon.scraggy.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -251,4 +266,5 @@ ultra-sun-ultra-moon:
           They move in small groups, walking around lazily.
           Anyone who makes eye contact gets smacked
           with a headbutt.
-      forms: *black-white.pokemon.scraggy.forms
+          
+      forms: *x-y.pokemon.scraggy.forms

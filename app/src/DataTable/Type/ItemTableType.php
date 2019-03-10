@@ -8,6 +8,7 @@ use App\DataTable\Column\MarkdownColumn;
 use App\Entity\ItemInVersionGroup;
 use App\Entity\ItemPocketInVersionGroup;
 use App\Entity\Version;
+use App\Helpers\Labeler;
 use Doctrine\ORM\QueryBuilder;
 use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
 use Omines\DataTablesBundle\Column\TextColumn;
@@ -19,6 +20,21 @@ use Omines\DataTablesBundle\DataTableTypeInterface;
  */
 class ItemTableType implements DataTableTypeInterface
 {
+    /**
+     * @var Labeler
+     */
+    protected $labeler;
+
+    /**
+     * ItemTableType constructor.
+     *
+     * @param Labeler $labeler
+     */
+    public function __construct(Labeler $labeler)
+    {
+        $this->labeler = $labeler;
+    }
+
     /**
      * @param DataTable $dataTable
      * @param array $options
@@ -52,6 +68,9 @@ class ItemTableType implements DataTableTypeInterface
                     },
                 ],
                 'className' => 'pkt-item-index-table-name',
+                'render' => function ($value, ItemInVersionGroup $context) use ($version) {
+                    return $this->labeler->item($context, $version);
+                },
             ]
         )->add(
             'description',

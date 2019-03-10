@@ -60,16 +60,19 @@ black-white:
           They use hypnosis to control people and
           Pokémon. Tales of Gothorita leading
           people astray are told in every corner.
+          
         white: |
           Starlight is the source of their power.
           At night, they mark star positions by
           using psychic power to float stones.
+          
       forms: &black-white.pokemon.gothorita.forms
         gothorita:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.gothorita.forms.gothorita.form_name 'Default Form'
           default: *black-white.pokemon.gothorita.default
-          battle_only: false
+          battle_only: &black-white.pokemon.gothorita.forms.gothorita.battle_only false
+          icon: gen5/gothorita-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           According to many old tales, it creates
           friends for itself by controlling
           sleeping children on starry nights.
+          
         white-2: |
           According to many old tales, it creates
           friends for itself by controlling
           sleeping children on starry nights.
+          
       forms: *black-white.pokemon.gothorita.forms
 x-y:
   name: *black-white.name
@@ -153,11 +158,19 @@ x-y:
           Starlight is the source of their power. At night,
           they mark star positions by using psychic power
           to float stones.
+          
         'y': |
           According to many old tales, it creates friends for
           itself by controlling sleeping children on
           starry nights.
-      forms: *black-white.pokemon.gothorita.forms
+          
+      forms: &x-y.pokemon.gothorita.forms
+        gothorita:
+          name: *black-white.name
+          form_name: *black-white.pokemon.gothorita.forms.gothorita.form_name
+          default: *black-white.pokemon.gothorita.default
+          battle_only: *black-white.pokemon.gothorita.forms.gothorita.battle_only
+          icon: gothorita-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -192,11 +205,13 @@ omega-ruby-alpha-sapphire:
           Starlight is the source of their power. At night,
           they mark star positions by using psychic power
           to float stones.
+          
         alpha-sapphire: |
           According to many old tales, it creates friends for
           itself by controlling sleeping children on
           starry nights.
-      forms: *black-white.pokemon.gothorita.forms
+          
+      forms: *x-y.pokemon.gothorita.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -224,5 +239,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.gothorita.stats
       abilities: *x-y.pokemon.gothorita.abilities
       evolution_conditions: *black-white.pokemon.gothorita.evolution_conditions
-      forms: *black-white.pokemon.gothorita.forms
+      forms: *x-y.pokemon.gothorita.forms
 ultra-sun-ultra-moon: *sun-moon

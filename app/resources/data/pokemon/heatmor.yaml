@@ -59,16 +59,19 @@ black-white:
           It breathes through a hole in its tail
           while it burns with an internal fire.
           Durant is its prey.
+          
         white: |
           Using their very hot, flame-covered
           tongues, they burn through Durant’s
           steel bodies and consume their insides.
+          
       forms: &black-white.pokemon.heatmor.forms
         heatmor:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.heatmor.forms.heatmor.form_name 'Default Form'
           default: *black-white.pokemon.heatmor.default
-          battle_only: false
+          battle_only: &black-white.pokemon.heatmor.forms.heatmor.battle_only false
+          icon: gen5/heatmor-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,10 +108,12 @@ black-2-white-2:
           It draws in air through its tail,
           transforms it into fire, and uses it like
           a tongue. It melts Durant and eats them.
+          
         white-2: |
           It draws in air through its tail,
           transforms it into fire, and uses it like
           a tongue. It melts Durant and eats them.
+          
       forms: *black-white.pokemon.heatmor.forms
 x-y:
   name: *black-white.name
@@ -143,11 +148,19 @@ x-y:
           Using their very hot, flame-covered tongues,
           they burn through Durant’s steel bodies and
           consume their insides.
+          
         'y': |
           It draws in air through its tail, transforms it into fire,
           and uses it like a tongue. It melts Durant and
           eats them.
-      forms: *black-white.pokemon.heatmor.forms
+          
+      forms: &x-y.pokemon.heatmor.forms
+        heatmor:
+          name: *black-white.name
+          form_name: *black-white.pokemon.heatmor.forms.heatmor.form_name
+          default: *black-white.pokemon.heatmor.default
+          battle_only: *black-white.pokemon.heatmor.forms.heatmor.battle_only
+          icon: heatmor-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -180,11 +193,13 @@ omega-ruby-alpha-sapphire:
           Using their very hot, flame-covered tongues,
           they burn through Durant’s steel bodies and
           consume their insides.
+          
         alpha-sapphire: |
           It draws in air through its tail, transforms it into fire,
           and uses it like a tongue. It melts Durant and
           eats them.
-      forms: *black-white.pokemon.heatmor.forms
+          
+      forms: *x-y.pokemon.heatmor.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -210,5 +225,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.heatmor.mega
       stats: *black-white.pokemon.heatmor.stats
       abilities: *black-white.pokemon.heatmor.abilities
-      forms: *black-white.pokemon.heatmor.forms
+      forms: *x-y.pokemon.heatmor.forms
 ultra-sun-ultra-moon: *sun-moon

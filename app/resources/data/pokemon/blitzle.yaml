@@ -63,16 +63,19 @@ black-white:
           Its mane shines when it discharges
           electricity. They use their flashing
           manes to communicate with one another.
+          
         white: |
           When thunderclouds cover the sky,
           it will appear. It can catch lightning
           with its mane and store the electricity.
+          
       forms: &black-white.pokemon.blitzle.forms
         blitzle:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.blitzle.forms.blitzle.form_name 'Default Form'
           default: *black-white.pokemon.blitzle.default
-          battle_only: false
+          battle_only: &black-white.pokemon.blitzle.forms.blitzle.battle_only false
+          icon: gen5/blitzle-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           Its mane shines when it discharges
           electricity. They use the frequency and
           rhythm of these flashes to communicate.
+          
         white-2: |
           Its mane shines when it discharges
           electricity. They use the frequency and
           rhythm of these flashes to communicate.
+          
       forms: *black-white.pokemon.blitzle.forms
 x-y:
   name: *black-white.name
@@ -145,11 +150,19 @@ x-y:
           When thunderclouds cover the sky, it will appear.
           It can catch lightning with its mane and store
           the electricity.
+          
         'y': |
           Its mane shines when it discharges electricity.
           They use the frequency and rhythm of these flashes
           to communicate.
-      forms: *black-white.pokemon.blitzle.forms
+          
+      forms: &x-y.pokemon.blitzle.forms
+        blitzle:
+          name: *black-white.name
+          form_name: *black-white.pokemon.blitzle.forms.blitzle.form_name
+          default: *black-white.pokemon.blitzle.default
+          battle_only: *black-white.pokemon.blitzle.forms.blitzle.battle_only
+          icon: blitzle-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -181,11 +194,13 @@ omega-ruby-alpha-sapphire:
           When thunderclouds cover the sky, it will appear.
           It can catch lightning with its mane and store
           the electricity.
+          
         alpha-sapphire: |
           Its mane shines when it discharges electricity.
           They use the frequency and rhythm of these flashes
           to communicate.
-      forms: *black-white.pokemon.blitzle.forms
+          
+      forms: *x-y.pokemon.blitzle.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -211,5 +226,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.blitzle.mega
       stats: *black-white.pokemon.blitzle.stats
       abilities: *black-white.pokemon.blitzle.abilities
-      forms: *black-white.pokemon.blitzle.forms
+      forms: *x-y.pokemon.blitzle.forms
 ultra-sun-ultra-moon: *sun-moon

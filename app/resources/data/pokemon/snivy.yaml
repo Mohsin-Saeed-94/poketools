@@ -57,16 +57,19 @@ black-white:
           It is very intelligent and calm.
           Being exposed to lots of sunlight makes
           its movements swifter.
+          
         white: |
           They photosynthesize by bathing their
           tails in sunlight. When they are not
           feeling well, their tails droop.
+          
       forms: &black-white.pokemon.snivy.forms
         snivy:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.snivy.forms.snivy.form_name 'Default Form'
           default: *black-white.pokemon.snivy.default
-          battle_only: false
+          battle_only: &black-white.pokemon.snivy.forms.snivy.battle_only false
+          icon: gen5/snivy-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -99,10 +102,12 @@ black-2-white-2:
           Being exposed to sunlight makes
           its movements swifter. It uses
           vines more adeptly than its hands.
+          
         white-2: |
           Being exposed to sunlight makes
           its movements swifter. It uses
           vines more adeptly than its hands.
+          
       forms: *black-white.pokemon.snivy.forms
 x-y:
   name: *black-white.name
@@ -135,11 +140,19 @@ x-y:
         x: |
           Being exposed to sunlight makes its movements
           swifter. It uses vines more adeptly than its hands.
+          
         'y': |
           They photosynthesize by bathing their tails in
           sunlight. When they are not feeling well, their
           tails droop.
-      forms: *black-white.pokemon.snivy.forms
+          
+      forms: &x-y.pokemon.snivy.forms
+        snivy:
+          name: *black-white.name
+          form_name: *black-white.pokemon.snivy.forms.snivy.form_name
+          default: *black-white.pokemon.snivy.default
+          battle_only: *black-white.pokemon.snivy.forms.snivy.battle_only
+          icon: snivy-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -170,11 +183,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Being exposed to sunlight makes its movements
           swifter. It uses vines more adeptly than its hands.
+          
         alpha-sapphire: |
           They photosynthesize by bathing their tails in
           sunlight. When they are not feeling well, their
           tails droop.
-      forms: *black-white.pokemon.snivy.forms
+          
+      forms: *x-y.pokemon.snivy.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -200,5 +215,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.snivy.mega
       stats: *black-white.pokemon.snivy.stats
       abilities: *black-white.pokemon.snivy.abilities
-      forms: *black-white.pokemon.snivy.forms
+      forms: *x-y.pokemon.snivy.forms
 ultra-sun-ultra-moon: *sun-moon

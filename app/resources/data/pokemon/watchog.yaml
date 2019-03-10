@@ -63,16 +63,19 @@ black-white:
           When they see an enemy, their tails
           stand high, and they spit the seeds of
           berries stored in their cheek pouches.
+          
         white: |
           They make the patterns on their bodies
           shine in order to threaten predators.
           Keen eyesight lets them see in the dark.
+          
       forms: &black-white.pokemon.watchog.forms
         watchog:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.watchog.forms.watchog.form_name 'Default Form'
           default: *black-white.pokemon.watchog.default
-          battle_only: false
+          battle_only: &black-white.pokemon.watchog.forms.watchog.battle_only false
+          icon: gen5/watchog-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -107,10 +110,12 @@ black-2-white-2:
           Using luminescent matter, it
           makes its eyes and body glow
           and stuns attacking opponents.
+          
         white-2: |
           Using luminescent matter, it
           makes its eyes and body glow
           and stuns attacking opponents.
+          
       forms: *black-white.pokemon.watchog.forms
 x-y:
   name: *black-white.name
@@ -146,11 +151,19 @@ x-y:
         x: |
           Using luminescent matter, it makes its eyes and
           body glow and stuns attacking opponents.
+          
         'y': |
           When they see an enemy, their tails stand high,
           and they spit the seeds of berries stored in their
           cheek pouches.
-      forms: *black-white.pokemon.watchog.forms
+          
+      forms: &x-y.pokemon.watchog.forms
+        watchog:
+          name: *black-white.name
+          form_name: *black-white.pokemon.watchog.forms.watchog.form_name
+          default: *black-white.pokemon.watchog.default
+          battle_only: *black-white.pokemon.watchog.forms.watchog.battle_only
+          icon: watchog-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -184,11 +197,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Using luminescent matter, it makes its eyes and
           body glow and stuns attacking opponents.
+          
         alpha-sapphire: |
           When they see an enemy, their tails stand high,
           and they spit the seeds of berries stored in their
           cheek pouches.
-      forms: *black-white.pokemon.watchog.forms
+          
+      forms: *x-y.pokemon.watchog.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -216,5 +231,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.watchog.stats
       abilities: *black-white.pokemon.watchog.abilities
       evolution_conditions: *black-white.pokemon.watchog.evolution_conditions
-      forms: *black-white.pokemon.watchog.forms
+      forms: *x-y.pokemon.watchog.forms
 ultra-sun-ultra-moon: *sun-moon

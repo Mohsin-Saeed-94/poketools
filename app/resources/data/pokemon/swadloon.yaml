@@ -68,16 +68,19 @@ black-white:
           Forests where Swadloon live have superb
           foliage because the nutrients they make
           from fallen leaves nourish the plant life.
+          
         white: |
           It protects itself from the cold
           by wrapping up in leaves. It stays on
           the move, eating leaves in forests.
+          
       forms: &black-white.pokemon.swadloon.forms
         swadloon:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.swadloon.forms.swadloon.form_name 'Default Form'
           default: *black-white.pokemon.swadloon.default
-          battle_only: false
+          battle_only: &black-white.pokemon.swadloon.forms.swadloon.battle_only false
+          icon: gen5/swadloon-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -115,10 +118,12 @@ black-2-white-2:
           Preferring dark, damp places,
           it spends the entire day eating
           fallen leaves that lie around it.
+          
         white-2: |
           Preferring dark, damp places,
           it spends the entire day eating
           fallen leaves that lie around it.
+          
       forms: *black-white.pokemon.swadloon.forms
 x-y:
   name: *black-white.name
@@ -157,11 +162,19 @@ x-y:
           Forests where Swadloon live have superb foliage
           because the nutrients they make from fallen leaves
           nourish the plant life.
+          
         'y': |
           It protects itself from the cold by wrapping up in
           leaves. It stays on the move, eating leaves
           in forests.
-      forms: *black-white.pokemon.swadloon.forms
+          
+      forms: &x-y.pokemon.swadloon.forms
+        swadloon:
+          name: *black-white.name
+          form_name: *black-white.pokemon.swadloon.forms.swadloon.form_name
+          default: *black-white.pokemon.swadloon.default
+          battle_only: *black-white.pokemon.swadloon.forms.swadloon.battle_only
+          icon: swadloon-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -195,11 +208,13 @@ omega-ruby-alpha-sapphire:
           Forests where Swadloon live have superb foliage
           because the nutrients they make from fallen leaves
           nourish the plant life.
+          
         alpha-sapphire: |
           It protects itself from the cold by wrapping up in
           leaves. It stays on the move, eating leaves
           in forests.
-      forms: *black-white.pokemon.swadloon.forms
+          
+      forms: *x-y.pokemon.swadloon.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -229,7 +244,7 @@ sun-moon:
       wild_held_items:
         moon: *black-white.pokemon.swadloon.wild_held_items.black
       evolution_conditions: *black-white.pokemon.swadloon.evolution_conditions
-      forms: *black-white.pokemon.swadloon.forms
+      forms: *x-y.pokemon.swadloon.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -259,4 +274,4 @@ ultra-sun-ultra-moon:
       wild_held_items:
         ultra-sun: *black-white.pokemon.swadloon.wild_held_items.black
       evolution_conditions: *black-white.pokemon.swadloon.evolution_conditions
-      forms: *black-white.pokemon.swadloon.forms
+      forms: *x-y.pokemon.swadloon.forms

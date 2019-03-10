@@ -64,15 +64,18 @@ black-white:
           It wields the fur on its arms like a whip.
           Its arm attacks come with such rapidity
           that they cannot even be seen.
+          
         white: |
           They use the long fur on their arms
           as a whip to strike their opponents.
+          
       forms: &black-white.pokemon.mienshao.forms
         mienshao:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.mienshao.forms.mienshao.form_name 'Default Form'
           default: *black-white.pokemon.mienshao.default
-          battle_only: false
+          battle_only: &black-white.pokemon.mienshao.forms.mienshao.battle_only false
+          icon: gen5/mienshao-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -107,10 +110,12 @@ black-2-white-2:
           Using the long fur on its arms like whips,
           it launches into combo attacks that,
           once started, no one can stop.
+          
         white-2: |
           Using the long fur on its arms like whips,
           it launches into combo attacks that,
           once started, no one can stop.
+          
       forms: *black-white.pokemon.mienshao.forms
 x-y:
   name: *black-white.name
@@ -147,11 +152,19 @@ x-y:
           It wields the fur on its arms like a whip. Its arm
           attacks come with such rapidity that they cannot
           even be seen.
+          
         'y': |
           Using the long fur on its arms like whips, it
           launches into combo attacks that, once started,
           no one can stop.
-      forms: *black-white.pokemon.mienshao.forms
+          
+      forms: &x-y.pokemon.mienshao.forms
+        mienshao:
+          name: *black-white.name
+          form_name: *black-white.pokemon.mienshao.forms.mienshao.form_name
+          default: *black-white.pokemon.mienshao.default
+          battle_only: *black-white.pokemon.mienshao.forms.mienshao.battle_only
+          icon: mienshao-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -186,11 +199,13 @@ omega-ruby-alpha-sapphire:
           It wields the fur on its arms like a whip. Its arm
           attacks come with such rapidity that they cannot
           even be seen.
+          
         alpha-sapphire: |
           Using the long fur on its arms like whips, it
           launches into combo attacks that, once started,
           no one can stop.
-      forms: *black-white.pokemon.mienshao.forms
+          
+      forms: *x-y.pokemon.mienshao.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -218,7 +233,7 @@ sun-moon:
       stats: *black-white.pokemon.mienshao.stats
       abilities: *black-white.pokemon.mienshao.abilities
       evolution_conditions: *black-white.pokemon.mienshao.evolution_conditions
-      forms: *black-white.pokemon.mienshao.forms
+      forms: *x-y.pokemon.mienshao.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -251,4 +266,5 @@ ultra-sun-ultra-moon:
           It overwhelms its opponents with continuous
           attacks and then slowly stores up power
           before delivering the finishing blow.
-      forms: *black-white.pokemon.mienshao.forms
+          
+      forms: *x-y.pokemon.mienshao.forms

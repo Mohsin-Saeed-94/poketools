@@ -63,16 +63,19 @@ black-white:
           They warn others of danger by
           vibrating their cheeks to create
           a high-pitched sound.
+          
         white: |
           By vibrating its cheeks, it emits sound
           waves imperceptible to humans. It uses
           the rhythm of these sounds to talk.
+          
       forms: &black-white.pokemon.tympole.forms
         tympole:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.tympole.forms.tympole.form_name 'Default Form'
           default: *black-white.pokemon.tympole.default
-          battle_only: false
+          battle_only: &black-white.pokemon.tympole.forms.tympole.battle_only false
+          icon: gen5/tympole-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,10 +112,12 @@ black-2-white-2:
           By vibrating its cheeks, it emits
           sound waves imperceptible to humans
           and warns others of danger.
+          
         white-2: |
           By vibrating its cheeks, it emits
           sound waves imperceptible to humans
           and warns others of danger.
+          
       forms: *black-white.pokemon.tympole.forms
 x-y:
   name: *black-white.name
@@ -146,11 +151,19 @@ x-y:
           By vibrating its cheeks, it emits sound waves
           imperceptible to humans and warns others
           of danger.
+          
         'y': |
           By vibrating its cheeks, it emits sound waves
           imperceptible to humans. It uses the rhythm of
           these sounds to talk.
-      forms: *black-white.pokemon.tympole.forms
+          
+      forms: &x-y.pokemon.tympole.forms
+        tympole:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tympole.forms.tympole.form_name
+          default: *black-white.pokemon.tympole.default
+          battle_only: *black-white.pokemon.tympole.forms.tympole.battle_only
+          icon: tympole-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -182,11 +195,13 @@ omega-ruby-alpha-sapphire:
           By vibrating its cheeks, it emits sound waves
           imperceptible to humans and warns others
           of danger.
+          
         alpha-sapphire: |
           By vibrating its cheeks, it emits sound waves
           imperceptible to humans. It uses the rhythm of
           these sounds to talk.
-      forms: *black-white.pokemon.tympole.forms
+          
+      forms: *x-y.pokemon.tympole.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -212,5 +227,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.tympole.mega
       stats: *black-white.pokemon.tympole.stats
       abilities: *black-white.pokemon.tympole.abilities
-      forms: *black-white.pokemon.tympole.forms
+      forms: *x-y.pokemon.tympole.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -59,16 +59,19 @@ black-white:
           It fights by swinging a piece of lumber
           around. It is close to evolving when it
           can handle the lumber without difficulty.
+          
         white: |
           These Pokémon appear at building
           sites and help out with construction.
           They always carry squared logs.
+          
       forms: &black-white.pokemon.timburr.forms
         timburr:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.timburr.forms.timburr.form_name 'Default Form'
           default: *black-white.pokemon.timburr.default
-          battle_only: false
+          battle_only: &black-white.pokemon.timburr.forms.timburr.battle_only false
+          icon: gen5/timburr-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -101,10 +104,12 @@ black-2-white-2:
           Always carrying squared logs,
           they help out with construction.
           As they grow, they carry bigger logs.
+          
         white-2: |
           Always carrying squared logs,
           they help out with construction.
           As they grow, they carry bigger logs.
+          
       forms: *black-white.pokemon.timburr.forms
 x-y:
   name: *black-white.name
@@ -139,10 +144,18 @@ x-y:
           These Pokémon appear at building sites and help
           out with construction. They always carry
           squared logs.
+          
         'y': |
           Always carrying squared logs, they help out with
           construction. As they grow, they carry bigger logs.
-      forms: *black-white.pokemon.timburr.forms
+          
+      forms: &x-y.pokemon.timburr.forms
+        timburr:
+          name: *black-white.name
+          form_name: *black-white.pokemon.timburr.forms.timburr.form_name
+          default: *black-white.pokemon.timburr.default
+          battle_only: *black-white.pokemon.timburr.forms.timburr.battle_only
+          icon: timburr-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -175,10 +188,12 @@ omega-ruby-alpha-sapphire:
           These Pokémon appear at building sites and help
           out with construction. They always carry
           squared logs.
+          
         alpha-sapphire: |
           Always carrying squared logs, they help out with
           construction. As they grow, they carry bigger logs.
-      forms: *black-white.pokemon.timburr.forms
+          
+      forms: *x-y.pokemon.timburr.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -204,5 +219,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.timburr.mega
       stats: *black-white.pokemon.timburr.stats
       abilities: *black-white.pokemon.timburr.abilities
-      forms: *black-white.pokemon.timburr.forms
+      forms: *x-y.pokemon.timburr.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * A Pokémon species is a single named entity in the Pokédex.
@@ -33,7 +32,8 @@ class PokemonSpeciesInVersionGroup extends AbstractDexEntity implements EntityHa
     /**
      * @var Collection|PokemonSpeciesPokedexNumber[]
      *
-     * @ORM\OneToMany(targetEntity="PokemonSpeciesPokedexNumber", mappedBy="species", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="PokemonSpeciesPokedexNumber", mappedBy="species", cascade={"ALL"},
+     *     orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"isDefault" = "DESC"})
      */
     protected $numbers;
@@ -93,14 +93,6 @@ class PokemonSpeciesInVersionGroup extends AbstractDexEntity implements EntityHa
     }
 
     /**
-     * @return Pokemon[]|Collection
-     */
-    public function getPokemon()
-    {
-        return $this->pokemon;
-    }
-
-    /**
      * @param Pokemon $pokemon
      *
      * @return self
@@ -127,5 +119,27 @@ class PokemonSpeciesInVersionGroup extends AbstractDexEntity implements EntityHa
         }
 
         return $this;
+    }
+
+    /**
+     * @return Pokemon
+     */
+    public function getDefaultPokemon(): Pokemon
+    {
+        foreach ($this->getPokemon() as $pokemon) {
+            if ($pokemon->isDefault()) {
+                return $pokemon;
+            }
+        }
+
+        return $this->getPokemon()->first();
+    }
+
+    /**
+     * @return Pokemon[]|Collection
+     */
+    public function getPokemon()
+    {
+        return $this->pokemon;
     }
 }

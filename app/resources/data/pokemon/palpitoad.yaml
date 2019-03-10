@@ -68,16 +68,19 @@ black-white:
           When they vibrate the bumps on their
           heads, they can make waves in water
           or earthquake-like vibrations on land.
+          
         white: |
           It lives in the water and on land.
           It uses its long, sticky tongue
           to capture prey.
+          
       forms: &black-white.pokemon.palpitoad.forms
         palpitoad:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.palpitoad.forms.palpitoad.form_name 'Default Form'
           default: *black-white.pokemon.palpitoad.default
-          battle_only: false
+          battle_only: &black-white.pokemon.palpitoad.forms.palpitoad.battle_only false
+          icon: gen5/palpitoad-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -116,10 +119,12 @@ black-2-white-2:
           It lives in the water and on land.
           It uses its long, sticky tongue
           to immobilize its opponents.
+          
         white-2: |
           It lives in the water and on land.
           It uses its long, sticky tongue
           to immobilize its opponents.
+          
       forms: *black-white.pokemon.palpitoad.forms
 x-y:
   name: *black-white.name
@@ -155,10 +160,18 @@ x-y:
           When they vibrate the bumps on their heads, they
           can make waves in water or earthquake-like
           vibrations on land.
+          
         'y': |
           It lives in the water and on land. It uses its long,
           sticky tongue to immobilize its opponents.
-      forms: *black-white.pokemon.palpitoad.forms
+          
+      forms: &x-y.pokemon.palpitoad.forms
+        palpitoad:
+          name: *black-white.name
+          form_name: *black-white.pokemon.palpitoad.forms.palpitoad.form_name
+          default: *black-white.pokemon.palpitoad.default
+          battle_only: *black-white.pokemon.palpitoad.forms.palpitoad.battle_only
+          icon: palpitoad-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -192,10 +205,12 @@ omega-ruby-alpha-sapphire:
           When they vibrate the bumps on their heads, they
           can make waves in water or earthquake-like
           vibrations on land.
+          
         alpha-sapphire: |
           It lives in the water and on land. It uses its long,
           sticky tongue to immobilize its opponents.
-      forms: *black-white.pokemon.palpitoad.forms
+          
+      forms: *x-y.pokemon.palpitoad.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -223,5 +238,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.palpitoad.stats
       abilities: *black-white.pokemon.palpitoad.abilities
       evolution_conditions: *black-white.pokemon.palpitoad.evolution_conditions
-      forms: *black-white.pokemon.palpitoad.forms
+      forms: *x-y.pokemon.palpitoad.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -59,16 +59,19 @@ black-white:
         black: |
           Strict training is how it learns its
           flowing double-scalchop technique.
+          
         white: |
           Scalchop techniques differ from one
           Dewott to another. It never
           neglects maintaining its scalchops.
+          
       forms: &black-white.pokemon.dewott.forms
         dewott:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.dewott.forms.dewott.form_name 'Default Form'
           default: *black-white.pokemon.dewott.default
-          battle_only: false
+          battle_only: &black-white.pokemon.dewott.forms.dewott.battle_only false
+          icon: gen5/dewott-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -103,10 +106,12 @@ black-2-white-2:
           As a result of strict training,
           each Dewott learns different
           forms for using the scalchops.
+          
         white-2: |
           As a result of strict training,
           each Dewott learns different
           forms for using the scalchops.
+          
       forms: *black-white.pokemon.dewott.forms
 x-y:
   name: *black-white.name
@@ -141,10 +146,18 @@ x-y:
         x: |
           Strict training is how it learns its flowing
           double-scalchop technique.
+          
         'y': |
           As a result of strict training, each Dewott learns
           different forms for using the scalchops.
-      forms: *black-white.pokemon.dewott.forms
+          
+      forms: &x-y.pokemon.dewott.forms
+        dewott:
+          name: *black-white.name
+          form_name: *black-white.pokemon.dewott.forms.dewott.form_name
+          default: *black-white.pokemon.dewott.default
+          battle_only: *black-white.pokemon.dewott.forms.dewott.battle_only
+          icon: dewott-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -177,10 +190,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Strict training is how it learns its flowing
           double-scalchop technique.
+          
         alpha-sapphire: |
           As a result of strict training, each Dewott learns
           different forms for using the scalchops.
-      forms: *black-white.pokemon.dewott.forms
+          
+      forms: *x-y.pokemon.dewott.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -208,5 +223,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.dewott.stats
       abilities: *black-white.pokemon.dewott.abilities
       evolution_conditions: *black-white.pokemon.dewott.evolution_conditions
-      forms: *black-white.pokemon.dewott.forms
+      forms: *x-y.pokemon.dewott.forms
 ultra-sun-ultra-moon: *sun-moon

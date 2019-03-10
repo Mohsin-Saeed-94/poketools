@@ -64,16 +64,19 @@ black-white:
           It touches others with the feelers on
           its ears, using the sound of their
           heartbeats to tell how they are feeling.
+          
         white: |
           Its auditory sense is astounding. It has
           a radarlike ability to understand its
           surroundings through slight sounds.
+          
       forms: &black-white.pokemon.audino.forms
         audino:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.audino.forms.audino.form_name 'Default Form'
           default: *black-white.pokemon.audino.default
-          battle_only: false
+          battle_only: &black-white.pokemon.audino.forms.audino.battle_only false
+          icon: gen5/audino-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,10 +112,12 @@ black-2-white-2:
           Using the feelers on its ears,
           it can tell how someone is feeling
           or when an egg might hatch.
+          
         white-2: |
           Using the feelers on its ears,
           it can tell how someone is feeling
           or when an egg might hatch.
+          
       forms: *black-white.pokemon.audino.forms
 x-y:
   name: *black-white.name
@@ -149,11 +154,18 @@ x-y:
         x: |
           Using the feelers on its ears, it can tell how
           someone is feeling or when an egg might hatch.
+          
         'y': |
           It touches others with the feelers on its ears, using
           the sound of their heartbeats to tell how they
           are feeling.
-      forms: *black-white.pokemon.audino.forms
+      forms: &x-y.pokemon.audino.forms
+        audino:
+          name: *black-white.name
+          form_name: *black-white.pokemon.audino.forms.audino.form_name
+          default: *black-white.pokemon.audino.default
+          battle_only: *black-white.pokemon.audino.forms.audino.battle_only
+          icon: audino-default.png
     audino-mega:
       genus: *black-white.pokemon.audino.genus
       color: *black-white.pokemon.audino.color
@@ -203,6 +215,7 @@ x-y:
           form_name: 'Mega Audino'
           default: *black-white.pokemon.audino.default
           battle_only: true
+          icon: audino-mega.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -234,11 +247,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Using the feelers on its ears, it can tell how
           someone is feeling or when an egg might hatch.
+          
         alpha-sapphire: |
           It touches others with the feelers on its ears, using
           the sound of their heartbeats to tell how they
           are feeling.
-      forms: *black-white.pokemon.audino.forms
+      forms: *x-y.pokemon.audino.forms
     audino-mega:
       genus: *black-white.pokemon.audino.genus
       color: *black-white.pokemon.audino.color
@@ -289,7 +303,7 @@ sun-moon:
       abilities: *black-white.pokemon.audino.abilities
       wild_held_items: &sun-moon.pokemon.audino.wild_held_items
         moon: *black-white.pokemon.audino.wild_held_items.black
-      forms: *black-white.pokemon.audino.forms
+      forms: *x-y.pokemon.audino.forms
     audino-mega:
       genus: *black-white.pokemon.audino.genus
       color: *black-white.pokemon.audino.color
@@ -340,7 +354,7 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.audino.abilities
       wild_held_items: &ultra-sun-ultra-moon.pokemon.audino.wild_held_items
         ultra-sun: *black-white.pokemon.audino.wild_held_items.black
-      forms: *black-white.pokemon.audino.forms
+      forms: *x-y.pokemon.audino.forms
     audino-mega:
       genus: *black-white.pokemon.audino.genus
       color: *black-white.pokemon.audino.color

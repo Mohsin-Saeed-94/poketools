@@ -59,16 +59,19 @@ black-white:
           Munna always float in the air. People
           whose dreams are eaten by them
           forget what the dreams had been about.
+          
         white: |
           It eats the dreams of people and
           Pokémon. When it eats a pleasant
           dream, it expels pink-colored mist.
+          
       forms: &black-white.pokemon.munna.forms
         munna:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.munna.forms.munna.form_name 'Default Form'
           default: *black-white.pokemon.munna.default
-          battle_only: false
+          battle_only: &black-white.pokemon.munna.forms.munna.battle_only false
+          icon: gen5/munna-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -101,10 +104,12 @@ black-2-white-2:
           This Pokémon appears before people
           and Pokémon who are having nightmares
           and eats those dreams.
+          
         white-2: |
           This Pokémon appears before people
           and Pokémon who are having nightmares
           and eats those dreams.
+          
       forms: *black-white.pokemon.munna.forms
 x-y:
   name: *black-white.name
@@ -137,10 +142,18 @@ x-y:
         x: |
           This Pokémon appears before people and Pokémon
           who are having nightmares and eats those dreams.
+          
         'y': |
           It eats the dreams of people and Pokémon. When it
           eats a pleasant dream, it expels pink-colored mist.
-      forms: *black-white.pokemon.munna.forms
+          
+      forms: &x-y.pokemon.munna.forms
+        munna:
+          name: *black-white.name
+          form_name: *black-white.pokemon.munna.forms.munna.form_name
+          default: *black-white.pokemon.munna.default
+          battle_only: *black-white.pokemon.munna.forms.munna.battle_only
+          icon: munna-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -171,10 +184,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           This Pokémon appears before people and Pokémon
           who are having nightmares and eats those dreams.
+          
         alpha-sapphire: |
           It eats the dreams of people and Pokémon. When it
           eats a pleasant dream, it expels pink-colored mist.
-      forms: *black-white.pokemon.munna.forms
+          
+      forms: *x-y.pokemon.munna.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -200,5 +215,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.munna.mega
       stats: *black-white.pokemon.munna.stats
       abilities: *black-white.pokemon.munna.abilities
-      forms: *black-white.pokemon.munna.forms
+      forms: *x-y.pokemon.munna.forms
 ultra-sun-ultra-moon: *sun-moon

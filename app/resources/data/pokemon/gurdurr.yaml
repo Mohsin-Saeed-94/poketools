@@ -63,16 +63,19 @@ black-white:
           This Pokémon is so muscular and strongly
           built that even a group of wrestlers
           could not make it budge an inch.
+          
         white: |
           They strengthen their bodies by
           carrying steel beams. They show off
           their big muscles to their friends.
+          
       forms: &black-white.pokemon.gurdurr.forms
         gurdurr:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.gurdurr.forms.gurdurr.form_name 'Default Form'
           default: *black-white.pokemon.gurdurr.default
-          battle_only: false
+          battle_only: &black-white.pokemon.gurdurr.forms.gurdurr.battle_only false
+          icon: gen5/gurdurr-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -107,10 +110,12 @@ black-2-white-2:
           With strengthened bodies,
           they skillfully wield steel beams
           to take down buildings.
+          
         white-2: |
           With strengthened bodies,
           they skillfully wield steel beams
           to take down buildings.
+          
       forms: *black-white.pokemon.gurdurr.forms
 x-y:
   name: *black-white.name
@@ -146,11 +151,19 @@ x-y:
         x: |
           With strengthened bodies, they skillfully wield steel
           beams to take down buildings.
+          
         'y': |
           This Pokémon is so muscular and strongly built that
           even a group of wrestlers could not make it budge
           an inch.
-      forms: *black-white.pokemon.gurdurr.forms
+          
+      forms: &x-y.pokemon.gurdurr.forms
+        gurdurr:
+          name: *black-white.name
+          form_name: *black-white.pokemon.gurdurr.forms.gurdurr.form_name
+          default: *black-white.pokemon.gurdurr.default
+          battle_only: *black-white.pokemon.gurdurr.forms.gurdurr.battle_only
+          icon: gurdurr-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -184,11 +197,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           With strengthened bodies, they skillfully wield steel
           beams to take down buildings.
+          
         alpha-sapphire: |
           This Pokémon is so muscular and strongly built that
           even a group of wrestlers could not make it budge
           an inch.
-      forms: *black-white.pokemon.gurdurr.forms
+          
+      forms: *x-y.pokemon.gurdurr.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -216,5 +231,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.gurdurr.stats
       abilities: *black-white.pokemon.gurdurr.abilities
       evolution_conditions: *black-white.pokemon.gurdurr.evolution_conditions
-      forms: *black-white.pokemon.gurdurr.forms
+      forms: *x-y.pokemon.gurdurr.forms
 ultra-sun-ultra-moon: *sun-moon

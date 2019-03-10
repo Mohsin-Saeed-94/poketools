@@ -53,7 +53,7 @@ ruby-sapphire:
           hidden: true
           position: 3
       evolution_conditions: &ruby-sapphire.pokemon.milotic.evolution_conditions
-        level-up:
+        level-up: &ruby-sapphire.pokemon.milotic.evolution_conditions.level-up
           minimum_beauty: 170
       flavor_text:
         ruby: |
@@ -61,17 +61,20 @@ ruby-sapphire:
           beautiful of all the POKéMON.
           It has the power to becalm suchemotions as anger and hostility to quell
           bitter feuding.
+          
         sapphire: |
           MILOTIC live at the bottom of large
           lakes. When this POKéMON’s body glows a
           vivid pink, it releases a pulsing wave ofenergy that brings soothing calm to
           restless spirits.
+          
       forms: &ruby-sapphire.pokemon.milotic.forms
         milotic:
           name: *ruby-sapphire.name
           form_name: &ruby-sapphire.pokemon.milotic.forms.milotic.form_name 'Default Form'
           default: *ruby-sapphire.pokemon.milotic.default
           battle_only: &ruby-sapphire.pokemon.milotic.forms.milotic.battle_only false
+          icon: &ruby-sapphire.pokemon.milotic.forms.milotic.icon gen5/milotic-default.png
 emerald:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
@@ -104,6 +107,7 @@ emerald:
           large lakes. Considered to be the most
           beautiful of all POKéMON, it has been
           depicted in paintings and statues.
+          
       forms: *ruby-sapphire.pokemon.milotic.forms
 firered-leafgreen:
   name: *ruby-sapphire.name
@@ -137,10 +141,12 @@ firered-leafgreen:
           MILOTIC is breathtakingly beautiful.
           Those that see it are said to forget their
           combative spirits.
+          
         leafgreen: |
           MILOTIC is breathtakingly beautiful.
           Those that see it are said to forget their
           combative spirits.
+          
       forms: *ruby-sapphire.pokemon.milotic.forms
 diamond-pearl:
   name: *ruby-sapphire.name
@@ -175,10 +181,12 @@ diamond-pearl:
           When people bicker, it is said to
           arise from the depths of lakes to
           becalm violent hearts.
+          
         pearl: |
           It is the world’s most beautiful
           Pokémon. There are many works of
           art featuring MILOTIC.
+          
       forms: *ruby-sapphire.pokemon.milotic.forms
 platinum:
   name: *ruby-sapphire.name
@@ -213,6 +221,7 @@ platinum:
           Its lovely scales are described as
           rainbow colored. They change color
           depending on the viewing angle.
+          
       forms: *ruby-sapphire.pokemon.milotic.forms
 heartgold-soulsilver:
   name: *ruby-sapphire.name
@@ -245,10 +254,12 @@ heartgold-soulsilver:
           It’s said that a glimpse of a
           MILOTIC and its beauty will calm any
           hostile emotions you’re feeling.
+          
         soulsilver: |
           It’s said that a glimpse of a
           MILOTIC and its beauty will calm any
           hostile emotions you’re feeling.
+          
       forms:
         milotic:
           name: *ruby-sapphire.name
@@ -271,6 +282,7 @@ heartgold-soulsilver:
             jump:
               base_value: 3
               range: 2-3
+          icon: *ruby-sapphire.pokemon.milotic.forms.milotic.icon
 black-white:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
@@ -298,17 +310,19 @@ black-white:
       stats: *ruby-sapphire.pokemon.milotic.stats
       abilities: *ruby-sapphire.pokemon.milotic.abilities
       evolution_conditions: &black-white.pokemon.milotic.evolution_conditions
-        trade:
+        trade: &black-white.pokemon.milotic.evolution_conditions.trade
           held_item: prism-scale
       flavor_text:
         black: |
           Its lovely scales are described as
           rainbow colored. They change color
           depending on the viewing angle.
+          
         white: |
           Its lovely scales are described as
           rainbow colored. They change color
           depending on the viewing angle.
+          
       forms: *ruby-sapphire.pokemon.milotic.forms
 colosseum: &colosseum
   name: *ruby-sapphire.name
@@ -368,10 +382,12 @@ black-2-white-2:
           Its lovely scales are described as
           rainbow colored. They change color
           depending on the viewing angle.
+          
         white-2: |
           Its lovely scales are described as
           rainbow colored. They change color
           depending on the viewing angle.
+          
       forms: *ruby-sapphire.pokemon.milotic.forms
 x-y:
   name: *ruby-sapphire.name
@@ -406,18 +422,24 @@ x-y:
           position: 2
         cute-charm: *ruby-sapphire.pokemon.milotic.abilities.cute-charm
       evolution_conditions: &x-y.pokemon.milotic.evolution_conditions
-        level-up:
-          minimum_beauty: 170
-        trade:
-          held_item: prism-scale
+        level-up: *ruby-sapphire.pokemon.milotic.evolution_conditions.level-up
+        trade: *black-white.pokemon.milotic.evolution_conditions.trade
       flavor_text:
         x: |
           Milotic is breathtakingly beautiful. Those that see it
           are said to forget their combative spirits.
+          
         'y': |
           It is the world’s most beautiful Pokémon. There are
           many works of art featuring Milotic.
-      forms: *ruby-sapphire.pokemon.milotic.forms
+          
+      forms: &x-y.pokemon.milotic.forms
+        milotic:
+          name: *ruby-sapphire.name
+          form_name: *ruby-sapphire.pokemon.milotic.forms.milotic.form_name
+          default: *ruby-sapphire.pokemon.milotic.default
+          battle_only: *ruby-sapphire.pokemon.milotic.forms.milotic.battle_only
+          icon: milotic-default.png
 omega-ruby-alpha-sapphire:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
@@ -453,11 +475,13 @@ omega-ruby-alpha-sapphire:
           Milotic is said to be the most beautiful of all the Pokémon.
           It has the power to becalm such emotions as anger and
           hostility to quell bitter feuding.
+          
         alpha-sapphire: |
           Milotic live at the bottom of large lakes. When this
           Pokémon’s body glows a vivid pink, it releases a pulsing
           wave of energy that brings soothing calm to troubled hearts.
-      forms: *ruby-sapphire.pokemon.milotic.forms
+          
+      forms: *x-y.pokemon.milotic.forms
 sun-moon:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
@@ -490,7 +514,8 @@ sun-moon:
           It lives at the bottom of clear lakes. In times of
           war, it shows itself, which soothes people’s
           minds and hearts.
-      forms: *ruby-sapphire.pokemon.milotic.forms
+          
+      forms: *x-y.pokemon.milotic.forms
 ultra-sun-ultra-moon:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
@@ -523,4 +548,5 @@ ultra-sun-ultra-moon:
           While Milotic is said to be the most beautiful
           Pokémon, Trainers who like Feebas and have
           raised it are seemingly disappointed by Milotic.
-      forms: *ruby-sapphire.pokemon.milotic.forms
+          
+      forms: *x-y.pokemon.milotic.forms

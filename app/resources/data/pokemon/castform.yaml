@@ -59,6 +59,7 @@ ruby-sapphire:
           the weather.
           This POKéMON gained the ability to usethe vast power of nature to protect
           its tiny body.
+          
         sapphire: |
           CASTFORM borrows the power of nature
           to transform itself into the guises of
@@ -70,6 +71,7 @@ ruby-sapphire:
           form_name: &ruby-sapphire.pokemon.castform.forms.castform.form_name Normal
           default: *ruby-sapphire.pokemon.castform.default
           battle_only: &ruby-sapphire.pokemon.castform.forms.castform.battle_only false
+          icon: &ruby-sapphire.pokemon.castform.forms.castform.icon gen5/castform-default.png
     castform-sunny:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -96,9 +98,10 @@ ruby-sapphire:
       forms: &ruby-sapphire.pokemon.castform-sunny.forms
         castform-sunny:
           name: *ruby-sapphire.pokemon.castform-sunny.name
-          form_name: 'Sunny Form'
+          form_name: &ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name 'Sunny Form'
           default: *ruby-sapphire.pokemon.castform.default
           battle_only: &ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only true
+          icon: gen5/castform-sunny.png
     castform-rainy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -125,9 +128,10 @@ ruby-sapphire:
       forms: &ruby-sapphire.pokemon.castform-rainy.forms
         castform-rainy:
           name: *ruby-sapphire.pokemon.castform-rainy.name
-          form_name: 'Rainy Form'
+          form_name: &ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name 'Rainy Form'
           default: *ruby-sapphire.pokemon.castform.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
+          icon: gen5/castform-rainy.png
     castform-snowy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -154,9 +158,10 @@ ruby-sapphire:
       forms: &ruby-sapphire.pokemon.castform-snowy.forms
         castform-snowy:
           name: *ruby-sapphire.pokemon.castform-snowy.name
-          form_name: 'Snowy Form'
+          form_name: &ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name 'Snowy Form'
           default: *ruby-sapphire.pokemon.castform.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
+          icon: gen5/castform-snowy.png
 emerald:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
@@ -294,6 +299,7 @@ firered-leafgreen:
           It has the ability to change its form into
           the sun, the rain, or a snow cloud, 
           depending on the weather.
+          
         leafgreen: |
           It has the ability to change its form into
           the sun, the rain, or a snow cloud, 
@@ -401,6 +407,7 @@ diamond-pearl:
           Its appearance changes with the
           weather. Recently, its molecules
           were found to be just like water.
+          
         pearl: |
           Its appearance changes with the
           weather. Recently, its molecules
@@ -610,6 +617,7 @@ heartgold-soulsilver:
           This Pokémon can change its cells,
           taking different forms based on
           the temperature and humidity.
+          
         soulsilver: |
           This Pokémon can change its cells,
           taking different forms based on
@@ -636,6 +644,7 @@ heartgold-soulsilver:
             jump:
               base_value: 4
               range: 2-4
+          icon: *ruby-sapphire.pokemon.castform.forms.castform.icon
     castform-sunny:
       genus: *ruby-sapphire.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
@@ -739,6 +748,7 @@ black-white:
           Its appearance changes with the
           weather. Recently, its molecules
           were found to be just like water.
+          
         white: |
           Its appearance changes with the
           weather. Recently, its molecules
@@ -937,6 +947,7 @@ black-2-white-2:
           Temperature and weather affect its
           cellular structure, so this Pokémon
           changes form according to the weather.
+          
         white-2: |
           Temperature and weather affect its
           cellular structure, so this Pokémon
@@ -1048,11 +1059,18 @@ x-y:
         x: |
           This Pokémon can change its cells, taking different
           forms based on the temperature and humidity.
+          
         'y': |
           It has the ability to change its form into the sun,
           the rain, or a snow cloud, depending on
           the weather.
-      forms: *ruby-sapphire.pokemon.castform.forms
+      forms: &x-y.pokemon.castform.forms
+        castform:
+          name: *ruby-sapphire.name
+          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
+          default: *ruby-sapphire.pokemon.castform.default
+          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
+          icon: castform-default.png
     castform-sunny:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1077,7 +1095,13 @@ x-y:
       abilities: *ruby-sapphire.pokemon.castform.abilities
       wild_held_items: *x-y.pokemon.castform.wild_held_items
       flavor_text: *x-y.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-sunny.forms
+      forms: &x-y.pokemon.castform-sunny.forms
+        castform-sunny:
+          name: *ruby-sapphire.pokemon.castform-sunny.name
+          form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
+          default: *ruby-sapphire.pokemon.castform.default
+          battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
+          icon: castform-sunny.png
     castform-rainy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1102,7 +1126,13 @@ x-y:
       abilities: *ruby-sapphire.pokemon.castform.abilities
       wild_held_items: *x-y.pokemon.castform.wild_held_items
       flavor_text: *x-y.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-rainy.forms
+      forms: &x-y.pokemon.castform-rainy.forms
+        castform-rainy:
+          name: *ruby-sapphire.pokemon.castform-rainy.name
+          form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
+          default: *ruby-sapphire.pokemon.castform.default
+          battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
+          icon: castform-rainy.png
     castform-snowy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1127,7 +1157,13 @@ x-y:
       abilities: *ruby-sapphire.pokemon.castform.abilities
       wild_held_items: *x-y.pokemon.castform.wild_held_items
       flavor_text: *x-y.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-snowy.forms
+      forms: &x-y.pokemon.castform-snowy.forms
+        castform-snowy:
+          name: *ruby-sapphire.pokemon.castform-snowy.name
+          form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
+          default: *ruby-sapphire.pokemon.castform.default
+          battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
+          icon: castform-snowy.png
 omega-ruby-alpha-sapphire:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
@@ -1162,11 +1198,12 @@ omega-ruby-alpha-sapphire:
           Castform’s appearance changes with the weather.
           This Pokémon gained the ability to use the vast power of
           nature to protect its tiny body.
+          
         alpha-sapphire: |
           Castform borrows the power of nature to transform itself
           into the guises of the sun, rain, and snow-clouds.
           This Pokémon’s feelings change with the weather.
-      forms: *ruby-sapphire.pokemon.castform.forms
+      forms: *x-y.pokemon.castform.forms
     castform-sunny:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1190,7 +1227,7 @@ omega-ruby-alpha-sapphire:
       stats: *ruby-sapphire.pokemon.castform.stats
       abilities: *ruby-sapphire.pokemon.castform.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-sunny.forms
+      forms: *x-y.pokemon.castform-sunny.forms
     castform-rainy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1214,7 +1251,7 @@ omega-ruby-alpha-sapphire:
       stats: *ruby-sapphire.pokemon.castform.stats
       abilities: *ruby-sapphire.pokemon.castform.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-rainy.forms
+      forms: *x-y.pokemon.castform-rainy.forms
     castform-snowy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1238,7 +1275,7 @@ omega-ruby-alpha-sapphire:
       stats: *ruby-sapphire.pokemon.castform.stats
       abilities: *ruby-sapphire.pokemon.castform.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-snowy.forms
+      forms: *x-y.pokemon.castform-snowy.forms
 sun-moon:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
@@ -1272,7 +1309,7 @@ sun-moon:
         moon: |
           Its form changes on its own, due to its cells’
           sensitive reactions to temperature and humidity.
-      forms: *ruby-sapphire.pokemon.castform.forms
+      forms: *x-y.pokemon.castform.forms
     castform-sunny:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1297,7 +1334,7 @@ sun-moon:
       abilities: *ruby-sapphire.pokemon.castform.abilities
       wild_held_items: *sun-moon.pokemon.castform.wild_held_items
       flavor_text: *sun-moon.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-sunny.forms
+      forms: *x-y.pokemon.castform-sunny.forms
     castform-rainy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1322,7 +1359,7 @@ sun-moon:
       abilities: *ruby-sapphire.pokemon.castform.abilities
       wild_held_items: *sun-moon.pokemon.castform.wild_held_items
       flavor_text: *sun-moon.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-rainy.forms
+      forms: *x-y.pokemon.castform-rainy.forms
     castform-snowy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1347,7 +1384,7 @@ sun-moon:
       abilities: *ruby-sapphire.pokemon.castform.abilities
       wild_held_items: *sun-moon.pokemon.castform.wild_held_items
       flavor_text: *sun-moon.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-snowy.forms
+      forms: *x-y.pokemon.castform-snowy.forms
 ultra-sun-ultra-moon:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
@@ -1381,7 +1418,7 @@ ultra-sun-ultra-moon:
           Although its form changes with the weather,
           that is apparently the result of a chemical
           reaction and not the result of its own free will.
-      forms: *ruby-sapphire.pokemon.castform.forms
+      forms: *x-y.pokemon.castform.forms
     castform-sunny:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1406,7 +1443,7 @@ ultra-sun-ultra-moon:
       abilities: *ruby-sapphire.pokemon.castform.abilities
       wild_held_items: *ultra-sun-ultra-moon.pokemon.castform.wild_held_items
       flavor_text: *ultra-sun-ultra-moon.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-sunny.forms
+      forms: *x-y.pokemon.castform-sunny.forms
     castform-rainy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1431,7 +1468,7 @@ ultra-sun-ultra-moon:
       abilities: *ruby-sapphire.pokemon.castform.abilities
       wild_held_items: *ultra-sun-ultra-moon.pokemon.castform.wild_held_items
       flavor_text: *ultra-sun-ultra-moon.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-rainy.forms
+      forms: *x-y.pokemon.castform-rainy.forms
     castform-snowy:
       genus: *ruby-sapphire.pokemon.castform.genus
       color: *ruby-sapphire.pokemon.castform.color
@@ -1456,4 +1493,4 @@ ultra-sun-ultra-moon:
       abilities: *ruby-sapphire.pokemon.castform.abilities
       wild_held_items: *ultra-sun-ultra-moon.pokemon.castform.wild_held_items
       flavor_text: *ultra-sun-ultra-moon.pokemon.castform.flavor_text
-      forms: *ruby-sapphire.pokemon.castform-snowy.forms
+      forms: *x-y.pokemon.castform-snowy.forms

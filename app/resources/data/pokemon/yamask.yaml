@@ -58,16 +58,19 @@ black-white:
           Each of them carries a mask that used
           to be its face when it was human.
           Sometimes they look at it and cry.
+          
         white: |
           These Pokémon arose from the spirits of
           people interred in graves in past ages.
           Each retains memories of its former life.
+          
       forms: &black-white.pokemon.yamask.forms
         yamask:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.yamask.forms.yamask.form_name 'Default Form'
           default: *black-white.pokemon.yamask.default
-          battle_only: false
+          battle_only: &black-white.pokemon.yamask.forms.yamask.battle_only false
+          icon: gen5/yamask-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -103,10 +106,12 @@ black-2-white-2:
           These Pokémon arose from the spirits of
           people interred in graves. Each retains
           memories of its former life.
+          
         white-2: |
           These Pokémon arose from the spirits of
           people interred in graves. Each retains
           memories of its former life.
+          
       forms: *black-white.pokemon.yamask.forms
 x-y:
   name: *black-white.name
@@ -143,11 +148,19 @@ x-y:
           These Pokémon arose from the spirits of people
           interred in graves. Each retains memories of its
           former life.
+          
         'y': |
           Each of them carries a mask that used to be its face
           when it was human. Sometimes they look at it
           and cry.
-      forms: *black-white.pokemon.yamask.forms
+          
+      forms: &x-y.pokemon.yamask.forms
+        yamask:
+          name: *black-white.name
+          form_name: *black-white.pokemon.yamask.forms.yamask.form_name
+          default: *black-white.pokemon.yamask.default
+          battle_only: *black-white.pokemon.yamask.forms.yamask.battle_only
+          icon: yamask-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -179,11 +192,13 @@ omega-ruby-alpha-sapphire:
           These Pokémon arose from the spirits of people
           interred in graves. Each retains memories of its
           former life.
+          
         alpha-sapphire: |
           Each of them carries a mask that used to be its face
           when it was human. Sometimes they look at it
           and cry.
-      forms: *black-white.pokemon.yamask.forms
+          
+      forms: *x-y.pokemon.yamask.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -211,7 +226,7 @@ sun-moon:
       abilities: *black-white.pokemon.yamask.abilities
       wild_held_items:
         moon: *black-white.pokemon.yamask.wild_held_items.black
-      forms: *black-white.pokemon.yamask.forms
+      forms: *x-y.pokemon.yamask.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -239,4 +254,4 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.yamask.abilities
       wild_held_items:
         ultra-sun: *black-white.pokemon.yamask.wild_held_items.black
-      forms: *black-white.pokemon.yamask.forms
+      forms: *x-y.pokemon.yamask.forms

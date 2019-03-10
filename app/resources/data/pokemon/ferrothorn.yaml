@@ -66,16 +66,19 @@ black-white:
           It fights by swinging around its three
           spiky feelers. A hit from these steel
           spikes can reduce a boulder to rubble.
+          
         white: |
           They attach themselves to cave
           ceilings, firing steel spikes at targets
           passing beneath them.
+          
       forms: &black-white.pokemon.ferrothorn.forms
         ferrothorn:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.ferrothorn.forms.ferrothorn.form_name 'Default Form'
           default: *black-white.pokemon.ferrothorn.default
-          battle_only: false
+          battle_only: &black-white.pokemon.ferrothorn.forms.ferrothorn.battle_only false
+          icon: gen5/ferrothorn-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -113,10 +116,12 @@ black-2-white-2:
           By swinging around its three
           spiky feelers and shooting spikes,
           it can obliterate an opponent.
+          
         white-2: |
           By swinging around its three
           spiky feelers and shooting spikes,
           it can obliterate an opponent.
+          
       forms: *black-white.pokemon.ferrothorn.forms
 x-y:
   name: *black-white.name
@@ -155,10 +160,18 @@ x-y:
         x: |
           By swinging around its three spiky feelers and
           shooting spikes, it can obliterate an opponent.
+          
         'y': |
           They attach themselves to cave ceilings, firing steel
           spikes at targets passing beneath them.
-      forms: *black-white.pokemon.ferrothorn.forms
+          
+      forms: &x-y.pokemon.ferrothorn.forms
+        ferrothorn:
+          name: *black-white.name
+          form_name: *black-white.pokemon.ferrothorn.forms.ferrothorn.form_name
+          default: *black-white.pokemon.ferrothorn.default
+          battle_only: *black-white.pokemon.ferrothorn.forms.ferrothorn.battle_only
+          icon: ferrothorn-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -192,10 +205,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           By swinging around its three spiky feelers and
           shooting spikes, it can obliterate an opponent.
+          
         alpha-sapphire: |
           They attach themselves to cave ceilings, firing steel
           spikes at targets passing beneath them.
-      forms: *black-white.pokemon.ferrothorn.forms
+          
+      forms: *x-y.pokemon.ferrothorn.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -225,7 +240,7 @@ sun-moon:
       wild_held_items:
         moon: *black-white.pokemon.ferrothorn.wild_held_items.black
       evolution_conditions: *black-white.pokemon.ferrothorn.evolution_conditions
-      forms: *black-white.pokemon.ferrothorn.forms
+      forms: *x-y.pokemon.ferrothorn.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -255,4 +270,4 @@ ultra-sun-ultra-moon:
       wild_held_items:
         ultra-sun: *black-white.pokemon.ferrothorn.wild_held_items.black
       evolution_conditions: *black-white.pokemon.ferrothorn.evolution_conditions
-      forms: *black-white.pokemon.ferrothorn.forms
+      forms: *x-y.pokemon.ferrothorn.forms

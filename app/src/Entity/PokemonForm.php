@@ -16,12 +16,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity(repositoryClass="App\Repository\PokemonFormRepository")
  */
-class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDefaultInterface, EntityIsSortableInterface
+class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDefaultInterface, EntityIsSortableInterface, EntityHasIconInterface
 {
 
     use EntityHasNameAndSlugTrait;
     use EntityHasDefaultTrait;
     use EntityIsSortableTrait;
+    use EntityHasIconTrait;
 
     /**
      * @var Pokemon
@@ -48,10 +49,43 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
     /**
      * @var Collection|PokemonFormPokeathlonStat[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PokemonFormPokeathlonStat", mappedBy="pokemonForm", cascade={"ALL"}, orphanRemoval=true, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonFormPokeathlonStat", mappedBy="pokemonForm", cascade={"ALL"},
+     *     orphanRemoval=true, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $pokeathlonStats;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Url()
+     */
+    protected $cry;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Url()
+     */
+    protected $footprint;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Url()
+     */
+    protected $sprite;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Url()
+     */
+    protected $art;
 
     /**
      * PokemonForm constructor.
@@ -170,6 +204,86 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
         if ($this->pokeathlonStats->contains($pokeathlonStat)) {
             $this->pokeathlonStats->removeElement($pokeathlonStat);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCry(): ?string
+    {
+        return $this->cry;
+    }
+
+    /**
+     * @param string|null $cry
+     *
+     * @return PokemonForm
+     */
+    public function setCry(?string $cry): PokemonForm
+    {
+        $this->cry = $cry;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFootprint(): ?string
+    {
+        return $this->footprint;
+    }
+
+    /**
+     * @param string|null $footprint
+     *
+     * @return PokemonForm
+     */
+    public function setFootprint(?string $footprint): PokemonForm
+    {
+        $this->footprint = $footprint;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSprite(): ?string
+    {
+        return $this->sprite;
+    }
+
+    /**
+     * @param string|null $sprite
+     *
+     * @return PokemonForm
+     */
+    public function setSprite(?string $sprite): PokemonForm
+    {
+        $this->sprite = $sprite;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getArt(): ?string
+    {
+        return $this->art;
+    }
+
+    /**
+     * @param string|null $art
+     *
+     * @return PokemonForm
+     */
+    public function setArt(?string $art): PokemonForm
+    {
+        $this->art = $art;
 
         return $this;
     }

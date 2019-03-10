@@ -60,16 +60,19 @@ black-white:
           They attack in groups, covering
           themselves in steel armor to
           protect themselves from Heatmor.
+          
         white: |
           Durant dig nests in mountains.
           They build their complicated,
           interconnected tunnels into mazes.
+          
       forms: &black-white.pokemon.durant.forms
         durant:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.durant.forms.durant.form_name 'Default Form'
           default: *black-white.pokemon.durant.default
-          battle_only: false
+          battle_only: &black-white.pokemon.durant.forms.durant.battle_only false
+          icon: gen5/durant-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           Individuals each play different roles in
           driving Heatmor, their natural predator,
           away from their colony.
+          
         white-2: |
           Individuals each play different roles in
           driving Heatmor, their natural predator,
           away from their colony.
+          
       forms: *black-white.pokemon.durant.forms
 x-y:
   name: *black-white.name
@@ -140,10 +145,18 @@ x-y:
           Individuals each play different roles in driving
           Heatmor, their natural predator, away from
           their colony.
+          
         'y': |
           They attack in groups, covering themselves in steel
           armor to protect themselves from Heatmor.
-      forms: *black-white.pokemon.durant.forms
+          
+      forms: &x-y.pokemon.durant.forms
+        durant:
+          name: *black-white.name
+          form_name: *black-white.pokemon.durant.forms.durant.form_name
+          default: *black-white.pokemon.durant.default
+          battle_only: *black-white.pokemon.durant.forms.durant.battle_only
+          icon: durant-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -176,10 +189,12 @@ omega-ruby-alpha-sapphire:
           Individuals each play different roles in driving
           Heatmor, their natural predator, away from
           their colony.
+          
         alpha-sapphire: |
           They attack in groups, covering themselves in steel
           armor to protect themselves from Heatmor.
-      forms: *black-white.pokemon.durant.forms
+          
+      forms: *x-y.pokemon.durant.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -205,5 +220,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.durant.mega
       stats: *black-white.pokemon.durant.stats
       abilities: *black-white.pokemon.durant.abilities
-      forms: *black-white.pokemon.durant.forms
+      forms: *x-y.pokemon.durant.forms
 ultra-sun-ultra-moon: *sun-moon

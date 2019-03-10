@@ -37,6 +37,12 @@ services:
     arguments:
       - '@a2b.league.uri.parser'
       - '@doctrine.dbal.connection_factory'
+  App\A2B\Drivers\Source\FileSourceDriver:
+    arguments:
+      - '@a2b.league.uri.parser'
+  App\A2B\Drivers\Destination\FileDestinationDriver:
+    arguments:
+      - '@a2b.league.uri.parser'
   
   # Current version, only available after controller resolution
   app.active_version:
@@ -61,10 +67,17 @@ services:
     arguments:
       $defaultVersionSlug: '%default_version%'
   
+  App\Helpers\Labeler:
+    arguments:
+      $activeVersion: '@app.active_version'
+      
+  App\Repository\VersionRepository:
+    arguments:
+      $defaultVersionSlug: '%default_version%'
+  
   App\Twig\AppExtensionRuntime:
     arguments:
       $activeVersion: '@app.active_version'
-      $defaultVersionSlug: '%default_version%'
   
   # VENDORS
   PhpScience\TextRank\Tool\StopWords\English:

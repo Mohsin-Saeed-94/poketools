@@ -9,6 +9,7 @@ use App\Entity\Pokemon;
 use App\Entity\PokemonAbility;
 use App\Entity\PokemonStat;
 use App\Entity\Version;
+use App\Helpers\Labeler;
 use App\Repository\PokemonRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\QueryBuilder;
@@ -26,14 +27,20 @@ class PokemonTableType implements DataTableTypeInterface
      * @var PokemonRepository
      */
     protected $pokemonRepo;
+    /**
+     * @var Labeler
+     */
+    protected $labeler;
 
     /**
      * PokemonTableType constructor.
      *
+     * @param Labeler $labeler
      * @param PokemonRepository $pokemonRepo
      */
-    public function __construct(PokemonRepository $pokemonRepo)
+    public function __construct(Labeler $labeler, PokemonRepository $pokemonRepo)
     {
+        $this->labeler = $labeler;
         $this->pokemonRepo = $pokemonRepo;
     }
 
@@ -56,6 +63,19 @@ class PokemonTableType implements DataTableTypeInterface
                 'orderable' => false,
 //                'orderField' => 'pokemon.name',
                 'className' => 'pkt-pokemon-index-table-name',
+                'render' => function ($name, $pokemon) use ($version) {
+                    // If this table is extended, the context can be something other than a Pokemon.
+                    /** @var Pokemon $pokemon */
+                    if (!is_a($pokemon, Pokemon::class)) {
+                        if (method_exists($pokemon, 'getPokemon')) {
+                            $pokemon = $pokemon->getPokemon();
+                        } else {
+                            return null;
+                        }
+                    }
+
+                    return $this->labeler->pokemon($pokemon, $version);
+                },
             ]
         )->add(
             'types',

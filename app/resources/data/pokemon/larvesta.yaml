@@ -57,16 +57,19 @@ black-white:
           This Pokémon was believed to have
           been born from the sun. When it evolves,
           its entire body is engulfed in flames.
+          
         white: |
           The base of volcanoes is where they make
           their homes. They shoot fire from their
           five horns to repel attacking enemies.
+          
       forms: &black-white.pokemon.larvesta.forms
         larvesta:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.larvesta.forms.larvesta.form_name 'Default Form'
           default: *black-white.pokemon.larvesta.default
-          battle_only: false
+          battle_only: &black-white.pokemon.larvesta.forms.larvesta.battle_only false
+          icon: gen5/larvesta-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -99,10 +102,12 @@ black-2-white-2:
           Said to have been born from the sun,
           it spews fire from its horns and encases
           itself in a cocoon of fire when it evolves.
+          
         white-2: |
           Said to have been born from the sun,
           it spews fire from its horns and encases
           itself in a cocoon of fire when it evolves.
+          
       forms: *black-white.pokemon.larvesta.forms
 x-y:
   name: *black-white.name
@@ -136,11 +141,19 @@ x-y:
           Said to have been born from the sun, it spews fire
           from its horns and encases itself in a cocoon of fire
           when it evolves.
+          
         'y': |
           The base of volcanoes is where they make their
           homes. They shoot fire from their five horns to repel
           attacking enemies.
-      forms: *black-white.pokemon.larvesta.forms
+          
+      forms: &x-y.pokemon.larvesta.forms
+        larvesta:
+          name: *black-white.name
+          form_name: *black-white.pokemon.larvesta.forms.larvesta.form_name
+          default: *black-white.pokemon.larvesta.default
+          battle_only: *black-white.pokemon.larvesta.forms.larvesta.battle_only
+          icon: larvesta-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -172,11 +185,13 @@ omega-ruby-alpha-sapphire:
           Said to have been born from the sun, it spews fire
           from its horns and encases itself in a cocoon of fire
           when it evolves.
+          
         alpha-sapphire: |
           The base of volcanoes is where they make their
           homes. They shoot fire from their five horns to repel
           attacking enemies.
-      forms: *black-white.pokemon.larvesta.forms
+          
+      forms: *x-y.pokemon.larvesta.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -202,7 +217,7 @@ sun-moon:
       mega: *x-y.pokemon.larvesta.mega
       stats: *black-white.pokemon.larvesta.stats
       abilities: *black-white.pokemon.larvesta.abilities
-      forms: *black-white.pokemon.larvesta.forms
+      forms: *x-y.pokemon.larvesta.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -233,4 +248,5 @@ ultra-sun-ultra-moon:
           When battling opponents, it sprays fire from its
           five horns. The max temperature of the flames
           can reach nearly 5,500 degrees Fahrenheit.
-      forms: *black-white.pokemon.larvesta.forms
+          
+      forms: *x-y.pokemon.larvesta.forms

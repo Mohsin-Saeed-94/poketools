@@ -30,13 +30,26 @@ class EvolvesWithItemPokemonTableType extends PokemonTableType
         $item = $options['item'];
 
         $dataTable->add(
-            // @todo pokemon link
+        // @todo pokemon link
             'evolutionParent',
             LinkColumn::class,
             [
                 'label' => 'Evolves from',
                 'propertyPath' => 'evolutionParent',
                 'uri' => '#',
+                'render' => function ($name, $pokemon) use ($version) {
+                    // If this table is extended, the context can be something other than a Pokemon.
+                    /** @var Pokemon $pokemon */
+                    if (!is_a($pokemon, Pokemon::class)) {
+                        if (method_exists($pokemon, 'getPokemon')) {
+                            $pokemon = $pokemon->getPokemon();
+                        } else {
+                            return null;
+                        }
+                    }
+
+                    return $this->labeler->pokemon($pokemon->getEvolutionParent(), $version);
+                },
             ]
         );
 

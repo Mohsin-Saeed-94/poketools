@@ -60,16 +60,19 @@ black-white:
           One swing of the sword incorporated in
           its armor can fell an opponent. A simple
           glare from one of them quiets everybody.
+          
         white: |
           Part of the armor on its anterior legs
           becomes a giant sword. Its cry alone
           is enough to intimidate most enemies.
+          
       forms: &black-white.pokemon.samurott.forms
         samurott:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.samurott.forms.samurott.form_name 'Default Form'
           default: *black-white.pokemon.samurott.default
-          battle_only: false
+          battle_only: &black-white.pokemon.samurott.forms.samurott.battle_only false
+          icon: gen5/samurott-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -104,10 +107,12 @@ black-2-white-2:
           In the time it takes a foe to blink,
           it can draw and sheathe the seamitars
           attached to its front legs.
+          
         white-2: |
           In the time it takes a foe to blink,
           it can draw and sheathe the seamitars
           attached to its front legs.
+          
       forms: *black-white.pokemon.samurott.forms
 x-y:
   name: *black-white.name
@@ -142,11 +147,19 @@ x-y:
         x: |
           In the time it takes a foe to blink, it can draw and
           sheathe the seamitars attached to its front legs.
+          
         'y': |
           One swing of the sword incorporated in its armor
           can fell an opponent. A simple glare from one of
           them quiets everybody.
-      forms: *black-white.pokemon.samurott.forms
+          
+      forms: &x-y.pokemon.samurott.forms
+        samurott:
+          name: *black-white.name
+          form_name: *black-white.pokemon.samurott.forms.samurott.form_name
+          default: *black-white.pokemon.samurott.default
+          battle_only: *black-white.pokemon.samurott.forms.samurott.battle_only
+          icon: samurott-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -179,11 +192,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           In the time it takes a foe to blink, it can draw and
           sheathe the seamitars attached to its front legs.
+          
         alpha-sapphire: |
           One swing of the sword incorporated in its armor
           can fell an opponent. A simple glare from one of
           them quiets everybody.
-      forms: *black-white.pokemon.samurott.forms
+          
+      forms: *x-y.pokemon.samurott.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -211,5 +226,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.samurott.stats
       abilities: *black-white.pokemon.samurott.abilities
       evolution_conditions: *black-white.pokemon.samurott.evolution_conditions
-      forms: *black-white.pokemon.samurott.forms
+      forms: *x-y.pokemon.samurott.forms
 ultra-sun-ultra-moon: *sun-moon

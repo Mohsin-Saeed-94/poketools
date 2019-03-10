@@ -63,16 +63,19 @@ black-white:
           Since they have two divided brains,
           at times they suddenly try to take two
           different actions at once.
+          
         white: |
           When their brains, now divided in two,
           are thinking the same thoughts, these
           Pokémon exhibit their maximum power.
+          
       forms: &black-white.pokemon.duosion.forms
         duosion:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.duosion.forms.duosion.form_name 'Default Form'
           default: *black-white.pokemon.duosion.default
-          battle_only: false
+          battle_only: &black-white.pokemon.duosion.forms.duosion.battle_only false
+          icon: gen5/duosion-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -111,10 +114,12 @@ black-2-white-2:
           When their two divided brains
           think the same thoughts,
           their psychic power is maximized.
+          
         white-2: |
           When their two divided brains
           think the same thoughts,
           their psychic power is maximized.
+          
       forms: *black-white.pokemon.duosion.forms
 x-y:
   name: *black-white.name
@@ -150,10 +155,18 @@ x-y:
         x: |
           Since they have two divided brains, at times they
           suddenly try to take two different actions at once.
+          
         'y': |
           When their two divided brains think the same
           thoughts, their psychic power is maximized.
-      forms: *black-white.pokemon.duosion.forms
+          
+      forms: &x-y.pokemon.duosion.forms
+        duosion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.duosion.forms.duosion.form_name
+          default: *black-white.pokemon.duosion.default
+          battle_only: *black-white.pokemon.duosion.forms.duosion.battle_only
+          icon: duosion-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -187,10 +200,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Since they have two divided brains, at times they
           suddenly try to take two different actions at once.
+          
         alpha-sapphire: |
           When their two divided brains think the same
           thoughts, their psychic power is maximized.
-      forms: *black-white.pokemon.duosion.forms
+          
+      forms: *x-y.pokemon.duosion.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -218,5 +233,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.duosion.stats
       abilities: *black-white.pokemon.duosion.abilities
       evolution_conditions: *black-white.pokemon.duosion.evolution_conditions
-      forms: *black-white.pokemon.duosion.forms
+      forms: *x-y.pokemon.duosion.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -64,16 +64,19 @@ black-white:
           Inhaling the gas they belch will make
           you sleep for a week. They prefer
           unsanitary places.
+          
         white: |
           The combination of garbage bags and
           industrial waste caused the chemical
           reaction that created this Pokémon.
+          
       forms: &black-white.pokemon.trubbish.forms
         trubbish:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.trubbish.forms.trubbish.form_name 'Default Form'
           default: *black-white.pokemon.trubbish.default
-          battle_only: false
+          battle_only: &black-white.pokemon.trubbish.forms.trubbish.battle_only false
+          icon: gen5/trubbish-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,10 +112,12 @@ black-2-white-2:
           Wanting more garbage, they
           follow people who litter.
           They always belch poison gas.
+          
         white-2: |
           Wanting more garbage, they
           follow people who litter.
           They always belch poison gas.
+          
       forms: *black-white.pokemon.trubbish.forms
 x-y:
   name: *black-white.name
@@ -151,10 +156,18 @@ x-y:
           The combination of garbage bags and industrial
           waste caused the chemical reaction that created
           this Pokémon.
+          
         'y': |
           Inhaling the gas they belch will make you sleep for
           a week. They prefer unsanitary places.
-      forms: *black-white.pokemon.trubbish.forms
+          
+      forms: &x-y.pokemon.trubbish.forms
+        trubbish:
+          name: *black-white.name
+          form_name: *black-white.pokemon.trubbish.forms.trubbish.form_name
+          default: *black-white.pokemon.trubbish.default
+          battle_only: *black-white.pokemon.trubbish.forms.trubbish.battle_only
+          icon: trubbish-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -187,10 +200,12 @@ omega-ruby-alpha-sapphire:
           The combination of garbage bags and industrial
           waste caused the chemical reaction that created
           this Pokémon.
+          
         alpha-sapphire: |
           Inhaling the gas they belch will make you sleep for
           a week. They prefer unsanitary places.
-      forms: *black-white.pokemon.trubbish.forms
+          
+      forms: *x-y.pokemon.trubbish.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -224,7 +239,8 @@ sun-moon:
           It gorges on trash until its stomach is full. Then
           it belches toxic gas. An unlucky whiff of gas will
           put a person in the hospital.
-      forms: *black-white.pokemon.trubbish.forms
+          
+      forms: *x-y.pokemon.trubbish.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -257,4 +273,5 @@ ultra-sun-ultra-moon:
           Poisonous gas leaks out of it when it breathes.
           Muk that catch a whiff of that stench will
           come drooling.
-      forms: *black-white.pokemon.trubbish.forms
+          
+      forms: *x-y.pokemon.trubbish.forms

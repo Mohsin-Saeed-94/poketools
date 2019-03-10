@@ -53,16 +53,19 @@ black-white:
           This Pokémon came to the defense of
           Pokémon that had lost their homes in
           a war among humans.
+          
         white: |
           Its charge is strong enough to break
           through a giant castle wall in one blow.
           This Pokémon is spoken of in legends.
+          
       forms: &black-white.pokemon.terrakion.forms
         terrakion:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.terrakion.forms.terrakion.form_name 'Default Form'
           default: *black-white.pokemon.terrakion.default
-          battle_only: false
+          battle_only: &black-white.pokemon.terrakion.forms.terrakion.battle_only false
+          icon: gen5/terrakion-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -94,10 +97,12 @@ black-2-white-2:
           Spoken of in legend, this Pokémon used
           its phenomenal power to destroy a castle
           in its effort to protect Pokémon.
+          
         white-2: |
           Spoken of in legend, this Pokémon used
           its phenomenal power to destroy a castle
           in its effort to protect Pokémon.
+          
       forms: *black-white.pokemon.terrakion.forms
 x-y:
   name: *black-white.name
@@ -130,11 +135,19 @@ x-y:
           Its charge is strong enough to break through a
           giant castle wall in one blow. This Pokémon is
           spoken of in legends.
+          
         'y': |
           Spoken of in legend, this Pokémon used its
           phenomenal power to destroy a castle in its effort
           to protect Pokémon.
-      forms: *black-white.pokemon.terrakion.forms
+          
+      forms: &x-y.pokemon.terrakion.forms
+        terrakion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.terrakion.forms.terrakion.form_name
+          default: *black-white.pokemon.terrakion.default
+          battle_only: *black-white.pokemon.terrakion.forms.terrakion.battle_only
+          icon: terrakion-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -165,11 +178,13 @@ omega-ruby-alpha-sapphire:
           Its charge is strong enough to break through a
           giant castle wall in one blow. This Pokémon is
           spoken of in legends.
+          
         alpha-sapphire: |
           Spoken of in legend, this Pokémon used its
           phenomenal power to destroy a castle in its effort
           to protect Pokémon.
-      forms: *black-white.pokemon.terrakion.forms
+          
+      forms: *x-y.pokemon.terrakion.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -194,5 +209,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.terrakion.mega
       stats: *black-white.pokemon.terrakion.stats
       abilities: *black-white.pokemon.terrakion.abilities
-      forms: *black-white.pokemon.terrakion.forms
+      forms: *x-y.pokemon.terrakion.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -65,16 +65,19 @@ black-white:
           Ill tempered, it fights by swinging its
           barbed tail around wildly. The leaf
           growing on its head is very bitter.
+          
         white: |
           It attacks enemies with strikes
           of its thorn-covered tail.
           This Pokémon is wild tempered.
+          
       forms: &black-white.pokemon.simisage.forms
         simisage:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.simisage.forms.simisage.form_name 'Default Form'
           default: *black-white.pokemon.simisage.default
-          battle_only: false
+          battle_only: &black-white.pokemon.simisage.forms.simisage.battle_only false
+          icon: gen5/simisage-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -112,10 +115,12 @@ black-2-white-2:
           It strikes its enemies with
           a thorn-covered tail.
           The leaf on its head is bitter.
+          
         white-2: |
           It strikes its enemies with
           a thorn-covered tail.
           The leaf on its head is bitter.
+          
       forms: *black-white.pokemon.simisage.forms
 x-y:
   name: *black-white.name
@@ -151,11 +156,19 @@ x-y:
         x: |
           It attacks enemies with strikes of its thorn-covered
           tail. This Pokémon is wild tempered.
+          
         'y': |
           Ill tempered, it fights by swinging its barbed tail
           around wildly. The leaf growing on its head is
           very bitter.
-      forms: *black-white.pokemon.simisage.forms
+          
+      forms: &x-y.pokemon.simisage.forms
+        simisage:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simisage.forms.simisage.form_name
+          default: *black-white.pokemon.simisage.default
+          battle_only: *black-white.pokemon.simisage.forms.simisage.battle_only
+          icon: simisage-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -189,11 +202,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It attacks enemies with strikes of its thorn-covered
           tail. This Pokémon is wild tempered.
+          
         alpha-sapphire: |
           Ill tempered, it fights by swinging its barbed tail
           around wildly. The leaf growing on its head is
           very bitter.
-      forms: *black-white.pokemon.simisage.forms
+          
+      forms: *x-y.pokemon.simisage.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -221,5 +236,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.simisage.stats
       abilities: *black-white.pokemon.simisage.abilities
       evolution_conditions: *black-white.pokemon.simisage.evolution_conditions
-      forms: *black-white.pokemon.simisage.forms
+      forms: *x-y.pokemon.simisage.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -58,16 +58,19 @@ black-white:
           After it has eaten up all the food in
           its territory, it moves to another
           area. Its two heads do not get along.
+          
         white: |
           Since their two heads do not get along
           and compete with each other for food,
           they always eat too much.
+          
       forms: &black-white.pokemon.zweilous.forms
         zweilous:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.zweilous.forms.zweilous.form_name 'Default Form'
           default: *black-white.pokemon.zweilous.default
-          battle_only: false
+          battle_only: &black-white.pokemon.zweilous.forms.zweilous.battle_only false
+          icon: gen5/zweilous-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           The two heads do not get along.
           Whichever head eats more than
           the other gets to be the leader.
+          
         white-2: |
           The two heads do not get along.
           Whichever head eats more than
           the other gets to be the leader.
+          
       forms: *black-white.pokemon.zweilous.forms
 x-y:
   name: *black-white.name
@@ -141,11 +146,19 @@ x-y:
         x: |
           The two heads do not get along. Whichever head
           eats more than the other gets to be the leader.
+          
         'y': |
           After it has eaten up all the food in its territory,
           it moves to another area. Its two heads do not
           get along.
-      forms: *black-white.pokemon.zweilous.forms
+          
+      forms: &x-y.pokemon.zweilous.forms
+        zweilous:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zweilous.forms.zweilous.form_name
+          default: *black-white.pokemon.zweilous.default
+          battle_only: *black-white.pokemon.zweilous.forms.zweilous.battle_only
+          icon: zweilous-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -179,11 +192,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The two heads do not get along. Whichever head
           eats more than the other gets to be the leader.
+          
         alpha-sapphire: |
           After it has eaten up all the food in its territory,
           it moves to another area. Its two heads do not
           get along.
-      forms: *black-white.pokemon.zweilous.forms
+          
+      forms: *x-y.pokemon.zweilous.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -211,5 +226,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.zweilous.stats
       abilities: *black-white.pokemon.zweilous.abilities
       evolution_conditions: *black-white.pokemon.zweilous.evolution_conditions
-      forms: *black-white.pokemon.zweilous.forms
+      forms: *x-y.pokemon.zweilous.forms
 ultra-sun-ultra-moon: *sun-moon

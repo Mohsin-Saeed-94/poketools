@@ -61,15 +61,18 @@ black-white:
           It can throw a fire punch by setting its
           fists on fire with its fiery chin. It cares
           deeply about its friends.
+          
         white: |
           It has mastered fast and powerful
           fighting moves. It grows a beard of fire.
+          
       forms: &black-white.pokemon.emboar.forms
         emboar:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.emboar.forms.emboar.form_name 'Default Form'
           default: *black-white.pokemon.emboar.default
-          battle_only: false
+          battle_only: &black-white.pokemon.emboar.forms.emboar.battle_only false
+          icon: gen5/emboar-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -104,10 +107,12 @@ black-2-white-2:
           A flaring beard of fire is proof
           that it is fired up. It is adept at
           using many different moves.
+          
         white-2: |
           A flaring beard of fire is proof
           that it is fired up. It is adept at
           using many different moves.
+          
       forms: *black-white.pokemon.emboar.forms
 x-y:
   name: *black-white.name
@@ -142,10 +147,18 @@ x-y:
         x: |
           It can throw a fire punch by setting its fists on fire
           with its fiery chin. It cares deeply about its friends.
+          
         'y': |
           It has mastered fast and powerful fighting moves.
           It grows a beard of fire.
-      forms: *black-white.pokemon.emboar.forms
+          
+      forms: &x-y.pokemon.emboar.forms
+        emboar:
+          name: *black-white.name
+          form_name: *black-white.pokemon.emboar.forms.emboar.form_name
+          default: *black-white.pokemon.emboar.default
+          battle_only: *black-white.pokemon.emboar.forms.emboar.battle_only
+          icon: emboar-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -178,10 +191,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It can throw a fire punch by setting its fists on fire
           with its fiery chin. It cares deeply about its friends.
+          
         alpha-sapphire: |
           It has mastered fast and powerful fighting moves.
           It grows a beard of fire.
-      forms: *black-white.pokemon.emboar.forms
+          
+      forms: *x-y.pokemon.emboar.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -209,5 +224,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.emboar.stats
       abilities: *black-white.pokemon.emboar.abilities
       evolution_conditions: *black-white.pokemon.emboar.evolution_conditions
-      forms: *black-white.pokemon.emboar.forms
+      forms: *x-y.pokemon.emboar.forms
 ultra-sun-ultra-moon: *sun-moon

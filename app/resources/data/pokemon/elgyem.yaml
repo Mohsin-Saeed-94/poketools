@@ -59,16 +59,19 @@ black-white:
           It uses its strong psychic power
           to squeeze its opponent’s brain,
           causing unendurable headaches.
+          
         white: |
           This Pokémon had never been seen until
           it appeared from far in the desert
           50 years ago.
+          
       forms: &black-white.pokemon.elgyem.forms
         elgyem:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.elgyem.forms.elgyem.form_name 'Default Form'
           default: *black-white.pokemon.elgyem.default
-          battle_only: false
+          battle_only: &black-white.pokemon.elgyem.forms.elgyem.battle_only false
+          icon: gen5/elgyem-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -100,9 +103,11 @@ black-2-white-2:
         black-2: |
           Rumors of its origin are linked to a UFO
           crash site in the desert 50 years ago.
+          
         white-2: |
           Rumors of its origin are linked to a UFO
           crash site in the desert 50 years ago.
+          
       forms: *black-white.pokemon.elgyem.forms
 x-y:
   name: *black-white.name
@@ -135,10 +140,18 @@ x-y:
         x: |
           It uses its strong psychic power to squeeze its
           opponent’s brain, causing unendurable headaches.
+          
         'y': |
           Rumors of its origin are linked to a UFO crash site
           in the desert 50 years ago.
-      forms: *black-white.pokemon.elgyem.forms
+          
+      forms: &x-y.pokemon.elgyem.forms
+        elgyem:
+          name: *black-white.name
+          form_name: *black-white.pokemon.elgyem.forms.elgyem.form_name
+          default: *black-white.pokemon.elgyem.default
+          battle_only: *black-white.pokemon.elgyem.forms.elgyem.battle_only
+          icon: elgyem-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -169,10 +182,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It uses its strong psychic power to squeeze its
           opponent’s brain, causing unendurable headaches.
+          
         alpha-sapphire: |
           Rumors of its origin are linked to a UFO crash site
           in the desert 50 years ago.
-      forms: *black-white.pokemon.elgyem.forms
+          
+      forms: *x-y.pokemon.elgyem.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -198,7 +213,7 @@ sun-moon:
       mega: *x-y.pokemon.elgyem.mega
       stats: *black-white.pokemon.elgyem.stats
       abilities: *black-white.pokemon.elgyem.abilities
-      forms: *black-white.pokemon.elgyem.forms
+      forms: *x-y.pokemon.elgyem.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -229,4 +244,5 @@ ultra-sun-ultra-moon:
           It controls tremendous psychic power. Most
           reports of alien sightings are actually just
           people mistaking Elgyem for an alien.
-      forms: *black-white.pokemon.elgyem.forms
+          
+      forms: *x-y.pokemon.elgyem.forms

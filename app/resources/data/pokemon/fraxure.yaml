@@ -64,16 +64,19 @@ black-white:
           Since a broken tusk will not grow back,
           they diligently sharpen their tusks on
           river rocks after they’ve been fighting.
+          
         white: |
           Their tusks can shatter rocks.
           Territory battles between Fraxure
           can be intensely violent.
+          
       forms: &black-white.pokemon.fraxure.forms
         fraxure:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.fraxure.forms.fraxure.form_name 'Default Form'
           default: *black-white.pokemon.fraxure.default
-          battle_only: false
+          battle_only: &black-white.pokemon.fraxure.forms.fraxure.battle_only false
+          icon: gen5/fraxure-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           A broken tusk will not grow back, so
           it diligently sharpens its tusks on
           river rocks after the end of a battle.
+          
         white-2: |
           A broken tusk will not grow back, so
           it diligently sharpens its tusks on
           river rocks after the end of a battle.
+          
       forms: *black-white.pokemon.fraxure.forms
 x-y:
   name: *black-white.name
@@ -147,11 +152,19 @@ x-y:
         x: |
           Their tusks can shatter rocks. Territory battles
           between Fraxure can be intensely violent.
+          
         'y': |
           A broken tusk will not grow back, so it diligently
           sharpens its tusks on river rocks after the end of
           a battle.
-      forms: *black-white.pokemon.fraxure.forms
+          
+      forms: &x-y.pokemon.fraxure.forms
+        fraxure:
+          name: *black-white.name
+          form_name: *black-white.pokemon.fraxure.forms.fraxure.form_name
+          default: *black-white.pokemon.fraxure.default
+          battle_only: *black-white.pokemon.fraxure.forms.fraxure.battle_only
+          icon: fraxure-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -185,11 +198,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Their tusks can shatter rocks. Territory battles
           between Fraxure can be intensely violent.
+          
         alpha-sapphire: |
           A broken tusk will not grow back, so it diligently
           sharpens its tusks on river rocks after the end of
           a battle.
-      forms: *black-white.pokemon.fraxure.forms
+          
+      forms: *x-y.pokemon.fraxure.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -217,5 +232,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.fraxure.stats
       abilities: *black-white.pokemon.fraxure.abilities
       evolution_conditions: *black-white.pokemon.fraxure.evolution_conditions
-      forms: *black-white.pokemon.fraxure.forms
+      forms: *x-y.pokemon.fraxure.forms
 ultra-sun-ultra-moon: *sun-moon

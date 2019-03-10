@@ -64,16 +64,19 @@ black-white:
           It can return to its Trainer’s location
           regardless of the distance
           separating them.
+          
         white: |
           Many people believe that, deep in the
           forest where Tranquill live, there is
           a peaceful place where there is no war.
+          
       forms: &black-white.pokemon.tranquill.forms
         tranquill:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.tranquill.forms.tranquill.form_name 'Default Form'
           default: *black-white.pokemon.tranquill.default
-          battle_only: false
+          battle_only: &black-white.pokemon.tranquill.forms.tranquill.battle_only false
+          icon: gen5/tranquill-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           No matter where in the world it goes,
           it knows where its nest is, so it
           never gets separated from its Trainer.
+          
         white-2: |
           No matter where in the world it goes,
           it knows where its nest is, so it
           never gets separated from its Trainer.
+          
       forms: *black-white.pokemon.tranquill.forms
 x-y:
   name: *black-white.name
@@ -147,11 +152,19 @@ x-y:
           Many people believe that, deep in the forest where
           Tranquill live, there is a peaceful place where there
           is no war.
+          
         'y': |
           No matter where in the world it goes, it knows
           where its nest is, so it never gets separated from
           its Trainer.
-      forms: *black-white.pokemon.tranquill.forms
+          
+      forms: &x-y.pokemon.tranquill.forms
+        tranquill:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tranquill.forms.tranquill.form_name
+          default: *black-white.pokemon.tranquill.default
+          battle_only: *black-white.pokemon.tranquill.forms.tranquill.battle_only
+          icon: tranquill-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -185,11 +198,13 @@ omega-ruby-alpha-sapphire:
           Many people believe that, deep in the forest where
           Tranquill live, there is a peaceful place where there
           is no war.
+          
         alpha-sapphire: |
           No matter where in the world it goes, it knows
           where its nest is, so it never gets separated from
           its Trainer.
-      forms: *black-white.pokemon.tranquill.forms
+          
+      forms: *x-y.pokemon.tranquill.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -217,5 +232,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.tranquill.stats
       abilities: *black-white.pokemon.tranquill.abilities
       evolution_conditions: *black-white.pokemon.tranquill.evolution_conditions
-      forms: *black-white.pokemon.tranquill.forms
+      forms: *x-y.pokemon.tranquill.forms
 ultra-sun-ultra-moon: *sun-moon

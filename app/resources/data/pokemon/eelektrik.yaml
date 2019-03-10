@@ -57,16 +57,19 @@ black-white:
           They coil around foes and shock them
           with electricity-generating organs that
           seem simply to be circular patterns.
+          
         white: |
           These Pokémon have a big appetite.
           When they spot their prey, they attack
           it and paralyze it with electricity.
+          
       forms: &black-white.pokemon.eelektrik.forms
         eelektrik:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.eelektrik.forms.eelektrik.form_name 'Default Form'
           default: *black-white.pokemon.eelektrik.default
-          battle_only: false
+          battle_only: &black-white.pokemon.eelektrik.forms.eelektrik.battle_only false
+          icon: gen5/eelektrik-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -101,10 +104,12 @@ black-2-white-2:
           It wraps itself around its prey and
           paralyzes it with electricity from the
           round spots on its sides. Then it chomps.
+          
         white-2: |
           It wraps itself around its prey and
           paralyzes it with electricity from the
           round spots on its sides. Then it chomps.
+          
       forms: *black-white.pokemon.eelektrik.forms
 x-y:
   name: *black-white.name
@@ -140,11 +145,19 @@ x-y:
           It wraps itself around its prey and paralyzes it with
           electricity from the round spots on its sides.
           Then it chomps.
+          
         'y': |
           These Pokémon have a big appetite. When they
           spot their prey, they attack it and paralyze it
           with electricity.
-      forms: *black-white.pokemon.eelektrik.forms
+          
+      forms: &x-y.pokemon.eelektrik.forms
+        eelektrik:
+          name: *black-white.name
+          form_name: *black-white.pokemon.eelektrik.forms.eelektrik.form_name
+          default: *black-white.pokemon.eelektrik.default
+          battle_only: *black-white.pokemon.eelektrik.forms.eelektrik.battle_only
+          icon: eelektrik-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -178,11 +191,13 @@ omega-ruby-alpha-sapphire:
           It wraps itself around its prey and paralyzes it with
           electricity from the round spots on its sides.
           Then it chomps.
+          
         alpha-sapphire: |
           These Pokémon have a big appetite. When they
           spot their prey, they attack it and paralyze it
           with electricity.
-      forms: *black-white.pokemon.eelektrik.forms
+          
+      forms: *x-y.pokemon.eelektrik.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -210,5 +225,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.eelektrik.stats
       abilities: *black-white.pokemon.eelektrik.abilities
       evolution_conditions: *black-white.pokemon.eelektrik.evolution_conditions
-      forms: *black-white.pokemon.eelektrik.forms
+      forms: *x-y.pokemon.eelektrik.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -63,16 +63,19 @@ black-white:
           The energy that burns inside it
           enables it to move, but no one has yet
           been able to identify this energy.
+          
         white: |
           These Pokémon are thought to have been
           created by the science of an ancient
           and mysterious civilization.
+          
       forms: &black-white.pokemon.golett.forms
         golett:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.golett.forms.golett.form_name 'Default Form'
           default: *black-white.pokemon.golett.default
-          battle_only: false
+          battle_only: &black-white.pokemon.golett.forms.golett.battle_only false
+          icon: gen5/golett-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -107,10 +110,12 @@ black-2-white-2:
           Ancient science fashioned this
           Pokémon from clay. It’s been
           active for thousands of years.
+          
         white-2: |
           Ancient science fashioned this
           Pokémon from clay. It’s been
           active for thousands of years.
+          
       forms: *black-white.pokemon.golett.forms
 x-y:
   name: *black-white.name
@@ -147,10 +152,18 @@ x-y:
           The energy that burns inside it enables it to move,
           but no one has yet been able to identify
           this energy.
+          
         'y': |
           Ancient science fashioned this Pokémon from clay.
           It’s been active for thousands of years.
-      forms: *black-white.pokemon.golett.forms
+          
+      forms: &x-y.pokemon.golett.forms
+        golett:
+          name: *black-white.name
+          form_name: *black-white.pokemon.golett.forms.golett.form_name
+          default: *black-white.pokemon.golett.default
+          battle_only: *black-white.pokemon.golett.forms.golett.battle_only
+          icon: golett-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -182,10 +195,12 @@ omega-ruby-alpha-sapphire:
           The energy that burns inside it enables it to move,
           but no one has yet been able to identify
           this energy.
+          
         alpha-sapphire: |
           Ancient science fashioned this Pokémon from clay.
           It’s been active for thousands of years.
-      forms: *black-white.pokemon.golett.forms
+          
+      forms: *x-y.pokemon.golett.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -212,7 +227,7 @@ sun-moon:
       abilities: *black-white.pokemon.golett.abilities
       wild_held_items:
         moon: *black-white.pokemon.golett.wild_held_items.black
-      forms: *black-white.pokemon.golett.forms
+      forms: *x-y.pokemon.golett.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -244,4 +259,5 @@ ultra-sun-ultra-moon:
           Its movements are powered by a mysterious
           energy. It has continued to move since ancient
           times, so its power may soon run out.
-      forms: *black-white.pokemon.golett.forms
+          
+      forms: *x-y.pokemon.golett.forms

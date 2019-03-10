@@ -53,16 +53,19 @@ black-white:
           This legendary Pokémon battled against
           humans to protect Pokémon.
           Its personality is calm and composed.
+          
         white: |
           It has a body and heart of steel.
           Its glare is sufficient to make even
           an unruly Pokémon obey it.
+          
       forms: &black-white.pokemon.cobalion.forms
         cobalion:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.cobalion.forms.cobalion.form_name 'Default Form'
           default: *black-white.pokemon.cobalion.default
-          battle_only: false
+          battle_only: &black-white.pokemon.cobalion.forms.cobalion.battle_only false
+          icon: gen5/cobalion-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -94,10 +97,12 @@ black-2-white-2:
           It has a body and heart of steel.
           It worked with its allies to punish
           people when they hurt Pokémon.
+          
         white-2: |
           It has a body and heart of steel.
           It worked with its allies to punish
           people when they hurt Pokémon.
+          
       forms: *black-white.pokemon.cobalion.forms
 x-y:
   name: *black-white.name
@@ -129,10 +134,18 @@ x-y:
         x: |
           It has a body and heart of steel. Its glare is
           sufficient to make even an unruly Pokémon obey it.
+          
         'y': |
           It has a body and heart of steel. It worked with its
           allies to punish people when they hurt Pokémon.
-      forms: *black-white.pokemon.cobalion.forms
+          
+      forms: &x-y.pokemon.cobalion.forms
+        cobalion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.cobalion.forms.cobalion.form_name
+          default: *black-white.pokemon.cobalion.default
+          battle_only: *black-white.pokemon.cobalion.forms.cobalion.battle_only
+          icon: cobalion-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -162,10 +175,12 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It has a body and heart of steel. Its glare is
           sufficient to make even an unruly Pokémon obey it.
+          
         alpha-sapphire: |
           It has a body and heart of steel. It worked with its
           allies to punish people when they hurt Pokémon.
-      forms: *black-white.pokemon.cobalion.forms
+          
+      forms: *x-y.pokemon.cobalion.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -190,5 +205,5 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.cobalion.mega
       stats: *black-white.pokemon.cobalion.stats
       abilities: *black-white.pokemon.cobalion.abilities
-      forms: *black-white.pokemon.cobalion.forms
+      forms: *x-y.pokemon.cobalion.forms
 ultra-sun-ultra-moon: *sun-moon

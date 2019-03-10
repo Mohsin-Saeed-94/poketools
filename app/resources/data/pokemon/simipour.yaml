@@ -65,16 +65,19 @@ black-white:
           The tuft on its head holds water. When
           the level runs low, it replenishes the
           tuft by siphoning up water with its tail.
+          
         white: |
           The high-pressure water expelled
           from its tail is so powerful,
           it can destroy a concrete wall.
+          
       forms: &black-white.pokemon.simipour.forms
         simipour:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.simipour.forms.simipour.form_name 'Default Form'
           default: *black-white.pokemon.simipour.default
-          battle_only: false
+          battle_only: &black-white.pokemon.simipour.forms.simipour.battle_only false
+          icon: gen5/simipour-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -112,10 +115,12 @@ black-2-white-2:
           It prefers places with clean water.
           When its tuft runs low, it replenishes
           it by siphoning up water with its tail.
+          
         white-2: |
           It prefers places with clean water.
           When its tuft runs low, it replenishes
           it by siphoning up water with its tail.
+          
       forms: *black-white.pokemon.simipour.forms
 x-y:
   name: *black-white.name
@@ -151,11 +156,19 @@ x-y:
         x: |
           The high-pressure water expelled from its tail is so
           powerful, it can destroy a concrete wall.
+          
         'y': |
           It prefers places with clean water. When its tuft runs
           low, it replenishes it by siphoning up water with
           its tail.
-      forms: *black-white.pokemon.simipour.forms
+          
+      forms: &x-y.pokemon.simipour.forms
+        simipour:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simipour.forms.simipour.form_name
+          default: *black-white.pokemon.simipour.default
+          battle_only: *black-white.pokemon.simipour.forms.simipour.battle_only
+          icon: simipour-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -189,11 +202,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The high-pressure water expelled from its tail is so
           powerful, it can destroy a concrete wall.
+          
         alpha-sapphire: |
           It prefers places with clean water. When its tuft runs
           low, it replenishes it by siphoning up water with
           its tail.
-      forms: *black-white.pokemon.simipour.forms
+          
+      forms: *x-y.pokemon.simipour.forms
 sun-moon: &sun-moon
   name: *black-white.name
   position: *black-white.position
@@ -221,5 +236,5 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.simipour.stats
       abilities: *black-white.pokemon.simipour.abilities
       evolution_conditions: *black-white.pokemon.simipour.evolution_conditions
-      forms: *black-white.pokemon.simipour.forms
+      forms: *x-y.pokemon.simipour.forms
 ultra-sun-ultra-moon: *sun-moon

@@ -60,16 +60,19 @@ black-white:
           They live buried in the sands of the
           desert. The sun-warmed sands prevent
           their body temperature from dropping.
+          
         white: |
           It moves along below the sand’s surface,
           except for its nose and eyes. A dark
           membrane shields its eyes from the sun.
+          
       forms: &black-white.pokemon.sandile.forms
         sandile:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.sandile.forms.sandile.form_name 'Default Form'
           default: *black-white.pokemon.sandile.default
-          battle_only: false
+          battle_only: &black-white.pokemon.sandile.forms.sandile.battle_only false
+          icon: gen5/sandile-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,10 +105,12 @@ black-2-white-2:
           They live hidden under hot desert
           sands in order to keep their body
           temperature from dropping.
+          
         white-2: |
           They live hidden under hot desert
           sands in order to keep their body
           temperature from dropping.
+          
       forms: *black-white.pokemon.sandile.forms
 x-y:
   name: *black-white.name
@@ -140,11 +145,19 @@ x-y:
           It moves along below the sand’s surface, except
           for its nose and eyes. A dark membrane shields its
           eyes from the sun.
+          
         'y': |
           They live buried in the sands of the desert.
           The sun-warmed sands prevent their body
           temperature from dropping.
-      forms: *black-white.pokemon.sandile.forms
+          
+      forms: &x-y.pokemon.sandile.forms
+        sandile:
+          name: *black-white.name
+          form_name: *black-white.pokemon.sandile.forms.sandile.form_name
+          default: *black-white.pokemon.sandile.default
+          battle_only: *black-white.pokemon.sandile.forms.sandile.battle_only
+          icon: sandile-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -177,11 +190,13 @@ omega-ruby-alpha-sapphire:
           It moves along below the sand’s surface, except
           for its nose and eyes. A dark membrane shields its
           eyes from the sun.
+          
         alpha-sapphire: |
           They live buried in the sands of the desert.
           The sun-warmed sands prevent their body
           temperature from dropping.
-      forms: *black-white.pokemon.sandile.forms
+          
+      forms: *x-y.pokemon.sandile.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -215,7 +230,8 @@ sun-moon:
           It conceals itself in the sand and chomps down
           on the legs of any prey that unwarily walk over
           it. Its favorite food is Trapinch.
-      forms: *black-white.pokemon.sandile.forms
+          
+      forms: *x-y.pokemon.sandile.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -248,4 +264,5 @@ ultra-sun-ultra-moon:
           Alola, where it’s warm all year round, is a
           comfortable environment for this Pokémon.
           Sometimes you’ll even see it outside of deserts.
-      forms: *black-white.pokemon.sandile.forms
+          
+      forms: *x-y.pokemon.sandile.forms

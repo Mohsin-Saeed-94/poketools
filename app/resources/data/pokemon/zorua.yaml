@@ -53,16 +53,19 @@ black-white:
           It changes into the forms of others
           to surprise them. Apparently, it
           often transforms into a silent child.
+          
         white: |
           To protect themselves from danger,
           they hide their true identities by
           transforming into people and Pokémon.
+          
       forms: &black-white.pokemon.zorua.forms
         zorua:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.zorua.forms.zorua.form_name 'Default Form'
           default: *black-white.pokemon.zorua.default
-          battle_only: false
+          battle_only: &black-white.pokemon.zorua.forms.zorua.battle_only false
+          icon: gen5/zorua-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -95,10 +98,12 @@ black-2-white-2:
           It changes so it looks just
           like its foe, tricks it, and then
           uses that opportunity to flee.
+          
         white-2: |
           It changes so it looks just
           like its foe, tricks it, and then
           uses that opportunity to flee.
+          
       forms: *black-white.pokemon.zorua.forms
 x-y:
   name: *black-white.name
@@ -132,11 +137,19 @@ x-y:
         x: |
           It changes so it looks just like its foe, tricks it, and
           then uses that opportunity to flee.
+          
         'y': |
           To protect themselves from danger, they hide their
           true identities by transforming into people
           and Pokémon.
-      forms: *black-white.pokemon.zorua.forms
+          
+      forms: &x-y.pokemon.zorua.forms
+        zorua:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zorua.forms.zorua.form_name
+          default: *black-white.pokemon.zorua.default
+          battle_only: *black-white.pokemon.zorua.forms.zorua.battle_only
+          icon: zorua-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -168,11 +181,13 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It changes so it looks just like its foe, tricks it, and
           then uses that opportunity to flee.
+          
         alpha-sapphire: |
           To protect themselves from danger, they hide their
           true identities by transforming into people
           and Pokémon.
-      forms: *black-white.pokemon.zorua.forms
+          
+      forms: *x-y.pokemon.zorua.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -198,7 +213,7 @@ sun-moon:
       mega: *x-y.pokemon.zorua.mega
       stats: *black-white.pokemon.zorua.stats
       abilities: *black-white.pokemon.zorua.abilities
-      forms: *black-white.pokemon.zorua.forms
+      forms: *x-y.pokemon.zorua.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -229,4 +244,5 @@ ultra-sun-ultra-moon:
           This Pokémon has a cowardly disposition, so
           when it’s not around friends, it basically
           always stays transformed as something else.
-      forms: *black-white.pokemon.zorua.forms
+          
+      forms: *x-y.pokemon.zorua.forms

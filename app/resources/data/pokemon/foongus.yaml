@@ -63,16 +63,19 @@ black-white:
           It lures people in with its Poké Ball
           pattern, then releases poison spores.
           Why it resembles a Poké Ball is unknown.
+          
         white: |
           For some reason, this Pokémon resembles
           a Poké Ball. They release poison spores
           to repel those who try to catch them.
+          
       forms: &black-white.pokemon.foongus.forms
         foongus:
           name: *black-white.name
-          form_name: 'Default Form'
+          form_name: &black-white.pokemon.foongus.forms.foongus.form_name 'Default Form'
           default: *black-white.pokemon.foongus.default
-          battle_only: false
+          battle_only: &black-white.pokemon.foongus.forms.foongus.battle_only false
+          icon: gen5/foongus-default.png
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,10 +111,12 @@ black-2-white-2:
           It lures Pokémon with its pattern
           that looks just like a Poké Ball
           then releases poison spores.
+          
         white-2: |
           It lures Pokémon with its pattern
           that looks just like a Poké Ball
           then releases poison spores.
+          
       forms: *black-white.pokemon.foongus.forms
 x-y:
   name: *black-white.name
@@ -151,10 +156,18 @@ x-y:
           It lures people in with its Poké Ball pattern, then
           releases poison spores. Why it resembles a
           Poké Ball is unknown.
+          
         'y': |
           It lures Pokémon with its pattern that looks just like
           a Poké Ball, then releases poison spores.
-      forms: *black-white.pokemon.foongus.forms
+          
+      forms: &x-y.pokemon.foongus.forms
+        foongus:
+          name: *black-white.name
+          form_name: *black-white.pokemon.foongus.forms.foongus.form_name
+          default: *black-white.pokemon.foongus.default
+          battle_only: *black-white.pokemon.foongus.forms.foongus.battle_only
+          icon: foongus-default.png
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -187,10 +200,12 @@ omega-ruby-alpha-sapphire:
           It lures people in with its Poké Ball pattern, then
           releases poison spores. Why it resembles a
           Poké Ball is unknown.
+          
         alpha-sapphire: |
           It lures Pokémon with its pattern that looks just like
           a Poké Ball, then releases poison spores.
-      forms: *black-white.pokemon.foongus.forms
+          
+      forms: *x-y.pokemon.foongus.forms
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -218,7 +233,7 @@ sun-moon:
       abilities: *black-white.pokemon.foongus.abilities
       wild_held_items:
         moon: *x-y.pokemon.foongus.wild_held_items.x
-      forms: *black-white.pokemon.foongus.forms
+      forms: *x-y.pokemon.foongus.forms
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -246,4 +261,4 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.foongus.abilities
       wild_held_items:
         ultra-sun: *x-y.pokemon.foongus.wild_held_items.x
-      forms: *black-white.pokemon.foongus.forms
+      forms: *x-y.pokemon.foongus.forms
