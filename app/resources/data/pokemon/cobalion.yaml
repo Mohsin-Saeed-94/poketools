@@ -53,19 +53,26 @@ black-white:
           This legendary Pokémon battled against
           humans to protect Pokémon.
           Its personality is calm and composed.
-          
         white: |
           It has a body and heart of steel.
           Its glare is sufficient to make even
           an unruly Pokémon obey it.
-          
-      forms: &black-white.pokemon.cobalion.forms
+      forms:
         cobalion:
           name: *black-white.name
           form_name: &black-white.pokemon.cobalion.forms.cobalion.form_name 'Default Form'
           default: *black-white.pokemon.cobalion.default
           battle_only: &black-white.pokemon.cobalion.forms.cobalion.battle_only false
-          icon: gen5/cobalion-default.png
+          icon: &black-white.pokemon.cobalion.forms.cobalion.icon gen5/cobalion-default.png
+          sprites:
+            - black-white/back/shiny/cobalion-default.png
+            - black-white/back/cobalion-default.png
+            - black-white/shiny/cobalion-default.png
+            - black-white/cobalion-default.png
+          art: &black-white.pokemon.cobalion.forms.cobalion.art
+            - cobalion-default.png
+          footprint: &black-white.pokemon.cobalion.forms.cobalion.footprint cobalion.png
+          cry: &black-white.pokemon.cobalion.forms.cobalion.cry gen5/cobalion-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -97,13 +104,20 @@ black-2-white-2:
           It has a body and heart of steel.
           It worked with its allies to punish
           people when they hurt Pokémon.
-          
         white-2: |
           It has a body and heart of steel.
           It worked with its allies to punish
           people when they hurt Pokémon.
-          
-      forms: *black-white.pokemon.cobalion.forms
+      forms:
+        cobalion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.cobalion.forms.cobalion.form_name
+          default: *black-white.pokemon.cobalion.default
+          battle_only: *black-white.pokemon.cobalion.forms.cobalion.battle_only
+          icon: *black-white.pokemon.cobalion.forms.cobalion.icon
+          art: *black-white.pokemon.cobalion.forms.cobalion.art
+          footprint: *black-white.pokemon.cobalion.forms.cobalion.footprint
+          cry: *black-white.pokemon.cobalion.forms.cobalion.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -134,18 +148,22 @@ x-y:
         x: |
           It has a body and heart of steel. Its glare is
           sufficient to make even an unruly Pokémon obey it.
-          
         'y': |
           It has a body and heart of steel. It worked with its
           allies to punish people when they hurt Pokémon.
-          
-      forms: &x-y.pokemon.cobalion.forms
+      forms:
         cobalion:
           name: *black-white.name
           form_name: *black-white.pokemon.cobalion.forms.cobalion.form_name
           default: *black-white.pokemon.cobalion.default
           battle_only: *black-white.pokemon.cobalion.forms.cobalion.battle_only
-          icon: cobalion-default.png
+          icon: &x-y.pokemon.cobalion.forms.cobalion.icon cobalion-default.png
+          sprites:
+            - x-y/shiny/cobalion-default.png
+            - x-y/cobalion-default.png
+          art: *black-white.pokemon.cobalion.forms.cobalion.art
+          footprint: *black-white.pokemon.cobalion.forms.cobalion.footprint
+          cry: &x-y.pokemon.cobalion.forms.cobalion.cry cobalion-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -175,13 +193,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It has a body and heart of steel. Its glare is
           sufficient to make even an unruly Pokémon obey it.
-          
         alpha-sapphire: |
           It has a body and heart of steel. It worked with its
           allies to punish people when they hurt Pokémon.
-          
-      forms: *x-y.pokemon.cobalion.forms
-sun-moon: &sun-moon
+      forms:
+        cobalion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.cobalion.forms.cobalion.form_name
+          default: *black-white.pokemon.cobalion.default
+          battle_only: *black-white.pokemon.cobalion.forms.cobalion.battle_only
+          icon: *x-y.pokemon.cobalion.forms.cobalion.icon
+          art: *black-white.pokemon.cobalion.forms.cobalion.art
+          footprint: *black-white.pokemon.cobalion.forms.cobalion.footprint
+          cry: *x-y.pokemon.cobalion.forms.cobalion.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -205,5 +230,53 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.cobalion.mega
       stats: *black-white.pokemon.cobalion.stats
       abilities: *black-white.pokemon.cobalion.abilities
-      forms: *x-y.pokemon.cobalion.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        cobalion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.cobalion.forms.cobalion.form_name
+          default: *black-white.pokemon.cobalion.default
+          battle_only: *black-white.pokemon.cobalion.forms.cobalion.battle_only
+          icon: *x-y.pokemon.cobalion.forms.cobalion.icon
+          sprites:
+            - sun-moon/shiny/cobalion-default.png
+            - sun-moon/cobalion-default.png
+          art: *black-white.pokemon.cobalion.forms.cobalion.art
+          footprint: *black-white.pokemon.cobalion.forms.cobalion.footprint
+          cry: *x-y.pokemon.cobalion.forms.cobalion.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    cobalion:
+      genus: *black-white.pokemon.cobalion.genus
+      color: *black-white.pokemon.cobalion.color
+      shape: *black-white.pokemon.cobalion.shape
+      capture_rate: *black-white.pokemon.cobalion.capture_rate
+      happiness: *black-white.pokemon.cobalion.happiness
+      baby: *black-white.pokemon.cobalion.baby
+      hatch_steps: *black-white.pokemon.cobalion.hatch_steps
+      growth_rate: *black-white.pokemon.cobalion.growth_rate
+      forms_switchable: *black-white.pokemon.cobalion.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.cobalion.default
+      height: *black-white.pokemon.cobalion.height
+      weight: *black-white.pokemon.cobalion.weight
+      experience: *black-white.pokemon.cobalion.experience
+      types: *black-white.pokemon.cobalion.types
+      egg_groups: *black-white.pokemon.cobalion.egg_groups
+      mega: *x-y.pokemon.cobalion.mega
+      stats: *black-white.pokemon.cobalion.stats
+      abilities: *black-white.pokemon.cobalion.abilities
+      forms:
+        cobalion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.cobalion.forms.cobalion.form_name
+          default: *black-white.pokemon.cobalion.default
+          battle_only: *black-white.pokemon.cobalion.forms.cobalion.battle_only
+          icon: *x-y.pokemon.cobalion.forms.cobalion.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/cobalion-default.png
+            - ultra-sun-ultra-moon/cobalion-default.png
+          art: *black-white.pokemon.cobalion.forms.cobalion.art
+          footprint: *black-white.pokemon.cobalion.forms.cobalion.footprint
+          cry: *x-y.pokemon.cobalion.forms.cobalion.cry

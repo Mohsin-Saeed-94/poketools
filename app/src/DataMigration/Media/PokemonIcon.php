@@ -1,7 +1,4 @@
 <?php
-/**
- * @file IconItem.php
- */
 
 namespace App\DataMigration\Media;
 
@@ -100,7 +97,7 @@ SQL
         $oldPath = $this->resourcesDir.'/pokedex-media/pokemon/icons/'.$oldFilename;
         $newPath = $this->destinationPath.'/'.$newFilename;
 
-        if (!$destinationData) {
+        if (!is_file($newPath)) {
             if (is_file($oldPath)) {
                 if (!is_dir(dirname($newPath))) {
                     mkdir(dirname($newPath), 0755, true);
@@ -108,25 +105,23 @@ SQL
                 copy($oldPath, $newPath);
             } else {
                 // Path doesn't exist
-//                $missingLogPath = $this->destinationPath.'/missing.csv';
-//                if (!is_file($missingLogPath)) {
-//                    $handle = fopen($missingLogPath, 'wb');
-//                    fputcsv($handle, ['group', 'species_id', 'species_identifier', 'form_identifier', 'from', 'to']);
-//                } else {
-//                    $handle = fopen($missingLogPath, 'ab');
-//                }
-//                fputcsv(
-//                    $handle,
-//                    [
-//                        $sourceData['group'],
-//                        $sourceData['species_id'],
-//                        $sourceData['species_identifier'],
-//                        $sourceData['form_identifier'] ?? 'NULL',
-//                        $oldPath,
-//                        $newPath,
-//                    ]
-//                );
-//                fclose($handle);
+                $missingLogPath = $this->destinationPath.'/missing.csv';
+                if (!is_file($missingLogPath)) {
+                    $handle = fopen($missingLogPath, 'wb');
+                    fputcsv($handle, ['group', 'species_id', 'species_identifier', 'form_identifier']);
+                } else {
+                    $handle = fopen($missingLogPath, 'ab');
+                }
+                fputcsv(
+                    $handle,
+                    [
+                        $sourceData['group'],
+                        $sourceData['species_id'],
+                        $sourceData['species_identifier'],
+                        $sourceData['form_identifier'] ?? 'NULL',
+                    ]
+                );
+                fclose($handle);
 
                 return null;
             }

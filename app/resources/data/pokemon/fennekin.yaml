@@ -57,19 +57,24 @@ x-y:
           Eating a twig fills it with energy,
           and its roomy ears give vent to air
           hotter than 390 degrees Fahrenheit.
-          
         'y': |
           As it walks, it munches on a twig in place
           of a snack. It intimidates opponents
           by puffing hot air out of its ears.
-          
-      forms: &x-y.pokemon.fennekin.forms
+      forms:
         fennekin:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.fennekin.forms.fennekin.form_name 'Default Form'
           default: *x-y.pokemon.fennekin.default
-          battle_only: false
-          icon: fennekin-default.png
+          battle_only: &x-y.pokemon.fennekin.forms.fennekin.battle_only false
+          icon: &x-y.pokemon.fennekin.forms.fennekin.icon fennekin-default.png
+          sprites:
+            - x-y/fennekin-default.png
+            - x-y/shiny/fennekin-default.png
+          art: &x-y.pokemon.fennekin.forms.fennekin.art
+            - fennekin-default.png
+          footprint: &x-y.pokemon.fennekin.forms.fennekin.footprint fennekin.png
+          cry: &x-y.pokemon.fennekin.forms.fennekin.cry fennekin-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -102,14 +107,21 @@ omega-ruby-alpha-sapphire:
           Eating a twig fills it with energy,
           and its roomy ears give vent to air
           hotter than 390 degrees Fahrenheit.
-          
         alpha-sapphire: |
           As it walks, it munches on a twig in place
           of a snack. It intimidates opponents
           by puffing hot air out of its ears.
-          
-      forms: *x-y.pokemon.fennekin.forms
-sun-moon: &sun-moon
+      forms:
+        fennekin:
+          name: *x-y.name
+          form_name: *x-y.pokemon.fennekin.forms.fennekin.form_name
+          default: *x-y.pokemon.fennekin.default
+          battle_only: *x-y.pokemon.fennekin.forms.fennekin.battle_only
+          icon: *x-y.pokemon.fennekin.forms.fennekin.icon
+          art: *x-y.pokemon.fennekin.forms.fennekin.art
+          footprint: *x-y.pokemon.fennekin.forms.fennekin.footprint
+          cry: *x-y.pokemon.fennekin.forms.fennekin.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -134,5 +146,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.fennekin.mega
       stats: *x-y.pokemon.fennekin.stats
       abilities: *x-y.pokemon.fennekin.abilities
-      forms: *x-y.pokemon.fennekin.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        fennekin:
+          name: *x-y.name
+          form_name: *x-y.pokemon.fennekin.forms.fennekin.form_name
+          default: *x-y.pokemon.fennekin.default
+          battle_only: *x-y.pokemon.fennekin.forms.fennekin.battle_only
+          icon: *x-y.pokemon.fennekin.forms.fennekin.icon
+          sprites:
+            - sun-moon/fennekin-default.png
+            - sun-moon/shiny/fennekin-default.png
+          art: *x-y.pokemon.fennekin.forms.fennekin.art
+          footprint: *x-y.pokemon.fennekin.forms.fennekin.footprint
+          cry: *x-y.pokemon.fennekin.forms.fennekin.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    fennekin:
+      genus: *x-y.pokemon.fennekin.genus
+      color: *x-y.pokemon.fennekin.color
+      shape: *x-y.pokemon.fennekin.shape
+      female_rate: *x-y.pokemon.fennekin.female_rate
+      capture_rate: *x-y.pokemon.fennekin.capture_rate
+      happiness: *x-y.pokemon.fennekin.happiness
+      baby: *x-y.pokemon.fennekin.baby
+      hatch_steps: *x-y.pokemon.fennekin.hatch_steps
+      growth_rate: *x-y.pokemon.fennekin.growth_rate
+      forms_switchable: *x-y.pokemon.fennekin.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.fennekin.default
+      height: *x-y.pokemon.fennekin.height
+      weight: *x-y.pokemon.fennekin.weight
+      experience: *x-y.pokemon.fennekin.experience
+      types: *x-y.pokemon.fennekin.types
+      egg_groups: *x-y.pokemon.fennekin.egg_groups
+      mega: *x-y.pokemon.fennekin.mega
+      stats: *x-y.pokemon.fennekin.stats
+      abilities: *x-y.pokemon.fennekin.abilities
+      forms:
+        fennekin:
+          name: *x-y.name
+          form_name: *x-y.pokemon.fennekin.forms.fennekin.form_name
+          default: *x-y.pokemon.fennekin.default
+          battle_only: *x-y.pokemon.fennekin.forms.fennekin.battle_only
+          icon: *x-y.pokemon.fennekin.forms.fennekin.icon
+          sprites:
+            - ultra-sun-ultra-moon/fennekin-default.png
+            - ultra-sun-ultra-moon/shiny/fennekin-default.png
+          art: *x-y.pokemon.fennekin.forms.fennekin.art
+          footprint: *x-y.pokemon.fennekin.forms.fennekin.footprint
+          cry: *x-y.pokemon.fennekin.forms.fennekin.cry

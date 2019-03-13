@@ -59,19 +59,24 @@ x-y:
           When Honedge evolves, it divides into two swords,
           which cooperate via telepathy to coordinate attacks
           and slash their enemies to ribbons.
-          
         'y': |
           The complex attack patterns of its two swords
           are unstoppable, even for an opponent
           greatly accomplished at swordplay.
-          
-      forms: &x-y.pokemon.doublade.forms
+      forms:
         doublade:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.doublade.forms.doublade.form_name 'Default Form'
           default: *x-y.pokemon.doublade.default
-          battle_only: false
-          icon: doublade-default.png
+          battle_only: &x-y.pokemon.doublade.forms.doublade.battle_only false
+          icon: &x-y.pokemon.doublade.forms.doublade.icon doublade-default.png
+          sprites:
+            - x-y/doublade-default.png
+            - x-y/shiny/doublade-default.png
+          art: &x-y.pokemon.doublade.forms.doublade.art
+            - doublade-default.png
+          footprint: &x-y.pokemon.doublade.forms.doublade.footprint doublade.png
+          cry: &x-y.pokemon.doublade.forms.doublade.cry doublade-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -106,14 +111,21 @@ omega-ruby-alpha-sapphire:
           When Honedge evolves, it divides into two swords,
           which cooperate via telepathy to coordinate attacks
           and slash their enemies to ribbons.
-          
         alpha-sapphire: |
           The complex attack patterns of its two swords
           are unstoppable, even for an opponent
           greatly accomplished at swordplay.
-          
-      forms: *x-y.pokemon.doublade.forms
-sun-moon: &sun-moon
+      forms:
+        doublade:
+          name: *x-y.name
+          form_name: *x-y.pokemon.doublade.forms.doublade.form_name
+          default: *x-y.pokemon.doublade.default
+          battle_only: *x-y.pokemon.doublade.forms.doublade.battle_only
+          icon: *x-y.pokemon.doublade.forms.doublade.icon
+          art: *x-y.pokemon.doublade.forms.doublade.art
+          footprint: *x-y.pokemon.doublade.forms.doublade.footprint
+          cry: *x-y.pokemon.doublade.forms.doublade.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -140,5 +152,56 @@ sun-moon: &sun-moon
       stats: *x-y.pokemon.doublade.stats
       abilities: *x-y.pokemon.doublade.abilities
       evolution_conditions: *x-y.pokemon.doublade.evolution_conditions
-      forms: *x-y.pokemon.doublade.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        doublade:
+          name: *x-y.name
+          form_name: *x-y.pokemon.doublade.forms.doublade.form_name
+          default: *x-y.pokemon.doublade.default
+          battle_only: *x-y.pokemon.doublade.forms.doublade.battle_only
+          icon: *x-y.pokemon.doublade.forms.doublade.icon
+          sprites:
+            - sun-moon/doublade-default.png
+            - sun-moon/shiny/doublade-default.png
+          art: *x-y.pokemon.doublade.forms.doublade.art
+          footprint: *x-y.pokemon.doublade.forms.doublade.footprint
+          cry: *x-y.pokemon.doublade.forms.doublade.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    doublade:
+      genus: *x-y.pokemon.doublade.genus
+      evolution_parent: *x-y.pokemon.doublade.evolution_parent
+      color: *x-y.pokemon.doublade.color
+      shape: *x-y.pokemon.doublade.shape
+      female_rate: *x-y.pokemon.doublade.female_rate
+      capture_rate: *x-y.pokemon.doublade.capture_rate
+      happiness: *x-y.pokemon.doublade.happiness
+      baby: *x-y.pokemon.doublade.baby
+      hatch_steps: *x-y.pokemon.doublade.hatch_steps
+      growth_rate: *x-y.pokemon.doublade.growth_rate
+      forms_switchable: *x-y.pokemon.doublade.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.doublade.default
+      height: *x-y.pokemon.doublade.height
+      weight: *x-y.pokemon.doublade.weight
+      experience: *x-y.pokemon.doublade.experience
+      types: *x-y.pokemon.doublade.types
+      egg_groups: *x-y.pokemon.doublade.egg_groups
+      mega: *x-y.pokemon.doublade.mega
+      stats: *x-y.pokemon.doublade.stats
+      abilities: *x-y.pokemon.doublade.abilities
+      evolution_conditions: *x-y.pokemon.doublade.evolution_conditions
+      forms:
+        doublade:
+          name: *x-y.name
+          form_name: *x-y.pokemon.doublade.forms.doublade.form_name
+          default: *x-y.pokemon.doublade.default
+          battle_only: *x-y.pokemon.doublade.forms.doublade.battle_only
+          icon: *x-y.pokemon.doublade.forms.doublade.icon
+          sprites:
+            - ultra-sun-ultra-moon/doublade-default.png
+            - ultra-sun-ultra-moon/shiny/doublade-default.png
+          art: *x-y.pokemon.doublade.forms.doublade.art
+          footprint: *x-y.pokemon.doublade.forms.doublade.footprint
+          cry: *x-y.pokemon.doublade.forms.doublade.cry

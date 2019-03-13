@@ -62,19 +62,26 @@ black-white:
           By changing the direction in which it
           rotates, it communicates its feelings to
           others. When angry, it rotates faster.
-          
         white: |
           Spinning minigears are rotated at high
           speed and repeatedly fired away. It is
           dangerous if the gears don’t return.
-          
-      forms: &black-white.pokemon.klang.forms
+      forms:
         klang:
           name: *black-white.name
           form_name: &black-white.pokemon.klang.forms.klang.form_name 'Default Form'
           default: *black-white.pokemon.klang.default
           battle_only: &black-white.pokemon.klang.forms.klang.battle_only false
-          icon: gen5/klang-default.png
+          icon: &black-white.pokemon.klang.forms.klang.icon gen5/klang-default.png
+          sprites:
+            - black-white/klang-default.png
+            - black-white/back/klang-default.png
+            - black-white/back/shiny/klang-default.png
+            - black-white/shiny/klang-default.png
+          art: &black-white.pokemon.klang.forms.klang.art
+            - klang-default.png
+          footprint: &black-white.pokemon.klang.forms.klang.footprint klang.png
+          cry: &black-white.pokemon.klang.forms.klang.cry gen5/klang-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,13 +115,20 @@ black-2-white-2:
           A minigear and big gear comprise its
           body. If the minigear it launches at
           a foe doesn’t return, it will die.
-          
         white-2: |
           A minigear and big gear comprise its
           body. If the minigear it launches at
           a foe doesn’t return, it will die.
-          
-      forms: *black-white.pokemon.klang.forms
+      forms:
+        klang:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klang.forms.klang.form_name
+          default: *black-white.pokemon.klang.default
+          battle_only: *black-white.pokemon.klang.forms.klang.battle_only
+          icon: *black-white.pokemon.klang.forms.klang.icon
+          art: *black-white.pokemon.klang.forms.klang.art
+          footprint: *black-white.pokemon.klang.forms.klang.footprint
+          cry: *black-white.pokemon.klang.forms.klang.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -148,19 +162,23 @@ x-y:
           By changing the direction in which it rotates,
           it communicates its feelings to others. When angry,
           it rotates faster.
-          
         'y': |
           A minigear and big gear comprise its body. If the
           minigear it launches at a foe doesn’t return, it
           will die.
-          
-      forms: &x-y.pokemon.klang.forms
+      forms:
         klang:
           name: *black-white.name
           form_name: *black-white.pokemon.klang.forms.klang.form_name
           default: *black-white.pokemon.klang.default
           battle_only: *black-white.pokemon.klang.forms.klang.battle_only
-          icon: klang-default.png
+          icon: &x-y.pokemon.klang.forms.klang.icon klang-default.png
+          sprites:
+            - x-y/klang-default.png
+            - x-y/shiny/klang-default.png
+          art: *black-white.pokemon.klang.forms.klang.art
+          footprint: *black-white.pokemon.klang.forms.klang.footprint
+          cry: &x-y.pokemon.klang.forms.klang.cry klang-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -193,14 +211,21 @@ omega-ruby-alpha-sapphire:
           By changing the direction in which it rotates,
           it communicates its feelings to others. When angry,
           it rotates faster.
-          
         alpha-sapphire: |
           A minigear and big gear comprise its body. If the
           minigear it launches at a foe doesn’t return, it
           will die.
-          
-      forms: *x-y.pokemon.klang.forms
-sun-moon: &sun-moon
+      forms:
+        klang:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klang.forms.klang.form_name
+          default: *black-white.pokemon.klang.default
+          battle_only: *black-white.pokemon.klang.forms.klang.battle_only
+          icon: *x-y.pokemon.klang.forms.klang.icon
+          art: *black-white.pokemon.klang.forms.klang.art
+          footprint: *black-white.pokemon.klang.forms.klang.footprint
+          cry: *x-y.pokemon.klang.forms.klang.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -226,5 +251,55 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.klang.stats
       abilities: *black-white.pokemon.klang.abilities
       evolution_conditions: *black-white.pokemon.klang.evolution_conditions
-      forms: *x-y.pokemon.klang.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        klang:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klang.forms.klang.form_name
+          default: *black-white.pokemon.klang.default
+          battle_only: *black-white.pokemon.klang.forms.klang.battle_only
+          icon: *x-y.pokemon.klang.forms.klang.icon
+          sprites:
+            - sun-moon/klang-default.png
+            - sun-moon/shiny/klang-default.png
+          art: *black-white.pokemon.klang.forms.klang.art
+          footprint: *black-white.pokemon.klang.forms.klang.footprint
+          cry: *x-y.pokemon.klang.forms.klang.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    klang:
+      genus: *black-white.pokemon.klang.genus
+      evolution_parent: *black-white.pokemon.klang.evolution_parent
+      color: *black-white.pokemon.klang.color
+      shape: *black-white.pokemon.klang.shape
+      capture_rate: *black-white.pokemon.klang.capture_rate
+      happiness: *black-white.pokemon.klang.happiness
+      baby: *black-white.pokemon.klang.baby
+      hatch_steps: *black-white.pokemon.klang.hatch_steps
+      growth_rate: *black-white.pokemon.klang.growth_rate
+      forms_switchable: *black-white.pokemon.klang.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.klang.default
+      height: *black-white.pokemon.klang.height
+      weight: *black-white.pokemon.klang.weight
+      experience: *black-white.pokemon.klang.experience
+      types: *black-white.pokemon.klang.types
+      egg_groups: *black-white.pokemon.klang.egg_groups
+      mega: *x-y.pokemon.klang.mega
+      stats: *black-white.pokemon.klang.stats
+      abilities: *black-white.pokemon.klang.abilities
+      evolution_conditions: *black-white.pokemon.klang.evolution_conditions
+      forms:
+        klang:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klang.forms.klang.form_name
+          default: *black-white.pokemon.klang.default
+          battle_only: *black-white.pokemon.klang.forms.klang.battle_only
+          icon: *x-y.pokemon.klang.forms.klang.icon
+          sprites:
+            - ultra-sun-ultra-moon/klang-default.png
+            - ultra-sun-ultra-moon/shiny/klang-default.png
+          art: *black-white.pokemon.klang.forms.klang.art
+          footprint: *black-white.pokemon.klang.forms.klang.footprint
+          cry: *x-y.pokemon.klang.forms.klang.cry

@@ -60,19 +60,26 @@ black-white:
           They never vary the route they fly,
           because their memories of guarding
           an ancient city remain steadfast.
-          
         white: |
           The guardians of an ancient city, they
           use their psychic power to attack
           enemies that invade their territory.
-          
-      forms: &black-white.pokemon.sigilyph.forms
+      forms:
         sigilyph:
           name: *black-white.name
           form_name: &black-white.pokemon.sigilyph.forms.sigilyph.form_name 'Default Form'
           default: *black-white.pokemon.sigilyph.default
           battle_only: &black-white.pokemon.sigilyph.forms.sigilyph.battle_only false
-          icon: gen5/sigilyph-default.png
+          icon: &black-white.pokemon.sigilyph.forms.sigilyph.icon gen5/sigilyph-default.png
+          sprites:
+            - black-white/sigilyph-default.png
+            - black-white/back/sigilyph-default.png
+            - black-white/back/shiny/sigilyph-default.png
+            - black-white/shiny/sigilyph-default.png
+          art: &black-white.pokemon.sigilyph.forms.sigilyph.art
+            - sigilyph-default.png
+          footprint: &black-white.pokemon.sigilyph.forms.sigilyph.footprint sigilyph.png
+          cry: &black-white.pokemon.sigilyph.forms.sigilyph.cry gen5/sigilyph-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,13 +112,20 @@ black-2-white-2:
           The guardians of an ancient city, they
           always fly the same route while
           keeping watch for invaders.
-          
         white-2: |
           The guardians of an ancient city, they
           always fly the same route while
           keeping watch for invaders.
-          
-      forms: *black-white.pokemon.sigilyph.forms
+      forms:
+        sigilyph:
+          name: *black-white.name
+          form_name: *black-white.pokemon.sigilyph.forms.sigilyph.form_name
+          default: *black-white.pokemon.sigilyph.default
+          battle_only: *black-white.pokemon.sigilyph.forms.sigilyph.battle_only
+          icon: *black-white.pokemon.sigilyph.forms.sigilyph.icon
+          art: *black-white.pokemon.sigilyph.forms.sigilyph.art
+          footprint: *black-white.pokemon.sigilyph.forms.sigilyph.footprint
+          cry: *black-white.pokemon.sigilyph.forms.sigilyph.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -145,18 +159,22 @@ x-y:
           The guardians of an ancient city, they use their
           psychic power to attack enemies that invade
           their territory.
-          
         'y': |
           The guardians of an ancient city, they always fly
           the same route while keeping watch for invaders.
-          
-      forms: &x-y.pokemon.sigilyph.forms
+      forms:
         sigilyph:
           name: *black-white.name
           form_name: *black-white.pokemon.sigilyph.forms.sigilyph.form_name
           default: *black-white.pokemon.sigilyph.default
           battle_only: *black-white.pokemon.sigilyph.forms.sigilyph.battle_only
-          icon: sigilyph-default.png
+          icon: &x-y.pokemon.sigilyph.forms.sigilyph.icon sigilyph-default.png
+          sprites:
+            - x-y/sigilyph-default.png
+            - x-y/shiny/sigilyph-default.png
+          art: *black-white.pokemon.sigilyph.forms.sigilyph.art
+          footprint: *black-white.pokemon.sigilyph.forms.sigilyph.footprint
+          cry: &x-y.pokemon.sigilyph.forms.sigilyph.cry sigilyph-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -189,13 +207,20 @@ omega-ruby-alpha-sapphire:
           The guardians of an ancient city, they use their
           psychic power to attack enemies that invade
           their territory.
-          
         alpha-sapphire: |
           The guardians of an ancient city, they always fly
           the same route while keeping watch for invaders.
-          
-      forms: *x-y.pokemon.sigilyph.forms
-sun-moon: &sun-moon
+      forms:
+        sigilyph:
+          name: *black-white.name
+          form_name: *black-white.pokemon.sigilyph.forms.sigilyph.form_name
+          default: *black-white.pokemon.sigilyph.default
+          battle_only: *black-white.pokemon.sigilyph.forms.sigilyph.battle_only
+          icon: *x-y.pokemon.sigilyph.forms.sigilyph.icon
+          art: *black-white.pokemon.sigilyph.forms.sigilyph.art
+          footprint: *black-white.pokemon.sigilyph.forms.sigilyph.footprint
+          cry: *x-y.pokemon.sigilyph.forms.sigilyph.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -220,5 +245,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.sigilyph.mega
       stats: *black-white.pokemon.sigilyph.stats
       abilities: *black-white.pokemon.sigilyph.abilities
-      forms: *x-y.pokemon.sigilyph.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        sigilyph:
+          name: *black-white.name
+          form_name: *black-white.pokemon.sigilyph.forms.sigilyph.form_name
+          default: *black-white.pokemon.sigilyph.default
+          battle_only: *black-white.pokemon.sigilyph.forms.sigilyph.battle_only
+          icon: *x-y.pokemon.sigilyph.forms.sigilyph.icon
+          sprites:
+            - sun-moon/sigilyph-default.png
+            - sun-moon/shiny/sigilyph-default.png
+          art: *black-white.pokemon.sigilyph.forms.sigilyph.art
+          footprint: *black-white.pokemon.sigilyph.forms.sigilyph.footprint
+          cry: *x-y.pokemon.sigilyph.forms.sigilyph.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    sigilyph:
+      genus: *black-white.pokemon.sigilyph.genus
+      color: *black-white.pokemon.sigilyph.color
+      shape: *black-white.pokemon.sigilyph.shape
+      female_rate: *black-white.pokemon.sigilyph.female_rate
+      capture_rate: *black-white.pokemon.sigilyph.capture_rate
+      happiness: *black-white.pokemon.sigilyph.happiness
+      baby: *black-white.pokemon.sigilyph.baby
+      hatch_steps: *black-white.pokemon.sigilyph.hatch_steps
+      growth_rate: *black-white.pokemon.sigilyph.growth_rate
+      forms_switchable: *black-white.pokemon.sigilyph.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.sigilyph.default
+      height: *black-white.pokemon.sigilyph.height
+      weight: *black-white.pokemon.sigilyph.weight
+      experience: *black-white.pokemon.sigilyph.experience
+      types: *black-white.pokemon.sigilyph.types
+      egg_groups: *black-white.pokemon.sigilyph.egg_groups
+      mega: *x-y.pokemon.sigilyph.mega
+      stats: *black-white.pokemon.sigilyph.stats
+      abilities: *black-white.pokemon.sigilyph.abilities
+      forms:
+        sigilyph:
+          name: *black-white.name
+          form_name: *black-white.pokemon.sigilyph.forms.sigilyph.form_name
+          default: *black-white.pokemon.sigilyph.default
+          battle_only: *black-white.pokemon.sigilyph.forms.sigilyph.battle_only
+          icon: *x-y.pokemon.sigilyph.forms.sigilyph.icon
+          sprites:
+            - ultra-sun-ultra-moon/sigilyph-default.png
+            - ultra-sun-ultra-moon/shiny/sigilyph-default.png
+          art: *black-white.pokemon.sigilyph.forms.sigilyph.art
+          footprint: *black-white.pokemon.sigilyph.forms.sigilyph.footprint
+          cry: *x-y.pokemon.sigilyph.forms.sigilyph.cry

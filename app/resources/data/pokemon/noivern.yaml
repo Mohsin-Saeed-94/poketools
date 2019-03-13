@@ -65,19 +65,24 @@ x-y:
           They fly around on moonless nights
           and attack careless prey. Nothing can
           beat them in a battle in the dark.
-          
         'y': |
           The ultrasonic waves it emits from its ears
           can reduce a large boulder to pebbles.
           It swoops out of the dark to attack.
-          
-      forms: &x-y.pokemon.noivern.forms
+      forms:
         noivern:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.noivern.forms.noivern.form_name 'Default Form'
           default: *x-y.pokemon.noivern.default
-          battle_only: false
-          icon: noivern-default.png
+          battle_only: &x-y.pokemon.noivern.forms.noivern.battle_only false
+          icon: &x-y.pokemon.noivern.forms.noivern.icon noivern-default.png
+          sprites:
+            - x-y/noivern-default.png
+            - x-y/shiny/noivern-default.png
+          art: &x-y.pokemon.noivern.forms.noivern.art
+            - noivern-default.png
+          footprint: &x-y.pokemon.noivern.forms.noivern.footprint noivern.png
+          cry: &x-y.pokemon.noivern.forms.noivern.cry noivern-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -112,13 +117,20 @@ omega-ruby-alpha-sapphire:
           They fly around on moonless nights
           and attack careless prey. Nothing can
           beat them in a battle in the dark.
-          
         alpha-sapphire: |
           The ultrasonic waves it emits from its ears
           can reduce a large boulder to pebbles.
           It swoops out of the dark to attack.
-          
-      forms: *x-y.pokemon.noivern.forms
+      forms:
+        noivern:
+          name: *x-y.name
+          form_name: *x-y.pokemon.noivern.forms.noivern.form_name
+          default: *x-y.pokemon.noivern.default
+          battle_only: *x-y.pokemon.noivern.forms.noivern.battle_only
+          icon: *x-y.pokemon.noivern.forms.noivern.icon
+          art: *x-y.pokemon.noivern.forms.noivern.art
+          footprint: *x-y.pokemon.noivern.forms.noivern.footprint
+          cry: *x-y.pokemon.noivern.forms.noivern.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -146,7 +158,19 @@ sun-moon:
       stats: *x-y.pokemon.noivern.stats
       abilities: *x-y.pokemon.noivern.abilities
       evolution_conditions: *x-y.pokemon.noivern.evolution_conditions
-      forms: *x-y.pokemon.noivern.forms
+      forms:
+        noivern:
+          name: *x-y.name
+          form_name: *x-y.pokemon.noivern.forms.noivern.form_name
+          default: *x-y.pokemon.noivern.default
+          battle_only: *x-y.pokemon.noivern.forms.noivern.battle_only
+          icon: *x-y.pokemon.noivern.forms.noivern.icon
+          sprites:
+            - sun-moon/noivern-default.png
+            - sun-moon/shiny/noivern-default.png
+          art: *x-y.pokemon.noivern.forms.noivern.art
+          footprint: *x-y.pokemon.noivern.forms.noivern.footprint
+          cry: *x-y.pokemon.noivern.forms.noivern.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -179,5 +203,16 @@ ultra-sun-ultra-moon:
           Although it has a violent disposition, if you give
           it a nice ripe fruit that it loves, Noivern will
           suddenly become tame.
-          
-      forms: *x-y.pokemon.noivern.forms
+      forms:
+        noivern:
+          name: *x-y.name
+          form_name: *x-y.pokemon.noivern.forms.noivern.form_name
+          default: *x-y.pokemon.noivern.default
+          battle_only: *x-y.pokemon.noivern.forms.noivern.battle_only
+          icon: *x-y.pokemon.noivern.forms.noivern.icon
+          sprites:
+            - ultra-sun-ultra-moon/noivern-default.png
+            - ultra-sun-ultra-moon/shiny/noivern-default.png
+          art: *x-y.pokemon.noivern.forms.noivern.art
+          footprint: *x-y.pokemon.noivern.forms.noivern.footprint
+          cry: *x-y.pokemon.noivern.forms.noivern.cry

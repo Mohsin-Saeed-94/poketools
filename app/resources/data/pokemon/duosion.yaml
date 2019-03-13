@@ -63,19 +63,26 @@ black-white:
           Since they have two divided brains,
           at times they suddenly try to take two
           different actions at once.
-          
         white: |
           When their brains, now divided in two,
           are thinking the same thoughts, these
           Pokémon exhibit their maximum power.
-          
-      forms: &black-white.pokemon.duosion.forms
+      forms:
         duosion:
           name: *black-white.name
           form_name: &black-white.pokemon.duosion.forms.duosion.form_name 'Default Form'
           default: *black-white.pokemon.duosion.default
           battle_only: &black-white.pokemon.duosion.forms.duosion.battle_only false
-          icon: gen5/duosion-default.png
+          icon: &black-white.pokemon.duosion.forms.duosion.icon gen5/duosion-default.png
+          sprites:
+            - black-white/back/duosion-default.png
+            - black-white/back/shiny/duosion-default.png
+            - black-white/duosion-default.png
+            - black-white/shiny/duosion-default.png
+          art: &black-white.pokemon.duosion.forms.duosion.art
+            - duosion-default.png
+          footprint: &black-white.pokemon.duosion.forms.duosion.footprint duosion.png
+          cry: &black-white.pokemon.duosion.forms.duosion.cry gen5/duosion-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -114,13 +121,20 @@ black-2-white-2:
           When their two divided brains
           think the same thoughts,
           their psychic power is maximized.
-          
         white-2: |
           When their two divided brains
           think the same thoughts,
           their psychic power is maximized.
-          
-      forms: *black-white.pokemon.duosion.forms
+      forms:
+        duosion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.duosion.forms.duosion.form_name
+          default: *black-white.pokemon.duosion.default
+          battle_only: *black-white.pokemon.duosion.forms.duosion.battle_only
+          icon: *black-white.pokemon.duosion.forms.duosion.icon
+          art: *black-white.pokemon.duosion.forms.duosion.art
+          footprint: *black-white.pokemon.duosion.forms.duosion.footprint
+          cry: *black-white.pokemon.duosion.forms.duosion.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -155,18 +169,22 @@ x-y:
         x: |
           Since they have two divided brains, at times they
           suddenly try to take two different actions at once.
-          
         'y': |
           When their two divided brains think the same
           thoughts, their psychic power is maximized.
-          
-      forms: &x-y.pokemon.duosion.forms
+      forms:
         duosion:
           name: *black-white.name
           form_name: *black-white.pokemon.duosion.forms.duosion.form_name
           default: *black-white.pokemon.duosion.default
           battle_only: *black-white.pokemon.duosion.forms.duosion.battle_only
-          icon: duosion-default.png
+          icon: &x-y.pokemon.duosion.forms.duosion.icon duosion-default.png
+          sprites:
+            - x-y/duosion-default.png
+            - x-y/shiny/duosion-default.png
+          art: *black-white.pokemon.duosion.forms.duosion.art
+          footprint: *black-white.pokemon.duosion.forms.duosion.footprint
+          cry: &x-y.pokemon.duosion.forms.duosion.cry duosion-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -200,13 +218,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Since they have two divided brains, at times they
           suddenly try to take two different actions at once.
-          
         alpha-sapphire: |
           When their two divided brains think the same
           thoughts, their psychic power is maximized.
-          
-      forms: *x-y.pokemon.duosion.forms
-sun-moon: &sun-moon
+      forms:
+        duosion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.duosion.forms.duosion.form_name
+          default: *black-white.pokemon.duosion.default
+          battle_only: *black-white.pokemon.duosion.forms.duosion.battle_only
+          icon: *x-y.pokemon.duosion.forms.duosion.icon
+          art: *black-white.pokemon.duosion.forms.duosion.art
+          footprint: *black-white.pokemon.duosion.forms.duosion.footprint
+          cry: *x-y.pokemon.duosion.forms.duosion.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -233,5 +258,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.duosion.stats
       abilities: *black-white.pokemon.duosion.abilities
       evolution_conditions: *black-white.pokemon.duosion.evolution_conditions
-      forms: *x-y.pokemon.duosion.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        duosion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.duosion.forms.duosion.form_name
+          default: *black-white.pokemon.duosion.default
+          battle_only: *black-white.pokemon.duosion.forms.duosion.battle_only
+          icon: *x-y.pokemon.duosion.forms.duosion.icon
+          sprites:
+            - sun-moon/duosion-default.png
+            - sun-moon/shiny/duosion-default.png
+          art: *black-white.pokemon.duosion.forms.duosion.art
+          footprint: *black-white.pokemon.duosion.forms.duosion.footprint
+          cry: *x-y.pokemon.duosion.forms.duosion.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    duosion:
+      genus: *black-white.pokemon.duosion.genus
+      evolution_parent: *black-white.pokemon.duosion.evolution_parent
+      color: *black-white.pokemon.duosion.color
+      shape: *black-white.pokemon.duosion.shape
+      female_rate: *black-white.pokemon.duosion.female_rate
+      capture_rate: *black-white.pokemon.duosion.capture_rate
+      happiness: *black-white.pokemon.duosion.happiness
+      baby: *black-white.pokemon.duosion.baby
+      hatch_steps: *black-white.pokemon.duosion.hatch_steps
+      growth_rate: *black-white.pokemon.duosion.growth_rate
+      forms_switchable: *black-white.pokemon.duosion.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.duosion.default
+      height: *black-white.pokemon.duosion.height
+      weight: *black-white.pokemon.duosion.weight
+      experience: *black-white.pokemon.duosion.experience
+      types: *black-white.pokemon.duosion.types
+      egg_groups: *black-white.pokemon.duosion.egg_groups
+      mega: *x-y.pokemon.duosion.mega
+      stats: *black-white.pokemon.duosion.stats
+      abilities: *black-white.pokemon.duosion.abilities
+      evolution_conditions: *black-white.pokemon.duosion.evolution_conditions
+      forms:
+        duosion:
+          name: *black-white.name
+          form_name: *black-white.pokemon.duosion.forms.duosion.form_name
+          default: *black-white.pokemon.duosion.default
+          battle_only: *black-white.pokemon.duosion.forms.duosion.battle_only
+          icon: *x-y.pokemon.duosion.forms.duosion.icon
+          sprites:
+            - ultra-sun-ultra-moon/duosion-default.png
+            - ultra-sun-ultra-moon/shiny/duosion-default.png
+          art: *black-white.pokemon.duosion.forms.duosion.art
+          footprint: *black-white.pokemon.duosion.forms.duosion.footprint
+          cry: *x-y.pokemon.duosion.forms.duosion.cry

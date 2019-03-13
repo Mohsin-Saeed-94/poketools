@@ -64,19 +64,27 @@ x-y:
         x: |
           The male with the largest mane of fire
           is the leader of the pride.
-          
         'y': |
           With fiery breath of more than 10,000 degrees
           Fahrenheit, they viciously threaten any challenger.
           The females protect the pride’s cubs.
-          
-      forms: &x-y.pokemon.pyroar.forms
+      forms:
         pyroar:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.pyroar.forms.pyroar.form_name 'Default Form'
           default: *x-y.pokemon.pyroar.default
-          battle_only: false
-          icon: pyroar-default.png
+          battle_only: &x-y.pokemon.pyroar.forms.pyroar.battle_only false
+          icon: &x-y.pokemon.pyroar.forms.pyroar.icon pyroar-default.png
+          sprites:
+            - x-y/pyroar-default.png
+            - x-y/female/pyroar-default.png
+            - x-y/shiny/pyroar-default.png
+            - x-y/shiny/female/pyroar-default.png
+          art: &x-y.pokemon.pyroar.forms.pyroar.art
+            - pyroar-default.png
+            - female/pyroar-default.png
+          footprint: &x-y.pokemon.pyroar.forms.pyroar.footprint pyroar.png
+          cry: &x-y.pokemon.pyroar.forms.pyroar.cry pyroar-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -110,13 +118,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The male with the largest mane of fire
           is the leader of the pride.
-          
         alpha-sapphire: |
           With fiery breath of more than 10,000 degrees
           Fahrenheit, they viciously threaten any challenger.
           The females protect the pride’s cubs.
-          
-      forms: *x-y.pokemon.pyroar.forms
+      forms:
+        pyroar:
+          name: *x-y.name
+          form_name: *x-y.pokemon.pyroar.forms.pyroar.form_name
+          default: *x-y.pokemon.pyroar.default
+          battle_only: *x-y.pokemon.pyroar.forms.pyroar.battle_only
+          icon: *x-y.pokemon.pyroar.forms.pyroar.icon
+          art: *x-y.pokemon.pyroar.forms.pyroar.art
+          footprint: *x-y.pokemon.pyroar.forms.pyroar.footprint
+          cry: *x-y.pokemon.pyroar.forms.pyroar.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -144,7 +159,21 @@ sun-moon:
       stats: *x-y.pokemon.pyroar.stats
       abilities: *x-y.pokemon.pyroar.abilities
       evolution_conditions: *x-y.pokemon.pyroar.evolution_conditions
-      forms: *x-y.pokemon.pyroar.forms
+      forms:
+        pyroar:
+          name: *x-y.name
+          form_name: *x-y.pokemon.pyroar.forms.pyroar.form_name
+          default: *x-y.pokemon.pyroar.default
+          battle_only: *x-y.pokemon.pyroar.forms.pyroar.battle_only
+          icon: *x-y.pokemon.pyroar.forms.pyroar.icon
+          sprites:
+            - sun-moon/pyroar-default.png
+            - sun-moon/female/pyroar-default.png
+            - sun-moon/shiny/pyroar-default.png
+            - sun-moon/shiny/female/pyroar-default.png
+          art: *x-y.pokemon.pyroar.forms.pyroar.art
+          footprint: *x-y.pokemon.pyroar.forms.pyroar.footprint
+          cry: *x-y.pokemon.pyroar.forms.pyroar.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -177,5 +206,18 @@ ultra-sun-ultra-moon:
           The males are usually lazy, but when attacked
           by a strong foe, a male will protect its friends
           with no regard for its own safety.
-          
-      forms: *x-y.pokemon.pyroar.forms
+      forms:
+        pyroar:
+          name: *x-y.name
+          form_name: *x-y.pokemon.pyroar.forms.pyroar.form_name
+          default: *x-y.pokemon.pyroar.default
+          battle_only: *x-y.pokemon.pyroar.forms.pyroar.battle_only
+          icon: *x-y.pokemon.pyroar.forms.pyroar.icon
+          sprites:
+            - ultra-sun-ultra-moon/pyroar-default.png
+            - ultra-sun-ultra-moon/female/pyroar-default.png
+            - ultra-sun-ultra-moon/shiny/pyroar-default.png
+            - ultra-sun-ultra-moon/shiny/female/pyroar-default.png
+          art: *x-y.pokemon.pyroar.forms.pyroar.art
+          footprint: *x-y.pokemon.pyroar.forms.pyroar.footprint
+          cry: *x-y.pokemon.pyroar.forms.pyroar.cry

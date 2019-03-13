@@ -66,18 +66,21 @@ x-y:
           When in danger, it raises its ears and
           releases enough psychic power to
           grind a 10-ton truck into dust.
-          
         'y': |
           The eyeball patterns on the interior of its ears
           emit psychic energy. It keeps the patterns tightly
           covered because that power is too immense.
-      forms: &x-y.pokemon.meowstic-male.forms
+      forms:
         meowstic-male:
-          name: 'Male Meowstic'
-          form_name: Male
+          name: &x-y.pokemon.meowstic-male.forms.meowstic-male.name 'Male Meowstic'
+          form_name: &x-y.pokemon.meowstic-male.forms.meowstic-male.form_name Male
           default: *x-y.pokemon.meowstic-male.default
           battle_only: &x-y.pokemon.meowstic-male.forms.meowstic-male.battle_only false
-          icon: meowstic-male.png
+          icon: &x-y.pokemon.meowstic-male.forms.meowstic-male.icon meowstic-male.png
+          sprites:
+            - x-y/shiny/meowstic-male.png
+            - x-y/meowstic-male.png
+          footprint: &x-y.pokemon.meowstic-male.forms.meowstic-male.footprint meowstic.png
     meowstic-female:
       genus: *x-y.pokemon.meowstic-male.genus
       evolution_parent: *x-y.pokemon.meowstic-male.evolution_parent
@@ -106,13 +109,17 @@ x-y:
         competitive: *x-y.pokemon.meowstic-male.abilities.prankster
       evolution_conditions: *x-y.pokemon.meowstic-male.evolution_conditions
       flavor_text: *x-y.pokemon.meowstic-male.flavor_text
-      forms: &x-y.pokemon.meowstic-female.forms
+      forms:
         meowstic-female:
           name: *x-y.pokemon.meowstic-female.name
-          form_name: Female
+          form_name: &x-y.pokemon.meowstic-female.forms.meowstic-female.form_name Female
           default: *x-y.pokemon.meowstic-male.default
           battle_only: *x-y.pokemon.meowstic-male.forms.meowstic-male.battle_only
-          icon: meowstic-female.png
+          icon: &x-y.pokemon.meowstic-female.forms.meowstic-female.icon meowstic-female.png
+          sprites:
+            - x-y/meowstic-female.png
+            - x-y/shiny/meowstic-female.png
+          footprint: *x-y.pokemon.meowstic-male.forms.meowstic-male.footprint
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -148,12 +155,18 @@ omega-ruby-alpha-sapphire:
           When in danger, it raises its ears and
           releases enough psychic power to
           grind a 10-ton truck into dust.
-          
         alpha-sapphire: |
           The eyeball patterns on the interior of its ears
           emit psychic energy. It keeps the patterns tightly
           covered because that power is too immense.
-      forms: *x-y.pokemon.meowstic-male.forms
+      forms:
+        meowstic-male:
+          name: *x-y.pokemon.meowstic-male.forms.meowstic-male.name
+          form_name: *x-y.pokemon.meowstic-male.forms.meowstic-male.form_name
+          default: *x-y.pokemon.meowstic-male.default
+          battle_only: *x-y.pokemon.meowstic-male.forms.meowstic-male.battle_only
+          icon: *x-y.pokemon.meowstic-male.forms.meowstic-male.icon
+          footprint: *x-y.pokemon.meowstic-male.forms.meowstic-male.footprint
     meowstic-female:
       genus: *x-y.pokemon.meowstic-male.genus
       evolution_parent: *x-y.pokemon.meowstic-male.evolution_parent
@@ -179,8 +192,15 @@ omega-ruby-alpha-sapphire:
       abilities: *x-y.pokemon.meowstic-female.abilities
       evolution_conditions: *x-y.pokemon.meowstic-male.evolution_conditions
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.meowstic-male.flavor_text
-      forms: *x-y.pokemon.meowstic-female.forms
-sun-moon: &sun-moon
+      forms: &omega-ruby-alpha-sapphire.pokemon.meowstic-female.forms
+        meowstic-female:
+          name: *x-y.pokemon.meowstic-female.name
+          form_name: *x-y.pokemon.meowstic-female.forms.meowstic-female.form_name
+          default: *x-y.pokemon.meowstic-male.default
+          battle_only: *x-y.pokemon.meowstic-male.forms.meowstic-male.battle_only
+          icon: *x-y.pokemon.meowstic-female.forms.meowstic-female.icon
+          footprint: *x-y.pokemon.meowstic-male.forms.meowstic-male.footprint
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -208,8 +228,20 @@ sun-moon: &sun-moon
       stats: *x-y.pokemon.meowstic-male.stats
       abilities: *x-y.pokemon.meowstic-male.abilities
       evolution_conditions: *x-y.pokemon.meowstic-male.evolution_conditions
-      forms: *x-y.pokemon.meowstic-male.forms
-    meowstic-female:
+      forms:
+        meowstic-male:
+          name: *x-y.pokemon.meowstic-male.forms.meowstic-male.name
+          form_name: *x-y.pokemon.meowstic-male.forms.meowstic-male.form_name
+          default: *x-y.pokemon.meowstic-male.default
+          battle_only: *x-y.pokemon.meowstic-male.forms.meowstic-male.battle_only
+          icon: *x-y.pokemon.meowstic-male.forms.meowstic-male.icon
+          sprites:
+            - sun-moon/female/meowstic-male.png
+            - sun-moon/shiny/female/meowstic-male.png
+            - sun-moon/shiny/meowstic-male.png
+            - sun-moon/meowstic-male.png
+          footprint: *x-y.pokemon.meowstic-male.forms.meowstic-male.footprint
+    meowstic-female: &sun-moon.pokemon.meowstic-female
       genus: *x-y.pokemon.meowstic-male.genus
       evolution_parent: *x-y.pokemon.meowstic-male.evolution_parent
       color: *x-y.pokemon.meowstic-male.color
@@ -233,5 +265,46 @@ sun-moon: &sun-moon
       stats: *x-y.pokemon.meowstic-male.stats
       abilities: *x-y.pokemon.meowstic-female.abilities
       evolution_conditions: *x-y.pokemon.meowstic-male.evolution_conditions
-      forms: *x-y.pokemon.meowstic-female.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms: *omega-ruby-alpha-sapphire.pokemon.meowstic-female.forms
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    meowstic-male:
+      genus: *x-y.pokemon.meowstic-male.genus
+      evolution_parent: *x-y.pokemon.meowstic-male.evolution_parent
+      color: *x-y.pokemon.meowstic-male.color
+      shape: *x-y.pokemon.meowstic-male.shape
+      female_rate: *x-y.pokemon.meowstic-male.female_rate
+      capture_rate: *x-y.pokemon.meowstic-male.capture_rate
+      happiness: *x-y.pokemon.meowstic-male.happiness
+      baby: *x-y.pokemon.meowstic-male.baby
+      hatch_steps: *x-y.pokemon.meowstic-male.hatch_steps
+      growth_rate: *x-y.pokemon.meowstic-male.growth_rate
+      forms_switchable: *x-y.pokemon.meowstic-male.forms_switchable
+      forms_note: *x-y.pokemon.meowstic-male.forms_note
+      name: *x-y.name
+      default: *x-y.pokemon.meowstic-male.default
+      height: *x-y.pokemon.meowstic-male.height
+      weight: *x-y.pokemon.meowstic-male.weight
+      experience: *x-y.pokemon.meowstic-male.experience
+      types: *x-y.pokemon.meowstic-male.types
+      egg_groups: *x-y.pokemon.meowstic-male.egg_groups
+      mega: *x-y.pokemon.meowstic-male.mega
+      stats: *x-y.pokemon.meowstic-male.stats
+      abilities: *x-y.pokemon.meowstic-male.abilities
+      evolution_conditions: *x-y.pokemon.meowstic-male.evolution_conditions
+      forms:
+        meowstic-male:
+          name: *x-y.pokemon.meowstic-male.forms.meowstic-male.name
+          form_name: *x-y.pokemon.meowstic-male.forms.meowstic-male.form_name
+          default: *x-y.pokemon.meowstic-male.default
+          battle_only: *x-y.pokemon.meowstic-male.forms.meowstic-male.battle_only
+          icon: *x-y.pokemon.meowstic-male.forms.meowstic-male.icon
+          sprites:
+            - ultra-sun-ultra-moon/female/meowstic-male.png
+            - ultra-sun-ultra-moon/shiny/female/meowstic-male.png
+            - ultra-sun-ultra-moon/shiny/meowstic-male.png
+            - ultra-sun-ultra-moon/meowstic-male.png
+          footprint: *x-y.pokemon.meowstic-male.forms.meowstic-male.footprint
+    meowstic-female: *sun-moon.pokemon.meowstic-female

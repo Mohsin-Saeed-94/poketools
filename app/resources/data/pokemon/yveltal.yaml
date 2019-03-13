@@ -54,19 +54,24 @@ x-y:
           When this legendary Pokémon’s wings and
           tail feathers spread wide and glow red,
           it absorbs the life force of living creatures.
-          
         'y': |
           When its life comes to an end, it absorbs
           the life energy of every living thing
           and turns into a cocoon once more.
-          
-      forms: &x-y.pokemon.yveltal.forms
+      forms:
         yveltal:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.yveltal.forms.yveltal.form_name 'Default Form'
           default: *x-y.pokemon.yveltal.default
-          battle_only: false
-          icon: yveltal-default.png
+          battle_only: &x-y.pokemon.yveltal.forms.yveltal.battle_only false
+          icon: &x-y.pokemon.yveltal.forms.yveltal.icon yveltal-default.png
+          sprites:
+            - x-y/yveltal-default.png
+            - x-y/shiny/yveltal-default.png
+          art: &x-y.pokemon.yveltal.forms.yveltal.art
+            - yveltal-default.png
+          footprint: &x-y.pokemon.yveltal.forms.yveltal.footprint yveltal.png
+          cry: &x-y.pokemon.yveltal.forms.yveltal.cry yveltal-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -98,14 +103,21 @@ omega-ruby-alpha-sapphire:
           When this legendary Pokémon’s wings and
           tail feathers spread wide and glow red,
           it absorbs the life force of living creatures.
-          
         alpha-sapphire: |
           When its life comes to an end, it absorbs
           the life energy of every living thing
           and turns into a cocoon once more.
-          
-      forms: *x-y.pokemon.yveltal.forms
-sun-moon: &sun-moon
+      forms:
+        yveltal:
+          name: *x-y.name
+          form_name: *x-y.pokemon.yveltal.forms.yveltal.form_name
+          default: *x-y.pokemon.yveltal.default
+          battle_only: *x-y.pokemon.yveltal.forms.yveltal.battle_only
+          icon: *x-y.pokemon.yveltal.forms.yveltal.icon
+          art: *x-y.pokemon.yveltal.forms.yveltal.art
+          footprint: *x-y.pokemon.yveltal.forms.yveltal.footprint
+          cry: *x-y.pokemon.yveltal.forms.yveltal.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -129,5 +141,53 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.yveltal.mega
       stats: *x-y.pokemon.yveltal.stats
       abilities: *x-y.pokemon.yveltal.abilities
-      forms: *x-y.pokemon.yveltal.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        yveltal:
+          name: *x-y.name
+          form_name: *x-y.pokemon.yveltal.forms.yveltal.form_name
+          default: *x-y.pokemon.yveltal.default
+          battle_only: *x-y.pokemon.yveltal.forms.yveltal.battle_only
+          icon: *x-y.pokemon.yveltal.forms.yveltal.icon
+          sprites:
+            - sun-moon/yveltal-default.png
+            - sun-moon/shiny/yveltal-default.png
+          art: *x-y.pokemon.yveltal.forms.yveltal.art
+          footprint: *x-y.pokemon.yveltal.forms.yveltal.footprint
+          cry: *x-y.pokemon.yveltal.forms.yveltal.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    yveltal:
+      genus: *x-y.pokemon.yveltal.genus
+      color: *x-y.pokemon.yveltal.color
+      shape: *x-y.pokemon.yveltal.shape
+      capture_rate: *x-y.pokemon.yveltal.capture_rate
+      happiness: *x-y.pokemon.yveltal.happiness
+      baby: *x-y.pokemon.yveltal.baby
+      hatch_steps: *x-y.pokemon.yveltal.hatch_steps
+      growth_rate: *x-y.pokemon.yveltal.growth_rate
+      forms_switchable: *x-y.pokemon.yveltal.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.yveltal.default
+      height: *x-y.pokemon.yveltal.height
+      weight: *x-y.pokemon.yveltal.weight
+      experience: *x-y.pokemon.yveltal.experience
+      types: *x-y.pokemon.yveltal.types
+      egg_groups: *x-y.pokemon.yveltal.egg_groups
+      mega: *x-y.pokemon.yveltal.mega
+      stats: *x-y.pokemon.yveltal.stats
+      abilities: *x-y.pokemon.yveltal.abilities
+      forms:
+        yveltal:
+          name: *x-y.name
+          form_name: *x-y.pokemon.yveltal.forms.yveltal.form_name
+          default: *x-y.pokemon.yveltal.default
+          battle_only: *x-y.pokemon.yveltal.forms.yveltal.battle_only
+          icon: *x-y.pokemon.yveltal.forms.yveltal.icon
+          sprites:
+            - ultra-sun-ultra-moon/yveltal-default.png
+            - ultra-sun-ultra-moon/shiny/yveltal-default.png
+          art: *x-y.pokemon.yveltal.forms.yveltal.art
+          footprint: *x-y.pokemon.yveltal.forms.yveltal.footprint
+          cry: *x-y.pokemon.yveltal.forms.yveltal.cry

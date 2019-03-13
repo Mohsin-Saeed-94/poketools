@@ -59,19 +59,26 @@ black-white:
           It fights by swinging a piece of lumber
           around. It is close to evolving when it
           can handle the lumber without difficulty.
-          
         white: |
           These Pokémon appear at building
           sites and help out with construction.
           They always carry squared logs.
-          
-      forms: &black-white.pokemon.timburr.forms
+      forms:
         timburr:
           name: *black-white.name
           form_name: &black-white.pokemon.timburr.forms.timburr.form_name 'Default Form'
           default: *black-white.pokemon.timburr.default
           battle_only: &black-white.pokemon.timburr.forms.timburr.battle_only false
-          icon: gen5/timburr-default.png
+          icon: &black-white.pokemon.timburr.forms.timburr.icon gen5/timburr-default.png
+          sprites:
+            - black-white/timburr-default.png
+            - black-white/back/timburr-default.png
+            - black-white/back/shiny/timburr-default.png
+            - black-white/shiny/timburr-default.png
+          art: &black-white.pokemon.timburr.forms.timburr.art
+            - timburr-default.png
+          footprint: &black-white.pokemon.timburr.forms.timburr.footprint timburr.png
+          cry: &black-white.pokemon.timburr.forms.timburr.cry gen5/timburr-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -104,13 +111,20 @@ black-2-white-2:
           Always carrying squared logs,
           they help out with construction.
           As they grow, they carry bigger logs.
-          
         white-2: |
           Always carrying squared logs,
           they help out with construction.
           As they grow, they carry bigger logs.
-          
-      forms: *black-white.pokemon.timburr.forms
+      forms:
+        timburr:
+          name: *black-white.name
+          form_name: *black-white.pokemon.timburr.forms.timburr.form_name
+          default: *black-white.pokemon.timburr.default
+          battle_only: *black-white.pokemon.timburr.forms.timburr.battle_only
+          icon: *black-white.pokemon.timburr.forms.timburr.icon
+          art: *black-white.pokemon.timburr.forms.timburr.art
+          footprint: *black-white.pokemon.timburr.forms.timburr.footprint
+          cry: *black-white.pokemon.timburr.forms.timburr.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -144,18 +158,22 @@ x-y:
           These Pokémon appear at building sites and help
           out with construction. They always carry
           squared logs.
-          
         'y': |
           Always carrying squared logs, they help out with
           construction. As they grow, they carry bigger logs.
-          
-      forms: &x-y.pokemon.timburr.forms
+      forms:
         timburr:
           name: *black-white.name
           form_name: *black-white.pokemon.timburr.forms.timburr.form_name
           default: *black-white.pokemon.timburr.default
           battle_only: *black-white.pokemon.timburr.forms.timburr.battle_only
-          icon: timburr-default.png
+          icon: &x-y.pokemon.timburr.forms.timburr.icon timburr-default.png
+          sprites:
+            - x-y/timburr-default.png
+            - x-y/shiny/timburr-default.png
+          art: *black-white.pokemon.timburr.forms.timburr.art
+          footprint: *black-white.pokemon.timburr.forms.timburr.footprint
+          cry: &x-y.pokemon.timburr.forms.timburr.cry timburr-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -188,13 +206,20 @@ omega-ruby-alpha-sapphire:
           These Pokémon appear at building sites and help
           out with construction. They always carry
           squared logs.
-          
         alpha-sapphire: |
           Always carrying squared logs, they help out with
           construction. As they grow, they carry bigger logs.
-          
-      forms: *x-y.pokemon.timburr.forms
-sun-moon: &sun-moon
+      forms:
+        timburr:
+          name: *black-white.name
+          form_name: *black-white.pokemon.timburr.forms.timburr.form_name
+          default: *black-white.pokemon.timburr.default
+          battle_only: *black-white.pokemon.timburr.forms.timburr.battle_only
+          icon: *x-y.pokemon.timburr.forms.timburr.icon
+          art: *black-white.pokemon.timburr.forms.timburr.art
+          footprint: *black-white.pokemon.timburr.forms.timburr.footprint
+          cry: *x-y.pokemon.timburr.forms.timburr.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -219,5 +244,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.timburr.mega
       stats: *black-white.pokemon.timburr.stats
       abilities: *black-white.pokemon.timburr.abilities
-      forms: *x-y.pokemon.timburr.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        timburr:
+          name: *black-white.name
+          form_name: *black-white.pokemon.timburr.forms.timburr.form_name
+          default: *black-white.pokemon.timburr.default
+          battle_only: *black-white.pokemon.timburr.forms.timburr.battle_only
+          icon: *x-y.pokemon.timburr.forms.timburr.icon
+          sprites:
+            - sun-moon/timburr-default.png
+            - sun-moon/shiny/timburr-default.png
+          art: *black-white.pokemon.timburr.forms.timburr.art
+          footprint: *black-white.pokemon.timburr.forms.timburr.footprint
+          cry: *x-y.pokemon.timburr.forms.timburr.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    timburr:
+      genus: *black-white.pokemon.timburr.genus
+      color: *black-white.pokemon.timburr.color
+      shape: *black-white.pokemon.timburr.shape
+      female_rate: *black-white.pokemon.timburr.female_rate
+      capture_rate: *black-white.pokemon.timburr.capture_rate
+      happiness: *black-white.pokemon.timburr.happiness
+      baby: *black-white.pokemon.timburr.baby
+      hatch_steps: *black-white.pokemon.timburr.hatch_steps
+      growth_rate: *black-white.pokemon.timburr.growth_rate
+      forms_switchable: *black-white.pokemon.timburr.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.timburr.default
+      height: *black-white.pokemon.timburr.height
+      weight: *black-white.pokemon.timburr.weight
+      experience: *black-white.pokemon.timburr.experience
+      types: *black-white.pokemon.timburr.types
+      egg_groups: *black-white.pokemon.timburr.egg_groups
+      mega: *x-y.pokemon.timburr.mega
+      stats: *black-white.pokemon.timburr.stats
+      abilities: *black-white.pokemon.timburr.abilities
+      forms:
+        timburr:
+          name: *black-white.name
+          form_name: *black-white.pokemon.timburr.forms.timburr.form_name
+          default: *black-white.pokemon.timburr.default
+          battle_only: *black-white.pokemon.timburr.forms.timburr.battle_only
+          icon: *x-y.pokemon.timburr.forms.timburr.icon
+          sprites:
+            - ultra-sun-ultra-moon/timburr-default.png
+            - ultra-sun-ultra-moon/shiny/timburr-default.png
+          art: *black-white.pokemon.timburr.forms.timburr.art
+          footprint: *black-white.pokemon.timburr.forms.timburr.footprint
+          cry: *x-y.pokemon.timburr.forms.timburr.cry

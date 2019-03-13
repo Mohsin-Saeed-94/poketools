@@ -51,14 +51,17 @@ sun-moon:
           It lurks in the shadows of others, copying their
           movements and powers. This Pokémon is craven
           and cowering.
-          
-      forms: &sun-moon.pokemon.marshadow.forms
+      forms:
         marshadow:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.marshadow.forms.marshadow.form_name 'Default Form'
           default: *sun-moon.pokemon.marshadow.default
-          battle_only: false
-          icon: marshadow-default.png
+          battle_only: &sun-moon.pokemon.marshadow.forms.marshadow.battle_only false
+          icon: &sun-moon.pokemon.marshadow.forms.marshadow.icon marshadow-default.png
+          sprites:
+            - sun-moon/marshadow-default.png
+            - sun-moon/shiny/marshadow-default.png
+          footprint: &sun-moon.pokemon.marshadow.forms.marshadow.footprint marshadow.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -88,5 +91,14 @@ ultra-sun-ultra-moon:
           It slips into the shadows of others and mimics
           their powers and movements. As it improves, it
           becomes stronger than those it’s imitating.
-          
-      forms: *sun-moon.pokemon.marshadow.forms
+      forms:
+        marshadow:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.marshadow.forms.marshadow.form_name
+          default: *sun-moon.pokemon.marshadow.default
+          battle_only: *sun-moon.pokemon.marshadow.forms.marshadow.battle_only
+          icon: *sun-moon.pokemon.marshadow.forms.marshadow.icon
+          sprites:
+            - ultra-sun-ultra-moon/marshadow-default.png
+            - ultra-sun-ultra-moon/shiny/marshadow-default.png
+          footprint: *sun-moon.pokemon.marshadow.forms.marshadow.footprint

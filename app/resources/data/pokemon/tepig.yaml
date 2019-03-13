@@ -56,19 +56,26 @@ black-white:
           It can deftly dodge its foe’s attacks
           while shooting fireballs from its nose.
           It roasts berries before it eats them.
-          
         white: |
           It blows fire through its nose.
           When it catches a cold, the fire
           becomes pitch-black smoke instead.
-          
-      forms: &black-white.pokemon.tepig.forms
+      forms:
         tepig:
           name: *black-white.name
           form_name: &black-white.pokemon.tepig.forms.tepig.form_name 'Default Form'
           default: *black-white.pokemon.tepig.default
           battle_only: &black-white.pokemon.tepig.forms.tepig.battle_only false
-          icon: gen5/tepig-default.png
+          icon: &black-white.pokemon.tepig.forms.tepig.icon gen5/tepig-default.png
+          sprites:
+            - black-white/back/tepig-default.png
+            - black-white/back/shiny/tepig-default.png
+            - black-white/tepig-default.png
+            - black-white/shiny/tepig-default.png
+          art: &black-white.pokemon.tepig.forms.tepig.art
+            - tepig-default.png
+          footprint: &black-white.pokemon.tepig.forms.tepig.footprint tepig.png
+          cry: &black-white.pokemon.tepig.forms.tepig.cry gen5/tepig-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -101,13 +108,20 @@ black-2-white-2:
           It loves to eat roasted berries,
           but sometimes it gets too excited
           and burns them to a crisp.
-          
         white-2: |
           It loves to eat roasted berries,
           but sometimes it gets too excited
           and burns them to a crisp.
-          
-      forms: *black-white.pokemon.tepig.forms
+      forms:
+        tepig:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tepig.forms.tepig.form_name
+          default: *black-white.pokemon.tepig.default
+          battle_only: *black-white.pokemon.tepig.forms.tepig.battle_only
+          icon: *black-white.pokemon.tepig.forms.tepig.icon
+          art: *black-white.pokemon.tepig.forms.tepig.art
+          footprint: *black-white.pokemon.tepig.forms.tepig.footprint
+          cry: *black-white.pokemon.tepig.forms.tepig.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -140,18 +154,22 @@ x-y:
           It can deftly dodge its foe’s attacks while shooting
           fireballs from its nose. It roasts berries before it
           eats them.
-          
         'y': |
           It loves to eat roasted berries, but sometimes it
           gets too excited and burns them to a crisp.
-          
-      forms: &x-y.pokemon.tepig.forms
+      forms:
         tepig:
           name: *black-white.name
           form_name: *black-white.pokemon.tepig.forms.tepig.form_name
           default: *black-white.pokemon.tepig.default
           battle_only: *black-white.pokemon.tepig.forms.tepig.battle_only
-          icon: tepig-default.png
+          icon: &x-y.pokemon.tepig.forms.tepig.icon tepig-default.png
+          sprites:
+            - x-y/tepig-default.png
+            - x-y/shiny/tepig-default.png
+          art: *black-white.pokemon.tepig.forms.tepig.art
+          footprint: *black-white.pokemon.tepig.forms.tepig.footprint
+          cry: &x-y.pokemon.tepig.forms.tepig.cry tepig-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -183,13 +201,20 @@ omega-ruby-alpha-sapphire:
           It can deftly dodge its foe’s attacks while shooting
           fireballs from its nose. It roasts berries before it
           eats them.
-          
         alpha-sapphire: |
           It loves to eat roasted berries, but sometimes it
           gets too excited and burns them to a crisp.
-          
-      forms: *x-y.pokemon.tepig.forms
-sun-moon: &sun-moon
+      forms:
+        tepig:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tepig.forms.tepig.form_name
+          default: *black-white.pokemon.tepig.default
+          battle_only: *black-white.pokemon.tepig.forms.tepig.battle_only
+          icon: *x-y.pokemon.tepig.forms.tepig.icon
+          art: *black-white.pokemon.tepig.forms.tepig.art
+          footprint: *black-white.pokemon.tepig.forms.tepig.footprint
+          cry: *x-y.pokemon.tepig.forms.tepig.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -214,5 +239,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.tepig.mega
       stats: *black-white.pokemon.tepig.stats
       abilities: *black-white.pokemon.tepig.abilities
-      forms: *x-y.pokemon.tepig.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        tepig:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tepig.forms.tepig.form_name
+          default: *black-white.pokemon.tepig.default
+          battle_only: *black-white.pokemon.tepig.forms.tepig.battle_only
+          icon: *x-y.pokemon.tepig.forms.tepig.icon
+          sprites:
+            - sun-moon/tepig-default.png
+            - sun-moon/shiny/tepig-default.png
+          art: *black-white.pokemon.tepig.forms.tepig.art
+          footprint: *black-white.pokemon.tepig.forms.tepig.footprint
+          cry: *x-y.pokemon.tepig.forms.tepig.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    tepig:
+      genus: *black-white.pokemon.tepig.genus
+      color: *black-white.pokemon.tepig.color
+      shape: *black-white.pokemon.tepig.shape
+      female_rate: *black-white.pokemon.tepig.female_rate
+      capture_rate: *black-white.pokemon.tepig.capture_rate
+      happiness: *black-white.pokemon.tepig.happiness
+      baby: *black-white.pokemon.tepig.baby
+      hatch_steps: *black-white.pokemon.tepig.hatch_steps
+      growth_rate: *black-white.pokemon.tepig.growth_rate
+      forms_switchable: *black-white.pokemon.tepig.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.tepig.default
+      height: *black-white.pokemon.tepig.height
+      weight: *black-white.pokemon.tepig.weight
+      experience: *black-white.pokemon.tepig.experience
+      types: *black-white.pokemon.tepig.types
+      egg_groups: *black-white.pokemon.tepig.egg_groups
+      mega: *x-y.pokemon.tepig.mega
+      stats: *black-white.pokemon.tepig.stats
+      abilities: *black-white.pokemon.tepig.abilities
+      forms:
+        tepig:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tepig.forms.tepig.form_name
+          default: *black-white.pokemon.tepig.default
+          battle_only: *black-white.pokemon.tepig.forms.tepig.battle_only
+          icon: *x-y.pokemon.tepig.forms.tepig.icon
+          sprites:
+            - ultra-sun-ultra-moon/tepig-default.png
+            - ultra-sun-ultra-moon/shiny/tepig-default.png
+          art: *black-white.pokemon.tepig.forms.tepig.art
+          footprint: *black-white.pokemon.tepig.forms.tepig.footprint
+          cry: *x-y.pokemon.tepig.forms.tepig.cry

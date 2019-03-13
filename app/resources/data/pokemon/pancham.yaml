@@ -65,18 +65,23 @@ x-y:
           It does its best to be taken seriously by its enemies,
           but its glare is not sufficiently intimidating.
           Chewing on a leaf is its trademark.
-          
         'y': |
           It does its level best to glare and pull a scary face,
           but it can’t help grinning if anyone pats its head.
-          
-      forms: &x-y.pokemon.pancham.forms
+      forms:
         pancham:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.pancham.forms.pancham.form_name 'Default Form'
           default: *x-y.pokemon.pancham.default
-          battle_only: false
-          icon: pancham-default.png
+          battle_only: &x-y.pokemon.pancham.forms.pancham.battle_only false
+          icon: &x-y.pokemon.pancham.forms.pancham.icon pancham-default.png
+          sprites:
+            - x-y/pancham-default.png
+            - x-y/shiny/pancham-default.png
+          art: &x-y.pokemon.pancham.forms.pancham.art
+            - pancham-default.png
+          footprint: &x-y.pokemon.pancham.forms.pancham.footprint pancham.png
+          cry: &x-y.pokemon.pancham.forms.pancham.cry pancham-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -109,12 +114,19 @@ omega-ruby-alpha-sapphire:
           It does its best to be taken seriously by its enemies,
           but its glare is not sufficiently intimidating.
           Chewing on a leaf is its trademark.
-          
         alpha-sapphire: |
           It does its level best to glare and pull a scary face,
           but it can’t help grinning if anyone pats its head.
-          
-      forms: *x-y.pokemon.pancham.forms
+      forms:
+        pancham:
+          name: *x-y.name
+          form_name: *x-y.pokemon.pancham.forms.pancham.form_name
+          default: *x-y.pokemon.pancham.default
+          battle_only: *x-y.pokemon.pancham.forms.pancham.battle_only
+          icon: *x-y.pokemon.pancham.forms.pancham.icon
+          art: *x-y.pokemon.pancham.forms.pancham.art
+          footprint: *x-y.pokemon.pancham.forms.pancham.footprint
+          cry: *x-y.pokemon.pancham.forms.pancham.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -147,8 +159,19 @@ sun-moon:
           There’s no point to the leaf in its mouth, aside
           from an effort to look cool. It’s mischievous,
           so it’s not well suited to inexperienced Trainers.
-          
-      forms: *x-y.pokemon.pancham.forms
+      forms:
+        pancham:
+          name: *x-y.name
+          form_name: *x-y.pokemon.pancham.forms.pancham.form_name
+          default: *x-y.pokemon.pancham.default
+          battle_only: *x-y.pokemon.pancham.forms.pancham.battle_only
+          icon: *x-y.pokemon.pancham.forms.pancham.icon
+          sprites:
+            - sun-moon/pancham-default.png
+            - sun-moon/shiny/pancham-default.png
+          art: *x-y.pokemon.pancham.forms.pancham.art
+          footprint: *x-y.pokemon.pancham.forms.pancham.footprint
+          cry: *x-y.pokemon.pancham.forms.pancham.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -181,5 +204,16 @@ ultra-sun-ultra-moon:
           It follows Pangoro around like a henchman.
           When Pancham makes a big mistake, its leaf
           gets taken away.
-          
-      forms: *x-y.pokemon.pancham.forms
+      forms:
+        pancham:
+          name: *x-y.name
+          form_name: *x-y.pokemon.pancham.forms.pancham.form_name
+          default: *x-y.pokemon.pancham.default
+          battle_only: *x-y.pokemon.pancham.forms.pancham.battle_only
+          icon: *x-y.pokemon.pancham.forms.pancham.icon
+          sprites:
+            - ultra-sun-ultra-moon/pancham-default.png
+            - ultra-sun-ultra-moon/shiny/pancham-default.png
+          art: *x-y.pokemon.pancham.forms.pancham.art
+          footprint: *x-y.pokemon.pancham.forms.pancham.footprint
+          cry: *x-y.pokemon.pancham.forms.pancham.cry

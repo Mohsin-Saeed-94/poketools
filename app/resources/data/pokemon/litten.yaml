@@ -53,14 +53,17 @@ sun-moon:
         moon: |
           It doesn’t allow its emotions to be easily seen.
           Earning its trust takes time. It prefers solitude.
-          
-      forms: &sun-moon.pokemon.litten.forms
+      forms:
         litten:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.litten.forms.litten.form_name 'Default Form'
           default: *sun-moon.pokemon.litten.default
-          battle_only: false
-          icon: litten-default.png
+          battle_only: &sun-moon.pokemon.litten.forms.litten.battle_only false
+          icon: &sun-moon.pokemon.litten.forms.litten.icon litten-default.png
+          sprites:
+            - sun-moon/shiny/litten-default.png
+            - sun-moon/litten-default.png
+          footprint: &sun-moon.pokemon.litten.forms.litten.footprint litten.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -91,5 +94,14 @@ ultra-sun-ultra-moon:
           If you try too hard to get close to it, it won’t
           open up to you. Even if you do grow close, giving
           it too much affection is still a no-no.
-          
-      forms: *sun-moon.pokemon.litten.forms
+      forms:
+        litten:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.litten.forms.litten.form_name
+          default: *sun-moon.pokemon.litten.default
+          battle_only: *sun-moon.pokemon.litten.forms.litten.battle_only
+          icon: *sun-moon.pokemon.litten.forms.litten.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/litten-default.png
+            - ultra-sun-ultra-moon/litten-default.png
+          footprint: *sun-moon.pokemon.litten.forms.litten.footprint

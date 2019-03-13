@@ -59,19 +59,26 @@ black-white:
           Munna always float in the air. People
           whose dreams are eaten by them
           forget what the dreams had been about.
-          
         white: |
           It eats the dreams of people and
           Pokémon. When it eats a pleasant
           dream, it expels pink-colored mist.
-          
-      forms: &black-white.pokemon.munna.forms
+      forms:
         munna:
           name: *black-white.name
           form_name: &black-white.pokemon.munna.forms.munna.form_name 'Default Form'
           default: *black-white.pokemon.munna.default
           battle_only: &black-white.pokemon.munna.forms.munna.battle_only false
-          icon: gen5/munna-default.png
+          icon: &black-white.pokemon.munna.forms.munna.icon gen5/munna-default.png
+          sprites:
+            - black-white/munna-default.png
+            - black-white/back/munna-default.png
+            - black-white/back/shiny/munna-default.png
+            - black-white/shiny/munna-default.png
+          art: &black-white.pokemon.munna.forms.munna.art
+            - munna-default.png
+          footprint: &black-white.pokemon.munna.forms.munna.footprint munna.png
+          cry: &black-white.pokemon.munna.forms.munna.cry gen5/munna-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -104,13 +111,20 @@ black-2-white-2:
           This Pokémon appears before people
           and Pokémon who are having nightmares
           and eats those dreams.
-          
         white-2: |
           This Pokémon appears before people
           and Pokémon who are having nightmares
           and eats those dreams.
-          
-      forms: *black-white.pokemon.munna.forms
+      forms:
+        munna:
+          name: *black-white.name
+          form_name: *black-white.pokemon.munna.forms.munna.form_name
+          default: *black-white.pokemon.munna.default
+          battle_only: *black-white.pokemon.munna.forms.munna.battle_only
+          icon: *black-white.pokemon.munna.forms.munna.icon
+          art: *black-white.pokemon.munna.forms.munna.art
+          footprint: *black-white.pokemon.munna.forms.munna.footprint
+          cry: *black-white.pokemon.munna.forms.munna.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -142,18 +156,22 @@ x-y:
         x: |
           This Pokémon appears before people and Pokémon
           who are having nightmares and eats those dreams.
-          
         'y': |
           It eats the dreams of people and Pokémon. When it
           eats a pleasant dream, it expels pink-colored mist.
-          
-      forms: &x-y.pokemon.munna.forms
+      forms:
         munna:
           name: *black-white.name
           form_name: *black-white.pokemon.munna.forms.munna.form_name
           default: *black-white.pokemon.munna.default
           battle_only: *black-white.pokemon.munna.forms.munna.battle_only
-          icon: munna-default.png
+          icon: &x-y.pokemon.munna.forms.munna.icon munna-default.png
+          sprites:
+            - x-y/munna-default.png
+            - x-y/shiny/munna-default.png
+          art: *black-white.pokemon.munna.forms.munna.art
+          footprint: *black-white.pokemon.munna.forms.munna.footprint
+          cry: &x-y.pokemon.munna.forms.munna.cry munna-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -184,13 +202,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           This Pokémon appears before people and Pokémon
           who are having nightmares and eats those dreams.
-          
         alpha-sapphire: |
           It eats the dreams of people and Pokémon. When it
           eats a pleasant dream, it expels pink-colored mist.
-          
-      forms: *x-y.pokemon.munna.forms
-sun-moon: &sun-moon
+      forms:
+        munna:
+          name: *black-white.name
+          form_name: *black-white.pokemon.munna.forms.munna.form_name
+          default: *black-white.pokemon.munna.default
+          battle_only: *black-white.pokemon.munna.forms.munna.battle_only
+          icon: *x-y.pokemon.munna.forms.munna.icon
+          art: *black-white.pokemon.munna.forms.munna.art
+          footprint: *black-white.pokemon.munna.forms.munna.footprint
+          cry: *x-y.pokemon.munna.forms.munna.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -215,5 +240,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.munna.mega
       stats: *black-white.pokemon.munna.stats
       abilities: *black-white.pokemon.munna.abilities
-      forms: *x-y.pokemon.munna.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        munna:
+          name: *black-white.name
+          form_name: *black-white.pokemon.munna.forms.munna.form_name
+          default: *black-white.pokemon.munna.default
+          battle_only: *black-white.pokemon.munna.forms.munna.battle_only
+          icon: *x-y.pokemon.munna.forms.munna.icon
+          sprites:
+            - sun-moon/munna-default.png
+            - sun-moon/shiny/munna-default.png
+          art: *black-white.pokemon.munna.forms.munna.art
+          footprint: *black-white.pokemon.munna.forms.munna.footprint
+          cry: *x-y.pokemon.munna.forms.munna.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    munna:
+      genus: *black-white.pokemon.munna.genus
+      color: *black-white.pokemon.munna.color
+      shape: *black-white.pokemon.munna.shape
+      female_rate: *black-white.pokemon.munna.female_rate
+      capture_rate: *black-white.pokemon.munna.capture_rate
+      happiness: *black-white.pokemon.munna.happiness
+      baby: *black-white.pokemon.munna.baby
+      hatch_steps: *black-white.pokemon.munna.hatch_steps
+      growth_rate: *black-white.pokemon.munna.growth_rate
+      forms_switchable: *black-white.pokemon.munna.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.munna.default
+      height: *black-white.pokemon.munna.height
+      weight: *black-white.pokemon.munna.weight
+      experience: *black-white.pokemon.munna.experience
+      types: *black-white.pokemon.munna.types
+      egg_groups: *black-white.pokemon.munna.egg_groups
+      mega: *x-y.pokemon.munna.mega
+      stats: *black-white.pokemon.munna.stats
+      abilities: *black-white.pokemon.munna.abilities
+      forms:
+        munna:
+          name: *black-white.name
+          form_name: *black-white.pokemon.munna.forms.munna.form_name
+          default: *black-white.pokemon.munna.default
+          battle_only: *black-white.pokemon.munna.forms.munna.battle_only
+          icon: *x-y.pokemon.munna.forms.munna.icon
+          sprites:
+            - ultra-sun-ultra-moon/munna-default.png
+            - ultra-sun-ultra-moon/shiny/munna-default.png
+          art: *black-white.pokemon.munna.forms.munna.art
+          footprint: *black-white.pokemon.munna.forms.munna.footprint
+          cry: *x-y.pokemon.munna.forms.munna.cry

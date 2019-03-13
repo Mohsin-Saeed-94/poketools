@@ -61,19 +61,24 @@ x-y:
           It can tell how its Trainer is feeling by
           subtle shifts in the grip on its horns.
           This empathic sense lets them run as if one being.
-          
         'y': |
           They inhabit mountainous regions.
           The leader of the herd is decided by
           a battle of clashing horns.
-          
-      forms: &x-y.pokemon.gogoat.forms
+      forms:
         gogoat:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.gogoat.forms.gogoat.form_name 'Default Form'
           default: *x-y.pokemon.gogoat.default
-          battle_only: false
-          icon: gogoat-default.png
+          battle_only: &x-y.pokemon.gogoat.forms.gogoat.battle_only false
+          icon: &x-y.pokemon.gogoat.forms.gogoat.icon gogoat-default.png
+          sprites:
+            - x-y/shiny/gogoat-default.png
+            - x-y/gogoat-default.png
+          art: &x-y.pokemon.gogoat.forms.gogoat.art
+            - gogoat-default.png
+          footprint: &x-y.pokemon.gogoat.forms.gogoat.footprint gogoat.png
+          cry: &x-y.pokemon.gogoat.forms.gogoat.cry gogoat-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -108,14 +113,21 @@ omega-ruby-alpha-sapphire:
           It can tell how its Trainer is feeling by
           subtle shifts in the grip on its horns.
           This empathic sense lets them run as if one being.
-          
         alpha-sapphire: |
           They inhabit mountainous regions.
           The leader of the herd is decided by
           a battle of clashing horns.
-          
-      forms: *x-y.pokemon.gogoat.forms
-sun-moon: &sun-moon
+      forms:
+        gogoat:
+          name: *x-y.name
+          form_name: *x-y.pokemon.gogoat.forms.gogoat.form_name
+          default: *x-y.pokemon.gogoat.default
+          battle_only: *x-y.pokemon.gogoat.forms.gogoat.battle_only
+          icon: *x-y.pokemon.gogoat.forms.gogoat.icon
+          art: *x-y.pokemon.gogoat.forms.gogoat.art
+          footprint: *x-y.pokemon.gogoat.forms.gogoat.footprint
+          cry: *x-y.pokemon.gogoat.forms.gogoat.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -142,5 +154,56 @@ sun-moon: &sun-moon
       stats: *x-y.pokemon.gogoat.stats
       abilities: *x-y.pokemon.gogoat.abilities
       evolution_conditions: *x-y.pokemon.gogoat.evolution_conditions
-      forms: *x-y.pokemon.gogoat.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        gogoat:
+          name: *x-y.name
+          form_name: *x-y.pokemon.gogoat.forms.gogoat.form_name
+          default: *x-y.pokemon.gogoat.default
+          battle_only: *x-y.pokemon.gogoat.forms.gogoat.battle_only
+          icon: *x-y.pokemon.gogoat.forms.gogoat.icon
+          sprites:
+            - sun-moon/shiny/gogoat-default.png
+            - sun-moon/gogoat-default.png
+          art: *x-y.pokemon.gogoat.forms.gogoat.art
+          footprint: *x-y.pokemon.gogoat.forms.gogoat.footprint
+          cry: *x-y.pokemon.gogoat.forms.gogoat.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    gogoat:
+      genus: *x-y.pokemon.gogoat.genus
+      evolution_parent: *x-y.pokemon.gogoat.evolution_parent
+      color: *x-y.pokemon.gogoat.color
+      shape: *x-y.pokemon.gogoat.shape
+      female_rate: *x-y.pokemon.gogoat.female_rate
+      capture_rate: *x-y.pokemon.gogoat.capture_rate
+      happiness: *x-y.pokemon.gogoat.happiness
+      baby: *x-y.pokemon.gogoat.baby
+      hatch_steps: *x-y.pokemon.gogoat.hatch_steps
+      growth_rate: *x-y.pokemon.gogoat.growth_rate
+      forms_switchable: *x-y.pokemon.gogoat.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.gogoat.default
+      height: *x-y.pokemon.gogoat.height
+      weight: *x-y.pokemon.gogoat.weight
+      experience: *x-y.pokemon.gogoat.experience
+      types: *x-y.pokemon.gogoat.types
+      egg_groups: *x-y.pokemon.gogoat.egg_groups
+      mega: *x-y.pokemon.gogoat.mega
+      stats: *x-y.pokemon.gogoat.stats
+      abilities: *x-y.pokemon.gogoat.abilities
+      evolution_conditions: *x-y.pokemon.gogoat.evolution_conditions
+      forms:
+        gogoat:
+          name: *x-y.name
+          form_name: *x-y.pokemon.gogoat.forms.gogoat.form_name
+          default: *x-y.pokemon.gogoat.default
+          battle_only: *x-y.pokemon.gogoat.forms.gogoat.battle_only
+          icon: *x-y.pokemon.gogoat.forms.gogoat.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/gogoat-default.png
+            - ultra-sun-ultra-moon/gogoat-default.png
+          art: *x-y.pokemon.gogoat.forms.gogoat.art
+          footprint: *x-y.pokemon.gogoat.forms.gogoat.footprint
+          cry: *x-y.pokemon.gogoat.forms.gogoat.cry

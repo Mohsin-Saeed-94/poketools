@@ -58,19 +58,26 @@ black-white:
           This brutal Pokémon travels the skies on
           its six wings. Anything that moves seems
           like a foe to it, triggering its attack.
-          
         white: |
           The heads on their arms do not have
           brains. They use all three heads to
           consume and destroy everything.
-          
-      forms: &black-white.pokemon.hydreigon.forms
+      forms:
         hydreigon:
           name: *black-white.name
           form_name: &black-white.pokemon.hydreigon.forms.hydreigon.form_name 'Default Form'
           default: *black-white.pokemon.hydreigon.default
           battle_only: &black-white.pokemon.hydreigon.forms.hydreigon.battle_only false
-          icon: gen5/hydreigon-default.png
+          icon: &black-white.pokemon.hydreigon.forms.hydreigon.icon gen5/hydreigon-default.png
+          sprites:
+            - black-white/back/shiny/hydreigon-default.png
+            - black-white/back/hydreigon-default.png
+            - black-white/shiny/hydreigon-default.png
+            - black-white/hydreigon-default.png
+          art: &black-white.pokemon.hydreigon.forms.hydreigon.art
+            - hydreigon-default.png
+          footprint: &black-white.pokemon.hydreigon.forms.hydreigon.footprint hydreigon.png
+          cry: &black-white.pokemon.hydreigon.forms.hydreigon.cry gen5/hydreigon-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,13 +112,20 @@ black-2-white-2:
           It responds to movement by attacking.
           This scary, three-headed Pokémon
           devours everything in its path!
-          
         white-2: |
           It responds to movement by attacking.
           This scary, three-headed Pokémon
           devours everything in its path!
-          
-      forms: *black-white.pokemon.hydreigon.forms
+      forms:
+        hydreigon:
+          name: *black-white.name
+          form_name: *black-white.pokemon.hydreigon.forms.hydreigon.form_name
+          default: *black-white.pokemon.hydreigon.default
+          battle_only: *black-white.pokemon.hydreigon.forms.hydreigon.battle_only
+          icon: *black-white.pokemon.hydreigon.forms.hydreigon.icon
+          art: *black-white.pokemon.hydreigon.forms.hydreigon.art
+          footprint: *black-white.pokemon.hydreigon.forms.hydreigon.footprint
+          cry: *black-white.pokemon.hydreigon.forms.hydreigon.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -147,19 +161,23 @@ x-y:
           The heads on their arms do not have brains.
           They use all three heads to consume and
           destroy everything.
-          
         'y': |
           It responds to movement by attacking. This scary,
           three-headed Pokémon devours everything in
           its path!
-          
-      forms: &x-y.pokemon.hydreigon.forms
+      forms:
         hydreigon:
           name: *black-white.name
           form_name: *black-white.pokemon.hydreigon.forms.hydreigon.form_name
           default: *black-white.pokemon.hydreigon.default
           battle_only: *black-white.pokemon.hydreigon.forms.hydreigon.battle_only
-          icon: hydreigon-default.png
+          icon: &x-y.pokemon.hydreigon.forms.hydreigon.icon hydreigon-default.png
+          sprites:
+            - x-y/shiny/hydreigon-default.png
+            - x-y/hydreigon-default.png
+          art: *black-white.pokemon.hydreigon.forms.hydreigon.art
+          footprint: *black-white.pokemon.hydreigon.forms.hydreigon.footprint
+          cry: &x-y.pokemon.hydreigon.forms.hydreigon.cry hydreigon-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -194,14 +212,21 @@ omega-ruby-alpha-sapphire:
           The heads on their arms do not have brains.
           They use all three heads to consume and
           destroy everything.
-          
         alpha-sapphire: |
           It responds to movement by attacking. This scary,
           three-headed Pokémon devours everything in
           its path!
-          
-      forms: *x-y.pokemon.hydreigon.forms
-sun-moon: &sun-moon
+      forms:
+        hydreigon:
+          name: *black-white.name
+          form_name: *black-white.pokemon.hydreigon.forms.hydreigon.form_name
+          default: *black-white.pokemon.hydreigon.default
+          battle_only: *black-white.pokemon.hydreigon.forms.hydreigon.battle_only
+          icon: *x-y.pokemon.hydreigon.forms.hydreigon.icon
+          art: *black-white.pokemon.hydreigon.forms.hydreigon.art
+          footprint: *black-white.pokemon.hydreigon.forms.hydreigon.footprint
+          cry: *x-y.pokemon.hydreigon.forms.hydreigon.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -228,5 +253,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.hydreigon.stats
       abilities: *black-white.pokemon.hydreigon.abilities
       evolution_conditions: *black-white.pokemon.hydreigon.evolution_conditions
-      forms: *x-y.pokemon.hydreigon.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        hydreigon:
+          name: *black-white.name
+          form_name: *black-white.pokemon.hydreigon.forms.hydreigon.form_name
+          default: *black-white.pokemon.hydreigon.default
+          battle_only: *black-white.pokemon.hydreigon.forms.hydreigon.battle_only
+          icon: *x-y.pokemon.hydreigon.forms.hydreigon.icon
+          sprites:
+            - sun-moon/shiny/hydreigon-default.png
+            - sun-moon/hydreigon-default.png
+          art: *black-white.pokemon.hydreigon.forms.hydreigon.art
+          footprint: *black-white.pokemon.hydreigon.forms.hydreigon.footprint
+          cry: *x-y.pokemon.hydreigon.forms.hydreigon.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    hydreigon:
+      genus: *black-white.pokemon.hydreigon.genus
+      evolution_parent: *black-white.pokemon.hydreigon.evolution_parent
+      color: *black-white.pokemon.hydreigon.color
+      shape: *black-white.pokemon.hydreigon.shape
+      female_rate: *black-white.pokemon.hydreigon.female_rate
+      capture_rate: *black-white.pokemon.hydreigon.capture_rate
+      happiness: *black-white.pokemon.hydreigon.happiness
+      baby: *black-white.pokemon.hydreigon.baby
+      hatch_steps: *black-white.pokemon.hydreigon.hatch_steps
+      growth_rate: *black-white.pokemon.hydreigon.growth_rate
+      forms_switchable: *black-white.pokemon.hydreigon.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.hydreigon.default
+      height: *black-white.pokemon.hydreigon.height
+      weight: *black-white.pokemon.hydreigon.weight
+      experience: *black-white.pokemon.hydreigon.experience
+      types: *black-white.pokemon.hydreigon.types
+      egg_groups: *black-white.pokemon.hydreigon.egg_groups
+      mega: *x-y.pokemon.hydreigon.mega
+      stats: *black-white.pokemon.hydreigon.stats
+      abilities: *black-white.pokemon.hydreigon.abilities
+      evolution_conditions: *black-white.pokemon.hydreigon.evolution_conditions
+      forms:
+        hydreigon:
+          name: *black-white.name
+          form_name: *black-white.pokemon.hydreigon.forms.hydreigon.form_name
+          default: *black-white.pokemon.hydreigon.default
+          battle_only: *black-white.pokemon.hydreigon.forms.hydreigon.battle_only
+          icon: *x-y.pokemon.hydreigon.forms.hydreigon.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/hydreigon-default.png
+            - ultra-sun-ultra-moon/hydreigon-default.png
+          art: *black-white.pokemon.hydreigon.forms.hydreigon.art
+          footprint: *black-white.pokemon.hydreigon.forms.hydreigon.footprint
+          cry: *x-y.pokemon.hydreigon.forms.hydreigon.cry

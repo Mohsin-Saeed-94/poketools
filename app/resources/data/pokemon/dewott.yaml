@@ -59,19 +59,26 @@ black-white:
         black: |
           Strict training is how it learns its
           flowing double-scalchop technique.
-          
         white: |
           Scalchop techniques differ from one
           Dewott to another. It never
           neglects maintaining its scalchops.
-          
-      forms: &black-white.pokemon.dewott.forms
+      forms:
         dewott:
           name: *black-white.name
           form_name: &black-white.pokemon.dewott.forms.dewott.form_name 'Default Form'
           default: *black-white.pokemon.dewott.default
           battle_only: &black-white.pokemon.dewott.forms.dewott.battle_only false
-          icon: gen5/dewott-default.png
+          icon: &black-white.pokemon.dewott.forms.dewott.icon gen5/dewott-default.png
+          sprites:
+            - black-white/dewott-default.png
+            - black-white/back/dewott-default.png
+            - black-white/back/shiny/dewott-default.png
+            - black-white/shiny/dewott-default.png
+          art: &black-white.pokemon.dewott.forms.dewott.art
+            - dewott-default.png
+          footprint: &black-white.pokemon.dewott.forms.dewott.footprint dewott.png
+          cry: &black-white.pokemon.dewott.forms.dewott.cry gen5/dewott-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -106,13 +113,20 @@ black-2-white-2:
           As a result of strict training,
           each Dewott learns different
           forms for using the scalchops.
-          
         white-2: |
           As a result of strict training,
           each Dewott learns different
           forms for using the scalchops.
-          
-      forms: *black-white.pokemon.dewott.forms
+      forms:
+        dewott:
+          name: *black-white.name
+          form_name: *black-white.pokemon.dewott.forms.dewott.form_name
+          default: *black-white.pokemon.dewott.default
+          battle_only: *black-white.pokemon.dewott.forms.dewott.battle_only
+          icon: *black-white.pokemon.dewott.forms.dewott.icon
+          art: *black-white.pokemon.dewott.forms.dewott.art
+          footprint: *black-white.pokemon.dewott.forms.dewott.footprint
+          cry: *black-white.pokemon.dewott.forms.dewott.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -146,18 +160,22 @@ x-y:
         x: |
           Strict training is how it learns its flowing
           double-scalchop technique.
-          
         'y': |
           As a result of strict training, each Dewott learns
           different forms for using the scalchops.
-          
-      forms: &x-y.pokemon.dewott.forms
+      forms:
         dewott:
           name: *black-white.name
           form_name: *black-white.pokemon.dewott.forms.dewott.form_name
           default: *black-white.pokemon.dewott.default
           battle_only: *black-white.pokemon.dewott.forms.dewott.battle_only
-          icon: dewott-default.png
+          icon: &x-y.pokemon.dewott.forms.dewott.icon dewott-default.png
+          sprites:
+            - x-y/dewott-default.png
+            - x-y/shiny/dewott-default.png
+          art: *black-white.pokemon.dewott.forms.dewott.art
+          footprint: *black-white.pokemon.dewott.forms.dewott.footprint
+          cry: &x-y.pokemon.dewott.forms.dewott.cry dewott-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -190,13 +208,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Strict training is how it learns its flowing
           double-scalchop technique.
-          
         alpha-sapphire: |
           As a result of strict training, each Dewott learns
           different forms for using the scalchops.
-          
-      forms: *x-y.pokemon.dewott.forms
-sun-moon: &sun-moon
+      forms:
+        dewott:
+          name: *black-white.name
+          form_name: *black-white.pokemon.dewott.forms.dewott.form_name
+          default: *black-white.pokemon.dewott.default
+          battle_only: *black-white.pokemon.dewott.forms.dewott.battle_only
+          icon: *x-y.pokemon.dewott.forms.dewott.icon
+          art: *black-white.pokemon.dewott.forms.dewott.art
+          footprint: *black-white.pokemon.dewott.forms.dewott.footprint
+          cry: *x-y.pokemon.dewott.forms.dewott.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -223,5 +248,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.dewott.stats
       abilities: *black-white.pokemon.dewott.abilities
       evolution_conditions: *black-white.pokemon.dewott.evolution_conditions
-      forms: *x-y.pokemon.dewott.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        dewott:
+          name: *black-white.name
+          form_name: *black-white.pokemon.dewott.forms.dewott.form_name
+          default: *black-white.pokemon.dewott.default
+          battle_only: *black-white.pokemon.dewott.forms.dewott.battle_only
+          icon: *x-y.pokemon.dewott.forms.dewott.icon
+          sprites:
+            - sun-moon/dewott-default.png
+            - sun-moon/shiny/dewott-default.png
+          art: *black-white.pokemon.dewott.forms.dewott.art
+          footprint: *black-white.pokemon.dewott.forms.dewott.footprint
+          cry: *x-y.pokemon.dewott.forms.dewott.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    dewott:
+      genus: *black-white.pokemon.dewott.genus
+      evolution_parent: *black-white.pokemon.dewott.evolution_parent
+      color: *black-white.pokemon.dewott.color
+      shape: *black-white.pokemon.dewott.shape
+      female_rate: *black-white.pokemon.dewott.female_rate
+      capture_rate: *black-white.pokemon.dewott.capture_rate
+      happiness: *black-white.pokemon.dewott.happiness
+      baby: *black-white.pokemon.dewott.baby
+      hatch_steps: *black-white.pokemon.dewott.hatch_steps
+      growth_rate: *black-white.pokemon.dewott.growth_rate
+      forms_switchable: *black-white.pokemon.dewott.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.dewott.default
+      height: *black-white.pokemon.dewott.height
+      weight: *black-white.pokemon.dewott.weight
+      experience: *black-white.pokemon.dewott.experience
+      types: *black-white.pokemon.dewott.types
+      egg_groups: *black-white.pokemon.dewott.egg_groups
+      mega: *x-y.pokemon.dewott.mega
+      stats: *black-white.pokemon.dewott.stats
+      abilities: *black-white.pokemon.dewott.abilities
+      evolution_conditions: *black-white.pokemon.dewott.evolution_conditions
+      forms:
+        dewott:
+          name: *black-white.name
+          form_name: *black-white.pokemon.dewott.forms.dewott.form_name
+          default: *black-white.pokemon.dewott.default
+          battle_only: *black-white.pokemon.dewott.forms.dewott.battle_only
+          icon: *x-y.pokemon.dewott.forms.dewott.icon
+          sprites:
+            - ultra-sun-ultra-moon/dewott-default.png
+            - ultra-sun-ultra-moon/shiny/dewott-default.png
+          art: *black-white.pokemon.dewott.forms.dewott.art
+          footprint: *black-white.pokemon.dewott.forms.dewott.footprint
+          cry: *x-y.pokemon.dewott.forms.dewott.cry

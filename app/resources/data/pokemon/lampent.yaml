@@ -64,18 +64,25 @@ black-white:
           This ominous Pokémon is feared.
           Through cities it wanders, searching
           for the spirits of the fallen.
-          
         white: |
           It arrives near the moment of death
           and steals spirit from the body.
-          
-      forms: &black-white.pokemon.lampent.forms
+      forms:
         lampent:
           name: *black-white.name
           form_name: &black-white.pokemon.lampent.forms.lampent.form_name 'Default Form'
           default: *black-white.pokemon.lampent.default
           battle_only: &black-white.pokemon.lampent.forms.lampent.battle_only false
-          icon: gen5/lampent-default.png
+          icon: &black-white.pokemon.lampent.forms.lampent.icon gen5/lampent-default.png
+          sprites:
+            - black-white/back/lampent-default.png
+            - black-white/back/shiny/lampent-default.png
+            - black-white/lampent-default.png
+            - black-white/shiny/lampent-default.png
+          art: &black-white.pokemon.lampent.forms.lampent.art
+            - lampent-default.png
+          footprint: &black-white.pokemon.lampent.forms.lampent.footprint lampent.png
+          cry: &black-white.pokemon.lampent.forms.lampent.cry gen5/lampent-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -110,13 +117,20 @@ black-2-white-2:
           The spirits it absorbs fuel its baleful
           fire. It hangs around hospitals waiting
           for people to pass on.
-          
         white-2: |
           The spirits it absorbs fuel its baleful
           fire. It hangs around hospitals waiting
           for people to pass on.
-          
-      forms: *black-white.pokemon.lampent.forms
+      forms:
+        lampent:
+          name: *black-white.name
+          form_name: *black-white.pokemon.lampent.forms.lampent.form_name
+          default: *black-white.pokemon.lampent.default
+          battle_only: *black-white.pokemon.lampent.forms.lampent.battle_only
+          icon: *black-white.pokemon.lampent.forms.lampent.icon
+          art: *black-white.pokemon.lampent.forms.lampent.art
+          footprint: *black-white.pokemon.lampent.forms.lampent.footprint
+          cry: *black-white.pokemon.lampent.forms.lampent.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -151,18 +165,22 @@ x-y:
         x: |
           The spirits it absorbs fuel its baleful fire. It hangs
           around hospitals waiting for people to pass on.
-          
         'y': |
           It arrives near the moment of death and steals spirit
           from the body.
-          
-      forms: &x-y.pokemon.lampent.forms
+      forms:
         lampent:
           name: *black-white.name
           form_name: *black-white.pokemon.lampent.forms.lampent.form_name
           default: *black-white.pokemon.lampent.default
           battle_only: *black-white.pokemon.lampent.forms.lampent.battle_only
-          icon: lampent-default.png
+          icon: &x-y.pokemon.lampent.forms.lampent.icon lampent-default.png
+          sprites:
+            - x-y/lampent-default.png
+            - x-y/shiny/lampent-default.png
+          art: *black-white.pokemon.lampent.forms.lampent.art
+          footprint: *black-white.pokemon.lampent.forms.lampent.footprint
+          cry: &x-y.pokemon.lampent.forms.lampent.cry lampent-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -196,13 +214,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The spirits it absorbs fuel its baleful fire. It hangs
           around hospitals waiting for people to pass on.
-          
         alpha-sapphire: |
           It arrives near the moment of death and steals spirit
           from the body.
-          
-      forms: *x-y.pokemon.lampent.forms
-sun-moon: &sun-moon
+      forms:
+        lampent:
+          name: *black-white.name
+          form_name: *black-white.pokemon.lampent.forms.lampent.form_name
+          default: *black-white.pokemon.lampent.default
+          battle_only: *black-white.pokemon.lampent.forms.lampent.battle_only
+          icon: *x-y.pokemon.lampent.forms.lampent.icon
+          art: *black-white.pokemon.lampent.forms.lampent.art
+          footprint: *black-white.pokemon.lampent.forms.lampent.footprint
+          cry: *x-y.pokemon.lampent.forms.lampent.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -229,5 +254,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.lampent.stats
       abilities: *black-white.pokemon.lampent.abilities
       evolution_conditions: *black-white.pokemon.lampent.evolution_conditions
-      forms: *x-y.pokemon.lampent.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        lampent:
+          name: *black-white.name
+          form_name: *black-white.pokemon.lampent.forms.lampent.form_name
+          default: *black-white.pokemon.lampent.default
+          battle_only: *black-white.pokemon.lampent.forms.lampent.battle_only
+          icon: *x-y.pokemon.lampent.forms.lampent.icon
+          sprites:
+            - sun-moon/lampent-default.png
+            - sun-moon/shiny/lampent-default.png
+          art: *black-white.pokemon.lampent.forms.lampent.art
+          footprint: *black-white.pokemon.lampent.forms.lampent.footprint
+          cry: *x-y.pokemon.lampent.forms.lampent.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    lampent:
+      genus: *black-white.pokemon.lampent.genus
+      evolution_parent: *black-white.pokemon.lampent.evolution_parent
+      color: *black-white.pokemon.lampent.color
+      shape: *black-white.pokemon.lampent.shape
+      female_rate: *black-white.pokemon.lampent.female_rate
+      capture_rate: *black-white.pokemon.lampent.capture_rate
+      happiness: *black-white.pokemon.lampent.happiness
+      baby: *black-white.pokemon.lampent.baby
+      hatch_steps: *black-white.pokemon.lampent.hatch_steps
+      growth_rate: *black-white.pokemon.lampent.growth_rate
+      forms_switchable: *black-white.pokemon.lampent.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.lampent.default
+      height: *black-white.pokemon.lampent.height
+      weight: *black-white.pokemon.lampent.weight
+      experience: *black-white.pokemon.lampent.experience
+      types: *black-white.pokemon.lampent.types
+      egg_groups: *black-white.pokemon.lampent.egg_groups
+      mega: *x-y.pokemon.lampent.mega
+      stats: *black-white.pokemon.lampent.stats
+      abilities: *black-white.pokemon.lampent.abilities
+      evolution_conditions: *black-white.pokemon.lampent.evolution_conditions
+      forms:
+        lampent:
+          name: *black-white.name
+          form_name: *black-white.pokemon.lampent.forms.lampent.form_name
+          default: *black-white.pokemon.lampent.default
+          battle_only: *black-white.pokemon.lampent.forms.lampent.battle_only
+          icon: *x-y.pokemon.lampent.forms.lampent.icon
+          sprites:
+            - ultra-sun-ultra-moon/lampent-default.png
+            - ultra-sun-ultra-moon/shiny/lampent-default.png
+          art: *black-white.pokemon.lampent.forms.lampent.art
+          footprint: *black-white.pokemon.lampent.forms.lampent.footprint
+          cry: *x-y.pokemon.lampent.forms.lampent.cry

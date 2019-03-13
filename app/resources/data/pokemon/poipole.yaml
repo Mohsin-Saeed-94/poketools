@@ -45,13 +45,14 @@ sun-moon:
         beast-boost:
           hidden: false
           position: 1
-      forms: &sun-moon.pokemon.poipole.forms
+      forms:
         poipole:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.poipole.forms.poipole.form_name 'Default Form'
           default: *sun-moon.pokemon.poipole.default
-          battle_only: false
-          icon: poipole-default.png
+          battle_only: &sun-moon.pokemon.poipole.forms.poipole.battle_only false
+          icon: &sun-moon.pokemon.poipole.forms.poipole.icon poipole-default.png
+          footprint: &sun-moon.pokemon.poipole.forms.poipole.footprint poipole.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -80,5 +81,14 @@ ultra-sun-ultra-moon:
         ultra-sun: |
           This Ultra Beast is well enough liked to be
           chosen as a first partner in its own world.
-          
-      forms: *sun-moon.pokemon.poipole.forms
+      forms:
+        poipole:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.poipole.forms.poipole.form_name
+          default: *sun-moon.pokemon.poipole.default
+          battle_only: *sun-moon.pokemon.poipole.forms.poipole.battle_only
+          icon: *sun-moon.pokemon.poipole.forms.poipole.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/poipole-default.png
+            - ultra-sun-ultra-moon/poipole-default.png
+          footprint: *sun-moon.pokemon.poipole.forms.poipole.footprint

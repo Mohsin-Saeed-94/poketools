@@ -59,18 +59,23 @@ x-y:
           The weakest Dragon-type Pokémon,
           it lives in damp, shady places, so its
           body doesn’t dry out.
-          
         'y': |
           It’s covered in a slimy membrane that makes
           any punches or kicks slide off it harmlessly.
-          
-      forms: &x-y.pokemon.goomy.forms
+      forms:
         goomy:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.goomy.forms.goomy.form_name 'Default Form'
           default: *x-y.pokemon.goomy.default
-          battle_only: false
-          icon: goomy-default.png
+          battle_only: &x-y.pokemon.goomy.forms.goomy.battle_only false
+          icon: &x-y.pokemon.goomy.forms.goomy.icon goomy-default.png
+          sprites:
+            - x-y/goomy-default.png
+            - x-y/shiny/goomy-default.png
+          art: &x-y.pokemon.goomy.forms.goomy.art
+            - goomy-default.png
+          footprint: &x-y.pokemon.goomy.forms.goomy.footprint goomy.png
+          cry: &x-y.pokemon.goomy.forms.goomy.cry goomy-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -103,12 +108,19 @@ omega-ruby-alpha-sapphire:
           The weakest Dragon-type Pokémon,
           it lives in damp, shady places, so its
           body doesn’t dry out.
-          
         alpha-sapphire: |
           It’s covered in a slimy membrane that makes
           any punches or kicks slide off it harmlessly.
-          
-      forms: *x-y.pokemon.goomy.forms
+      forms:
+        goomy:
+          name: *x-y.name
+          form_name: *x-y.pokemon.goomy.forms.goomy.form_name
+          default: *x-y.pokemon.goomy.default
+          battle_only: *x-y.pokemon.goomy.forms.goomy.battle_only
+          icon: *x-y.pokemon.goomy.forms.goomy.icon
+          art: *x-y.pokemon.goomy.forms.goomy.art
+          footprint: *x-y.pokemon.goomy.forms.goomy.footprint
+          cry: *x-y.pokemon.goomy.forms.goomy.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -142,8 +154,19 @@ sun-moon:
           Its source of protection is its slimy, germ-laden
           mucous membrane. Anyone who touches it
           needs some thorough hand-washing.
-          
-      forms: *x-y.pokemon.goomy.forms
+      forms:
+        goomy:
+          name: *x-y.name
+          form_name: *x-y.pokemon.goomy.forms.goomy.form_name
+          default: *x-y.pokemon.goomy.default
+          battle_only: *x-y.pokemon.goomy.forms.goomy.battle_only
+          icon: *x-y.pokemon.goomy.forms.goomy.icon
+          sprites:
+            - sun-moon/goomy-default.png
+            - sun-moon/shiny/goomy-default.png
+          art: *x-y.pokemon.goomy.forms.goomy.art
+          footprint: *x-y.pokemon.goomy.forms.goomy.footprint
+          cry: *x-y.pokemon.goomy.forms.goomy.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -176,5 +199,16 @@ ultra-sun-ultra-moon:
           It uses its horns to check out its surroundings.
           They’re very sensitive, so if you grab them, it
           will feel a strong shock and be unable to move.
-          
-      forms: *x-y.pokemon.goomy.forms
+      forms:
+        goomy:
+          name: *x-y.name
+          form_name: *x-y.pokemon.goomy.forms.goomy.form_name
+          default: *x-y.pokemon.goomy.default
+          battle_only: *x-y.pokemon.goomy.forms.goomy.battle_only
+          icon: *x-y.pokemon.goomy.forms.goomy.icon
+          sprites:
+            - ultra-sun-ultra-moon/goomy-default.png
+            - ultra-sun-ultra-moon/shiny/goomy-default.png
+          art: *x-y.pokemon.goomy.forms.goomy.art
+          footprint: *x-y.pokemon.goomy.forms.goomy.footprint
+          cry: *x-y.pokemon.goomy.forms.goomy.cry

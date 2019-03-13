@@ -54,19 +54,26 @@ black-white:
           It tends to bite everything, and it
           is not a picky eater. Approaching it
           carelessly is dangerous.
-          
         white: |
           They cannot see, so they tackle and bite
           to learn about their surroundings.
           Their bodies are covered in wounds.
-          
-      forms: &black-white.pokemon.deino.forms
+      forms:
         deino:
           name: *black-white.name
           form_name: &black-white.pokemon.deino.forms.deino.form_name 'Default Form'
           default: *black-white.pokemon.deino.default
           battle_only: &black-white.pokemon.deino.forms.deino.battle_only false
-          icon: gen5/deino-default.png
+          icon: &black-white.pokemon.deino.forms.deino.icon gen5/deino-default.png
+          sprites:
+            - black-white/deino-default.png
+            - black-white/back/deino-default.png
+            - black-white/back/shiny/deino-default.png
+            - black-white/shiny/deino-default.png
+          art: &black-white.pokemon.deino.forms.deino.art
+            - deino-default.png
+          footprint: &black-white.pokemon.deino.forms.deino.footprint deino.png
+          cry: &black-white.pokemon.deino.forms.deino.cry gen5/deino-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -99,13 +106,20 @@ black-2-white-2:
           Lacking sight, it’s unaware of its
           surroundings, so it bumps into things
           and eats anything that moves.
-          
         white-2: |
           Lacking sight, it’s unaware of its
           surroundings, so it bumps into things
           and eats anything that moves.
-          
-      forms: *black-white.pokemon.deino.forms
+      forms:
+        deino:
+          name: *black-white.name
+          form_name: *black-white.pokemon.deino.forms.deino.form_name
+          default: *black-white.pokemon.deino.default
+          battle_only: *black-white.pokemon.deino.forms.deino.battle_only
+          icon: *black-white.pokemon.deino.forms.deino.icon
+          art: *black-white.pokemon.deino.forms.deino.art
+          footprint: *black-white.pokemon.deino.forms.deino.footprint
+          cry: *black-white.pokemon.deino.forms.deino.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -139,19 +153,23 @@ x-y:
           They cannot see, so they tackle and bite to learn
           about their surroundings. Their bodies are covered
           in wounds.
-          
         'y': |
           Lacking sight, it’s unaware of its surroundings,
           so it bumps into things and eats anything
           that moves.
-          
-      forms: &x-y.pokemon.deino.forms
+      forms:
         deino:
           name: *black-white.name
           form_name: *black-white.pokemon.deino.forms.deino.form_name
           default: *black-white.pokemon.deino.default
           battle_only: *black-white.pokemon.deino.forms.deino.battle_only
-          icon: deino-default.png
+          icon: &x-y.pokemon.deino.forms.deino.icon deino-default.png
+          sprites:
+            - x-y/deino-default.png
+            - x-y/shiny/deino-default.png
+          art: *black-white.pokemon.deino.forms.deino.art
+          footprint: *black-white.pokemon.deino.forms.deino.footprint
+          cry: &x-y.pokemon.deino.forms.deino.cry deino-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -184,14 +202,21 @@ omega-ruby-alpha-sapphire:
           They cannot see, so they tackle and bite to learn
           about their surroundings. Their bodies are covered
           in wounds.
-          
         alpha-sapphire: |
           Lacking sight, it’s unaware of its surroundings,
           so it bumps into things and eats anything
           that moves.
-          
-      forms: *x-y.pokemon.deino.forms
-sun-moon: &sun-moon
+      forms:
+        deino:
+          name: *black-white.name
+          form_name: *black-white.pokemon.deino.forms.deino.form_name
+          default: *black-white.pokemon.deino.default
+          battle_only: *black-white.pokemon.deino.forms.deino.battle_only
+          icon: *x-y.pokemon.deino.forms.deino.icon
+          art: *black-white.pokemon.deino.forms.deino.art
+          footprint: *black-white.pokemon.deino.forms.deino.footprint
+          cry: *x-y.pokemon.deino.forms.deino.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -216,5 +241,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.deino.mega
       stats: *black-white.pokemon.deino.stats
       abilities: *black-white.pokemon.deino.abilities
-      forms: *x-y.pokemon.deino.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        deino:
+          name: *black-white.name
+          form_name: *black-white.pokemon.deino.forms.deino.form_name
+          default: *black-white.pokemon.deino.default
+          battle_only: *black-white.pokemon.deino.forms.deino.battle_only
+          icon: *x-y.pokemon.deino.forms.deino.icon
+          sprites:
+            - sun-moon/deino-default.png
+            - sun-moon/shiny/deino-default.png
+          art: *black-white.pokemon.deino.forms.deino.art
+          footprint: *black-white.pokemon.deino.forms.deino.footprint
+          cry: *x-y.pokemon.deino.forms.deino.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    deino:
+      genus: *black-white.pokemon.deino.genus
+      color: *black-white.pokemon.deino.color
+      shape: *black-white.pokemon.deino.shape
+      female_rate: *black-white.pokemon.deino.female_rate
+      capture_rate: *black-white.pokemon.deino.capture_rate
+      happiness: *black-white.pokemon.deino.happiness
+      baby: *black-white.pokemon.deino.baby
+      hatch_steps: *black-white.pokemon.deino.hatch_steps
+      growth_rate: *black-white.pokemon.deino.growth_rate
+      forms_switchable: *black-white.pokemon.deino.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.deino.default
+      height: *black-white.pokemon.deino.height
+      weight: *black-white.pokemon.deino.weight
+      experience: *black-white.pokemon.deino.experience
+      types: *black-white.pokemon.deino.types
+      egg_groups: *black-white.pokemon.deino.egg_groups
+      mega: *x-y.pokemon.deino.mega
+      stats: *black-white.pokemon.deino.stats
+      abilities: *black-white.pokemon.deino.abilities
+      forms:
+        deino:
+          name: *black-white.name
+          form_name: *black-white.pokemon.deino.forms.deino.form_name
+          default: *black-white.pokemon.deino.default
+          battle_only: *black-white.pokemon.deino.forms.deino.battle_only
+          icon: *x-y.pokemon.deino.forms.deino.icon
+          sprites:
+            - ultra-sun-ultra-moon/deino-default.png
+            - ultra-sun-ultra-moon/shiny/deino-default.png
+          art: *black-white.pokemon.deino.forms.deino.art
+          footprint: *black-white.pokemon.deino.forms.deino.footprint
+          cry: *x-y.pokemon.deino.forms.deino.cry

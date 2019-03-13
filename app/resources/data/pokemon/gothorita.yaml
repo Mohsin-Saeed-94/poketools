@@ -60,19 +60,26 @@ black-white:
           They use hypnosis to control people and
           Pokémon. Tales of Gothorita leading
           people astray are told in every corner.
-          
         white: |
           Starlight is the source of their power.
           At night, they mark star positions by
           using psychic power to float stones.
-          
-      forms: &black-white.pokemon.gothorita.forms
+      forms:
         gothorita:
           name: *black-white.name
           form_name: &black-white.pokemon.gothorita.forms.gothorita.form_name 'Default Form'
           default: *black-white.pokemon.gothorita.default
           battle_only: &black-white.pokemon.gothorita.forms.gothorita.battle_only false
-          icon: gen5/gothorita-default.png
+          icon: &black-white.pokemon.gothorita.forms.gothorita.icon gen5/gothorita-default.png
+          sprites:
+            - black-white/back/shiny/gothorita-default.png
+            - black-white/back/gothorita-default.png
+            - black-white/shiny/gothorita-default.png
+            - black-white/gothorita-default.png
+          art: &black-white.pokemon.gothorita.forms.gothorita.art
+            - gothorita-default.png
+          footprint: &black-white.pokemon.gothorita.forms.gothorita.footprint gothorita.png
+          cry: &black-white.pokemon.gothorita.forms.gothorita.cry gen5/gothorita-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -111,13 +118,20 @@ black-2-white-2:
           According to many old tales, it creates
           friends for itself by controlling
           sleeping children on starry nights.
-          
         white-2: |
           According to many old tales, it creates
           friends for itself by controlling
           sleeping children on starry nights.
-          
-      forms: *black-white.pokemon.gothorita.forms
+      forms:
+        gothorita:
+          name: *black-white.name
+          form_name: *black-white.pokemon.gothorita.forms.gothorita.form_name
+          default: *black-white.pokemon.gothorita.default
+          battle_only: *black-white.pokemon.gothorita.forms.gothorita.battle_only
+          icon: *black-white.pokemon.gothorita.forms.gothorita.icon
+          art: *black-white.pokemon.gothorita.forms.gothorita.art
+          footprint: *black-white.pokemon.gothorita.forms.gothorita.footprint
+          cry: *black-white.pokemon.gothorita.forms.gothorita.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -158,19 +172,23 @@ x-y:
           Starlight is the source of their power. At night,
           they mark star positions by using psychic power
           to float stones.
-          
         'y': |
           According to many old tales, it creates friends for
           itself by controlling sleeping children on
           starry nights.
-          
-      forms: &x-y.pokemon.gothorita.forms
+      forms:
         gothorita:
           name: *black-white.name
           form_name: *black-white.pokemon.gothorita.forms.gothorita.form_name
           default: *black-white.pokemon.gothorita.default
           battle_only: *black-white.pokemon.gothorita.forms.gothorita.battle_only
-          icon: gothorita-default.png
+          icon: &x-y.pokemon.gothorita.forms.gothorita.icon gothorita-default.png
+          sprites:
+            - x-y/shiny/gothorita-default.png
+            - x-y/gothorita-default.png
+          art: *black-white.pokemon.gothorita.forms.gothorita.art
+          footprint: *black-white.pokemon.gothorita.forms.gothorita.footprint
+          cry: &x-y.pokemon.gothorita.forms.gothorita.cry gothorita-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -205,14 +223,21 @@ omega-ruby-alpha-sapphire:
           Starlight is the source of their power. At night,
           they mark star positions by using psychic power
           to float stones.
-          
         alpha-sapphire: |
           According to many old tales, it creates friends for
           itself by controlling sleeping children on
           starry nights.
-          
-      forms: *x-y.pokemon.gothorita.forms
-sun-moon: &sun-moon
+      forms:
+        gothorita:
+          name: *black-white.name
+          form_name: *black-white.pokemon.gothorita.forms.gothorita.form_name
+          default: *black-white.pokemon.gothorita.default
+          battle_only: *black-white.pokemon.gothorita.forms.gothorita.battle_only
+          icon: *x-y.pokemon.gothorita.forms.gothorita.icon
+          art: *black-white.pokemon.gothorita.forms.gothorita.art
+          footprint: *black-white.pokemon.gothorita.forms.gothorita.footprint
+          cry: *x-y.pokemon.gothorita.forms.gothorita.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -239,5 +264,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.gothorita.stats
       abilities: *x-y.pokemon.gothorita.abilities
       evolution_conditions: *black-white.pokemon.gothorita.evolution_conditions
-      forms: *x-y.pokemon.gothorita.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        gothorita:
+          name: *black-white.name
+          form_name: *black-white.pokemon.gothorita.forms.gothorita.form_name
+          default: *black-white.pokemon.gothorita.default
+          battle_only: *black-white.pokemon.gothorita.forms.gothorita.battle_only
+          icon: *x-y.pokemon.gothorita.forms.gothorita.icon
+          sprites:
+            - sun-moon/shiny/gothorita-default.png
+            - sun-moon/gothorita-default.png
+          art: *black-white.pokemon.gothorita.forms.gothorita.art
+          footprint: *black-white.pokemon.gothorita.forms.gothorita.footprint
+          cry: *x-y.pokemon.gothorita.forms.gothorita.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    gothorita:
+      genus: *black-white.pokemon.gothorita.genus
+      evolution_parent: *black-white.pokemon.gothorita.evolution_parent
+      color: *black-white.pokemon.gothorita.color
+      shape: *black-white.pokemon.gothorita.shape
+      female_rate: *black-white.pokemon.gothorita.female_rate
+      capture_rate: *black-white.pokemon.gothorita.capture_rate
+      happiness: *black-white.pokemon.gothorita.happiness
+      baby: *black-white.pokemon.gothorita.baby
+      hatch_steps: *black-white.pokemon.gothorita.hatch_steps
+      growth_rate: *black-white.pokemon.gothorita.growth_rate
+      forms_switchable: *black-white.pokemon.gothorita.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.gothorita.default
+      height: *black-white.pokemon.gothorita.height
+      weight: *black-white.pokemon.gothorita.weight
+      experience: *black-white.pokemon.gothorita.experience
+      types: *black-white.pokemon.gothorita.types
+      egg_groups: *black-white.pokemon.gothorita.egg_groups
+      mega: *x-y.pokemon.gothorita.mega
+      stats: *black-white.pokemon.gothorita.stats
+      abilities: *x-y.pokemon.gothorita.abilities
+      evolution_conditions: *black-white.pokemon.gothorita.evolution_conditions
+      forms:
+        gothorita:
+          name: *black-white.name
+          form_name: *black-white.pokemon.gothorita.forms.gothorita.form_name
+          default: *black-white.pokemon.gothorita.default
+          battle_only: *black-white.pokemon.gothorita.forms.gothorita.battle_only
+          icon: *x-y.pokemon.gothorita.forms.gothorita.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/gothorita-default.png
+            - ultra-sun-ultra-moon/gothorita-default.png
+          art: *black-white.pokemon.gothorita.forms.gothorita.art
+          footprint: *black-white.pokemon.gothorita.forms.gothorita.footprint
+          cry: *x-y.pokemon.gothorita.forms.gothorita.cry

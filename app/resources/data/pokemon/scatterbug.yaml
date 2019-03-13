@@ -59,19 +59,18 @@ x-y:
           When under attack from bird Pokémon,
           it spews a poisonous black powder
           that causes paralysis on contact.
-          
         'y': |
           The powder that covers its body
           regulates its temperature, so it
           can live in any region or climate.
-          
       forms: &x-y.pokemon.scatterbug.forms
         scatterbug-icy-snow: &x-y.pokemon.scatterbug.forms.scatterbug-icy-snow
           name: *x-y.name
           form_name: &x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name 'Default Form'
           default: *x-y.pokemon.scatterbug.default
           battle_only: &x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only false
-          icon: scatterbug-icy-snow.png
+          icon: &x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.icon scatterbug-icy-snow.png
+          footprint: &x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint scatterbug.png
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -104,14 +103,12 @@ omega-ruby-alpha-sapphire:
           When under attack from bird Pokémon,
           it spews a poisonous black powder
           that causes paralysis on contact.
-          
         alpha-sapphire: |
           The powder that covers its body
           regulates its temperature, so it
           can live in any region or climate.
-          
       forms: *x-y.pokemon.scatterbug.forms
-sun-moon: &sun-moon
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -138,118 +135,191 @@ sun-moon: &sun-moon
       abilities: *x-y.pokemon.scatterbug.abilities
       forms:
         scatterbug-icy-snow: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow
-        scatterbug-polar:
+        scatterbug-polar: &sun-moon.pokemon.scatterbug.forms.scatterbug-polar
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: &sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default false
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-polar.png
-        scatterbug-tundra:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-tundra: &sun-moon.pokemon.scatterbug.forms.scatterbug-tundra
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-tundra.png
-        scatterbug-continental:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-continental: &sun-moon.pokemon.scatterbug.forms.scatterbug-continental
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-continental.png
-        scatterbug-garden:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-garden: &sun-moon.pokemon.scatterbug.forms.scatterbug-garden
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-garden.png
-        scatterbug-elegant:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-elegant: &sun-moon.pokemon.scatterbug.forms.scatterbug-elegant
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-elegant.png
-        scatterbug-meadow:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-meadow: &sun-moon.pokemon.scatterbug.forms.scatterbug-meadow
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-meadow.png
-        scatterbug-modern:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-modern: &sun-moon.pokemon.scatterbug.forms.scatterbug-modern
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-modern.png
-        scatterbug-marine:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-marine: &sun-moon.pokemon.scatterbug.forms.scatterbug-marine
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-marine.png
-        scatterbug-archipelago:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-archipelago: &sun-moon.pokemon.scatterbug.forms.scatterbug-archipelago
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-archipelago.png
-        scatterbug-high-plains:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-high-plains: &sun-moon.pokemon.scatterbug.forms.scatterbug-high-plains
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-high-plains.png
-        scatterbug-sandstorm:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-sandstorm: &sun-moon.pokemon.scatterbug.forms.scatterbug-sandstorm
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-sandstorm.png
-        scatterbug-river:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-river: &sun-moon.pokemon.scatterbug.forms.scatterbug-river
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-river.png
-        scatterbug-monsoon:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-monsoon: &sun-moon.pokemon.scatterbug.forms.scatterbug-monsoon
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-monsoon.png
-        scatterbug-savanna:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-savanna: &sun-moon.pokemon.scatterbug.forms.scatterbug-savanna
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-savanna.png
-        scatterbug-sun:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-sun: &sun-moon.pokemon.scatterbug.forms.scatterbug-sun
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-sun.png
-        scatterbug-ocean:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-ocean: &sun-moon.pokemon.scatterbug.forms.scatterbug-ocean
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-ocean.png
-        scatterbug-jungle:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-jungle: &sun-moon.pokemon.scatterbug.forms.scatterbug-jungle
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-jungle.png
-        scatterbug-fancy:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-fancy: &sun-moon.pokemon.scatterbug.forms.scatterbug-fancy
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-fancy.png
-        scatterbug-poke-ball:
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-poke-ball: &sun-moon.pokemon.scatterbug.forms.scatterbug-poke-ball
           name: *x-y.name
           form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
           default: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar.default
           battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
           icon: scatterbug-poke-ball.png
-ultra-sun-ultra-moon: *sun-moon
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    scatterbug:
+      genus: *x-y.pokemon.scatterbug.genus
+      color: *x-y.pokemon.scatterbug.color
+      shape: *x-y.pokemon.scatterbug.shape
+      female_rate: *x-y.pokemon.scatterbug.female_rate
+      capture_rate: *x-y.pokemon.scatterbug.capture_rate
+      happiness: *x-y.pokemon.scatterbug.happiness
+      baby: *x-y.pokemon.scatterbug.baby
+      hatch_steps: *x-y.pokemon.scatterbug.hatch_steps
+      growth_rate: *x-y.pokemon.scatterbug.growth_rate
+      forms_switchable: *x-y.pokemon.scatterbug.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.scatterbug.default
+      height: *x-y.pokemon.scatterbug.height
+      weight: *x-y.pokemon.scatterbug.weight
+      experience: *x-y.pokemon.scatterbug.experience
+      types: *x-y.pokemon.scatterbug.types
+      egg_groups: *x-y.pokemon.scatterbug.types
+      mega: *x-y.pokemon.scatterbug.mega
+      stats: *x-y.pokemon.scatterbug.stats
+      abilities: *x-y.pokemon.scatterbug.abilities
+      forms:
+        scatterbug-icy-snow:
+          name: *x-y.name
+          form_name: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.form_name
+          default: *x-y.pokemon.scatterbug.default
+          battle_only: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.battle_only
+          icon: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.icon
+          sprites:
+            - ultra-sun-ultra-moon/scatterbug-icy-snow.png
+            - ultra-sun-ultra-moon/shiny/scatterbug-icy-snow.png
+          footprint: *x-y.pokemon.scatterbug.forms.scatterbug-icy-snow.footprint
+        scatterbug-polar: *sun-moon.pokemon.scatterbug.forms.scatterbug-polar
+        scatterbug-tundra: *sun-moon.pokemon.scatterbug.forms.scatterbug-tundra
+        scatterbug-continental: *sun-moon.pokemon.scatterbug.forms.scatterbug-continental
+        scatterbug-garden: *sun-moon.pokemon.scatterbug.forms.scatterbug-garden
+        scatterbug-elegant: *sun-moon.pokemon.scatterbug.forms.scatterbug-elegant
+        scatterbug-meadow: *sun-moon.pokemon.scatterbug.forms.scatterbug-meadow
+        scatterbug-modern: *sun-moon.pokemon.scatterbug.forms.scatterbug-modern
+        scatterbug-marine: *sun-moon.pokemon.scatterbug.forms.scatterbug-marine
+        scatterbug-archipelago: *sun-moon.pokemon.scatterbug.forms.scatterbug-archipelago
+        scatterbug-high-plains: *sun-moon.pokemon.scatterbug.forms.scatterbug-high-plains
+        scatterbug-sandstorm: *sun-moon.pokemon.scatterbug.forms.scatterbug-sandstorm
+        scatterbug-river: *sun-moon.pokemon.scatterbug.forms.scatterbug-river
+        scatterbug-monsoon: *sun-moon.pokemon.scatterbug.forms.scatterbug-monsoon
+        scatterbug-savanna: *sun-moon.pokemon.scatterbug.forms.scatterbug-savanna
+        scatterbug-sun: *sun-moon.pokemon.scatterbug.forms.scatterbug-sun
+        scatterbug-ocean: *sun-moon.pokemon.scatterbug.forms.scatterbug-ocean
+        scatterbug-jungle: *sun-moon.pokemon.scatterbug.forms.scatterbug-jungle
+        scatterbug-fancy: *sun-moon.pokemon.scatterbug.forms.scatterbug-fancy
+        scatterbug-poke-ball: *sun-moon.pokemon.scatterbug.forms.scatterbug-poke-ball

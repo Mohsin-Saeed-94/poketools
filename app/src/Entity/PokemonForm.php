@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Media\PokemonArt;
+use App\Entity\Media\PokemonSprite;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -72,18 +74,18 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
     protected $footprint;
 
     /**
-     * @var string|null
+     * @var Collection|PokemonSprite[]
      *
-     * @ORM\Column(type="string", nullable=true)
-     * @Assert\Url()
+     * @ORM\OneToMany(targetEntity="App\Entity\Media\PokemonSprite", mappedBy="pokemonForm", cascade={"ALL"},
+     *     orphanRemoval=true, fetch="EAGER")
      */
-    protected $sprite;
+    protected $sprites;
 
     /**
-     * @var string|null
+     * @var Collection|PokemonArt[]
      *
-     * @ORM\Column(type="string", nullable=true)
-     * @Assert\Url()
+     * @ORM\OneToMany(targetEntity="App\Entity\Media\PokemonArt", mappedBy="pokemonForm", cascade={"ALL"},
+     *     orphanRemoval=true, fetch="EAGER")
      */
     protected $art;
 
@@ -93,6 +95,8 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
     public function __construct()
     {
         $this->pokeathlonStats = new ArrayCollection();
+        $this->sprites = new ArrayCollection();
+        $this->art = new ArrayCollection();
     }
 
     /**
@@ -219,9 +223,9 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
     /**
      * @param string|null $cry
      *
-     * @return PokemonForm
+     * @return self
      */
-    public function setCry(?string $cry): PokemonForm
+    public function setCry(?string $cry): self
     {
         $this->cry = $cry;
 
@@ -239,9 +243,9 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
     /**
      * @param string|null $footprint
      *
-     * @return PokemonForm
+     * @return self
      */
-    public function setFootprint(?string $footprint): PokemonForm
+    public function setFootprint(?string $footprint): self
     {
         $this->footprint = $footprint;
 
@@ -249,41 +253,115 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
     }
 
     /**
-     * @return string|null
-     */
-    public function getSprite(): ?string
-    {
-        return $this->sprite;
-    }
-
-    /**
-     * @param string|null $sprite
+     * @param PokemonSprite $sprite
      *
-     * @return PokemonForm
+     * @return self
      */
-    public function setSprite(?string $sprite): PokemonForm
+    public function addSprite(PokemonSprite $sprite): self
     {
-        $this->sprite = $sprite;
+        $matches = $this->filterMatchingSprites($sprite);
+        if ($matches->count() === 0) {
+            $this->sprites->add($sprite);
+            $sprite->setPokemonForm($this);
+        }
 
         return $this;
     }
 
     /**
-     * @return string|null
+     * @param PokemonSprite $sprite
+     *
+     * @return Collection
      */
-    public function getArt(): ?string
+    protected function filterMatchingSprites(PokemonSprite $sprite): Collection
+    {
+        $matches = $this->getSprites()->filter(
+            function (PokemonSprite $pokemonSprite) use ($sprite) {
+                return $pokemonSprite->getUrl() === $sprite->getUrl();
+            }
+        );
+
+        return $matches;
+    }
+
+    /**
+     * @return PokemonSprite[]|Collection
+     */
+    public function getSprites()
+    {
+        return $this->sprites;
+    }
+
+    /**
+     * @param PokemonSprite $sprite
+     *
+     * @return self
+     */
+    public function removeSprite(PokemonSprite $sprite): self
+    {
+        $matches = $this->filterMatchingSprites($sprite);
+        if ($matches->count() > 0) {
+            foreach ($matches as $match) {
+                $this->sprites->removeElement($match);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param PokemonArt $art
+     *
+     * @return self
+     */
+    public function addArt(PokemonArt $art): self
+    {
+        $matches = $this->filterMatchingArt($art);
+        if ($matches->count() === 0) {
+            $this->art->add($art);
+            $art->setPokemonForm($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param PokemonArt $art
+     *
+     * @return Collection
+     */
+    protected function filterMatchingArt(PokemonArt $art): Collection
+    {
+        $matches = $this->getArt()->filter(
+            function (PokemonArt $pokemonSprite) use ($art) {
+                return $pokemonSprite->getUrl() === $art->getUrl();
+            }
+        );
+
+        return $matches;
+    }
+
+    /**
+     * @return Collection|PokemonArt[]
+     */
+    public function getArt()
     {
         return $this->art;
     }
 
     /**
-     * @param string|null $art
+     * @param PokemonArt $art
      *
-     * @return PokemonForm
+     * @return self
      */
-    public function setArt(?string $art): PokemonForm
+    public function removeArt(PokemonArt $art): self
     {
-        $this->art = $art;
+        $matches = $this->filterMatchingArt($art);
+        if ($matches->count() > 0) {
+            foreach ($matches as $match) {
+                $this->art->removeElement($match);
+            }
+        }
 
         return $this;
     }

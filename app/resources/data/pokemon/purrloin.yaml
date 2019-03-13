@@ -59,19 +59,26 @@ black-white:
           They steal from people for fun, but their
           victims can’t help but forgive them.
           Their deceptively cute act is perfect.
-          
         white: |
           Its cute act is a ruse. When victims let
           down their guard, they find their items
           taken. It attacks with sharp claws.
-          
-      forms: &black-white.pokemon.purrloin.forms
+      forms:
         purrloin:
           name: *black-white.name
           form_name: &black-white.pokemon.purrloin.forms.purrloin.form_name 'Default Form'
           default: *black-white.pokemon.purrloin.default
           battle_only: &black-white.pokemon.purrloin.forms.purrloin.battle_only false
-          icon: gen5/purrloin-default.png
+          icon: &black-white.pokemon.purrloin.forms.purrloin.icon gen5/purrloin-default.png
+          sprites:
+            - black-white/back/shiny/purrloin-default.png
+            - black-white/back/purrloin-default.png
+            - black-white/shiny/purrloin-default.png
+            - black-white/purrloin-default.png
+          art: &black-white.pokemon.purrloin.forms.purrloin.art
+            - purrloin-default.png
+          footprint: &black-white.pokemon.purrloin.forms.purrloin.footprint purrloin.png
+          cry: &black-white.pokemon.purrloin.forms.purrloin.cry gen5/purrloin-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -104,13 +111,20 @@ black-2-white-2:
           Their cute act is a ruse. They trick
           people and steal their valuables
           just to see the looks on their faces.
-          
         white-2: |
           Their cute act is a ruse. They trick
           people and steal their valuables
           just to see the looks on their faces.
-          
-      forms: *black-white.pokemon.purrloin.forms
+      forms:
+        purrloin:
+          name: *black-white.name
+          form_name: *black-white.pokemon.purrloin.forms.purrloin.form_name
+          default: *black-white.pokemon.purrloin.default
+          battle_only: *black-white.pokemon.purrloin.forms.purrloin.battle_only
+          icon: *black-white.pokemon.purrloin.forms.purrloin.icon
+          art: *black-white.pokemon.purrloin.forms.purrloin.art
+          footprint: *black-white.pokemon.purrloin.forms.purrloin.footprint
+          cry: *black-white.pokemon.purrloin.forms.purrloin.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -144,19 +158,23 @@ x-y:
           Its cute act is a ruse. When victims let down their
           guard, they find their items taken. It attacks with
           sharp claws.
-          
         'y': |
           They steal from people for fun, but their victims
           can’t help but forgive them. Their deceptively cute
           act is perfect.
-          
-      forms: &x-y.pokemon.purrloin.forms
+      forms:
         purrloin:
           name: *black-white.name
           form_name: *black-white.pokemon.purrloin.forms.purrloin.form_name
           default: *black-white.pokemon.purrloin.default
           battle_only: *black-white.pokemon.purrloin.forms.purrloin.battle_only
-          icon: purrloin-default.png
+          icon: &x-y.pokemon.purrloin.forms.purrloin.icon purrloin-default.png
+          sprites:
+            - x-y/shiny/purrloin-default.png
+            - x-y/purrloin-default.png
+          art: *black-white.pokemon.purrloin.forms.purrloin.art
+          footprint: *black-white.pokemon.purrloin.forms.purrloin.footprint
+          cry: &x-y.pokemon.purrloin.forms.purrloin.cry purrloin-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -189,14 +207,21 @@ omega-ruby-alpha-sapphire:
           Its cute act is a ruse. When victims let down their
           guard, they find their items taken. It attacks with
           sharp claws.
-          
         alpha-sapphire: |
           They steal from people for fun, but their victims
           can’t help but forgive them. Their deceptively cute
           act is perfect.
-          
-      forms: *x-y.pokemon.purrloin.forms
-sun-moon: &sun-moon
+      forms:
+        purrloin:
+          name: *black-white.name
+          form_name: *black-white.pokemon.purrloin.forms.purrloin.form_name
+          default: *black-white.pokemon.purrloin.default
+          battle_only: *black-white.pokemon.purrloin.forms.purrloin.battle_only
+          icon: *x-y.pokemon.purrloin.forms.purrloin.icon
+          art: *black-white.pokemon.purrloin.forms.purrloin.art
+          footprint: *black-white.pokemon.purrloin.forms.purrloin.footprint
+          cry: *x-y.pokemon.purrloin.forms.purrloin.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -221,5 +246,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.purrloin.mega
       stats: *black-white.pokemon.purrloin.stats
       abilities: *black-white.pokemon.purrloin.abilities
-      forms: *x-y.pokemon.purrloin.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        purrloin:
+          name: *black-white.name
+          form_name: *black-white.pokemon.purrloin.forms.purrloin.form_name
+          default: *black-white.pokemon.purrloin.default
+          battle_only: *black-white.pokemon.purrloin.forms.purrloin.battle_only
+          icon: *x-y.pokemon.purrloin.forms.purrloin.icon
+          sprites:
+            - sun-moon/shiny/purrloin-default.png
+            - sun-moon/purrloin-default.png
+          art: *black-white.pokemon.purrloin.forms.purrloin.art
+          footprint: *black-white.pokemon.purrloin.forms.purrloin.footprint
+          cry: *x-y.pokemon.purrloin.forms.purrloin.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    purrloin:
+      genus: *black-white.pokemon.purrloin.genus
+      color: *black-white.pokemon.purrloin.color
+      shape: *black-white.pokemon.purrloin.shape
+      female_rate: *black-white.pokemon.purrloin.female_rate
+      capture_rate: *black-white.pokemon.purrloin.capture_rate
+      happiness: *black-white.pokemon.purrloin.happiness
+      baby: *black-white.pokemon.purrloin.baby
+      hatch_steps: *black-white.pokemon.purrloin.hatch_steps
+      growth_rate: *black-white.pokemon.purrloin.growth_rate
+      forms_switchable: *black-white.pokemon.purrloin.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.purrloin.default
+      height: *black-white.pokemon.purrloin.height
+      weight: *black-white.pokemon.purrloin.weight
+      experience: *black-white.pokemon.purrloin.experience
+      types: *black-white.pokemon.purrloin.types
+      egg_groups: *black-white.pokemon.purrloin.egg_groups
+      mega: *x-y.pokemon.purrloin.mega
+      stats: *black-white.pokemon.purrloin.stats
+      abilities: *black-white.pokemon.purrloin.abilities
+      forms:
+        purrloin:
+          name: *black-white.name
+          form_name: *black-white.pokemon.purrloin.forms.purrloin.form_name
+          default: *black-white.pokemon.purrloin.default
+          battle_only: *black-white.pokemon.purrloin.forms.purrloin.battle_only
+          icon: *x-y.pokemon.purrloin.forms.purrloin.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/purrloin-default.png
+            - ultra-sun-ultra-moon/purrloin-default.png
+          art: *black-white.pokemon.purrloin.forms.purrloin.art
+          footprint: *black-white.pokemon.purrloin.forms.purrloin.footprint
+          cry: *x-y.pokemon.purrloin.forms.purrloin.cry

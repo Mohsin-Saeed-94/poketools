@@ -51,14 +51,17 @@ sun-moon:
           A mysterious life-form called an Ultra Beast.
           Witnesses saw it pulverize a dump truck with a
           single punch.
-          
-      forms: &sun-moon.pokemon.buzzwole.forms
+      forms:
         buzzwole:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.buzzwole.forms.buzzwole.form_name 'Default Form'
           default: *sun-moon.pokemon.buzzwole.default
-          battle_only: false
-          icon: buzzwole-default.png
+          battle_only: &sun-moon.pokemon.buzzwole.forms.buzzwole.battle_only false
+          icon: &sun-moon.pokemon.buzzwole.forms.buzzwole.icon buzzwole-default.png
+          sprites:
+            - sun-moon/shiny/buzzwole-default.png
+            - sun-moon/buzzwole-default.png
+          footprint: &sun-moon.pokemon.buzzwole.forms.buzzwole.footprint buzzwole.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -88,5 +91,14 @@ ultra-sun-ultra-moon:
           Although it’s alien to this world and a danger
           here, it’s apparently a common organism in the
           world where it normally lives.
-          
-      forms: *sun-moon.pokemon.buzzwole.forms
+      forms:
+        buzzwole:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.buzzwole.forms.buzzwole.form_name
+          default: *sun-moon.pokemon.buzzwole.default
+          battle_only: *sun-moon.pokemon.buzzwole.forms.buzzwole.battle_only
+          icon: *sun-moon.pokemon.buzzwole.forms.buzzwole.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/buzzwole-default.png
+            - ultra-sun-ultra-moon/buzzwole-default.png
+          footprint: *sun-moon.pokemon.buzzwole.forms.buzzwole.footprint

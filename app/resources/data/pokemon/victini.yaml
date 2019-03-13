@@ -53,19 +53,26 @@ black-white:
           This Pokémon brings victory. It is said
           that Trainers with Victini always win,
           regardless of the type of encounter.
-          
         white: |
           It creates an unlimited supply of
           energy inside its body, which it
           shares with those who touch it.
-          
-      forms: &black-white.pokemon.victini.forms
+      forms:
         victini:
           name: *black-white.name
           form_name: &black-white.pokemon.victini.forms.victini.form_name 'Default Form'
           default: *black-white.pokemon.victini.default
           battle_only: &black-white.pokemon.victini.forms.victini.battle_only false
-          icon: gen5/victini-default.png
+          icon: &black-white.pokemon.victini.forms.victini.icon gen5/victini-default.png
+          sprites:
+            - black-white/back/shiny/victini-default.png
+            - black-white/back/victini-default.png
+            - black-white/shiny/victini-default.png
+            - black-white/victini-default.png
+          art: &black-white.pokemon.victini.forms.victini.art
+            - victini-default.png
+          footprint: &black-white.pokemon.victini.forms.victini.footprint victini.png
+          cry: &black-white.pokemon.victini.forms.victini.cry gen5/victini-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -97,13 +104,20 @@ black-2-white-2:
           When it shares the infinite energy
           it creates, that being’s entire
           body will be overflowing with power.
-          
         white-2: |
           When it shares the infinite energy
           it creates, that being’s entire
           body will be overflowing with power.
-          
-      forms: *black-white.pokemon.victini.forms
+      forms:
+        victini:
+          name: *black-white.name
+          form_name: *black-white.pokemon.victini.forms.victini.form_name
+          default: *black-white.pokemon.victini.default
+          battle_only: *black-white.pokemon.victini.forms.victini.battle_only
+          icon: *black-white.pokemon.victini.forms.victini.icon
+          art: *black-white.pokemon.victini.forms.victini.art
+          footprint: *black-white.pokemon.victini.forms.victini.footprint
+          cry: *black-white.pokemon.victini.forms.victini.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -135,19 +149,23 @@ x-y:
           This Pokémon brings victory. It is said that Trainers
           with Victini always win, regardless of the type
           of encounter.
-          
         'y': |
           When it shares the infinite energy it creates,
           that being’s entire body will be overflowing
           with power.
-          
-      forms: &x-y.pokemon.victini.forms
+      forms:
         victini:
           name: *black-white.name
           form_name: *black-white.pokemon.victini.forms.victini.form_name
           default: *black-white.pokemon.victini.default
           battle_only: *black-white.pokemon.victini.forms.victini.battle_only
-          icon: victini-default.png
+          icon: &x-y.pokemon.victini.forms.victini.icon victini-default.png
+          sprites:
+            - x-y/shiny/victini-default.png
+            - x-y/victini-default.png
+          art: *black-white.pokemon.victini.forms.victini.art
+          footprint: *black-white.pokemon.victini.forms.victini.footprint
+          cry: &x-y.pokemon.victini.forms.victini.cry victini-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -178,14 +196,21 @@ omega-ruby-alpha-sapphire:
           This Pokémon brings victory. It is said that Trainers
           with Victini always win, regardless of the type
           of encounter.
-          
         alpha-sapphire: |
           When it shares the infinite energy it creates,
           that being’s entire body will be overflowing
           with power.
-          
-      forms: *x-y.pokemon.victini.forms
-sun-moon: &sun-moon
+      forms:
+        victini:
+          name: *black-white.name
+          form_name: *black-white.pokemon.victini.forms.victini.form_name
+          default: *black-white.pokemon.victini.default
+          battle_only: *black-white.pokemon.victini.forms.victini.battle_only
+          icon: *x-y.pokemon.victini.forms.victini.icon
+          art: *black-white.pokemon.victini.forms.victini.art
+          footprint: *black-white.pokemon.victini.forms.victini.footprint
+          cry: *x-y.pokemon.victini.forms.victini.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -209,5 +234,53 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.victini.mega
       stats: *black-white.pokemon.victini.stats
       abilities: *black-white.pokemon.victini.abilities
-      forms: *x-y.pokemon.victini.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        victini:
+          name: *black-white.name
+          form_name: *black-white.pokemon.victini.forms.victini.form_name
+          default: *black-white.pokemon.victini.default
+          battle_only: *black-white.pokemon.victini.forms.victini.battle_only
+          icon: *x-y.pokemon.victini.forms.victini.icon
+          sprites:
+            - sun-moon/shiny/victini-default.png
+            - sun-moon/victini-default.png
+          art: *black-white.pokemon.victini.forms.victini.art
+          footprint: *black-white.pokemon.victini.forms.victini.footprint
+          cry: *x-y.pokemon.victini.forms.victini.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    victini:
+      genus: *black-white.pokemon.victini.genus
+      color: *black-white.pokemon.victini.color
+      shape: *black-white.pokemon.victini.shape
+      capture_rate: *black-white.pokemon.victini.capture_rate
+      happiness: *black-white.pokemon.victini.happiness
+      baby: *black-white.pokemon.victini.baby
+      hatch_steps: *black-white.pokemon.victini.hatch_steps
+      growth_rate: *black-white.pokemon.victini.growth_rate
+      forms_switchable: *black-white.pokemon.victini.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.victini.default
+      height: *black-white.pokemon.victini.height
+      weight: *black-white.pokemon.victini.weight
+      experience: *black-white.pokemon.victini.experience
+      types: *black-white.pokemon.victini.types
+      egg_groups: *black-white.pokemon.victini.egg_groups
+      mega: *x-y.pokemon.victini.mega
+      stats: *black-white.pokemon.victini.stats
+      abilities: *black-white.pokemon.victini.abilities
+      forms:
+        victini:
+          name: *black-white.name
+          form_name: *black-white.pokemon.victini.forms.victini.form_name
+          default: *black-white.pokemon.victini.default
+          battle_only: *black-white.pokemon.victini.forms.victini.battle_only
+          icon: *x-y.pokemon.victini.forms.victini.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/victini-default.png
+            - ultra-sun-ultra-moon/victini-default.png
+          art: *black-white.pokemon.victini.forms.victini.art
+          footprint: *black-white.pokemon.victini.forms.victini.footprint
+          cry: *x-y.pokemon.victini.forms.victini.cry

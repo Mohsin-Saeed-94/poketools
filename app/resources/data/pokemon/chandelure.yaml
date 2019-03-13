@@ -64,19 +64,26 @@ black-white:
           It absorbs a spirit, which it then burns.
           By waving the flames on its arms,
           it puts its foes into a hypnotic trance.
-          
         white: |
           Being consumed in Chandelure’s flame
           burns up the spirit, leaving the
           body behind.
-          
-      forms: &black-white.pokemon.chandelure.forms
+      forms:
         chandelure:
           name: *black-white.name
           form_name: &black-white.pokemon.chandelure.forms.chandelure.form_name 'Default Form'
           default: *black-white.pokemon.chandelure.default
           battle_only: &black-white.pokemon.chandelure.forms.chandelure.battle_only false
-          icon: gen5/chandelure-default.png
+          icon: &black-white.pokemon.chandelure.forms.chandelure.icon gen5/chandelure-default.png
+          sprites:
+            - black-white/back/chandelure-default.png
+            - black-white/back/shiny/chandelure-default.png
+            - black-white/chandelure-default.png
+            - black-white/shiny/chandelure-default.png
+          art: &black-white.pokemon.chandelure.forms.chandelure.art
+            - chandelure-default.png
+          footprint: &black-white.pokemon.chandelure.forms.chandelure.footprint chandelure.png
+          cry: &black-white.pokemon.chandelure.forms.chandelure.cry gen5/chandelure-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -111,13 +118,20 @@ black-2-white-2:
           The spirits burned up in its
           ominous flame lose their way
           and wander this world forever.
-          
         white-2: |
           The spirits burned up in its
           ominous flame lose their way
           and wander this world forever.
-          
-      forms: *black-white.pokemon.chandelure.forms
+      forms:
+        chandelure:
+          name: *black-white.name
+          form_name: *black-white.pokemon.chandelure.forms.chandelure.form_name
+          default: *black-white.pokemon.chandelure.default
+          battle_only: *black-white.pokemon.chandelure.forms.chandelure.battle_only
+          icon: *black-white.pokemon.chandelure.forms.chandelure.icon
+          art: *black-white.pokemon.chandelure.forms.chandelure.art
+          footprint: *black-white.pokemon.chandelure.forms.chandelure.footprint
+          cry: *black-white.pokemon.chandelure.forms.chandelure.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -152,18 +166,22 @@ x-y:
         x: |
           Being consumed in Chandelure’s flame burns up
           the spirit, leaving the body behind.
-          
         'y': |
           The spirits burned up in its ominous flame lose their
           way and wander this world forever.
-          
-      forms: &x-y.pokemon.chandelure.forms
+      forms:
         chandelure:
           name: *black-white.name
           form_name: *black-white.pokemon.chandelure.forms.chandelure.form_name
           default: *black-white.pokemon.chandelure.default
           battle_only: *black-white.pokemon.chandelure.forms.chandelure.battle_only
-          icon: chandelure-default.png
+          icon: &x-y.pokemon.chandelure.forms.chandelure.icon chandelure-default.png
+          sprites:
+            - x-y/chandelure-default.png
+            - x-y/shiny/chandelure-default.png
+          art: *black-white.pokemon.chandelure.forms.chandelure.art
+          footprint: *black-white.pokemon.chandelure.forms.chandelure.footprint
+          cry: &x-y.pokemon.chandelure.forms.chandelure.cry chandelure-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -197,13 +215,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Being consumed in Chandelure’s flame burns up
           the spirit, leaving the body behind.
-          
         alpha-sapphire: |
           The spirits burned up in its ominous flame lose their
           way and wander this world forever.
-          
-      forms: *x-y.pokemon.chandelure.forms
-sun-moon: &sun-moon
+      forms:
+        chandelure:
+          name: *black-white.name
+          form_name: *black-white.pokemon.chandelure.forms.chandelure.form_name
+          default: *black-white.pokemon.chandelure.default
+          battle_only: *black-white.pokemon.chandelure.forms.chandelure.battle_only
+          icon: *x-y.pokemon.chandelure.forms.chandelure.icon
+          art: *black-white.pokemon.chandelure.forms.chandelure.art
+          footprint: *black-white.pokemon.chandelure.forms.chandelure.footprint
+          cry: *x-y.pokemon.chandelure.forms.chandelure.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -230,5 +255,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.chandelure.stats
       abilities: *black-white.pokemon.chandelure.abilities
       evolution_conditions: *black-white.pokemon.chandelure.evolution_conditions
-      forms: *x-y.pokemon.chandelure.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        chandelure:
+          name: *black-white.name
+          form_name: *black-white.pokemon.chandelure.forms.chandelure.form_name
+          default: *black-white.pokemon.chandelure.default
+          battle_only: *black-white.pokemon.chandelure.forms.chandelure.battle_only
+          icon: *x-y.pokemon.chandelure.forms.chandelure.icon
+          sprites:
+            - sun-moon/chandelure-default.png
+            - sun-moon/shiny/chandelure-default.png
+          art: *black-white.pokemon.chandelure.forms.chandelure.art
+          footprint: *black-white.pokemon.chandelure.forms.chandelure.footprint
+          cry: *x-y.pokemon.chandelure.forms.chandelure.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    chandelure:
+      genus: *black-white.pokemon.chandelure.genus
+      evolution_parent: *black-white.pokemon.chandelure.evolution_parent
+      color: *black-white.pokemon.chandelure.color
+      shape: *black-white.pokemon.chandelure.shape
+      female_rate: *black-white.pokemon.chandelure.female_rate
+      capture_rate: *black-white.pokemon.chandelure.capture_rate
+      happiness: *black-white.pokemon.chandelure.happiness
+      baby: *black-white.pokemon.chandelure.baby
+      hatch_steps: *black-white.pokemon.chandelure.hatch_steps
+      growth_rate: *black-white.pokemon.chandelure.growth_rate
+      forms_switchable: *black-white.pokemon.chandelure.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.chandelure.default
+      height: *black-white.pokemon.chandelure.height
+      weight: *black-white.pokemon.chandelure.weight
+      experience: *black-white.pokemon.chandelure.experience
+      types: *black-white.pokemon.chandelure.types
+      egg_groups: *black-white.pokemon.chandelure.egg_groups
+      mega: *x-y.pokemon.chandelure.mega
+      stats: *black-white.pokemon.chandelure.stats
+      abilities: *black-white.pokemon.chandelure.abilities
+      evolution_conditions: *black-white.pokemon.chandelure.evolution_conditions
+      forms:
+        chandelure:
+          name: *black-white.name
+          form_name: *black-white.pokemon.chandelure.forms.chandelure.form_name
+          default: *black-white.pokemon.chandelure.default
+          battle_only: *black-white.pokemon.chandelure.forms.chandelure.battle_only
+          icon: *x-y.pokemon.chandelure.forms.chandelure.icon
+          sprites:
+            - ultra-sun-ultra-moon/chandelure-default.png
+            - ultra-sun-ultra-moon/shiny/chandelure-default.png
+          art: *black-white.pokemon.chandelure.forms.chandelure.art
+          footprint: *black-white.pokemon.chandelure.forms.chandelure.footprint
+          cry: *x-y.pokemon.chandelure.forms.chandelure.cry

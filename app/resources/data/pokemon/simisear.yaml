@@ -65,19 +65,26 @@ black-white:
           It loves sweets because they become
           energy for the fire burning inside
           its body.
-          
         white: |
           A flame burns inside its body.
           It scatters embers from its head
           and tail to sear its opponents.
-          
-      forms: &black-white.pokemon.simisear.forms
+      forms:
         simisear:
           name: *black-white.name
           form_name: &black-white.pokemon.simisear.forms.simisear.form_name 'Default Form'
           default: *black-white.pokemon.simisear.default
           battle_only: &black-white.pokemon.simisear.forms.simisear.battle_only false
-          icon: gen5/simisear-default.png
+          icon: &black-white.pokemon.simisear.forms.simisear.icon gen5/simisear-default.png
+          sprites:
+            - black-white/back/shiny/simisear-default.png
+            - black-white/back/simisear-default.png
+            - black-white/shiny/simisear-default.png
+            - black-white/simisear-default.png
+          art: &black-white.pokemon.simisear.forms.simisear.art
+            - simisear-default.png
+          footprint: &black-white.pokemon.simisear.forms.simisear.footprint simisear.png
+          cry: &black-white.pokemon.simisear.forms.simisear.cry gen5/simisear-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -115,13 +122,20 @@ black-2-white-2:
           When it gets excited, embers rise
           from its head and tail and it gets hot.
           For some reason, it loves sweets.
-          
         white-2: |
           When it gets excited, embers rise
           from its head and tail and it gets hot.
           For some reason, it loves sweets.
-          
-      forms: *black-white.pokemon.simisear.forms
+      forms:
+        simisear:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simisear.forms.simisear.form_name
+          default: *black-white.pokemon.simisear.default
+          battle_only: *black-white.pokemon.simisear.forms.simisear.battle_only
+          icon: *black-white.pokemon.simisear.forms.simisear.icon
+          art: *black-white.pokemon.simisear.forms.simisear.art
+          footprint: *black-white.pokemon.simisear.forms.simisear.footprint
+          cry: *black-white.pokemon.simisear.forms.simisear.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -156,19 +170,23 @@ x-y:
         x: |
           A flame burns inside its body. It scatters embers
           from its head and tail to sear its opponents.
-          
         'y': |
           When it gets excited, embers rise from its head
           and tail and it gets hot. For some reason, it
           loves sweets.
-          
-      forms: &x-y.pokemon.simisear.forms
+      forms:
         simisear:
           name: *black-white.name
           form_name: *black-white.pokemon.simisear.forms.simisear.form_name
           default: *black-white.pokemon.simisear.default
           battle_only: *black-white.pokemon.simisear.forms.simisear.battle_only
-          icon: simisear-default.png
+          icon: &x-y.pokemon.simisear.forms.simisear.icon simisear-default.png
+          sprites:
+            - x-y/shiny/simisear-default.png
+            - x-y/simisear-default.png
+          art: *black-white.pokemon.simisear.forms.simisear.art
+          footprint: *black-white.pokemon.simisear.forms.simisear.footprint
+          cry: &x-y.pokemon.simisear.forms.simisear.cry simisear-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -202,14 +220,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           A flame burns inside its body. It scatters embers
           from its head and tail to sear its opponents.
-          
         alpha-sapphire: |
           When it gets excited, embers rise from its head
           and tail and it gets hot. For some reason, it
           loves sweets.
-          
-      forms: *x-y.pokemon.simisear.forms
-sun-moon: &sun-moon
+      forms:
+        simisear:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simisear.forms.simisear.form_name
+          default: *black-white.pokemon.simisear.default
+          battle_only: *black-white.pokemon.simisear.forms.simisear.battle_only
+          icon: *x-y.pokemon.simisear.forms.simisear.icon
+          art: *black-white.pokemon.simisear.forms.simisear.art
+          footprint: *black-white.pokemon.simisear.forms.simisear.footprint
+          cry: *x-y.pokemon.simisear.forms.simisear.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -236,5 +261,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.simisear.stats
       abilities: *black-white.pokemon.simisear.abilities
       evolution_conditions: *black-white.pokemon.simisear.evolution_conditions
-      forms: *x-y.pokemon.simisear.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        simisear:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simisear.forms.simisear.form_name
+          default: *black-white.pokemon.simisear.default
+          battle_only: *black-white.pokemon.simisear.forms.simisear.battle_only
+          icon: *x-y.pokemon.simisear.forms.simisear.icon
+          sprites:
+            - sun-moon/shiny/simisear-default.png
+            - sun-moon/simisear-default.png
+          art: *black-white.pokemon.simisear.forms.simisear.art
+          footprint: *black-white.pokemon.simisear.forms.simisear.footprint
+          cry: *x-y.pokemon.simisear.forms.simisear.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    simisear:
+      genus: *black-white.pokemon.simisear.genus
+      evolution_parent: *black-white.pokemon.simisear.evolution_parent
+      color: *black-white.pokemon.simisear.color
+      shape: *black-white.pokemon.simisear.shape
+      female_rate: *black-white.pokemon.simisear.female_rate
+      capture_rate: *black-white.pokemon.simisear.capture_rate
+      happiness: *black-white.pokemon.simisear.happiness
+      baby: *black-white.pokemon.simisear.baby
+      hatch_steps: *black-white.pokemon.simisear.hatch_steps
+      growth_rate: *black-white.pokemon.simisear.growth_rate
+      forms_switchable: *black-white.pokemon.simisear.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.simisear.default
+      height: *black-white.pokemon.simisear.height
+      weight: *black-white.pokemon.simisear.weight
+      experience: *black-white.pokemon.simisear.experience
+      types: *black-white.pokemon.simisear.types
+      egg_groups: *black-white.pokemon.simisear.egg_groups
+      mega: *x-y.pokemon.simisear.mega
+      stats: *black-white.pokemon.simisear.stats
+      abilities: *black-white.pokemon.simisear.abilities
+      evolution_conditions: *black-white.pokemon.simisear.evolution_conditions
+      forms:
+        simisear:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simisear.forms.simisear.form_name
+          default: *black-white.pokemon.simisear.default
+          battle_only: *black-white.pokemon.simisear.forms.simisear.battle_only
+          icon: *x-y.pokemon.simisear.forms.simisear.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/simisear-default.png
+            - ultra-sun-ultra-moon/simisear-default.png
+          art: *black-white.pokemon.simisear.forms.simisear.art
+          footprint: *black-white.pokemon.simisear.forms.simisear.footprint
+          cry: *x-y.pokemon.simisear.forms.simisear.cry

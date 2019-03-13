@@ -62,13 +62,17 @@ sun-moon:
           It fires beams from its sickle-shaped petals.
           These beams are powerful enough to cleave
           through thick metal plates.
-      forms: &sun-moon.pokemon.lurantis.forms
+      forms:
         lurantis:
           name: *sun-moon.name
           form_name: &sun-moon.pokemon.lurantis.forms.lurantis.form_name 'Default Form'
           default: *sun-moon.pokemon.lurantis.default
-          battle_only: false
-          icon: lurantis-default.png
+          battle_only: &sun-moon.pokemon.lurantis.forms.lurantis.battle_only false
+          icon: &sun-moon.pokemon.lurantis.forms.lurantis.icon lurantis-default.png
+          sprites:
+            - sun-moon/lurantis-default.png
+            - sun-moon/shiny/lurantis-default.png
+          footprint: &sun-moon.pokemon.lurantis.forms.lurantis.footprint lurantis.png
     lurantis-totem:
       genus: *sun-moon.pokemon.lurantis.genus
       evolution_parent: *sun-moon.pokemon.lurantis.evolution_parent
@@ -101,6 +105,7 @@ sun-moon:
           default: *sun-moon.pokemon.lurantis.default
           battle_only: true
           icon: lurantis-totem.png
+          footprint: *sun-moon.pokemon.lurantis.forms.lurantis.footprint
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -135,7 +140,17 @@ ultra-sun-ultra-moon:
           For self-protection, it pretends to be a bug
           Pokémon. Both of its arms bear
           keen-edged petals.
-      forms: *sun-moon.pokemon.lurantis.forms
+      forms:
+        lurantis:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.lurantis.forms.lurantis.form_name
+          default: *sun-moon.pokemon.lurantis.default
+          battle_only: *sun-moon.pokemon.lurantis.forms.lurantis.battle_only
+          icon: *sun-moon.pokemon.lurantis.forms.lurantis.icon
+          sprites:
+            - ultra-sun-ultra-moon/lurantis-default.png
+            - ultra-sun-ultra-moon/shiny/lurantis-default.png
+          footprint: *sun-moon.pokemon.lurantis.forms.lurantis.footprint
     lurantis-totem:
       genus: *sun-moon.pokemon.lurantis.genus
       evolution_parent: *sun-moon.pokemon.lurantis.evolution_parent

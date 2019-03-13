@@ -53,19 +53,24 @@ x-y:
           It lets out billows of steam and disappears into
           the dense fog. It’s said to live in mountains
           where humans do not tread.
-          
         'y': |
           It expels its internal steam from the
           arms on its back. It has enough
           power to blow away a mountain.
-          
-      forms: &x-y.pokemon.volcanion.forms
+      forms:
         volcanion:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.volcanion.forms.volcanion.form_name 'Default Form'
           default: *x-y.pokemon.volcanion.default
-          battle_only: false
-          icon: volcanion-default.png
+          battle_only: &x-y.pokemon.volcanion.forms.volcanion.battle_only false
+          icon: &x-y.pokemon.volcanion.forms.volcanion.icon volcanion-default.png
+          sprites:
+            - x-y/volcanion-default.png
+            - x-y/shiny/volcanion-default.png
+          art: &x-y.pokemon.volcanion.forms.volcanion.art
+            - volcanion-default.png
+          footprint: &x-y.pokemon.volcanion.forms.volcanion.footprint volcanion.png
+          cry: &x-y.pokemon.volcanion.forms.volcanion.cry volcanion-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -96,14 +101,21 @@ omega-ruby-alpha-sapphire:
           It lets out billows of steam and disappears into
           the dense fog. It’s said to live in mountains
           where humans do not tread.
-          
         alpha-sapphire: |
           It expels its internal steam from the
           arms on its back. It has enough
           power to blow away a mountain.
-          
-      forms: *x-y.pokemon.volcanion.forms
-sun-moon: &sun-moon
+      forms:
+        volcanion:
+          name: *x-y.name
+          form_name: *x-y.pokemon.volcanion.forms.volcanion.form_name
+          default: *x-y.pokemon.volcanion.default
+          battle_only: *x-y.pokemon.volcanion.forms.volcanion.battle_only
+          icon: *x-y.pokemon.volcanion.forms.volcanion.icon
+          art: *x-y.pokemon.volcanion.forms.volcanion.art
+          footprint: *x-y.pokemon.volcanion.forms.volcanion.footprint
+          cry: *x-y.pokemon.volcanion.forms.volcanion.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -127,5 +139,53 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.volcanion.mega
       stats: *x-y.pokemon.volcanion.stats
       abilities: *x-y.pokemon.volcanion.abilities
-      forms: *x-y.pokemon.volcanion.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        volcanion:
+          name: *x-y.name
+          form_name: *x-y.pokemon.volcanion.forms.volcanion.form_name
+          default: *x-y.pokemon.volcanion.default
+          battle_only: *x-y.pokemon.volcanion.forms.volcanion.battle_only
+          icon: *x-y.pokemon.volcanion.forms.volcanion.icon
+          sprites:
+            - sun-moon/volcanion-default.png
+            - sun-moon/shiny/volcanion-default.png
+          art: *x-y.pokemon.volcanion.forms.volcanion.art
+          footprint: *x-y.pokemon.volcanion.forms.volcanion.footprint
+          cry: *x-y.pokemon.volcanion.forms.volcanion.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    volcanion:
+      genus: *x-y.pokemon.volcanion.genus
+      color: *x-y.pokemon.volcanion.color
+      shape: *x-y.pokemon.volcanion.shape
+      capture_rate: *x-y.pokemon.volcanion.capture_rate
+      happiness: *x-y.pokemon.volcanion.happiness
+      baby: *x-y.pokemon.volcanion.baby
+      hatch_steps: *x-y.pokemon.volcanion.hatch_steps
+      growth_rate: *x-y.pokemon.volcanion.growth_rate
+      forms_switchable: *x-y.pokemon.volcanion.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.volcanion.default
+      height: *x-y.pokemon.volcanion.height
+      weight: *x-y.pokemon.volcanion.weight
+      experience: *x-y.pokemon.volcanion.experience
+      types: *x-y.pokemon.volcanion.types
+      egg_groups: *x-y.pokemon.volcanion.egg_groups
+      mega: *x-y.pokemon.volcanion.mega
+      stats: *x-y.pokemon.volcanion.stats
+      abilities: *x-y.pokemon.volcanion.abilities
+      forms:
+        volcanion:
+          name: *x-y.name
+          form_name: *x-y.pokemon.volcanion.forms.volcanion.form_name
+          default: *x-y.pokemon.volcanion.default
+          battle_only: *x-y.pokemon.volcanion.forms.volcanion.battle_only
+          icon: *x-y.pokemon.volcanion.forms.volcanion.icon
+          sprites:
+            - ultra-sun-ultra-moon/volcanion-default.png
+            - ultra-sun-ultra-moon/shiny/volcanion-default.png
+          art: *x-y.pokemon.volcanion.forms.volcanion.art
+          footprint: *x-y.pokemon.volcanion.forms.volcanion.footprint
+          cry: *x-y.pokemon.volcanion.forms.volcanion.cry

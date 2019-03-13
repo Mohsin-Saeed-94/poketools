@@ -64,14 +64,17 @@ sun-moon:
           This Pokémon is always bouncing around
           energetically. Other Pokémon are attracted by
           its lively appearance and pleasant aroma.
-          
-      forms: &sun-moon.pokemon.steenee.forms
+      forms:
         steenee:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.steenee.forms.steenee.form_name 'Default Form'
           default: *sun-moon.pokemon.steenee.default
-          battle_only: false
-          icon: steenee-default.png
+          battle_only: &sun-moon.pokemon.steenee.forms.steenee.battle_only false
+          icon: &sun-moon.pokemon.steenee.forms.steenee.icon steenee-default.png
+          sprites:
+            - sun-moon/shiny/steenee-default.png
+            - sun-moon/steenee-default.png
+          footprint: &sun-moon.pokemon.steenee.forms.steenee.footprint steenee.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -106,5 +109,14 @@ ultra-sun-ultra-moon:
           It’s protected by its hard sepals, so it plays
           with bird Pokémon without worry. They peck it
           relentlessly, but it doesn’t care.
-          
-      forms: *sun-moon.pokemon.steenee.forms
+      forms:
+        steenee:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.steenee.forms.steenee.form_name
+          default: *sun-moon.pokemon.steenee.default
+          battle_only: *sun-moon.pokemon.steenee.forms.steenee.battle_only
+          icon: *sun-moon.pokemon.steenee.forms.steenee.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/steenee-default.png
+            - ultra-sun-ultra-moon/steenee-default.png
+          footprint: *sun-moon.pokemon.steenee.forms.steenee.footprint

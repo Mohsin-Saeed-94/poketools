@@ -55,14 +55,17 @@ sun-moon:
           Silently it glides, drawing near its targets. Before
           they even notice it, it begins to pelt them with
           vicious kicks.
-          
-      forms: &sun-moon.pokemon.rowlet.forms
+      forms:
         rowlet:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.rowlet.forms.rowlet.form_name 'Default Form'
           default: *sun-moon.pokemon.rowlet.default
-          battle_only: false
-          icon: rowlet-default.png
+          battle_only: &sun-moon.pokemon.rowlet.forms.rowlet.battle_only false
+          icon: &sun-moon.pokemon.rowlet.forms.rowlet.icon rowlet-default.png
+          sprites:
+            - sun-moon/rowlet-default.png
+            - sun-moon/shiny/rowlet-default.png
+          footprint: &sun-moon.pokemon.rowlet.forms.rowlet.footprint rowlet.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -93,5 +96,14 @@ ultra-sun-ultra-moon:
           It sends its feathers, which are as sharp as
           blades, flying in attack. Its legs are strong,
           so its kicks are also formidable.
-          
-      forms: *sun-moon.pokemon.rowlet.forms
+      forms:
+        rowlet:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.rowlet.forms.rowlet.form_name
+          default: *sun-moon.pokemon.rowlet.default
+          battle_only: *sun-moon.pokemon.rowlet.forms.rowlet.battle_only
+          icon: *sun-moon.pokemon.rowlet.forms.rowlet.icon
+          sprites:
+            - ultra-sun-ultra-moon/rowlet-default.png
+            - ultra-sun-ultra-moon/shiny/rowlet-default.png
+          footprint: *sun-moon.pokemon.rowlet.forms.rowlet.footprint

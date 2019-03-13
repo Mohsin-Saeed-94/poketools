@@ -59,19 +59,24 @@ x-y:
         x: |
           The organ that emits its intense psychic power is
           sheltered by its ears to keep power from leaking out.
-          
         'y': |
           It has enough psychic energy to blast
           everything within 300 feet of itself,
           but it has no control over its power.
-          
-      forms: &x-y.pokemon.espurr.forms
+      forms:
         espurr:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.espurr.forms.espurr.form_name 'Default Form'
           default: *x-y.pokemon.espurr.default
-          battle_only: false
-          icon: espurr-default.png
+          battle_only: &x-y.pokemon.espurr.forms.espurr.battle_only false
+          icon: &x-y.pokemon.espurr.forms.espurr.icon espurr-default.png
+          sprites:
+            - x-y/shiny/espurr-default.png
+            - x-y/espurr-default.png
+          art: &x-y.pokemon.espurr.forms.espurr.art
+            - espurr-default.png
+          footprint: &x-y.pokemon.espurr.forms.espurr.footprint espurr.png
+          cry: &x-y.pokemon.espurr.forms.espurr.cry espurr-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -103,14 +108,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The organ that emits its intense psychic power is
           sheltered by its ears to keep power from leaking out.
-          
         alpha-sapphire: |
           It has enough psychic energy to blast
           everything within 300 feet of itself,
           but it has no control over its power.
-          
-      forms: *x-y.pokemon.espurr.forms
-sun-moon: &sun-moon
+      forms:
+        espurr:
+          name: *x-y.name
+          form_name: *x-y.pokemon.espurr.forms.espurr.form_name
+          default: *x-y.pokemon.espurr.default
+          battle_only: *x-y.pokemon.espurr.forms.espurr.battle_only
+          icon: *x-y.pokemon.espurr.forms.espurr.icon
+          art: *x-y.pokemon.espurr.forms.espurr.art
+          footprint: *x-y.pokemon.espurr.forms.espurr.footprint
+          cry: *x-y.pokemon.espurr.forms.espurr.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -135,5 +147,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.espurr.mega
       stats: *x-y.pokemon.espurr.stats
       abilities: *x-y.pokemon.espurr.abilities
-      forms: *x-y.pokemon.espurr.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        espurr:
+          name: *x-y.name
+          form_name: *x-y.pokemon.espurr.forms.espurr.form_name
+          default: *x-y.pokemon.espurr.default
+          battle_only: *x-y.pokemon.espurr.forms.espurr.battle_only
+          icon: *x-y.pokemon.espurr.forms.espurr.icon
+          sprites:
+            - sun-moon/shiny/espurr-default.png
+            - sun-moon/espurr-default.png
+          art: *x-y.pokemon.espurr.forms.espurr.art
+          footprint: *x-y.pokemon.espurr.forms.espurr.footprint
+          cry: *x-y.pokemon.espurr.forms.espurr.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    espurr:
+      genus: *x-y.pokemon.espurr.genus
+      color: *x-y.pokemon.espurr.color
+      shape: *x-y.pokemon.espurr.shape
+      female_rate: *x-y.pokemon.espurr.female_rate
+      capture_rate: *x-y.pokemon.espurr.capture_rate
+      happiness: *x-y.pokemon.espurr.happiness
+      baby: *x-y.pokemon.espurr.baby
+      hatch_steps: *x-y.pokemon.espurr.hatch_steps
+      growth_rate: *x-y.pokemon.espurr.growth_rate
+      forms_switchable: *x-y.pokemon.espurr.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.espurr.default
+      height: *x-y.pokemon.espurr.height
+      weight: *x-y.pokemon.espurr.weight
+      experience: *x-y.pokemon.espurr.experience
+      types: *x-y.pokemon.espurr.types
+      egg_groups: *x-y.pokemon.espurr.egg_groups
+      mega: *x-y.pokemon.espurr.mega
+      stats: *x-y.pokemon.espurr.stats
+      abilities: *x-y.pokemon.espurr.abilities
+      forms:
+        espurr:
+          name: *x-y.name
+          form_name: *x-y.pokemon.espurr.forms.espurr.form_name
+          default: *x-y.pokemon.espurr.default
+          battle_only: *x-y.pokemon.espurr.forms.espurr.battle_only
+          icon: *x-y.pokemon.espurr.forms.espurr.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/espurr-default.png
+            - ultra-sun-ultra-moon/espurr-default.png
+          art: *x-y.pokemon.espurr.forms.espurr.art
+          footprint: *x-y.pokemon.espurr.forms.espurr.footprint
+          cry: *x-y.pokemon.espurr.forms.espurr.cry

@@ -62,18 +62,23 @@ x-y:
           They make their home in deserts. They can
           generate their energy from basking in the sun,
           so eating food is not a requirement.
-          
         'y': |
           The frills on either side of its head have cells
           that generate electricity when exposed to sunlight.
-          
-      forms: &x-y.pokemon.helioptile.forms
+      forms:
         helioptile:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.helioptile.forms.helioptile.form_name 'Default Form'
           default: *x-y.pokemon.helioptile.default
-          battle_only: false
-          icon: helioptile-default.png
+          battle_only: &x-y.pokemon.helioptile.forms.helioptile.battle_only false
+          icon: &x-y.pokemon.helioptile.forms.helioptile.icon helioptile-default.png
+          sprites:
+            - x-y/helioptile-default.png
+            - x-y/shiny/helioptile-default.png
+          art: &x-y.pokemon.helioptile.forms.helioptile.art
+            - helioptile-default.png
+          footprint: &x-y.pokemon.helioptile.forms.helioptile.footprint helioptile.png
+          cry: &x-y.pokemon.helioptile.forms.helioptile.cry helioptile-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -106,13 +111,20 @@ omega-ruby-alpha-sapphire:
           They make their home in deserts. They can
           generate their energy from basking in the sun,
           so eating food is not a requirement.
-          
         alpha-sapphire: |
           The frills on either side of its head have cells
           that generate electricity when exposed to sunlight.
-          
-      forms: *x-y.pokemon.helioptile.forms
-sun-moon: &sun-moon
+      forms:
+        helioptile:
+          name: *x-y.name
+          form_name: *x-y.pokemon.helioptile.forms.helioptile.form_name
+          default: *x-y.pokemon.helioptile.default
+          battle_only: *x-y.pokemon.helioptile.forms.helioptile.battle_only
+          icon: *x-y.pokemon.helioptile.forms.helioptile.icon
+          art: *x-y.pokemon.helioptile.forms.helioptile.art
+          footprint: *x-y.pokemon.helioptile.forms.helioptile.footprint
+          cry: *x-y.pokemon.helioptile.forms.helioptile.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -137,5 +149,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.helioptile.mega
       stats: *x-y.pokemon.helioptile.stats
       abilities: *x-y.pokemon.helioptile.abilities
-      forms: *x-y.pokemon.helioptile.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        helioptile:
+          name: *x-y.name
+          form_name: *x-y.pokemon.helioptile.forms.helioptile.form_name
+          default: *x-y.pokemon.helioptile.default
+          battle_only: *x-y.pokemon.helioptile.forms.helioptile.battle_only
+          icon: *x-y.pokemon.helioptile.forms.helioptile.icon
+          sprites:
+            - sun-moon/helioptile-default.png
+            - sun-moon/shiny/helioptile-default.png
+          art: *x-y.pokemon.helioptile.forms.helioptile.art
+          footprint: *x-y.pokemon.helioptile.forms.helioptile.footprint
+          cry: *x-y.pokemon.helioptile.forms.helioptile.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    helioptile:
+      genus: *x-y.pokemon.helioptile.genus
+      color: *x-y.pokemon.helioptile.color
+      shape: *x-y.pokemon.helioptile.shape
+      female_rate: *x-y.pokemon.helioptile.female_rate
+      capture_rate: *x-y.pokemon.helioptile.capture_rate
+      happiness: *x-y.pokemon.helioptile.happiness
+      baby: *x-y.pokemon.helioptile.baby
+      hatch_steps: *x-y.pokemon.helioptile.hatch_steps
+      growth_rate: *x-y.pokemon.helioptile.growth_rate
+      forms_switchable: *x-y.pokemon.helioptile.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.helioptile.default
+      height: *x-y.pokemon.helioptile.height
+      weight: *x-y.pokemon.helioptile.weight
+      experience: *x-y.pokemon.helioptile.experience
+      types: *x-y.pokemon.helioptile.types
+      egg_groups: *x-y.pokemon.helioptile.egg_groups
+      mega: *x-y.pokemon.helioptile.mega
+      stats: *x-y.pokemon.helioptile.stats
+      abilities: *x-y.pokemon.helioptile.abilities
+      forms:
+        helioptile:
+          name: *x-y.name
+          form_name: *x-y.pokemon.helioptile.forms.helioptile.form_name
+          default: *x-y.pokemon.helioptile.default
+          battle_only: *x-y.pokemon.helioptile.forms.helioptile.battle_only
+          icon: *x-y.pokemon.helioptile.forms.helioptile.icon
+          sprites:
+            - ultra-sun-ultra-moon/helioptile-default.png
+            - ultra-sun-ultra-moon/shiny/helioptile-default.png
+          art: *x-y.pokemon.helioptile.forms.helioptile.art
+          footprint: *x-y.pokemon.helioptile.forms.helioptile.footprint
+          cry: *x-y.pokemon.helioptile.forms.helioptile.cry

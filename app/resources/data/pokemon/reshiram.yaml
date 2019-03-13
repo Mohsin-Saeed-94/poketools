@@ -53,19 +53,26 @@ black-white:
           This Pokémon appears in legends.
           It sends flames into the air from its
           tail, burning up everything around it.
-          
         white: |
           When Reshiram’s tail flares, the
           heat energy moves the atmosphere
           and changes the world’s weather.
-          
-      forms: &black-white.pokemon.reshiram.forms
+      forms:
         reshiram:
           name: *black-white.name
           form_name: &black-white.pokemon.reshiram.forms.reshiram.form_name 'Default Form'
           default: *black-white.pokemon.reshiram.default
           battle_only: &black-white.pokemon.reshiram.forms.reshiram.battle_only false
-          icon: gen5/reshiram-default.png
+          icon: &black-white.pokemon.reshiram.forms.reshiram.icon gen5/reshiram-default.png
+          sprites:
+            - black-white/back/reshiram-default.png
+            - black-white/back/shiny/reshiram-default.png
+            - black-white/reshiram-default.png
+            - black-white/shiny/reshiram-default.png
+          art: &black-white.pokemon.reshiram.forms.reshiram.art
+            - reshiram-default.png
+          footprint: &black-white.pokemon.reshiram.forms.reshiram.footprint reshiram.png
+          cry: &black-white.pokemon.reshiram.forms.reshiram.cry gen5/reshiram-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -97,13 +104,20 @@ black-2-white-2:
           This legendary Pokémon can scorch
           the world with fire. It helps those
           who want to build a world of truth.
-          
         white-2: |
           This legendary Pokémon can scorch
           the world with fire. It helps those
           who want to build a world of truth.
-          
-      forms: *black-white.pokemon.reshiram.forms
+      forms:
+        reshiram:
+          name: *black-white.name
+          form_name: *black-white.pokemon.reshiram.forms.reshiram.form_name
+          default: *black-white.pokemon.reshiram.default
+          battle_only: *black-white.pokemon.reshiram.forms.reshiram.battle_only
+          icon: *black-white.pokemon.reshiram.forms.reshiram.icon
+          art: *black-white.pokemon.reshiram.forms.reshiram.art
+          footprint: *black-white.pokemon.reshiram.forms.reshiram.footprint
+          cry: *black-white.pokemon.reshiram.forms.reshiram.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -135,18 +149,22 @@ x-y:
           This legendary Pokémon can scorch the world with
           fire. It helps those who want to build a world
           of truth.
-          
         'y': |
           When Reshiram’s tail flares, the heat energy moves
           the atmosphere and changes the world’s weather.
-          
-      forms: &x-y.pokemon.reshiram.forms
+      forms:
         reshiram:
           name: *black-white.name
           form_name: *black-white.pokemon.reshiram.forms.reshiram.form_name
           default: *black-white.pokemon.reshiram.default
           battle_only: *black-white.pokemon.reshiram.forms.reshiram.battle_only
-          icon: reshiram-default.png
+          icon: &x-y.pokemon.reshiram.forms.reshiram.icon reshiram-default.png
+          sprites:
+            - x-y/reshiram-default.png
+            - x-y/shiny/reshiram-default.png
+          art: *black-white.pokemon.reshiram.forms.reshiram.art
+          footprint: *black-white.pokemon.reshiram.forms.reshiram.footprint
+          cry: &x-y.pokemon.reshiram.forms.reshiram.cry reshiram-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -177,13 +195,20 @@ omega-ruby-alpha-sapphire:
           This legendary Pokémon can scorch the world with
           fire. It helps those who want to build a world
           of truth.
-          
         alpha-sapphire: |
           When Reshiram’s tail flares, the heat energy moves
           the atmosphere and changes the world’s weather.
-          
-      forms: *x-y.pokemon.reshiram.forms
-sun-moon: &sun-moon
+      forms:
+        reshiram:
+          name: *black-white.name
+          form_name: *black-white.pokemon.reshiram.forms.reshiram.form_name
+          default: *black-white.pokemon.reshiram.default
+          battle_only: *black-white.pokemon.reshiram.forms.reshiram.battle_only
+          icon: *x-y.pokemon.reshiram.forms.reshiram.icon
+          art: *black-white.pokemon.reshiram.forms.reshiram.art
+          footprint: *black-white.pokemon.reshiram.forms.reshiram.footprint
+          cry: *x-y.pokemon.reshiram.forms.reshiram.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -207,5 +232,53 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.reshiram.mega
       stats: *black-white.pokemon.reshiram.stats
       abilities: *black-white.pokemon.reshiram.abilities
-      forms: *x-y.pokemon.reshiram.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        reshiram:
+          name: *black-white.name
+          form_name: *black-white.pokemon.reshiram.forms.reshiram.form_name
+          default: *black-white.pokemon.reshiram.default
+          battle_only: *black-white.pokemon.reshiram.forms.reshiram.battle_only
+          icon: *x-y.pokemon.reshiram.forms.reshiram.icon
+          sprites:
+            - sun-moon/reshiram-default.png
+            - sun-moon/shiny/reshiram-default.png
+          art: *black-white.pokemon.reshiram.forms.reshiram.art
+          footprint: *black-white.pokemon.reshiram.forms.reshiram.footprint
+          cry: *x-y.pokemon.reshiram.forms.reshiram.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    reshiram:
+      genus: *black-white.pokemon.reshiram.genus
+      color: *black-white.pokemon.reshiram.color
+      shape: *black-white.pokemon.reshiram.shape
+      capture_rate: *black-white.pokemon.reshiram.capture_rate
+      happiness: *black-white.pokemon.reshiram.happiness
+      baby: *black-white.pokemon.reshiram.baby
+      hatch_steps: *black-white.pokemon.reshiram.hatch_steps
+      growth_rate: *black-white.pokemon.reshiram.growth_rate
+      forms_switchable: *black-white.pokemon.reshiram.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.reshiram.default
+      height: *black-white.pokemon.reshiram.height
+      weight: *black-white.pokemon.reshiram.weight
+      experience: *black-white.pokemon.reshiram.experience
+      types: *black-white.pokemon.reshiram.types
+      egg_groups: *black-white.pokemon.reshiram.egg_groups
+      mega: *x-y.pokemon.reshiram.mega
+      stats: *black-white.pokemon.reshiram.stats
+      abilities: *black-white.pokemon.reshiram.abilities
+      forms:
+        reshiram:
+          name: *black-white.name
+          form_name: *black-white.pokemon.reshiram.forms.reshiram.form_name
+          default: *black-white.pokemon.reshiram.default
+          battle_only: *black-white.pokemon.reshiram.forms.reshiram.battle_only
+          icon: *x-y.pokemon.reshiram.forms.reshiram.icon
+          sprites:
+            - ultra-sun-ultra-moon/reshiram-default.png
+            - ultra-sun-ultra-moon/shiny/reshiram-default.png
+          art: *black-white.pokemon.reshiram.forms.reshiram.art
+          footprint: *black-white.pokemon.reshiram.forms.reshiram.footprint
+          cry: *x-y.pokemon.reshiram.forms.reshiram.cry

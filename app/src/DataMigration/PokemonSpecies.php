@@ -3,6 +3,8 @@
 namespace App\DataMigration;
 
 use App\Entity\Embeddable\Range;
+use App\Entity\Media\PokemonArt;
+use App\Entity\Media\PokemonSprite;
 use App\Entity\Pokemon;
 use App\Entity\PokemonAbility;
 use App\Entity\PokemonFlavorText;
@@ -14,7 +16,6 @@ use App\Entity\PokemonStat;
 use App\Entity\PokemonType;
 use App\Entity\PokemonWildHeldItem;
 use App\Entity\VersionGroup;
-use Doctrine\Common\Collections\ArrayCollection;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
@@ -68,8 +69,13 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
         unset($sourceData['identifier']);
         foreach ($sourceData as $versionGroup => $versionGroupSourceData) {
             /** @var VersionGroup $versionGroup */
-            $versionGroup = $this->referenceStore->get(\App\DataMigration\VersionGroup::class, ['identifier' => $versionGroup]);
-            $speciesInVersionGroup = $destinationData->findChildByGrouping($versionGroup) ?? new PokemonSpeciesInVersionGroup();
+            $versionGroup = $this->referenceStore->get(
+                \App\DataMigration\VersionGroup::class,
+                ['identifier' => $versionGroup]
+            );
+            $speciesInVersionGroup = $destinationData->findChildByGrouping(
+                    $versionGroup
+                ) ?? new PokemonSpeciesInVersionGroup();
             $speciesInVersionGroup->setVersionGroup($versionGroup)
                 ->setSlug($speciesIdentifier);
             $speciesInVersionGroup = $this->transformSpecies($versionGroupSourceData, $speciesInVersionGroup);
@@ -80,7 +86,7 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
     }
 
     /**
-     * @param array                        $sourceData
+     * @param array $sourceData
      * @param PokemonSpeciesInVersionGroup $destinationData
      *
      * @return PokemonSpeciesInVersionGroup
@@ -90,8 +96,10 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
      * @throws \PhpUnitsOfMeasure\Exception\NonNumericValue
      * @throws \PhpUnitsOfMeasure\Exception\NonStringUnitName
      */
-    protected function transformSpecies(array $sourceData, PokemonSpeciesInVersionGroup $destinationData): PokemonSpeciesInVersionGroup
-    {
+    protected function transformSpecies(
+        array $sourceData,
+        PokemonSpeciesInVersionGroup $destinationData
+    ): PokemonSpeciesInVersionGroup {
         $versionGroup = $destinationData->getVersionGroup();
 
         // Pokedex numbers
@@ -153,8 +161,8 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
     }
 
     /**
-     * @param array        $sourceData
-     * @param Pokemon      $destinationData
+     * @param array $sourceData
+     * @param Pokemon $destinationData
      * @param VersionGroup $versionGroup
      *
      * @return Pokemon
@@ -164,16 +172,25 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
      * @throws \PhpUnitsOfMeasure\Exception\NonNumericValue
      * @throws \PhpUnitsOfMeasure\Exception\NonStringUnitName
      */
-    protected function transformPokemon(array $sourceData, Pokemon $destinationData, VersionGroup $versionGroup): Pokemon
-    {
+    protected function transformPokemon(
+        array $sourceData,
+        Pokemon $destinationData,
+        VersionGroup $versionGroup
+    ): Pokemon {
         // Pokemon habitat
         if (isset($sourceData['habitat'])) {
-            $sourceData['habitat'] = $this->referenceStore->get(PokemonHabitat::class, ['identifier' => $sourceData['habitat']]);
+            $sourceData['habitat'] = $this->referenceStore->get(
+                PokemonHabitat::class,
+                ['identifier' => $sourceData['habitat']]
+            );
         }
 
         // Pokemon color
         if (isset($sourceData['color'])) {
-            $sourceData['color'] = $this->referenceStore->get(PokemonColor::class, ['identifier' => $sourceData['color']]);
+            $sourceData['color'] = $this->referenceStore->get(
+                PokemonColor::class,
+                ['identifier' => $sourceData['color']]
+            );
         }
 
         // Pokemon shape
@@ -184,7 +201,10 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
         }
 
         // Growth rate
-        $sourceData['growth_rate'] = $this->referenceStore->get(GrowthRate::class, ['identifier' => $sourceData['growth_rate']]);
+        $sourceData['growth_rate'] = $this->referenceStore->get(
+            GrowthRate::class,
+            ['identifier' => $sourceData['growth_rate']]
+        );
 
         // Height and Weight
         $sourceData['height'] = new Length($sourceData['height'], 'dm');
@@ -345,21 +365,42 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
         return $destinationData;
     }
 
-    protected function transformForm(array $sourceData, PokemonForm $destinationData, VersionGroup $versionGroup): PokemonForm
-    {
+    protected function transformForm(
+        array $sourceData,
+        PokemonForm $destinationData,
+        VersionGroup $versionGroup
+    ): PokemonForm {
         // Pokeathlon stats
         if (isset($sourceData['pokeathlon_stats'])) {
             $pokeathlonStats = [];
             foreach ($sourceData['pokeathlon_stats'] as $pokeathlonStat => $statData) {
                 /** @var \App\Entity\PokeathlonStat $pokeathlonStat */
                 $pokeathlonStat = $this->referenceStore->get(PokeathlonStat::class, ['identifier' => $pokeathlonStat]);
-                $formPokeathlonStat = $destinationData->getPokeathlonStatData($pokeathlonStat) ?? new PokemonFormPokeathlonStat();
+                $formPokeathlonStat = $destinationData->getPokeathlonStatData(
+                        $pokeathlonStat
+                    ) ?? new PokemonFormPokeathlonStat();
                 $formPokeathlonStat->setPokeathlonStat($pokeathlonStat)
                     ->setBaseValue($statData['base_value'])
                     ->setRange(Range::fromString($statData['range']));
                 $pokeathlonStats[] = $formPokeathlonStat;
             }
             $sourceData['pokeathlon_stats'] = $pokeathlonStats;
+        }
+
+        // Sprites
+        if (isset($sourceData['sprites'])) {
+            foreach ($sourceData['sprites'] as &$sprite) {
+                $sprite = new PokemonSprite($sprite);
+            }
+            unset($sprite);
+        }
+
+        // Art
+        if (isset($sourceData['art'])) {
+            foreach ($sourceData['art'] as &$art) {
+                $art = new PokemonArt($art);
+            }
+            unset($art);
         }
 
         /** @var PokemonForm $destinationData */

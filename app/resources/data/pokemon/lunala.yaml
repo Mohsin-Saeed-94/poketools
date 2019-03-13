@@ -55,14 +55,17 @@ sun-moon:
           Said to live in another world, this Pokémon
           devours light, drawing the moonless dark veil of
           night over the brightness of day.
-          
-      forms: &sun-moon.pokemon.lunala.forms
+      forms:
         lunala:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.lunala.forms.lunala.form_name 'Default Form'
           default: *sun-moon.pokemon.lunala.default
-          battle_only: false
-          icon: lunala-default.png
+          battle_only: &sun-moon.pokemon.lunala.forms.lunala.battle_only false
+          icon: &sun-moon.pokemon.lunala.forms.lunala.icon lunala-default.png
+          sprites:
+            - sun-moon/lunala-default.png
+            - sun-moon/shiny/lunala-default.png
+          footprint: &sun-moon.pokemon.lunala.forms.lunala.footprint lunala.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -94,5 +97,14 @@ ultra-sun-ultra-moon:
           Records of it exist in writings from long, long
           ago, where it was known by the name
           “the beast that calls the moon.”
-          
-      forms: *sun-moon.pokemon.lunala.forms
+      forms:
+        lunala:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.lunala.forms.lunala.form_name
+          default: *sun-moon.pokemon.lunala.default
+          battle_only: *sun-moon.pokemon.lunala.forms.lunala.battle_only
+          icon: *sun-moon.pokemon.lunala.forms.lunala.icon
+          sprites:
+            - ultra-sun-ultra-moon/lunala-default.png
+            - ultra-sun-ultra-moon/shiny/lunala-default.png
+          footprint: *sun-moon.pokemon.lunala.forms.lunala.footprint

@@ -61,19 +61,26 @@ black-white:
           When its internal fire flares up, its
           movements grow sharper and faster.
           When in trouble, it emits smoke.
-          
         white: |
           Whatever it eats becomes fuel for the
           flame in its stomach. When it is angered,
           the intensity of the flame increases.
-          
-      forms: &black-white.pokemon.pignite.forms
+      forms:
         pignite:
           name: *black-white.name
           form_name: &black-white.pokemon.pignite.forms.pignite.form_name 'Default Form'
           default: *black-white.pokemon.pignite.default
           battle_only: &black-white.pokemon.pignite.forms.pignite.battle_only false
-          icon: gen5/pignite-default.png
+          icon: &black-white.pokemon.pignite.forms.pignite.icon gen5/pignite-default.png
+          sprites:
+            - black-white/pignite-default.png
+            - black-white/back/pignite-default.png
+            - black-white/back/shiny/pignite-default.png
+            - black-white/shiny/pignite-default.png
+          art: &black-white.pokemon.pignite.forms.pignite.art
+            - pignite-default.png
+          footprint: &black-white.pokemon.pignite.forms.pignite.footprint pignite.png
+          cry: &black-white.pokemon.pignite.forms.pignite.cry gen5/pignite-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -108,13 +115,20 @@ black-2-white-2:
           The more it eats, the more fuel it has
           to make the fire in its stomach stronger.
           This fills it with even more power.
-          
         white-2: |
           The more it eats, the more fuel it has
           to make the fire in its stomach stronger.
           This fills it with even more power.
-          
-      forms: *black-white.pokemon.pignite.forms
+      forms:
+        pignite:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pignite.forms.pignite.form_name
+          default: *black-white.pokemon.pignite.default
+          battle_only: *black-white.pokemon.pignite.forms.pignite.battle_only
+          icon: *black-white.pokemon.pignite.forms.pignite.icon
+          art: *black-white.pokemon.pignite.forms.pignite.art
+          footprint: *black-white.pokemon.pignite.forms.pignite.footprint
+          cry: *black-white.pokemon.pignite.forms.pignite.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -149,18 +163,22 @@ x-y:
           The more it eats, the more fuel it has to make the
           fire in its stomach stronger. This fills it with even
           more power.
-          
         'y': |
           When its internal fire flares up, its movements grow
           sharper and faster. When in trouble, it emits smoke.
-          
-      forms: &x-y.pokemon.pignite.forms
+      forms:
         pignite:
           name: *black-white.name
           form_name: *black-white.pokemon.pignite.forms.pignite.form_name
           default: *black-white.pokemon.pignite.default
           battle_only: *black-white.pokemon.pignite.forms.pignite.battle_only
-          icon: pignite-default.png
+          icon: &x-y.pokemon.pignite.forms.pignite.icon pignite-default.png
+          sprites:
+            - x-y/pignite-default.png
+            - x-y/shiny/pignite-default.png
+          art: *black-white.pokemon.pignite.forms.pignite.art
+          footprint: *black-white.pokemon.pignite.forms.pignite.footprint
+          cry: &x-y.pokemon.pignite.forms.pignite.cry pignite-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -194,13 +212,20 @@ omega-ruby-alpha-sapphire:
           The more it eats, the more fuel it has to make the
           fire in its stomach stronger. This fills it with even
           more power.
-          
         alpha-sapphire: |
           When its internal fire flares up, its movements grow
           sharper and faster. When in trouble, it emits smoke.
-          
-      forms: *x-y.pokemon.pignite.forms
-sun-moon: &sun-moon
+      forms:
+        pignite:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pignite.forms.pignite.form_name
+          default: *black-white.pokemon.pignite.default
+          battle_only: *black-white.pokemon.pignite.forms.pignite.battle_only
+          icon: *x-y.pokemon.pignite.forms.pignite.icon
+          art: *black-white.pokemon.pignite.forms.pignite.art
+          footprint: *black-white.pokemon.pignite.forms.pignite.footprint
+          cry: *x-y.pokemon.pignite.forms.pignite.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -227,5 +252,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.pignite.stats
       abilities: *black-white.pokemon.pignite.abilities
       evolution_conditions: *black-white.pokemon.pignite.evolution_conditions
-      forms: *x-y.pokemon.pignite.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        pignite:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pignite.forms.pignite.form_name
+          default: *black-white.pokemon.pignite.default
+          battle_only: *black-white.pokemon.pignite.forms.pignite.battle_only
+          icon: *x-y.pokemon.pignite.forms.pignite.icon
+          sprites:
+            - sun-moon/pignite-default.png
+            - sun-moon/shiny/pignite-default.png
+          art: *black-white.pokemon.pignite.forms.pignite.art
+          footprint: *black-white.pokemon.pignite.forms.pignite.footprint
+          cry: *x-y.pokemon.pignite.forms.pignite.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    pignite:
+      genus: *black-white.pokemon.pignite.genus
+      evolution_parent: *black-white.pokemon.pignite.evolution_parent
+      color: *black-white.pokemon.pignite.color
+      shape: *black-white.pokemon.pignite.shape
+      female_rate: *black-white.pokemon.pignite.female_rate
+      capture_rate: *black-white.pokemon.pignite.capture_rate
+      happiness: *black-white.pokemon.pignite.happiness
+      baby: *black-white.pokemon.pignite.baby
+      hatch_steps: *black-white.pokemon.pignite.hatch_steps
+      growth_rate: *black-white.pokemon.pignite.growth_rate
+      forms_switchable: *black-white.pokemon.pignite.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.pignite.default
+      height: *black-white.pokemon.pignite.height
+      weight: *black-white.pokemon.pignite.weight
+      experience: *black-white.pokemon.pignite.experience
+      types: *black-white.pokemon.pignite.types
+      egg_groups: *black-white.pokemon.pignite.egg_groups
+      mega: *x-y.pokemon.pignite.mega
+      stats: *black-white.pokemon.pignite.stats
+      abilities: *black-white.pokemon.pignite.abilities
+      evolution_conditions: *black-white.pokemon.pignite.evolution_conditions
+      forms:
+        pignite:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pignite.forms.pignite.form_name
+          default: *black-white.pokemon.pignite.default
+          battle_only: *black-white.pokemon.pignite.forms.pignite.battle_only
+          icon: *x-y.pokemon.pignite.forms.pignite.icon
+          sprites:
+            - ultra-sun-ultra-moon/pignite-default.png
+            - ultra-sun-ultra-moon/shiny/pignite-default.png
+          art: *black-white.pokemon.pignite.forms.pignite.art
+          footprint: *black-white.pokemon.pignite.forms.pignite.footprint
+          cry: *x-y.pokemon.pignite.forms.pignite.cry

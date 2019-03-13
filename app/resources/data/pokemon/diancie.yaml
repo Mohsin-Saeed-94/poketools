@@ -53,18 +53,24 @@ x-y:
           A sudden transformation of Carbink,
           its pink, glimmering body is said to be
           the loveliest sight in the whole world.
-          
         'y': |
           It can instantly create many diamonds
           by compressing the carbon in the air
           between its hands.
-      forms: &x-y.pokemon.diancie.forms
+      forms:
         diancie:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.diancie.forms.diancie.form_name 'Default Form'
           default: *x-y.pokemon.diancie.default
-          battle_only: false
-          icon: diancie-default.png
+          battle_only: &x-y.pokemon.diancie.forms.diancie.battle_only false
+          icon: &x-y.pokemon.diancie.forms.diancie.icon diancie-default.png
+          sprites:
+            - x-y/shiny/diancie-default.png
+            - x-y/diancie-default.png
+          art: &x-y.pokemon.diancie.forms.diancie.art
+            - diancie-default.png
+          footprint: &x-y.pokemon.diancie.forms.diancie.footprint diancie.png
+          cry: &x-y.pokemon.diancie.forms.diancie.cry diancie-default.webm
     diancie-mega:
       genus: *x-y.pokemon.diancie.genus
       color: *x-y.pokemon.diancie.color
@@ -108,10 +114,14 @@ x-y:
       forms: &x-y.pokemon.diancie-mega.forms
         diancie-mega:
           name: *x-y.pokemon.diancie-mega.name
-          form_name: 'Mega Diancie'
+          form_name: &x-y.pokemon.diancie-mega.forms.diancie-mega.form_name 'Mega Diancie'
           default: *x-y.pokemon.diancie.default
-          battle_only: true
-          icon: diancie-mega.png
+          battle_only: &x-y.pokemon.diancie-mega.forms.diancie-mega.battle_only true
+          icon: &x-y.pokemon.diancie-mega.forms.diancie-mega.icon diancie-mega.png
+          art: &x-y.pokemon.diancie-mega.forms.diancie-mega.art
+            - diancie-mega.png
+          footprint: *x-y.pokemon.diancie.forms.diancie.footprint
+          cry: *x-y.pokemon.diancie.forms.diancie.cry
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -142,12 +152,20 @@ omega-ruby-alpha-sapphire:
           A sudden transformation of Carbink,
           its pink, glimmering body is said to be
           the loveliest sight in the whole world.
-          
         alpha-sapphire: |
           It can instantly create many diamonds
           by compressing the carbon in the air
           between its hands.
-      forms: *x-y.pokemon.diancie.forms
+      forms:
+        diancie:
+          name: *x-y.name
+          form_name: *x-y.pokemon.diancie.forms.diancie.form_name
+          default: *x-y.pokemon.diancie.default
+          battle_only: *x-y.pokemon.diancie.forms.diancie.battle_only
+          icon: *x-y.pokemon.diancie.forms.diancie.icon
+          art: *x-y.pokemon.diancie.forms.diancie.art
+          footprint: *x-y.pokemon.diancie.forms.diancie.footprint
+          cry: *x-y.pokemon.diancie.forms.diancie.cry
     diancie-mega:
       genus: *x-y.pokemon.diancie.genus
       color: *x-y.pokemon.diancie.color
@@ -170,7 +188,7 @@ omega-ruby-alpha-sapphire:
       abilities: *x-y.pokemon.diancie-mega.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.diancie.flavor_text
       forms: *x-y.pokemon.diancie-mega.forms
-sun-moon: &sun-moon
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -194,7 +212,19 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.diancie.mega
       stats: *x-y.pokemon.diancie.stats
       abilities: *x-y.pokemon.diancie.abilities
-      forms: *x-y.pokemon.diancie.forms
+      forms:
+        diancie:
+          name: *x-y.name
+          form_name: *x-y.pokemon.diancie.forms.diancie.form_name
+          default: *x-y.pokemon.diancie.default
+          battle_only: *x-y.pokemon.diancie.forms.diancie.battle_only
+          icon: *x-y.pokemon.diancie.forms.diancie.icon
+          sprites:
+            - sun-moon/shiny/diancie-default.png
+            - sun-moon/diancie-default.png
+          art: *x-y.pokemon.diancie.forms.diancie.art
+          footprint: *x-y.pokemon.diancie.forms.diancie.footprint
+          cry: *x-y.pokemon.diancie.forms.diancie.cry
     diancie-mega:
       genus: *x-y.pokemon.diancie.genus
       color: *x-y.pokemon.diancie.color
@@ -215,5 +245,86 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.diancie-mega.mega
       stats: *x-y.pokemon.diancie-mega.stats
       abilities: *x-y.pokemon.diancie-mega.abilities
-      forms: *x-y.pokemon.diancie-mega.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        diancie-mega:
+          name: *x-y.pokemon.diancie-mega.name
+          form_name: *x-y.pokemon.diancie-mega.forms.diancie-mega.form_name
+          default: *x-y.pokemon.diancie.default
+          battle_only: *x-y.pokemon.diancie-mega.forms.diancie-mega.battle_only
+          icon: *x-y.pokemon.diancie-mega.forms.diancie-mega.icon
+          sprites:
+            - sun-moon/diancie-mega.png
+            - sun-moon/shiny/diancie-mega.png
+          art: *x-y.pokemon.diancie-mega.forms.diancie-mega.art
+          footprint: *x-y.pokemon.diancie.forms.diancie.footprint
+          cry: *x-y.pokemon.diancie.forms.diancie.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    diancie:
+      genus: *x-y.pokemon.diancie.genus
+      color: *x-y.pokemon.diancie.color
+      shape: *x-y.pokemon.diancie.shape
+      capture_rate: *x-y.pokemon.diancie.capture_rate
+      happiness: *x-y.pokemon.diancie.happiness
+      baby: *x-y.pokemon.diancie.baby
+      hatch_steps: *x-y.pokemon.diancie.hatch_steps
+      growth_rate: *x-y.pokemon.diancie.growth_rate
+      forms_switchable: *x-y.pokemon.diancie.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.diancie.default
+      height: *x-y.pokemon.diancie.height
+      weight: *x-y.pokemon.diancie.weight
+      experience: *x-y.pokemon.diancie.experience
+      types: *x-y.pokemon.diancie.types
+      egg_groups: *x-y.pokemon.diancie.egg_groups
+      mega: *x-y.pokemon.diancie.mega
+      stats: *x-y.pokemon.diancie.stats
+      abilities: *x-y.pokemon.diancie.abilities
+      forms:
+        diancie:
+          name: *x-y.name
+          form_name: *x-y.pokemon.diancie.forms.diancie.form_name
+          default: *x-y.pokemon.diancie.default
+          battle_only: *x-y.pokemon.diancie.forms.diancie.battle_only
+          icon: *x-y.pokemon.diancie.forms.diancie.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/diancie-default.png
+            - ultra-sun-ultra-moon/diancie-default.png
+          art: *x-y.pokemon.diancie.forms.diancie.art
+          footprint: *x-y.pokemon.diancie.forms.diancie.footprint
+          cry: *x-y.pokemon.diancie.forms.diancie.cry
+    diancie-mega:
+      genus: *x-y.pokemon.diancie.genus
+      color: *x-y.pokemon.diancie.color
+      shape: *x-y.pokemon.diancie.shape
+      capture_rate: *x-y.pokemon.diancie.capture_rate
+      happiness: *x-y.pokemon.diancie.happiness
+      baby: *x-y.pokemon.diancie.baby
+      hatch_steps: *x-y.pokemon.diancie.hatch_steps
+      growth_rate: *x-y.pokemon.diancie.growth_rate
+      forms_switchable: *x-y.pokemon.diancie.forms_switchable
+      name: *x-y.pokemon.diancie-mega.name
+      default: *x-y.pokemon.diancie-mega.default
+      height: *x-y.pokemon.diancie-mega.height
+      weight: *x-y.pokemon.diancie-mega.weight
+      experience: *x-y.pokemon.diancie-mega.experience
+      types: *x-y.pokemon.diancie.types
+      egg_groups: *x-y.pokemon.diancie.egg_groups
+      mega: *x-y.pokemon.diancie-mega.mega
+      stats: *x-y.pokemon.diancie-mega.stats
+      abilities: *x-y.pokemon.diancie-mega.abilities
+      forms:
+        diancie-mega:
+          name: *x-y.pokemon.diancie-mega.name
+          form_name: *x-y.pokemon.diancie-mega.forms.diancie-mega.form_name
+          default: *x-y.pokemon.diancie.default
+          battle_only: *x-y.pokemon.diancie-mega.forms.diancie-mega.battle_only
+          icon: *x-y.pokemon.diancie-mega.forms.diancie-mega.icon
+          sprites:
+            - ultra-sun-ultra-moon/diancie-mega.png
+            - ultra-sun-ultra-moon/shiny/diancie-mega.png
+          art: *x-y.pokemon.diancie-mega.forms.diancie-mega.art
+          footprint: *x-y.pokemon.diancie.forms.diancie.footprint
+          cry: *x-y.pokemon.diancie.forms.diancie.cry

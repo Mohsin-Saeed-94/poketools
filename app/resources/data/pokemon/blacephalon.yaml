@@ -46,13 +46,14 @@ sun-moon:
         beast-boost:
           hidden: false
           position: 1
-      forms: &sun-moon.pokemon.blacephalon.forms
+      forms:
         blacephalon:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.blacephalon.forms.blacephalon.form_name 'Default Form'
           default: *sun-moon.pokemon.blacephalon.default
-          battle_only: false
-          icon: blacephalon-default.png
+          battle_only: &sun-moon.pokemon.blacephalon.forms.blacephalon.battle_only false
+          icon: &sun-moon.pokemon.blacephalon.forms.blacephalon.icon blacephalon-default.png
+          footprint: &sun-moon.pokemon.blacephalon.forms.blacephalon.footprint blacephalon.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -82,5 +83,14 @@ ultra-sun-ultra-moon:
           It slithers toward people. Then, without warning,
           it triggers the explosion of its own head.
           It’s apparently one kind of Ultra Beast.
-          
-      forms: *sun-moon.pokemon.blacephalon.forms
+      forms:
+        blacephalon:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.blacephalon.forms.blacephalon.form_name
+          default: *sun-moon.pokemon.blacephalon.default
+          battle_only: *sun-moon.pokemon.blacephalon.forms.blacephalon.battle_only
+          icon: *sun-moon.pokemon.blacephalon.forms.blacephalon.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/blacephalon-default.png
+            - ultra-sun-ultra-moon/blacephalon-default.png
+          footprint: *sun-moon.pokemon.blacephalon.forms.blacephalon.footprint

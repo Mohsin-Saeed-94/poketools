@@ -61,19 +61,26 @@ black-white:
           This Pokémon dwells deep in the forest.
           Eating a leaf from its head whisks
           weariness away as if by magic.
-          
         white: |
           It shares the leaf on its head with
           weary-looking Pokémon. These
           leaves are known to relieve stress.
-          
-      forms: &black-white.pokemon.pansage.forms
+      forms:
         pansage:
           name: *black-white.name
           form_name: &black-white.pokemon.pansage.forms.pansage.form_name 'Default Form'
           default: *black-white.pokemon.pansage.default
           battle_only: &black-white.pokemon.pansage.forms.pansage.battle_only false
-          icon: gen5/pansage-default.png
+          icon: &black-white.pokemon.pansage.forms.pansage.icon gen5/pansage-default.png
+          sprites:
+            - black-white/back/pansage-default.png
+            - black-white/back/shiny/pansage-default.png
+            - black-white/pansage-default.png
+            - black-white/shiny/pansage-default.png
+          art: &black-white.pokemon.pansage.forms.pansage.art
+            - pansage-default.png
+          footprint: &black-white.pokemon.pansage.forms.pansage.footprint pansage.png
+          cry: &black-white.pokemon.pansage.forms.pansage.cry gen5/pansage-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,13 +116,20 @@ black-2-white-2:
           It’s good at finding berries and gathers
           them from all over. It’s kind enough
           to share them with friends.
-          
         white-2: |
           It’s good at finding berries and gathers
           them from all over. It’s kind enough
           to share them with friends.
-          
-      forms: *black-white.pokemon.pansage.forms
+      forms:
+        pansage:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pansage.forms.pansage.form_name
+          default: *black-white.pokemon.pansage.default
+          battle_only: *black-white.pokemon.pansage.forms.pansage.battle_only
+          icon: *black-white.pokemon.pansage.forms.pansage.icon
+          art: *black-white.pokemon.pansage.forms.pansage.art
+          footprint: *black-white.pokemon.pansage.forms.pansage.footprint
+          cry: *black-white.pokemon.pansage.forms.pansage.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -148,19 +162,23 @@ x-y:
         x: |
           It shares the leaf on its head with weary-looking
           Pokémon. These leaves are known to relieve stress.
-          
         'y': |
           It’s good at finding berries and gathers them from
           all over. It’s kind enough to share them
           with friends.
-          
-      forms: &x-y.pokemon.pansage.forms
+      forms:
         pansage:
           name: *black-white.name
           form_name: *black-white.pokemon.pansage.forms.pansage.form_name
           default: *black-white.pokemon.pansage.default
           battle_only: *black-white.pokemon.pansage.forms.pansage.battle_only
-          icon: pansage-default.png
+          icon: &x-y.pokemon.pansage.forms.pansage.icon pansage-default.png
+          sprites:
+            - x-y/pansage-default.png
+            - x-y/shiny/pansage-default.png
+          art: *black-white.pokemon.pansage.forms.pansage.art
+          footprint: *black-white.pokemon.pansage.forms.pansage.footprint
+          cry: &x-y.pokemon.pansage.forms.pansage.cry pansage-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -192,14 +210,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It shares the leaf on its head with weary-looking
           Pokémon. These leaves are known to relieve stress.
-          
         alpha-sapphire: |
           It’s good at finding berries and gathers them from
           all over. It’s kind enough to share them
           with friends.
-          
-      forms: *x-y.pokemon.pansage.forms
-sun-moon: &sun-moon
+      forms:
+        pansage:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pansage.forms.pansage.form_name
+          default: *black-white.pokemon.pansage.default
+          battle_only: *black-white.pokemon.pansage.forms.pansage.battle_only
+          icon: *x-y.pokemon.pansage.forms.pansage.icon
+          art: *black-white.pokemon.pansage.forms.pansage.art
+          footprint: *black-white.pokemon.pansage.forms.pansage.footprint
+          cry: *x-y.pokemon.pansage.forms.pansage.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -224,5 +249,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.pansage.mega
       stats: *black-white.pokemon.pansage.stats
       abilities: *black-white.pokemon.pansage.abilities
-      forms: *x-y.pokemon.pansage.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        pansage:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pansage.forms.pansage.form_name
+          default: *black-white.pokemon.pansage.default
+          battle_only: *black-white.pokemon.pansage.forms.pansage.battle_only
+          icon: *x-y.pokemon.pansage.forms.pansage.icon
+          sprites:
+            - sun-moon/pansage-default.png
+            - sun-moon/shiny/pansage-default.png
+          art: *black-white.pokemon.pansage.forms.pansage.art
+          footprint: *black-white.pokemon.pansage.forms.pansage.footprint
+          cry: *x-y.pokemon.pansage.forms.pansage.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    pansage:
+      genus: *black-white.pokemon.pansage.genus
+      color: *black-white.pokemon.pansage.color
+      shape: *black-white.pokemon.pansage.shape
+      female_rate: *black-white.pokemon.pansage.female_rate
+      capture_rate: *black-white.pokemon.pansage.capture_rate
+      happiness: *black-white.pokemon.pansage.happiness
+      baby: *black-white.pokemon.pansage.baby
+      hatch_steps: *black-white.pokemon.pansage.hatch_steps
+      growth_rate: *black-white.pokemon.pansage.growth_rate
+      forms_switchable: *black-white.pokemon.pansage.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.pansage.default
+      height: *black-white.pokemon.pansage.height
+      weight: *black-white.pokemon.pansage.weight
+      experience: *black-white.pokemon.pansage.experience
+      types: *black-white.pokemon.pansage.types
+      egg_groups: *black-white.pokemon.pansage.egg_groups
+      mega: *x-y.pokemon.pansage.mega
+      stats: *black-white.pokemon.pansage.stats
+      abilities: *black-white.pokemon.pansage.abilities
+      forms:
+        pansage:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pansage.forms.pansage.form_name
+          default: *black-white.pokemon.pansage.default
+          battle_only: *black-white.pokemon.pansage.forms.pansage.battle_only
+          icon: *x-y.pokemon.pansage.forms.pansage.icon
+          sprites:
+            - ultra-sun-ultra-moon/pansage-default.png
+            - ultra-sun-ultra-moon/shiny/pansage-default.png
+          art: *black-white.pokemon.pansage.forms.pansage.art
+          footprint: *black-white.pokemon.pansage.forms.pansage.footprint
+          cry: *x-y.pokemon.pansage.forms.pansage.cry

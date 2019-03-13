@@ -57,19 +57,24 @@ x-y:
         x: |
           These key collectors threaten any attackers
           by fiercely jingling their keys at them.
-          
         'y': |
           It never lets go of a key that it likes,
           so people give it the keys to vaults and
           safes as a way to prevent crime.
-          
-      forms: &x-y.pokemon.klefki.forms
+      forms:
         klefki:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.klefki.forms.klefki.form_name 'Default Form'
           default: *x-y.pokemon.klefki.default
-          battle_only: false
-          icon: klefki-default.png
+          battle_only: &x-y.pokemon.klefki.forms.klefki.battle_only false
+          icon: &x-y.pokemon.klefki.forms.klefki.icon klefki-default.png
+          sprites:
+            - x-y/klefki-default.png
+            - x-y/shiny/klefki-default.png
+          art: &x-y.pokemon.klefki.forms.klefki.art
+            - klefki-default.png
+          footprint: &x-y.pokemon.klefki.forms.klefki.footprint klefki.png
+          cry: &x-y.pokemon.klefki.forms.klefki.cry klefki-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -101,13 +106,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           These key collectors threaten any attackers
           by fiercely jingling their keys at them.
-          
         alpha-sapphire: |
           It never lets go of a key that it likes,
           so people give it the keys to vaults and
           safes as a way to prevent crime.
-          
-      forms: *x-y.pokemon.klefki.forms
+      forms:
+        klefki:
+          name: *x-y.name
+          form_name: *x-y.pokemon.klefki.forms.klefki.form_name
+          default: *x-y.pokemon.klefki.default
+          battle_only: *x-y.pokemon.klefki.forms.klefki.battle_only
+          icon: *x-y.pokemon.klefki.forms.klefki.icon
+          art: *x-y.pokemon.klefki.forms.klefki.art
+          footprint: *x-y.pokemon.klefki.forms.klefki.footprint
+          cry: *x-y.pokemon.klefki.forms.klefki.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -137,8 +149,19 @@ sun-moon:
         moon: |
           It inserts its horn into chinks in metal, absorbing
           metal ions. For some reason, it collects keys.
-          
-      forms: *x-y.pokemon.klefki.forms
+      forms:
+        klefki:
+          name: *x-y.name
+          form_name: *x-y.pokemon.klefki.forms.klefki.form_name
+          default: *x-y.pokemon.klefki.default
+          battle_only: *x-y.pokemon.klefki.forms.klefki.battle_only
+          icon: *x-y.pokemon.klefki.forms.klefki.icon
+          sprites:
+            - sun-moon/klefki-default.png
+            - sun-moon/shiny/klefki-default.png
+          art: *x-y.pokemon.klefki.forms.klefki.art
+          footprint: *x-y.pokemon.klefki.forms.klefki.footprint
+          cry: *x-y.pokemon.klefki.forms.klefki.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -169,5 +192,16 @@ ultra-sun-ultra-moon:
           Although it’s unclear why it collects keys, giving
           it a key makes Klefki very happy. However, it
           apparently only likes master keys.
-          
-      forms: *x-y.pokemon.klefki.forms
+      forms:
+        klefki:
+          name: *x-y.name
+          form_name: *x-y.pokemon.klefki.forms.klefki.form_name
+          default: *x-y.pokemon.klefki.default
+          battle_only: *x-y.pokemon.klefki.forms.klefki.battle_only
+          icon: *x-y.pokemon.klefki.forms.klefki.icon
+          sprites:
+            - ultra-sun-ultra-moon/klefki-default.png
+            - ultra-sun-ultra-moon/shiny/klefki-default.png
+          art: *x-y.pokemon.klefki.forms.klefki.art
+          footprint: *x-y.pokemon.klefki.forms.klefki.footprint
+          cry: *x-y.pokemon.klefki.forms.klefki.cry

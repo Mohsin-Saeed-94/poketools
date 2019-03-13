@@ -65,19 +65,26 @@ black-white:
           The tuft on its head holds water. When
           the level runs low, it replenishes the
           tuft by siphoning up water with its tail.
-          
         white: |
           The high-pressure water expelled
           from its tail is so powerful,
           it can destroy a concrete wall.
-          
-      forms: &black-white.pokemon.simipour.forms
+      forms:
         simipour:
           name: *black-white.name
           form_name: &black-white.pokemon.simipour.forms.simipour.form_name 'Default Form'
           default: *black-white.pokemon.simipour.default
           battle_only: &black-white.pokemon.simipour.forms.simipour.battle_only false
-          icon: gen5/simipour-default.png
+          icon: &black-white.pokemon.simipour.forms.simipour.icon gen5/simipour-default.png
+          sprites:
+            - black-white/simipour-default.png
+            - black-white/back/simipour-default.png
+            - black-white/back/shiny/simipour-default.png
+            - black-white/shiny/simipour-default.png
+          art: &black-white.pokemon.simipour.forms.simipour.art
+            - simipour-default.png
+          footprint: &black-white.pokemon.simipour.forms.simipour.footprint simipour.png
+          cry: &black-white.pokemon.simipour.forms.simipour.cry gen5/simipour-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -115,13 +122,20 @@ black-2-white-2:
           It prefers places with clean water.
           When its tuft runs low, it replenishes
           it by siphoning up water with its tail.
-          
         white-2: |
           It prefers places with clean water.
           When its tuft runs low, it replenishes
           it by siphoning up water with its tail.
-          
-      forms: *black-white.pokemon.simipour.forms
+      forms:
+        simipour:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simipour.forms.simipour.form_name
+          default: *black-white.pokemon.simipour.default
+          battle_only: *black-white.pokemon.simipour.forms.simipour.battle_only
+          icon: *black-white.pokemon.simipour.forms.simipour.icon
+          art: *black-white.pokemon.simipour.forms.simipour.art
+          footprint: *black-white.pokemon.simipour.forms.simipour.footprint
+          cry: *black-white.pokemon.simipour.forms.simipour.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -156,19 +170,23 @@ x-y:
         x: |
           The high-pressure water expelled from its tail is so
           powerful, it can destroy a concrete wall.
-          
         'y': |
           It prefers places with clean water. When its tuft runs
           low, it replenishes it by siphoning up water with
           its tail.
-          
-      forms: &x-y.pokemon.simipour.forms
+      forms:
         simipour:
           name: *black-white.name
           form_name: *black-white.pokemon.simipour.forms.simipour.form_name
           default: *black-white.pokemon.simipour.default
           battle_only: *black-white.pokemon.simipour.forms.simipour.battle_only
-          icon: simipour-default.png
+          icon: &x-y.pokemon.simipour.forms.simipour.icon simipour-default.png
+          sprites:
+            - x-y/simipour-default.png
+            - x-y/shiny/simipour-default.png
+          art: *black-white.pokemon.simipour.forms.simipour.art
+          footprint: *black-white.pokemon.simipour.forms.simipour.footprint
+          cry: &x-y.pokemon.simipour.forms.simipour.cry simipour-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -202,14 +220,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The high-pressure water expelled from its tail is so
           powerful, it can destroy a concrete wall.
-          
         alpha-sapphire: |
           It prefers places with clean water. When its tuft runs
           low, it replenishes it by siphoning up water with
           its tail.
-          
-      forms: *x-y.pokemon.simipour.forms
-sun-moon: &sun-moon
+      forms:
+        simipour:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simipour.forms.simipour.form_name
+          default: *black-white.pokemon.simipour.default
+          battle_only: *black-white.pokemon.simipour.forms.simipour.battle_only
+          icon: *x-y.pokemon.simipour.forms.simipour.icon
+          art: *black-white.pokemon.simipour.forms.simipour.art
+          footprint: *black-white.pokemon.simipour.forms.simipour.footprint
+          cry: *x-y.pokemon.simipour.forms.simipour.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -236,5 +261,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.simipour.stats
       abilities: *black-white.pokemon.simipour.abilities
       evolution_conditions: *black-white.pokemon.simipour.evolution_conditions
-      forms: *x-y.pokemon.simipour.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        simipour:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simipour.forms.simipour.form_name
+          default: *black-white.pokemon.simipour.default
+          battle_only: *black-white.pokemon.simipour.forms.simipour.battle_only
+          icon: *x-y.pokemon.simipour.forms.simipour.icon
+          sprites:
+            - sun-moon/simipour-default.png
+            - sun-moon/shiny/simipour-default.png
+          art: *black-white.pokemon.simipour.forms.simipour.art
+          footprint: *black-white.pokemon.simipour.forms.simipour.footprint
+          cry: *x-y.pokemon.simipour.forms.simipour.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    simipour:
+      genus: *black-white.pokemon.simipour.genus
+      evolution_parent: *black-white.pokemon.simipour.evolution_parent
+      color: *black-white.pokemon.simipour.color
+      shape: *black-white.pokemon.simipour.shape
+      female_rate: *black-white.pokemon.simipour.female_rate
+      capture_rate: *black-white.pokemon.simipour.capture_rate
+      happiness: *black-white.pokemon.simipour.happiness
+      baby: *black-white.pokemon.simipour.baby
+      hatch_steps: *black-white.pokemon.simipour.hatch_steps
+      growth_rate: *black-white.pokemon.simipour.growth_rate
+      forms_switchable: *black-white.pokemon.simipour.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.simipour.default
+      height: *black-white.pokemon.simipour.height
+      weight: *black-white.pokemon.simipour.weight
+      experience: *black-white.pokemon.simipour.experience
+      types: *black-white.pokemon.simipour.types
+      egg_groups: *black-white.pokemon.simipour.egg_groups
+      mega: *x-y.pokemon.simipour.mega
+      stats: *black-white.pokemon.simipour.stats
+      abilities: *black-white.pokemon.simipour.abilities
+      evolution_conditions: *black-white.pokemon.simipour.evolution_conditions
+      forms:
+        simipour:
+          name: *black-white.name
+          form_name: *black-white.pokemon.simipour.forms.simipour.form_name
+          default: *black-white.pokemon.simipour.default
+          battle_only: *black-white.pokemon.simipour.forms.simipour.battle_only
+          icon: *x-y.pokemon.simipour.forms.simipour.icon
+          sprites:
+            - ultra-sun-ultra-moon/simipour-default.png
+            - ultra-sun-ultra-moon/shiny/simipour-default.png
+          art: *black-white.pokemon.simipour.forms.simipour.art
+          footprint: *black-white.pokemon.simipour.forms.simipour.footprint
+          cry: *x-y.pokemon.simipour.forms.simipour.cry

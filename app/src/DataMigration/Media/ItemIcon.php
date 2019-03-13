@@ -1,7 +1,4 @@
 <?php
-/**
- * @file IconItem.php
- */
 
 namespace App\DataMigration\Media;
 

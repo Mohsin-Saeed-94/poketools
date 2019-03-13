@@ -8,10 +8,14 @@ use Doctrine\DBAL\FetchMode;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
+use DragoonBoots\A2B\DataMigration\MigrationReferenceStoreInterface;
 use DragoonBoots\A2B\Drivers\Destination\YamlDestinationDriver;
 use DragoonBoots\A2B\Drivers\DestinationDriverInterface;
 use DragoonBoots\A2B\Drivers\Source\DbalSourceDriver;
 use DragoonBoots\A2B\Drivers\SourceDriverInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 /**
  * Pokemon Species, Pokemon, and Pokemon Form migration.
@@ -171,6 +175,28 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
             'black-2-white-2',
         ],
     ];
+
+    /**
+     * @var string
+     */
+    protected $mediaPath;
+
+    /**
+     * PokemonSpecies constructor.
+     *
+     * @param MigrationReferenceStoreInterface $referenceStore
+     * @param PropertyAccessorInterface $propertyAccess
+     * @param ContainerInterface $container
+     */
+    public function __construct(
+        MigrationReferenceStoreInterface $referenceStore,
+        PropertyAccessorInterface $propertyAccess,
+        ContainerInterface $container
+    ) {
+        parent::__construct($referenceStore, $propertyAccess);
+
+        $this->mediaPath = $container->getParameter('kernel.project_dir').'/assets/static/pokemon';
+    }
 
     /**
      * {@inheritdoc}
@@ -576,6 +602,17 @@ SQL
         );
         $oldMediaVersionGroups->execute();
         $this->oldMediaVersionGroups = $oldMediaVersionGroups->fetchAll(FetchMode::COLUMN);
+
+        $noFootPrintsVersionGroups = $sourceDriver->getConnection()->prepare(
+            <<<SQL
+SELECT "version_groups"."identifier"
+FROM "version_groups"
+WHERE "generation_id" < 2
+AND "generation_id" > 5
+SQL
+        );
+        $noFootPrintsVersionGroups->execute();
+        $this->featureExclusions['footprints'] = $noFootPrintsVersionGroups->fetchAll(FetchMode::COLUMN);
     }
 
     /**
@@ -701,6 +738,7 @@ SQL
                     }
 
                     // Media
+                    // Icons
                     if (!in_array($formVersionGroup, $this->featureExclusions['icons'], true)) {
                         $versionGroupData['icon'] = sprintf(
                             '%s-%s.png',
@@ -709,6 +747,75 @@ SQL
                         );
                         if (in_array($formVersionGroup, $this->oldMediaVersionGroups, true)) {
                             $versionGroupData['icon'] = 'gen5/'.$versionGroupData['icon'];
+                        }
+                    }
+                    // Sprites
+                    // Check to see what sprites are available.
+                    $spriteCheckDir = sprintf('%s/sprite/%s', $this->mediaPath, $formVersionGroup);
+                    if (is_dir($spriteCheckDir)) {
+                        $spriteFinder = new Finder();
+                        $spriteFinder->files()
+                            ->in($spriteCheckDir)
+                            ->name(
+                                sprintf(
+                                    '`^%s-%s\.(?:png|webm)$`',
+                                    preg_quote($destinationData['identifier'], '`'),
+                                    preg_quote($versionGroupData['form_identifier'], '`')
+                                )
+                            );
+                        foreach ($spriteFinder->getIterator() as $spriteFileInfo) {
+                            $versionGroupData['sprites'][] = sprintf(
+                                '%s/%s',
+                                $formVersionGroup,
+                                $spriteFileInfo->getRelativePathname()
+                            );
+                        }
+                        if (isset($versionGroupData['sprites'])) {
+                            $versionGroupData['sprites'] = array_reverse($versionGroupData['sprites']);
+                        }
+                    }
+                    // Art
+                    // Check to see what art is available
+                    $artCheckDir = sprintf('%s/art', $this->mediaPath);
+                    $artFinder = new Finder();
+                    $artFinder->files()
+                        ->in($artCheckDir)
+                        ->name(
+                            sprintf(
+                                '%s-%s.png',
+                                preg_quote($destinationData['identifier'], '`'),
+                                preg_quote($versionGroupData['form_identifier'], '`')
+                            )
+                        );
+                    foreach ($artFinder->getIterator() as $artFileInfo) {
+                        $versionGroupData['art'][] = $artFileInfo->getRelativePathname();
+                    }
+                    if (isset($versionGroupData['art'])) {
+                        $versionGroupData['art'] = array_reverse($versionGroupData['art']);
+                    }
+                    // Footprints
+                    if (!in_array($formVersionGroup, $this->featureExclusions['footprints'], true)) {
+                        $versionGroupData['footprint'] = sprintf('%s.png', $destinationData['identifier']);
+                    }
+                    // Cries
+                    // Try the cry with the form first, then try the default cry.
+                    foreach ([$versionGroupData['form_identifier'], 'default'] as $checkFormIdentifier) {
+                        $checkCryPath = sprintf(
+                            '%s/cry/%s%s-%s.webm',
+                            $this->mediaPath,
+                            in_array($formVersionGroup, $this->oldMediaVersionGroups, true) ? 'gen5/' : '',
+                            $destinationData['identifier'],
+                            $checkFormIdentifier
+                        );
+
+                        if (is_file($checkCryPath)) {
+                            $versionGroupData['cry'] = sprintf(
+                                '%s%s-%s.webm',
+                                in_array($formVersionGroup, $this->oldMediaVersionGroups, true) ? 'gen5/' : '',
+                                $destinationData['identifier'],
+                                $checkFormIdentifier
+                            );
+                            break;
                         }
                     }
 

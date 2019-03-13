@@ -61,19 +61,26 @@ black-white:
           Its habitat is dark forests and caves.
           It emits ultrasonic waves from its
           nose to learn about its surroundings.
-          
         white: |
           Suction from its nostrils enables it to
           stick to cave walls during sleep. It
           leaves a heart-shaped mark behind.
-          
-      forms: &black-white.pokemon.woobat.forms
+      forms:
         woobat:
           name: *black-white.name
           form_name: &black-white.pokemon.woobat.forms.woobat.form_name 'Default Form'
           default: *black-white.pokemon.woobat.default
           battle_only: &black-white.pokemon.woobat.forms.woobat.battle_only false
-          icon: gen5/woobat-default.png
+          icon: &black-white.pokemon.woobat.forms.woobat.icon gen5/woobat-default.png
+          sprites:
+            - black-white/back/woobat-default.png
+            - black-white/back/shiny/woobat-default.png
+            - black-white/woobat-default.png
+            - black-white/shiny/woobat-default.png
+          art: &black-white.pokemon.woobat.forms.woobat.art
+            - woobat-default.png
+          footprint: &black-white.pokemon.woobat.forms.woobat.footprint woobat.png
+          cry: &black-white.pokemon.woobat.forms.woobat.cry gen5/woobat-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -106,13 +113,20 @@ black-2-white-2:
           The heart-shaped mark left on a body
           after a Woobat has been attached to it
           is said to bring good fortune.
-          
         white-2: |
           The heart-shaped mark left on a body
           after a Woobat has been attached to it
           is said to bring good fortune.
-          
-      forms: *black-white.pokemon.woobat.forms
+      forms:
+        woobat:
+          name: *black-white.name
+          form_name: *black-white.pokemon.woobat.forms.woobat.form_name
+          default: *black-white.pokemon.woobat.default
+          battle_only: *black-white.pokemon.woobat.forms.woobat.battle_only
+          icon: *black-white.pokemon.woobat.forms.woobat.icon
+          art: *black-white.pokemon.woobat.forms.woobat.art
+          footprint: *black-white.pokemon.woobat.forms.woobat.footprint
+          cry: *black-white.pokemon.woobat.forms.woobat.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -146,19 +160,23 @@ x-y:
           Its habitat is dark forests and caves. It emits
           ultrasonic waves from its nose to learn about
           its surroundings.
-          
         'y': |
           The heart-shaped mark left on a body after a
           Woobat has been attached to it is said to bring
           good fortune.
-          
-      forms: &x-y.pokemon.woobat.forms
+      forms:
         woobat:
           name: *black-white.name
           form_name: *black-white.pokemon.woobat.forms.woobat.form_name
           default: *black-white.pokemon.woobat.default
           battle_only: *black-white.pokemon.woobat.forms.woobat.battle_only
-          icon: woobat-default.png
+          icon: &x-y.pokemon.woobat.forms.woobat.icon woobat-default.png
+          sprites:
+            - x-y/woobat-default.png
+            - x-y/shiny/woobat-default.png
+          art: *black-white.pokemon.woobat.forms.woobat.art
+          footprint: *black-white.pokemon.woobat.forms.woobat.footprint
+          cry: &x-y.pokemon.woobat.forms.woobat.cry woobat-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -191,14 +209,21 @@ omega-ruby-alpha-sapphire:
           Its habitat is dark forests and caves. It emits
           ultrasonic waves from its nose to learn about
           its surroundings.
-          
         alpha-sapphire: |
           The heart-shaped mark left on a body after a
           Woobat has been attached to it is said to bring
           good fortune.
-          
-      forms: *x-y.pokemon.woobat.forms
-sun-moon: &sun-moon
+      forms:
+        woobat:
+          name: *black-white.name
+          form_name: *black-white.pokemon.woobat.forms.woobat.form_name
+          default: *black-white.pokemon.woobat.default
+          battle_only: *black-white.pokemon.woobat.forms.woobat.battle_only
+          icon: *x-y.pokemon.woobat.forms.woobat.icon
+          art: *black-white.pokemon.woobat.forms.woobat.art
+          footprint: *black-white.pokemon.woobat.forms.woobat.footprint
+          cry: *x-y.pokemon.woobat.forms.woobat.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -223,5 +248,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.woobat.mega
       stats: *black-white.pokemon.woobat.stats
       abilities: *black-white.pokemon.woobat.abilities
-      forms: *x-y.pokemon.woobat.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        woobat:
+          name: *black-white.name
+          form_name: *black-white.pokemon.woobat.forms.woobat.form_name
+          default: *black-white.pokemon.woobat.default
+          battle_only: *black-white.pokemon.woobat.forms.woobat.battle_only
+          icon: *x-y.pokemon.woobat.forms.woobat.icon
+          sprites:
+            - sun-moon/woobat-default.png
+            - sun-moon/shiny/woobat-default.png
+          art: *black-white.pokemon.woobat.forms.woobat.art
+          footprint: *black-white.pokemon.woobat.forms.woobat.footprint
+          cry: *x-y.pokemon.woobat.forms.woobat.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    woobat:
+      genus: *black-white.pokemon.woobat.genus
+      color: *black-white.pokemon.woobat.color
+      shape: *black-white.pokemon.woobat.shape
+      female_rate: *black-white.pokemon.woobat.female_rate
+      capture_rate: *black-white.pokemon.woobat.capture_rate
+      happiness: *black-white.pokemon.woobat.happiness
+      baby: *black-white.pokemon.woobat.baby
+      hatch_steps: *black-white.pokemon.woobat.hatch_steps
+      growth_rate: *black-white.pokemon.woobat.growth_rate
+      forms_switchable: *black-white.pokemon.woobat.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.woobat.default
+      height: *black-white.pokemon.woobat.height
+      weight: *black-white.pokemon.woobat.weight
+      experience: *black-white.pokemon.woobat.experience
+      types: *black-white.pokemon.woobat.types
+      egg_groups: *black-white.pokemon.woobat.egg_groups
+      mega: *x-y.pokemon.woobat.mega
+      stats: *black-white.pokemon.woobat.stats
+      abilities: *black-white.pokemon.woobat.abilities
+      forms:
+        woobat:
+          name: *black-white.name
+          form_name: *black-white.pokemon.woobat.forms.woobat.form_name
+          default: *black-white.pokemon.woobat.default
+          battle_only: *black-white.pokemon.woobat.forms.woobat.battle_only
+          icon: *x-y.pokemon.woobat.forms.woobat.icon
+          sprites:
+            - ultra-sun-ultra-moon/woobat-default.png
+            - ultra-sun-ultra-moon/shiny/woobat-default.png
+          art: *black-white.pokemon.woobat.forms.woobat.art
+          footprint: *black-white.pokemon.woobat.forms.woobat.footprint
+          cry: *x-y.pokemon.woobat.forms.woobat.cry

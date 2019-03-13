@@ -64,14 +64,17 @@ sun-moon:
           A Pokémon known for the beauty of its
           well-shaped legs, it sometimes appears as a
           mascot in advertisements for beauty salons.
-          
-      forms: &sun-moon.pokemon.tsareena.forms
+      forms:
         tsareena:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.tsareena.forms.tsareena.form_name 'Default Form'
           default: *sun-moon.pokemon.tsareena.default
-          battle_only: false
-          icon: tsareena-default.png
+          battle_only: &sun-moon.pokemon.tsareena.forms.tsareena.battle_only false
+          icon: &sun-moon.pokemon.tsareena.forms.tsareena.icon tsareena-default.png
+          sprites:
+            - sun-moon/tsareena-default.png
+            - sun-moon/shiny/tsareena-default.png
+          footprint: &sun-moon.pokemon.tsareena.forms.tsareena.footprint tsareena.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -106,5 +109,14 @@ ultra-sun-ultra-moon:
           A master of grand and beautiful kicks, it can
           knock out even kickboxing champions with a
           single blow.
-          
-      forms: *sun-moon.pokemon.tsareena.forms
+      forms:
+        tsareena:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.tsareena.forms.tsareena.form_name
+          default: *sun-moon.pokemon.tsareena.default
+          battle_only: *sun-moon.pokemon.tsareena.forms.tsareena.battle_only
+          icon: *sun-moon.pokemon.tsareena.forms.tsareena.icon
+          sprites:
+            - ultra-sun-ultra-moon/tsareena-default.png
+            - ultra-sun-ultra-moon/shiny/tsareena-default.png
+          footprint: *sun-moon.pokemon.tsareena.forms.tsareena.footprint

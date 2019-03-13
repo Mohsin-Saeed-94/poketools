@@ -53,19 +53,24 @@ x-y:
         x: |
           When the Kalos region’s ecosystem falls into
           disarray, it appears and reveals its secret power.
-          
         'y': |
           It’s hypothesized that it’s monitoring
           those who destroy the ecosystem
           from deep in the cave where it lives.
-          
-      forms: &x-y.pokemon.zygarde.forms
+      forms:
         zygarde:
           name: *x-y.name
           form_name: &x-y.pokemon.zygarde.forms.zygarde.form_name '50% Forme'
           default: *x-y.pokemon.zygarde.default
           battle_only: &x-y.pokemon.zygarde.forms.zygarde.battle_only false
-          icon: zygarde-default.png
+          icon: &x-y.pokemon.zygarde.forms.zygarde.icon zygarde-default.png
+          sprites:
+            - x-y/zygarde-default.png
+            - x-y/shiny/zygarde-default.png
+          art: &x-y.pokemon.zygarde.forms.zygarde.art
+            - zygarde-default.png
+          footprint: &x-y.pokemon.zygarde.forms.zygarde.footprint zygarde.png
+          cry: &x-y.pokemon.zygarde.forms.zygarde.cry zygarde-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -96,13 +101,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           When the Kalos region’s ecosystem falls into
           disarray, it appears and reveals its secret power.
-          
         alpha-sapphire: |
           It’s hypothesized that it’s monitoring
           those who destroy the ecosystem
           from deep in the cave where it lives.
-          
-      forms: *x-y.pokemon.zygarde.forms
+      forms:
+        zygarde:
+          name: *x-y.name
+          form_name: *x-y.pokemon.zygarde.forms.zygarde.form_name
+          default: *x-y.pokemon.zygarde.default
+          battle_only: *x-y.pokemon.zygarde.forms.zygarde.battle_only
+          icon: *x-y.pokemon.zygarde.forms.zygarde.icon
+          art: *x-y.pokemon.zygarde.forms.zygarde.art
+          footprint: *x-y.pokemon.zygarde.forms.zygarde.footprint
+          cry: *x-y.pokemon.zygarde.forms.zygarde.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -132,7 +144,19 @@ sun-moon:
           It’s thought to be monitoring the ecosystem.
           There are rumors that even greater power lies
           hidden within it.
-      forms: *x-y.pokemon.zygarde.forms
+      forms:
+        zygarde:
+          name: *x-y.name
+          form_name: *x-y.pokemon.zygarde.forms.zygarde.form_name
+          default: *x-y.pokemon.zygarde.default
+          battle_only: *x-y.pokemon.zygarde.forms.zygarde.battle_only
+          icon: *x-y.pokemon.zygarde.forms.zygarde.icon
+          sprites:
+            - sun-moon/zygarde-default.png
+            - sun-moon/shiny/zygarde-default.png
+          art: *x-y.pokemon.zygarde.forms.zygarde.art
+          footprint: *x-y.pokemon.zygarde.forms.zygarde.footprint
+          cry: *x-y.pokemon.zygarde.forms.zygarde.cry
     zygarde-10:
       genus: *x-y.pokemon.zygarde.genus
       color: *x-y.pokemon.zygarde.color
@@ -173,13 +197,18 @@ sun-moon:
       abilities: &sun-moon.pokemon.zygarde-10.abilities
         power-construct: *x-y.pokemon.zygarde.abilities.aura-break
       flavor_text: *sun-moon.pokemon.zygarde.flavor_text
-      forms: &sun-moon.pokemon.zygarde-10.forms
+      forms:
         zygarde-10:
           name: *sun-moon.pokemon.zygarde-10.name
-          form_name: '10% Forme'
+          form_name: &sun-moon.pokemon.zygarde-10.forms.zygarde-10.form_name '10% Forme'
           default: *x-y.pokemon.zygarde.default
           battle_only: *x-y.pokemon.zygarde.forms.zygarde.battle_only
-          icon: zygarde-10.png
+          icon: &sun-moon.pokemon.zygarde-10.forms.zygarde-10.icon zygarde-10.png
+          sprites:
+            - sun-moon/shiny/zygarde-10.png
+            - sun-moon/zygarde-10.png
+          footprint: *x-y.pokemon.zygarde.forms.zygarde.footprint
+          cry: *x-y.pokemon.zygarde.forms.zygarde.cry
     zygarde-50:
       genus: *x-y.pokemon.zygarde.genus
       color: *x-y.pokemon.zygarde.color
@@ -201,13 +230,18 @@ sun-moon:
       stats: *x-y.pokemon.zygarde.stats
       abilities: *sun-moon.pokemon.zygarde-10.abilities
       flavor_text: *sun-moon.pokemon.zygarde.flavor_text
-      forms: &sun-moon.pokemon.zygarde-50.forms
+      forms:
         zygarde-50:
           name: *sun-moon.pokemon.zygarde-50.name
           form_name: *x-y.pokemon.zygarde.forms.zygarde.form_name
           default: *x-y.pokemon.zygarde.default
           battle_only: *x-y.pokemon.zygarde.forms.zygarde.battle_only
-          icon: zygarde-50.png
+          icon: &sun-moon.pokemon.zygarde-50.forms.zygarde-50.icon zygarde-50.png
+          sprites:
+            - sun-moon/zygarde-50.png
+            - sun-moon/shiny/zygarde-50.png
+          footprint: *x-y.pokemon.zygarde.forms.zygarde.footprint
+          cry: *x-y.pokemon.zygarde.forms.zygarde.cry
     zygarde-complete:
       genus: *x-y.pokemon.zygarde.genus
       color: *x-y.pokemon.zygarde.color
@@ -247,13 +281,18 @@ sun-moon:
           effort_change: 0
       abilities: *sun-moon.pokemon.zygarde-10.abilities
       flavor_text: *sun-moon.pokemon.zygarde.flavor_text
-      forms: &sun-moon.pokemon.zygarde-complete.forms
+      forms:
         zygarde-complete:
           name: *sun-moon.pokemon.zygarde-complete.name
-          form_name: 'Complete Forme'
+          form_name: &sun-moon.pokemon.zygarde-complete.forms.zygarde-complete.form_name 'Complete Forme'
           default: *x-y.pokemon.zygarde.default
           battle_only: *x-y.pokemon.zygarde.forms.zygarde.battle_only
-          icon: zygarde-complete.png
+          icon: &sun-moon.pokemon.zygarde-complete.forms.zygarde-complete.icon zygarde-complete.png
+          sprites:
+            - sun-moon/zygarde-complete.png
+            - sun-moon/shiny/zygarde-complete.png
+          footprint: *x-y.pokemon.zygarde.forms.zygarde.footprint
+          cry: *x-y.pokemon.zygarde.forms.zygarde.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -283,7 +322,19 @@ ultra-sun-ultra-moon:
           This is Zygarde’s form when about half of its
           pieces have been assembled. It plays the role of
           monitoring the ecosystem.
-      forms: *x-y.pokemon.zygarde.forms
+      forms:
+        zygarde:
+          name: *x-y.name
+          form_name: *x-y.pokemon.zygarde.forms.zygarde.form_name
+          default: *x-y.pokemon.zygarde.default
+          battle_only: *x-y.pokemon.zygarde.forms.zygarde.battle_only
+          icon: *x-y.pokemon.zygarde.forms.zygarde.icon
+          sprites:
+            - ultra-sun-ultra-moon/zygarde-default.png
+            - ultra-sun-ultra-moon/shiny/zygarde-default.png
+          art: *x-y.pokemon.zygarde.forms.zygarde.art
+          footprint: *x-y.pokemon.zygarde.forms.zygarde.footprint
+          cry: *x-y.pokemon.zygarde.forms.zygarde.cry
     zygarde-10:
       genus: *x-y.pokemon.zygarde.genus
       color: *x-y.pokemon.zygarde.color
@@ -305,7 +356,18 @@ ultra-sun-ultra-moon:
       stats: *sun-moon.pokemon.zygarde-10.stats
       abilities: *sun-moon.pokemon.zygarde-10.abilities
       flavor_text: *ultra-sun-ultra-moon.pokemon.zygarde.flavor_text
-      forms: *sun-moon.pokemon.zygarde-10.forms
+      forms:
+        zygarde-10:
+          name: *sun-moon.pokemon.zygarde-10.name
+          form_name: *sun-moon.pokemon.zygarde-10.forms.zygarde-10.form_name
+          default: *x-y.pokemon.zygarde.default
+          battle_only: *x-y.pokemon.zygarde.forms.zygarde.battle_only
+          icon: *sun-moon.pokemon.zygarde-10.forms.zygarde-10.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/zygarde-10.png
+            - ultra-sun-ultra-moon/zygarde-10.png
+          footprint: *x-y.pokemon.zygarde.forms.zygarde.footprint
+          cry: *x-y.pokemon.zygarde.forms.zygarde.cry
     zygarde-50:
       genus: *x-y.pokemon.zygarde.genus
       color: *x-y.pokemon.zygarde.color
@@ -327,7 +389,18 @@ ultra-sun-ultra-moon:
       stats: *x-y.pokemon.zygarde.stats
       abilities: *sun-moon.pokemon.zygarde-10.abilities
       flavor_text: *ultra-sun-ultra-moon.pokemon.zygarde.flavor_text
-      forms: *sun-moon.pokemon.zygarde-50.forms
+      forms:
+        zygarde-50:
+          name: *sun-moon.pokemon.zygarde-50.name
+          form_name: *x-y.pokemon.zygarde.forms.zygarde.form_name
+          default: *x-y.pokemon.zygarde.default
+          battle_only: *x-y.pokemon.zygarde.forms.zygarde.battle_only
+          icon: *sun-moon.pokemon.zygarde-50.forms.zygarde-50.icon
+          sprites:
+            - ultra-sun-ultra-moon/zygarde-50.png
+            - ultra-sun-ultra-moon/shiny/zygarde-50.png
+          footprint: *x-y.pokemon.zygarde.forms.zygarde.footprint
+          cry: *x-y.pokemon.zygarde.forms.zygarde.cry
     zygarde-complete:
       genus: *x-y.pokemon.zygarde.genus
       color: *x-y.pokemon.zygarde.color
@@ -349,4 +422,15 @@ ultra-sun-ultra-moon:
       stats: *sun-moon.pokemon.zygarde-complete.stats
       abilities: *sun-moon.pokemon.zygarde-10.abilities
       flavor_text: *ultra-sun-ultra-moon.pokemon.zygarde.flavor_text
-      forms: *sun-moon.pokemon.zygarde-complete.forms
+      forms:
+        zygarde-complete:
+          name: *sun-moon.pokemon.zygarde-complete.name
+          form_name: *sun-moon.pokemon.zygarde-complete.forms.zygarde-complete.form_name
+          default: *x-y.pokemon.zygarde.default
+          battle_only: *x-y.pokemon.zygarde.forms.zygarde.battle_only
+          icon: *sun-moon.pokemon.zygarde-complete.forms.zygarde-complete.icon
+          sprites:
+            - ultra-sun-ultra-moon/zygarde-complete.png
+            - ultra-sun-ultra-moon/shiny/zygarde-complete.png
+          footprint: *x-y.pokemon.zygarde.forms.zygarde.footprint
+          cry: *x-y.pokemon.zygarde.forms.zygarde.cry

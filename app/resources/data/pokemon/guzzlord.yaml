@@ -51,14 +51,17 @@ sun-moon:
           A dangerous Ultra Beast, it appears to be eating
           constantly, but for some reason its droppings
           have never been found.
-          
-      forms: &sun-moon.pokemon.guzzlord.forms
+      forms:
         guzzlord:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.guzzlord.forms.guzzlord.form_name 'Default Form'
           default: *sun-moon.pokemon.guzzlord.default
-          battle_only: false
-          icon: guzzlord-default.png
+          battle_only: &sun-moon.pokemon.guzzlord.forms.guzzlord.battle_only false
+          icon: &sun-moon.pokemon.guzzlord.forms.guzzlord.icon guzzlord-default.png
+          sprites:
+            - sun-moon/shiny/guzzlord-default.png
+            - sun-moon/guzzlord-default.png
+          footprint: &sun-moon.pokemon.guzzlord.forms.guzzlord.footprint guzzlord.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -88,5 +91,14 @@ ultra-sun-ultra-moon:
           Although it’s alien to this world and a danger
           here, it’s apparently a common organism in the
           world where it normally lives.
-          
-      forms: *sun-moon.pokemon.guzzlord.forms
+      forms:
+        guzzlord:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.guzzlord.forms.guzzlord.form_name
+          default: *sun-moon.pokemon.guzzlord.default
+          battle_only: *sun-moon.pokemon.guzzlord.forms.guzzlord.battle_only
+          icon: *sun-moon.pokemon.guzzlord.forms.guzzlord.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/guzzlord-default.png
+            - ultra-sun-ultra-moon/guzzlord-default.png
+          footprint: *sun-moon.pokemon.guzzlord.forms.guzzlord.footprint

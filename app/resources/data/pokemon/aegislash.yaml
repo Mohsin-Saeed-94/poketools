@@ -60,18 +60,23 @@ x-y:
           Generations of kings were attended by these
           Pokémon, which used their spectral power to
           manipulate and control people and Pokémon.
-          
         'y': |
           Apparently, it can detect the innate qualities
           of leadership. According to legend, whoever it
           recognizes is destined to become king.
-      forms: &x-y.pokemon.aegislash-shield.forms
+      forms:
         aegislash-shield:
-          name: 'Shield Aegislash'
-          form_name: 'Shield Forme'
+          name: &x-y.pokemon.aegislash-shield.forms.aegislash-shield.name 'Shield Aegislash'
+          form_name: &x-y.pokemon.aegislash-shield.forms.aegislash-shield.form_name 'Shield Forme'
           default: *x-y.pokemon.aegislash-shield.default
-          battle_only: false
-          icon: aegislash-shield.png
+          battle_only: &x-y.pokemon.aegislash-shield.forms.aegislash-shield.battle_only false
+          icon: &x-y.pokemon.aegislash-shield.forms.aegislash-shield.icon aegislash-shield.png
+          sprites:
+            - x-y/shiny/aegislash-shield.png
+            - x-y/aegislash-shield.png
+          art: &x-y.pokemon.aegislash-shield.forms.aegislash-shield.art
+            - aegislash-shield.png
+          footprint: &x-y.pokemon.aegislash-shield.forms.aegislash-shield.footprint aegislash.png
     aegislash-blade:
       genus: *x-y.pokemon.aegislash-shield.genus
       evolution_parent: *x-y.pokemon.aegislash-shield.evolution_parent
@@ -115,13 +120,19 @@ x-y:
       abilities: *x-y.pokemon.aegislash-shield.abilities
       evolution_conditions: *x-y.pokemon.aegislash-shield.evolution_conditions
       flavor_text: *x-y.pokemon.aegislash-shield.flavor_text
-      forms: &x-y.pokemon.aegislash-blade.forms
+      forms:
         aegislash-blade:
           name: *x-y.pokemon.aegislash-blade.name
-          form_name: 'Blade Forme'
+          form_name: &x-y.pokemon.aegislash-blade.forms.aegislash-blade.form_name 'Blade Forme'
           default: *x-y.pokemon.aegislash-shield.default
-          battle_only: true
-          icon: aegislash-blade.png
+          battle_only: &x-y.pokemon.aegislash-blade.forms.aegislash-blade.battle_only true
+          icon: &x-y.pokemon.aegislash-blade.forms.aegislash-blade.icon aegislash-blade.png
+          sprites:
+            - x-y/aegislash-blade.png
+            - x-y/shiny/aegislash-blade.png
+          art: &x-y.pokemon.aegislash-blade.forms.aegislash-blade.art
+            - aegislash-blade.png
+          footprint: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.footprint
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -157,12 +168,19 @@ omega-ruby-alpha-sapphire:
           Generations of kings were attended by these
           Pokémon, which used their spectral power to
           manipulate and control people and Pokémon.
-          
         alpha-sapphire: |
           Apparently, it can detect the innate qualities
           of leadership. According to legend, whoever it
           recognizes is destined to become king.
-      forms: *x-y.pokemon.aegislash-shield.forms
+      forms:
+        aegislash-shield:
+          name: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.name
+          form_name: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.form_name
+          default: *x-y.pokemon.aegislash-shield.default
+          battle_only: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.battle_only
+          icon: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.icon
+          art: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.art
+          footprint: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.footprint
     aegislash-blade:
       genus: *x-y.pokemon.aegislash-shield.genus
       evolution_parent: *x-y.pokemon.aegislash-shield.evolution_parent
@@ -188,8 +206,16 @@ omega-ruby-alpha-sapphire:
       abilities: *x-y.pokemon.aegislash-shield.abilities
       evolution_conditions: *x-y.pokemon.aegislash-shield.evolution_conditions
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.aegislash-shield.flavor_text
-      forms: *x-y.pokemon.aegislash-blade.forms
-sun-moon: &sun-moon
+      forms:
+        aegislash-blade:
+          name: *x-y.pokemon.aegislash-blade.name
+          form_name: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.form_name
+          default: *x-y.pokemon.aegislash-shield.default
+          battle_only: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.battle_only
+          icon: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.icon
+          art: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.art
+          footprint: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.footprint
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -217,7 +243,18 @@ sun-moon: &sun-moon
       stats: *x-y.pokemon.aegislash-shield.stats
       abilities: *x-y.pokemon.aegislash-shield.abilities
       evolution_conditions: *x-y.pokemon.aegislash-shield.evolution_conditions
-      forms: *x-y.pokemon.aegislash-shield.forms
+      forms:
+        aegislash-shield:
+          name: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.name
+          form_name: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.form_name
+          default: *x-y.pokemon.aegislash-shield.default
+          battle_only: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.battle_only
+          icon: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.icon
+          sprites:
+            - sun-moon/shiny/aegislash-shield.png
+            - sun-moon/aegislash-shield.png
+          art: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.art
+          footprint: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.footprint
     aegislash-blade:
       genus: *x-y.pokemon.aegislash-shield.genus
       evolution_parent: *x-y.pokemon.aegislash-shield.evolution_parent
@@ -242,5 +279,91 @@ sun-moon: &sun-moon
       stats: *x-y.pokemon.aegislash-blade.stats
       abilities: *x-y.pokemon.aegislash-shield.abilities
       evolution_conditions: *x-y.pokemon.aegislash-shield.evolution_conditions
-      forms: *x-y.pokemon.aegislash-blade.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        aegislash-blade:
+          name: *x-y.pokemon.aegislash-blade.name
+          form_name: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.form_name
+          default: *x-y.pokemon.aegislash-shield.default
+          battle_only: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.battle_only
+          icon: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.icon
+          sprites:
+            - sun-moon/aegislash-blade.png
+            - sun-moon/shiny/aegislash-blade.png
+          art: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.art
+          footprint: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.footprint
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    aegislash-shield:
+      genus: *x-y.pokemon.aegislash-shield.genus
+      evolution_parent: *x-y.pokemon.aegislash-shield.evolution_parent
+      color: *x-y.pokemon.aegislash-shield.color
+      shape: *x-y.pokemon.aegislash-shield.shape
+      female_rate: *x-y.pokemon.aegislash-shield.female_rate
+      capture_rate: *x-y.pokemon.aegislash-shield.capture_rate
+      happiness: *x-y.pokemon.aegislash-shield.happiness
+      baby: *x-y.pokemon.aegislash-shield.baby
+      hatch_steps: *x-y.pokemon.aegislash-shield.hatch_steps
+      growth_rate: *x-y.pokemon.aegislash-shield.growth_rate
+      forms_switchable: *x-y.pokemon.aegislash-shield.forms_switchable
+      forms_note: *x-y.pokemon.aegislash-shield.forms_note
+      name: *x-y.name
+      default: *x-y.pokemon.aegislash-shield.default
+      height: *x-y.pokemon.aegislash-shield.height
+      weight: *x-y.pokemon.aegislash-shield.weight
+      experience: *x-y.pokemon.aegislash-shield.experience
+      types: *x-y.pokemon.aegislash-shield.types
+      egg_groups: *x-y.pokemon.aegislash-shield.egg_groups
+      mega: *x-y.pokemon.aegislash-shield.mega
+      stats: *x-y.pokemon.aegislash-shield.stats
+      abilities: *x-y.pokemon.aegislash-shield.abilities
+      evolution_conditions: *x-y.pokemon.aegislash-shield.evolution_conditions
+      forms:
+        aegislash-shield:
+          name: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.name
+          form_name: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.form_name
+          default: *x-y.pokemon.aegislash-shield.default
+          battle_only: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.battle_only
+          icon: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/aegislash-shield.png
+            - ultra-sun-ultra-moon/aegislash-shield.png
+          art: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.art
+          footprint: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.footprint
+    aegislash-blade:
+      genus: *x-y.pokemon.aegislash-shield.genus
+      evolution_parent: *x-y.pokemon.aegislash-shield.evolution_parent
+      color: *x-y.pokemon.aegislash-shield.color
+      shape: *x-y.pokemon.aegislash-shield.shape
+      female_rate: *x-y.pokemon.aegislash-shield.female_rate
+      capture_rate: *x-y.pokemon.aegislash-shield.capture_rate
+      happiness: *x-y.pokemon.aegislash-shield.happiness
+      baby: *x-y.pokemon.aegislash-shield.baby
+      hatch_steps: *x-y.pokemon.aegislash-shield.hatch_steps
+      growth_rate: *x-y.pokemon.aegislash-shield.growth_rate
+      forms_switchable: *x-y.pokemon.aegislash-shield.forms_switchable
+      forms_note: *x-y.pokemon.aegislash-shield.forms_note
+      name: *x-y.pokemon.aegislash-blade.name
+      default: *x-y.pokemon.aegislash-blade.default
+      height: *x-y.pokemon.aegislash-shield.height
+      weight: *x-y.pokemon.aegislash-shield.weight
+      experience: *x-y.pokemon.aegislash-shield.experience
+      types: *x-y.pokemon.aegislash-shield.types
+      egg_groups: *x-y.pokemon.aegislash-shield.egg_groups
+      mega: *x-y.pokemon.aegislash-shield.mega
+      stats: *x-y.pokemon.aegislash-blade.stats
+      abilities: *x-y.pokemon.aegislash-shield.abilities
+      evolution_conditions: *x-y.pokemon.aegislash-shield.evolution_conditions
+      forms:
+        aegislash-blade:
+          name: *x-y.pokemon.aegislash-blade.name
+          form_name: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.form_name
+          default: *x-y.pokemon.aegislash-shield.default
+          battle_only: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.battle_only
+          icon: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.icon
+          sprites:
+            - ultra-sun-ultra-moon/aegislash-blade.png
+            - ultra-sun-ultra-moon/shiny/aegislash-blade.png
+          art: *x-y.pokemon.aegislash-blade.forms.aegislash-blade.art
+          footprint: *x-y.pokemon.aegislash-shield.forms.aegislash-shield.footprint

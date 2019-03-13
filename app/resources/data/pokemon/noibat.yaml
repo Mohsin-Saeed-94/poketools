@@ -60,19 +60,24 @@ x-y:
         x: |
           They live in pitch-black caves. Their enormous ears
           can emit ultrasonic waves of 200,000 hertz.
-          
         'y': |
           Even a robust wrestler will become
           dizzy and unable to stand when exposed
           to its 200,000-hertz ultrasonic waves.
-          
-      forms: &x-y.pokemon.noibat.forms
+      forms:
         noibat:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.noibat.forms.noibat.form_name 'Default Form'
           default: *x-y.pokemon.noibat.default
-          battle_only: false
-          icon: noibat-default.png
+          battle_only: &x-y.pokemon.noibat.forms.noibat.battle_only false
+          icon: &x-y.pokemon.noibat.forms.noibat.icon noibat-default.png
+          sprites:
+            - x-y/shiny/noibat-default.png
+            - x-y/noibat-default.png
+          art: &x-y.pokemon.noibat.forms.noibat.art
+            - noibat-default.png
+          footprint: &x-y.pokemon.noibat.forms.noibat.footprint noibat.png
+          cry: &x-y.pokemon.noibat.forms.noibat.cry noibat-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -104,13 +109,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           They live in pitch-black caves. Their enormous ears
           can emit ultrasonic waves of 200,000 hertz.
-          
         alpha-sapphire: |
           Even a robust wrestler will become
           dizzy and unable to stand when exposed
           to its 200,000-hertz ultrasonic waves.
-          
-      forms: *x-y.pokemon.noibat.forms
+      forms:
+        noibat:
+          name: *x-y.name
+          form_name: *x-y.pokemon.noibat.forms.noibat.form_name
+          default: *x-y.pokemon.noibat.default
+          battle_only: *x-y.pokemon.noibat.forms.noibat.battle_only
+          icon: *x-y.pokemon.noibat.forms.noibat.icon
+          art: *x-y.pokemon.noibat.forms.noibat.art
+          footprint: *x-y.pokemon.noibat.forms.noibat.footprint
+          cry: *x-y.pokemon.noibat.forms.noibat.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -136,7 +148,19 @@ sun-moon:
       mega: *x-y.pokemon.noibat.mega
       stats: *x-y.pokemon.noibat.stats
       abilities: *x-y.pokemon.noibat.abilities
-      forms: *x-y.pokemon.noibat.forms
+      forms:
+        noibat:
+          name: *x-y.name
+          form_name: *x-y.pokemon.noibat.forms.noibat.form_name
+          default: *x-y.pokemon.noibat.default
+          battle_only: *x-y.pokemon.noibat.forms.noibat.battle_only
+          icon: *x-y.pokemon.noibat.forms.noibat.icon
+          sprites:
+            - sun-moon/shiny/noibat-default.png
+            - sun-moon/noibat-default.png
+          art: *x-y.pokemon.noibat.forms.noibat.art
+          footprint: *x-y.pokemon.noibat.forms.noibat.footprint
+          cry: *x-y.pokemon.noibat.forms.noibat.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -167,5 +191,16 @@ ultra-sun-ultra-moon:
           Fruits are its favorite foods. This gourmet
           carefully picks out just the ripe ones using
           its sonar.
-          
-      forms: *x-y.pokemon.noibat.forms
+      forms:
+        noibat:
+          name: *x-y.name
+          form_name: *x-y.pokemon.noibat.forms.noibat.form_name
+          default: *x-y.pokemon.noibat.default
+          battle_only: *x-y.pokemon.noibat.forms.noibat.battle_only
+          icon: *x-y.pokemon.noibat.forms.noibat.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/noibat-default.png
+            - ultra-sun-ultra-moon/noibat-default.png
+          art: *x-y.pokemon.noibat.forms.noibat.art
+          footprint: *x-y.pokemon.noibat.forms.noibat.footprint
+          cry: *x-y.pokemon.noibat.forms.noibat.cry

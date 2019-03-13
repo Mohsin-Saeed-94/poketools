@@ -53,7 +53,6 @@ x-y:
           This troublemaker sends anything
           and everything to faraway places
           using its loop, which can warp space.
-          
         'y': |
           It gathers things it likes and passes them through
           its loop to teleport them to a secret place.
@@ -64,6 +63,7 @@ x-y:
           default: *x-y.pokemon.hoopa.default
           battle_only: &x-y.pokemon.hoopa.forms.hoopa.battle_only false
           icon: hoopa-confined.png
+          footprint: &x-y.pokemon.hoopa.forms.hoopa.footprint hoopa.png
     hoopa-unbound:
       genus: *x-y.pokemon.hoopa.genus
       color: *x-y.pokemon.hoopa.color
@@ -108,10 +108,13 @@ x-y:
       forms: &x-y.pokemon.hoopa-unbound.forms
         hoopa-unbound:
           name: *x-y.pokemon.hoopa-unbound.name
-          form_name: 'Hoopa Unbound'
+          form_name: &x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.form_name 'Hoopa Unbound'
           default: *x-y.pokemon.hoopa.default
           battle_only: *x-y.pokemon.hoopa.forms.hoopa.battle_only
-          icon: hoopa-unbound.png
+          icon: &x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.icon hoopa-unbound.png
+          art: &x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.art
+            - hoopa-unbound.png
+          footprint: *x-y.pokemon.hoopa.forms.hoopa.footprint
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -142,7 +145,6 @@ omega-ruby-alpha-sapphire:
           In its true form, it possess a huge amount of power.
           Legends of its avarice tell how it once carried off
           an entire castle to gain the treasure hidden within.
-          
         alpha-sapphire: |
           It is said to be able to seize anything it desires
           with its six rings and six huge arms. With its power
@@ -170,11 +172,11 @@ omega-ruby-alpha-sapphire:
       abilities: *x-y.pokemon.hoopa.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.hoopa.flavor_text
       forms: *x-y.pokemon.hoopa-unbound.forms
-sun-moon: &sun-moon
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
-    hoopa:
+    hoopa: &sun-moon.pokemon.hoopa
       genus: *x-y.pokemon.hoopa.genus
       color: *x-y.pokemon.hoopa.color
       shape: *x-y.pokemon.hoopa.shape
@@ -215,5 +217,52 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.hoopa.mega
       stats: *x-y.pokemon.hoopa-unbound.stats
       abilities: *x-y.pokemon.hoopa.abilities
-      forms: *x-y.pokemon.hoopa-unbound.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        hoopa-unbound:
+          name: *x-y.pokemon.hoopa-unbound.name
+          form_name: *x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.form_name
+          default: *x-y.pokemon.hoopa.default
+          battle_only: *x-y.pokemon.hoopa.forms.hoopa.battle_only
+          icon: *x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.icon
+          sprites:
+            - sun-moon/shiny/hoopa-unbound.png
+            - sun-moon/hoopa-unbound.png
+          art: *x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.art
+          footprint: *x-y.pokemon.hoopa.forms.hoopa.footprint
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    hoopa: *sun-moon.pokemon.hoopa
+    hoopa-unbound:
+      genus: *x-y.pokemon.hoopa.genus
+      color: *x-y.pokemon.hoopa.color
+      shape: *x-y.pokemon.hoopa.shape
+      capture_rate: *x-y.pokemon.hoopa.capture_rate
+      happiness: *x-y.pokemon.hoopa.happiness
+      baby: *x-y.pokemon.hoopa.baby
+      hatch_steps: *x-y.pokemon.hoopa.hatch_steps
+      growth_rate: *x-y.pokemon.hoopa.growth_rate
+      forms_switchable: *x-y.pokemon.hoopa.forms_switchable
+      name: *x-y.pokemon.hoopa-unbound.name
+      default: *x-y.pokemon.hoopa-unbound.default
+      height: *x-y.pokemon.hoopa-unbound.height
+      weight: *x-y.pokemon.hoopa-unbound.weight
+      experience: *x-y.pokemon.hoopa-unbound.experience
+      types: *x-y.pokemon.hoopa-unbound.types
+      egg_groups: *x-y.pokemon.hoopa.egg_groups
+      mega: *x-y.pokemon.hoopa.mega
+      stats: *x-y.pokemon.hoopa-unbound.stats
+      abilities: *x-y.pokemon.hoopa.abilities
+      forms:
+        hoopa-unbound:
+          name: *x-y.pokemon.hoopa-unbound.name
+          form_name: *x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.form_name
+          default: *x-y.pokemon.hoopa.default
+          battle_only: *x-y.pokemon.hoopa.forms.hoopa.battle_only
+          icon: *x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/hoopa-unbound.png
+            - ultra-sun-ultra-moon/hoopa-unbound.png
+          art: *x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.art
+          footprint: *x-y.pokemon.hoopa.forms.hoopa.footprint

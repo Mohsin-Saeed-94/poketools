@@ -45,13 +45,14 @@ sun-moon:
         volt-absorb:
           hidden: false
           position: 1
-      forms: &sun-moon.pokemon.zeraora.forms
+      forms:
         zeraora:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.zeraora.forms.zeraora.form_name 'Default Form'
           default: *sun-moon.pokemon.zeraora.default
-          battle_only: false
-          icon: zeraora-default.png
+          battle_only: &sun-moon.pokemon.zeraora.forms.zeraora.battle_only false
+          icon: &sun-moon.pokemon.zeraora.forms.zeraora.icon zeraora-default.png
+          footprint: &sun-moon.pokemon.zeraora.forms.zeraora.footprint zeraora.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -81,5 +82,14 @@ ultra-sun-ultra-moon:
           It electrifies its claws and tears its opponents
           apart with them. Even if they dodge its attack,
           they’ll be electrocuted by the flying sparks.
-          
-      forms: *sun-moon.pokemon.zeraora.forms
+      forms:
+        zeraora:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.zeraora.forms.zeraora.form_name
+          default: *sun-moon.pokemon.zeraora.default
+          battle_only: *sun-moon.pokemon.zeraora.forms.zeraora.battle_only
+          icon: *sun-moon.pokemon.zeraora.forms.zeraora.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/zeraora-default.png
+            - ultra-sun-ultra-moon/zeraora-default.png
+          footprint: *sun-moon.pokemon.zeraora.forms.zeraora.footprint

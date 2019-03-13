@@ -62,19 +62,24 @@ x-y:
           These Pokémon are created when
           spirits possess rotten tree stumps.
           They prefer to live in abandoned forests.
-          
         'y': |
           According to old tales, these Pokémon are
           stumps possessed by the spirits of
           children who died while lost in the forest.
-          
-      forms: &x-y.pokemon.phantump.forms
+      forms:
         phantump:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.phantump.forms.phantump.form_name 'Default Form'
           default: *x-y.pokemon.phantump.default
-          battle_only: false
-          icon: phantump-default.png
+          battle_only: &x-y.pokemon.phantump.forms.phantump.battle_only false
+          icon: &x-y.pokemon.phantump.forms.phantump.icon phantump-default.png
+          sprites:
+            - x-y/shiny/phantump-default.png
+            - x-y/phantump-default.png
+          art: &x-y.pokemon.phantump.forms.phantump.art
+            - phantump-default.png
+          footprint: &x-y.pokemon.phantump.forms.phantump.footprint phantump.png
+          cry: &x-y.pokemon.phantump.forms.phantump.cry phantump-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -107,13 +112,20 @@ omega-ruby-alpha-sapphire:
           These Pokémon are created when
           spirits possess rotten tree stumps.
           They prefer to live in abandoned forests.
-          
         alpha-sapphire: |
           According to old tales, these Pokémon are
           stumps possessed by the spirits of
           children who died while lost in the forest.
-          
-      forms: *x-y.pokemon.phantump.forms
+      forms:
+        phantump:
+          name: *x-y.name
+          form_name: *x-y.pokemon.phantump.forms.phantump.form_name
+          default: *x-y.pokemon.phantump.default
+          battle_only: *x-y.pokemon.phantump.forms.phantump.battle_only
+          icon: *x-y.pokemon.phantump.forms.phantump.icon
+          art: *x-y.pokemon.phantump.forms.phantump.art
+          footprint: *x-y.pokemon.phantump.forms.phantump.footprint
+          cry: *x-y.pokemon.phantump.forms.phantump.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -144,8 +156,19 @@ sun-moon:
           According to legend, medicine to cure any illness
           can be made by plucking the green leaves on its
           head, brewing them, and boiling down the liquid.
-          
-      forms: *x-y.pokemon.phantump.forms
+      forms:
+        phantump:
+          name: *x-y.name
+          form_name: *x-y.pokemon.phantump.forms.phantump.form_name
+          default: *x-y.pokemon.phantump.default
+          battle_only: *x-y.pokemon.phantump.forms.phantump.battle_only
+          icon: *x-y.pokemon.phantump.forms.phantump.icon
+          sprites:
+            - sun-moon/shiny/phantump-default.png
+            - sun-moon/phantump-default.png
+          art: *x-y.pokemon.phantump.forms.phantump.art
+          footprint: *x-y.pokemon.phantump.forms.phantump.footprint
+          cry: *x-y.pokemon.phantump.forms.phantump.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -176,5 +199,16 @@ ultra-sun-ultra-moon:
           By imitating the voice of a child, it causes
           people to get hopelessly lost deep in the forest.
           It’s trying to make friends with them.
-          
-      forms: *x-y.pokemon.phantump.forms
+      forms:
+        phantump:
+          name: *x-y.name
+          form_name: *x-y.pokemon.phantump.forms.phantump.form_name
+          default: *x-y.pokemon.phantump.default
+          battle_only: *x-y.pokemon.phantump.forms.phantump.battle_only
+          icon: *x-y.pokemon.phantump.forms.phantump.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/phantump-default.png
+            - ultra-sun-ultra-moon/phantump-default.png
+          art: *x-y.pokemon.phantump.forms.phantump.art
+          footprint: *x-y.pokemon.phantump.forms.phantump.footprint
+          cry: *x-y.pokemon.phantump.forms.phantump.cry

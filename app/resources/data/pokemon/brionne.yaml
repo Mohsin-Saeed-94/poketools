@@ -59,14 +59,17 @@ sun-moon:
           It cares deeply for its companions. When its
           Trainer is feeling down, it performs a cheery
           dance to try and help.
-          
-      forms: &sun-moon.pokemon.brionne.forms
+      forms:
         brionne:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.brionne.forms.brionne.form_name 'Default Form'
           default: *sun-moon.pokemon.brionne.default
-          battle_only: false
-          icon: brionne-default.png
+          battle_only: &sun-moon.pokemon.brionne.forms.brionne.battle_only false
+          icon: &sun-moon.pokemon.brionne.forms.brionne.icon brionne-default.png
+          sprites:
+            - sun-moon/brionne-default.png
+            - sun-moon/shiny/brionne-default.png
+          footprint: &sun-moon.pokemon.brionne.forms.brionne.footprint brionne.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -99,5 +102,14 @@ ultra-sun-ultra-moon:
           It gets excited when it sees a dance it doesn’t
           know. This hard worker practices diligently until
           it can learn that dance.
-          
-      forms: *sun-moon.pokemon.brionne.forms
+      forms:
+        brionne:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.brionne.forms.brionne.form_name
+          default: *sun-moon.pokemon.brionne.default
+          battle_only: *sun-moon.pokemon.brionne.forms.brionne.battle_only
+          icon: *sun-moon.pokemon.brionne.forms.brionne.icon
+          sprites:
+            - ultra-sun-ultra-moon/brionne-default.png
+            - ultra-sun-ultra-moon/shiny/brionne-default.png
+          footprint: *sun-moon.pokemon.brionne.forms.brionne.footprint

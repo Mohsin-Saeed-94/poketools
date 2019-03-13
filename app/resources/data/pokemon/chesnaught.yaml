@@ -61,18 +61,23 @@ x-y:
         x: |
           Its Tackle is forceful enough to flip a 50-ton tank.
           It shields its allies from danger with its own body.
-          
         'y': |
           When it takes a defensive posture with its fists
           guarding its face, it could withstand a bomb blast.
-          
-      forms: &x-y.pokemon.chesnaught.forms
+      forms:
         chesnaught:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.chesnaught.forms.chesnaught.form_name 'Default Form'
           default: *x-y.pokemon.chesnaught.default
-          battle_only: false
-          icon: chesnaught-default.png
+          battle_only: &x-y.pokemon.chesnaught.forms.chesnaught.battle_only false
+          icon: &x-y.pokemon.chesnaught.forms.chesnaught.icon chesnaught-default.png
+          sprites:
+            - x-y/chesnaught-default.png
+            - x-y/shiny/chesnaught-default.png
+          art: &x-y.pokemon.chesnaught.forms.chesnaught.art
+            - chesnaught-default.png
+          footprint: &x-y.pokemon.chesnaught.forms.chesnaught.footprint chesnaught.png
+          cry: &x-y.pokemon.chesnaught.forms.chesnaught.cry chesnaught-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -106,13 +111,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Its Tackle is forceful enough to flip a 50-ton tank.
           It shields its allies from danger with its own body.
-          
         alpha-sapphire: |
           When it takes a defensive posture with its fists
           guarding its face, it could withstand a bomb blast.
-          
-      forms: *x-y.pokemon.chesnaught.forms
-sun-moon: &sun-moon
+      forms:
+        chesnaught:
+          name: *x-y.name
+          form_name: *x-y.pokemon.chesnaught.forms.chesnaught.form_name
+          default: *x-y.pokemon.chesnaught.default
+          battle_only: *x-y.pokemon.chesnaught.forms.chesnaught.battle_only
+          icon: *x-y.pokemon.chesnaught.forms.chesnaught.icon
+          art: *x-y.pokemon.chesnaught.forms.chesnaught.art
+          footprint: *x-y.pokemon.chesnaught.forms.chesnaught.footprint
+          cry: *x-y.pokemon.chesnaught.forms.chesnaught.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -139,5 +151,56 @@ sun-moon: &sun-moon
       stats: *x-y.pokemon.chesnaught.stats
       abilities: *x-y.pokemon.chesnaught.abilities
       evolution_conditions: *x-y.pokemon.chesnaught.evolution_conditions
-      forms: *x-y.pokemon.chesnaught.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        chesnaught:
+          name: *x-y.name
+          form_name: *x-y.pokemon.chesnaught.forms.chesnaught.form_name
+          default: *x-y.pokemon.chesnaught.default
+          battle_only: *x-y.pokemon.chesnaught.forms.chesnaught.battle_only
+          icon: *x-y.pokemon.chesnaught.forms.chesnaught.icon
+          sprites:
+            - sun-moon/chesnaught-default.png
+            - sun-moon/shiny/chesnaught-default.png
+          art: *x-y.pokemon.chesnaught.forms.chesnaught.art
+          footprint: *x-y.pokemon.chesnaught.forms.chesnaught.footprint
+          cry: *x-y.pokemon.chesnaught.forms.chesnaught.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    chesnaught:
+      genus: *x-y.pokemon.chesnaught.genus
+      evolution_parent: *x-y.pokemon.chesnaught.evolution_parent
+      color: *x-y.pokemon.chesnaught.color
+      shape: *x-y.pokemon.chesnaught.shape
+      female_rate: *x-y.pokemon.chesnaught.female_rate
+      capture_rate: *x-y.pokemon.chesnaught.capture_rate
+      happiness: *x-y.pokemon.chesnaught.happiness
+      baby: *x-y.pokemon.chesnaught.baby
+      hatch_steps: *x-y.pokemon.chesnaught.hatch_steps
+      growth_rate: *x-y.pokemon.chesnaught.growth_rate
+      forms_switchable: *x-y.pokemon.chesnaught.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.chesnaught.default
+      height: *x-y.pokemon.chesnaught.height
+      weight: *x-y.pokemon.chesnaught.weight
+      experience: *x-y.pokemon.chesnaught.experience
+      types: *x-y.pokemon.chesnaught.types
+      egg_groups: *x-y.pokemon.chesnaught.egg_groups
+      mega: *x-y.pokemon.chesnaught.mega
+      stats: *x-y.pokemon.chesnaught.stats
+      abilities: *x-y.pokemon.chesnaught.abilities
+      evolution_conditions: *x-y.pokemon.chesnaught.evolution_conditions
+      forms:
+        chesnaught:
+          name: *x-y.name
+          form_name: *x-y.pokemon.chesnaught.forms.chesnaught.form_name
+          default: *x-y.pokemon.chesnaught.default
+          battle_only: *x-y.pokemon.chesnaught.forms.chesnaught.battle_only
+          icon: *x-y.pokemon.chesnaught.forms.chesnaught.icon
+          sprites:
+            - ultra-sun-ultra-moon/chesnaught-default.png
+            - ultra-sun-ultra-moon/shiny/chesnaught-default.png
+          art: *x-y.pokemon.chesnaught.forms.chesnaught.art
+          footprint: *x-y.pokemon.chesnaught.forms.chesnaught.footprint
+          cry: *x-y.pokemon.chesnaught.forms.chesnaught.cry

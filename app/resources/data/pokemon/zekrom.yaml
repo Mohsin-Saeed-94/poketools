@@ -53,19 +53,26 @@ black-white:
           Concealing itself in lightning clouds,
           it flies throughout the Unova region.
           It creates electricity in its tail.
-          
         white: |
           This Pokémon appears in legends.
           In its tail, it has a giant generator
           that creates electricity.
-          
-      forms: &black-white.pokemon.zekrom.forms
+      forms:
         zekrom:
           name: *black-white.name
           form_name: &black-white.pokemon.zekrom.forms.zekrom.form_name 'Default Form'
           default: *black-white.pokemon.zekrom.default
           battle_only: &black-white.pokemon.zekrom.forms.zekrom.battle_only false
-          icon: gen5/zekrom-default.png
+          icon: &black-white.pokemon.zekrom.forms.zekrom.icon gen5/zekrom-default.png
+          sprites:
+            - black-white/back/shiny/zekrom-default.png
+            - black-white/back/zekrom-default.png
+            - black-white/shiny/zekrom-default.png
+            - black-white/zekrom-default.png
+          art: &black-white.pokemon.zekrom.forms.zekrom.art
+            - zekrom-default.png
+          footprint: &black-white.pokemon.zekrom.forms.zekrom.footprint zekrom.png
+          cry: &black-white.pokemon.zekrom.forms.zekrom.cry gen5/zekrom-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -97,13 +104,20 @@ black-2-white-2:
           This legendary Pokémon can scorch
           the world with lightning. It assists
           those who want to build an ideal world.
-          
         white-2: |
           This legendary Pokémon can scorch
           the world with lightning. It assists
           those who want to build an ideal world.
-          
-      forms: *black-white.pokemon.zekrom.forms
+      forms:
+        zekrom:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zekrom.forms.zekrom.form_name
+          default: *black-white.pokemon.zekrom.default
+          battle_only: *black-white.pokemon.zekrom.forms.zekrom.battle_only
+          icon: *black-white.pokemon.zekrom.forms.zekrom.icon
+          art: *black-white.pokemon.zekrom.forms.zekrom.art
+          footprint: *black-white.pokemon.zekrom.forms.zekrom.footprint
+          cry: *black-white.pokemon.zekrom.forms.zekrom.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -135,19 +149,23 @@ x-y:
           This legendary Pokémon can scorch the world with
           lightning. It assists those who want to build an
           ideal world.
-          
         'y': |
           Concealing itself in lightning clouds, it flies
           throughout the Unova region. It creates electricity
           in its tail.
-          
-      forms: &x-y.pokemon.zekrom.forms
+      forms:
         zekrom:
           name: *black-white.name
           form_name: *black-white.pokemon.zekrom.forms.zekrom.form_name
           default: *black-white.pokemon.zekrom.default
           battle_only: *black-white.pokemon.zekrom.forms.zekrom.battle_only
-          icon: zekrom-default.png
+          icon: &x-y.pokemon.zekrom.forms.zekrom.icon zekrom-default.png
+          sprites:
+            - x-y/shiny/zekrom-default.png
+            - x-y/zekrom-default.png
+          art: *black-white.pokemon.zekrom.forms.zekrom.art
+          footprint: *black-white.pokemon.zekrom.forms.zekrom.footprint
+          cry: &x-y.pokemon.zekrom.forms.zekrom.cry zekrom-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -178,14 +196,21 @@ omega-ruby-alpha-sapphire:
           This legendary Pokémon can scorch the world with
           lightning. It assists those who want to build an
           ideal world.
-          
         alpha-sapphire: |
           Concealing itself in lightning clouds, it flies
           throughout the Unova region. It creates electricity
           in its tail.
-          
-      forms: *x-y.pokemon.zekrom.forms
-sun-moon: &sun-moon
+      forms:
+        zekrom:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zekrom.forms.zekrom.form_name
+          default: *black-white.pokemon.zekrom.default
+          battle_only: *black-white.pokemon.zekrom.forms.zekrom.battle_only
+          icon: *x-y.pokemon.zekrom.forms.zekrom.icon
+          art: *black-white.pokemon.zekrom.forms.zekrom.art
+          footprint: *black-white.pokemon.zekrom.forms.zekrom.footprint
+          cry: *x-y.pokemon.zekrom.forms.zekrom.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -209,5 +234,53 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.zekrom.mega
       stats: *black-white.pokemon.zekrom.stats
       abilities: *black-white.pokemon.zekrom.abilities
-      forms: *x-y.pokemon.zekrom.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        zekrom:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zekrom.forms.zekrom.form_name
+          default: *black-white.pokemon.zekrom.default
+          battle_only: *black-white.pokemon.zekrom.forms.zekrom.battle_only
+          icon: *x-y.pokemon.zekrom.forms.zekrom.icon
+          sprites:
+            - sun-moon/shiny/zekrom-default.png
+            - sun-moon/zekrom-default.png
+          art: *black-white.pokemon.zekrom.forms.zekrom.art
+          footprint: *black-white.pokemon.zekrom.forms.zekrom.footprint
+          cry: *x-y.pokemon.zekrom.forms.zekrom.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    zekrom:
+      genus: *black-white.pokemon.zekrom.genus
+      color: *black-white.pokemon.zekrom.color
+      shape: *black-white.pokemon.zekrom.shape
+      capture_rate: *black-white.pokemon.zekrom.capture_rate
+      happiness: *black-white.pokemon.zekrom.happiness
+      baby: *black-white.pokemon.zekrom.baby
+      hatch_steps: *black-white.pokemon.zekrom.hatch_steps
+      growth_rate: *black-white.pokemon.zekrom.growth_rate
+      forms_switchable: *black-white.pokemon.zekrom.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.zekrom.default
+      height: *black-white.pokemon.zekrom.height
+      weight: *black-white.pokemon.zekrom.weight
+      experience: *black-white.pokemon.zekrom.experience
+      types: *black-white.pokemon.zekrom.types
+      egg_groups: *black-white.pokemon.zekrom.egg_groups
+      mega: *x-y.pokemon.zekrom.mega
+      stats: *black-white.pokemon.zekrom.stats
+      abilities: *black-white.pokemon.zekrom.abilities
+      forms:
+        zekrom:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zekrom.forms.zekrom.form_name
+          default: *black-white.pokemon.zekrom.default
+          battle_only: *black-white.pokemon.zekrom.forms.zekrom.battle_only
+          icon: *x-y.pokemon.zekrom.forms.zekrom.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/zekrom-default.png
+            - ultra-sun-ultra-moon/zekrom-default.png
+          art: *black-white.pokemon.zekrom.forms.zekrom.art
+          footprint: *black-white.pokemon.zekrom.forms.zekrom.footprint
+          cry: *x-y.pokemon.zekrom.forms.zekrom.cry

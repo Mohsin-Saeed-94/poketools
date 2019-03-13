@@ -57,18 +57,23 @@ x-y:
           The quills on its head are usually soft.
           When it flexes them, the points become
           so hard and sharp that they can pierce rock.
-          
         'y': |
           Such a thick shell of wood covers its head and back
           that even a direct hit from a truck wouldn’t faze it.
-          
-      forms: &x-y.pokemon.chespin.forms
+      forms:
         chespin:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.chespin.forms.chespin.form_name 'Default Form'
           default: *x-y.pokemon.chespin.default
-          battle_only: false
-          icon: chespin-default.png
+          battle_only: &x-y.pokemon.chespin.forms.chespin.battle_only false
+          icon: &x-y.pokemon.chespin.forms.chespin.icon chespin-default.png
+          sprites:
+            - x-y/chespin-default.png
+            - x-y/shiny/chespin-default.png
+          art: &x-y.pokemon.chespin.forms.chespin.art
+            - chespin-default.png
+          footprint: &x-y.pokemon.chespin.forms.chespin.footprint chespin.png
+          cry: &x-y.pokemon.chespin.forms.chespin.cry chespin-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -101,13 +106,20 @@ omega-ruby-alpha-sapphire:
           The quills on its head are usually soft.
           When it flexes them, the points become
           so hard and sharp that they can pierce rock.
-          
         alpha-sapphire: |
           Such a thick shell of wood covers its head and back
           that even a direct hit from a truck wouldn’t faze it.
-          
-      forms: *x-y.pokemon.chespin.forms
-sun-moon: &sun-moon
+      forms:
+        chespin:
+          name: *x-y.name
+          form_name: *x-y.pokemon.chespin.forms.chespin.form_name
+          default: *x-y.pokemon.chespin.default
+          battle_only: *x-y.pokemon.chespin.forms.chespin.battle_only
+          icon: *x-y.pokemon.chespin.forms.chespin.icon
+          art: *x-y.pokemon.chespin.forms.chespin.art
+          footprint: *x-y.pokemon.chespin.forms.chespin.footprint
+          cry: *x-y.pokemon.chespin.forms.chespin.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -132,5 +144,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.chespin.mega
       stats: *x-y.pokemon.chespin.stats
       abilities: *x-y.pokemon.chespin.abilities
-      forms: *x-y.pokemon.chespin.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        chespin:
+          name: *x-y.name
+          form_name: *x-y.pokemon.chespin.forms.chespin.form_name
+          default: *x-y.pokemon.chespin.default
+          battle_only: *x-y.pokemon.chespin.forms.chespin.battle_only
+          icon: *x-y.pokemon.chespin.forms.chespin.icon
+          sprites:
+            - sun-moon/chespin-default.png
+            - sun-moon/shiny/chespin-default.png
+          art: *x-y.pokemon.chespin.forms.chespin.art
+          footprint: *x-y.pokemon.chespin.forms.chespin.footprint
+          cry: *x-y.pokemon.chespin.forms.chespin.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    chespin:
+      genus: *x-y.pokemon.chespin.genus
+      color: *x-y.pokemon.chespin.color
+      shape: *x-y.pokemon.chespin.shape
+      female_rate: *x-y.pokemon.chespin.female_rate
+      capture_rate: *x-y.pokemon.chespin.capture_rate
+      happiness: *x-y.pokemon.chespin.happiness
+      baby: *x-y.pokemon.chespin.baby
+      hatch_steps: *x-y.pokemon.chespin.hatch_steps
+      growth_rate: *x-y.pokemon.chespin.growth_rate
+      forms_switchable: *x-y.pokemon.chespin.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.chespin.default
+      height: *x-y.pokemon.chespin.height
+      weight: *x-y.pokemon.chespin.weight
+      experience: *x-y.pokemon.chespin.experience
+      types: *x-y.pokemon.chespin.types
+      egg_groups: *x-y.pokemon.chespin.egg_groups
+      mega: *x-y.pokemon.chespin.mega
+      stats: *x-y.pokemon.chespin.stats
+      abilities: *x-y.pokemon.chespin.abilities
+      forms:
+        chespin:
+          name: *x-y.name
+          form_name: *x-y.pokemon.chespin.forms.chespin.form_name
+          default: *x-y.pokemon.chespin.default
+          battle_only: *x-y.pokemon.chespin.forms.chespin.battle_only
+          icon: *x-y.pokemon.chespin.forms.chespin.icon
+          sprites:
+            - ultra-sun-ultra-moon/chespin-default.png
+            - ultra-sun-ultra-moon/shiny/chespin-default.png
+          art: *x-y.pokemon.chespin.forms.chespin.art
+          footprint: *x-y.pokemon.chespin.forms.chespin.footprint
+          cry: *x-y.pokemon.chespin.forms.chespin.cry

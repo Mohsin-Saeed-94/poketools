@@ -58,14 +58,17 @@ sun-moon:
         moon: |
           Although basically cool and cautious, when it’s
           caught by surprise, it’s seized by panic.
-          
-      forms: &sun-moon.pokemon.decidueye.forms
+      forms:
         decidueye:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.decidueye.forms.decidueye.form_name 'Default Form'
           default: *sun-moon.pokemon.decidueye.default
-          battle_only: false
-          icon: decidueye-default.png
+          battle_only: &sun-moon.pokemon.decidueye.forms.decidueye.battle_only false
+          icon: &sun-moon.pokemon.decidueye.forms.decidueye.icon decidueye-default.png
+          sprites:
+            - sun-moon/shiny/decidueye-default.png
+            - sun-moon/decidueye-default.png
+          footprint: &sun-moon.pokemon.decidueye.forms.decidueye.footprint decidueye.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -98,5 +101,14 @@ ultra-sun-ultra-moon:
           It nocks its arrow quills and shoots them at
           opponents. When it simply can’t afford to miss,
           it tugs the vine on its head to improve its focus.
-          
-      forms: *sun-moon.pokemon.decidueye.forms
+      forms:
+        decidueye:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.decidueye.forms.decidueye.form_name
+          default: *sun-moon.pokemon.decidueye.default
+          battle_only: *sun-moon.pokemon.decidueye.forms.decidueye.battle_only
+          icon: *sun-moon.pokemon.decidueye.forms.decidueye.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/decidueye-default.png
+            - ultra-sun-ultra-moon/decidueye-default.png
+          footprint: *sun-moon.pokemon.decidueye.forms.decidueye.footprint

@@ -62,19 +62,24 @@ x-y:
           Opponents who stare at the flashing of the
           light-emitting spots on its body become
           dazed and lose their will to fight.
-          
         'y': |
           It flashes the light-emitting spots on its body,
           which drains its opponent’s will to fight.
           It takes the opportunity to scuttle away and hide.
-          
-      forms: &x-y.pokemon.inkay.forms
+      forms:
         inkay:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.inkay.forms.inkay.form_name 'Default Form'
           default: *x-y.pokemon.inkay.default
-          battle_only: false
-          icon: inkay-default.png
+          battle_only: &x-y.pokemon.inkay.forms.inkay.battle_only false
+          icon: &x-y.pokemon.inkay.forms.inkay.icon inkay-default.png
+          sprites:
+            - x-y/shiny/inkay-default.png
+            - x-y/inkay-default.png
+          art: &x-y.pokemon.inkay.forms.inkay.art
+            - inkay-default.png
+          footprint: &x-y.pokemon.inkay.forms.inkay.footprint inkay.png
+          cry: &x-y.pokemon.inkay.forms.inkay.cry inkay-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -107,13 +112,20 @@ omega-ruby-alpha-sapphire:
           Opponents who stare at the flashing of the
           light-emitting spots on its body become
           dazed and lose their will to fight.
-          
         alpha-sapphire: |
           It flashes the light-emitting spots on its body,
           which drains its opponent’s will to fight.
           It takes the opportunity to scuttle away and hide.
-          
-      forms: *x-y.pokemon.inkay.forms
+      forms:
+        inkay:
+          name: *x-y.name
+          form_name: *x-y.pokemon.inkay.forms.inkay.form_name
+          default: *x-y.pokemon.inkay.default
+          battle_only: *x-y.pokemon.inkay.forms.inkay.battle_only
+          icon: *x-y.pokemon.inkay.forms.inkay.icon
+          art: *x-y.pokemon.inkay.forms.inkay.art
+          footprint: *x-y.pokemon.inkay.forms.inkay.footprint
+          cry: *x-y.pokemon.inkay.forms.inkay.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -139,7 +151,19 @@ sun-moon:
       mega: *x-y.pokemon.inkay.mega
       stats: *x-y.pokemon.inkay.stats
       abilities: *x-y.pokemon.inkay.abilities
-      forms: *x-y.pokemon.inkay.forms
+      forms:
+        inkay:
+          name: *x-y.name
+          form_name: *x-y.pokemon.inkay.forms.inkay.form_name
+          default: *x-y.pokemon.inkay.default
+          battle_only: *x-y.pokemon.inkay.forms.inkay.battle_only
+          icon: *x-y.pokemon.inkay.forms.inkay.icon
+          sprites:
+            - sun-moon/shiny/inkay-default.png
+            - sun-moon/inkay-default.png
+          art: *x-y.pokemon.inkay.forms.inkay.art
+          footprint: *x-y.pokemon.inkay.forms.inkay.footprint
+          cry: *x-y.pokemon.inkay.forms.inkay.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -170,5 +194,16 @@ ultra-sun-ultra-moon:
           It draws prey near with its blinking lights and
           then wraps them up in its long tentacles and
           holds them in place.
-          
-      forms: *x-y.pokemon.inkay.forms
+      forms:
+        inkay:
+          name: *x-y.name
+          form_name: *x-y.pokemon.inkay.forms.inkay.form_name
+          default: *x-y.pokemon.inkay.default
+          battle_only: *x-y.pokemon.inkay.forms.inkay.battle_only
+          icon: *x-y.pokemon.inkay.forms.inkay.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/inkay-default.png
+            - ultra-sun-ultra-moon/inkay-default.png
+          art: *x-y.pokemon.inkay.forms.inkay.art
+          footprint: *x-y.pokemon.inkay.forms.inkay.footprint
+          cry: *x-y.pokemon.inkay.forms.inkay.cry

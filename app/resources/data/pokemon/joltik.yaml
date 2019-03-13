@@ -60,19 +60,26 @@ black-white:
           Joltik that live in cities have learned
           a technique for sucking electricity
           from the outlets in houses.
-          
         white: |
           They attach themselves to large-bodied
           Pokémon and absorb static electricity,
           which they store in an electric pouch.
-          
-      forms: &black-white.pokemon.joltik.forms
+      forms:
         joltik:
           name: *black-white.name
           form_name: &black-white.pokemon.joltik.forms.joltik.form_name 'Default Form'
           default: *black-white.pokemon.joltik.default
           battle_only: &black-white.pokemon.joltik.forms.joltik.battle_only false
-          icon: gen5/joltik-default.png
+          icon: &black-white.pokemon.joltik.forms.joltik.icon gen5/joltik-default.png
+          sprites:
+            - black-white/joltik-default.png
+            - black-white/back/joltik-default.png
+            - black-white/back/shiny/joltik-default.png
+            - black-white/shiny/joltik-default.png
+          art: &black-white.pokemon.joltik.forms.joltik.art
+            - joltik-default.png
+          footprint: &black-white.pokemon.joltik.forms.joltik.footprint joltik.png
+          cry: &black-white.pokemon.joltik.forms.joltik.cry gen5/joltik-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,13 +112,20 @@ black-2-white-2:
           Since it can’t generate its own
           electricity, it sticks onto large-bodied
           Pokémon and absorbs static electricity.
-          
         white-2: |
           Since it can’t generate its own
           electricity, it sticks onto large-bodied
           Pokémon and absorbs static electricity.
-          
-      forms: *black-white.pokemon.joltik.forms
+      forms:
+        joltik:
+          name: *black-white.name
+          form_name: *black-white.pokemon.joltik.forms.joltik.form_name
+          default: *black-white.pokemon.joltik.default
+          battle_only: *black-white.pokemon.joltik.forms.joltik.battle_only
+          icon: *black-white.pokemon.joltik.forms.joltik.icon
+          art: *black-white.pokemon.joltik.forms.joltik.art
+          footprint: *black-white.pokemon.joltik.forms.joltik.footprint
+          cry: *black-white.pokemon.joltik.forms.joltik.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -144,19 +158,23 @@ x-y:
           Since it can’t generate its own electricity, it sticks
           onto large-bodied Pokémon and absorbs
           static electricity.
-          
         'y': |
           They attach themselves to large-bodied Pokémon
           and absorb static electricity, which they store in an
           electric pouch.
-          
-      forms: &x-y.pokemon.joltik.forms
+      forms:
         joltik:
           name: *black-white.name
           form_name: *black-white.pokemon.joltik.forms.joltik.form_name
           default: *black-white.pokemon.joltik.default
           battle_only: *black-white.pokemon.joltik.forms.joltik.battle_only
-          icon: joltik-default.png
+          icon: &x-y.pokemon.joltik.forms.joltik.icon joltik-default.png
+          sprites:
+            - x-y/joltik-default.png
+            - x-y/shiny/joltik-default.png
+          art: *black-white.pokemon.joltik.forms.joltik.art
+          footprint: *black-white.pokemon.joltik.forms.joltik.footprint
+          cry: &x-y.pokemon.joltik.forms.joltik.cry joltik-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -188,14 +206,21 @@ omega-ruby-alpha-sapphire:
           Since it can’t generate its own electricity, it sticks
           onto large-bodied Pokémon and absorbs
           static electricity.
-          
         alpha-sapphire: |
           They attach themselves to large-bodied Pokémon
           and absorb static electricity, which they store in an
           electric pouch.
-          
-      forms: *x-y.pokemon.joltik.forms
-sun-moon: &sun-moon
+      forms:
+        joltik:
+          name: *black-white.name
+          form_name: *black-white.pokemon.joltik.forms.joltik.form_name
+          default: *black-white.pokemon.joltik.default
+          battle_only: *black-white.pokemon.joltik.forms.joltik.battle_only
+          icon: *x-y.pokemon.joltik.forms.joltik.icon
+          art: *black-white.pokemon.joltik.forms.joltik.art
+          footprint: *black-white.pokemon.joltik.forms.joltik.footprint
+          cry: *x-y.pokemon.joltik.forms.joltik.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -220,5 +245,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.joltik.mega
       stats: *black-white.pokemon.joltik.stats
       abilities: *black-white.pokemon.joltik.abilities
-      forms: *x-y.pokemon.joltik.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        joltik:
+          name: *black-white.name
+          form_name: *black-white.pokemon.joltik.forms.joltik.form_name
+          default: *black-white.pokemon.joltik.default
+          battle_only: *black-white.pokemon.joltik.forms.joltik.battle_only
+          icon: *x-y.pokemon.joltik.forms.joltik.icon
+          sprites:
+            - sun-moon/joltik-default.png
+            - sun-moon/shiny/joltik-default.png
+          art: *black-white.pokemon.joltik.forms.joltik.art
+          footprint: *black-white.pokemon.joltik.forms.joltik.footprint
+          cry: *x-y.pokemon.joltik.forms.joltik.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    joltik:
+      genus: *black-white.pokemon.joltik.genus
+      color: *black-white.pokemon.joltik.color
+      shape: *black-white.pokemon.joltik.shape
+      female_rate: *black-white.pokemon.joltik.female_rate
+      capture_rate: *black-white.pokemon.joltik.capture_rate
+      happiness: *black-white.pokemon.joltik.happiness
+      baby: *black-white.pokemon.joltik.baby
+      hatch_steps: *black-white.pokemon.joltik.hatch_steps
+      growth_rate: *black-white.pokemon.joltik.growth_rate
+      forms_switchable: *black-white.pokemon.joltik.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.joltik.default
+      height: *black-white.pokemon.joltik.height
+      weight: *black-white.pokemon.joltik.weight
+      experience: *black-white.pokemon.joltik.experience
+      types: *black-white.pokemon.joltik.types
+      egg_groups: *black-white.pokemon.joltik.egg_groups
+      mega: *x-y.pokemon.joltik.mega
+      stats: *black-white.pokemon.joltik.stats
+      abilities: *black-white.pokemon.joltik.abilities
+      forms:
+        joltik:
+          name: *black-white.name
+          form_name: *black-white.pokemon.joltik.forms.joltik.form_name
+          default: *black-white.pokemon.joltik.default
+          battle_only: *black-white.pokemon.joltik.forms.joltik.battle_only
+          icon: *x-y.pokemon.joltik.forms.joltik.icon
+          sprites:
+            - ultra-sun-ultra-moon/joltik-default.png
+            - ultra-sun-ultra-moon/shiny/joltik-default.png
+          art: *black-white.pokemon.joltik.forms.joltik.art
+          footprint: *black-white.pokemon.joltik.forms.joltik.footprint
+          cry: *x-y.pokemon.joltik.forms.joltik.cry

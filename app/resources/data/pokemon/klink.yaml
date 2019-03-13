@@ -58,19 +58,26 @@ black-white:
           The two minigears that mesh together
           are predetermined. Each will rebound
           from other minigears without meshing.
-          
         white: |
           Interlocking two bodies and
           spinning around generates
           the energy they need to live.
-          
-      forms: &black-white.pokemon.klink.forms
+      forms:
         klink:
           name: *black-white.name
           form_name: &black-white.pokemon.klink.forms.klink.form_name 'Default Form'
           default: *black-white.pokemon.klink.default
           battle_only: &black-white.pokemon.klink.forms.klink.battle_only false
-          icon: gen5/klink-default.png
+          icon: &black-white.pokemon.klink.forms.klink.icon gen5/klink-default.png
+          sprites:
+            - black-white/back/klink-default.png
+            - black-white/back/shiny/klink-default.png
+            - black-white/klink-default.png
+            - black-white/shiny/klink-default.png
+          art: &black-white.pokemon.klink.forms.klink.art
+            - klink-default.png
+          footprint: &black-white.pokemon.klink.forms.klink.footprint klink.png
+          cry: &black-white.pokemon.klink.forms.klink.cry gen5/klink-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,13 +109,20 @@ black-2-white-2:
           Two bodies comprise a fixed pair.
           They spin around each other
           to generate energy.
-          
         white-2: |
           Two bodies comprise a fixed pair.
           They spin around each other
           to generate energy.
-          
-      forms: *black-white.pokemon.klink.forms
+      forms:
+        klink:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klink.forms.klink.form_name
+          default: *black-white.pokemon.klink.default
+          battle_only: *black-white.pokemon.klink.forms.klink.battle_only
+          icon: *black-white.pokemon.klink.forms.klink.icon
+          art: *black-white.pokemon.klink.forms.klink.art
+          footprint: *black-white.pokemon.klink.forms.klink.footprint
+          cry: *black-white.pokemon.klink.forms.klink.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -139,19 +153,23 @@ x-y:
         x: |
           Interlocking two bodies and spinning around
           generates the energy they need to live.
-          
         'y': |
           The two minigears that mesh together are
           predetermined. Each will rebound from other
           minigears without meshing.
-          
-      forms: &x-y.pokemon.klink.forms
+      forms:
         klink:
           name: *black-white.name
           form_name: *black-white.pokemon.klink.forms.klink.form_name
           default: *black-white.pokemon.klink.default
           battle_only: *black-white.pokemon.klink.forms.klink.battle_only
-          icon: klink-default.png
+          icon: &x-y.pokemon.klink.forms.klink.icon klink-default.png
+          sprites:
+            - x-y/klink-default.png
+            - x-y/shiny/klink-default.png
+          art: *black-white.pokemon.klink.forms.klink.art
+          footprint: *black-white.pokemon.klink.forms.klink.footprint
+          cry: &x-y.pokemon.klink.forms.klink.cry klink-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -181,14 +199,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Interlocking two bodies and spinning around
           generates the energy they need to live.
-          
         alpha-sapphire: |
           The two minigears that mesh together are
           predetermined. Each will rebound from other
           minigears without meshing.
-          
-      forms: *x-y.pokemon.klink.forms
-sun-moon: &sun-moon
+      forms:
+        klink:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klink.forms.klink.form_name
+          default: *black-white.pokemon.klink.default
+          battle_only: *black-white.pokemon.klink.forms.klink.battle_only
+          icon: *x-y.pokemon.klink.forms.klink.icon
+          art: *black-white.pokemon.klink.forms.klink.art
+          footprint: *black-white.pokemon.klink.forms.klink.footprint
+          cry: *x-y.pokemon.klink.forms.klink.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -212,5 +237,53 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.klink.mega
       stats: *black-white.pokemon.klink.stats
       abilities: *black-white.pokemon.klink.abilities
-      forms: *x-y.pokemon.klink.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        klink:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klink.forms.klink.form_name
+          default: *black-white.pokemon.klink.default
+          battle_only: *black-white.pokemon.klink.forms.klink.battle_only
+          icon: *x-y.pokemon.klink.forms.klink.icon
+          sprites:
+            - sun-moon/klink-default.png
+            - sun-moon/shiny/klink-default.png
+          art: *black-white.pokemon.klink.forms.klink.art
+          footprint: *black-white.pokemon.klink.forms.klink.footprint
+          cry: *x-y.pokemon.klink.forms.klink.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    klink:
+      genus: *black-white.pokemon.klink.genus
+      color: *black-white.pokemon.klink.color
+      shape: *black-white.pokemon.klink.shape
+      capture_rate: *black-white.pokemon.klink.capture_rate
+      happiness: *black-white.pokemon.klink.happiness
+      baby: *black-white.pokemon.klink.baby
+      hatch_steps: *black-white.pokemon.klink.hatch_steps
+      growth_rate: *black-white.pokemon.klink.growth_rate
+      forms_switchable: *black-white.pokemon.klink.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.klink.default
+      height: *black-white.pokemon.klink.height
+      weight: *black-white.pokemon.klink.weight
+      experience: *black-white.pokemon.klink.experience
+      types: *black-white.pokemon.klink.types
+      egg_groups: *black-white.pokemon.klink.egg_groups
+      mega: *x-y.pokemon.klink.mega
+      stats: *black-white.pokemon.klink.stats
+      abilities: *black-white.pokemon.klink.abilities
+      forms:
+        klink:
+          name: *black-white.name
+          form_name: *black-white.pokemon.klink.forms.klink.form_name
+          default: *black-white.pokemon.klink.default
+          battle_only: *black-white.pokemon.klink.forms.klink.battle_only
+          icon: *x-y.pokemon.klink.forms.klink.icon
+          sprites:
+            - ultra-sun-ultra-moon/klink-default.png
+            - ultra-sun-ultra-moon/shiny/klink-default.png
+          art: *black-white.pokemon.klink.forms.klink.art
+          footprint: *black-white.pokemon.klink.forms.klink.footprint
+          cry: *x-y.pokemon.klink.forms.klink.cry

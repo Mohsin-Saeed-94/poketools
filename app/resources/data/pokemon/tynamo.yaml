@@ -53,19 +53,26 @@ black-white:
           While one alone doesn’t have much power,
           a chain of many Tynamo can be as
           powerful as lightning.
-          
         white: |
           These Pokémon move in schools. They
           have an electricity-generating organ, so
           they discharge electricity if in danger.
-          
-      forms: &black-white.pokemon.tynamo.forms
+      forms:
         tynamo:
           name: *black-white.name
           form_name: &black-white.pokemon.tynamo.forms.tynamo.form_name 'Default Form'
           default: *black-white.pokemon.tynamo.default
           battle_only: &black-white.pokemon.tynamo.forms.tynamo.battle_only false
-          icon: gen5/tynamo-default.png
+          icon: &black-white.pokemon.tynamo.forms.tynamo.icon gen5/tynamo-default.png
+          sprites:
+            - black-white/tynamo-default.png
+            - black-white/back/tynamo-default.png
+            - black-white/back/shiny/tynamo-default.png
+            - black-white/shiny/tynamo-default.png
+          art: &black-white.pokemon.tynamo.forms.tynamo.art
+            - tynamo-default.png
+          footprint: &black-white.pokemon.tynamo.forms.tynamo.footprint tynamo.png
+          cry: &black-white.pokemon.tynamo.forms.tynamo.cry gen5/tynamo-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -98,13 +105,20 @@ black-2-white-2:
           One alone can emit only a trickle of
           electricity, so a group of them gathers
           to unleash a powerful electric shock.
-          
         white-2: |
           One alone can emit only a trickle of
           electricity, so a group of them gathers
           to unleash a powerful electric shock.
-          
-      forms: *black-white.pokemon.tynamo.forms
+      forms:
+        tynamo:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tynamo.forms.tynamo.form_name
+          default: *black-white.pokemon.tynamo.default
+          battle_only: *black-white.pokemon.tynamo.forms.tynamo.battle_only
+          icon: *black-white.pokemon.tynamo.forms.tynamo.icon
+          art: *black-white.pokemon.tynamo.forms.tynamo.art
+          footprint: *black-white.pokemon.tynamo.forms.tynamo.footprint
+          cry: *black-white.pokemon.tynamo.forms.tynamo.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -136,19 +150,23 @@ x-y:
         x: |
           While one alone doesn’t have much power, a chain
           of many Tynamo can be as powerful as lightning.
-          
         'y': |
           One alone can emit only a trickle of electricity,
           so a group of them gathers to unleash a powerful
           electric shock.
-          
-      forms: &x-y.pokemon.tynamo.forms
+      forms:
         tynamo:
           name: *black-white.name
           form_name: *black-white.pokemon.tynamo.forms.tynamo.form_name
           default: *black-white.pokemon.tynamo.default
           battle_only: *black-white.pokemon.tynamo.forms.tynamo.battle_only
-          icon: tynamo-default.png
+          icon: &x-y.pokemon.tynamo.forms.tynamo.icon tynamo-default.png
+          sprites:
+            - x-y/tynamo-default.png
+            - x-y/shiny/tynamo-default.png
+          art: *black-white.pokemon.tynamo.forms.tynamo.art
+          footprint: *black-white.pokemon.tynamo.forms.tynamo.footprint
+          cry: &x-y.pokemon.tynamo.forms.tynamo.cry tynamo-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -179,14 +197,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           While one alone doesn’t have much power, a chain
           of many Tynamo can be as powerful as lightning.
-          
         alpha-sapphire: |
           One alone can emit only a trickle of electricity,
           so a group of them gathers to unleash a powerful
           electric shock.
-          
-      forms: *x-y.pokemon.tynamo.forms
-sun-moon: &sun-moon
+      forms:
+        tynamo:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tynamo.forms.tynamo.form_name
+          default: *black-white.pokemon.tynamo.default
+          battle_only: *black-white.pokemon.tynamo.forms.tynamo.battle_only
+          icon: *x-y.pokemon.tynamo.forms.tynamo.icon
+          art: *black-white.pokemon.tynamo.forms.tynamo.art
+          footprint: *black-white.pokemon.tynamo.forms.tynamo.footprint
+          cry: *x-y.pokemon.tynamo.forms.tynamo.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -211,5 +236,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.tynamo.mega
       stats: *black-white.pokemon.tynamo.stats
       abilities: *black-white.pokemon.tynamo.abilities
-      forms: *x-y.pokemon.tynamo.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        tynamo:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tynamo.forms.tynamo.form_name
+          default: *black-white.pokemon.tynamo.default
+          battle_only: *black-white.pokemon.tynamo.forms.tynamo.battle_only
+          icon: *x-y.pokemon.tynamo.forms.tynamo.icon
+          sprites:
+            - sun-moon/tynamo-default.png
+            - sun-moon/shiny/tynamo-default.png
+          art: *black-white.pokemon.tynamo.forms.tynamo.art
+          footprint: *black-white.pokemon.tynamo.forms.tynamo.footprint
+          cry: *x-y.pokemon.tynamo.forms.tynamo.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    tynamo:
+      genus: *black-white.pokemon.tynamo.genus
+      color: *black-white.pokemon.tynamo.color
+      shape: *black-white.pokemon.tynamo.shape
+      female_rate: *black-white.pokemon.tynamo.female_rate
+      capture_rate: *black-white.pokemon.tynamo.capture_rate
+      happiness: *black-white.pokemon.tynamo.happiness
+      baby: *black-white.pokemon.tynamo.baby
+      hatch_steps: *black-white.pokemon.tynamo.hatch_steps
+      growth_rate: *black-white.pokemon.tynamo.growth_rate
+      forms_switchable: *black-white.pokemon.tynamo.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.tynamo.default
+      height: *black-white.pokemon.tynamo.height
+      weight: *black-white.pokemon.tynamo.weight
+      experience: *black-white.pokemon.tynamo.experience
+      types: *black-white.pokemon.tynamo.types
+      egg_groups: *black-white.pokemon.tynamo.egg_groups
+      mega: *x-y.pokemon.tynamo.mega
+      stats: *black-white.pokemon.tynamo.stats
+      abilities: *black-white.pokemon.tynamo.abilities
+      forms:
+        tynamo:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tynamo.forms.tynamo.form_name
+          default: *black-white.pokemon.tynamo.default
+          battle_only: *black-white.pokemon.tynamo.forms.tynamo.battle_only
+          icon: *x-y.pokemon.tynamo.forms.tynamo.icon
+          sprites:
+            - ultra-sun-ultra-moon/tynamo-default.png
+            - ultra-sun-ultra-moon/shiny/tynamo-default.png
+          art: *black-white.pokemon.tynamo.forms.tynamo.art
+          footprint: *black-white.pokemon.tynamo.forms.tynamo.footprint
+          cry: *x-y.pokemon.tynamo.forms.tynamo.cry

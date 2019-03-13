@@ -51,14 +51,17 @@ sun-moon:
           One of the Ultra Beast life-forms, it was
           observed cutting down a gigantic steel tower
           with one stroke of its blade.
-          
-      forms: &sun-moon.pokemon.kartana.forms
+      forms:
         kartana:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.kartana.forms.kartana.form_name 'Default Form'
           default: *sun-moon.pokemon.kartana.default
-          battle_only: false
-          icon: kartana-default.png
+          battle_only: &sun-moon.pokemon.kartana.forms.kartana.battle_only false
+          icon: &sun-moon.pokemon.kartana.forms.kartana.icon kartana-default.png
+          sprites:
+            - sun-moon/kartana-default.png
+            - sun-moon/shiny/kartana-default.png
+          footprint: &sun-moon.pokemon.kartana.forms.kartana.footprint kartana.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -87,5 +90,14 @@ ultra-sun-ultra-moon:
         ultra-sun: |
           This Ultra Beast’s body, which is as thin as
           paper, is like a sharpened sword.
-          
-      forms: *sun-moon.pokemon.kartana.forms
+      forms:
+        kartana:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.kartana.forms.kartana.form_name
+          default: *sun-moon.pokemon.kartana.default
+          battle_only: *sun-moon.pokemon.kartana.forms.kartana.battle_only
+          icon: *sun-moon.pokemon.kartana.forms.kartana.icon
+          sprites:
+            - ultra-sun-ultra-moon/kartana-default.png
+            - ultra-sun-ultra-moon/shiny/kartana-default.png
+          footprint: *sun-moon.pokemon.kartana.forms.kartana.footprint

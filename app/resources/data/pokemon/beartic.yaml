@@ -64,19 +64,26 @@ black-white:
           It can make its breath freeze at will.
           Very able in the water, it swims around
           in northern seas and catches prey.
-          
         white: |
           It freezes its breath to create
           fangs and claws of ice to fight with.
           Cold northern areas are its habitat.
-          
-      forms: &black-white.pokemon.beartic.forms
+      forms:
         beartic:
           name: *black-white.name
           form_name: &black-white.pokemon.beartic.forms.beartic.form_name 'Default Form'
           default: *black-white.pokemon.beartic.default
           battle_only: &black-white.pokemon.beartic.forms.beartic.battle_only false
-          icon: gen5/beartic-default.png
+          icon: &black-white.pokemon.beartic.forms.beartic.icon gen5/beartic-default.png
+          sprites:
+            - black-white/beartic-default.png
+            - black-white/back/beartic-default.png
+            - black-white/back/shiny/beartic-default.png
+            - black-white/shiny/beartic-default.png
+          art: &black-white.pokemon.beartic.forms.beartic.art
+            - beartic-default.png
+          footprint: &black-white.pokemon.beartic.forms.beartic.footprint beartic.png
+          cry: &black-white.pokemon.beartic.forms.beartic.cry gen5/beartic-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -114,13 +121,20 @@ black-2-white-2:
           They love the cold seas of the north.
           They create pathways across the ocean
           waters by freezing their own breath.
-          
         white-2: |
           They love the cold seas of the north.
           They create pathways across the ocean
           waters by freezing their own breath.
-          
-      forms: *black-white.pokemon.beartic.forms
+      forms:
+        beartic:
+          name: *black-white.name
+          form_name: *black-white.pokemon.beartic.forms.beartic.form_name
+          default: *black-white.pokemon.beartic.default
+          battle_only: *black-white.pokemon.beartic.forms.beartic.battle_only
+          icon: *black-white.pokemon.beartic.forms.beartic.icon
+          art: *black-white.pokemon.beartic.forms.beartic.art
+          footprint: *black-white.pokemon.beartic.forms.beartic.footprint
+          cry: *black-white.pokemon.beartic.forms.beartic.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -156,18 +170,22 @@ x-y:
           They love the cold seas of the north. They create
           pathways across the ocean waters by freezing their
           own breath.
-          
         'y': |
           It freezes its breath to create fangs and claws of ice
           to fight with. Cold northern areas are its habitat.
-          
-      forms: &x-y.pokemon.beartic.forms
+      forms:
         beartic:
           name: *black-white.name
           form_name: *black-white.pokemon.beartic.forms.beartic.form_name
           default: *black-white.pokemon.beartic.default
           battle_only: *black-white.pokemon.beartic.forms.beartic.battle_only
-          icon: beartic-default.png
+          icon: &x-y.pokemon.beartic.forms.beartic.icon beartic-default.png
+          sprites:
+            - x-y/beartic-default.png
+            - x-y/shiny/beartic-default.png
+          art: *black-white.pokemon.beartic.forms.beartic.art
+          footprint: *black-white.pokemon.beartic.forms.beartic.footprint
+          cry: &x-y.pokemon.beartic.forms.beartic.cry beartic-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -202,13 +220,20 @@ omega-ruby-alpha-sapphire:
           They love the cold seas of the north. They create
           pathways across the ocean waters by freezing their
           own breath.
-          
         alpha-sapphire: |
           It freezes its breath to create fangs and claws of ice
           to fight with. Cold northern areas are its habitat.
-          
-      forms: *x-y.pokemon.beartic.forms
-sun-moon: &sun-moon
+      forms:
+        beartic:
+          name: *black-white.name
+          form_name: *black-white.pokemon.beartic.forms.beartic.form_name
+          default: *black-white.pokemon.beartic.default
+          battle_only: *black-white.pokemon.beartic.forms.beartic.battle_only
+          icon: *x-y.pokemon.beartic.forms.beartic.icon
+          art: *black-white.pokemon.beartic.forms.beartic.art
+          footprint: *black-white.pokemon.beartic.forms.beartic.footprint
+          cry: *x-y.pokemon.beartic.forms.beartic.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -233,12 +258,63 @@ sun-moon: &sun-moon
       egg_groups: *black-white.pokemon.beartic.egg_groups
       mega: *x-y.pokemon.beartic.mega
       stats: *black-white.pokemon.beartic.stats
-      abilities:
+      abilities: &sun-moon.pokemon.beartic.abilities
         snow-cloak: *black-white.pokemon.beartic.abilities.snow-cloak
         slush-rush:
           hidden: *black-white.pokemon.beartic.abilities.snow-cloak.hidden
           position: 2
         swift-swim: *black-white.pokemon.beartic.abilities.swift-swim
       evolution_conditions: *black-white.pokemon.beartic.evolution_conditions
-      forms: *x-y.pokemon.beartic.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        beartic:
+          name: *black-white.name
+          form_name: *black-white.pokemon.beartic.forms.beartic.form_name
+          default: *black-white.pokemon.beartic.default
+          battle_only: *black-white.pokemon.beartic.forms.beartic.battle_only
+          icon: *x-y.pokemon.beartic.forms.beartic.icon
+          sprites:
+            - sun-moon/beartic-default.png
+            - sun-moon/shiny/beartic-default.png
+          art: *black-white.pokemon.beartic.forms.beartic.art
+          footprint: *black-white.pokemon.beartic.forms.beartic.footprint
+          cry: *x-y.pokemon.beartic.forms.beartic.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    beartic:
+      genus: *black-white.pokemon.beartic.genus
+      evolution_parent: *black-white.pokemon.beartic.evolution_parent
+      color: *black-white.pokemon.beartic.color
+      shape: *black-white.pokemon.beartic.shape
+      female_rate: *black-white.pokemon.beartic.female_rate
+      capture_rate: *black-white.pokemon.beartic.capture_rate
+      happiness: *black-white.pokemon.beartic.happiness
+      baby: *black-white.pokemon.beartic.baby
+      hatch_steps: *black-white.pokemon.beartic.hatch_steps
+      growth_rate: *black-white.pokemon.beartic.growth_rate
+      forms_switchable: *black-white.pokemon.beartic.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.beartic.default
+      height: *black-white.pokemon.beartic.height
+      weight: *black-white.pokemon.beartic.weight
+      experience: *black-white.pokemon.beartic.experience
+      types: *black-white.pokemon.beartic.types
+      egg_groups: *black-white.pokemon.beartic.egg_groups
+      mega: *x-y.pokemon.beartic.mega
+      stats: *black-white.pokemon.beartic.stats
+      abilities: *sun-moon.pokemon.beartic.abilities
+      evolution_conditions: *black-white.pokemon.beartic.evolution_conditions
+      forms:
+        beartic:
+          name: *black-white.name
+          form_name: *black-white.pokemon.beartic.forms.beartic.form_name
+          default: *black-white.pokemon.beartic.default
+          battle_only: *black-white.pokemon.beartic.forms.beartic.battle_only
+          icon: *x-y.pokemon.beartic.forms.beartic.icon
+          sprites:
+            - ultra-sun-ultra-moon/beartic-default.png
+            - ultra-sun-ultra-moon/shiny/beartic-default.png
+          art: *black-white.pokemon.beartic.forms.beartic.art
+          footprint: *black-white.pokemon.beartic.forms.beartic.footprint
+          cry: *x-y.pokemon.beartic.forms.beartic.cry

@@ -69,19 +69,26 @@ black-white:
           With quick movements, it chases down
           its foes, attacking relentlessly with
           its horns until it prevails.
-          
         white: |
           Highly aggressive, it uses the claws
           near its neck to dig into its opponents
           and poison them.
-          
-      forms: &black-white.pokemon.scolipede.forms
+      forms:
         scolipede:
           name: *black-white.name
           form_name: &black-white.pokemon.scolipede.forms.scolipede.form_name 'Default Form'
           default: *black-white.pokemon.scolipede.default
           battle_only: &black-white.pokemon.scolipede.forms.scolipede.battle_only false
-          icon: gen5/scolipede-default.png
+          icon: &black-white.pokemon.scolipede.forms.scolipede.icon gen5/scolipede-default.png
+          sprites:
+            - black-white/back/scolipede-default.png
+            - black-white/back/shiny/scolipede-default.png
+            - black-white/scolipede-default.png
+            - black-white/shiny/scolipede-default.png
+          art: &black-white.pokemon.scolipede.forms.scolipede.art
+            - scolipede-default.png
+          footprint: &black-white.pokemon.scolipede.forms.scolipede.footprint scolipede.png
+          cry: &black-white.pokemon.scolipede.forms.scolipede.cry gen5/scolipede-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -120,13 +127,20 @@ black-2-white-2:
           It clasps its prey with the claws
           on its neck until it stops moving.
           Then it finishes it off with deadly poison.
-          
         white-2: |
           It clasps its prey with the claws
           on its neck until it stops moving.
           Then it finishes it off with deadly poison.
-          
-      forms: *black-white.pokemon.scolipede.forms
+      forms:
+        scolipede:
+          name: *black-white.name
+          form_name: *black-white.pokemon.scolipede.forms.scolipede.form_name
+          default: *black-white.pokemon.scolipede.default
+          battle_only: *black-white.pokemon.scolipede.forms.scolipede.battle_only
+          icon: *black-white.pokemon.scolipede.forms.scolipede.icon
+          art: *black-white.pokemon.scolipede.forms.scolipede.art
+          footprint: *black-white.pokemon.scolipede.forms.scolipede.footprint
+          cry: *black-white.pokemon.scolipede.forms.scolipede.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -165,18 +179,22 @@ x-y:
           It clasps its prey with the claws on its neck until it
           stops moving. Then it finishes it off with
           deadly poison.
-          
         'y': |
           With quick movements, it chases down its foes,
           attacking relentlessly with its horns until it prevails.
-          
-      forms: &x-y.pokemon.scolipede.forms
+      forms:
         scolipede:
           name: *black-white.name
           form_name: *black-white.pokemon.scolipede.forms.scolipede.form_name
           default: *black-white.pokemon.scolipede.default
           battle_only: *black-white.pokemon.scolipede.forms.scolipede.battle_only
-          icon: scolipede-default.png
+          icon: &x-y.pokemon.scolipede.forms.scolipede.icon scolipede-default.png
+          sprites:
+            - x-y/scolipede-default.png
+            - x-y/shiny/scolipede-default.png
+          art: *black-white.pokemon.scolipede.forms.scolipede.art
+          footprint: *black-white.pokemon.scolipede.forms.scolipede.footprint
+          cry: &x-y.pokemon.scolipede.forms.scolipede.cry scolipede-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -211,12 +229,19 @@ omega-ruby-alpha-sapphire:
           It clasps its prey with the claws on its neck until it
           stops moving. Then it finishes it off with
           deadly poison.
-          
         alpha-sapphire: |
           With quick movements, it chases down its foes,
           attacking relentlessly with its horns until it prevails.
-          
-      forms: *x-y.pokemon.scolipede.forms
+      forms:
+        scolipede:
+          name: *black-white.name
+          form_name: *black-white.pokemon.scolipede.forms.scolipede.form_name
+          default: *black-white.pokemon.scolipede.default
+          battle_only: *black-white.pokemon.scolipede.forms.scolipede.battle_only
+          icon: *x-y.pokemon.scolipede.forms.scolipede.icon
+          art: *black-white.pokemon.scolipede.forms.scolipede.art
+          footprint: *black-white.pokemon.scolipede.forms.scolipede.footprint
+          cry: *x-y.pokemon.scolipede.forms.scolipede.cry
 sun-moon:
   name: *black-white.name
   position: *black-white.position
@@ -246,7 +271,19 @@ sun-moon:
       wild_held_items:
         moon: *black-2-white-2.pokemon.scolipede.wild_held_items.black-2
       evolution_conditions: *black-white.pokemon.scolipede.evolution_conditions
-      forms: *x-y.pokemon.scolipede.forms
+      forms:
+        scolipede:
+          name: *black-white.name
+          form_name: *black-white.pokemon.scolipede.forms.scolipede.form_name
+          default: *black-white.pokemon.scolipede.default
+          battle_only: *black-white.pokemon.scolipede.forms.scolipede.battle_only
+          icon: *x-y.pokemon.scolipede.forms.scolipede.icon
+          sprites:
+            - sun-moon/scolipede-default.png
+            - sun-moon/shiny/scolipede-default.png
+          art: *black-white.pokemon.scolipede.forms.scolipede.art
+          footprint: *black-white.pokemon.scolipede.forms.scolipede.footprint
+          cry: *x-y.pokemon.scolipede.forms.scolipede.cry
 ultra-sun-ultra-moon:
   name: *black-white.name
   position: *black-white.position
@@ -276,4 +313,16 @@ ultra-sun-ultra-moon:
       wild_held_items:
         ultra-sun: *black-2-white-2.pokemon.scolipede.wild_held_items.black-2
       evolution_conditions: *black-white.pokemon.scolipede.evolution_conditions
-      forms: *x-y.pokemon.scolipede.forms
+      forms:
+        scolipede:
+          name: *black-white.name
+          form_name: *black-white.pokemon.scolipede.forms.scolipede.form_name
+          default: *black-white.pokemon.scolipede.default
+          battle_only: *black-white.pokemon.scolipede.forms.scolipede.battle_only
+          icon: *x-y.pokemon.scolipede.forms.scolipede.icon
+          sprites:
+            - ultra-sun-ultra-moon/scolipede-default.png
+            - ultra-sun-ultra-moon/shiny/scolipede-default.png
+          art: *black-white.pokemon.scolipede.forms.scolipede.art
+          footprint: *black-white.pokemon.scolipede.forms.scolipede.footprint
+          cry: *x-y.pokemon.scolipede.forms.scolipede.cry

@@ -63,19 +63,26 @@ black-white:
           These Pokémon vanish and appear
           unexpectedly. Many Trainers are drawn
           to their beautiful form and fur.
-          
         white: |
           Stealthily, it sneaks up on its target,
           striking from behind before its victim
           has a chance to react.
-          
-      forms: &black-white.pokemon.liepard.forms
+      forms:
         liepard:
           name: *black-white.name
           form_name: &black-white.pokemon.liepard.forms.liepard.form_name 'Default Form'
           default: *black-white.pokemon.liepard.default
           battle_only: &black-white.pokemon.liepard.forms.liepard.battle_only false
-          icon: gen5/liepard-default.png
+          icon: &black-white.pokemon.liepard.forms.liepard.icon gen5/liepard-default.png
+          sprites:
+            - black-white/back/liepard-default.png
+            - black-white/back/shiny/liepard-default.png
+            - black-white/liepard-default.png
+            - black-white/shiny/liepard-default.png
+          art: &black-white.pokemon.liepard.forms.liepard.art
+            - liepard-default.png
+          footprint: &black-white.pokemon.liepard.forms.liepard.footprint liepard.png
+          cry: &black-white.pokemon.liepard.forms.liepard.cry gen5/liepard-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -110,13 +117,20 @@ black-2-white-2:
           Their beautiful form comes from
           the muscles they have developed.
           They run silently in the night.
-          
         white-2: |
           Their beautiful form comes from
           the muscles they have developed.
           They run silently in the night.
-          
-      forms: *black-white.pokemon.liepard.forms
+      forms:
+        liepard:
+          name: *black-white.name
+          form_name: *black-white.pokemon.liepard.forms.liepard.form_name
+          default: *black-white.pokemon.liepard.default
+          battle_only: *black-white.pokemon.liepard.forms.liepard.battle_only
+          icon: *black-white.pokemon.liepard.forms.liepard.icon
+          art: *black-white.pokemon.liepard.forms.liepard.art
+          footprint: *black-white.pokemon.liepard.forms.liepard.footprint
+          cry: *black-white.pokemon.liepard.forms.liepard.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -151,18 +165,22 @@ x-y:
         x: |
           Their beautiful form comes from the muscles they
           have developed. They run silently in the night.
-          
         'y': |
           Stealthily, it sneaks up on its target, striking from
           behind before its victim has a chance to react.
-          
-      forms: &x-y.pokemon.liepard.forms
+      forms:
         liepard:
           name: *black-white.name
           form_name: *black-white.pokemon.liepard.forms.liepard.form_name
           default: *black-white.pokemon.liepard.default
           battle_only: *black-white.pokemon.liepard.forms.liepard.battle_only
-          icon: liepard-default.png
+          icon: &x-y.pokemon.liepard.forms.liepard.icon liepard-default.png
+          sprites:
+            - x-y/liepard-default.png
+            - x-y/shiny/liepard-default.png
+          art: *black-white.pokemon.liepard.forms.liepard.art
+          footprint: *black-white.pokemon.liepard.forms.liepard.footprint
+          cry: &x-y.pokemon.liepard.forms.liepard.cry liepard-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -196,13 +214,20 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Their beautiful form comes from the muscles they
           have developed. They run silently in the night.
-          
         alpha-sapphire: |
           Stealthily, it sneaks up on its target, striking from
           behind before its victim has a chance to react.
-          
-      forms: *x-y.pokemon.liepard.forms
-sun-moon: &sun-moon
+      forms:
+        liepard:
+          name: *black-white.name
+          form_name: *black-white.pokemon.liepard.forms.liepard.form_name
+          default: *black-white.pokemon.liepard.default
+          battle_only: *black-white.pokemon.liepard.forms.liepard.battle_only
+          icon: *x-y.pokemon.liepard.forms.liepard.icon
+          art: *black-white.pokemon.liepard.forms.liepard.art
+          footprint: *black-white.pokemon.liepard.forms.liepard.footprint
+          cry: *x-y.pokemon.liepard.forms.liepard.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -229,5 +254,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.liepard.stats
       abilities: *black-white.pokemon.liepard.abilities
       evolution_conditions: *black-white.pokemon.liepard.evolution_conditions
-      forms: *x-y.pokemon.liepard.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        liepard:
+          name: *black-white.name
+          form_name: *black-white.pokemon.liepard.forms.liepard.form_name
+          default: *black-white.pokemon.liepard.default
+          battle_only: *black-white.pokemon.liepard.forms.liepard.battle_only
+          icon: *x-y.pokemon.liepard.forms.liepard.icon
+          sprites:
+            - sun-moon/liepard-default.png
+            - sun-moon/shiny/liepard-default.png
+          art: *black-white.pokemon.liepard.forms.liepard.art
+          footprint: *black-white.pokemon.liepard.forms.liepard.footprint
+          cry: *x-y.pokemon.liepard.forms.liepard.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    liepard:
+      genus: *black-white.pokemon.liepard.genus
+      evolution_parent: *black-white.pokemon.liepard.evolution_parent
+      color: *black-white.pokemon.liepard.color
+      shape: *black-white.pokemon.liepard.shape
+      female_rate: *black-white.pokemon.liepard.female_rate
+      capture_rate: *black-white.pokemon.liepard.capture_rate
+      happiness: *black-white.pokemon.liepard.happiness
+      baby: *black-white.pokemon.liepard.baby
+      hatch_steps: *black-white.pokemon.liepard.hatch_steps
+      growth_rate: *black-white.pokemon.liepard.growth_rate
+      forms_switchable: *black-white.pokemon.liepard.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.liepard.default
+      height: *black-white.pokemon.liepard.height
+      weight: *black-white.pokemon.liepard.weight
+      experience: *black-white.pokemon.liepard.experience
+      types: *black-white.pokemon.liepard.types
+      egg_groups: *black-white.pokemon.liepard.egg_groups
+      mega: *x-y.pokemon.liepard.mega
+      stats: *black-white.pokemon.liepard.stats
+      abilities: *black-white.pokemon.liepard.abilities
+      evolution_conditions: *black-white.pokemon.liepard.evolution_conditions
+      forms:
+        liepard:
+          name: *black-white.name
+          form_name: *black-white.pokemon.liepard.forms.liepard.form_name
+          default: *black-white.pokemon.liepard.default
+          battle_only: *black-white.pokemon.liepard.forms.liepard.battle_only
+          icon: *x-y.pokemon.liepard.forms.liepard.icon
+          sprites:
+            - ultra-sun-ultra-moon/liepard-default.png
+            - ultra-sun-ultra-moon/shiny/liepard-default.png
+          art: *black-white.pokemon.liepard.forms.liepard.art
+          footprint: *black-white.pokemon.liepard.forms.liepard.footprint
+          cry: *x-y.pokemon.liepard.forms.liepard.cry

@@ -55,19 +55,24 @@ x-y:
           They knock down flying prey by firing
           compressed water from their massive
           claws like shooting a pistol.
-          
         'y': |
           Through controlled explosions of internal gas,
           it can expel water like a pistol shot.
           At close distances, it can shatter rock.
-          
-      forms: &x-y.pokemon.clauncher.forms
+      forms:
         clauncher:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.clauncher.forms.clauncher.form_name 'Default Form'
           default: *x-y.pokemon.clauncher.default
-          battle_only: false
-          icon: clauncher-default.png
+          battle_only: &x-y.pokemon.clauncher.forms.clauncher.battle_only false
+          icon: &x-y.pokemon.clauncher.forms.clauncher.icon clauncher-default.png
+          sprites:
+            - x-y/clauncher-default.png
+            - x-y/shiny/clauncher-default.png
+          art: &x-y.pokemon.clauncher.forms.clauncher.art
+            - clauncher-default.png
+          footprint: &x-y.pokemon.clauncher.forms.clauncher.footprint clauncher.png
+          cry: &x-y.pokemon.clauncher.forms.clauncher.cry clauncher-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -100,13 +105,20 @@ omega-ruby-alpha-sapphire:
           They knock down flying prey by firing
           compressed water from their massive
           claws like shooting a pistol.
-          
         alpha-sapphire: |
           Through controlled explosions of internal gas,
           it can expel water like a pistol shot.
           At close distances, it can shatter rock.
-          
-      forms: *x-y.pokemon.clauncher.forms
+      forms:
+        clauncher:
+          name: *x-y.name
+          form_name: *x-y.pokemon.clauncher.forms.clauncher.form_name
+          default: *x-y.pokemon.clauncher.default
+          battle_only: *x-y.pokemon.clauncher.forms.clauncher.battle_only
+          icon: *x-y.pokemon.clauncher.forms.clauncher.icon
+          art: *x-y.pokemon.clauncher.forms.clauncher.art
+          footprint: *x-y.pokemon.clauncher.forms.clauncher.footprint
+          cry: *x-y.pokemon.clauncher.forms.clauncher.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -132,7 +144,19 @@ sun-moon:
       mega: *x-y.pokemon.clauncher.mega
       stats: *x-y.pokemon.clauncher.stats
       abilities: *x-y.pokemon.clauncher.abilities
-      forms: *x-y.pokemon.clauncher.forms
+      forms:
+        clauncher:
+          name: *x-y.name
+          form_name: *x-y.pokemon.clauncher.forms.clauncher.form_name
+          default: *x-y.pokemon.clauncher.default
+          battle_only: *x-y.pokemon.clauncher.forms.clauncher.battle_only
+          icon: *x-y.pokemon.clauncher.forms.clauncher.icon
+          sprites:
+            - sun-moon/clauncher-default.png
+            - sun-moon/shiny/clauncher-default.png
+          art: *x-y.pokemon.clauncher.forms.clauncher.art
+          footprint: *x-y.pokemon.clauncher.forms.clauncher.footprint
+          cry: *x-y.pokemon.clauncher.forms.clauncher.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -163,5 +187,16 @@ ultra-sun-ultra-moon:
           Its claws occasionally fall off, and it keeps a low
           profile until they grow back. The meat of its
           claws is so delicious!
-          
-      forms: *x-y.pokemon.clauncher.forms
+      forms:
+        clauncher:
+          name: *x-y.name
+          form_name: *x-y.pokemon.clauncher.forms.clauncher.form_name
+          default: *x-y.pokemon.clauncher.default
+          battle_only: *x-y.pokemon.clauncher.forms.clauncher.battle_only
+          icon: *x-y.pokemon.clauncher.forms.clauncher.icon
+          sprites:
+            - ultra-sun-ultra-moon/clauncher-default.png
+            - ultra-sun-ultra-moon/shiny/clauncher-default.png
+          art: *x-y.pokemon.clauncher.forms.clauncher.art
+          footprint: *x-y.pokemon.clauncher.forms.clauncher.footprint
+          cry: *x-y.pokemon.clauncher.forms.clauncher.cry

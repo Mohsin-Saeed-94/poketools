@@ -57,19 +57,26 @@ black-white:
           It is very intelligent and calm.
           Being exposed to lots of sunlight makes
           its movements swifter.
-          
         white: |
           They photosynthesize by bathing their
           tails in sunlight. When they are not
           feeling well, their tails droop.
-          
-      forms: &black-white.pokemon.snivy.forms
+      forms:
         snivy:
           name: *black-white.name
           form_name: &black-white.pokemon.snivy.forms.snivy.form_name 'Default Form'
           default: *black-white.pokemon.snivy.default
           battle_only: &black-white.pokemon.snivy.forms.snivy.battle_only false
-          icon: gen5/snivy-default.png
+          icon: &black-white.pokemon.snivy.forms.snivy.icon gen5/snivy-default.png
+          sprites:
+            - black-white/back/shiny/snivy-default.png
+            - black-white/back/snivy-default.png
+            - black-white/shiny/snivy-default.png
+            - black-white/snivy-default.png
+          art: &black-white.pokemon.snivy.forms.snivy.art
+            - snivy-default.png
+          footprint: &black-white.pokemon.snivy.forms.snivy.footprint snivy.png
+          cry: &black-white.pokemon.snivy.forms.snivy.cry gen5/snivy-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -102,13 +109,20 @@ black-2-white-2:
           Being exposed to sunlight makes
           its movements swifter. It uses
           vines more adeptly than its hands.
-          
         white-2: |
           Being exposed to sunlight makes
           its movements swifter. It uses
           vines more adeptly than its hands.
-          
-      forms: *black-white.pokemon.snivy.forms
+      forms:
+        snivy:
+          name: *black-white.name
+          form_name: *black-white.pokemon.snivy.forms.snivy.form_name
+          default: *black-white.pokemon.snivy.default
+          battle_only: *black-white.pokemon.snivy.forms.snivy.battle_only
+          icon: *black-white.pokemon.snivy.forms.snivy.icon
+          art: *black-white.pokemon.snivy.forms.snivy.art
+          footprint: *black-white.pokemon.snivy.forms.snivy.footprint
+          cry: *black-white.pokemon.snivy.forms.snivy.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -140,19 +154,23 @@ x-y:
         x: |
           Being exposed to sunlight makes its movements
           swifter. It uses vines more adeptly than its hands.
-          
         'y': |
           They photosynthesize by bathing their tails in
           sunlight. When they are not feeling well, their
           tails droop.
-          
-      forms: &x-y.pokemon.snivy.forms
+      forms:
         snivy:
           name: *black-white.name
           form_name: *black-white.pokemon.snivy.forms.snivy.form_name
           default: *black-white.pokemon.snivy.default
           battle_only: *black-white.pokemon.snivy.forms.snivy.battle_only
-          icon: snivy-default.png
+          icon: &x-y.pokemon.snivy.forms.snivy.icon snivy-default.png
+          sprites:
+            - x-y/shiny/snivy-default.png
+            - x-y/snivy-default.png
+          art: *black-white.pokemon.snivy.forms.snivy.art
+          footprint: *black-white.pokemon.snivy.forms.snivy.footprint
+          cry: &x-y.pokemon.snivy.forms.snivy.cry snivy-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -183,14 +201,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Being exposed to sunlight makes its movements
           swifter. It uses vines more adeptly than its hands.
-          
         alpha-sapphire: |
           They photosynthesize by bathing their tails in
           sunlight. When they are not feeling well, their
           tails droop.
-          
-      forms: *x-y.pokemon.snivy.forms
-sun-moon: &sun-moon
+      forms:
+        snivy:
+          name: *black-white.name
+          form_name: *black-white.pokemon.snivy.forms.snivy.form_name
+          default: *black-white.pokemon.snivy.default
+          battle_only: *black-white.pokemon.snivy.forms.snivy.battle_only
+          icon: *x-y.pokemon.snivy.forms.snivy.icon
+          art: *black-white.pokemon.snivy.forms.snivy.art
+          footprint: *black-white.pokemon.snivy.forms.snivy.footprint
+          cry: *x-y.pokemon.snivy.forms.snivy.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -215,5 +240,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.snivy.mega
       stats: *black-white.pokemon.snivy.stats
       abilities: *black-white.pokemon.snivy.abilities
-      forms: *x-y.pokemon.snivy.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        snivy:
+          name: *black-white.name
+          form_name: *black-white.pokemon.snivy.forms.snivy.form_name
+          default: *black-white.pokemon.snivy.default
+          battle_only: *black-white.pokemon.snivy.forms.snivy.battle_only
+          icon: *x-y.pokemon.snivy.forms.snivy.icon
+          sprites:
+            - sun-moon/shiny/snivy-default.png
+            - sun-moon/snivy-default.png
+          art: *black-white.pokemon.snivy.forms.snivy.art
+          footprint: *black-white.pokemon.snivy.forms.snivy.footprint
+          cry: *x-y.pokemon.snivy.forms.snivy.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    snivy:
+      genus: *black-white.pokemon.snivy.genus
+      color: *black-white.pokemon.snivy.color
+      shape: *black-white.pokemon.snivy.shape
+      female_rate: *black-white.pokemon.snivy.female_rate
+      capture_rate: *black-white.pokemon.snivy.capture_rate
+      happiness: *black-white.pokemon.snivy.happiness
+      baby: *black-white.pokemon.snivy.baby
+      hatch_steps: *black-white.pokemon.snivy.hatch_steps
+      growth_rate: *black-white.pokemon.snivy.growth_rate
+      forms_switchable: *black-white.pokemon.snivy.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.snivy.default
+      height: *black-white.pokemon.snivy.height
+      weight: *black-white.pokemon.snivy.weight
+      experience: *black-white.pokemon.snivy.experience
+      types: *black-white.pokemon.snivy.types
+      egg_groups: *black-white.pokemon.snivy.egg_groups
+      mega: *x-y.pokemon.snivy.mega
+      stats: *black-white.pokemon.snivy.stats
+      abilities: *black-white.pokemon.snivy.abilities
+      forms:
+        snivy:
+          name: *black-white.name
+          form_name: *black-white.pokemon.snivy.forms.snivy.form_name
+          default: *black-white.pokemon.snivy.default
+          battle_only: *black-white.pokemon.snivy.forms.snivy.battle_only
+          icon: *x-y.pokemon.snivy.forms.snivy.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/snivy-default.png
+            - ultra-sun-ultra-moon/snivy-default.png
+          art: *black-white.pokemon.snivy.forms.snivy.art
+          footprint: *black-white.pokemon.snivy.forms.snivy.footprint
+          cry: *x-y.pokemon.snivy.forms.snivy.cry

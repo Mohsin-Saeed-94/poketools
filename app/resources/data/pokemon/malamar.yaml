@@ -67,19 +67,24 @@ x-y:
           It wields the most compelling hypnotic powers
           of any Pokémon, and it forces others to do
           whatever it wants.
-          
         'y': |
           It lures its prey close with hypnotic motions,
           then wraps its tentacles around it before
           finishing it off with digestive fluids.
-          
-      forms: &x-y.pokemon.malamar.forms
+      forms:
         malamar:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.malamar.forms.malamar.form_name 'Default Form'
           default: *x-y.pokemon.malamar.default
-          battle_only: false
-          icon: malamar-default.png
+          battle_only: &x-y.pokemon.malamar.forms.malamar.battle_only false
+          icon: &x-y.pokemon.malamar.forms.malamar.icon malamar-default.png
+          sprites:
+            - x-y/malamar-default.png
+            - x-y/shiny/malamar-default.png
+          art: &x-y.pokemon.malamar.forms.malamar.art
+            - malamar-default.png
+          footprint: &x-y.pokemon.malamar.forms.malamar.footprint malamar.png
+          cry: &x-y.pokemon.malamar.forms.malamar.cry malamar-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -114,13 +119,20 @@ omega-ruby-alpha-sapphire:
           It wields the most compelling hypnotic powers
           of any Pokémon, and it forces others to do
           whatever it wants.
-          
         alpha-sapphire: |
           It lures its prey close with hypnotic motions,
           then wraps its tentacles around it before
           finishing it off with digestive fluids.
-          
-      forms: *x-y.pokemon.malamar.forms
+      forms:
+        malamar:
+          name: *x-y.name
+          form_name: *x-y.pokemon.malamar.forms.malamar.form_name
+          default: *x-y.pokemon.malamar.default
+          battle_only: *x-y.pokemon.malamar.forms.malamar.battle_only
+          icon: *x-y.pokemon.malamar.forms.malamar.icon
+          art: *x-y.pokemon.malamar.forms.malamar.art
+          footprint: *x-y.pokemon.malamar.forms.malamar.footprint
+          cry: *x-y.pokemon.malamar.forms.malamar.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -148,7 +160,19 @@ sun-moon:
       stats: *x-y.pokemon.malamar.stats
       abilities: *x-y.pokemon.malamar.abilities
       evolution_conditions: *x-y.pokemon.malamar.evolution_conditions
-      forms: *x-y.pokemon.malamar.forms
+      forms:
+        malamar:
+          name: *x-y.name
+          form_name: *x-y.pokemon.malamar.forms.malamar.form_name
+          default: *x-y.pokemon.malamar.default
+          battle_only: *x-y.pokemon.malamar.forms.malamar.battle_only
+          icon: *x-y.pokemon.malamar.forms.malamar.icon
+          sprites:
+            - sun-moon/malamar-default.png
+            - sun-moon/shiny/malamar-default.png
+          art: *x-y.pokemon.malamar.forms.malamar.art
+          footprint: *x-y.pokemon.malamar.forms.malamar.footprint
+          cry: *x-y.pokemon.malamar.forms.malamar.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -181,5 +205,16 @@ ultra-sun-ultra-moon:
           When it comes to strong hypnosis, there’s an
           endless number of people who utilize Malamar
           for their nefarious deeds.
-          
-      forms: *x-y.pokemon.malamar.forms
+      forms:
+        malamar:
+          name: *x-y.name
+          form_name: *x-y.pokemon.malamar.forms.malamar.form_name
+          default: *x-y.pokemon.malamar.default
+          battle_only: *x-y.pokemon.malamar.forms.malamar.battle_only
+          icon: *x-y.pokemon.malamar.forms.malamar.icon
+          sprites:
+            - ultra-sun-ultra-moon/malamar-default.png
+            - ultra-sun-ultra-moon/shiny/malamar-default.png
+          art: *x-y.pokemon.malamar.forms.malamar.art
+          footprint: *x-y.pokemon.malamar.forms.malamar.footprint
+          cry: *x-y.pokemon.malamar.forms.malamar.cry

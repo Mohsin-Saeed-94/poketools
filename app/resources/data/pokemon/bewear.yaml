@@ -62,14 +62,17 @@ sun-moon:
           This Pokémon has the habit of hugging its
           companions. Many Trainers have left this world
           after their spines were squashed by its hug.
-          
-      forms: &sun-moon.pokemon.bewear.forms
+      forms:
         bewear:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.bewear.forms.bewear.form_name 'Default Form'
           default: *sun-moon.pokemon.bewear.default
-          battle_only: false
-          icon: bewear-default.png
+          battle_only: &sun-moon.pokemon.bewear.forms.bewear.battle_only false
+          icon: &sun-moon.pokemon.bewear.forms.bewear.icon bewear-default.png
+          sprites:
+            - sun-moon/shiny/bewear-default.png
+            - sun-moon/bewear-default.png
+          footprint: &sun-moon.pokemon.bewear.forms.bewear.footprint bewear.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -102,5 +105,14 @@ ultra-sun-ultra-moon:
           It waves its hands wildly in intimidation and
           warning. Life is over for anyone who doesn’t
           run away as fast as possible.
-          
-      forms: *sun-moon.pokemon.bewear.forms
+      forms:
+        bewear:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.bewear.forms.bewear.form_name
+          default: *sun-moon.pokemon.bewear.default
+          battle_only: *sun-moon.pokemon.bewear.forms.bewear.battle_only
+          icon: *sun-moon.pokemon.bewear.forms.bewear.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/bewear-default.png
+            - ultra-sun-ultra-moon/bewear-default.png
+          footprint: *sun-moon.pokemon.bewear.forms.bewear.footprint

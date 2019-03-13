@@ -62,19 +62,24 @@ x-y:
           From its beak, it expels embers that set
           the tall grass on fire. Then it pounces on
           the bewildered prey that pop out of the grass.
-          
         'y': |
           The hotter the flame sac on its belly,
           the faster it can fly, but it takes some
           time to get the fire going.
-          
-      forms: &x-y.pokemon.fletchinder.forms
+      forms:
         fletchinder:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.fletchinder.forms.fletchinder.form_name 'Default Form'
           default: *x-y.pokemon.fletchinder.default
-          battle_only: false
-          icon: fletchinder-default.png
+          battle_only: &x-y.pokemon.fletchinder.forms.fletchinder.battle_only false
+          icon: &x-y.pokemon.fletchinder.forms.fletchinder.icon fletchinder-default.png
+          sprites:
+            - x-y/fletchinder-default.png
+            - x-y/shiny/fletchinder-default.png
+          art: &x-y.pokemon.fletchinder.forms.fletchinder.art
+            - fletchinder-default.png
+          footprint: &x-y.pokemon.fletchinder.forms.fletchinder.footprint fletchinder.png
+          cry: &x-y.pokemon.fletchinder.forms.fletchinder.cry fletchinder-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -109,13 +114,20 @@ omega-ruby-alpha-sapphire:
           From its beak, it expels embers that set
           the tall grass on fire. Then it pounces on
           the bewildered prey that pop out of the grass.
-          
         alpha-sapphire: |
           The hotter the flame sac on its belly,
           the faster it can fly, but it takes some
           time to get the fire going.
-          
-      forms: *x-y.pokemon.fletchinder.forms
+      forms:
+        fletchinder:
+          name: *x-y.name
+          form_name: *x-y.pokemon.fletchinder.forms.fletchinder.form_name
+          default: *x-y.pokemon.fletchinder.default
+          battle_only: *x-y.pokemon.fletchinder.forms.fletchinder.battle_only
+          icon: *x-y.pokemon.fletchinder.forms.fletchinder.icon
+          art: *x-y.pokemon.fletchinder.forms.fletchinder.art
+          footprint: *x-y.pokemon.fletchinder.forms.fletchinder.footprint
+          cry: *x-y.pokemon.fletchinder.forms.fletchinder.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -147,8 +159,19 @@ sun-moon:
         moon: |
           It will not tolerate other Fletchinder entering its
           territory, which has a radius of several miles.
-          
-      forms: *x-y.pokemon.fletchinder.forms
+      forms:
+        fletchinder:
+          name: *x-y.name
+          form_name: *x-y.pokemon.fletchinder.forms.fletchinder.form_name
+          default: *x-y.pokemon.fletchinder.default
+          battle_only: *x-y.pokemon.fletchinder.forms.fletchinder.battle_only
+          icon: *x-y.pokemon.fletchinder.forms.fletchinder.icon
+          sprites:
+            - sun-moon/fletchinder-default.png
+            - sun-moon/shiny/fletchinder-default.png
+          art: *x-y.pokemon.fletchinder.forms.fletchinder.art
+          footprint: *x-y.pokemon.fletchinder.forms.fletchinder.footprint
+          cry: *x-y.pokemon.fletchinder.forms.fletchinder.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -181,5 +204,16 @@ ultra-sun-ultra-moon:
           It scatters embers in the tall grass. Then bug
           Pokémon, frightened by the flames, come
           flying out, and Fletchinder gobbles them up.
-          
-      forms: *x-y.pokemon.fletchinder.forms
+      forms:
+        fletchinder:
+          name: *x-y.name
+          form_name: *x-y.pokemon.fletchinder.forms.fletchinder.form_name
+          default: *x-y.pokemon.fletchinder.default
+          battle_only: *x-y.pokemon.fletchinder.forms.fletchinder.battle_only
+          icon: *x-y.pokemon.fletchinder.forms.fletchinder.icon
+          sprites:
+            - ultra-sun-ultra-moon/fletchinder-default.png
+            - ultra-sun-ultra-moon/shiny/fletchinder-default.png
+          art: *x-y.pokemon.fletchinder.forms.fletchinder.art
+          footprint: *x-y.pokemon.fletchinder.forms.fletchinder.footprint
+          cry: *x-y.pokemon.fletchinder.forms.fletchinder.cry

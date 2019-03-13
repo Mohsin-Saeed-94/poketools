@@ -61,19 +61,26 @@ black-white:
           These bird Pokémon are excellent divers.
           They swim around in the water eating
           their favorite food--peat moss.
-          
         white: |
           When attacked, it uses its feathers
           to splash water, escaping under cover
           of the spray.
-          
-      forms: &black-white.pokemon.ducklett.forms
+      forms:
         ducklett:
           name: *black-white.name
           form_name: &black-white.pokemon.ducklett.forms.ducklett.form_name 'Default Form'
           default: *black-white.pokemon.ducklett.default
           battle_only: &black-white.pokemon.ducklett.forms.ducklett.battle_only false
-          icon: gen5/ducklett-default.png
+          icon: &black-white.pokemon.ducklett.forms.ducklett.icon gen5/ducklett-default.png
+          sprites:
+            - black-white/back/shiny/ducklett-default.png
+            - black-white/back/ducklett-default.png
+            - black-white/shiny/ducklett-default.png
+            - black-white/ducklett-default.png
+          art: &black-white.pokemon.ducklett.forms.ducklett.art
+            - ducklett-default.png
+          footprint: &black-white.pokemon.ducklett.forms.ducklett.footprint ducklett.png
+          cry: &black-white.pokemon.ducklett.forms.ducklett.cry gen5/ducklett-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -106,13 +113,20 @@ black-2-white-2:
           They are better at swimming than flying,
           and they happily eat their favorite food,
           peat moss, as they dive underwater.
-          
         white-2: |
           They are better at swimming than flying,
           and they happily eat their favorite food,
           peat moss, as they dive underwater.
-          
-      forms: *black-white.pokemon.ducklett.forms
+      forms:
+        ducklett:
+          name: *black-white.name
+          form_name: *black-white.pokemon.ducklett.forms.ducklett.form_name
+          default: *black-white.pokemon.ducklett.default
+          battle_only: *black-white.pokemon.ducklett.forms.ducklett.battle_only
+          icon: *black-white.pokemon.ducklett.forms.ducklett.icon
+          art: *black-white.pokemon.ducklett.forms.ducklett.art
+          footprint: *black-white.pokemon.ducklett.forms.ducklett.footprint
+          cry: *black-white.pokemon.ducklett.forms.ducklett.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -145,19 +159,23 @@ x-y:
         x: |
           When attacked, it uses its feathers to splash water,
           escaping under cover of the spray.
-          
         'y': |
           They are better at swimming than flying, and they
           happily eat their favorite food, peat moss, as they
           dive underwater.
-          
-      forms: &x-y.pokemon.ducklett.forms
+      forms:
         ducklett:
           name: *black-white.name
           form_name: *black-white.pokemon.ducklett.forms.ducklett.form_name
           default: *black-white.pokemon.ducklett.default
           battle_only: *black-white.pokemon.ducklett.forms.ducklett.battle_only
-          icon: ducklett-default.png
+          icon: &x-y.pokemon.ducklett.forms.ducklett.icon ducklett-default.png
+          sprites:
+            - x-y/shiny/ducklett-default.png
+            - x-y/ducklett-default.png
+          art: *black-white.pokemon.ducklett.forms.ducklett.art
+          footprint: *black-white.pokemon.ducklett.forms.ducklett.footprint
+          cry: &x-y.pokemon.ducklett.forms.ducklett.cry ducklett-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -189,14 +207,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           When attacked, it uses its feathers to splash water,
           escaping under cover of the spray.
-          
         alpha-sapphire: |
           They are better at swimming than flying, and they
           happily eat their favorite food, peat moss, as they
           dive underwater.
-          
-      forms: *x-y.pokemon.ducklett.forms
-sun-moon: &sun-moon
+      forms:
+        ducklett:
+          name: *black-white.name
+          form_name: *black-white.pokemon.ducklett.forms.ducklett.form_name
+          default: *black-white.pokemon.ducklett.default
+          battle_only: *black-white.pokemon.ducklett.forms.ducklett.battle_only
+          icon: *x-y.pokemon.ducklett.forms.ducklett.icon
+          art: *black-white.pokemon.ducklett.forms.ducklett.art
+          footprint: *black-white.pokemon.ducklett.forms.ducklett.footprint
+          cry: *x-y.pokemon.ducklett.forms.ducklett.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -221,5 +246,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.ducklett.mega
       stats: *black-white.pokemon.ducklett.stats
       abilities: *black-white.pokemon.ducklett.abilities
-      forms: *x-y.pokemon.ducklett.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        ducklett:
+          name: *black-white.name
+          form_name: *black-white.pokemon.ducklett.forms.ducklett.form_name
+          default: *black-white.pokemon.ducklett.default
+          battle_only: *black-white.pokemon.ducklett.forms.ducklett.battle_only
+          icon: *x-y.pokemon.ducklett.forms.ducklett.icon
+          sprites:
+            - sun-moon/shiny/ducklett-default.png
+            - sun-moon/ducklett-default.png
+          art: *black-white.pokemon.ducklett.forms.ducklett.art
+          footprint: *black-white.pokemon.ducklett.forms.ducklett.footprint
+          cry: *x-y.pokemon.ducklett.forms.ducklett.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    ducklett:
+      genus: *black-white.pokemon.ducklett.genus
+      color: *black-white.pokemon.ducklett.color
+      shape: *black-white.pokemon.ducklett.shape
+      female_rate: *black-white.pokemon.ducklett.female_rate
+      capture_rate: *black-white.pokemon.ducklett.capture_rate
+      happiness: *black-white.pokemon.ducklett.happiness
+      baby: *black-white.pokemon.ducklett.baby
+      hatch_steps: *black-white.pokemon.ducklett.hatch_steps
+      growth_rate: *black-white.pokemon.ducklett.growth_rate
+      forms_switchable: *black-white.pokemon.ducklett.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.ducklett.default
+      height: *black-white.pokemon.ducklett.height
+      weight: *black-white.pokemon.ducklett.weight
+      experience: *black-white.pokemon.ducklett.experience
+      types: *black-white.pokemon.ducklett.types
+      egg_groups: *black-white.pokemon.ducklett.egg_groups
+      mega: *x-y.pokemon.ducklett.mega
+      stats: *black-white.pokemon.ducklett.stats
+      abilities: *black-white.pokemon.ducklett.abilities
+      forms:
+        ducklett:
+          name: *black-white.name
+          form_name: *black-white.pokemon.ducklett.forms.ducklett.form_name
+          default: *black-white.pokemon.ducklett.default
+          battle_only: *black-white.pokemon.ducklett.forms.ducklett.battle_only
+          icon: *x-y.pokemon.ducklett.forms.ducklett.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/ducklett-default.png
+            - ultra-sun-ultra-moon/ducklett-default.png
+          art: *black-white.pokemon.ducklett.forms.ducklett.art
+          footprint: *black-white.pokemon.ducklett.forms.ducklett.footprint
+          cry: *x-y.pokemon.ducklett.forms.ducklett.cry

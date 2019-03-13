@@ -61,14 +61,17 @@ sun-moon:
           It stuns its prey with psychokinesis and then
           grinds them to mush with its strong teeth.
           Even Shellder’s shell is no match for it.
-          
-      forms: &sun-moon.pokemon.bruxish.forms
+      forms:
         bruxish:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.bruxish.forms.bruxish.form_name 'Default Form'
           default: *sun-moon.pokemon.bruxish.default
-          battle_only: false
-          icon: bruxish-default.png
+          battle_only: &sun-moon.pokemon.bruxish.forms.bruxish.battle_only false
+          icon: &sun-moon.pokemon.bruxish.forms.bruxish.icon bruxish-default.png
+          sprites:
+            - sun-moon/shiny/bruxish-default.png
+            - sun-moon/bruxish-default.png
+          footprint: &sun-moon.pokemon.bruxish.forms.bruxish.footprint bruxish.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -101,5 +104,14 @@ ultra-sun-ultra-moon:
           It burrows beneath the sand, radiating
           psychic power from the protuberance on its
           head. It waits for prey as it surveys the area.
-          
-      forms: *sun-moon.pokemon.bruxish.forms
+      forms:
+        bruxish:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.bruxish.forms.bruxish.form_name
+          default: *sun-moon.pokemon.bruxish.default
+          battle_only: *sun-moon.pokemon.bruxish.forms.bruxish.battle_only
+          icon: *sun-moon.pokemon.bruxish.forms.bruxish.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/bruxish-default.png
+            - ultra-sun-ultra-moon/bruxish-default.png
+          footprint: *sun-moon.pokemon.bruxish.forms.bruxish.footprint

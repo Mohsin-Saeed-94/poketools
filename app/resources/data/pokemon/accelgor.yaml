@@ -62,19 +62,26 @@ black-white:
           When its body dries out, it weakens.
           So, to prevent dehydration, it wraps
           itself in many layers of thin membrane.
-          
         white: |
           Having removed its heavy shell,
           it becomes very light and can fight
           with ninja-like movements.
-          
-      forms: &black-white.pokemon.accelgor.forms
+      forms:
         accelgor:
           name: *black-white.name
           form_name: &black-white.pokemon.accelgor.forms.accelgor.form_name 'Default Form'
           default: *black-white.pokemon.accelgor.default
           battle_only: &black-white.pokemon.accelgor.forms.accelgor.battle_only false
-          icon: gen5/accelgor-default.png
+          icon: &black-white.pokemon.accelgor.forms.accelgor.icon gen5/accelgor-default.png
+          sprites:
+            - black-white/back/accelgor-default.png
+            - black-white/back/shiny/accelgor-default.png
+            - black-white/accelgor-default.png
+            - black-white/shiny/accelgor-default.png
+          art: &black-white.pokemon.accelgor.forms.accelgor.art
+            - accelgor-default.png
+          footprint: &black-white.pokemon.accelgor.forms.accelgor.footprint accelgor.png
+          cry: &black-white.pokemon.accelgor.forms.accelgor.cry gen5/accelgor-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,13 +116,20 @@ black-2-white-2:
           When its body dries out, it weakens.
           So it wraps a membrane around itself
           for protection while it spits poison.
-          
         white-2: |
           When its body dries out, it weakens.
           So it wraps a membrane around itself
           for protection while it spits poison.
-          
-      forms: *black-white.pokemon.accelgor.forms
+      forms:
+        accelgor:
+          name: *black-white.name
+          form_name: *black-white.pokemon.accelgor.forms.accelgor.form_name
+          default: *black-white.pokemon.accelgor.default
+          battle_only: *black-white.pokemon.accelgor.forms.accelgor.battle_only
+          icon: *black-white.pokemon.accelgor.forms.accelgor.icon
+          art: *black-white.pokemon.accelgor.forms.accelgor.art
+          footprint: *black-white.pokemon.accelgor.forms.accelgor.footprint
+          cry: *black-white.pokemon.accelgor.forms.accelgor.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -150,19 +164,23 @@ x-y:
         x: |
           Having removed its heavy shell, it becomes very
           light and can fight with ninja-like movements.
-          
         'y': |
           When its body dries out, it weakens. So, to prevent
           dehydration, it wraps itself in many layers of
           thin membrane.
-          
-      forms: &x-y.pokemon.accelgor.forms
+      forms:
         accelgor:
           name: *black-white.name
           form_name: *black-white.pokemon.accelgor.forms.accelgor.form_name
           default: *black-white.pokemon.accelgor.default
           battle_only: *black-white.pokemon.accelgor.forms.accelgor.battle_only
-          icon: accelgor-default.png
+          icon: &x-y.pokemon.accelgor.forms.accelgor.icon accelgor-default.png
+          sprites:
+            - x-y/accelgor-default.png
+            - x-y/shiny/accelgor-default.png
+          art: *black-white.pokemon.accelgor.forms.accelgor.art
+          footprint: *black-white.pokemon.accelgor.forms.accelgor.footprint
+          cry: &x-y.pokemon.accelgor.forms.accelgor.cry accelgor-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -196,14 +214,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Having removed its heavy shell, it becomes very
           light and can fight with ninja-like movements.
-          
         alpha-sapphire: |
           When its body dries out, it weakens. So, to prevent
           dehydration, it wraps itself in many layers of
           thin membrane.
-          
-      forms: *x-y.pokemon.accelgor.forms
-sun-moon: &sun-moon
+      forms:
+        accelgor:
+          name: *black-white.name
+          form_name: *black-white.pokemon.accelgor.forms.accelgor.form_name
+          default: *black-white.pokemon.accelgor.default
+          battle_only: *black-white.pokemon.accelgor.forms.accelgor.battle_only
+          icon: *x-y.pokemon.accelgor.forms.accelgor.icon
+          art: *black-white.pokemon.accelgor.forms.accelgor.art
+          footprint: *black-white.pokemon.accelgor.forms.accelgor.footprint
+          cry: *x-y.pokemon.accelgor.forms.accelgor.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -230,5 +255,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.accelgor.stats
       abilities: *black-white.pokemon.accelgor.abilities
       evolution_conditions: *black-white.pokemon.accelgor.evolution_conditions
-      forms: *x-y.pokemon.accelgor.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        accelgor:
+          name: *black-white.name
+          form_name: *black-white.pokemon.accelgor.forms.accelgor.form_name
+          default: *black-white.pokemon.accelgor.default
+          battle_only: *black-white.pokemon.accelgor.forms.accelgor.battle_only
+          icon: *x-y.pokemon.accelgor.forms.accelgor.icon
+          sprites:
+            - sun-moon/accelgor-default.png
+            - sun-moon/shiny/accelgor-default.png
+          art: *black-white.pokemon.accelgor.forms.accelgor.art
+          footprint: *black-white.pokemon.accelgor.forms.accelgor.footprint
+          cry: *x-y.pokemon.accelgor.forms.accelgor.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    accelgor:
+      genus: *black-white.pokemon.accelgor.genus
+      evolution_parent: *black-white.pokemon.accelgor.evolution_parent
+      color: *black-white.pokemon.accelgor.color
+      shape: *black-white.pokemon.accelgor.shape
+      female_rate: *black-white.pokemon.accelgor.female_rate
+      capture_rate: *black-white.pokemon.accelgor.capture_rate
+      happiness: *black-white.pokemon.accelgor.happiness
+      baby: *black-white.pokemon.accelgor.baby
+      hatch_steps: *black-white.pokemon.accelgor.hatch_steps
+      growth_rate: *black-white.pokemon.accelgor.growth_rate
+      forms_switchable: *black-white.pokemon.accelgor.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.accelgor.default
+      height: *black-white.pokemon.accelgor.height
+      weight: *black-white.pokemon.accelgor.weight
+      experience: *black-white.pokemon.accelgor.experience
+      types: *black-white.pokemon.accelgor.types
+      egg_groups: *black-white.pokemon.accelgor.types
+      mega: *x-y.pokemon.accelgor.mega
+      stats: *black-white.pokemon.accelgor.stats
+      abilities: *black-white.pokemon.accelgor.abilities
+      evolution_conditions: *black-white.pokemon.accelgor.evolution_conditions
+      forms:
+        accelgor:
+          name: *black-white.name
+          form_name: *black-white.pokemon.accelgor.forms.accelgor.form_name
+          default: *black-white.pokemon.accelgor.default
+          battle_only: *black-white.pokemon.accelgor.forms.accelgor.battle_only
+          icon: *x-y.pokemon.accelgor.forms.accelgor.icon
+          sprites:
+            - ultra-sun-ultra-moon/accelgor-default.png
+            - ultra-sun-ultra-moon/shiny/accelgor-default.png
+          art: *black-white.pokemon.accelgor.forms.accelgor.art
+          footprint: *black-white.pokemon.accelgor.forms.accelgor.footprint
+          cry: *x-y.pokemon.accelgor.forms.accelgor.cry

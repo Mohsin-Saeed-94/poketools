@@ -58,19 +58,26 @@ black-white:
           After it has eaten up all the food in
           its territory, it moves to another
           area. Its two heads do not get along.
-          
         white: |
           Since their two heads do not get along
           and compete with each other for food,
           they always eat too much.
-          
-      forms: &black-white.pokemon.zweilous.forms
+      forms:
         zweilous:
           name: *black-white.name
           form_name: &black-white.pokemon.zweilous.forms.zweilous.form_name 'Default Form'
           default: *black-white.pokemon.zweilous.default
           battle_only: &black-white.pokemon.zweilous.forms.zweilous.battle_only false
-          icon: gen5/zweilous-default.png
+          icon: &black-white.pokemon.zweilous.forms.zweilous.icon gen5/zweilous-default.png
+          sprites:
+            - black-white/back/shiny/zweilous-default.png
+            - black-white/back/zweilous-default.png
+            - black-white/shiny/zweilous-default.png
+            - black-white/zweilous-default.png
+          art: &black-white.pokemon.zweilous.forms.zweilous.art
+            - zweilous-default.png
+          footprint: &black-white.pokemon.zweilous.forms.zweilous.footprint zweilous.png
+          cry: &black-white.pokemon.zweilous.forms.zweilous.cry gen5/zweilous-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -105,13 +112,20 @@ black-2-white-2:
           The two heads do not get along.
           Whichever head eats more than
           the other gets to be the leader.
-          
         white-2: |
           The two heads do not get along.
           Whichever head eats more than
           the other gets to be the leader.
-          
-      forms: *black-white.pokemon.zweilous.forms
+      forms:
+        zweilous:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zweilous.forms.zweilous.form_name
+          default: *black-white.pokemon.zweilous.default
+          battle_only: *black-white.pokemon.zweilous.forms.zweilous.battle_only
+          icon: *black-white.pokemon.zweilous.forms.zweilous.icon
+          art: *black-white.pokemon.zweilous.forms.zweilous.art
+          footprint: *black-white.pokemon.zweilous.forms.zweilous.footprint
+          cry: *black-white.pokemon.zweilous.forms.zweilous.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -146,19 +160,23 @@ x-y:
         x: |
           The two heads do not get along. Whichever head
           eats more than the other gets to be the leader.
-          
         'y': |
           After it has eaten up all the food in its territory,
           it moves to another area. Its two heads do not
           get along.
-          
-      forms: &x-y.pokemon.zweilous.forms
+      forms:
         zweilous:
           name: *black-white.name
           form_name: *black-white.pokemon.zweilous.forms.zweilous.form_name
           default: *black-white.pokemon.zweilous.default
           battle_only: *black-white.pokemon.zweilous.forms.zweilous.battle_only
-          icon: zweilous-default.png
+          icon: &x-y.pokemon.zweilous.forms.zweilous.icon zweilous-default.png
+          sprites:
+            - x-y/shiny/zweilous-default.png
+            - x-y/zweilous-default.png
+          art: *black-white.pokemon.zweilous.forms.zweilous.art
+          footprint: *black-white.pokemon.zweilous.forms.zweilous.footprint
+          cry: &x-y.pokemon.zweilous.forms.zweilous.cry zweilous-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -192,14 +210,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           The two heads do not get along. Whichever head
           eats more than the other gets to be the leader.
-          
         alpha-sapphire: |
           After it has eaten up all the food in its territory,
           it moves to another area. Its two heads do not
           get along.
-          
-      forms: *x-y.pokemon.zweilous.forms
-sun-moon: &sun-moon
+      forms:
+        zweilous:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zweilous.forms.zweilous.form_name
+          default: *black-white.pokemon.zweilous.default
+          battle_only: *black-white.pokemon.zweilous.forms.zweilous.battle_only
+          icon: *x-y.pokemon.zweilous.forms.zweilous.icon
+          art: *black-white.pokemon.zweilous.forms.zweilous.art
+          footprint: *black-white.pokemon.zweilous.forms.zweilous.footprint
+          cry: *x-y.pokemon.zweilous.forms.zweilous.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -226,5 +251,56 @@ sun-moon: &sun-moon
       stats: *black-white.pokemon.zweilous.stats
       abilities: *black-white.pokemon.zweilous.abilities
       evolution_conditions: *black-white.pokemon.zweilous.evolution_conditions
-      forms: *x-y.pokemon.zweilous.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        zweilous:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zweilous.forms.zweilous.form_name
+          default: *black-white.pokemon.zweilous.default
+          battle_only: *black-white.pokemon.zweilous.forms.zweilous.battle_only
+          icon: *x-y.pokemon.zweilous.forms.zweilous.icon
+          sprites:
+            - sun-moon/shiny/zweilous-default.png
+            - sun-moon/zweilous-default.png
+          art: *black-white.pokemon.zweilous.forms.zweilous.art
+          footprint: *black-white.pokemon.zweilous.forms.zweilous.footprint
+          cry: *x-y.pokemon.zweilous.forms.zweilous.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    zweilous:
+      genus: *black-white.pokemon.zweilous.genus
+      evolution_parent: *black-white.pokemon.zweilous.evolution_parent
+      color: *black-white.pokemon.zweilous.color
+      shape: *black-white.pokemon.zweilous.shape
+      female_rate: *black-white.pokemon.zweilous.female_rate
+      capture_rate: *black-white.pokemon.zweilous.capture_rate
+      happiness: *black-white.pokemon.zweilous.happiness
+      baby: *black-white.pokemon.zweilous.baby
+      hatch_steps: *black-white.pokemon.zweilous.hatch_steps
+      growth_rate: *black-white.pokemon.zweilous.growth_rate
+      forms_switchable: *black-white.pokemon.zweilous.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.zweilous.default
+      height: *black-white.pokemon.zweilous.height
+      weight: *black-white.pokemon.zweilous.weight
+      experience: *black-white.pokemon.zweilous.experience
+      types: *black-white.pokemon.zweilous.types
+      egg_groups: *black-white.pokemon.zweilous.egg_groups
+      mega: *x-y.pokemon.zweilous.mega
+      stats: *black-white.pokemon.zweilous.stats
+      abilities: *black-white.pokemon.zweilous.abilities
+      evolution_conditions: *black-white.pokemon.zweilous.evolution_conditions
+      forms:
+        zweilous:
+          name: *black-white.name
+          form_name: *black-white.pokemon.zweilous.forms.zweilous.form_name
+          default: *black-white.pokemon.zweilous.default
+          battle_only: *black-white.pokemon.zweilous.forms.zweilous.battle_only
+          icon: *x-y.pokemon.zweilous.forms.zweilous.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/zweilous-default.png
+            - ultra-sun-ultra-moon/zweilous-default.png
+          art: *black-white.pokemon.zweilous.forms.zweilous.art
+          footprint: *black-white.pokemon.zweilous.forms.zweilous.footprint
+          cry: *x-y.pokemon.zweilous.forms.zweilous.cry

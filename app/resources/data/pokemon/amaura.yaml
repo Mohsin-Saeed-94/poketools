@@ -58,18 +58,23 @@ x-y:
           This ancient Pokémon was restored
           from part of its body that had been
           frozen in ice for over 100 million years.
-          
         'y': |
           This calm Pokémon lived in a cold land where
           there were no violent predators like Tyrantrum.
-          
-      forms: &x-y.pokemon.amaura.forms
+      forms:
         amaura:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.amaura.forms.amaura.form_name 'Default Form'
           default: *x-y.pokemon.amaura.default
-          battle_only: false
-          icon: amaura-default.png
+          battle_only: &x-y.pokemon.amaura.forms.amaura.battle_only false
+          icon: &x-y.pokemon.amaura.forms.amaura.icon amaura-default.png
+          sprites:
+            - x-y/shiny/amaura-default.png
+            - x-y/amaura-default.png
+          art: &x-y.pokemon.amaura.forms.amaura.art
+            - amaura-default.png
+          footprint: &x-y.pokemon.amaura.forms.amaura.footprint amaura.png
+          cry: &x-y.pokemon.amaura.forms.amaura.cry amaura-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -102,12 +107,19 @@ omega-ruby-alpha-sapphire:
           This ancient Pokémon was restored
           from part of its body that had been
           frozen in ice for over 100 million years.
-          
         alpha-sapphire: |
           This calm Pokémon lived in a cold land where
           there were no violent predators like Tyrantrum.
-          
-      forms: *x-y.pokemon.amaura.forms
+      forms:
+        amaura:
+          name: *x-y.name
+          form_name: *x-y.pokemon.amaura.forms.amaura.form_name
+          default: *x-y.pokemon.amaura.default
+          battle_only: *x-y.pokemon.amaura.forms.amaura.battle_only
+          icon: *x-y.pokemon.amaura.forms.amaura.icon
+          art: *x-y.pokemon.amaura.forms.amaura.art
+          footprint: *x-y.pokemon.amaura.forms.amaura.footprint
+          cry: *x-y.pokemon.amaura.forms.amaura.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -133,7 +145,19 @@ sun-moon:
       mega: *x-y.pokemon.amaura.mega
       stats: *x-y.pokemon.amaura.stats
       abilities: *x-y.pokemon.amaura.abilities
-      forms: *x-y.pokemon.amaura.forms
+      forms:
+        amaura:
+          name: *x-y.name
+          form_name: *x-y.pokemon.amaura.forms.amaura.form_name
+          default: *x-y.pokemon.amaura.default
+          battle_only: *x-y.pokemon.amaura.forms.amaura.battle_only
+          icon: *x-y.pokemon.amaura.forms.amaura.icon
+          sprites:
+            - sun-moon/shiny/amaura-default.png
+            - sun-moon/amaura-default.png
+          art: *x-y.pokemon.amaura.forms.amaura.art
+          footprint: *x-y.pokemon.amaura.forms.amaura.footprint
+          cry: *x-y.pokemon.amaura.forms.amaura.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -164,5 +188,16 @@ ultra-sun-ultra-moon:
           It lived in cold areas in ancient times. It’s said
           that when Amaura whinnies, auroras appear in
           the night sky.
-          
-      forms: *x-y.pokemon.amaura.forms
+      forms:
+        amaura:
+          name: *x-y.name
+          form_name: *x-y.pokemon.amaura.forms.amaura.form_name
+          default: *x-y.pokemon.amaura.default
+          battle_only: *x-y.pokemon.amaura.forms.amaura.battle_only
+          icon: *x-y.pokemon.amaura.forms.amaura.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/amaura-default.png
+            - ultra-sun-ultra-moon/amaura-default.png
+          art: *x-y.pokemon.amaura.forms.amaura.art
+          footprint: *x-y.pokemon.amaura.forms.amaura.footprint
+          cry: *x-y.pokemon.amaura.forms.amaura.cry

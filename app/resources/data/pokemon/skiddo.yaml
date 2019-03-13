@@ -56,19 +56,24 @@ x-y:
         x: |
           Thought to be one of the first Pokémon to live in
           harmony with humans, it has a placid disposition.
-          
         'y': |
           If it has sunshine and water, it doesn’t
           need to eat, because it can generate
           energy from the leaves on its back.
-          
-      forms: &x-y.pokemon.skiddo.forms
+      forms:
         skiddo:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.skiddo.forms.skiddo.form_name 'Default Form'
           default: *x-y.pokemon.skiddo.default
-          battle_only: false
-          icon: skiddo-default.png
+          battle_only: &x-y.pokemon.skiddo.forms.skiddo.battle_only false
+          icon: &x-y.pokemon.skiddo.forms.skiddo.icon skiddo-default.png
+          sprites:
+            - x-y/skiddo-default.png
+            - x-y/shiny/skiddo-default.png
+          art: &x-y.pokemon.skiddo.forms.skiddo.art
+            - skiddo-default.png
+          footprint: &x-y.pokemon.skiddo.forms.skiddo.footprint skiddo.png
+          cry: &x-y.pokemon.skiddo.forms.skiddo.cry skiddo-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -100,14 +105,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Thought to be one of the first Pokémon to live in
           harmony with humans, it has a placid disposition.
-          
         alpha-sapphire: |
           If it has sunshine and water, it doesn’t
           need to eat, because it can generate
           energy from the leaves on its back.
-          
-      forms: *x-y.pokemon.skiddo.forms
-sun-moon: &sun-moon
+      forms:
+        skiddo:
+          name: *x-y.name
+          form_name: *x-y.pokemon.skiddo.forms.skiddo.form_name
+          default: *x-y.pokemon.skiddo.default
+          battle_only: *x-y.pokemon.skiddo.forms.skiddo.battle_only
+          icon: *x-y.pokemon.skiddo.forms.skiddo.icon
+          art: *x-y.pokemon.skiddo.forms.skiddo.art
+          footprint: *x-y.pokemon.skiddo.forms.skiddo.footprint
+          cry: *x-y.pokemon.skiddo.forms.skiddo.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -132,5 +144,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.skiddo.mega
       stats: *x-y.pokemon.skiddo.stats
       abilities: *x-y.pokemon.skiddo.abilities
-      forms: *x-y.pokemon.skiddo.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        skiddo:
+          name: *x-y.name
+          form_name: *x-y.pokemon.skiddo.forms.skiddo.form_name
+          default: *x-y.pokemon.skiddo.default
+          battle_only: *x-y.pokemon.skiddo.forms.skiddo.battle_only
+          icon: *x-y.pokemon.skiddo.forms.skiddo.icon
+          sprites:
+            - sun-moon/skiddo-default.png
+            - sun-moon/shiny/skiddo-default.png
+          art: *x-y.pokemon.skiddo.forms.skiddo.art
+          footprint: *x-y.pokemon.skiddo.forms.skiddo.footprint
+          cry: *x-y.pokemon.skiddo.forms.skiddo.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    skiddo:
+      genus: *x-y.pokemon.skiddo.genus
+      color: *x-y.pokemon.skiddo.color
+      shape: *x-y.pokemon.skiddo.shape
+      female_rate: *x-y.pokemon.skiddo.female_rate
+      capture_rate: *x-y.pokemon.skiddo.capture_rate
+      happiness: *x-y.pokemon.skiddo.happiness
+      baby: *x-y.pokemon.skiddo.baby
+      hatch_steps: *x-y.pokemon.skiddo.hatch_steps
+      growth_rate: *x-y.pokemon.skiddo.growth_rate
+      forms_switchable: *x-y.pokemon.skiddo.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.skiddo.default
+      height: *x-y.pokemon.skiddo.height
+      weight: *x-y.pokemon.skiddo.weight
+      experience: *x-y.pokemon.skiddo.experience
+      types: *x-y.pokemon.skiddo.types
+      egg_groups: *x-y.pokemon.skiddo.egg_groups
+      mega: *x-y.pokemon.skiddo.mega
+      stats: *x-y.pokemon.skiddo.stats
+      abilities: *x-y.pokemon.skiddo.abilities
+      forms:
+        skiddo:
+          name: *x-y.name
+          form_name: *x-y.pokemon.skiddo.forms.skiddo.form_name
+          default: *x-y.pokemon.skiddo.default
+          battle_only: *x-y.pokemon.skiddo.forms.skiddo.battle_only
+          icon: *x-y.pokemon.skiddo.forms.skiddo.icon
+          sprites:
+            - ultra-sun-ultra-moon/skiddo-default.png
+            - ultra-sun-ultra-moon/shiny/skiddo-default.png
+          art: *x-y.pokemon.skiddo.forms.skiddo.art
+          footprint: *x-y.pokemon.skiddo.forms.skiddo.footprint
+          cry: *x-y.pokemon.skiddo.forms.skiddo.cry

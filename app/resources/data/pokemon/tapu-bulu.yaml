@@ -54,14 +54,17 @@ sun-moon:
           The guardian deity of Ula’ula is a lazy Pokémon.
           It commands plants to immobilize its foes and
           then deals them a savage blow with its horns.
-          
-      forms: &sun-moon.pokemon.tapu-bulu.forms
+      forms:
         tapu-bulu:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.tapu-bulu.forms.tapu-bulu.form_name 'Default Form'
           default: *sun-moon.pokemon.tapu-bulu.default
-          battle_only: false
-          icon: tapu-bulu-default.png
+          battle_only: &sun-moon.pokemon.tapu-bulu.forms.tapu-bulu.battle_only false
+          icon: &sun-moon.pokemon.tapu-bulu.forms.tapu-bulu.icon tapu-bulu-default.png
+          sprites:
+            - sun-moon/tapu-bulu-default.png
+            - sun-moon/shiny/tapu-bulu-default.png
+          footprint: &sun-moon.pokemon.tapu-bulu.forms.tapu-bulu.footprint tapu-bulu.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -90,5 +93,14 @@ ultra-sun-ultra-moon:
         ultra-sun: |
           Although it’s called a guardian deity, it’s violent
           enough to crush anyone it sees as an enemy.
-          
-      forms: *sun-moon.pokemon.tapu-bulu.forms
+      forms:
+        tapu-bulu:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.tapu-bulu.forms.tapu-bulu.form_name
+          default: *sun-moon.pokemon.tapu-bulu.default
+          battle_only: *sun-moon.pokemon.tapu-bulu.forms.tapu-bulu.battle_only
+          icon: *sun-moon.pokemon.tapu-bulu.forms.tapu-bulu.icon
+          sprites:
+            - ultra-sun-ultra-moon/tapu-bulu-default.png
+            - ultra-sun-ultra-moon/shiny/tapu-bulu-default.png
+          footprint: *sun-moon.pokemon.tapu-bulu.forms.tapu-bulu.footprint

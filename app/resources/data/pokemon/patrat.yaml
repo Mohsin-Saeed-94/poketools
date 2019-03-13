@@ -59,19 +59,26 @@ black-white:
           Using food stored in cheek pouches,
           they can keep watch for days. They use
           their tails to communicate with others.
-          
         white: |
           Extremely cautious, they take shifts to
           maintain a constant watch of their nest.
           They feel insecure without a lookout.
-          
-      forms: &black-white.pokemon.patrat.forms
+      forms:
         patrat:
           name: *black-white.name
           form_name: &black-white.pokemon.patrat.forms.patrat.form_name 'Default Form'
           default: *black-white.pokemon.patrat.default
           battle_only: &black-white.pokemon.patrat.forms.patrat.battle_only false
-          icon: gen5/patrat-default.png
+          icon: &black-white.pokemon.patrat.forms.patrat.icon gen5/patrat-default.png
+          sprites:
+            - black-white/patrat-default.png
+            - black-white/back/patrat-default.png
+            - black-white/back/shiny/patrat-default.png
+            - black-white/shiny/patrat-default.png
+          art: &black-white.pokemon.patrat.forms.patrat.art
+            - patrat-default.png
+          footprint: &black-white.pokemon.patrat.forms.patrat.footprint patrat.png
+          cry: &black-white.pokemon.patrat.forms.patrat.cry gen5/patrat-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -104,13 +111,20 @@ black-2-white-2:
           Extremely cautious, one of them
           will always be on the lookout, but it
           won’t notice a foe coming from behind.
-          
         white-2: |
           Extremely cautious, one of them
           will always be on the lookout, but it
           won’t notice a foe coming from behind.
-          
-      forms: *black-white.pokemon.patrat.forms
+      forms:
+        patrat:
+          name: *black-white.name
+          form_name: *black-white.pokemon.patrat.forms.patrat.form_name
+          default: *black-white.pokemon.patrat.default
+          battle_only: *black-white.pokemon.patrat.forms.patrat.battle_only
+          icon: *black-white.pokemon.patrat.forms.patrat.icon
+          art: *black-white.pokemon.patrat.forms.patrat.art
+          footprint: *black-white.pokemon.patrat.forms.patrat.footprint
+          cry: *black-white.pokemon.patrat.forms.patrat.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -144,19 +158,23 @@ x-y:
           Using food stored in cheek pouches, they can keep
           watch for days. They use their tails to communicate
           with others.
-          
         'y': |
           Extremely cautious, one of them will always be on
           the lookout, but it won’t notice a foe coming
           from behind.
-          
-      forms: &x-y.pokemon.patrat.forms
+      forms:
         patrat:
           name: *black-white.name
           form_name: *black-white.pokemon.patrat.forms.patrat.form_name
           default: *black-white.pokemon.patrat.default
           battle_only: *black-white.pokemon.patrat.forms.patrat.battle_only
-          icon: patrat-default.png
+          icon: &x-y.pokemon.patrat.forms.patrat.icon patrat-default.png
+          sprites:
+            - x-y/patrat-default.png
+            - x-y/shiny/patrat-default.png
+          art: *black-white.pokemon.patrat.forms.patrat.art
+          footprint: *black-white.pokemon.patrat.forms.patrat.footprint
+          cry: &x-y.pokemon.patrat.forms.patrat.cry patrat-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -189,14 +207,21 @@ omega-ruby-alpha-sapphire:
           Using food stored in cheek pouches, they can keep
           watch for days. They use their tails to communicate
           with others.
-          
         alpha-sapphire: |
           Extremely cautious, one of them will always be on
           the lookout, but it won’t notice a foe coming
           from behind.
-          
-      forms: *x-y.pokemon.patrat.forms
-sun-moon: &sun-moon
+      forms:
+        patrat:
+          name: *black-white.name
+          form_name: *black-white.pokemon.patrat.forms.patrat.form_name
+          default: *black-white.pokemon.patrat.default
+          battle_only: *black-white.pokemon.patrat.forms.patrat.battle_only
+          icon: *x-y.pokemon.patrat.forms.patrat.icon
+          art: *black-white.pokemon.patrat.forms.patrat.art
+          footprint: *black-white.pokemon.patrat.forms.patrat.footprint
+          cry: *x-y.pokemon.patrat.forms.patrat.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -221,5 +246,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.patrat.mega
       stats: *black-white.pokemon.patrat.stats
       abilities: *black-white.pokemon.patrat.abilities
-      forms: *x-y.pokemon.patrat.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        patrat:
+          name: *black-white.name
+          form_name: *black-white.pokemon.patrat.forms.patrat.form_name
+          default: *black-white.pokemon.patrat.default
+          battle_only: *black-white.pokemon.patrat.forms.patrat.battle_only
+          icon: *x-y.pokemon.patrat.forms.patrat.icon
+          sprites:
+            - sun-moon/patrat-default.png
+            - sun-moon/shiny/patrat-default.png
+          art: *black-white.pokemon.patrat.forms.patrat.art
+          footprint: *black-white.pokemon.patrat.forms.patrat.footprint
+          cry: *x-y.pokemon.patrat.forms.patrat.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    patrat:
+      genus: *black-white.pokemon.patrat.genus
+      color: *black-white.pokemon.patrat.color
+      shape: *black-white.pokemon.patrat.shape
+      female_rate: *black-white.pokemon.patrat.female_rate
+      capture_rate: *black-white.pokemon.patrat.capture_rate
+      happiness: *black-white.pokemon.patrat.happiness
+      baby: *black-white.pokemon.patrat.baby
+      hatch_steps: *black-white.pokemon.patrat.hatch_steps
+      growth_rate: *black-white.pokemon.patrat.growth_rate
+      forms_switchable: *black-white.pokemon.patrat.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.patrat.default
+      height: *black-white.pokemon.patrat.height
+      weight: *black-white.pokemon.patrat.weight
+      experience: *black-white.pokemon.patrat.experience
+      types: *black-white.pokemon.patrat.types
+      egg_groups: *black-white.pokemon.patrat.egg_groups
+      mega: *x-y.pokemon.patrat.mega
+      stats: *black-white.pokemon.patrat.stats
+      abilities: *black-white.pokemon.patrat.abilities
+      forms:
+        patrat:
+          name: *black-white.name
+          form_name: *black-white.pokemon.patrat.forms.patrat.form_name
+          default: *black-white.pokemon.patrat.default
+          battle_only: *black-white.pokemon.patrat.forms.patrat.battle_only
+          icon: *x-y.pokemon.patrat.forms.patrat.icon
+          sprites:
+            - ultra-sun-ultra-moon/patrat-default.png
+            - ultra-sun-ultra-moon/shiny/patrat-default.png
+          art: *black-white.pokemon.patrat.forms.patrat.art
+          footprint: *black-white.pokemon.patrat.forms.patrat.footprint
+          cry: *x-y.pokemon.patrat.forms.patrat.cry

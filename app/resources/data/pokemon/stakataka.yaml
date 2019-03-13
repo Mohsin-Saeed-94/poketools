@@ -46,13 +46,14 @@ sun-moon:
         beast-boost:
           hidden: false
           position: 1
-      forms: &sun-moon.pokemon.stakataka.forms
+      forms:
         stakataka:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.stakataka.forms.stakataka.form_name 'Default Form'
           default: *sun-moon.pokemon.stakataka.default
-          battle_only: false
-          icon: stakataka-default.png
+          battle_only: &sun-moon.pokemon.stakataka.forms.stakataka.battle_only false
+          icon: &sun-moon.pokemon.stakataka.forms.stakataka.icon stakataka-default.png
+          footprint: &sun-moon.pokemon.stakataka.forms.stakataka.footprint stakataka.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -82,5 +83,14 @@ ultra-sun-ultra-moon:
           It appeared from an Ultra Wormhole. Each one
           appears to be made up of many life-forms
           stacked one on top of each other.
-          
-      forms: *sun-moon.pokemon.stakataka.forms
+      forms:
+        stakataka:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.stakataka.forms.stakataka.form_name
+          default: *sun-moon.pokemon.stakataka.default
+          battle_only: *sun-moon.pokemon.stakataka.forms.stakataka.battle_only
+          icon: *sun-moon.pokemon.stakataka.forms.stakataka.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/stakataka-default.png
+            - ultra-sun-ultra-moon/stakataka-default.png
+          footprint: *sun-moon.pokemon.stakataka.forms.stakataka.footprint

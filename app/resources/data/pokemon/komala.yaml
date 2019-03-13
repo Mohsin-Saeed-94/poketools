@@ -51,14 +51,17 @@ sun-moon:
           The log it holds was given to it by its parents at
           birth. It has also been known to cling to the arm
           of a friendly Trainer.
-          
-      forms: &sun-moon.pokemon.komala.forms
+      forms:
         komala:
           name: *sun-moon.name
-          form_name: 'Default Form'
+          form_name: &sun-moon.pokemon.komala.forms.komala.form_name 'Default Form'
           default: *sun-moon.pokemon.komala.default
-          battle_only: false
-          icon: komala-default.png
+          battle_only: &sun-moon.pokemon.komala.forms.komala.battle_only false
+          icon: &sun-moon.pokemon.komala.forms.komala.icon komala-default.png
+          sprites:
+            - sun-moon/shiny/komala-default.png
+            - sun-moon/komala-default.png
+          footprint: &sun-moon.pokemon.komala.forms.komala.footprint komala.png
 ultra-sun-ultra-moon:
   name: *sun-moon.name
   position: *sun-moon.position
@@ -89,5 +92,14 @@ ultra-sun-ultra-moon:
           It stays asleep from the moment it’s born.
           When it falls into a deep sleep, it stops
           moving altogether.
-          
-      forms: *sun-moon.pokemon.komala.forms
+      forms:
+        komala:
+          name: *sun-moon.name
+          form_name: *sun-moon.pokemon.komala.forms.komala.form_name
+          default: *sun-moon.pokemon.komala.default
+          battle_only: *sun-moon.pokemon.komala.forms.komala.battle_only
+          icon: *sun-moon.pokemon.komala.forms.komala.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/komala-default.png
+            - ultra-sun-ultra-moon/komala-default.png
+          footprint: *sun-moon.pokemon.komala.forms.komala.footprint

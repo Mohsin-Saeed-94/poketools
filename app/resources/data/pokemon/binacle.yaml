@@ -61,19 +61,24 @@ x-y:
           Two Binacle live together on one rock.
           When they fight, one of them will move
           to a different rock.
-          
         'y': |
           They stretch and then contract, yanking their
           rocks along with them in bold hops. They eat
           seaweed that washes up on the shoreline.
-          
-      forms: &x-y.pokemon.binacle.forms
+      forms:
         binacle:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.binacle.forms.binacle.form_name 'Default Form'
           default: *x-y.pokemon.binacle.default
-          battle_only: false
-          icon: binacle-default.png
+          battle_only: &x-y.pokemon.binacle.forms.binacle.battle_only false
+          icon: &x-y.pokemon.binacle.forms.binacle.icon binacle-default.png
+          sprites:
+            - x-y/binacle-default.png
+            - x-y/shiny/binacle-default.png
+          art: &x-y.pokemon.binacle.forms.binacle.art
+            - binacle-default.png
+          footprint: &x-y.pokemon.binacle.forms.binacle.footprint binacle.png
+          cry: &x-y.pokemon.binacle.forms.binacle.cry binacle-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -106,14 +111,21 @@ omega-ruby-alpha-sapphire:
           Two Binacle live together on one rock.
           When they fight, one of them will move
           to a different rock.
-          
         alpha-sapphire: |
           They stretch and then contract, yanking their
           rocks along with them in bold hops. They eat
           seaweed that washes up on the shoreline.
-          
-      forms: *x-y.pokemon.binacle.forms
-sun-moon: &sun-moon
+      forms:
+        binacle:
+          name: *x-y.name
+          form_name: *x-y.pokemon.binacle.forms.binacle.form_name
+          default: *x-y.pokemon.binacle.default
+          battle_only: *x-y.pokemon.binacle.forms.binacle.battle_only
+          icon: *x-y.pokemon.binacle.forms.binacle.icon
+          art: *x-y.pokemon.binacle.forms.binacle.art
+          footprint: *x-y.pokemon.binacle.forms.binacle.footprint
+          cry: *x-y.pokemon.binacle.forms.binacle.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -138,5 +150,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.binacle.mega
       stats: *x-y.pokemon.binacle.stats
       abilities: *x-y.pokemon.binacle.abilities
-      forms: *x-y.pokemon.binacle.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        binacle:
+          name: *x-y.name
+          form_name: *x-y.pokemon.binacle.forms.binacle.form_name
+          default: *x-y.pokemon.binacle.default
+          battle_only: *x-y.pokemon.binacle.forms.binacle.battle_only
+          icon: *x-y.pokemon.binacle.forms.binacle.icon
+          sprites:
+            - sun-moon/binacle-default.png
+            - sun-moon/shiny/binacle-default.png
+          art: *x-y.pokemon.binacle.forms.binacle.art
+          footprint: *x-y.pokemon.binacle.forms.binacle.footprint
+          cry: *x-y.pokemon.binacle.forms.binacle.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    binacle:
+      genus: *x-y.pokemon.binacle.genus
+      color: *x-y.pokemon.binacle.color
+      shape: *x-y.pokemon.binacle.shape
+      female_rate: *x-y.pokemon.binacle.female_rate
+      capture_rate: *x-y.pokemon.binacle.capture_rate
+      happiness: *x-y.pokemon.binacle.happiness
+      baby: *x-y.pokemon.binacle.baby
+      hatch_steps: *x-y.pokemon.binacle.hatch_steps
+      growth_rate: *x-y.pokemon.binacle.growth_rate
+      forms_switchable: *x-y.pokemon.binacle.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.binacle.default
+      height: *x-y.pokemon.binacle.height
+      weight: *x-y.pokemon.binacle.weight
+      experience: *x-y.pokemon.binacle.experience
+      types: *x-y.pokemon.binacle.types
+      egg_groups: *x-y.pokemon.binacle.egg_groups
+      mega: *x-y.pokemon.binacle.mega
+      stats: *x-y.pokemon.binacle.stats
+      abilities: *x-y.pokemon.binacle.abilities
+      forms:
+        binacle:
+          name: *x-y.name
+          form_name: *x-y.pokemon.binacle.forms.binacle.form_name
+          default: *x-y.pokemon.binacle.default
+          battle_only: *x-y.pokemon.binacle.forms.binacle.battle_only
+          icon: *x-y.pokemon.binacle.forms.binacle.icon
+          sprites:
+            - ultra-sun-ultra-moon/binacle-default.png
+            - ultra-sun-ultra-moon/shiny/binacle-default.png
+          art: *x-y.pokemon.binacle.forms.binacle.art
+          footprint: *x-y.pokemon.binacle.forms.binacle.footprint
+          cry: *x-y.pokemon.binacle.forms.binacle.cry

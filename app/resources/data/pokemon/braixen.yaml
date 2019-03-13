@@ -61,19 +61,24 @@ x-y:
           It has a twig stuck in its tail. With
           friction from its tail fur, it sets the
           twig on fire and launches into battle.
-          
         'y': |
           When the twig is plucked from its tail,
           friction sets the twig alight. The flame
           is used to send signals to its allies.
-          
-      forms: &x-y.pokemon.braixen.forms
+      forms:
         braixen:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.braixen.forms.braixen.form_name 'Default Form'
           default: *x-y.pokemon.braixen.default
-          battle_only: false
-          icon: braixen-default.png
+          battle_only: &x-y.pokemon.braixen.forms.braixen.battle_only false
+          icon: &x-y.pokemon.braixen.forms.braixen.icon braixen-default.png
+          sprites:
+            - x-y/braixen-default.png
+            - x-y/shiny/braixen-default.png
+          art: &x-y.pokemon.braixen.forms.braixen.art
+            - braixen-default.png
+          footprint: &x-y.pokemon.braixen.forms.braixen.footprint braixen.png
+          cry: &x-y.pokemon.braixen.forms.braixen.cry braixen-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -108,14 +113,21 @@ omega-ruby-alpha-sapphire:
           It has a twig stuck in its tail. With
           friction from its tail fur, it sets the
           twig on fire and launches into battle.
-          
         alpha-sapphire: |
           When the twig is plucked from its tail,
           friction sets the twig alight. The flame
           is used to send signals to its allies.
-          
-      forms: *x-y.pokemon.braixen.forms
-sun-moon: &sun-moon
+      forms:
+        braixen:
+          name: *x-y.name
+          form_name: *x-y.pokemon.braixen.forms.braixen.form_name
+          default: *x-y.pokemon.braixen.default
+          battle_only: *x-y.pokemon.braixen.forms.braixen.battle_only
+          icon: *x-y.pokemon.braixen.forms.braixen.icon
+          art: *x-y.pokemon.braixen.forms.braixen.art
+          footprint: *x-y.pokemon.braixen.forms.braixen.footprint
+          cry: *x-y.pokemon.braixen.forms.braixen.cry
+sun-moon:
   name: *x-y.name
   position: *x-y.position
   pokemon:
@@ -142,5 +154,56 @@ sun-moon: &sun-moon
       stats: *x-y.pokemon.braixen.stats
       abilities: *x-y.pokemon.braixen.abilities
       evolution_conditions: *x-y.pokemon.braixen.evolution_conditions
-      forms: *x-y.pokemon.braixen.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        braixen:
+          name: *x-y.name
+          form_name: *x-y.pokemon.braixen.forms.braixen.form_name
+          default: *x-y.pokemon.braixen.default
+          battle_only: *x-y.pokemon.braixen.forms.braixen.battle_only
+          icon: *x-y.pokemon.braixen.forms.braixen.icon
+          sprites:
+            - sun-moon/braixen-default.png
+            - sun-moon/shiny/braixen-default.png
+          art: *x-y.pokemon.braixen.forms.braixen.art
+          footprint: *x-y.pokemon.braixen.forms.braixen.footprint
+          cry: *x-y.pokemon.braixen.forms.braixen.cry
+ultra-sun-ultra-moon:
+  name: *x-y.name
+  position: *x-y.position
+  pokemon:
+    braixen:
+      genus: *x-y.pokemon.braixen.genus
+      evolution_parent: *x-y.pokemon.braixen.evolution_parent
+      color: *x-y.pokemon.braixen.color
+      shape: *x-y.pokemon.braixen.shape
+      female_rate: *x-y.pokemon.braixen.female_rate
+      capture_rate: *x-y.pokemon.braixen.capture_rate
+      happiness: *x-y.pokemon.braixen.happiness
+      baby: *x-y.pokemon.braixen.baby
+      hatch_steps: *x-y.pokemon.braixen.hatch_steps
+      growth_rate: *x-y.pokemon.braixen.growth_rate
+      forms_switchable: *x-y.pokemon.braixen.forms_switchable
+      name: *x-y.name
+      default: *x-y.pokemon.braixen.default
+      height: *x-y.pokemon.braixen.height
+      weight: *x-y.pokemon.braixen.weight
+      experience: *x-y.pokemon.braixen.experience
+      types: *x-y.pokemon.braixen.types
+      egg_groups: *x-y.pokemon.braixen.egg_groups
+      mega: *x-y.pokemon.braixen.mega
+      stats: *x-y.pokemon.braixen.stats
+      abilities: *x-y.pokemon.braixen.abilities
+      evolution_conditions: *x-y.pokemon.braixen.evolution_conditions
+      forms:
+        braixen:
+          name: *x-y.name
+          form_name: *x-y.pokemon.braixen.forms.braixen.form_name
+          default: *x-y.pokemon.braixen.default
+          battle_only: *x-y.pokemon.braixen.forms.braixen.battle_only
+          icon: *x-y.pokemon.braixen.forms.braixen.icon
+          sprites:
+            - ultra-sun-ultra-moon/braixen-default.png
+            - ultra-sun-ultra-moon/shiny/braixen-default.png
+          art: *x-y.pokemon.braixen.forms.braixen.art
+          footprint: *x-y.pokemon.braixen.forms.braixen.footprint
+          cry: *x-y.pokemon.braixen.forms.braixen.cry

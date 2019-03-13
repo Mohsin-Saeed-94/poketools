@@ -58,18 +58,23 @@ x-y:
           These friendly Pokémon send signals
           to one another with beautiful chirps
           and tail-feather movements.
-          
         'y': |
           Despite the beauty of its lilting voice, it’s
           merciless to intruders that enter its territory.
-          
-      forms: &x-y.pokemon.fletchling.forms
+      forms:
         fletchling:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.fletchling.forms.fletchling.form_name 'Default Form'
           default: *x-y.pokemon.fletchling.default
-          battle_only: false
-          icon: fletchling-default.png
+          battle_only: &x-y.pokemon.fletchling.forms.fletchling.battle_only false
+          icon: &x-y.pokemon.fletchling.forms.fletchling.icon fletchling-default.png
+          sprites:
+            - x-y/shiny/fletchling-default.png
+            - x-y/fletchling-default.png
+          art: &x-y.pokemon.fletchling.forms.fletchling.art
+            - fletchling-default.png
+          footprint: &x-y.pokemon.fletchling.forms.fletchling.footprint fletchling.png
+          cry: &x-y.pokemon.fletchling.forms.fletchling.cry fletchling-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -102,12 +107,19 @@ omega-ruby-alpha-sapphire:
           These friendly Pokémon send signals
           to one another with beautiful chirps
           and tail-feather movements.
-          
         alpha-sapphire: |
           Despite the beauty of its lilting voice, it’s
           merciless to intruders that enter its territory.
-          
-      forms: *x-y.pokemon.fletchling.forms
+      forms:
+        fletchling:
+          name: *x-y.name
+          form_name: *x-y.pokemon.fletchling.forms.fletchling.form_name
+          default: *x-y.pokemon.fletchling.default
+          battle_only: *x-y.pokemon.fletchling.forms.fletchling.battle_only
+          icon: *x-y.pokemon.fletchling.forms.fletchling.icon
+          art: *x-y.pokemon.fletchling.forms.fletchling.art
+          footprint: *x-y.pokemon.fletchling.forms.fletchling.footprint
+          cry: *x-y.pokemon.fletchling.forms.fletchling.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -137,8 +149,19 @@ sun-moon:
         moon: |
           When it’s excited, its temperature can double,
           spiking hormone production in its body.
-          
-      forms: *x-y.pokemon.fletchling.forms
+      forms:
+        fletchling:
+          name: *x-y.name
+          form_name: *x-y.pokemon.fletchling.forms.fletchling.form_name
+          default: *x-y.pokemon.fletchling.default
+          battle_only: *x-y.pokemon.fletchling.forms.fletchling.battle_only
+          icon: *x-y.pokemon.fletchling.forms.fletchling.icon
+          sprites:
+            - sun-moon/shiny/fletchling-default.png
+            - sun-moon/fletchling-default.png
+          art: *x-y.pokemon.fletchling.forms.fletchling.art
+          footprint: *x-y.pokemon.fletchling.forms.fletchling.footprint
+          cry: *x-y.pokemon.fletchling.forms.fletchling.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -169,5 +192,16 @@ ultra-sun-ultra-moon:
           While it’s an amiable Pokémon, if you touch it
           unexpectedly, it will heat up its body in an
           instant, and you’ll be burned.
-          
-      forms: *x-y.pokemon.fletchling.forms
+      forms:
+        fletchling:
+          name: *x-y.name
+          form_name: *x-y.pokemon.fletchling.forms.fletchling.form_name
+          default: *x-y.pokemon.fletchling.default
+          battle_only: *x-y.pokemon.fletchling.forms.fletchling.battle_only
+          icon: *x-y.pokemon.fletchling.forms.fletchling.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/fletchling-default.png
+            - ultra-sun-ultra-moon/fletchling-default.png
+          art: *x-y.pokemon.fletchling.forms.fletchling.art
+          footprint: *x-y.pokemon.fletchling.forms.fletchling.footprint
+          cry: *x-y.pokemon.fletchling.forms.fletchling.cry

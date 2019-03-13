@@ -59,19 +59,24 @@ x-y:
           This Pokémon was restored from a fossil.
           If something happens that it doesn’t like,
           it throws a tantrum and runs wild.
-          
         'y': |
           Its immense jaws have enough destructive
           force that it can chew up an automobile.
           It lived 100 million years ago.
-          
-      forms: &x-y.pokemon.tyrunt.forms
+      forms:
         tyrunt:
           name: *x-y.name
-          form_name: 'Default Form'
+          form_name: &x-y.pokemon.tyrunt.forms.tyrunt.form_name 'Default Form'
           default: *x-y.pokemon.tyrunt.default
-          battle_only: false
-          icon: tyrunt-default.png
+          battle_only: &x-y.pokemon.tyrunt.forms.tyrunt.battle_only false
+          icon: &x-y.pokemon.tyrunt.forms.tyrunt.icon tyrunt-default.png
+          sprites:
+            - x-y/tyrunt-default.png
+            - x-y/shiny/tyrunt-default.png
+          art: &x-y.pokemon.tyrunt.forms.tyrunt.art
+            - tyrunt-default.png
+          footprint: &x-y.pokemon.tyrunt.forms.tyrunt.footprint tyrunt.png
+          cry: &x-y.pokemon.tyrunt.forms.tyrunt.cry tyrunt-default.webm
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -104,13 +109,20 @@ omega-ruby-alpha-sapphire:
           This Pokémon was restored from a fossil.
           If something happens that it doesn’t like,
           it throws a tantrum and runs wild.
-          
         alpha-sapphire: |
           Its immense jaws have enough destructive
           force that it can chew up an automobile.
           It lived 100 million years ago.
-          
-      forms: *x-y.pokemon.tyrunt.forms
+      forms:
+        tyrunt:
+          name: *x-y.name
+          form_name: *x-y.pokemon.tyrunt.forms.tyrunt.form_name
+          default: *x-y.pokemon.tyrunt.default
+          battle_only: *x-y.pokemon.tyrunt.forms.tyrunt.battle_only
+          icon: *x-y.pokemon.tyrunt.forms.tyrunt.icon
+          art: *x-y.pokemon.tyrunt.forms.tyrunt.art
+          footprint: *x-y.pokemon.tyrunt.forms.tyrunt.footprint
+          cry: *x-y.pokemon.tyrunt.forms.tyrunt.cry
 sun-moon:
   name: *x-y.name
   position: *x-y.position
@@ -136,7 +148,19 @@ sun-moon:
       mega: *x-y.pokemon.tyrunt.mega
       stats: *x-y.pokemon.tyrunt.stats
       abilities: *x-y.pokemon.tyrunt.abilities
-      forms: *x-y.pokemon.tyrunt.forms
+      forms:
+        tyrunt:
+          name: *x-y.name
+          form_name: *x-y.pokemon.tyrunt.forms.tyrunt.form_name
+          default: *x-y.pokemon.tyrunt.default
+          battle_only: *x-y.pokemon.tyrunt.forms.tyrunt.battle_only
+          icon: *x-y.pokemon.tyrunt.forms.tyrunt.icon
+          sprites:
+            - sun-moon/tyrunt-default.png
+            - sun-moon/shiny/tyrunt-default.png
+          art: *x-y.pokemon.tyrunt.forms.tyrunt.art
+          footprint: *x-y.pokemon.tyrunt.forms.tyrunt.footprint
+          cry: *x-y.pokemon.tyrunt.forms.tyrunt.cry
 ultra-sun-ultra-moon:
   name: *x-y.name
   position: *x-y.position
@@ -167,5 +191,16 @@ ultra-sun-ultra-moon:
           Its large jaw has incredible destructive power.
           Some theories suggest that its restored form is
           different from its form of long ago.
-          
-      forms: *x-y.pokemon.tyrunt.forms
+      forms:
+        tyrunt:
+          name: *x-y.name
+          form_name: *x-y.pokemon.tyrunt.forms.tyrunt.form_name
+          default: *x-y.pokemon.tyrunt.default
+          battle_only: *x-y.pokemon.tyrunt.forms.tyrunt.battle_only
+          icon: *x-y.pokemon.tyrunt.forms.tyrunt.icon
+          sprites:
+            - ultra-sun-ultra-moon/tyrunt-default.png
+            - ultra-sun-ultra-moon/shiny/tyrunt-default.png
+          art: *x-y.pokemon.tyrunt.forms.tyrunt.art
+          footprint: *x-y.pokemon.tyrunt.forms.tyrunt.footprint
+          cry: *x-y.pokemon.tyrunt.forms.tyrunt.cry

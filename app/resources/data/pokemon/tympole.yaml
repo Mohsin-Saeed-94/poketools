@@ -63,19 +63,26 @@ black-white:
           They warn others of danger by
           vibrating their cheeks to create
           a high-pitched sound.
-          
         white: |
           By vibrating its cheeks, it emits sound
           waves imperceptible to humans. It uses
           the rhythm of these sounds to talk.
-          
-      forms: &black-white.pokemon.tympole.forms
+      forms:
         tympole:
           name: *black-white.name
           form_name: &black-white.pokemon.tympole.forms.tympole.form_name 'Default Form'
           default: *black-white.pokemon.tympole.default
           battle_only: &black-white.pokemon.tympole.forms.tympole.battle_only false
-          icon: gen5/tympole-default.png
+          icon: &black-white.pokemon.tympole.forms.tympole.icon gen5/tympole-default.png
+          sprites:
+            - black-white/back/shiny/tympole-default.png
+            - black-white/back/tympole-default.png
+            - black-white/shiny/tympole-default.png
+            - black-white/tympole-default.png
+          art: &black-white.pokemon.tympole.forms.tympole.art
+            - tympole-default.png
+          footprint: &black-white.pokemon.tympole.forms.tympole.footprint tympole.png
+          cry: &black-white.pokemon.tympole.forms.tympole.cry gen5/tympole-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -112,13 +119,20 @@ black-2-white-2:
           By vibrating its cheeks, it emits
           sound waves imperceptible to humans
           and warns others of danger.
-          
         white-2: |
           By vibrating its cheeks, it emits
           sound waves imperceptible to humans
           and warns others of danger.
-          
-      forms: *black-white.pokemon.tympole.forms
+      forms:
+        tympole:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tympole.forms.tympole.form_name
+          default: *black-white.pokemon.tympole.default
+          battle_only: *black-white.pokemon.tympole.forms.tympole.battle_only
+          icon: *black-white.pokemon.tympole.forms.tympole.icon
+          art: *black-white.pokemon.tympole.forms.tympole.art
+          footprint: *black-white.pokemon.tympole.forms.tympole.footprint
+          cry: *black-white.pokemon.tympole.forms.tympole.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -151,19 +165,23 @@ x-y:
           By vibrating its cheeks, it emits sound waves
           imperceptible to humans and warns others
           of danger.
-          
         'y': |
           By vibrating its cheeks, it emits sound waves
           imperceptible to humans. It uses the rhythm of
           these sounds to talk.
-          
-      forms: &x-y.pokemon.tympole.forms
+      forms:
         tympole:
           name: *black-white.name
           form_name: *black-white.pokemon.tympole.forms.tympole.form_name
           default: *black-white.pokemon.tympole.default
           battle_only: *black-white.pokemon.tympole.forms.tympole.battle_only
-          icon: tympole-default.png
+          icon: &x-y.pokemon.tympole.forms.tympole.icon tympole-default.png
+          sprites:
+            - x-y/shiny/tympole-default.png
+            - x-y/tympole-default.png
+          art: *black-white.pokemon.tympole.forms.tympole.art
+          footprint: *black-white.pokemon.tympole.forms.tympole.footprint
+          cry: &x-y.pokemon.tympole.forms.tympole.cry tympole-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -195,14 +213,21 @@ omega-ruby-alpha-sapphire:
           By vibrating its cheeks, it emits sound waves
           imperceptible to humans and warns others
           of danger.
-          
         alpha-sapphire: |
           By vibrating its cheeks, it emits sound waves
           imperceptible to humans. It uses the rhythm of
           these sounds to talk.
-          
-      forms: *x-y.pokemon.tympole.forms
-sun-moon: &sun-moon
+      forms:
+        tympole:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tympole.forms.tympole.form_name
+          default: *black-white.pokemon.tympole.default
+          battle_only: *black-white.pokemon.tympole.forms.tympole.battle_only
+          icon: *x-y.pokemon.tympole.forms.tympole.icon
+          art: *black-white.pokemon.tympole.forms.tympole.art
+          footprint: *black-white.pokemon.tympole.forms.tympole.footprint
+          cry: *x-y.pokemon.tympole.forms.tympole.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -227,5 +252,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.tympole.mega
       stats: *black-white.pokemon.tympole.stats
       abilities: *black-white.pokemon.tympole.abilities
-      forms: *x-y.pokemon.tympole.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        tympole:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tympole.forms.tympole.form_name
+          default: *black-white.pokemon.tympole.default
+          battle_only: *black-white.pokemon.tympole.forms.tympole.battle_only
+          icon: *x-y.pokemon.tympole.forms.tympole.icon
+          sprites:
+            - sun-moon/shiny/tympole-default.png
+            - sun-moon/tympole-default.png
+          art: *black-white.pokemon.tympole.forms.tympole.art
+          footprint: *black-white.pokemon.tympole.forms.tympole.footprint
+          cry: *x-y.pokemon.tympole.forms.tympole.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    tympole:
+      genus: *black-white.pokemon.tympole.genus
+      color: *black-white.pokemon.tympole.color
+      shape: *black-white.pokemon.tympole.shape
+      female_rate: *black-white.pokemon.tympole.female_rate
+      capture_rate: *black-white.pokemon.tympole.capture_rate
+      happiness: *black-white.pokemon.tympole.happiness
+      baby: *black-white.pokemon.tympole.baby
+      hatch_steps: *black-white.pokemon.tympole.hatch_steps
+      growth_rate: *black-white.pokemon.tympole.growth_rate
+      forms_switchable: *black-white.pokemon.tympole.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.tympole.default
+      height: *black-white.pokemon.tympole.height
+      weight: *black-white.pokemon.tympole.weight
+      experience: *black-white.pokemon.tympole.experience
+      types: *black-white.pokemon.tympole.types
+      egg_groups: *black-white.pokemon.tympole.egg_groups
+      mega: *x-y.pokemon.tympole.mega
+      stats: *black-white.pokemon.tympole.stats
+      abilities: *black-white.pokemon.tympole.abilities
+      forms:
+        tympole:
+          name: *black-white.name
+          form_name: *black-white.pokemon.tympole.forms.tympole.form_name
+          default: *black-white.pokemon.tympole.default
+          battle_only: *black-white.pokemon.tympole.forms.tympole.battle_only
+          icon: *x-y.pokemon.tympole.forms.tympole.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/tympole-default.png
+            - ultra-sun-ultra-moon/tympole-default.png
+          art: *black-white.pokemon.tympole.forms.tympole.art
+          footprint: *black-white.pokemon.tympole.forms.tympole.footprint
+          cry: *x-y.pokemon.tympole.forms.tympole.cry

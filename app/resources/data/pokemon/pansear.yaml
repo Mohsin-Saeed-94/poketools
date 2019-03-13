@@ -61,19 +61,26 @@ black-white:
           When it is angered, the temperature
           of its head tuft reaches 600° F.
           It uses its tuft to roast berries.
-          
         white: |
           This Pokémon lives in caves
           in volcanoes. The fire within the
           tuft on its head can reach 600° F.
-          
-      forms: &black-white.pokemon.pansear.forms
+      forms:
         pansear:
           name: *black-white.name
           form_name: &black-white.pokemon.pansear.forms.pansear.form_name 'Default Form'
           default: *black-white.pokemon.pansear.default
           battle_only: &black-white.pokemon.pansear.forms.pansear.battle_only false
-          icon: gen5/pansear-default.png
+          icon: &black-white.pokemon.pansear.forms.pansear.icon gen5/pansear-default.png
+          sprites:
+            - black-white/back/shiny/pansear-default.png
+            - black-white/back/pansear-default.png
+            - black-white/shiny/pansear-default.png
+            - black-white/pansear-default.png
+          art: &black-white.pokemon.pansear.forms.pansear.art
+            - pansear-default.png
+          footprint: &black-white.pokemon.pansear.forms.pansear.footprint pansear.png
+          cry: &black-white.pokemon.pansear.forms.pansear.cry gen5/pansear-default.webm
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -109,13 +116,20 @@ black-2-white-2:
           Very intelligent, it roasts
           berries before eating them.
           It likes to help people.
-          
         white-2: |
           Very intelligent, it roasts
           berries before eating them.
           It likes to help people.
-          
-      forms: *black-white.pokemon.pansear.forms
+      forms:
+        pansear:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pansear.forms.pansear.form_name
+          default: *black-white.pokemon.pansear.default
+          battle_only: *black-white.pokemon.pansear.forms.pansear.battle_only
+          icon: *black-white.pokemon.pansear.forms.pansear.icon
+          art: *black-white.pokemon.pansear.forms.pansear.art
+          footprint: *black-white.pokemon.pansear.forms.pansear.footprint
+          cry: *black-white.pokemon.pansear.forms.pansear.cry
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -148,19 +162,23 @@ x-y:
         x: |
           Very intelligent, it roasts berries before eating them.
           It likes to help people.
-          
         'y': |
           This Pokémon lives in caves in volcanoes.
           The fire within the tuft on its head can reach
           600 degrees Fahrenheit.
-          
-      forms: &x-y.pokemon.pansear.forms
+      forms:
         pansear:
           name: *black-white.name
           form_name: *black-white.pokemon.pansear.forms.pansear.form_name
           default: *black-white.pokemon.pansear.default
           battle_only: *black-white.pokemon.pansear.forms.pansear.battle_only
-          icon: pansear-default.png
+          icon: &x-y.pokemon.pansear.forms.pansear.icon pansear-default.png
+          sprites:
+            - x-y/shiny/pansear-default.png
+            - x-y/pansear-default.png
+          art: *black-white.pokemon.pansear.forms.pansear.art
+          footprint: *black-white.pokemon.pansear.forms.pansear.footprint
+          cry: &x-y.pokemon.pansear.forms.pansear.cry pansear-default.webm
 omega-ruby-alpha-sapphire:
   name: *black-white.name
   position: *black-white.position
@@ -192,14 +210,21 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           Very intelligent, it roasts berries before eating them.
           It likes to help people.
-          
         alpha-sapphire: |
           This Pokémon lives in caves in volcanoes.
           The fire within the tuft on its head can reach
           600 degrees Fahrenheit.
-          
-      forms: *x-y.pokemon.pansear.forms
-sun-moon: &sun-moon
+      forms:
+        pansear:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pansear.forms.pansear.form_name
+          default: *black-white.pokemon.pansear.default
+          battle_only: *black-white.pokemon.pansear.forms.pansear.battle_only
+          icon: *x-y.pokemon.pansear.forms.pansear.icon
+          art: *black-white.pokemon.pansear.forms.pansear.art
+          footprint: *black-white.pokemon.pansear.forms.pansear.footprint
+          cry: *x-y.pokemon.pansear.forms.pansear.cry
+sun-moon:
   name: *black-white.name
   position: *black-white.position
   pokemon:
@@ -224,5 +249,54 @@ sun-moon: &sun-moon
       mega: *x-y.pokemon.pansear.mega
       stats: *black-white.pokemon.pansear.stats
       abilities: *black-white.pokemon.pansear.abilities
-      forms: *x-y.pokemon.pansear.forms
-ultra-sun-ultra-moon: *sun-moon
+      forms:
+        pansear:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pansear.forms.pansear.form_name
+          default: *black-white.pokemon.pansear.default
+          battle_only: *black-white.pokemon.pansear.forms.pansear.battle_only
+          icon: *x-y.pokemon.pansear.forms.pansear.icon
+          sprites:
+            - sun-moon/shiny/pansear-default.png
+            - sun-moon/pansear-default.png
+          art: *black-white.pokemon.pansear.forms.pansear.art
+          footprint: *black-white.pokemon.pansear.forms.pansear.footprint
+          cry: *x-y.pokemon.pansear.forms.pansear.cry
+ultra-sun-ultra-moon:
+  name: *black-white.name
+  position: *black-white.position
+  pokemon:
+    pansear:
+      genus: *black-white.pokemon.pansear.genus
+      color: *black-white.pokemon.pansear.color
+      shape: *black-white.pokemon.pansear.shape
+      female_rate: *black-white.pokemon.pansear.female_rate
+      capture_rate: *black-white.pokemon.pansear.capture_rate
+      happiness: *black-white.pokemon.pansear.happiness
+      baby: *black-white.pokemon.pansear.baby
+      hatch_steps: *black-white.pokemon.pansear.hatch_steps
+      growth_rate: *black-white.pokemon.pansear.growth_rate
+      forms_switchable: *black-white.pokemon.pansear.forms_switchable
+      name: *black-white.name
+      default: *black-white.pokemon.pansear.default
+      height: *black-white.pokemon.pansear.height
+      weight: *black-white.pokemon.pansear.weight
+      experience: *black-white.pokemon.pansear.experience
+      types: *black-white.pokemon.pansear.types
+      egg_groups: *black-white.pokemon.pansear.egg_groups
+      mega: *x-y.pokemon.pansear.mega
+      stats: *black-white.pokemon.pansear.stats
+      abilities: *black-white.pokemon.pansear.abilities
+      forms:
+        pansear:
+          name: *black-white.name
+          form_name: *black-white.pokemon.pansear.forms.pansear.form_name
+          default: *black-white.pokemon.pansear.default
+          battle_only: *black-white.pokemon.pansear.forms.pansear.battle_only
+          icon: *x-y.pokemon.pansear.forms.pansear.icon
+          sprites:
+            - ultra-sun-ultra-moon/shiny/pansear-default.png
+            - ultra-sun-ultra-moon/pansear-default.png
+          art: *black-white.pokemon.pansear.forms.pansear.art
+          footprint: *black-white.pokemon.pansear.forms.pansear.footprint
+          cry: *x-y.pokemon.pansear.forms.pansear.cry
