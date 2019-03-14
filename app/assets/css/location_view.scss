@@ -3,5 +3,72 @@
 @import "datatable";
 
 .pkt-location-view-encounter-table-conditions ul {
-    @extend .list-unstyled;
+    @extend .list-inline;
+
+    li {
+        @extend .list-inline-item;
+    }
+}
+
+.pkt-icon {
+    $encounter-conditions: (
+        'encountercondition-time-of-day-morning',
+        'encountercondition-time-of-day-day',
+        'encountercondition-time-of-day-night',
+        'encountercondition-pokeradar-on',
+        'encountercondition-pokeradar-off',
+        'encountercondition-radio-off',
+        'encountercondition-radio-hoenn',
+        'encountercondition-radio-sinnoh',
+        'encountercondition-swarm-yes',
+        'encountercondition-swarm-no',
+        'encountercondition-gen-3-game-in-slot-2-none',
+        'encountercondition-gen-3-game-in-slot-2-ruby',
+        'encountercondition-gen-3-game-in-slot-2-sapphire',
+        'encountercondition-gen-3-game-in-slot-2-emerald',
+        'encountercondition-gen-3-game-in-slot-2-firered',
+        'encountercondition-gen-3-game-in-slot-2-leafgreen',
+        'encountercondition-season-spring',
+        'encountercondition-season-summer',
+        'encountercondition-season-autumn',
+        'encountercondition-season-winter',
+    );
+    @each $name in $encounter-conditions {
+        &-#{$name} svg {
+            width: 2em;
+            height: 2em;
+        }
+    }
+
+    &-encountercondition-radio {
+        $gradient-radio: (
+            hoenn: '#gradient-ruby-sapphire',
+            sinnoh: '#gradient-diamond-pearl',
+        );
+
+        @each $name, $gradient in $gradient-radio {
+            &-#{$name} {
+                path {
+                    fill: url($gradient);
+                }
+            }
+        }
+    }
+
+    &-encountercondition-gen-3-game-in-slot-2 {
+        $color-version: (
+            ruby: #FF0000,
+            sapphire: #0000FF,
+            emerald: #008200,
+            firered: #FF6900,
+            leafgreen: #00CC00,
+        );
+        @each $name, $color in $color-version {
+            &-#{$name} {
+                path.cartridge-fill {
+                    fill: $color;
+                }
+            }
+        }
+    }
 }

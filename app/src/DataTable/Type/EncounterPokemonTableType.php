@@ -14,6 +14,7 @@ use League\CommonMark\CommonMarkConverter;
 use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
 use Omines\DataTablesBundle\Column\AbstractColumn;
 use Omines\DataTablesBundle\Column\TextColumn;
+use Omines\DataTablesBundle\Column\TwigColumn;
 use Omines\DataTablesBundle\DataTable;
 
 /**
@@ -89,7 +90,6 @@ class EncounterPokemonTableType extends PokemonTableType
             'conditions',
             CollectionColumn::class,
             [
-                // @todo make these icons
                 'label' => 'Conditions',
                 'field' => 'encounter.conditions',
                 'orderable' => false,
@@ -104,7 +104,10 @@ class EncounterPokemonTableType extends PokemonTableType
 
                     return $conditions;
                 },
-                'childType' => TextColumn::class,
+                'childType' => TwigColumn::class,
+                'childOptions' => [
+                    'template' => '_data_table/encounter_condition.html.twig',
+                ],
             ]
         );
 

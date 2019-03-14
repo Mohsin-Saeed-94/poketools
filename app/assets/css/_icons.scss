@@ -20,6 +20,33 @@ img.pkt-entityicon {
     font-style: normal;
 }
 
+$pkt-icons: (
+    pokedollar: '$',
+    damageclass-physical: '\e001',
+    damageclass-special: '\e002',
+    damageclass-status: '\e003',
+    //encountercondition-time-of-day-morning: '\e010',
+    //encountercondition-time-of-day-day: '\e011',
+    //encountercondition-time-of-day-night: '\e012',
+    //encountercondition-pokeradar-on: '\e013',
+    //encountercondition-pokeradar-off: '\e014',
+    //encountercondition-radio-off: '\e015',
+    //encountercondition-radio-hoenn: '\e016',
+    //encountercondition-radio-sinnoh: '\e016',
+    //encountercondition-swarm-yes: '\e017',
+    //encountercondition-swarm-no: '\e018',
+    //encountercondition-gen-3-game-in-slot-2-none: '\e019',
+    //encountercondition-gen-3-game-in-slot-2-ruby: '\e01a',
+    //encountercondition-gen-3-game-in-slot-2-sapphire: '\e01a',
+    //encountercondition-gen-3-game-in-slot-2-emerald: '\e01a',
+    //encountercondition-gen-3-game-in-slot-2-firered: '\e01a',
+    //encountercondition-gen-3-game-in-slot-2-leafgreen: '\e01a',
+    //encountercondition-season-spring: '\e01b',
+    //encountercondition-season-summer: '\e01c',
+    //encountercondition-season-autumn: '\e01d',
+    //encountercondition-season-winter: '\e01e',
+);
+
 i.pkt-icon {
     font-family: "poketools" !important;
     font-style: normal !important;
@@ -27,9 +54,12 @@ i.pkt-icon {
     font-variant: normal !important;
     text-transform: none !important;
     speak: none;
+    color: $body-color;
 
-    &-pokedollar::before {
-        content: "$";
+    @each $name, $char in $pkt-icons {
+        &-#{$name}::before {
+            content: '#{$char}';
+        }
     }
 
     &-damageclass {
@@ -38,13 +68,8 @@ i.pkt-icon {
             special: #4F5870,
             status: #8C888C
         );
-        $char-damage-class: (
-            physical: '\e001',
-            special: '\e002',
-            status: '\e003',
-        );
 
-        @each $damage-class in map_keys($char-damage-class) {
+        @each $damage-class in map_keys($color-damage-class) {
             &-#{$damage-class} {
                 // This is styled similarly to the type emblems.
                 vertical-align: middle;
@@ -61,10 +86,6 @@ i.pkt-icon {
                     color: $gray-700;
                 } @else {
                     color: $gray-100;
-                }
-
-                &::before {
-                    content: map_get($char-damage-class, $damage-class);
                 }
             }
         }
