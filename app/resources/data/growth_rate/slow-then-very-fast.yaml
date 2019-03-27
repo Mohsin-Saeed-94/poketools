@@ -1,9 +1,184 @@
 name: 'slow then very fast'
 formula: |
-  \begin{cases}
-  \frac{ x^3 \left( 100 - x \right) }{50},    & \text{if } x \leq 50  \\
-  \frac{ x^3 \left( 150 - x \right) }{100},   & \text{if } 50 < x \leq 68  \\
-  \frac{ x^3 \left( 1274 + (x \bmod 3)^2 - 9 (x \bmod 3) - 20 \left\lfloor \frac{x}{3} \right\rfloor \right) }{1000}, & \text{if } 68 < x \leq 98  \\
-  \frac{ x^3 \left( 160 - x \right) }{100},   & \text{if } x > 98  \\
-  \end{cases}
-expression: ''
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <mrow>
+          <mfenced open="{" close="">
+              <mtable>
+                  <mtr>
+                      <mtd>
+                          <mrow>
+                              <mfrac>
+                                  <mrow>
+                                      <msup>
+                                          <mi>n</mi>
+                                          <mn>3</mn>
+                                      </msup>
+                                      <mo>&InvisibleTimes;</mo>
+                                      <mfenced>
+                                          <mrow>
+                                              <mn>100</mn>
+                                              <mo>-</mo>
+                                              <mi>n</mi>
+                                          </mrow>
+                                      </mfenced>
+                                  </mrow>
+                                  <mrow>
+                                      <mn>50</mn>
+                                  </mrow>
+                              </mfrac>
+                          </mrow>
+                      </mtd>
+                      <mtd>
+                          <mrow>
+                              <mi>n</mi>
+                              <mo>&leq;</mo>
+                              <mn>50</mn>
+                          </mrow>
+                      </mtd>
+                  </mtr>
+                  <mtr>
+                      <mtd>
+                          <mrow>
+                              <mfrac>
+                                  <mrow>
+                                      <msup>
+                                          <mi>n</mi>
+                                          <mn>3</mn>
+                                      </msup>
+                                      <mo>&InvisibleTimes;</mo>
+                                      <mfenced>
+                                          <mrow>
+                                              <mn>150</mn>
+                                              <mo>-</mo>
+                                              <mi>n</mi>
+                                          </mrow>
+                                      </mfenced>
+                                  </mrow>
+                                  <mrow>
+                                      <mn>100</mn>
+                                  </mrow>
+                              </mfrac>
+                          </mrow>
+                      </mtd>
+                      <mtd>
+                          <mrow>
+                              <mn>50</mn>
+                              <mo>&lt;</mo>
+                              <mi>n</mi>
+                              <mo>&leq;</mo>
+                              <mn>68</mn>
+                          </mrow>
+                      </mtd>
+                  </mtr>
+                  <mtr>
+                      <mtd>
+                          <mrow>
+                              <mfrac>
+                                  <mrow>
+                                      <msup>
+                                          <mi>n</mi>
+                                          <mn>3</mn>
+                                      </msup>
+                                      <mo>&InvisibleTimes;</mo>
+                                      <mfenced>
+                                          <mrow>
+                                              <mn>1274</mn>
+                                              <mo>+</mo>
+                                              <msup>
+                                                  <mfenced>
+                                                      <mrow>
+                                                          <mi>n</mi>
+                                                          <mo>mod</mo>
+                                                          <mn>3</mn>
+                                                      </mrow>
+                                                  </mfenced>
+                                                  <mn>2</mn>
+                                              </msup>
+                                              <mo>-</mo>
+                                              <mn>9</mn>
+                                              <mo>&InvisibleTimes;</mo>
+                                              <mfenced>
+                                                  <mrow>
+                                                      <mi>n</mi>
+                                                      <mo>mod</mo>
+                                                      <mn>3</mn>
+                                                  </mrow>
+                                              </mfenced>
+                                              <mo>-</mo>
+                                              <mn>20</mn>
+                                              <mo>&InvisibleTimes;</mo>
+                                              <mfenced open="&lfloor;" close="&rfloor;">
+                                                  <mfrac>
+                                                      <mi>n</mi>
+                                                      <mn>3</mn>
+                                                  </mfrac>
+                                              </mfenced>
+                                          </mrow>
+                                      </mfenced>
+                                  </mrow>
+                                  <mn>1000</mn>
+                              </mfrac>
+                          </mrow>
+                      </mtd>
+                      <mtd>
+                          <mrow>
+                              <mn>68</mn>
+                              <mo>&lt;</mo>
+                              <mi>n</mi>
+                              <mo>&leq;</mo>
+                              <mn>98</mn>
+                          </mrow>
+                      </mtd>
+                  </mtr>
+                  <mtr>
+                      <mtd>
+                          <mrow>
+                              <mfrac>
+                                  <mrow>
+                                      <msup>
+                                          <mi>x</mi>
+                                          <mn>3</mn>
+                                      </msup>
+                                      <mo>&InvisibleTimes;</mo>
+                                      <mfenced>
+                                          <mrow>
+                                              <mn>160</mn>
+                                              <mo>-</mo>
+                                              <mi>n</mi>
+                                          </mrow>
+                                      </mfenced>
+                                  </mrow>
+                                  <mn>100</mn>
+                              </mfrac>
+                          </mrow>
+                      </mtd>
+                      <mtd>
+                          <mrow>
+                              <mi>n</mi>
+                              <mo>&gt;</mo>
+                              <mn>98</mn>
+                          </mrow>
+                      </mtd>
+                  </mtr>
+              </mtable>
+          </mfenced>
+      </mrow>
+  </math>
+  
+expression: |
+  (
+    level <= 50 ? (
+      (level**3 * (100 - level)) / (50)
+    ) : (
+      level <= 68 ? (
+        (level**3 * (150 - level)) / (100)
+      ) : (
+        level <= 98 ? (
+          (level**3 * (1274 + (level % 3)**2 - 9 * (level % 3) - 20 * floor(level / 3))) / (1000)
+        ) : (
+          (level**3 * (160 - level)) / (100)
+        )
+      )
+    )
+  )
+  

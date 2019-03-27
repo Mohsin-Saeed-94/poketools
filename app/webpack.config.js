@@ -35,6 +35,8 @@ Encore
     .addEntry('move_view', './assets/js/move_view.js')
     .addEntry('nature_index', './assets/js/nature_index.js')
     .addEntry('nature_view', './assets/js/nature_view.js')
+    .addEntry('pokemon_index', './assets/js/pokemon_index.js')
+    .addEntry('pokemon_view', './assets/js/pokemon_view.js')
     .addEntry('type_index', './assets/js/type_index.js')
     .addEntry('type_view', './assets/js/type_view.js')
 

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\PokemonSpeciesInVersionGroup;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -12,7 +13,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method PokemonSpeciesInVersionGroup[]    findAll()
  * @method PokemonSpeciesInVersionGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PokemonSpeciesInVersionGroupRepository extends ServiceEntityRepository
+class PokemonSpeciesInVersionGroupRepository extends ServiceEntityRepository implements SlugAndVersionInterface
 {
     public function __construct(RegistryInterface $registry)
     {
@@ -47,4 +48,20 @@ class PokemonSpeciesInVersionGroupRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+     * {@inheritdoc}
+     */
+    public function findOneByVersion(string $slug, Version $version): ?PokemonSpeciesInVersionGroup
+    {
+        $qb = $this->createQueryBuilder('species');
+        $qb->join('species.versionGroup', 'version_group')
+            ->andWhere('species.slug = :slug')
+            ->andWhere(':version MEMBER OF version_group.versions')
+            ->setParameter('slug', $slug)
+            ->setParameter('version', $version);
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getOneOrNullResult();
+    }
 }

@@ -1,0 +1,527 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Pokèmon - {{ pokemon.name }}{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('pokemon_index', {'versionSlug': version.slug}) }}">Pokèmon</a>
+            </li>
+            {% if not pokemon.default %}
+                <li class="breadcrumb-item">
+                    <a href="{{ path('pokemon_view', {'versionSlug': version.slug, 'speciesSlug': species.slug}) }}">
+                        {{ species.name }}
+                    </a>
+                </li>
+            {% endif %}
+            <li class="breadcrumb-item active">{{ pokemon.name }}</li>
+        </ol>
+    </nav>
+
+    <h1>{{ label_pokemon(pokemon) }}</h1>
+    <ul class="list-inline pkt-pokemon-view-numbers">
+        {% for number in species.numbers %}
+            <li class="list-inline-item">
+                <span class="pkt-pokemon-view-numbers-dex">{{ number.pokedex.name }}</span>
+                <span class="pkt-pokemon-view-numbers-number">{{ number.number }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    <p class="pkt-pokemon-view-flavortext">
+        <span class="pkt-pokemon-view-genus">{{ pokemon.genus }}:</span> {{ pokemon.flavorTextInVersion(version) }}
+    </p>
+    <ul class="list-inline">
+        {% for pokemon_type in pokemon.types %}
+            <li class="list-inline-item">{{ pokemon_type.type|type_emblem }}</li>
+        {% endfor %}
+    </ul>
+
+    {# Pokemon tabs #}
+    {% if species.pokemon|length > 1 %}
+        <ul class="nav nav-tabs pkt-pokemon-view-nav-pokemon">
+            {% for nav_pokemon in species.pokemon %}
+                <li class="nav-item">
+                    {%- if nav_pokemon.default %}
+                        {%- set nav_pokemon_slug = null %}
+                    {%- else %}
+                        {%- set nav_pokemon_slug = nav_pokemon.slug %}
+                    {%- endif %}
+                    <a class="nav-link{% if nav_pokemon == pokemon %} active{% endif %}"
+                       href="{{ path('pokemon_view', {'versionSlug': version.slug, 'speciesSlug': species.slug, 'pokemonSlug': nav_pokemon_slug}) }}">
+                        {{ nav_pokemon.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {# Form tabs #}
+    {% if pokemon.forms|length > 1 %}
+        <ul class="nav nav-tabs pkt-pokemon-view-nav-forms">
+            {% for nav_form in pokemon.forms %}
+                <li class="nav-item">
+                    {%- if nav_form.default %}
+                        {%- set nav_form_slug = null %}
+                    {%- else %}
+                        {%- set nav_form_slug = nav_form.slug %}
+                    {%- endif %}
+                    {%- if pokemon.default %}
+                        {%- set nav_pokemon_slug = null %}
+                    {%- else %}
+                        {%- set nav_pokemon_slug = nav_pokemon.slug %}
+                    {%- endif %}
+                    <a class="nav-link{% if nav_form == form %} active{% endif %}"
+                       href="{{ path('pokemon_view', {'versionSlug': version.slug, 'speciesSlug': species.slug, 'pokemonSlug': nav_pokemon_slug, 'form': nav_form_slug}) }}">
+                        {{ nav_form.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {# Basics #}
+    <div class="row pkt-pokemon-view-basics">
+        {# Media #}
+        <div class="col">
+            <ul class="nav nav-tabs" id="pkt-pokemon-view-media-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pkt-pokemon-view-media-tabs-sprites" data-toggle="tab"
+                       href="#pkt-pokemon-view-media-sprites" role="tab" aria-controls="pkt-pokemon-view-media-sprites"
+                       aria-selected="true">
+                        Sprites
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pkt-pokemon-view-media-tabs-pokedex" data-toggle="tab"
+                       href="#pkt-pokemon-view-media-pokedex" role="tab" aria-controls="pkt-pokemon-view-media-pokedex"
+                       aria-selected="false">
+                        Meta
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                {# Sprites #}
+                <div id="pkt-pokemon-view-media-sprites" class="tab-pane active" role="tabpanel"
+                     aria-labelledby="pkt-pokemon-view-media-tabs-sprites">
+                    <div class="grid">
+                        {% for sprite in form.sprites %}
+                            <div class="grid-item">
+                                {% if sprite.url|slice(-4) == 'webm' %}
+                                    <video src="{{ asset('build/static/pokemon/sprite/'~sprite.url) }}"
+                                           class="img-thumbnail" autoplay
+                                           loop preload="auto"></video>
+                                {% else %}
+                                    <img src="{{ asset('build/static/pokemon/sprite/'~sprite.url) }}"
+                                         class="img-thumbnail">
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {# Pokedex Flavor #}
+                <div id="pkt-pokemon-view-media-pokedex" class="tab-pane" role="tabpanel"
+                     aria-labelledby="pkt-pokemon-view-media-tabs-pokedex">
+                    <table class="pkt-infolist">
+                        {% if pokemon.color %}
+                            <tr>
+                                <th>Color</th>
+                                <td>
+                                    <i class="fas fa-square" style="color: {{ pokemon.color.cssColor }}"></i>
+                                    {{ pokemon.color.name }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if pokemon.habitat %}
+                            <tr>
+                                <th>Habitat</th>
+                                <td>
+                                    <img class="img-thumbnail"
+                                         src="{{ asset('build/static/habitat/'~pokemon.habitat.icon) }}">
+                                    {{ pokemon.habitat.name }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if form.footprint %}
+                            <tr>
+                                <th>Footprint</th>
+                                <td>
+                                    <img class="img-thumbnail"
+                                         src="{{ asset('build/static/pokemon/footprint/'~form.footprint) }}">
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if pokemon.shape %}
+                            <tr>
+                                <th>Shape</th>
+                                <td>
+                                    <span class="align-middle">
+                                        <img src="{{ asset('build/static/shape/'~pokemon.shape.icon) }}">
+                                        {{ pokemon.shape.name }}
+                                    </span>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <th>Height</th>
+                            <td>
+                                {%- set pokemonHeightInches = pokemon.height.toUnit('in') %}
+                                {{ pokemonHeightInches//12 }}' {{ pokemonHeightInches%12 }}"
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Weight</th>
+                            <td>{{ pokemon.weight.toUnit('lb')|round(1) }} lb</td>
+                        </tr>
+                        <tr>
+                            <th>Cry</th>
+                            <td class="pkt-pokemon-view-media-cry">
+                                <audio controls src="{{ asset('build/static/pokemon/cry/'~form.cry) }}"
+                                       preload="none"></audio>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {# Stats #}
+        <div class="col">
+            <h2>Stats</h2>
+            <table class="pkt-infolist pkt-pokemon-view-stats">
+                {% for pokemon_stat in pokemon.stats %}
+                    <tr>
+                        <th>{{ pokemon_stat.stat.name }}</th>
+                        <td class="pkt-pokemon-view-stats-value">{{ pokemon_stat.baseValue }}</td>
+                        <td class="pkt-pokemon-view-stats-gauge">
+                            {{ gauge_linear(stat_percentiles[pokemon_stat.stat.slug], 100-stat_percentiles[pokemon_stat.stat.slug]) }}
+                            (P&nbsp;=&nbsp;{{ stat_percentiles[pokemon_stat.stat.slug] }})
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <th>Total</th>
+                    <td class="pkt-pokemon-view-stats-value">{{ pokemon.statTotal }}</td>
+                    <td class="pkt-pokemon-view-stats-gauge">
+                        {{ gauge_linear(stat_percentiles['total'], 100-stat_percentiles['total']) }}
+                        (P&nbsp;=&nbsp;{{ stat_percentiles['total'] }})
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {# Training info #}
+        <div class="col">
+            <h2>Training</h2>
+            <table class="pkt-infolist">
+                <tr>
+                    <th>Base Exp</th>
+                    <td>{{ pokemon.experience }}</td>
+                </tr>
+                <tr>
+                    <th>Effort</th>
+                    <td>
+                        <table class="pkt-infolist">
+                            {% for pokemon_stat in pokemon.stats if pokemon_stat.effortChange != 0 %}
+                                <tr>
+                                    <th>{{ pokemon_stat.stat }}</th>
+                                    <td>{{ '%+d'|format(pokemon_stat.effortChange) }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Capture Rate</th>
+                    <td>
+                        {# @todo make this a gauge #}
+                        {{ pokemon.captureRate }}
+                    </td>
+                </tr>
+                {% if version.versionGroup.featureString('happiness') %}
+                    <tr>
+                        <th>Base Happiness</th>
+                        <td>{{ pokemon.happiness }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Growth rate</th>
+                    <td>
+                        <a href="#" data-toggle="modal" data-target="#pkt-pokemon-view-growthrate">
+                            {{ pokemon.growthRate }}
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    {# Damage chart #}
+    <div class="row">
+        <div class="col">
+            <h2>Damage taken</h2>
+            {{ damage_chart_defending(pokemon.types) }}
+        </div>
+    </div>
+
+    <div class="row">
+        {# Abilities #}
+        {% if version.versionGroup.featureString('abilities') %}
+            <div class="col">
+                <h2>Abilities</h2>
+                <table class="pkt-infolist">
+                    {% for pokemon_ability in pokemon.abilities %}
+                        <tr>
+                            <th>
+                                <a href="{{ path('ability_view', {'versionSlug': version.slug, 'abilitySlug': pokemon_ability.ability.slug}) }}"
+                                   {% if pokemon_ability.hidden %}class="pkt-pokemon-ability-hidden"{% endif %}>{{ pokemon_ability.ability.name }}</a>
+                            </th>
+                            <td>{{ pokemon_ability.ability.shortDescription|markdown }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+
+        {# Breeding #}
+        {% if version.versionGroup.featureString('breeding') %}
+            <div class="col">
+                <h2>Breeding</h2>
+                <table class="pkt-infolist">
+                    <tr>
+                        <th>Gender</th>
+                        <td class="pkt-pokemon-view-gender">
+                            {% if pokemon.femaleRate is null %}
+                                Genderless
+                            {% else %}
+                                {{ gauge_linear(100-pokemon.femaleRate, pokemon.femaleRate) }}
+                                {{ 100-pokemon.femaleRate }}%&nbsp;Male; {{ pokemon.femaleRate }}%&nbsp;Female
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Egg Groups</th>
+                        <td>{{ pokemon.eggGroups|join(', ') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Compatibility</th>
+                        <td>
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                    data-target="#pkt-pokemon-view-breeding-compatibility">
+                                Show
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Hatch Steps</th>
+                        <td>
+                            {% if hatch_steps_map|length > 1 %}
+                                {# Uses a non-breaking hyphen in the range. #}
+                                {{ hatch_steps_map|keys|first }} {{ hatch_steps_map|first|replace({'-': '&#8209;'})|raw }}
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                        data-target="#pkt-pokemon-view-breeding-hatchsteps">
+                                    Show details
+                                </button>
+                            {% else %}
+                                {# Uses a non-breaking hyphen in the range. #}
+                                {{ hatch_steps_map|first|replace({'-': '&#8209;'})|raw }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        {% endif %}
+        {% if version.versionGroup.featureString('pokeathlon') %}
+            <div class="col">
+                <h2>Pokèathlon</h2>
+                <div class="pkt-pokemon-view-pokeathlon">
+                    <ul class="list-unstyled">
+                        <li>
+                            <i class="fas fa-star pkt-pokemon-view-pokeathlon-range"></i>&nbsp;=&nbsp;Range
+                        </li>
+                        <li>
+                            <i class="fas fa-star pkt-pokemon-view-pokeathlon-base"></i>&nbsp;=&nbsp;Base&nbsp;value
+                        </li>
+                    </ul>
+                    <table class="pkt-infolist">
+                        {% for pokeathlon_stat in form.pokeathlonStats %}
+                            <tr>
+                                <th>{{ pokeathlon_stat.pokeathlonStat.name }}</th>
+                                <td>
+                                    <a href="#" data-toggle="tooltip" data-html="true"
+                                       title="Min:&nbsp;{{ pokeathlon_stat.range.min }}<br>Base:&nbsp;{{ pokeathlon_stat.baseValue }}<br>Max:&nbsp;{{ pokeathlon_stat.range.max }}">
+                                        {% for value in range(1, 5) %}
+                                            {% if value < pokeathlon_stat.range.min or value > pokeathlon_stat.range.max %}
+                                                <i class="far fa-star pkt-pokemon-view-pokeathlon-outofrange"></i>
+                                            {% elseif value == pokeathlon_stat.baseValue %}
+                                                <i class="fas fa-star pkt-pokemon-view-pokeathlon-base"></i>
+                                            {% else %}
+                                                <i class="fas fa-star pkt-pokemon-view-pokeathlon-range"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if held_items_count > 0 %}
+        <div class="row">
+            <div class="col">
+                <h2>Wild Held Items</h2>
+                <div class="pkt-pokemon-view-helditems">
+                    {{ datatable.datatable(held_items_table, 'pkt-pokemon-view-helditems') }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {# Evolution #}
+    <div class="row">
+        <div class="col">
+            <h2>Evolution</h2>
+            <div class="pkt-pokemon-view-evolution table-responsive"
+                 data-tree="{{ evo_tree_data|json_encode|e('html_attr') }}">
+            </div>
+        </div>
+    </div>
+
+    {# Locations #}
+    <div class="row">
+        <div class="col">
+            <h2>Locations</h2>
+            {% if version.versionGroup.featureString('pal-park') %}
+
+            {% endif %}
+        </div>
+    </div>
+
+    {# Moves #}
+    <div class="row">
+        <div class="col">
+            <h2>Moves</h2>
+            <div id="pkt-pokemon-view-moves">
+                {% for move_learn_method in move_learn_methods %}
+                    <h3>{{ move_learn_method.name }}</h3>
+                    {{ move_learn_method.description|markdown }}
+                    {{ datatable.datatable(move_tables[move_learn_method.slug], 'pkt-pokemon-view-moves-'~move_learn_method.slug|e('html_attr')) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {# Growth rate dialog #}
+    <div id="pkt-pokemon-view-growthrate" class="modal pkt-pokemon-view-growthrate" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Growth Rate - {{ pokemon.growthRate.name }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="pkt-pokemon-view-growthrate-formula">
+                        {{ pokemon.growthRate.formula|raw }}
+                    </p>
+                    <canvas class="pkt-pokemon-view-growthrate-chart"></canvas>
+                    <h5>Experience table</h5>
+                    <div class="pkt-pokemon-view-growthrate-experience-container">
+                        <table class="table pkt-pokemon-view-growthrate-experience"
+                               data-exp="{{ exp_map|json_encode|e('html_attr') }}">
+                            <thead>
+                            <tr>
+                                <th>Lvl</th>
+                                <th>Exp</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for level, exp in exp_map %}
+                                <tr>
+                                    <th>{{ level }}</th>
+                                    <td>{{ exp }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if version.versionGroup.featureString('breeding') %}
+        {# Breeding compatability dialog #}
+        <div id="pkt-pokemon-view-breeding-compatibility" class="modal pkt-pokemon-view-breeding-compatibility"
+             tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Breeding Compatibility</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {# Uses a non-breaking hyphen in the range. #}
+                        {{ datatable.datatable(breeding_pokemon_table, 'pkt-pokemon-view-breeding-compatibility-pokemon') }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if hatch_steps_map|length > 1 %}
+            {# Hatch steps dialog #}
+            <div id="pkt-pokemon-view-breeding-hatchsteps" class="modal pkt-pokemon-view-breeding-hatchsteps"
+                 tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Steps to hatch</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-sm">
+                                {% for condition, steps in hatch_steps_map %}
+                                    <tr>
+                                        <th>{{ condition|markdown(false) }}</th>
+                                        <td>{{ steps|replace({'-': '&#8209;'})|raw }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block head %}
+    {# MathJax must be in the head to work correctly. #}
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=MML_CHTML' async>
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('pokemon_view') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('pokemon_view') }}
+{% endblock %}

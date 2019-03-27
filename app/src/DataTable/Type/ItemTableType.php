@@ -44,10 +44,14 @@ class ItemTableType implements DataTableTypeInterface
         /** @var Version $version */
         $version = $options['version'];
 
-        /** @var ItemPocketInVersionGroup $pocket */
-        $pocket = $options['pocket'];
+        /** @var ItemPocketInVersionGroup|null $pocket */
+        $pocket = $options['pocket'] ?? null;
 
-        $dataTable->setName(self::class.'__'.$pocket->getSlug())->add(
+        $tableName = self::class;
+        if ($pocket !== null) {
+            $tableName .= '__'.$pocket->getSlug();
+        }
+        $dataTable->setName($tableName)->add(
             'category',
             TextColumn::class,
             [
@@ -63,13 +67,33 @@ class ItemTableType implements DataTableTypeInterface
                 'route' => 'item_view',
                 'routeParams' => [
                     'versionSlug' => $version->getSlug(),
-                    'itemSlug' => function (ItemInVersionGroup $context, $value) {
-                        return $context->getSlug();
+                    'itemSlug' => function ($item, $value) {
+                        // If this table is extended, the context can be something other than an Item.
+                        /** @var ItemInVersionGroup $item */
+                        if (!is_a($item, ItemInVersionGroup::class)) {
+                            if (method_exists($item, 'getItem')) {
+                                $item = $item->getItem();
+                            } else {
+                                return null;
+                            }
+                        }
+
+                        return $item->getSlug();
                     },
                 ],
                 'className' => 'pkt-item-index-table-name',
-                'render' => function ($value, ItemInVersionGroup $context) use ($version) {
-                    return $this->labeler->item($context, $version);
+                'render' => function ($value, $item) use ($version) {
+                    // If this table is extended, the context can be something other than an Item.
+                    /** @var ItemInVersionGroup $item */
+                    if (!is_a($item, ItemInVersionGroup::class)) {
+                        if (method_exists($item, 'getItem')) {
+                            $item = $item->getItem();
+                        } else {
+                            return null;
+                        }
+                    }
+
+                    return $this->labeler->item($item, $version);
                 },
             ]
         )->add(
@@ -85,18 +109,33 @@ class ItemTableType implements DataTableTypeInterface
             [
                 'entity' => ItemInVersionGroup::class,
                 'query' => function (QueryBuilder $qb) use ($version, $pocket) {
-                    $qb->select('item')
-                        ->addSelect('category')
-                        ->from(ItemInVersionGroup::class, 'item')
-                        ->join('item.versionGroup', 'version_group')
-                        ->join('item.category', 'category')
-                        ->andWhere(':version MEMBER OF version_group.versions')
-                        ->andWhere('item.pocket = :pocket')
-                        ->addOrderBy('category.name')
-                        ->setParameter('version', $version)
-                        ->setParameter('pocket', $pocket);
+                    $this->query($qb, $version, $pocket);
                 },
             ]
         )->addOrderBy('name');
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param Version $version
+     * @param ItemPocketInVersionGroup|null $pocket
+     */
+    protected function query(QueryBuilder $qb, Version $version, ?ItemPocketInVersionGroup $pocket = null): void
+    {
+        if (!$qb->getDQLPart('from')) {
+            $qb->from(ItemInVersionGroup::class, 'item');
+        }
+        $qb->addSelect('item')
+            ->addSelect('category')
+            ->join('item.versionGroup', 'version_group')
+            ->join('item.category', 'category')
+            ->andWhere(':version MEMBER OF version_group.versions')
+            ->addOrderBy('category.name')
+            ->setParameter('version', $version);
+
+        if ($pocket !== null) {
+            $qb->andWhere('item.pocket = :pocket')
+                ->setParameter('pocket', $pocket);
+        }
     }
 }

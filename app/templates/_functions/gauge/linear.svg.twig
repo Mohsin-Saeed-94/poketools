@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     id="svg8"
+     version="1.1"
+     class="pkt-gauge-linear"
+     width="100">
+    <g>
+        {% for value in values %}
+            {%- set percentage = value/total*100 %}
+            <rect y="0"
+                  x="{{ prev_percentage|default(0) }}"
+                  width="{{ percentage }}"
+                  class="pkt-gauge-value-{{ loop.index0 }}"/>
+            {%- set prev_percentage = percentage %}
+        {% endfor %}
+    </g>
+</svg>

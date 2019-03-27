@@ -12,7 +12,6 @@ use App\Repository\PokemonRepository;
 use Doctrine\ORM\QueryBuilder;
 use League\CommonMark\CommonMarkConverter;
 use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
-use Omines\DataTablesBundle\Column\AbstractColumn;
 use Omines\DataTablesBundle\Column\TextColumn;
 use Omines\DataTablesBundle\Column\TwigColumn;
 use Omines\DataTablesBundle\DataTable;
@@ -22,6 +21,8 @@ use Omines\DataTablesBundle\DataTable;
  */
 class EncounterPokemonTableType extends PokemonTableType
 {
+    use ModifiedBaseTableTrait;
+
     /**
      * @var CommonMarkConverter
      */
@@ -113,20 +114,9 @@ class EncounterPokemonTableType extends PokemonTableType
 
         // Apply some special mapping to the parent Pokemon columns so they can get
         // data from the correct place
-        $encounterColumns = array_map([$this, 'columnName'], $dataTable->getColumns());
+        $encounterColumns = $this->getColumnNames($dataTable);
         parent::configure($dataTable, $options);
-        $allColumns = array_map([$this, 'columnName'], $dataTable->getColumns());
-        $pokemonColumns = array_diff($allColumns, $encounterColumns);
-        foreach ($pokemonColumns as $columnName) {
-            $column = $dataTable->getColumnByName($columnName);
-            $columnPropertyPath = $column->getPropertyPath();
-            if ($columnPropertyPath !== null) {
-                $columnPropertyPath = 'pokemon.'.$columnPropertyPath;
-            } else {
-                $columnPropertyPath = 'pokemon';
-            }
-            $column->setOption('propertyPath', $columnPropertyPath);
-        }
+        $this->fixPropertyPaths($dataTable, $encounterColumns, 'pokemon');
 
         $dataTable->setName(self::class.'__'.$locationArea->getSlug())->createAdapter(
             ORMAdapter::class,
@@ -148,17 +138,4 @@ class EncounterPokemonTableType extends PokemonTableType
             ]
         );
     }
-
-    /**
-     * Callback used to filter columns.
-     *
-     * @param AbstractColumn $column
-     *
-     * @return string
-     */
-    protected function columnName(AbstractColumn $column): string
-    {
-        return $column->getName();
-    }
-
 }

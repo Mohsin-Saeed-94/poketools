@@ -26,6 +26,14 @@ class PartyTypeEvolutionCondition extends PokemonEvolutionCondition
     protected $partyType;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('[]{type:%s}-type Pokèmon is in the current party', $this->getPartyType()->getSlug());
+    }
+
+    /**
      * @return Type
      */
     public function getPartyType(): ?Type

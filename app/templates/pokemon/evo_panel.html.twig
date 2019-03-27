@@ -1,0 +1,27 @@
+{%- spaceless -%}
+    <div class="card pkt-pokemon-evo-card{% if active %} active{% endif %}">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="{{ path('pokemon_view', {'versionSlug': version.slug, 'speciesSlug': pokemon.species.slug, 'pokemonSlug': pokemon.slug}) }}">
+                    {{ label_pokemon(pokemon) }}</a>
+                {% if active %}<span class="sr-only">(This Pokèmon)</span>{% endif %}
+            </h5>
+            {% if pokemon.evolutionConditions is not empty %}
+                <table class="pkt-infolist">
+                    {% for trigger in triggers %}
+                        <tr>
+                            <th>{{ trigger.name }}</th>
+                            <td>
+                                <ul class="list-unstyled">
+                                    {% for condition in pokemon.evolutionConditions if condition.evolutionTrigger == trigger %}
+                                        <li>{{ condition.label|markdown }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </div>
+    </div>
+{%- endspaceless -%}

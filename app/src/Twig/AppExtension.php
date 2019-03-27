@@ -32,7 +32,14 @@ class AppExtension extends AbstractExtension
                 ]
             ),
             new TwigFunction(
-                'label_item', [AppExtensionRuntime::class, 'itemLabel'],
+                'label_item', [AppExtensionRuntime::class, 'labelItem'],
+                [
+                    'needs_context' => true,
+                    'is_safe' => ['html'],
+                ]
+            ),
+            new TwigFunction(
+                'label_pokemon', [AppExtensionRuntime::class, 'labelPokemon'],
                 [
                     'needs_context' => true,
                     'is_safe' => ['html'],

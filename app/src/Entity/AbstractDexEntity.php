@@ -11,6 +11,8 @@ abstract class AbstractDexEntity
     /**
      * Unique Id
      *
+     * @var int
+     *
      * @ORM\Id()
      * @ORM\Column(type="integer", unique=true)
      * @ORM\GeneratedValue(strategy="AUTO")

@@ -26,6 +26,14 @@ class MinimumBeautyEvolutionCondition extends PokemonEvolutionCondition
     protected $minimumBeauty;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Beauty is at least %u', $this->getMinimumBeauty());
+    }
+
+    /**
      * @return int
      */
     public function getMinimumBeauty(): ?int

@@ -26,6 +26,14 @@ class KnowsMoveTypeEvolutionCondition extends PokemonEvolutionCondition
     protected $knowsMoveType;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Knows a []{type:%s}-type move', $this->getKnowsMoveType()->getSlug());
+    }
+
+    /**
      * @return Type
      */
     public function getKnowsMoveType(): ?Type

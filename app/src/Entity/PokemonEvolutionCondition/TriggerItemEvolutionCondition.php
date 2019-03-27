@@ -25,6 +25,14 @@ class TriggerItemEvolutionCondition extends PokemonEvolutionCondition
     protected $triggerItem;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Use a []{item:%s}', $this->getTriggerItem()->getSlug());
+    }
+
+    /**
      * @return ItemInVersionGroup
      */
     public function getTriggerItem(): ?ItemInVersionGroup

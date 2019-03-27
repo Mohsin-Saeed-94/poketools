@@ -17,7 +17,9 @@ class GrowthRate extends AbstractDexEntity implements EntityHasNameInterface, En
     use EntityHasNameAndSlugTrait;
 
     /**
-     * Latex representation of the growth rate formula
+     * MathML representation of the growth rate formula
+     *
+     * This will include `<math>` tags.
      *
      * @var string
      *

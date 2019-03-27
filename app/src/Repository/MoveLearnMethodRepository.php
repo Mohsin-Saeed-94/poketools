@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\MoveLearnMethod;
+use App\Entity\Pokemon;
+use App\Entity\PokemonMove;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,4 +49,21 @@ class MoveLearnMethodRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param Pokemon $pokemon
+     *
+     * @return MoveLearnMethod[]
+     */
+    public function findUsedMethodsForPokemon(Pokemon $pokemon): array
+    {
+        $qb = $this->createQueryBuilder('learn_method');
+        $qb->join(PokemonMove::class, 'pokemon_move', 'WITH', 'pokemon_move.learnMethod = learn_method')
+            ->andWhere('pokemon_move.pokemon = :pokemon')
+            ->setParameter('pokemon', $pokemon);
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getResult();
+    }
 }

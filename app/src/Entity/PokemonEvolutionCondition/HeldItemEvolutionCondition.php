@@ -25,6 +25,14 @@ class HeldItemEvolutionCondition extends PokemonEvolutionCondition
     protected $heldItem;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Holding []{item:%s}', $this->getHeldItem()->getSlug());
+    }
+
+    /**
      * @return ItemInVersionGroup
      */
     public function getHeldItem(): ?ItemInVersionGroup

@@ -184,6 +184,20 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
     }
 
     /**
+     * @return int
+     */
+    public function getPokeathlonStatTotal(): int
+    {
+        $total = 0;
+
+        foreach ($this->getPokeathlonStats() as $pokeathlonStat) {
+            $total += $pokeathlonStat->getBaseValue();
+        }
+
+        return $total;
+    }
+
+    /**
      * @param PokemonFormPokeathlonStat $pokeathlonStat
      *
      * @return self

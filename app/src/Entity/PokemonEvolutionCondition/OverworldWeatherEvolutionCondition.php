@@ -25,6 +25,14 @@ class OverworldWeatherEvolutionCondition extends PokemonEvolutionCondition
     protected $overworldWeather;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('[]{mechanic:%s} in the overworld', $this->getOverworldWeather()->getSlug());
+    }
+
+    /**
      * @return Weather
      */
     public function getOverworldWeather(): ?Weather

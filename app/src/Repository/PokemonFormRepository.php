@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Pokemon;
 use App\Entity\PokemonForm;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,4 +49,36 @@ class PokemonFormRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param Pokemon $pokemon
+     * @param Version $version
+     * @param string|null $formSlug
+     *   Pass null to find the default form for the pokemon.
+     *
+     * @return Pokemon|null
+     */
+    public function findOneByPokemon(Pokemon $pokemon, Version $version, ?string $formSlug): ?PokemonForm
+    {
+        $qb = $this->createQueryBuilder('form');
+        $qb->join('form.pokemon', 'pokemon')
+            ->join('pokemon.species', 'species')
+            ->join('species.versionGroup', 'version_group')
+            ->andWhere('form.pokemon = :pokemon')
+            ->andWhere(':version MEMBER OF version_group.versions')
+            ->setParameter('pokemon', $pokemon)
+            ->setParameter('version', $version);
+
+        if ($formSlug === null) {
+            $qb->andWhere('form.isDefault = true');
+        } else {
+            $qb->andWhere('form.slug = :slug')
+                ->setParameter('slug', $formSlug);
+        }
+
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getOneOrNullResult();
+    }
 }

@@ -45,7 +45,15 @@ class MenuBuilder
         // In all of these menus, set "data-uri-template" to replace "__VERSION__" with the version slug.
         $menu = $this->factory->createItem('root')
             ->setChildrenAttribute('class', 'navbar-nav');
-        $menu->addChild('Pokèmon', ['uri' => '#']);
+
+        $pokemonUri = $this->urlGenerator->generate('pokemon_index', ['versionSlug' => '__VERSION__']);
+        $menu->addChild(
+            'Pokèmon',
+            [
+                'uri' => $pokemonUri,
+                'linkAttributes' => ['data-uri-template' => $pokemonUri],
+            ]
+        );
         $movesUri = $this->urlGenerator->generate('move_index', ['versionSlug' => '__VERSION__']);
         $menu->addChild(
             'Moves',

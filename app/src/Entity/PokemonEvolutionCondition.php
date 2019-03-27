@@ -77,4 +77,14 @@ class PokemonEvolutionCondition extends AbstractDexEntity
 
         return $this;
     }
+
+    /**
+     * Subclasses should override this to return something helpful.
+     *
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return '';
+    }
 }

@@ -26,6 +26,14 @@ class MinimumHappinessEvolutionCondition extends PokemonEvolutionCondition
     protected $minimumHappiness;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Happiness is at least %u', $this->getMinimumHappiness());
+    }
+
+    /**
      * @return int
      */
     public function getMinimumHappiness(): ?int

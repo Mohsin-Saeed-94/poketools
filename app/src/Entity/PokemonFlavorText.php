@@ -70,4 +70,12 @@ class PokemonFlavorText implements EntityHasFlavorTextInterface, EntityIsSortabl
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getFlavorText() ?? '';
+    }
 }

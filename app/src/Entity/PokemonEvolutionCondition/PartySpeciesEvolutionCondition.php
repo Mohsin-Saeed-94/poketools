@@ -25,6 +25,14 @@ class PartySpeciesEvolutionCondition extends PokemonEvolutionCondition
     protected $partySpecies;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('[]{pokemon:%s} is in the current party', $this->getPartySpecies()->getSlug());
+    }
+
+    /**
      * @return PokemonSpeciesInVersionGroup
      */
     public function getPartySpecies(): ?PokemonSpeciesInVersionGroup

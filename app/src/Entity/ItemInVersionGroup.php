@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Controller\ItemController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -120,11 +119,19 @@ class ItemInVersionGroup extends AbstractDexEntity implements
     protected $machine;
 
     /**
+     * @var Collection|PokemonWildHeldItem[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\PokemonWildHeldItem", mappedBy="item", fetch="EXTRA_LAZY")
+     */
+    protected $pokemonHoldsInWild;
+
+    /**
      * ItemInVersionGroup constructor.
      */
     public function __construct()
     {
         $this->flags = new ArrayCollection();
+        $this->pokemonHoldsInWild = new ArrayCollection();
     }
 
     /**
@@ -321,5 +328,13 @@ class ItemInVersionGroup extends AbstractDexEntity implements
         $this->machine = $machine;
 
         return $this;
+    }
+
+    /**
+     * @return PokemonWildHeldItem[]|Collection
+     */
+    public function getPokemonHoldsInWild()
+    {
+        return $this->pokemonHoldsInWild;
     }
 }

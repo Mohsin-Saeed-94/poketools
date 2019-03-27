@@ -39,8 +39,15 @@ class MoveTableType implements DataTableTypeInterface
                 'route' => 'move_view',
                 'routeParams' => [
                     'versionSlug' => $version->getSlug(),
-                    'moveSlug' => function (MoveInVersionGroup $context) {
-                        return $context->getSlug();
+                    'moveSlug' => function ($move) {
+                        if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
+                            $move = $move->getMove();
+                        } else {
+                            return null;
+                        }
+
+                        /** @var $move MoveInVersionGroup */
+                        return $move->getSlug();
                     },
                 ],
                 'className' => 'pkt-move-index-table-name',
@@ -51,16 +58,31 @@ class MoveTableType implements DataTableTypeInterface
             [
                 'label' => 'Type',
                 'propertyPath' => 'type',
+                'className' => 'pkt-move-index-table-type',
                 'orderField' => 'type.position',
                 'route' => 'type_view',
                 'routeParams' => [
                     'versionSlug' => $version->getSlug(),
-                    'typeSlug' => function (MoveInVersionGroup $context) {
-                        return $context->getType()->getSlug();
+                    'typeSlug' => function ($move) {
+                        if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
+                            $move = $move->getMove();
+                        } else {
+                            return null;
+                        }
+
+                        /** @var $move MoveInVersionGroup */
+                        return $move->getType()->getSlug();
                     },
                 ],
-                'linkClassName' => function (MoveInVersionGroup $context) {
-                    return sprintf('pkt-type-emblem-%s', $context->getType()->getSlug());
+                'linkClassName' => function ($move) {
+                    if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
+                        $move = $move->getMove();
+                    } else {
+                        return null;
+                    }
+
+                    /** @var $move MoveInVersionGroup */
+                    return sprintf('pkt-type-emblem-%s', $move->getType()->getSlug());
                 },
             ]
         )->add(
@@ -69,6 +91,7 @@ class MoveTableType implements DataTableTypeInterface
             [
                 'label' => 'Class',
                 'propertyPath' => $hasMoveDamageClass ? 'damageClass' : 'type.damageClass',
+                'className' => 'pkt-move-index-table-damageclass',
                 'orderField' => $hasMoveDamageClass ? 'damage_class.position' : 'type_damage_class.position',
                 'template' => '_data_table/damage_class.html.twig',
             ]
@@ -77,12 +100,16 @@ class MoveTableType implements DataTableTypeInterface
             TextColumn::class,
             [
                 'label' => 'PP',
+                'propertyPath' => 'pp',
+                'className' => 'pkt-move-index-table-pp',
             ]
         )->add(
             'power',
             TextColumn::class,
             [
                 'label' => 'Pwr.',
+                'propertyPath' => 'power',
+                'className' => 'pkt-move-index-table-power',
                 'data' => function ($context, ?int $value) {
                     return $value ?? '–';
                 },
@@ -92,6 +119,8 @@ class MoveTableType implements DataTableTypeInterface
             TextColumn::class,
             [
                 'label' => 'Acc.',
+                'propertyPath' => 'accuracy',
+                'className' => 'pkt-move-index-table-accuracy',
                 'data' => function ($context, ?int $value) {
                     if ($value === null) {
                         return '–';
@@ -106,11 +135,19 @@ class MoveTableType implements DataTableTypeInterface
             [
                 'label' => 'Description',
                 'className' => 'pkt-move-index-table-description',
-                'field' => 'effect.shortDescription',
+//                'field' => 'effect.shortDescription',
+                'propertyPath' => 'effect.shortDescription',
                 'orderable' => false,
-                'render' => function (string $value, MoveInVersionGroup $context) {
-                    if ($context->getEffectChance() !== null) {
-                        return str_replace('$effect_chance', $context->getEffectChance(), $value);
+                'render' => function (string $value, $move) {
+                    if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
+                        $move = $move->getMove();
+                    } else {
+                        return null;
+                    }
+
+                    /** @var $move MoveInVersionGroup */
+                    if ($move->getEffectChance() !== null) {
+                        return str_replace('$effect_chance', $move->getEffectChance(), $value);
                     }
 
                     return $value;
@@ -133,11 +170,13 @@ class MoveTableType implements DataTableTypeInterface
      */
     protected function query(QueryBuilder $qb, Version $version)
     {
-        $qb->select('move')
+        if (!$qb->getDQLPart('from')) {
+            $qb->from(MoveInVersionGroup::class, 'move');
+        }
+        $qb->distinct()->addSelect('move')
             ->addSelect('effect')
             ->addSelect('damage_class')
             ->addSelect('type')
-            ->from(MoveInVersionGroup::class, 'move')
             ->join('move.versionGroup', 'version_group')
             ->join('move.effect', 'effect')
             ->leftJoin('move.damageClass', 'damage_class')

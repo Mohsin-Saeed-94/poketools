@@ -998,14 +998,17 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     }
 
     /**
-     * @param Stat $stat
+     * @param Stat|string $stat
      *
      * @return PokemonStat
      */
-    public function getStatData(Stat $stat): ?PokemonStat
+    public function getStatData($stat): ?PokemonStat
     {
+        if (is_a($stat, Stat::class)) {
+            $stat = $stat->getSlug();
+        }
         foreach ($this->getStats() as $pokemonStat) {
-            if ($pokemonStat->getStat() === $stat) {
+            if ($pokemonStat->getStat()->getSlug() === $stat) {
                 return $pokemonStat;
             }
         }

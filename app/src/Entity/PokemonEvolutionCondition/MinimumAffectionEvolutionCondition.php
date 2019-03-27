@@ -26,6 +26,14 @@ class MinimumAffectionEvolutionCondition extends PokemonEvolutionCondition
     protected $minimumAffection;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Affection is at least %u', $this->getMinimumAffection());
+    }
+
+    /**
      * @return int
      */
     public function getMinimumAffection(): ?int

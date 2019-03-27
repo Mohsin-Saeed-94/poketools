@@ -24,6 +24,14 @@ class GenderEvolutionCondition extends PokemonEvolutionCondition
     protected $gender;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Pokèmon is %s', $this->getGender()->getName());
+    }
+
+    /**
      * @return Gender
      */
     public function getGender(): ?Gender

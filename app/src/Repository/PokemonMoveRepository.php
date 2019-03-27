@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\MoveInVersionGroup;
 use App\Entity\MoveLearnMethod;
+use App\Entity\Pokemon;
 use App\Entity\PokemonMove;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;

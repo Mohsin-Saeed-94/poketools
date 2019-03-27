@@ -58,8 +58,36 @@ class PokemonTableType implements DataTableTypeInterface
             LinkColumn::class,
             [
                 'label' => 'Name',
-                // @todo Pokemon link
-                'uri' => '#',
+                'route' => 'pokemon_view',
+                'routeParams' => [
+                    'versionSlug' => $version->getSlug(),
+                    'speciesSlug' => function ($pokemon): string {
+                        // If this table is extended, the context can be something other than a Pokemon.
+                        /** @var Pokemon $pokemon */
+                        if (!is_a($pokemon, Pokemon::class)) {
+                            if (method_exists($pokemon, 'getPokemon')) {
+                                $pokemon = $pokemon->getPokemon();
+                            } else {
+                                return null;
+                            }
+                        }
+
+                        return $pokemon->getSpecies()->getSlug();
+                    },
+                    'pokemonSlug' => function ($pokemon): ?string {
+                        // If this table is extended, the context can be something other than a Pokemon.
+                        /** @var Pokemon $pokemon */
+                        if (!is_a($pokemon, Pokemon::class)) {
+                            if (method_exists($pokemon, 'getPokemon')) {
+                                $pokemon = $pokemon->getPokemon();
+                            } else {
+                                return null;
+                            }
+                        }
+
+                        return $pokemon->isDefault() ? null : $pokemon->getSlug();
+                    },
+                ],
                 'orderable' => false,
 //                'orderField' => 'pokemon.name',
                 'className' => 'pkt-pokemon-index-table-name',
@@ -84,7 +112,7 @@ class PokemonTableType implements DataTableTypeInterface
                 'label' => 'Type',
                 'propertyPath' => 'types',
 //                'orderable' => true,
-                'className' => 'pkt-pokemon-index-table-type',
+                'className' => 'pkt-pokemon-type',
                 'childType' => LinkColumn::class,
                 'childOptions' => [
                     'route' => 'type_view',
@@ -120,7 +148,7 @@ class PokemonTableType implements DataTableTypeInterface
                         ],
                         'linkClassName' => function (PokemonAbility $pokemonAbility): ?string {
                             if ($pokemonAbility->isHidden()) {
-                                return 'pkt-pokemon-index-ability-hidden';
+                                return 'pkt-pokemon-ability-hidden';
                             }
 
                             return null;
@@ -261,6 +289,10 @@ class PokemonTableType implements DataTableTypeInterface
         return null;
     }
 
+    /**
+     * @param QueryBuilder $qb
+     * @param Version $version
+     */
     protected function query(QueryBuilder $qb, Version $version): void
     {
         if (!$qb->getDQLPart('from')) {

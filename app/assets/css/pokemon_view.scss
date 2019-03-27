@@ -1,0 +1,115 @@
+@import "app";
+@import "datatable";
+@import "orgchart";
+@import "audio";
+@import "./_pokemon_index";
+@import "pokemon";
+@import "data_page";
+
+.pkt-pokemon-view-numbers {
+    .pkt-pokemon-view-numbers-dex {
+        font-weight: bold;
+
+        &::after {
+            content: ':';
+        }
+    }
+
+    .pkt-pokemon-view-numbers-number {
+        &::before {
+            content: '#';
+        }
+    }
+}
+
+.pkt-pokemon-view-basics {
+    @extend .justify-content-start;
+
+    min-height: 10rem;
+}
+
+.pkt-pokemon-view-genus {
+    font-style: italic;
+}
+
+.pkt-pokemon-view-stats {
+    .pkt-pokemon-view-stats-gauge {
+        .pkt-gauge-value-0 {
+            fill: $secondary;
+        }
+
+        .pkt-gauge-value-1 {
+            fill: $gray-300;
+        }
+    }
+}
+
+.pkt-pokemon-view-gender {
+    .pkt-gauge-linear {
+        .pkt-gauge-value-0 {
+            fill: $blue;
+        }
+
+        .pkt-gauge-value-1 {
+            fill: $pink;
+        }
+    }
+}
+
+.pkt-pokemon-view-pokeathlon {
+    a {
+        color: $body-color;
+        text-decoration: none;
+    }
+
+    & &-base {
+        color: map_get($theme-colors, 'primary');
+    }
+}
+
+.pkt-pokemon-view-helditems {
+    .table {
+        @extend .table-sm;
+    }
+}
+
+#pkt-pokemon-view-moves {
+    .pkt-pokemon-view-moves-stab {
+        background-color: lighten(map_get($theme-colors, 'success'), 50%);
+    }
+}
+
+.pkt-pokemon-view-evolution {
+    .pkt-pokemon-evo-card {
+        &.active {
+            @extend .border;
+            @extend .border-dark;
+        }
+
+        .card-body {
+            padding: 0.25rem;
+        }
+    }
+}
+
+.pkt-pokemon-view-breeding-compatibility {
+    .modal-dialog {
+        max-width: 80%;
+    }
+
+    .table {
+        @extend .table-sm;
+    }
+}
+
+.pkt-pokemon-view-growthrate {
+    .pkt-pokemon-view-growthrate-experience-container {
+        @extend .table-responsive;
+
+        max-height: 20rem;
+
+        .table {
+            @extend .table-sm;
+        }
+    }
+}

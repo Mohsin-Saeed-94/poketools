@@ -13,8 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity(repositoryClass="App\Repository\PokemonHabitatRepository")
  */
-class PokemonHabitat extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface
+class PokemonHabitat extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasIconInterface
 {
 
     use EntityHasNameAndSlugTrait;
+    use EntityHasIconTrait;
 }

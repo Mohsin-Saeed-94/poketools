@@ -26,6 +26,14 @@ class TimeOfDayEvolutionCondition extends PokemonEvolutionCondition
     protected $timeOfDay;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('During the %s', $this->getTimeOfDay()->getName());
+    }
+
+    /**
      * @return TimeOfDay
      */
     public function getTimeOfDay(): ?TimeOfDay

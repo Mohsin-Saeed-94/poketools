@@ -55,6 +55,7 @@ SQL
     public function transform($sourceData, $destinationData)
     {
         unset($sourceData['id']);
+        $sourceData['icon'] = sprintf('%s.png', $sourceData['identifier']);
         $destinationData = array_merge($sourceData, $destinationData);
 
         return $destinationData;

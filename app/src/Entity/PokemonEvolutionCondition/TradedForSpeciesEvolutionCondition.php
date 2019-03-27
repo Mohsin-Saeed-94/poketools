@@ -26,6 +26,14 @@ class TradedForSpeciesEvolutionCondition extends PokemonEvolutionCondition
     protected $tradedForSpecies;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Traded for []{pokemon:%s}', $this->getTradedForSpecies()->getSlug());
+    }
+
+    /**
      * @return PokemonSpeciesInVersionGroup
      */
     public function getTradedForSpecies(): ?PokemonSpeciesInVersionGroup

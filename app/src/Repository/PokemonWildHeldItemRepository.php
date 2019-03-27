@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ItemInVersionGroup;
+use App\Entity\Pokemon;
 use App\Entity\PokemonWildHeldItem;
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -73,5 +74,26 @@ class PokemonWildHeldItemRepository extends ServiceEntityRepository
         $q->execute();
 
         return $q->getResult();
+    }
+
+    /**
+     * @param Pokemon $pokemon
+     *
+     * @param Version $version
+     *
+     * @return int
+     */
+    public function countByPokemon(Pokemon $pokemon, Version $version): int
+    {
+        $qb = $this->createQueryBuilder('held_item');
+        $qb->select('COUNT(held_item.id)')
+            ->andWhere('held_item.pokemon = :pokemon')
+            ->andWhere('held_item.version = :version')
+            ->setParameter('pokemon', $pokemon)
+            ->setParameter('version', $version);
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getSingleScalarResult();
     }
 }

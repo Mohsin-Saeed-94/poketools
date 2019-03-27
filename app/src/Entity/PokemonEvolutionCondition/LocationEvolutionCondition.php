@@ -38,14 +38,6 @@ class LocationEvolutionCondition extends PokemonEvolutionCondition
     }
 
     /**
-     * @return LocationInVersionGroup[]|Collection
-     */
-    public function getLocations()
-    {
-        return $this->locations;
-    }
-
-    /**
      * @param LocationInVersionGroup $location
      *
      * @return LocationEvolutionCondition
@@ -71,5 +63,27 @@ class LocationEvolutionCondition extends PokemonEvolutionCondition
         }
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        $locationLinks = $this->getLocations()->map(
+            function (LocationInVersionGroup $location) {
+                return sprintf('[]{location:%s}', $location->getSlug());
+            }
+        );
+
+        return sprintf('Triggered in %s', implode(', ', $locationLinks));
+    }
+
+    /**
+     * @return LocationInVersionGroup[]|Collection
+     */
+    public function getLocations()
+    {
+        return $this->locations;
     }
 }

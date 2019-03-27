@@ -25,6 +25,21 @@ class PhysicalStatsDifferenceEvolutionCondition extends PokemonEvolutionConditio
     protected $physicalStatsDifference;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        switch ($this->getPhysicalStatsDifference()) {
+            case -1:
+                return 'Attack &lt; Defense';
+            case 1:
+                return 'Attack &gt; Defense';
+            default:
+                return 'Attack = Defense';
+        }
+    }
+
+    /**
      * @return int
      */
     public function getPhysicalStatsDifference(): ?int

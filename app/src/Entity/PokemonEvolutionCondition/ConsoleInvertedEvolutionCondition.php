@@ -25,6 +25,18 @@ class ConsoleInvertedEvolutionCondition extends PokemonEvolutionCondition
     protected $consoleInverted;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        if ($this->isConsoleInverted() === true) {
+            return 'Console is upside-down';
+        }
+
+        return 'Console is not upside-down';
+    }
+
+    /**
      * @return bool
      */
     public function isConsoleInverted(): ?bool

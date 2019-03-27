@@ -10,12 +10,21 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class PokemonWildHeldItem
 {
+    /**
+     * Unique Id
+     *
+     * @var int
+     *
+     * @ORM\Id()
+     * @ORM\Column(type="integer", unique=true)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
     /**
      * @var Pokemon
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Pokemon", inversedBy="wildHeldItems")
-     * @ORM\Id()
      */
     protected $pokemon;
 
@@ -23,15 +32,13 @@ class PokemonWildHeldItem
      * @var Version
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Version")
-     * @ORM\Id()
      */
     protected $version;
 
     /**
      * @var ItemInVersionGroup
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ItemInVersionGroup", fetch="EAGER")
-     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="App\Entity\ItemInVersionGroup", inversedBy="pokemonHoldsInWild", fetch="EAGER")
      */
     protected $item;
 
@@ -42,6 +49,14 @@ class PokemonWildHeldItem
      * @Assert\Range(min="0", max="100")
      */
     protected $rate;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     /**
      * @return Pokemon

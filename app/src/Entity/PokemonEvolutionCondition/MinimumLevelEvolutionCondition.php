@@ -25,6 +25,14 @@ class MinimumLevelEvolutionCondition extends PokemonEvolutionCondition
     protected $minimumLevel;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Level is at least %u', $this->getMinimumLevel());
+    }
+
+    /**
      * @return int
      */
     public function getMinimumLevel(): ?int

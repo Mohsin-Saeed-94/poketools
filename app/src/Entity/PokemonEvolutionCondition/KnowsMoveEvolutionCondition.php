@@ -26,6 +26,14 @@ class KnowsMoveEvolutionCondition extends PokemonEvolutionCondition
     protected $knowsMove;
 
     /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return sprintf('Knows []{move:%s}', $this->getKnowsMove()->getSlug());
+    }
+
+    /**
      * @return MoveInVersionGroup
      */
     public function getKnowsMove(): ?MoveInVersionGroup
