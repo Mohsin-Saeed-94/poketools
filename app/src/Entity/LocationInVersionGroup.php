@@ -49,6 +49,13 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
     protected $areas;
 
     /**
+     * @var LocationMap|null
+     *
+     * @ORM\OneToOne(targetEntity="App\Entity\LocationMap", mappedBy="location", cascade={"ALL"}, orphanRemoval=true)
+     */
+    protected $map;
+
+    /**
      * Location constructor.
      */
     public function __construct()
@@ -137,6 +144,29 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
         if ($this->areas->contains($child)) {
             $this->areas->removeElement($child);
             $child->setLocation(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return LocationMap|null
+     */
+    public function getMap(): ?LocationMap
+    {
+        return $this->map;
+    }
+
+    /**
+     * @param LocationMap|null $map
+     *
+     * @return self
+     */
+    public function setMap(?LocationMap $map): self
+    {
+        $this->map = $map;
+        if ($map !== null) {
+            $map->setLocation($this);
         }
 
         return $this;

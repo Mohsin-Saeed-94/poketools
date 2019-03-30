@@ -8,6 +8,7 @@ namespace App\Twig;
 
 use App\Entity\ContestType;
 use App\Entity\ItemInVersionGroup;
+use App\Entity\LocationMap;
 use App\Entity\Pokemon;
 use App\Entity\PokemonType;
 use App\Entity\Type;
@@ -17,6 +18,7 @@ use App\Helpers\Labeler;
 use App\Mechanic\TypeMatchup;
 use App\Repository\TypeChartRepository;
 use App\Repository\VersionRepository;
+use Twig\Environment;
 use Twig\Extension\RuntimeExtensionInterface;
 
 /**
@@ -52,6 +54,11 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     private $labeler;
 
     /**
+     * @var string
+     */
+    private $projectDir;
+
+    /**
      * AppExtensionRuntime constructor.
      *
      * @param VersionRepository $versionRepo
@@ -59,19 +66,22 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
      * @param TypeMatchup $typeMatchup
      * @param Version $activeVersion
      * @param Labeler $labeler
+     * @param string $projectDir
      */
     public function __construct(
         VersionRepository $versionRepo,
         TypeChartRepository $typeChartRepo,
         TypeMatchup $typeMatchup,
         ?Version $activeVersion,
-        Labeler $labeler
+        Labeler $labeler,
+        string $projectDir
     ) {
         $this->versionRepo = $versionRepo;
         $this->typeChartRepo = $typeChartRepo;
         $this->typeMatchup = $typeMatchup;
         $this->activeVersion = $activeVersion;
         $this->labeler = $labeler;
+        $this->projectDir = $projectDir;
     }
 
     /**
@@ -279,5 +289,28 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
         $version = $this->resolveActiveVersion($context);
 
         return $this->labeler->pokemon($pokemon, $version);
+    }
+
+    /**
+     * @param Environment $twig
+     * @param LocationMap $map
+     *
+     * @return string
+     */
+    public function locationMap(Environment $twig, LocationMap $map): string
+    {
+        $mapImageUrl = $this->projectDir.'/assets/static/map/'.$map->getMap()->getUrl();
+        $mapImageInfo = getimagesize($mapImageUrl);
+        $imageWidth = $mapImageInfo[0];
+        $imageHeight = $mapImageInfo[1];
+
+        return $twig->render(
+            '_filters/map.svg.twig',
+            [
+                'map' => $map,
+                'width' => $imageWidth,
+                'height' => $imageHeight,
+            ]
+        );
     }
 }

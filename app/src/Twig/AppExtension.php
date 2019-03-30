@@ -64,6 +64,12 @@ class AppExtension extends AbstractExtension
                     'is_safe' => ['html'],
                 ]
             ),
+            new TwigFilter(
+                'location_map', [AppExtensionRuntime::class, 'locationMap'], [
+                    'needs_environment' => true,
+                    'is_safe' => ['html'],
+                ]
+            ),
         ];
     }
 }

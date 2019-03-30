@@ -4,6 +4,8 @@ namespace App\DataMigration;
 
 use App\Entity\LocationArea;
 use App\Entity\LocationInVersionGroup;
+use App\Entity\LocationMap;
+use App\Entity\Media\RegionMap;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
@@ -64,6 +66,8 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
         ];
         /** @var LocationInVersionGroup $destinationData */
         $destinationData = $this->mergeProperties($sourceData, $destinationData, $properties);
+
+        // Areas
         $areaPosition = 1;
         foreach ($sourceData['areas'] as $areaIdentifier => $areaData) {
             $areaData['position'] = $areaPosition;
@@ -83,6 +87,21 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
             $area->setSlug($areaIdentifier);
             if (!isset($areaData['default'])) {
                 $areaData['default'] = false;
+            }
+
+            // Map
+            if (isset($sourceData['map'])) {
+                $map = $destinationData->getMap() ?? new LocationMap();
+                $regionMap = $sourceData['region']->getMaps()->filter(
+                    function (RegionMap $regionMap) use ($sourceData) {
+                        return $regionMap->getSlug() === $sourceData['map']['map'];
+                    }
+                )->first();
+                $map->setMap($regionMap);
+                $map->setOverlay($sourceData['map']['overlay']);
+                $destinationData->setMap($map);
+            } else {
+                $destinationData->setMap(null);
             }
 
             /** @var LocationArea $area */
