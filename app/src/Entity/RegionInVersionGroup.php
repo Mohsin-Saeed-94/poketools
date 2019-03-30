@@ -35,6 +35,7 @@ class RegionInVersionGroup extends AbstractDexEntity implements EntityHasParentI
      * @var Collection|RegionMap[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Media\RegionMap", mappedBy="region", cascade={"ALL"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position": "ASC"})
      */
     protected $maps;
 

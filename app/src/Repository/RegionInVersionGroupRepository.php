@@ -59,6 +59,7 @@ class RegionInVersionGroupRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('region');
         $qb->join('region.versionGroup', 'version_group')
             ->andWhere(':version MEMBER OF version_group.versions')
+            ->orderBy('region.position')
             ->setParameter('version', $version);
         $q = $qb->getQuery();
         $q->execute();

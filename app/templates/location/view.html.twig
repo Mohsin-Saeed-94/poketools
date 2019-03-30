@@ -15,13 +15,31 @@
     </nav>
 
     <h1>{{ location.name }}</h1>
-    {% for area in location.areas %}
-        {% if location.areas|length > 1 %}
-            <h2>{{ area.name }}</h2>
-        {% endif %}
+    {% if location.areas|length > 1 %}
+        <ul class="nav nav-tabs" role="tablist">
+            {% for area in location.areas %}
+                <li class="nav-item">
+                    <a class="nav-link{% if loop.first %} active{% endif %}" id="pkt-location-view-tabs-{{ area.slug }}"
+                       data-toggle="tab" href="#pkt-location-view-area-{{ area.slug }}" role="tab"
+                       aria-controls="pkt-location-view-area-{{ area.slug }}"{% if loop.first %} aria-selected="true"{% endif %}>
+                        {{ area.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="tab-content">
+        {% for area in location.areas %}
+            <div class="tab-pane{% if loop.first %} show active{% endif %}" id="pkt-location-view-area-{{ area.slug }}"
+                 role="tabpanel" aria-labelledby="pkt-location-view-tabs-{{ area.slug }}">
+                {% if location.areas|length > 1 %}
+                    <h2>{{ area.name }}</h2>
+                {% endif %}
 
-        {{ datatable.datatable(encounter_tables[area.slug], 'pkt-location-view-encounters-'~random()) }}
-    {% endfor %}
+                {{ datatable.datatable(encounter_tables[area.slug], 'pkt-location-view-encounters-'~area.slug) }}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block stylesheets %}

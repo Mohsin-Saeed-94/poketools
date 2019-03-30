@@ -28,6 +28,7 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
      */
     public function transform($sourceData, $destinationData)
     {
+        $identifier = $sourceData['identifier'];
         unset($sourceData['identifier']);
         foreach ($sourceData as $versionGroup => $versionGroupSource) {
             /** @var \App\Entity\VersionGroup $versionGroup */
@@ -36,6 +37,7 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
             $versionGroupDestination = $destinationData->findChildByGrouping(
                     $versionGroup
                 ) ?? (new LocationInVersionGroup());
+            $versionGroupDestination->setSlug($identifier);
             $versionGroupDestination = $this->transformVersionGroup($versionGroupSource, $versionGroupDestination);
             $destinationData->addChild($versionGroupDestination);
         }
@@ -62,7 +64,10 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
         ];
         /** @var LocationInVersionGroup $destinationData */
         $destinationData = $this->mergeProperties($sourceData, $destinationData, $properties);
+        $areaPosition = 1;
         foreach ($sourceData['areas'] as $areaIdentifier => $areaData) {
+            $areaData['position'] = $areaPosition;
+            $areaPosition++;
             $area = $destinationData->getAreas()->filter(
                 function (LocationArea $area) use ($areaIdentifier) {
                     return ($area->getSlug() === $areaIdentifier);

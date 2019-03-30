@@ -11,18 +11,52 @@
     </nav>
 
     <h1>Locations</h1>
-    {% for region in regions %}
-        <h2>{{ region.name }}</h2>
-        <ul class="pkt-location-index-list">
-            {% for location in locations[region.slug] %}
-                <li>
-                    <a href="{{ path('location_view', {'versionSlug': version.slug, 'locationSlug': location.slug}) }}">
-                        {{ location.name }}
+    {% if regions|length > 1 %}
+        <ul class="nav nav-tabs" role="tablist">
+            {% for region in regions %}
+                <li class="nav-item">
+                    <a class="nav-link{% if loop.first %} active{% endif %}"
+                       id="pkt-location-index-tabs-{{ region.slug }}"
+                       data-toggle="tab" href="#pkt-location-index-region-{{ region.slug }}" role="tab"
+                       aria-controls="pkt-location-index-region-{{ region.slug }}"{% if loop.first %} aria-selected="true"{% endif %}>
+                        {{ region.name }}
                     </a>
                 </li>
             {% endfor %}
         </ul>
-    {% endfor %}
+    {% endif %}
+    <div class="tab-content">
+        {% for region in regions %}
+            <div class="tab-pane{% if loop.first %} show active{% endif %}"
+                 id="pkt-location-index-region-{{ region.slug }}" role="tabpanel"
+                 aria-labelledby="pkt-location-index-tabs-{{ region.slug }}">
+                {% if regions|length > 1 %}
+                    <h2>{{ region.name }}</h2>
+                {% endif %}
+
+                {# Maps #}
+                <div class="pkt-imagelist pkt-location-index-maps">
+                    {% for map in region.maps %}
+                        <figure class="figure pkt-imagelist-img">
+                            <img class="figure-img img-fluid img-thumbnail"
+                                 src="{{ asset('build/static/map/'~map.url) }}">
+                            <figcaption class="figure-caption">{{ map.name }}</figcaption>
+                        </figure>
+                    {% endfor %}
+                </div>
+
+                <ul class="pkt-location-index-list">
+                    {% for location in locations[region.slug] %}
+                        <li>
+                            <a href="{{ path('location_view', {'versionSlug': version.slug, 'locationSlug': location.slug}) }}">
+                                {{ location.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block stylesheets %}

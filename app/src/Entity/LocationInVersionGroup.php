@@ -41,7 +41,9 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
     /**
      * @var LocationArea[]|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\LocationArea", mappedBy="location", cascade={"ALL"}, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\LocationArea", mappedBy="location", cascade={"ALL"}, orphanRemoval=true,
+     *     fetch="EAGER")
+     * @ORM\OrderBy({"position": "ASC"})
      * @Assert\NotBlank
      */
     protected $areas;

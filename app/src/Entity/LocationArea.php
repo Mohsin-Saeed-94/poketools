@@ -10,11 +10,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity(repositoryClass="App\Repository\LocationAreaRepository")
  */
-class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDefaultInterface
+class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityHasDefaultInterface, EntityIsSortableInterface
 {
 
     use EntityHasNameAndSlugTrait;
     use EntityHasDefaultTrait;
+    use EntityIsSortableTrait;
 
     /**
      * @var LocationInVersionGroup
@@ -23,6 +24,11 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
      * @Assert\NotNull
      */
     protected $location;
+
+    public static function getGroupField(): string
+    {
+        return 'location';
+    }
 
     /**
      * @return LocationInVersionGroup
@@ -42,10 +48,5 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
         $this->location = $location;
 
         return $this;
-    }
-
-    public static function getGroupField(): string
-    {
-        return 'location';
     }
 }
