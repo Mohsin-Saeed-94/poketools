@@ -41,15 +41,6 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
     protected $versions;
 
     /**
-     * Regions available in this version group
-     *
-     * @var Region[]|Collection
-     *
-     * @ORM\ManyToMany(targetEntity="App\Entity\Region", inversedBy="versionGroups")
-     */
-    protected $regions;
-
-    /**
      * A list of features in this version group
      *
      * @var Feature[]|Collection
@@ -63,7 +54,6 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
     public function __construct()
     {
         $this->versions = new ArrayCollection();
-        $this->regions = new ArrayCollection();
         $this->features = new ArrayCollection();
     }
 
@@ -128,70 +118,6 @@ class VersionGroup extends AbstractDexEntity implements GroupableInterface, Enti
         if ($this->versions->contains($version)) {
             $this->versions->removeElement($version);
             $version->setVersionGroup(null);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Region[]|Collection
-     */
-    public function getRegions()
-    {
-        return $this->regions;
-    }
-
-    /**
-     * @param array|\iterable|Region[] $regions
-     *
-     * @return self
-     */
-    public function addRegions($regions): self
-    {
-        foreach ($regions as $region) {
-            $this->addRegion($region);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Region $region
-     *
-     * @return self
-     */
-    public function addRegion(Region $region): self
-    {
-        if (!$this->regions->contains($region)) {
-            $this->regions->add($region);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param array|\iterable|Region[] $regions
-     *
-     * @return self
-     */
-    public function removeRegions($regions): self
-    {
-        foreach ($regions as $region) {
-            $this->removeRegion($region);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Region $region
-     *
-     * @return self
-     */
-    public function removeRegion(Region $region): self
-    {
-        if ($this->regions->contains($region)) {
-            $this->regions->removeElement($region);
         }
 
         return $this;

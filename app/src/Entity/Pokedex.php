@@ -20,14 +20,6 @@ class Pokedex extends AbstractDexEntity implements EntityHasNameInterface, Entit
     use EntityHasDefaultTrait;
 
     /**
-     * @var Region[]|Collection
-     *
-     * @ORM\ManyToMany(targetEntity="App\Entity\Region")
-     * @Assert\NotBlank()
-     */
-    protected $regions;
-
-    /**
      * @var VersionGroup[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\VersionGroup")
@@ -40,72 +32,7 @@ class Pokedex extends AbstractDexEntity implements EntityHasNameInterface, Entit
      */
     public function __construct()
     {
-        $this->regions = new ArrayCollection();
         $this->versionGroups = new ArrayCollection();
-    }
-
-    /**
-     * @return Region[]|Collection
-     */
-    public function getRegions()
-    {
-        return $this->regions;
-    }
-
-    /**
-     * @param $regions
-     *
-     * @return self
-     */
-    public function addRegions($regions): self
-    {
-        foreach ($regions as $region) {
-            $this->addRegion($region);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Region $region
-     *
-     * @return self
-     */
-    public function addRegion(Region $region): self
-    {
-        if (!$this->regions->contains($region)) {
-            $this->regions->add($region);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param $regions
-     *
-     * @return self
-     */
-    public function removeRegions($regions): self
-    {
-        foreach ($regions as $region) {
-            $this->removeRegion($region);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Region $region
-     *
-     * @return self
-     */
-    public function removeRegion(Region $region): self
-    {
-        if ($this->regions->contains($region)) {
-            $this->regions->removeElement($region);
-        }
-
-        return $this;
     }
 
     /**

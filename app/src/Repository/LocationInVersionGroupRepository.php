@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\LocationInVersionGroup;
-use App\Entity\Region;
+use App\Entity\RegionInVersionGroup;
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -51,19 +51,15 @@ class LocationInVersionGroupRepository extends ServiceEntityRepository implement
     */
 
     /**
-     * @param Version $version
-     * @param Region $region
+     * @param RegionInVersionGroup $region
      *
      * @return LocationInVersionGroup[]
      */
-    public function findByVersionAndRegion(Version $version, Region $region): array
+    public function findByRegion(RegionInVersionGroup $region): array
     {
         $qb = $this->createQueryBuilder('location');
-        $qb->join('location.versionGroup', 'version_group')
-            ->andWhere('location.region = :region')
-            ->andWhere(':version MEMBER OF version_group.versions')
-            ->setParameter('region', $region)
-            ->setParameter('version', $version);
+        $qb->andWhere('location.region = :region')
+            ->setParameter('region', $region);
 
         $q = $qb->getQuery();
         $q->execute();

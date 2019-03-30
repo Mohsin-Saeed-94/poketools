@@ -6,7 +6,7 @@ use App\DataTable\Type\EncounterPokemonTableType;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\Version;
 use App\Repository\LocationInVersionGroupRepository;
-use App\Repository\RegionRepository;
+use App\Repository\RegionInVersionGroupRepository;
 use Omines\DataTablesBundle\DataTableFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +27,7 @@ class LocationController extends AbstractDexController
     private $locationRepo;
 
     /**
-     * @var RegionRepository
+     * @var RegionInVersionGroupRepository
      */
     private $regionRepo;
 
@@ -36,12 +36,12 @@ class LocationController extends AbstractDexController
      *
      * @param DataTableFactory $dataTableFactory
      * @param LocationInVersionGroupRepository $locationRepo
-     * @param RegionRepository $regionRepo
+     * @param RegionInVersionGroupRepository $regionRepo
      */
     public function __construct(
         DataTableFactory $dataTableFactory,
         LocationInVersionGroupRepository $locationRepo,
-        RegionRepository $regionRepo
+        RegionInVersionGroupRepository $regionRepo
     ) {
         parent::__construct($dataTableFactory);
 
@@ -63,7 +63,7 @@ class LocationController extends AbstractDexController
         $regions = $this->regionRepo->findByVersion($version);
         $locations = [];
         foreach ($regions as $region) {
-            $locations[$region->getSlug()] = $this->locationRepo->findByVersionAndRegion($version, $region);
+            $locations[$region->getSlug()] = $this->locationRepo->findByRegion($region);
             usort(
                 $locations[$region->getSlug()],
                 function (LocationInVersionGroup $a, LocationInVersionGroup $b) {

@@ -33,7 +33,9 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
             /** @var \App\Entity\VersionGroup $versionGroup */
             $versionGroup = $this->referenceStore->get(VersionGroup::class, ['identifier' => $versionGroup]);
             $versionGroupSource['version_group'] = $versionGroup;
-            $versionGroupDestination = $destinationData->findChildByGrouping($versionGroup) ?? (new LocationInVersionGroup());
+            $versionGroupDestination = $destinationData->findChildByGrouping(
+                    $versionGroup
+                ) ?? (new LocationInVersionGroup());
             $versionGroupDestination = $this->transformVersionGroup($versionGroupSource, $versionGroupDestination);
             $destinationData->addChild($versionGroupDestination);
         }
@@ -42,14 +44,17 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
     }
 
     /**
-     * @param array                              $sourceData
+     * @param array $sourceData
      * @param \App\Entity\LocationInVersionGroup $destinationData
      *
      * @return LocationInVersionGroup
      */
     protected function transformVersionGroup($sourceData, $destinationData)
     {
-        $sourceData['region'] = $this->referenceStore->get(Region::class, ['identifier' => $sourceData['region']]);
+        $versionGroup = $sourceData['version_group'];
+        /** @var \App\Entity\Region $region */
+        $region = $this->referenceStore->get(Region::class, ['identifier' => $sourceData['region']]);
+        $sourceData['region'] = $region->findChildByGrouping($versionGroup);
         $properties = [
             'version_group',
             'region',

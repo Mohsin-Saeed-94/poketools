@@ -53,7 +53,7 @@ abstract class AbstractMediaEntity
      *
      * @return self
      */
-    public function setUrl(string $url): self
+    public function setUrl(string $url)
     {
         $this->url = $url;
 

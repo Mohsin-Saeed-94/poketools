@@ -48,22 +48,4 @@ class RegionRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    /**
-     * @param Version $version
-     *
-     * @return Region[]
-     */
-    public function findByVersion(Version $version): array
-    {
-        $qb = $this->createQueryBuilder('region');
-        $qb->join('region.versionGroups', 'version_groups')
-            ->andWhere(':version MEMBER OF version_groups.versions')
-            ->setParameter('version', $version);
-
-        $q = $qb->getQuery();
-        $q->execute();
-
-        return $q->getResult();
-    }
 }

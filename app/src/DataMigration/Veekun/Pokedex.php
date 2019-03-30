@@ -35,16 +35,10 @@ class Pokedex extends AbstractDataMigration implements DataMigrationInterface
 SELECT "pokedexes"."id",
        "pokedexes"."identifier",
        "pokedex_prose"."name",
-       coalesce("regions"."identifier",
-                group_concat(DISTINCT "all_regions"."identifier")) AS "regions",
        coalesce(group_concat(DISTINCT "version_groups"."identifier"),
                 group_concat(DISTINCT "all_version_groups"."identifier")) AS "version_groups",
        "pokedex_prose"."description"
 FROM "pokedexes"
-     JOIN (
-              SELECT "regions"."identifier"
-              FROM "regions"
-          ) "all_regions"
      JOIN (
               SELECT "version_groups"."identifier"
               FROM "version_groups"
@@ -80,7 +74,6 @@ SQL
     public function transform($sourceData, $destinationData)
     {
         unset($sourceData['id']);
-        $sourceData['regions'] = explode(',', $sourceData['regions']);
         $sourceData['version_groups'] = explode(',', $sourceData['version_groups']);
         $destinationData = array_merge($sourceData, $destinationData);
 

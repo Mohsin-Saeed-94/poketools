@@ -15,7 +15,7 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *     sourceIds={@IdField(name="identifier", type="string")},
  *     destination="doctrine:///App/Entity/Pokedex",
  *     destinationIds={@IdField(name="id")},
- *     depends={"App\DataMigration\Region", "App\DataMigration\VersionGroup"}
+ *     depends={"App\DataMigration\VersionGroup"}
  * )
  */
 class Pokedex extends AbstractDoctrineDataMigration implements DataMigrationInterface
@@ -32,9 +32,6 @@ class Pokedex extends AbstractDoctrineDataMigration implements DataMigrationInte
             $destinationData->setSlug($sourceData['identifier']);
         }
         unset($sourceData['identifier']);
-        foreach ($sourceData['regions'] as &$region) {
-            $region = $this->referenceStore->get(Region::class, ['identifier' => $region]);
-        }
         foreach ($sourceData['version_groups'] as &$versionGroup) {
             $versionGroup = $this->referenceStore->get(VersionGroup::class, ['identifier' => $versionGroup]);
         }

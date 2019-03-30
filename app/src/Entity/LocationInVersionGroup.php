@@ -31,9 +31,9 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
     protected $parent;
 
     /**
-     * @var Region
+     * @var RegionInVersionGroup
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Region")
+     * @ORM\ManyToOne(targetEntity="App\Entity\RegionInVersionGroup")
      * @Assert\NotNull
      */
     protected $region;
@@ -55,19 +55,19 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
     }
 
     /**
-     * @return Region
+     * @return RegionInVersionGroup
      */
-    public function getRegion(): ?Region
+    public function getRegion(): ?RegionInVersionGroup
     {
         return $this->region;
     }
 
     /**
-     * @param Region $region
+     * @param RegionInVersionGroup $region
      *
      * @return self
      */
-    public function setRegion(Region $region): self
+    public function setRegion(RegionInVersionGroup $region): self
     {
         $this->region = $region;
 
