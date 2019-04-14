@@ -297,8 +297,12 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
      *
      * @return string
      */
-    public function locationMap(Environment $twig, LocationMap $map): string
+    public function locationMap(Environment $twig, ?LocationMap $map): string
     {
+        if ($map === null) {
+            return '';
+        }
+
         $mapImageUrl = $this->projectDir.'/assets/static/map/'.$map->getMap()->getUrl();
         $mapImageInfo = getimagesize($mapImageUrl);
         $imageWidth = $mapImageInfo[0];

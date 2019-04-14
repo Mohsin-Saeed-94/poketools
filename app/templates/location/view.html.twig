@@ -15,6 +15,16 @@
     </nav>
 
     <h1>{{ location.name }}</h1>
+    {# Map #}
+    {% if location.map %}
+        <figure class="mb-3 pkt-location-view-map img-thumbnail">
+            <div class="figure-img">
+                {{ location.map|location_map }}
+            </div>
+            <figcaption class="figure-caption">{{ location.map.map.name }}</figcaption>
+        </figure>
+    {% endif %}
+
     {% if location.areas|length > 1 %}
         <ul class="nav nav-tabs" role="tablist">
             {% for area in location.areas %}
@@ -35,11 +45,6 @@
                 {% if location.areas|length > 1 %}
                     <h2>{{ area.name }}</h2>
                 {% endif %}
-
-                {# Map #}
-                <div class="mb-3 d-flex justify-content-center">
-                        {{ location.map|location_map }}
-                </div>
 
                 {{ datatable.datatable(encounter_tables[area.slug], 'pkt-location-view-encounters-'~area.slug) }}
             </div>

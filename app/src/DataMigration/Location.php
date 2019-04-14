@@ -39,8 +39,8 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
             $versionGroupDestination = $destinationData->findChildByGrouping(
                     $versionGroup
                 ) ?? (new LocationInVersionGroup());
-            $versionGroupDestination->setSlug($identifier);
             $versionGroupDestination = $this->transformVersionGroup($versionGroupSource, $versionGroupDestination);
+            $versionGroupDestination->setSlug($identifier);
             $destinationData->addChild($versionGroupDestination);
         }
 
