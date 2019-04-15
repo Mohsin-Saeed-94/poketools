@@ -72,8 +72,8 @@ data:
     - cd /var/www
     - php bin/console doctrine:schema:update --force
     - php -d memory_limit=-1 bin/console a2b:migrate --preserve
-    - pg_dump --dbname=${POSTGRES_DB} --column-inserts --schema='public' --file="./db/template.generated.pg.sql"
+    - pg_dump --host=postgres --username=${POSTGRES_USER} --dbname=${POSTGRES_DB} --blobs --inserts --no-owner --no-privileges --file="./db/template.generated.pg.sql"
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
     paths:
-      - db/template.generated.pg.sql
+      - /var/www/db/template.generated.pg.sql
