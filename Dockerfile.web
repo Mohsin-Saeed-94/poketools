@@ -1,0 +1,44 @@
+#######################################
+# ASSETS
+#######################################
+FROM node:10.15-alpine as webpack
+
+ARG APP_ENV=prod
+
+RUN rm -rf /var/www && mkdir /var/www
+WORKDIR /var/www
+
+COPY app/public app/yarn.lock app/package.json app/webpack.config.js /var/www/
+COPY app/assets /var/www/assets
+# Some assets come from PHP vendors
+COPY app/vendor/ /var/www/vendor/
+
+RUN set -xe \
+    && yarn install --non-interactive  --frozen-lockfile $ARGS
+
+RUN set -xe \
+    && mkdir -p public/build \
+    && if [ "$APP_ENV" = "prod" ]; then export SCRIPT="build"; else export SCRIPT="dev"; fi \
+    && yarn run $SCRIPT
+
+# Cleanup sources to reduce image size
+RUN set -xe \
+    && rm -R /var/www/assets
+
+#######################################
+# WEB SERVER
+#######################################
+FROM nginx:1.15-alpine as web
+
+ARG NGINX_BACKEND_HOST=app
+ENV NGINX_BACKEND_HOST $NGINX_BACKEND_HOST
+
+WORKDIR /var/www/public
+
+COPY docker/web/entrypoint.sh /usr/local/bin/nginx-entrypoint
+
+COPY docker/web/default.conf /etc/nginx/conf.d/default.conf.tmpl
+
+COPY --from=webpack /var/www/public /var/www/public
+
+CMD ["/usr/local/bin/nginx-entrypoint"]

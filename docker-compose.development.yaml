@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      target: app_dev
+      args:
+        - APP_ENV=dev
+        - APP_DEBUG=1
+    env_file:
+      - app/.env
+      - app/.env.local
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://poketools:secret@db:5432/poketools
+      # See https://docs.docker.com/docker-for-mac/networking/#i-want-to-connect-from-a-container-to-a-service-on-the-host
+      # See https://github.com/docker/for-linux/issues/264
+      # The `remote_host` below may optionally be replaced with `remote_connect_back`
+      XDEBUG_CONFIG: >-
+        remote_enable=1
+        remote_connect_back=1
+        remote_port=9000
+        idekey=PHPSTORM
+      # This should correspond to the server declared in PHPStorm `Preferences | Languages & Frameworks | PHP | Servers`
+      # Then PHPStorm will use the corresponding path mappings
+      PHP_IDE_CONFIG: serverName=poketools
+    volumes:
+      - ./app:/var/www
+  db:
+    image: postgres:11
+    ports:
+      - "4321:5432"
+    environment:
+      - POSTGRES_USER=poketools
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - /var/lib/postgresql/data
+      # Template data volume
+      - ./db/template.pg.sql:/docker-entrypoint-initdb.d/template.sql:ro

@@ -1,16 +1,21 @@
-version: "3"
+version: "3.7"
+
 services:
-  db:
-    image: postgres:11
-    restart: always
-    environment:
-      POSTGRES_USER: poketools
-      POSTGRES_PASSWORD: secret
-    networks:
-      - poketools
-    volumes:
-      - /var/lib/postgresql/data
+  app:
+    image: registry.gitlab.com/gamestuff.info/poketools/app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: app
+    expose:
+      - "9000"
+
+  web:
+    image: registry.gitlab.com/gamestuff.info/poketools/web:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.web
     ports:
-      - "54321:5432"
-networks:
-  poketools:
+      - "8080:80"
+    depends_on:
+      - app
