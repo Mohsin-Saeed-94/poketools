@@ -8,7 +8,7 @@ WORKDIR /var/www
 # Install dependencies
 RUN set -xe \
     && apk add --no-cache bash icu-dev libgd libjpeg libpng-dev libzip-dev postgresql-dev \
-    && docker-php-ext-install gd intl pcntl pdo_pgsql zip
+    && docker-php-ext-install gd intl opcache pcntl pdo_pgsql zip
 
 COPY docker/app/entrypoint.sh /usr/local/bin/php-entrypoint
 
