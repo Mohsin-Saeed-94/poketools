@@ -44,7 +44,7 @@ data:
   script:
     - export PGPASSWORD=$POSTGRES_PASSWORD
     - apk add --no-cache postgresql-client sqlite-dev
-    - docker-php-ext-install sqlite
+    - docker-php-ext-install opcache sqlite
     - bin/console doctrine:schema:update --force
     - bin/console a2b:migrate --preserve
     - pg_dump --dbname=${POSTGRES_DB} --column-inserts --schema='public' --file="./db/template.generated.pg.sql"
