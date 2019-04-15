@@ -1,4 +1,5 @@
 stages:
+  - prepare
   - build
   - data
   
@@ -6,12 +7,29 @@ variables:
   BUILD_NUMBER: ${CI_BUILD_REF_NAME}_${CI_BUILD_REF}
   APP_VERSION: ${CI_COMMIT_SHORT_SHA}
   IMAGE_BASENAME: ${CI_REGISTRY}/gamestuff.info/poketools
+  
+# This job exists because the docker build process requires the vendors directory to exist
+# in the context.
+composer:
+  stage: prepare
+  image: composer:1.8
+  cache:
+    paths:
+      - app/vendor
+  script:
+    - cd app
+    - composer install --ignore-platform-reqs --no-dev --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
+  artifacts:
+    paths:
+      - app/vendor
 
 build:
   stage: build
   image: docker:stable
   services:
     - docker:dind
+  dependencies:
+    - composer
   variables:
     COMPOSE_FILE: docker-compose.yaml
     DOCKER_HOST: tcp://docker:2375
@@ -34,7 +52,9 @@ data:
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   services:
     - postgres:11
+  dependencies: []
   variables:
+    GIT_STRATEGY: none
     POSTGRES_DB: poketools
     POSTGRES_USER: poketools
     POSTGRES_PASSWORD: secret

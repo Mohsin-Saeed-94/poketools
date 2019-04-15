@@ -32,7 +32,7 @@ ARG APP_ENV=prod
 
 RUN set -xe \
     && if [ "$APP_ENV" = "prod" ]; then export ARGS="--no-dev"; fi \
-    && composer install --no-dev --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction $ARGS
+    && composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction $ARGS
 
 COPY app/. /var/www
 
