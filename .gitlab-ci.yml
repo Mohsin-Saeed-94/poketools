@@ -22,6 +22,8 @@ composer:
   artifacts:
     paths:
       - app/vendor
+    # Only used for preparing the build
+    expire_in: 1 day
 
 build:
   stage: build
@@ -54,6 +56,7 @@ data:
     - postgres:11
   dependencies: []
   variables:
+    # Don't need to checkout because this job operates in the application image
     GIT_STRATEGY: none
     POSTGRES_DB: poketools
     POSTGRES_USER: poketools
