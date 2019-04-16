@@ -56,6 +56,7 @@ data:
     - postgres:11
   dependencies: []
   variables:
+    CI_DEBUG_TRACE: "true"
     # Don't need to checkout because this job operates in the application image
     GIT_STRATEGY: none
     POSTGRES_DB: poketools
@@ -78,4 +79,5 @@ data:
     - ls -Al db
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
-    untracked: true
+    paths:
+      - db/template.generated.pg.sql
