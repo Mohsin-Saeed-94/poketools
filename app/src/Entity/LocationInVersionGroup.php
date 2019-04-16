@@ -16,12 +16,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @method Location getParent()
  * @method self setParent(Location $parent)
  */
-class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParentInterface, EntityHasNameInterface, EntityHasSlugInterface, EntityGroupedByVersionGroupInterface
+class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParentInterface, EntityHasNameInterface, EntityHasSlugInterface, EntityGroupedByVersionGroupInterface, EntityHasDescriptionInterface
 {
 
     use EntityHasParentTrait;
     use EntityHasNameAndSlugTrait;
     use EntityGroupedByVersionGroupTrait;
+    use EntityHasDescriptionTrait;
 
     /**
      * @var Location

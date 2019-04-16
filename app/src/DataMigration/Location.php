@@ -59,10 +59,14 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
         /** @var \App\Entity\Region $region */
         $region = $this->referenceStore->get(Region::class, ['identifier' => $sourceData['region']]);
         $sourceData['region'] = $region->findChildByGrouping($versionGroup);
+        if (!isset($sourceData['description'])) {
+            $sourceData['description'] = null;
+        }
         $properties = [
             'version_group',
             'region',
             'name',
+            'description',
         ];
         /** @var LocationInVersionGroup $destinationData */
         $destinationData = $this->mergeProperties($sourceData, $destinationData, $properties);
