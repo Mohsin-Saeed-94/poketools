@@ -3,6 +3,7 @@
 {% block title %}Locations{% endblock %}
 
 {% block body %}
+    {% import _self as helpers %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">{{ version }}</li>
@@ -46,12 +47,8 @@
                 </div>
 
                 <ul class="pkt-location-index-list">
-                    {% for location in locations[region.slug] %}
-                        <li>
-                            <a href="{{ path('location_view', {'versionSlug': version.slug, 'locationSlug': location.slug}) }}">
-                                {{ location.name }}
-                            </a>
-                        </li>
+                    {% for location in locations[region.slug] if location.superLocation is null %}
+                        {{ helpers.location_tree(location, version) }}
                     {% endfor %}
                 </ul>
             </div>
@@ -66,3 +63,19 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('location_index') }}
 {% endblock %}
+
+{% macro location_tree(location, version) %}
+    {% import _self as helpers %}
+    <li>
+        <a href="{{ path('location_view', {'versionSlug': version.slug, 'locationSlug': location.slug}) }}">
+            {{ location.name }}
+        </a>
+        {% if location.subLocations is not empty %}
+            <ul>
+                {% for sub_location in location.subLocations %}
+                    {{ helpers.location_tree(sub_location, version) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endmacro %}

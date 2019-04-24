@@ -5,8 +5,10 @@ namespace App\Repository;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\RegionInVersionGroup;
 use App\Entity\Version;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Tree\Entity\Repository\MaterializedPathRepository;
+use LogicException;
 
 /**
  * @method LocationInVersionGroup|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,11 +16,29 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method LocationInVersionGroup[]    findAll()
  * @method LocationInVersionGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LocationInVersionGroupRepository extends ServiceEntityRepository implements SlugAndVersionInterface
+class LocationInVersionGroupRepository extends MaterializedPathRepository implements SlugAndVersionInterface
 {
-    public function __construct(RegistryInterface $registry)
+    /**
+     * LocationInVersionGroupRepository constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
+    public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, LocationInVersionGroup::class);
+        $entityClass = LocationInVersionGroup::class;
+        /** @var EntityManagerInterface $manager */
+        $manager = $registry->getManagerForClass($entityClass);
+
+        if ($manager === null) {
+            throw new LogicException(
+                sprintf(
+                    'Could not find the entity manager for class "%s". Check your Doctrine configuration to make sure it is configured to load this entity’s metadata.',
+                    $entityClass
+                )
+            );
+        }
+
+        parent::__construct($manager, $manager->getClassMetadata($entityClass));
     }
 
 //    /**

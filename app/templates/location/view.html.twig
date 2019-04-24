@@ -4,25 +4,33 @@
 {% block title %}Locations - {{ location.name }}{% endblock %}
 
 {% block body %}
+    {% import _self as helpers %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">{{ version }}</li>
             <li class="breadcrumb-item">
                 <a href="{{ path('location_index', {'versionSlug': version.slug}) }}">Locations</a>
             </li>
-            <li class="breadcrumb-item active">{{ location.name }}</li>
+            {{ helpers.location_breadcrumb(location, version) }}
         </ol>
     </nav>
 
     <h1>{{ location.name }}</h1>
     {# Map #}
-    {% if location.map %}
-        <figure class="mb-3 pkt-location-view-map img-thumbnail">
-            <div class="figure-img">
-                {{ location.map|location_map }}
-            </div>
-            <figcaption class="figure-caption">{{ location.map.map.name }}</figcaption>
-        </figure>
+    {{ helpers.location_map(location, version) }}
+
+    {# Sub-locations #}
+    {% if location.subLocations is not empty %}
+        <h2>Sub-locations</h2>
+        <ul>
+            {% for sub_location in location.subLocations %}
+                <li>
+                    <a href="{{ path('location_view', {'locationSlug': sub_location.slug, 'versionSlug': version.slug}) }}">
+                        {{ sub_location.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
     {% endif %}
 
     {% if location.areas|length > 1 %}
@@ -44,6 +52,9 @@
                  role="tabpanel" aria-labelledby="pkt-location-view-tabs-{{ area.slug }}">
                 {% if location.areas|length > 1 %}
                     <h2>{{ area.name }}</h2>
+                    <h3>Pokèmon</h3>
+                {% else %}
+                    <h2>Pokèmon</h2>
                 {% endif %}
 
                 {{ datatable.datatable(encounter_tables[area.slug], 'pkt-location-view-encounters-'~area.slug) }}
@@ -59,3 +70,36 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('location_view') }}
 {% endblock %}
+
+{% macro location_breadcrumb(location, version, active = true) %}
+    {% import _self as helpers %}
+    {% if location.superLocation is not null %}
+        {{ helpers.location_breadcrumb(location.superLocation, version, false) }}
+    {% endif %}
+
+    <li class="breadcrumb-item{% if active %} active{% endif %}">
+        {% if not active %}
+            <a href="{{ path('location_view', {'locationSlug': location.slug, 'versionSlug': version.slug}) }}">
+                {{ location.name }}
+            </a>
+        {% else %}
+            {{ location.name }}
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% macro location_map(location, version) %}
+    {% import _self as helpers %}
+    {# Use the provided map is available #}
+    {% if location.map %}
+        <figure class="mb-3 pkt-location-view-map img-thumbnail">
+            <div class="figure-img">
+                {{ location.map|location_map }}
+            </div>
+            <figcaption class="figure-caption">{{ location.map.map.name }}</figcaption>
+        </figure>
+    {% elseif location.superLocation and location.superLocation.map %}
+        {# If this is a sub-location and the super has a map, try to use that. #}
+        {{ helpers.location_map(location.superLocation, version) }}
+    {% endif %}
+{% endmacro %}

@@ -42,3 +42,10 @@ COPY docker/web/default.conf /etc/nginx/conf.d/default.conf.tmpl
 COPY --from=webpack /var/www/public /var/www/public
 
 CMD ["/usr/local/bin/nginx-entrypoint"]
+
+#######################################
+# DEVELOPMENT SUPPORT
+#######################################
+FROM web as web_dev
+
+VOLUME /var/www

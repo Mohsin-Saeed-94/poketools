@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -12,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * A place in the Pokémon world.
  *
  * @ORM\Entity(repositoryClass="App\Repository\LocationInVersionGroupRepository")
+ * @Gedmo\Tree(type="materializedPath")
  *
  * @method Location getParent()
  * @method self setParent(Location $parent)
@@ -23,6 +25,16 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
     use EntityHasNameAndSlugTrait;
     use EntityGroupedByVersionGroupTrait;
     use EntityHasDescriptionTrait;
+
+    /**
+     * Unique Id
+     *
+     * @ORM\Id()
+     * @ORM\Column(type="integer", unique=true)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Gedmo\TreePathSource()
+     */
+    protected $id;
 
     /**
      * @var Location
@@ -57,11 +69,47 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
     protected $map;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @Gedmo\TreePath()
+     */
+    protected $treePath;
+
+    /**
+     * The location that contains this one (e.g. The Tin Tower is inside Ecruteak city,
+     * this would be the relevant Ecruteak city location entity).
+     *
+     * @var LocationInVersionGroup|null
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\LocationInVersionGroup", inversedBy="subLocations")
+     * @Gedmo\TreeParent()
+     */
+    protected $superLocation;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     * @Gedmo\TreeLevel()
+     */
+    protected $treeLevel;
+
+    /**
+     * @var LocationInVersionGroup[]|Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\LocationInVersionGroup", mappedBy="superLocation")
+     * @ORM\OrderBy({"name": "ASC"})
+     */
+    protected $subLocations;
+
+    /**
      * Location constructor.
      */
     public function __construct()
     {
         $this->areas = new ArrayCollection();
+        $this->subLocations = new ArrayCollection();
     }
 
     /**
@@ -168,6 +216,92 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
         $this->map = $map;
         if ($map !== null) {
             $map->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTreePath(): ?string
+    {
+        return $this->treePath;
+    }
+
+    /**
+     * @param string|null $treePath
+     *
+     * @return self
+     */
+    public function setTreePath(?string $treePath): self
+    {
+        $this->treePath = $treePath;
+
+        return $this;
+    }
+
+    /**
+     * @return LocationInVersionGroup|null
+     */
+    public function getSuperLocation(): ?LocationInVersionGroup
+    {
+        return $this->superLocation;
+    }
+
+    /**
+     * @param LocationInVersionGroup|null $superLocation
+     *
+     * @return self
+     */
+    public function setSuperLocation(?LocationInVersionGroup $superLocation): self
+    {
+        $this->superLocation = $superLocation;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTreeLevel(): ?int
+    {
+        return $this->treeLevel;
+    }
+
+    /**
+     * @return LocationInVersionGroup[]|Collection
+     */
+    public function getSubLocations()
+    {
+        return $this->subLocations;
+    }
+
+    /**
+     * @param LocationInVersionGroup $subLocation
+     *
+     * @return self
+     */
+    public function addSubLocation(LocationInVersionGroup $subLocation): self
+    {
+        if (!$this->subLocations->contains($subLocation)) {
+            $this->subLocations->add($subLocation);
+            $subLocation->setSuperLocation($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param LocationInVersionGroup $subLocation
+     *
+     * @return self
+     */
+    public function removeSubLocation(LocationInVersionGroup $subLocation): self
+    {
+        if ($this->subLocations->contains($subLocation)) {
+            $this->subLocations->removeElement($subLocation);
+            $subLocation->setSuperLocation(null);
         }
 
         return $this;
