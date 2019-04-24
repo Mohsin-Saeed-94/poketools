@@ -48,12 +48,26 @@ class Range
     }
 
     /**
+     * Compare two range objects for equality.
+     *
+     * @param Range $a
+     * @param Range $b
+     *
+     * @return bool
+     */
+    public static function equals(Range $a, Range $b): bool
+    {
+        return $a->getMin() === $b->getMin()
+            && $a->getMax() === $b->getMax();
+    }
+
+    /**
      * @return string
      */
     public function __toString(): string
     {
         if ($this->getMin() === $this->getMax()) {
-            return $this->getMin();
+            return (string)$this->getMin();
         } else {
             return sprintf('%d-%d', $this->getMin(), $this->getMax());
         }
