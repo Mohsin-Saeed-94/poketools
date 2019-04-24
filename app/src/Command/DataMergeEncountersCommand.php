@@ -131,34 +131,20 @@ final class DataMergeEncountersCommand extends Command
         /** @var Encounter $encounter */
         $encounter = $this->data->first();
         do {
-            // Merge similar except by chance (the most common similarity because
-            // of how the encounter tables are laid out in the games)
-            $similar = $this->findSimilarByChance($encounter);
+            // Merge similar encounters
+            $similar = $this->findSimilar($encounter);
             foreach ($similar as $similarEncounter) {
-                $encounter->setChance($encounter->getChance() + $similarEncounter->getChance());
-                if ($this->data->removeElement($similarEncounter) === false) {
-                    throw new \Exception(sprintf('Could not remove old encounter #%u.', $similarEncounter->getId()));
+                $chance = $encounter->getChance() + $similarEncounter->getChance();
+                if ($chance > 100) {
+                    throw new \Exception(
+                        sprintf(
+                            'Chance is greater than 100 (%u%%) after adding encounter #%u.',
+                            $chance,
+                            $similarEncounter->getId()
+                        )
+                    );
                 }
-                $count--;
-                $removed++;
-            }
-
-            // Merge similar except by condition (e.g. same encounter both morning and night)
-            // This is unreliable in situations where a single encounter has multiple
-            // simultaneous conditions.
-//            $similar = $this->findSimilarByCondition($encounter);
-//            foreach ($similar as $similarEncounter) {
-//                foreach ($similarEncounter->getConditions() as $condition) {
-//                    $encounter->addCondition($condition);
-//                }
-//                $this->data->removeElement($similarEncounter);
-//                $count--;
-//                $removed++;
-//            }
-
-            // Merge similar except by level
-            $similar = $this->findSimilarByLevel($encounter);
-            foreach ($similar as $similarEncounter) {
+                $encounter->setChance($chance);
                 $min = min($encounter->getLevel()->getMin(), $similarEncounter->getLevel()->getMin());
                 $max = max($encounter->getLevel()->getMax(), $similarEncounter->getLevel()->getMax());
                 $encounter->getLevel()->setMin($min)->setMax($max);
@@ -179,13 +165,13 @@ final class DataMergeEncountersCommand extends Command
     }
 
     /**
-     * Find encounters that differ only by chance.
+     * Find encounters that differ only by chance and level.
      *
      * @param Encounter $encounter
      *
      * @return Encounter[]|ArrayCollection
      */
-    private function findSimilarByChance(Encounter $encounter): ArrayCollection
+    private function findSimilar(Encounter $encounter): ArrayCollection
     {
         $similar = $this->data->filter(
             function (Encounter $other) use ($encounter) {
@@ -196,12 +182,31 @@ final class DataMergeEncountersCommand extends Command
                     && $encounter->getMethod() === $other->getMethod()
                     && $encounter->getSpecies() === $other->getSpecies()
                     && $encounter->getPokemon() === $other->getPokemon()
-                    && Range::equals($encounter->getLevel(), $other->getLevel())
-                    && $encounter->getConditions()->toArray() == $other->getConditions()->toArray();
+                    && $encounter->getConditions()->toArray() == $other->getConditions()->toArray()
+                    && $encounter->getNote() === $other->getNote();
             }
         );
 
         return $similar;
+    }
+
+    /**
+     * Write new data
+     *
+     * @param string $path
+     *
+     * @return bool|int
+     */
+    private function writeData(string $path)
+    {
+        $this->io->text(['Writing new data to '.$path, 'This will take a while...']);
+        $newCsv = $this->serializer->serialize(
+            $this->data->getValues(),
+            'csv',
+            [CsvEncoder::AS_COLLECTION_KEY => true]
+        );
+
+        return file_put_contents($path, $newCsv);
     }
 
     /**
@@ -228,25 +233,6 @@ final class DataMergeEncountersCommand extends Command
         );
 
         return $similar;
-    }
-
-    /**
-     * Write new data
-     *
-     * @param string $path
-     *
-     * @return bool|int
-     */
-    private function writeData(string $path)
-    {
-        $this->io->text(['Writing new data to '.$path, 'This will take a while...']);
-        $newCsv = $this->serializer->serialize(
-            $this->data->getValues(),
-            'csv',
-            [CsvEncoder::AS_COLLECTION_KEY => true]
-        );
-
-        return file_put_contents($path, $newCsv);
     }
 
     /**
