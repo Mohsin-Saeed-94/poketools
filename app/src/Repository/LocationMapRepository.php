@@ -31,6 +31,7 @@ class LocationMapRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('location_map');
         $qb->andWhere('location_map.map = :map')
+            ->orderBy('location_map.zIndex', 'ASC')
             ->setParameter('map', $map);
 
         $q = $qb->getQuery();

@@ -43,6 +43,9 @@ class LocationMap
      * between ovelrays with the same z-index is undefined.
      *
      * @var int
+     *
+     * @ORM\Column(type="integer")
+     * @Assert\NotNull()
      */
     protected $zIndex = 0;
 
