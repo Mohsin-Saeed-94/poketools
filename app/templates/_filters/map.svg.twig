@@ -4,7 +4,8 @@
     <image class="pkt-map-map" xlink:href="{{ asset('build/static/map/'~primary_map.map.url) }}"/>
     {% for map in maps %}
         {% if link %}
-            <a href="{{ path('location_view', {'locationSlug': map.location.slug, 'versionSlug': version.slug}) }}">
+            <a href="{{ path('location_view', {'locationSlug': map.location.slug, 'versionSlug': version.slug}) }}"
+               xlink:title="{{ map.location.name }}">
                 {{ helpers.map_overlay(map) }}
             </a>
         {% else %}
