@@ -24,10 +24,6 @@ class LocationMap
      * @var RegionMap
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Media\RegionMap")
-     * @ORM\JoinColumns(
-     *     @ORM\JoinColumn(name="region_id", referencedColumnName="region_id"),
-     *     @ORM\JoinColumn(name="map_url", referencedColumnName="url")
-     * )
      * @Assert\NotNull()
      */
     protected $map;
@@ -39,6 +35,16 @@ class LocationMap
      * @Assert\NotBlank()
      */
     protected $overlay;
+
+    /**
+     * The order in which the overlays are drawn on top of each other.
+     *
+     * Higher numbers are on top of lower numbers.  The stacking relationship
+     * between ovelrays with the same z-index is undefined.
+     *
+     * @var int
+     */
+    protected $zIndex = 0;
 
     /**
      * @return LocationInVersionGroup
@@ -96,6 +102,26 @@ class LocationMap
     public function setOverlay(string $overlay): self
     {
         $this->overlay = $overlay;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getZIndex(): int
+    {
+        return $this->zIndex;
+    }
+
+    /**
+     * @param int $zIndex
+     *
+     * @return self
+     */
+    public function setZIndex(int $zIndex): self
+    {
+        $this->zIndex = $zIndex;
 
         return $this;
     }

@@ -1,7 +1,19 @@
+{% import _self as helpers %}
 <svg class="pkt-map" viewBox="0 0 {{ width }} {{ height }}" preserveAspectRatio="xMidYMid meet" width="auto"
      height="auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <image class="pkt-map-map" xlink:href="{{ asset('build/static/map/'~map.map.url) }}"/>
-    <g class="pkt-map-overlay">
-        {{ map.overlay|raw }}
-    </g>
+    <image class="pkt-map-map" xlink:href="{{ asset('build/static/map/'~primary_map.map.url) }}"/>
+    {% for map in maps %}
+        {% if link %}
+            <a href="{{ path('location_view', {'locationSlug': map.location.slug, 'versionSlug': version.slug}) }}">
+                {{ helpers.map_overlay(map) }}
+            </a>
+        {% else %}
+            {{ helpers.map_overlay(map) }}
+        {% endif %}
+    {% endfor %}
 </svg>
+{% macro map_overlay(map) %}
+    <g class="pkt-map-overlay">
+    {{ map.overlay|raw }}
+    </g>
+{% endmacro %}

@@ -6,6 +6,7 @@ use App\DataTable\Type\EncounterPokemonTableType;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\Version;
 use App\Repository\LocationInVersionGroupRepository;
+use App\Repository\LocationMapRepository;
 use App\Repository\RegionInVersionGroupRepository;
 use Omines\DataTablesBundle\DataTableFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -32,21 +33,29 @@ class LocationController extends AbstractDexController
     private $regionRepo;
 
     /**
+     * @var LocationMapRepository
+     */
+    private $locationMapRepo;
+
+    /**
      * LocationController constructor.
      *
      * @param DataTableFactory $dataTableFactory
      * @param LocationInVersionGroupRepository $locationRepo
      * @param RegionInVersionGroupRepository $regionRepo
+     * @param LocationMapRepository $locationMapRepo
      */
     public function __construct(
         DataTableFactory $dataTableFactory,
         LocationInVersionGroupRepository $locationRepo,
-        RegionInVersionGroupRepository $regionRepo
+        RegionInVersionGroupRepository $regionRepo,
+        LocationMapRepository $locationMapRepo
     ) {
         parent::__construct($dataTableFactory);
 
         $this->locationRepo = $locationRepo;
         $this->regionRepo = $regionRepo;
+        $this->locationMapRepo = $locationMapRepo;
     }
 
     /**
@@ -62,6 +71,7 @@ class LocationController extends AbstractDexController
     {
         $regions = $this->regionRepo->findByVersion($version);
         $locations = [];
+        $locationMaps = [];
         foreach ($regions as $region) {
             $locations[$region->getSlug()] = $this->locationRepo->findByRegion($region);
             usort(
@@ -70,6 +80,9 @@ class LocationController extends AbstractDexController
                     return strnatcmp($a->getName(), $b->getName());
                 }
             );
+            foreach ($region->getMaps() as $map) {
+                $locationMaps[$map->getSlug()] = $this->locationMapRepo->findByMap($map);
+            }
         }
 
         return $this->render(
@@ -79,6 +92,7 @@ class LocationController extends AbstractDexController
                 'uri_template' => $this->generateUrl('location_index', ['versionSlug' => '__VERSION__']),
                 'regions' => $regions,
                 'locations' => $locations,
+                'location_maps' => $locationMaps,
             ]
         );
     }

@@ -67,6 +67,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter(
                 'location_map', [AppExtensionRuntime::class, 'locationMap'], [
                     'needs_environment' => true,
+                    'needs_context' => true,
                     'is_safe' => ['html'],
                 ]
             ),

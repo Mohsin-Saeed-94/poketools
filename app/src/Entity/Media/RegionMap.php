@@ -2,6 +2,7 @@
 
 namespace App\Entity\Media;
 
+use App\Entity\AbstractDexEntity;
 use App\Entity\EntityHasNameAndSlugTrait;
 use App\Entity\EntityHasNameInterface;
 use App\Entity\EntityHasSlugInterface;
@@ -16,19 +17,32 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity()
  */
-class RegionMap extends AbstractMediaEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface
+class RegionMap extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface
 {
-    use EntityHasNameAndSlugTrait;
+    use MediaEntityTrait, EntityHasNameAndSlugTrait {
+        MediaEntityTrait::__toString insteadof EntityHasNameAndSlugTrait;
+    }
     use EntityIsSortableTrait;
 
     /**
      * @var RegionInVersionGroup
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\RegionInVersionGroup", inversedBy="maps")
-     * @ORM\Id()
      * @Assert\NotBlank()
      */
     protected $region;
+
+    /**
+     * RegionMap constructor.
+     *
+     * @param string|null $url
+     */
+    public function __construct(?string $url = null)
+    {
+        if ($url !== null) {
+            $this->url = $url;
+        }
+    }
 
     /**
      * @return RegionInVersionGroup

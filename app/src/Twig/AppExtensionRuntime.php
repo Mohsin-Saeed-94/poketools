@@ -19,6 +19,9 @@ use App\Mechanic\TypeMatchup;
 use App\Repository\TypeChartRepository;
 use App\Repository\VersionRepository;
 use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 use Twig\Extension\RuntimeExtensionInterface;
 
 /**
@@ -293,27 +296,56 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
 
     /**
      * @param Environment $twig
-     * @param LocationMap $map
+     * @param array $context
+     * @param LocationMap[]|LocationMap|null $locationMaps
+     *   A list of LocationMap entities
+     * @param bool $link
+     *   Should the highlighted overlay link to the location?  Defaults to false.
      *
      * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function locationMap(Environment $twig, ?LocationMap $map): string
+    public function locationMap(Environment $twig, array $context, $locationMaps, bool $link = false): string
     {
-        if ($map === null) {
+        if ($locationMaps === null) {
             return '';
         }
 
-        $mapImageUrl = $this->projectDir.'/assets/static/map/'.$map->getMap()->getUrl();
+        if (!is_array($locationMaps) && $locationMaps instanceof LocationMap) {
+            $locationMaps = [$locationMaps];
+        } elseif (!is_array($locationMaps)) {
+            throw new RuntimeError('Invalid entity passed to locationMap');
+        }
+
+        // Can't link without version
+        $version = $context['version'] ?? null;
+        if ($link === true && !isset($version)) {
+            trigger_error('Attempted to link to location in locationMap without Version available.', E_USER_WARNING);
+            $link = false;
+        }
+
+        // Sanity check that all passed maps refer to the same image
+        $primaryMap = $locationMaps[array_key_first($locationMaps)];
+        $mapImageUrl = $this->projectDir.'/assets/static/map/'.$primaryMap->getMap()->getUrl();
+        foreach ($locationMaps as $locationMap) {
+            if ($locationMap->getMap() !== $primaryMap->getMap()) {
+                throw new RuntimeError('The list of location maps do not all refer to the same image.');
+            }
+        }
         $mapImageInfo = getimagesize($mapImageUrl);
-        $imageWidth = $mapImageInfo[0];
-        $imageHeight = $mapImageInfo[1];
+        [$imageWidth, $imageHeight] = $mapImageInfo;
 
         return $twig->render(
             '_filters/map.svg.twig',
             [
-                'map' => $map,
+                'version' => $version,
+                'primary_map' => $primaryMap,
+                'maps' => $locationMaps,
                 'width' => $imageWidth,
                 'height' => $imageHeight,
+                'link' => $link,
             ]
         );
     }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\LocationMap;
+use App\Entity\Media\RegionMap;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,32 +20,22 @@ class LocationMapRepository extends ServiceEntityRepository
         parent::__construct($registry, LocationMap::class);
     }
 
-    // /**
-    //  * @return LocationMap[] Returns an array of LocationMap objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Find by region map
+     *
+     * @param RegionMap $map
+     *
+     * @return mixed
+     */
+    public function findByMap(RegionMap $map)
     {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('location_map');
+        $qb->andWhere('location_map.map = :map')
+            ->setParameter('map', $map);
 
-    /*
-    public function findOneBySomeField($value): ?LocationMap
-    {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getResult();
     }
-    */
 }

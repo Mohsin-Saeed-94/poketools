@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 abstract class AbstractMediaEntity
 {
+    use MediaEntityTrait;
+
     /**
      * @var string
      *
@@ -32,31 +34,4 @@ abstract class AbstractMediaEntity
         }
     }
 
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->getUrl() ?? '';
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
-
-    /**
-     * @param string $url
-     *
-     * @return self
-     */
-    public function setUrl(string $url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
 }

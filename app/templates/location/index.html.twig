@@ -39,8 +39,10 @@
                 <div class="pkt-imagelist pkt-location-index-maps">
                     {% for map in region.maps %}
                         <figure class="figure pkt-imagelist-img">
-                            <img class="figure-img img-fluid img-thumbnail"
-                                 src="{{ asset('build/static/map/'~map.url) }}">
+                            <a href="#" data-toggle="modal" data-target="#pkt-locations-map-{{ map.slug }}">
+                                <img class="figure-img img-fluid img-thumbnail"
+                                     src="{{ asset('build/static/map/'~map.url) }}">
+                            </a>
                             <figcaption class="figure-caption">{{ map.name }}</figcaption>
                         </figure>
                     {% endfor %}
@@ -51,6 +53,31 @@
                         {{ helpers.location_tree(location, version) }}
                     {% endfor %}
                 </ul>
+
+                {# Big maps #}
+                {% for map in region.maps %}
+                    <div class="modal fade" id="pkt-locations-map-{{ map.slug }}" tabindex="-1" role="dialog"
+                         aria-labelledby="pkt-locations-map-{{ map.slug }}-title" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="pkt-locations-map-{{ map.slug }}-title">
+                                        {{ map.name }}
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ location_maps[map.slug]|location_map(link=true) }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         {% endfor %}
     </div>
