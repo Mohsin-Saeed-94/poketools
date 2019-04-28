@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Region Map
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\Media\RegionMapRepository")
  */
 class RegionMap extends AbstractDexEntity implements EntityHasNameInterface, EntityHasSlugInterface, EntityIsSortableInterface
 {

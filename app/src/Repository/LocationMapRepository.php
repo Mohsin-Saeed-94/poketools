@@ -25,13 +25,15 @@ class LocationMapRepository extends ServiceEntityRepository
      *
      * @param RegionMap $map
      *
-     * @return mixed
+     * @return LocationMap[]
      */
     public function findByMap(RegionMap $map)
     {
         $qb = $this->createQueryBuilder('location_map');
-        $qb->andWhere('location_map.map = :map')
+        $qb->join('location_map.location', 'location')
+            ->andWhere('location_map.map = :map')
             ->orderBy('location_map.zIndex', 'ASC')
+            ->addOrderBy('location.slug', 'DESC')
             ->setParameter('map', $map);
 
         $q = $qb->getQuery();

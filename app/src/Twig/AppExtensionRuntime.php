@@ -334,8 +334,7 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
                 throw new RuntimeError('The list of location maps do not all refer to the same image.');
             }
         }
-        $mapImageInfo = getimagesize($mapImageUrl);
-        [$imageWidth, $imageHeight] = $mapImageInfo;
+        [$imageWidth, $imageHeight] = getimagesize($mapImageUrl);
 
         return $twig->render(
             '_filters/map.svg.twig',
