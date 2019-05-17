@@ -28,6 +28,7 @@ class EncounterMethod extends AbstractDoctrineDataMigration implements DataMigra
      */
     public function transform($sourceData, $destinationData)
     {
+        $sourceData['slug'] = $sourceData['identifier'];
         unset($sourceData['identifier']);
         static $position = 1;
         $sourceData['position'] = $position;

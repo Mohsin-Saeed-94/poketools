@@ -144,7 +144,7 @@ class DataEncountersSortCommand extends Command
                 if ($a->getLocation() !== $b->getLocation()) {
                     return strnatcasecmp($a->getLocation(), $b->getLocation());
                 }
-                if ($a->getArea() !== $b->getLocation()) {
+                if ($a->getArea() !== $b->getArea()) {
                     return strnatcasecmp($a->getArea(), $b->getArea());
                 }
                 if ($a->getMethod() !== $b->getMethod()) {
