@@ -1,22 +1,22 @@
 ruby-sapphire: &ruby-sapphire
-  region: hoenn
-  name: 'Mauville City'
+  region: &ruby-sapphire.region hoenn
+  name: &ruby-sapphire.name 'Mauville City'
   areas:
     whole-area:
       name: 'Whole area'
-      default: true
+      default: &ruby-sapphire.areas.whole-area.default true
   map:
-    map: hoenn
+    map: &ruby-sapphire.map.map hoenn
     overlay: |
       <rect width="16" height="8" x="72" y="64" />
 emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
-  region: hoenn
-  name: 'Mauville City'
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
   areas:
     1f:
       name: '1F (Indoors)'
-      default: true
+      default: *ruby-sapphire.areas.whole-area.default
     1f-courtyard:
       name: '1F (Courtyard)'
     2f:
@@ -24,6 +24,6 @@ omega-ruby-alpha-sapphire:
     rooftop:
       name: Rooftop
   map:
-    map: hoenn
+    map: *ruby-sapphire.map.map
     overlay: |
       <rect width="24" height="13" x="91" y="84" />

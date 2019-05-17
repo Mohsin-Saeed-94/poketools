@@ -1,7 +1,7 @@
 black-white:
-  region: unova
-  name: 'Celestial Tower'
-  areas:
+  region: &black-white.region unova
+  name: &black-white.name 'Celestial Tower'
+  areas: &black-white.areas
     2f:
       name: 2F
       default: true
@@ -11,26 +11,16 @@ black-white:
       name: 4F
     5f:
       name: 5F
-  super: unova-route-7
+  super: &black-white.super unova-route-7
   map:
-    map: unova
-    overlay: |
-      <circle cx="54" cy="50" r="4" />
+    map: &black-white.map.map unova
+    overlay: '<circle cx="54" cy="50" r="4" />'
 black-2-white-2:
-  region: unova
-  name: 'Celestial Tower'
-  areas:
-    2f:
-      name: 2F
-      default: true
-    3f:
-      name: 3F
-    4f:
-      name: 4F
-    5f:
-      name: 5F
-  super: unova-route-7
+  region: *black-white.region
+  name: *black-white.name
+  areas: *black-white.areas
+  super: *black-white.super
   map:
-    map: unova
+    map: *black-white.map.map
     overlay: |
       <rect x="51" y="47" width="6" height="6" />

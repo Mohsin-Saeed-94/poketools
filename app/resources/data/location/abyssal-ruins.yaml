@@ -1,24 +1,22 @@
-black-white: &black-white
-  region: unova
-  name: 'Abyssal Ruins'
-  areas:
+black-white:
+  region: &black-white.region unova
+  name: &black-white.name 'Abyssal Ruins'
+  areas: &black-white.areas
     whole-area:
       name: 'Whole area'
       default: true
-  super: undella-bay
+  super: &black-white.super undella-bay
   map:
-    map: unova
+    map: &black-white.map.map unova
     overlay: |
       <circle cx="248" cy="68" r="4" />
+      
 black-2-white-2:
-  region: unova
-  name: 'Abyssal Ruins'
-  areas:
-    whole-area:
-      name: 'Whole area'
-      default: true
-  super: undella-bay
+  region: *black-white.region
+  name: *black-white.name
+  areas: *black-white.areas
+  super: *black-white.super
   map:
-    map: unova
+    map: *black-white.map.map
     overlay: |
       <rect x="239" y="60" width="6" height="6" />

@@ -1,27 +1,24 @@
 x-y:
   region: kalos
-  name: 'Berry Fields'
-  areas:
+  name: &x-y.name 'Berry Fields'
+  areas: &x-y.areas
     whole-area:
       name: 'Whole area'
       default: true
   super: kalos-route-7
   map:
     map: kalos
-    z: 10
+    z: &x-y.map.z 10
     overlay: |
       <circle cx="112" cy="120" r="4" />
+      
 sun-moon: &sun-moon
   region: alola
-  name: 'Berry Fields'
-  areas:
-    whole-area:
-      name: 'Whole area'
-      default: true
+  name: *x-y.name
+  areas: *x-y.areas
   super: alola-route-2
   map:
     map: melemele
-    z: 10
-    overlay: |
-      <rect x="299" y="489" width="171" height="57" />
+    z: *x-y.map.z
+    overlay: '<rect x="299" y="489" width="171" height="57" />'
 ultra-sun-ultra-moon: *sun-moon

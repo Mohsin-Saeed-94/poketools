@@ -1,7 +1,7 @@
 red-blue: &red-blue
-  region: kanto
-  name: 'Safari Zone'
-  areas:
+  region: &red-blue.region kanto
+  name: &red-blue.name 'Safari Zone'
+  areas: &red-blue.areas
     area-1-east:
       name: 'Area 1, east'
       default: true
@@ -11,30 +11,19 @@ red-blue: &red-blue
       name: 'Area 3, west'
     middle:
       name: middle
-  super: fuchsia-city
+  super: &red-blue.super fuchsia-city
   map:
-    map: kanto
-    z: 10
-    overlay: |
-      <circle r="4" cy="102" cx="84" />
+    map: &red-blue.map.map kanto
+    z: &red-blue.map.z 10
+    overlay: '<circle r="4" cy="102" cx="84" />'
 yellow: *red-blue
 firered-leafgreen:
-  region: kanto
-  name: 'Safari Zone'
-  areas:
-    area-1-east:
-      name: 'Area 1, east'
-      default: true
-    area-2-north:
-      name: 'Area 2, north'
-    area-3-west:
-      name: 'Area 3, west'
-    middle:
-      name: middle
-  super: fuchsia-city
+  region: *red-blue.region
+  name: *red-blue.name
+  areas: *red-blue.areas
+  super: *red-blue.super
   map:
-    map: kanto
-    z: 10
+    map: *red-blue.map.map
+    z: *red-blue.map.z
     overlay: |
       <rect width="6" height="6" x="107" y="115" />
-

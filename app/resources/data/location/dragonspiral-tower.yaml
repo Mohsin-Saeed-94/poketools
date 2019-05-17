@@ -1,7 +1,7 @@
 black-white:
-  region: unova
-  name: 'Dragonspiral Tower'
-  areas:
+  region: &black-white.region unova
+  name: &black-white.name 'Dragonspiral Tower'
+  areas: &black-white.areas
     entrance:
       name: entrance
       default: true
@@ -11,26 +11,16 @@ black-white:
       name: 1F
     2f:
       name: 2F
-  super: icirrus-city
+  super: &black-white.super icirrus-city
   map:
-    map: unova
-    overlay: |
-      <circle cx="66" cy="31" r="4" />
+    map: &black-white.map.map unova
+    overlay: '<circle cx="66" cy="31" r="4" />'
 black-2-white-2:
-  region: unova
-  name: 'Dragonspiral Tower'
-  areas:
-    entrance:
-      name: entrance
-      default: true
-    outside:
-      name: outside
-    1f:
-      name: 1F
-    2f:
-      name: 2F
-  super: icirrus-city
+  region: *black-white.region
+  name: *black-white.name
+  areas: *black-white.areas
+  super: *black-white.super
   map:
-    map: unova
+    map: *black-white.map.map
     overlay: |
       <rect x="63" y="28" width="6" height="6" />

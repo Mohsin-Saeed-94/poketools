@@ -1,7 +1,7 @@
 gold-silver: &gold-silver
-  region: johto
-  name: 'Ruins of Alph'
-  areas:
+  region: &gold-silver.region johto
+  name: &gold-silver.name 'Ruins of Alph'
+  areas: &gold-silver.areas
     outside:
       name: Outside
       default: true
@@ -14,26 +14,14 @@ gold-silver: &gold-silver
     interior-d:
       name: 'Interior D'
   map:
-    map: johto
-    overlay: |
-      <circle cx="68" cy="60" r="4" />
+    map: &gold-silver.map.map johto
+    overlay: '<circle cx="68" cy="60" r="4" />'
 crystal: *gold-silver
 heartgold-soulsilver:
-  region: johto
-  name: 'Ruins of Alph'
-  areas:
-    outside:
-      name: Outside
-      default: true
-    interior-a:
-      name: 'Interior A'
-    interior-b:
-      name: 'Interior B'
-    interior-c:
-      name: 'Interior C'
-    interior-d:
-      name: 'Interior D'
+  region: *gold-silver.region
+  name: *gold-silver.name
+  areas: *gold-silver.areas
   map:
-    map: johto
+    map: *gold-silver.map.map
     overlay: |
       <rect width="10" height="18" x="96" y="72" rx="3" ry="3" />
