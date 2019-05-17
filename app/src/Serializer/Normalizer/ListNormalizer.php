@@ -21,7 +21,11 @@ class ListNormalizer implements NormalizerInterface, DenormalizerInterface
      */
     public function denormalize($data, $type, $format = null, array $context = [])
     {
-        $array = explode(', ', $data);
+        if (empty($data)) {
+            $array = [];
+        } else {
+            $array = explode(', ', $data);
+        }
         if ($type !== 'array') {
             $array = new $type($array);
         }
@@ -34,7 +38,7 @@ class ListNormalizer implements NormalizerInterface, DenormalizerInterface
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return is_string($data) && !empty($data) && $this->typeIsCollection($type);
+        return is_string($data) && $this->typeIsCollection($type);
     }
 
     /**

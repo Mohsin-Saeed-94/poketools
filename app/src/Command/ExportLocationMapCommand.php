@@ -186,6 +186,7 @@ final class ExportLocationMapCommand extends Command
             'g' => [],
         ];
         if ($inkscape) {
+            $build['image']['@sodipodi:insensitive'] = 'true';
             $build += [
                 'sodipodi:namedview' => [
                     '@gridtolderance' => 10,

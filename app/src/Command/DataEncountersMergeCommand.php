@@ -16,9 +16,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 /**
  * Merge similar encounters into a single encounter.
  */
-final class DataMergeEncountersCommand extends Command
+final class DataEncountersMergeCommand extends Command
 {
-    protected static $defaultName = 'app:data:merge-encounters';
+    use EncountersTrait;
+
+    protected static $defaultName = 'app:data:encounters:merge';
 
     /**
      * @var string
@@ -26,22 +28,12 @@ final class DataMergeEncountersCommand extends Command
     private $dataPath;
 
     /**
-     * @var SerializerInterface
-     */
-    private $serializer;
-
-    /**
      * @var SymfonyStyle
      */
     private $io;
 
     /**
-     * @var Encounter[]|ArrayCollection
-     */
-    private $data;
-
-    /**
-     * DataMergeEncountersCommand constructor.
+     * DataEncountersMergeCommand constructor.
      *
      * @param string $dataPath
      * @param SerializerInterface $serializer
@@ -85,6 +77,7 @@ final class DataMergeEncountersCommand extends Command
         $count = count($this->data);
         $removed = $this->mergeEncounters();
 
+        $this->io->text(['Writing new data to '.$path, 'This will take a while...']);
         $success = $this->writeData(str_replace('.csv', '.new.csv', $path));
 
         if ($success) {
@@ -96,29 +89,6 @@ final class DataMergeEncountersCommand extends Command
         $this->io->error('Error occurred writing output file.');
 
         return 1;
-    }
-
-    /**
-     * Load the data from CSV into memory.
-     *
-     * @param string $path
-     *
-     * @return array
-     */
-    private function loadData(string $path): array
-    {
-        $dataContents = file_get_contents($path);
-        /** @var Encounter[] $data */
-        $data = $this->serializer->deserialize(
-            $dataContents,
-            Encounter::class.'[]',
-            'csv',
-            [
-                ObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true,
-            ]
-        );
-
-        return $data;
     }
 
     private function mergeEncounters(): int
@@ -188,25 +158,6 @@ final class DataMergeEncountersCommand extends Command
         );
 
         return $similar;
-    }
-
-    /**
-     * Write new data
-     *
-     * @param string $path
-     *
-     * @return bool|int
-     */
-    private function writeData(string $path)
-    {
-        $this->io->text(['Writing new data to '.$path, 'This will take a while...']);
-        $newCsv = $this->serializer->serialize(
-            $this->data->getValues(),
-            'csv',
-            [CsvEncoder::AS_COLLECTION_KEY => true]
-        );
-
-        return file_put_contents($path, $newCsv);
     }
 
     /**
