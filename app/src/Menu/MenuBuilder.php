@@ -107,4 +107,32 @@ class MenuBuilder
 
         return $menu;
     }
+
+    /**
+     * Footer nav
+     *
+     * @param array $options
+     *
+     * @return ItemInterface
+     */
+    public function footerMenu(array $options): ItemInterface
+    {
+        $menu = $this->factory->createItem('root')
+            ->setChildrenAttribute('class', 'navbar-nav');
+
+        $menu->addChild(
+            'Credits',
+            [
+                'uri' => $this->urlGenerator->generate('page_credits'),
+            ]
+        );
+        $menu->addChild(
+            'Source',
+            [
+                'uri' => 'https://gitlab.com/gamestuff.info/poketools',
+            ]
+        );
+
+        return $menu;
+    }
 }
