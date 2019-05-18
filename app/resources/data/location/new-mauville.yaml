@@ -1,11 +1,28 @@
 ruby-sapphire: &ruby-sapphire
-  region: hoenn
-  name: 'New Mauville'
+  region: &ruby-sapphire.region hoenn
+  name: &ruby-sapphire.name 'New Mauville'
   areas:
     entrance:
       name: Entrance
-      default: true
+      default: &ruby-sapphire.areas.entrance.default true
+    inside:
+      name: Inside
+  super: &ruby-sapphire.super hoenn-route-110
+  map:
+    map: &ruby-sapphire.map.map hoenn
+    z: 10
+    overlay: |
+      <circle r="4" cy="77" cx="80" />
+emerald: *ruby-sapphire
+omega-ruby-alpha-sapphire:
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
+  areas:
     whole-area:
       name: 'Whole area'
-emerald: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
+      default: *ruby-sapphire.areas.entrance.default
+  super: *ruby-sapphire.super
+  map:
+    map: *ruby-sapphire.map.map
+    overlay: |
+      <rect y="97" x="103" height="11" width="11" />

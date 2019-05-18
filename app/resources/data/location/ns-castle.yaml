@@ -1,8 +1,20 @@
-black-white: &black-white
-  region: unova
-  name: 'N''s Castle'
-  areas:
+black-white:
+  region: &black-white.region unova
+  name: &black-white.name 'N''s Castle'
+  areas: &black-white.areas
     whole-area:
       name: 'Whole area'
       default: true
-black-2-white-2: *black-white
+  map:
+    map: &black-white.map.map unova
+    overlay: |
+      <circle cx="170" cy="15" r="6" />
+      
+black-2-white-2:
+  region: *black-white.region
+  name: *black-white.name
+  areas: *black-white.areas
+  map:
+    map: *black-white.map.map
+    overlay: |
+      <rect height="6" width="6" y="3" x="179" />
