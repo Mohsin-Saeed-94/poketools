@@ -1,9 +1,20 @@
 ruby-sapphire: &ruby-sapphire
-  region: hoenn
-  name: 'Petalburg City'
-  areas:
+  region: &ruby-sapphire.region hoenn
+  name: &ruby-sapphire.name 'Petalburg City'
+  areas: &ruby-sapphire.areas
     whole-area:
       name: 'Whole area'
       default: true
+  map:
+    map: &ruby-sapphire.map.map hoenn
+    overlay: |
+      <rect y="88" x="16" height="8" width="8" />
 emerald: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
+omega-ruby-alpha-sapphire:
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
+  areas: *ruby-sapphire.areas
+  map:
+    map: *ruby-sapphire.map.map
+    overlay: |
+      <rect y="128" x="14" height="13" width="13" />

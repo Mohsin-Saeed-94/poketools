@@ -1,9 +1,24 @@
 ruby-sapphire: &ruby-sapphire
-  region: hoenn
-  name: 'Petalburg Woods'
-  areas:
+  region: &ruby-sapphire.region hoenn
+  name: &ruby-sapphire.name 'Petalburg Woods'
+  areas: &ruby-sapphire.areas
     whole-area:
       name: 'Whole area'
       default: true
+  super: &ruby-sapphire.super hoenn-route-104
+  map:
+    map: &ruby-sapphire.map.map hoenn
+    z: &ruby-sapphire.map.z 10
+    overlay: |
+      <circle cx="12" cy="80" r="4" />
 emerald: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
+omega-ruby-alpha-sapphire:
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
+  areas: *ruby-sapphire.areas
+  super: *ruby-sapphire.super
+  map:
+    map: *ruby-sapphire.map.map
+    z: *ruby-sapphire.map.z
+    overlay: |
+      <rect y="105" x="1" height="11" width="11" />
