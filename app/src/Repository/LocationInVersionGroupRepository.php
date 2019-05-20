@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\RegionInVersionGroup;
 use App\Entity\Version;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Tree\Entity\Repository\MaterializedPathRepository;
@@ -16,7 +17,7 @@ use LogicException;
  * @method LocationInVersionGroup[]    findAll()
  * @method LocationInVersionGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LocationInVersionGroupRepository extends MaterializedPathRepository implements SlugAndVersionInterface
+class LocationInVersionGroupRepository extends MaterializedPathRepository implements ServiceEntityRepositoryInterface, SlugAndVersionInterface
 {
     /**
      * LocationInVersionGroupRepository constructor.

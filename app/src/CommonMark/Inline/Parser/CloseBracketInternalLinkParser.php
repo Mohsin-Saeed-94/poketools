@@ -11,6 +11,8 @@ use App\Entity\EntityHasNameInterface;
 use App\Entity\ItemInVersionGroup;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\MoveInVersionGroup;
+use App\Entity\Pokemon;
+use App\Entity\PokemonSpeciesInVersionGroup;
 use App\Entity\TypeChart;
 use App\Entity\Version;
 use App\Repository\SlugAndVersionInterface;
@@ -235,6 +237,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
             'location',
             'move',
             'nature',
+            'pokemon',
             'type',
         ];
         if ($this->currentVersion === null && in_array($category, $requiresVersion, true)) {
@@ -304,6 +307,33 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
                         'natureSlug' => $slug,
                     ]
                 );
+            case 'pokemon':
+                $slugParts = explode('/', $slug);
+                /** @var PokemonSpeciesInVersionGroup|null $species */
+                $species = $this->getEntityForLink(
+                    PokemonSpeciesInVersionGroup::class,
+                    $slugParts[0],
+                    $this->currentVersion
+                );
+                if ($species === null) {
+                    return $this->noEntityFound();
+                }
+
+                $params = [
+                    'versionSlug' => $this->currentVersion->getSlug(),
+                    'speciesSlug' => $slugParts[0],
+                ];
+                if (isset($slugParts[1])) {
+                    // A Pokemon has been specified.
+                    $pokemonRepo = $this->em->getRepository(Pokemon::class);
+                    $pokemon = $pokemonRepo->findOneBySpecies($species, $this->currentVersion, $slugParts[1]);
+                    if ($pokemon === null) {
+                        return $this->noEntityFound();
+                    }
+                    $params['pokemonSlug'] = $slugParts[1];
+                }
+
+                return $this->urlGenerator->generate('pokemon_view', $params);
             case 'type':
                 $typeChartRepo = $this->em->getRepository(TypeChart::class);
                 $type = $typeChartRepo->findTypeInTypeChart($slug, $this->currentVersion);
