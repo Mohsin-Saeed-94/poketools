@@ -1,14 +1,33 @@
-black-white: &black-white
-  region: unova
-  name: 'Relic Castle'
+black-white:
+  region: &black-white.region unova
+  name: &black-white.name 'Relic Castle'
   areas:
-    a:
-      name: a
+    1f: &black-white.areas.1f
+      name: 1F
       default: true
-    b:
-      name: b
-    c:
-      name: c
-    d:
-      name: d
-black-2-white-2: *black-white
+    b1f: &black-white.areas.b1f
+      name: B1F
+    b2f:
+      name: B2F
+    b3f:
+      name: B3F
+    b4f:
+      name: B4F
+    b5f:
+      name: B5F
+    b6f:
+      name: B6F
+    maze: &black-white.areas.maze
+      name: 'Maze rooms'
+    volcaronas-room: &black-white.areas.volcaronas-room
+      name: 'Volcarona''s room'
+  super: &black-white.super desert-resort
+black-2-white-2:
+  region: *black-white.region
+  name: *black-white.name
+  areas:
+    1f: *black-white.areas.1f
+    b1f: *black-white.areas.b1f
+    maze: *black-white.areas.maze
+    volcaronas-room: *black-white.areas.volcaronas-room
+  super: *black-white.super

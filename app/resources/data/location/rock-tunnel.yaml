@@ -1,16 +1,46 @@
 red-blue: &red-blue
-  region: kanto
-  name: 'Rock Tunnel'
+  region: &red-blue.region kanto
+  name: &red-blue.name 'Rock Tunnel'
   areas:
-    b2f:
-      name: B2F
-      default: true
-    1f:
-      name: 1F
-    b1f:
+    b1f: &red-blue.areas.b1f
       name: B1F
+      default: true
+    b2f: &red-blue.areas.b2f
+      name: B2F
+  map:
+    map: &red-blue.map.map kanto
+    z: &red-blue.map.z 10
+    overlay: |
+      <circle cx="132" cy="28" r="4" />
 yellow: *red-blue
-gold-silver: *red-blue
-crystal: *red-blue
-firered-leafgreen: *red-blue
-heartgold-soulsilver: *red-blue
+gold-silver: &gold-silver
+  region: *red-blue.region
+  name: *red-blue.name
+  areas: &gold-silver.areas
+    1f: *red-blue.areas.b1f
+    b1f: *red-blue.areas.b2f
+  map:
+    map: *red-blue.map.map
+    z: *red-blue.map.z
+    overlay: |
+      <circle cx="124" cy="36" r="4" />
+crystal: *gold-silver
+firered-leafgreen:
+  region: *red-blue.region
+  name: *red-blue.name
+  areas: *gold-silver.areas
+  map:
+    map: *red-blue.map.map
+    z: *red-blue.map.z
+    overlay: |
+      <circle cx="156" cy="44" r="4" />
+      
+heartgold-soulsilver:
+  region: *red-blue.region
+  name: *red-blue.name
+  areas: *gold-silver.areas
+  map:
+    map: *red-blue.map.map
+    z: *red-blue.map.z
+    overlay: |
+      <circle cx="179" cy="45" r="3" />
