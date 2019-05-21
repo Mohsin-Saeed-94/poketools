@@ -1,7 +1,7 @@
 red-blue: &red-blue
-  region: kanto
-  name: 'Pokémon Tower'
-  areas:
+  region: &red-blue.region kanto
+  name: &red-blue.name 'Pokémon Tower'
+  areas: &red-blue.areas
     1f:
       name: 1F
       default: true
@@ -17,28 +17,13 @@ red-blue: &red-blue
       name: 6F
     7f:
       name: 7F
-  super: lavender-town
+  super: &red-blue.super lavender-town
 yellow: *red-blue
 firered-leafgreen:
-  region: kanto
-  name: 'Pokémon Tower'
-  areas:
-    1f:
-      name: 1F
-      default: true
-    2f:
-      name: 2F
-    3f:
-      name: 3F
-    4f:
-      name: 4F
-    5f:
-      name: 5F
-    6f:
-      name: 6F
-    7f:
-      name: 7F
-  super: lavender-town
+  region: *red-blue.region
+  name: *red-blue.name
+  areas: *red-blue.areas
+  super: *red-blue.super
   map:
     map: kanto
     z: 10
