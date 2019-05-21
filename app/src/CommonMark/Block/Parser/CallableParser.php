@@ -8,13 +8,11 @@ namespace App\CommonMark\Block\Parser;
 
 use App\CommonMark\Block\Element\CallableBlock;
 use App\Entity\Version;
-use League\CommonMark\Block\Element\HtmlBlock;
 use League\CommonMark\Block\Parser\AbstractBlockParser;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
-use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 /**
@@ -51,11 +49,6 @@ class CallableParser extends AbstractBlockParser
     protected $logger;
 
     /**
-     * @var FragmentHandler
-     */
-    protected $fragmentHandler;
-
-    /**
      * @var JsonEncoder
      */
     protected $jsonEncoder;
@@ -65,18 +58,15 @@ class CallableParser extends AbstractBlockParser
      *
      * @param Version $version
      * @param LoggerInterface $logger
-     * @param FragmentHandler $fragmentHandler
      * @param JsonEncoder $jsonEncoder
      */
     public function __construct(
         Version $version,
         LoggerInterface $logger,
-        FragmentHandler $fragmentHandler,
         JsonEncoder $jsonEncoder
     ) {
         $this->version = $version;
         $this->logger = $logger;
-        $this->fragmentHandler = $fragmentHandler;
         $this->jsonEncoder = $jsonEncoder;
     }
 
@@ -102,7 +92,6 @@ class CallableParser extends AbstractBlockParser
             $args = $this->jsonEncoder->decode($parts['args'], 'json', ['json_decode_associative' => true]);
             $args['versionSlug'] = $this->version->getSlug();
             $fragment = new ControllerReference($controllerName, $args);
-//            $rendered = trim($this->fragmentHandler->render($fragment));
         } catch (\Exception $e) {
             $this->logger->warning('Could not render "%s": '.$e->getMessage());
 
@@ -112,6 +101,7 @@ class CallableParser extends AbstractBlockParser
         $block = new CallableBlock($fragment);
 
         $context->addBlock($block);
+
 //        $cursor->advanceToNextNonSpaceOrNewline();
 
         return true;

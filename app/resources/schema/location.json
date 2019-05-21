@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "region": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "areas": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "default": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": [
+            "name"
+          ]
+        }
+      },
+      "super": {
+        "type": "string"
+      },
+      "map": {
+        "type": "object",
+        "properties": {
+          "map": {
+            "type": "string"
+          },
+          "z": {
+            "type": "integer"
+          },
+          "overlay": {
+            "type": "string",
+            "contentMediaType": "text/xml"
+          }
+        },
+        "required": [
+          "map",
+          "overlay"
+        ]
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "region",
+      "name",
+      "areas"
+    ]
+  }
+}
