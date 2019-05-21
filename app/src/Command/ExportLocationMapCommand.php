@@ -195,6 +195,9 @@ final class ExportLocationMapCommand extends Command
                     '@inkscape:snap-object-midpoints' => 'true',
                     'inkscape:grid' => [
                         '@type' => 'xygrid',
+                        '@spacingx' => 0.5,
+                        '@spacingy' => 0.5,
+                        '@empspacing' => 2,
                     ],
                 ],
             ];
