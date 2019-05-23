@@ -12,6 +12,7 @@ use App\Tests\data\DataFinderTrait;
  *
  * @group data
  * @group location
+ * @coversNothing
  */
 class LocationTest extends DataSchemaTestCase
 {

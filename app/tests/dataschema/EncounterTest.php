@@ -15,6 +15,7 @@ use JsonSchema\Constraints\Constraint;
  *
  * @group data
  * @group encounter
+ * @coversNothing
  */
 class EncounterTest extends DataSchemaTestCase
 {

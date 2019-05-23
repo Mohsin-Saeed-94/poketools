@@ -10,6 +10,7 @@ namespace App\Tests\data;
  *
  * @group data
  * @group encounter
+ * @coversNothing
  */
 class EncounterTest extends DataTestCase
 {

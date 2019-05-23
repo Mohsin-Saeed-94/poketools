@@ -10,6 +10,7 @@ namespace App\Tests\data;
  *
  * @group data
  * @group location
+ * @coversNothing
  */
 class LocationTest extends DataTestCase
 {
