@@ -62,6 +62,8 @@ RUN mkdir -p var/cache \
 #######################################
 FROM app as app_dev
 
+COPY --from=build /usr/local/bin/composer /usr/local/bin/composer
+
 RUN set -xe \
     && apk add --no-cache $PHPIZE_DEPS \
     && pecl install xdebug-2.7.1 \

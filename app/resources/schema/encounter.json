@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/encounter.json",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "version": {
+        "$ref": "types/identifier.json"
+      },
+      "location": {
+        "$ref": "types/identifier.json"
+      },
+      "area": {
+        "$ref": "types/identifier.json"
+      },
+      "method": {
+        "$ref": "types/identifier.json"
+      },
+      "species": {
+        "$ref": "types/identifier.json"
+      },
+      "pokemon": {
+        "$ref": "types/identifier.json"
+      },
+      "level": {
+        "$ref": "types/range.json"
+      },
+      "chance": {
+        "oneOf": [
+          {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
+          }
+        ]
+      },
+      "conditions": {
+        "oneOf": [
+          {
+            "type": "string",
+            "pattern": "^([a-z0-9\\-]+/[a-z0-9\\-]+(, ?)?)+$"
+          },
+          {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
+          }
+        ],
+        "default": ""
+      },
+      "note": {
+        "oneOf": [
+          {
+            "$ref": "types/markdown.json"
+          },
+          {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
+          }
+        ],
+        "default": ""
+      }
+    },
+    "required": [
+      "id",
+      "version",
+      "location",
+      "area",
+      "method",
+      "species",
+      "pokemon",
+      "level"
+    ]
+  }
+}

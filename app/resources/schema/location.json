@@ -1,17 +1,18 @@
 {
-  "$schema": "http://json-schema.org/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/location.json",
   "type": "object",
   "additionalProperties": {
     "type": "object",
     "properties": {
       "region": {
-        "type": "string"
+        "$ref": "types/identifier.json"
       },
       "name": {
-        "type": "string"
+        "$ref": "types/name.json"
       },
       "description": {
-        "type": "string"
+        "$ref": "types/markdown.json"
       },
       "areas": {
         "type": "object",
@@ -20,35 +21,37 @@
           "type": "object",
           "properties": {
             "name": {
-              "type": "string"
+              "$ref": "types/name.json"
             },
             "default": {
               "type": "boolean",
               "default": false
             }
           },
+          "additionalProperties": false,
           "required": [
             "name"
           ]
         }
       },
       "super": {
-        "type": "string"
+        "$ref": "types/identifier.json"
       },
       "map": {
         "type": "object",
         "properties": {
           "map": {
-            "type": "string"
+            "$ref": "types/identifier.json"
           },
           "z": {
             "type": "integer"
           },
           "overlay": {
             "type": "string",
-            "contentMediaType": "text/xml"
+            "contentMediaType": "image/svg+xml"
           }
         },
+        "additionalProperties": false,
         "required": [
           "map",
           "overlay"

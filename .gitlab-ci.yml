@@ -1,13 +1,16 @@
 stages:
   - prepare
   - build
+  - pretest
   - data
-  
+  - test
+
 variables:
   BUILD_NUMBER: ${CI_BUILD_REF_NAME}_${CI_BUILD_REF}
   APP_VERSION: ${CI_COMMIT_SHORT_SHA}
   IMAGE_BASENAME: ${CI_REGISTRY}/gamestuff.info/poketools
-  
+  SYMFONY_PHPUNIT_VERSION: "8.1"
+
 # This job exists because the docker build process requires the vendors directory to exist
 # in the context.
 composer:
@@ -48,7 +51,24 @@ build:
     - docker push ${IMAGE_BASENAME}/app:${BUILD_NUMBER}
     - docker push ${IMAGE_BASENAME}/web:latest
     - docker push ${IMAGE_BASENAME}/web:${BUILD_NUMBER}
-    
+
+pretest:
+  stage: pretest
+  image: $IMAGE_BASENAME/app:$BUILD_NUMBER
+  dependencies: []
+  variables:
+    # Don't need to checkout because this job operates in the application image
+    GIT_STRATEGY: none
+  before_script:
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php composer-setup.php
+    - php -r "unlink('composer-setup.php');"
+    - mv composer.phar /usr/bin/composer
+  script:
+    - cd /var/www
+    - composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
+    - php -d memory_limit=-1 bin/phpunit --configuration=phpunit.xml.dist --testsuite="Data Schema"
+
 data:
   stage: data
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
@@ -79,3 +99,33 @@ data:
     paths:
       - template.generated.pg.sql
       - data_migration_map.sqlite
+
+test:
+  stage: test
+  image: $IMAGE_BASENAME/app:$BUILD_NUMBER
+  services:
+    - postgres:11
+  dependencies:
+    - data
+  variables:
+    # Don't need to checkout because this job operates in the application image
+    GIT_STRATEGY: none
+    POSTGRES_DB: poketools
+    POSTGRES_USER: poketools
+    POSTGRES_PASSWORD: secret
+    APP_ENV: test
+    DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    # Need a fake IDE env var.  It will never be used.
+    IDE: phpstorm
+  before_script:
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php composer-setup.php
+    - php -r "unlink('composer-setup.php');"
+    - mv composer.phar /usr/bin/composer
+  script:
+    - export PGPASSWORD=$POSTGRES_PASSWORD
+    - apk add --no-cache postgresql-client
+    - psql -q --host=postgres --username=${POSTGRES_USER} --dbname=${POSTGRES_DB} --file="${CI_PROJECT_DIR}/template.generated.pg.sql"
+    - cd /var/www
+    - composer install --prefer-dist --no-progress --no-suggest --no-interaction
+    - php -d memory_limit=-1 bin/phpunit --configuration=phpunit.xml.dist --testsuite="Data Content"
