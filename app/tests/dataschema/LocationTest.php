@@ -89,6 +89,20 @@ class LocationTest extends DataSchemaTestCase
                     $regionFilePath,
                     sprintf('[%s] [%s] region "%s" does not exist.', $identifier, $versionGroupSlug, $regionSlug)
                 );
+
+                // Check region exists for version group
+                $regionData = $this->getDataFromYaml($regionFilePath);
+                self::assertArrayHasKey(
+                    $versionGroupSlug,
+                    $regionData,
+                    sprintf(
+                        '[%s] [%s] region "%s" does not exist in version group "%s".',
+                        $identifier,
+                        $versionGroupSlug,
+                        $regionSlug,
+                        $versionGroupSlug
+                    )
+                );
             }
         }
     }
@@ -159,6 +173,7 @@ class LocationTest extends DataSchemaTestCase
      *
      * @depends testData
      * @depends testVersionGroup
+     * @depends testRegion
      */
     public function testMap(): void
     {
@@ -168,22 +183,46 @@ class LocationTest extends DataSchemaTestCase
             $data = $this->parseYaml($yaml);
 
             libxml_use_internal_errors(true);
-            foreach ($data as $versionGroupSlug => $versionData) {
-                if (!isset($versionData['map'])) {
+            foreach ($data as $versionGroupSlug => $versionGroupData) {
+                if (!isset($versionGroupData['map'])) {
                     continue;
                 }
 
-                $mapData = $versionData['map'];
-                self::assertArrayHasKey('map', $mapData, 'Map not set');
-                self::assertNotEmpty($mapData['map'], 'Map not set');
+                $mapData = $versionGroupData['map'];
+                self::assertArrayHasKey(
+                    'map',
+                    $mapData,
+                    sprintf('[%s] [%s] Map not set', $identifier, $versionGroupSlug)
+                );
+                $region = $versionGroupData['region'];
+                $regionFilePath = sprintf(
+                    '%s/%s.yaml',
+                    realpath(self::DIR_DATA.'/../region'),
+                    $region
+                );
+                $regionData = $this->getDataFromYaml($regionFilePath);
+                $map = $mapData['map'];
+                self::assertArrayHasKey(
+                    $map,
+                    $regionData[$versionGroupSlug]['maps'],
+                    sprintf(
+                        '[%s] [%s] Map "%s" does not exist in region "%s" in version group "%s".',
+                        $identifier,
+                        $versionGroupSlug,
+                        $map,
+                        $region,
+                        $versionGroupSlug
+                    )
+                );
+
                 self::assertArrayHasKey('overlay', $mapData, 'No overlay');
-                self::assertNotEmpty($mapData['overlay'], 'Overlay is empty');
-                $doc = simplexml_load_string('<svg>'.$mapData['overlay'].'</svg>');
+                $svg = sprintf("<svg xmlns='http://www.w3.org/2000/svg'>\n%s\n</svg>", trim($mapData['overlay']));
+                $doc = simplexml_load_string($svg);
                 if ($doc === false) {
                     $errors = [];
                     foreach (libxml_get_errors() as $error) {
                         /** @var \LibXMLError $error */
-                        $errorMessage = explode("\n", $mapData['overlay'])[$error->line - 1]."\n";
+                        $errorMessage = explode("\n", $svg)[$error->line - 1]."\n";
                         $errorMessage .= str_repeat('-', $error->column)."^\n";
 
                         switch ($error->level) {
@@ -209,7 +248,15 @@ class LocationTest extends DataSchemaTestCase
                         $errors[] = $errorMessage;
                     }
                     libxml_clear_errors();
-                    self::assertNotEquals(false, $doc, "Overlay is not well formed:\n".implode("\n\n", $errors));
+                    self::assertNotFalse(
+                        $doc,
+                        sprintf(
+                            "[%s] [%s] Map overlay is not well formed:\n%s",
+                            $identifier,
+                            $versionGroupSlug,
+                            implode("\n\n", $errors)
+                        )
+                    );
                 }
             }
         }
