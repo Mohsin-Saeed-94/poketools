@@ -13,24 +13,29 @@ use League\CommonMark\CommonMarkConverter;
 abstract class AbstractSchemaType
 {
     /**
-     * @var string
+     * @var string|null
      */
-    protected $schema;
+    protected $schema = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected $id;
+    protected $id = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected $relativeId;
+    protected $relativeId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $type;
+
+    /**
+     * @var AbstractSchemaType|null
+     */
+    protected $parent = null;
 
     /**
      * @var string|null
@@ -48,56 +53,80 @@ abstract class AbstractSchemaType
     protected $default;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
     protected $examples;
+
+    /**
+     * @var array|null
+     */
+    protected $enum;
+
+    /**
+     * @var mixed|null
+     */
+    protected $const;
 
     /**
      * AbstractSchemaType constructor.
      *
      * @param object $schema
-     * @param string $prefix
      */
-    public function __construct(object $schema, string $prefix)
+    public function __construct(object $schema)
     {
-        $this->schema = $schema->{'$schema'} ?? 'http://json-schema.org/schema#';
-        $this->id = rtrim($schema->{'$id'}, '#');
-        $this->relativeId = ltrim(str_replace($prefix, '', $this->id), '/');
-        $this->type = $schema->type;
-        $this->title = $schema->title ?? null;
-        $this->description = $schema->description ?? null;
-        $this->default = $schema->default ?? null;
-        $this->examples = $schema->examples ?? [];
+        $this->apply($schema);
     }
 
     /**
-     * @return string
+     * @param object $schema
      */
-    public function getSchema(): string
+    public function apply(object $schema): void
+    {
+        $this->schema = $schema->{'$schema'} ?? null;
+        $this->type = $schema->type ?? null;
+        $this->title = $schema->title ?? null;
+        $this->description = $schema->description ?? null;
+        $this->default = $schema->default ?? null;
+        $this->examples = $schema->examples ?? null;
+        $this->enum = $schema->enum ?? null;
+        $this->const = $schema->const ?? null;
+
+        if (isset($schema->{'$id'})) {
+            $this->id = rtrim($schema->{'$id'}, '#');
+        }
+        if (isset($schema->{'$relativeId'})) {
+            $this->relativeId = rtrim($schema->{'$relativeId'}, '#');
+        }
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSchema(): ?string
     {
         return $this->schema;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRelativeId(): string
+    public function getRelativeId(): ?string
     {
         return $this->relativeId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -134,7 +163,7 @@ abstract class AbstractSchemaType
     /**
      * @return mixed|null
      */
-    public function getDefault(): ?mixed
+    public function getDefault()
     {
         return $this->default;
     }
@@ -142,8 +171,76 @@ abstract class AbstractSchemaType
     /**
      * @return string[]
      */
-    public function getExamples(): array
+    public function getExamples(): ?array
     {
         return $this->examples;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getEnum(): ?array
+    {
+        return $this->enum;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getConst()
+    {
+        return $this->const;
+    }
+
+    /**
+     * Find the root schema object.
+     *
+     * @param AbstractSchemaType $parent
+     *
+     * @return AbstractSchemaType
+     */
+    protected function findRootSchema(AbstractSchemaType $parent)
+    {
+        if ($parent->getParent() === null) {
+            return $parent;
+        }
+
+        return $this->findRootSchema($parent->getParent());
+    }
+
+    /**
+     * @return AbstractSchemaType|null
+     */
+    public function getParent(): ?AbstractSchemaType
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param AbstractSchemaType|null $parent
+     *
+     * @return self
+     */
+    public function setParent(?AbstractSchemaType $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Is this array a list (true) or map (false)?
+     *
+     * Because JSON distinguishes between lists and maps while PHP does not,
+     * this method will determine if a behavior change is needed for the
+     * numerous places in the spec where this matters.
+     *
+     * @param array $list
+     *
+     * @return bool
+     */
+    protected function isList(array $list): bool
+    {
+        return array_keys($list) === range(0, count($list) - 1);
     }
 }

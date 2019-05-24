@@ -6,16 +6,26 @@
 namespace DragoonBoots\JsonSchemaBundle\Schema;
 
 
+use DragoonBoots\JsonSchemaBundle\Exception\InvalidSchemaException;
 use DragoonBoots\JsonSchemaBundle\Exception\UnknownSchemaException;
 use DragoonBoots\JsonSchemaBundle\Schema\Loader\PathLoader;
 use DragoonBoots\JsonSchemaBundle\Schema\Type\AbstractSchemaType;
-use DragoonBoots\JsonSchemaBundle\Schema\Type\SchemaObject;
+use Opis\JsonSchema\ISchema;
 
 /**
  * Inspect schemas for their info.
  */
 class Inspector
 {
+    private const ANNOTATIONS = [
+        'title',
+        'description',
+        'default',
+        'readOnly',
+        'writeOnly',
+        'examples',
+    ];
+
     /**
      * @var PathLoader
      */
@@ -68,6 +78,76 @@ class Inspector
             throw new UnknownSchemaException($uri);
         }
 
-        return new SchemaObject($schema->resolve(), $uriPrefix);
+        $resolved = $this->deepResolve($schema, $uriPrefix);
+
+        return SchemaType::create($resolved, $uriPrefix);
+    }
+
+    /**
+     * Resolve all nested references
+     *
+     * @param ISchema|object $schema
+     * @param string $uriPrefix
+     *
+     * @return object
+     */
+    private function deepResolve($schema, string $uriPrefix = '')
+    {
+        if ($schema instanceof ISchema) {
+            $schema = $schema->resolve();
+        }
+
+        foreach ($schema as $k => &$v) {
+            if ($k === '$ref') {
+                // Load the reference
+                $ref = $this->schemaLoader->loadSchema($v);
+                if ($ref === null) {
+                    // Try a relative path
+                    $uri = rtrim($uriPrefix, '/').'/'.ltrim($v, '/');
+                    $ref = $this->schemaLoader->loadSchema($uri);
+                }
+                if ($ref !== null) {
+                    $ref = $ref->resolve();
+
+                    // Copy annotations (e.g. title, description) to the
+                    // referenced schema
+                    foreach (self::ANNOTATIONS as $annotationKey) {
+                        if (isset($schema->{$annotationKey})) {
+                            $ref->{$annotationKey} = $schema->{$annotationKey};
+                        }
+                    }
+                    $schema = $this->deepResolve($ref);
+                } else {
+                    throw new InvalidSchemaException(
+                        sprintf('Invalid reference from "%s" to "%s".', implode('.', $schema->path), $v)
+                    );
+                }
+                break;
+            }
+            if (is_object($v) || isset(SchemaType::COMBINATION_TYPES[$k])) {
+                $v = $this->deepResolve($v, $uriPrefix);
+            }
+        }
+
+        return $schema;
+    }
+
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
+    private function isCombination($value): bool
+    {
+        if (!is_array($value) || empty($value)) {
+            return false;
+        }
+        foreach (array_keys(SchemaType::COMBINATION_TYPES) as $combinationType) {
+            if (isset($value[$combinationType])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
