@@ -1,6 +1,9 @@
 {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\AbstractSchemaType schema */ #}
 {% import _self as typeHelpers %}
-{% if path|length > 1 %}
+{% if path|length == 1 %}
+    {% block basics %}{# This displays the info that child nodes would display seperately. #}{% endblock %}
+    {% block requirements %}{% endblock %}
+{% else %}
     <div class="card" id="{{ typeHelpers.getId(path) }}">
         <a class="card-header">
             {% if title or schema.title %}
@@ -21,14 +24,13 @@
             </div>
             <div class="card-text">
                 {{ typeHelpers.renderBasics(schema, path, block('basics')) }}
+                <h4>Requirements</h4>
+                {{ block('basics') }}
             </div>
 
-            {% block requirements %}{% endblock %}
+            {{ block('requirements') }}
         </div>
     </div>
-{% else %}
-    {% block basics %}{# This displays the info that root nodes would display seperately. #}{% endblock %}
-    {{ block('requirements') }}
 {% endif %}
 
 {% macro renderSchema(schema, path, title = null) %}
