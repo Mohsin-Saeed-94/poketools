@@ -31,6 +31,16 @@ class SchemaString extends AbstractSchemaType
     protected $format;
 
     /**
+     * @var string|null
+     */
+    protected $contentEncoding;
+
+    /**
+     * @var string|null
+     */
+    protected $contentMediaType;
+
+    /**
      * SchemaString constructor.
      *
      * @param object $schema
@@ -53,6 +63,8 @@ class SchemaString extends AbstractSchemaType
         $this->maxLength = $schema->maxLength ?? null;
         $this->pattern = $schema->pattern ?? null;
         $this->format = $schema->format ?? null;
+        $this->contentEncoding = $schema->contentEncoding ?? null;
+        $this->contentMediaType = $schema->contentMediaType ?? null;
     }
 
     /**
@@ -87,5 +99,20 @@ class SchemaString extends AbstractSchemaType
         return $this->format;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getContentEncoding(): ?string
+    {
+        return $this->contentEncoding;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getContentMediaType(): ?string
+    {
+        return $this->contentMediaType;
+    }
 
 }

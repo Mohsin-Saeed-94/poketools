@@ -36,12 +36,14 @@
                 </td>
             </tr>
         {% endif %}
+
         {% if schema.pattern is not null %}
             <tr id="{{ typeHelpers.getId(path|default(['requirements']), 'pattern') }}">
                 <th><code>pattern</code></th>
                 <td><code class="lang-regex">{{ schema.pattern }}</code></td>
             </tr>
         {% endif %}
+
         {% if schema.format is not null %}
             <tr id="{{ typeHelpers.getId(path|default(['requirements']), 'format') }}">
                 <th><code>format</code></th>
@@ -51,6 +53,20 @@
                     <a href="http://json-schema.org/understanding-json-schema/reference/string.html#format">here</a>
                     for what this means.
                 </td>
+            </tr>
+        {% endif %}
+
+        {% if schema.contentMediaType %}
+            <tr id="{{ typeHelpers.getId(path|default(['requirements']), 'contentMediaType') }}">
+                <th><code>contentMediaType</code></th>
+                <td><code>{{ schema.contentMediaType }}</code></td>
+            </tr>
+        {% endif %}
+
+        {% if schema.contentEncoding %}
+            <tr id="{{ typeHelpers.getId(path|default(['requirements']), 'contentEncoding') }}">
+                <th><code>contentEncoding</code></th>
+                <td><code>{{ schema.contentEncoding }}</code></td>
             </tr>
         {% endif %}
     </table>
