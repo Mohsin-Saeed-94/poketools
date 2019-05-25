@@ -135,6 +135,18 @@ class LocationTest extends DataSchemaTestCase
                         $superLocationSlug
                     )
                 );
+                $superData = $this->getDataFromYaml($superLocationFilePath);
+                self::assertArrayHasKey(
+                    $versionGroupSlug,
+                    $superData,
+                    sprintf(
+                        '[%s] [%s] The location "%s" does not exist in the version group "%s".',
+                        $identifier,
+                        $versionGroupSlug,
+                        $superLocationSlug,
+                        $versionGroupSlug
+                    )
+                );
             }
         }
     }

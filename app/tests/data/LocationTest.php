@@ -18,24 +18,22 @@ class LocationTest extends DataTestCase
 
     /**
      * Test descriptions are valid Markdown
+     *
+     * @dataProvider locationsDataProvider
      */
-    public function testDescription(): void
+    public function testDescription($yaml): void
     {
-        $allData = $this->getLocationsData();
+        $data = $this->parseYaml($yaml);
 
-        foreach ($allData as $identifier => $yaml) {
-            $data = $this->parseYaml($yaml);
+        foreach ($data as $versionGroupSlug => $versionData) {
+            if (!isset($versionData['description'])) {
+                continue;
+            }
 
-            foreach ($data as $versionGroupSlug => $versionData) {
-                if (!isset($versionData['description'])) {
-                    continue;
-                }
-
-                $versionGroup = $this->getVersionGroup($versionGroupSlug);
-                foreach ($versionGroup->getVersions() as $version) {
-                    $converter = $this->getMarkdownConverter($version->getSlug());
-                    $converter->convertToHtml($versionData['description']);
-                }
+            $versionGroup = $this->getVersionGroup($versionGroupSlug);
+            foreach ($versionGroup->getVersions() as $version) {
+                $converter = $this->getMarkdownConverter($version->getSlug());
+                $converter->convertToHtml($versionData['description']);
             }
         }
     }
@@ -43,13 +41,11 @@ class LocationTest extends DataTestCase
     /**
      * @return \Generator
      */
-    public function getLocationsData(): \Generator
+    public function locationsDataProvider(): \Generator
     {
         $finder = $this->getFinderForDirectory('location');
         $finder->name('*.yaml');
 
-        foreach ($finder as $fileInfo) {
-            yield $fileInfo->getFilename() => $fileInfo->getContents();
-        }
+        return $this->buildFinderDataProvider($finder);
     }
 }

@@ -80,7 +80,15 @@ class LocationTree extends AbstractDoctrineDataMigration implements DataMigratio
     ): ?LocationInVersionGroup {
         if (!isset($sourceData['super'])) {
             // No super location
-            return null;
+            if ($destinationData->getSuperLocation() === null) {
+                // The super was and still is null i.e. no change.
+                return null;
+            }
+
+            // The super was set, but is now null.
+            $destinationData->setSuperLocation(null);
+
+            return $destinationData;
         }
 
         /** @var \App\Entity\Location $superLocation */
