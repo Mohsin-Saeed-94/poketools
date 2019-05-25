@@ -2,7 +2,7 @@
 {% import _self as typeHelpers %}
 {% if path|length > 1 %}
     <div class="card" id="{{ typeHelpers.getId(path) }}">
-        <a class="card-header" data-toggle="collapse" data-target="#{{ typeHelpers.getId(path) }} > .card-body">
+        <a class="card-header">
             {% if title or schema.title %}
                 <h3>
                     {% if title %}<code>{{ title }}</code>{% endif %}{% if title and schema.title %}: {% endif %}
@@ -52,11 +52,11 @@
     {{ include(template, {'schema': schema, 'path': path, 'title': title}) }}
 {% endmacro %}
 
-{% macro renderChildren(children, path) %}
+{% macro renderChildren(children, path, showTitle = true) %}
     {% import _self as typeHelpers %}
     {% for key, child in children %}
         {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\AbstractSchemaType child */ #}
-        {{ typeHelpers.renderSchema(child, path|merge([key]), key) }}
+        {{ typeHelpers.renderSchema(child, path|merge([key]), showTitle ? key : null) }}
     {% endfor %}
 {% endmacro %}
 

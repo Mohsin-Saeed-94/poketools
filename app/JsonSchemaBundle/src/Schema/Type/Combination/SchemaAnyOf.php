@@ -31,6 +31,7 @@ class SchemaAnyOf extends AbstractSchemaCombination
     {
         parent::apply($schema);
 
+        $this->children = [];
         $this->createChildren($schema->anyOf);
     }
 }

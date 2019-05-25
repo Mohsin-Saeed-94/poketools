@@ -31,6 +31,7 @@ class SchemaOneOf extends AbstractSchemaCombination
     {
         parent::apply($schema);
 
+        $this->children = [];
         $this->createChildren($schema->oneOf);
     }
 }

@@ -107,7 +107,9 @@ class Inspector
                     $ref = $this->schemaLoader->loadSchema($uri);
                 }
                 if ($ref !== null) {
-                    $ref = $ref->resolve();
+                    // Cloning the referenced schema allows annotations
+                    // to be merged in without affecting other uses of the ref.
+                    $ref = clone $ref->resolve();
 
                     // Copy annotations (e.g. title, description) to the
                     // referenced schema

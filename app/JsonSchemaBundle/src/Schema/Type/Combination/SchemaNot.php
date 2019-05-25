@@ -31,6 +31,7 @@ class SchemaNot extends AbstractSchemaCombination
     {
         parent::apply($schema);
 
+        $this->children = [];
         $this->createChildren([$schema->not]);
     }
 }
