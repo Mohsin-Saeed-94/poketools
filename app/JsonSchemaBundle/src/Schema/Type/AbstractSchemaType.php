@@ -93,7 +93,7 @@ abstract class AbstractSchemaType
         $this->description = $schema->description ?? null;
         $this->default = $schema->default ?? null;
         $this->examples = $schema->examples ?? null;
-        $this->exampleFormat = $schema->_example_format ?? null;
+        $this->exampleFormat = $schema->{'$exampleFormat'} ?? null;
         $this->enum = $schema->enum ?? null;
         $this->const = $schema->const ?? null;
 

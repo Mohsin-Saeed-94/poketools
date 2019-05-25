@@ -37,8 +37,17 @@ Encore
     // uncomment if you use Sass/SCSS files
     .enableSassLoader()
 
-// uncomment if you're having problems with a jQuery plugin
-//.autoProvidejQuery()
+    // uncomment if you're having problems with a jQuery plugin
+    //.autoProvidejQuery()
+
+    .configureBabel(function (babelConfig) {
+        babelConfig.plugins.push(['prismjs', {
+            'languages': ['json', 'markdown', 'regex'],
+            'plugins': ['line-numbers', 'show-language'],
+            'theme': 'default',
+            'css': true
+        }])
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();

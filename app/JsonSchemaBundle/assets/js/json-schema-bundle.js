@@ -1,8 +1,8 @@
 const $ = require('jquery');
 require('popper.js');
 require('bootstrap');
-const hljs = require('highlight.js');
-require('highlight.js/styles/atom-one-dark-reasonable.css');
+import Prism from 'prismjs';
+// require('prismjs/themes/prism-tomorrow.css');
 require('../css/json-schema-bundle.scss');
 
-hljs.initHighlightingOnLoad();
+Prism.highlightAll();
