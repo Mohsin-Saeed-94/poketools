@@ -1,12 +1,35 @@
 red-blue: &red-blue
-  region: kanto
-  name: 'Viridian Forest'
-  areas:
+  region: &red-blue.region kanto
+  name: &red-blue.name 'Viridian Forest'
+  areas: &red-blue.areas
     whole-area:
       name: 'Whole area'
       default: true
+  super: &red-blue.super kanto-route-2
+  map:
+    map: &red-blue.map.map kanto
+    z: &red-blue.map.z 10
+    overlay: |
+      <circle r="4" cy="36" cx="36" />
 yellow: *red-blue
-gold-silver: *red-blue
-crystal: *red-blue
-firered-leafgreen: *red-blue
-heartgold-soulsilver: *red-blue
+firered-leafgreen:
+  region: *red-blue.region
+  name: *red-blue.name
+  areas: *red-blue.areas
+  super: *red-blue.super
+  map:
+    map: *red-blue.map.map
+    z: *red-blue.map.z
+    overlay: |
+      <circle cx="44" cy="68" r="4" />
+      
+heartgold-soulsilver:
+  region: *red-blue.region
+  name: *red-blue.name
+  areas: *red-blue.areas
+  super: *red-blue.super
+  map:
+    map: *red-blue.map.map
+    z: *red-blue.map.z
+    overlay: |
+      <circle cx="83" cy="53" r="3" />

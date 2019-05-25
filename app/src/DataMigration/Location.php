@@ -105,6 +105,8 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
                 $map->setOverlay($sourceData['map']['overlay']);
                 if (isset($sourceData['map']['z'])) {
                     $map->setZIndex($sourceData['map']['z']);
+                } else {
+                    $map->setZIndex(0);
                 }
                 $destinationData->setMap($map);
             } else {

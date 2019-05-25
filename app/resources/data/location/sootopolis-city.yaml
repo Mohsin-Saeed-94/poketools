@@ -1,9 +1,20 @@
 ruby-sapphire: &ruby-sapphire
-  region: hoenn
-  name: 'Sootopolis City'
-  areas:
+  region: &ruby-sapphire.region hoenn
+  name: &ruby-sapphire.name 'Sootopolis City'
+  areas: &ruby-sapphire.areas
     whole-area:
       name: 'Whole area'
       default: true
+  map:
+    map: &ruby-sapphire.map.map hoenn
+    overlay: |
+      <rect width="8" height="8" x="176" y="72" />
 emerald: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
+omega-ruby-alpha-sapphire:
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
+  areas: *ruby-sapphire.areas
+  map:
+    map: *ruby-sapphire.map.map
+    overlay: |
+      <rect width="13" height="13" x="240" y="110" />

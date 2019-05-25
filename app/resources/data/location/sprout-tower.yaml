@@ -1,11 +1,20 @@
 gold-silver: &gold-silver
-  region: johto
-  name: 'Sprout Tower'
-  areas:
+  region: &gold-silver.region johto
+  name: &gold-silver.name 'Sprout Tower'
+  areas: &gold-silver.areas
     2f:
       name: 2F
       default: true
     3f:
       name: 3F
+  super: &gold-silver.super violet-city
 crystal: *gold-silver
-heartgold-soulsilver: *gold-silver
+heartgold-soulsilver:
+  region: *gold-silver.region
+  name: *gold-silver.name
+  areas: *gold-silver.areas
+  super: *gold-silver.super
+  map:
+    map: johto
+    overlay: |
+      <circle r="3" cy="69" cx="117" />

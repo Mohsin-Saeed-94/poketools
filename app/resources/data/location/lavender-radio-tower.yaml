@@ -1,10 +1,18 @@
 gold-silver: &gold-silver
-  region: kanto
-  name: 'Radio Tower'
-  areas:
+  region: &gold-silver.region kanto
+  name: &gold-silver.name 'Radio Tower'
+  areas: &gold-silver.areas
     whole-area:
       name: 'Whole area'
       default: true
-  super: lavender-town
+  super: &gold-silver.super lavender-town
+  map:
+    map: kanto
+    overlay: |
+      <circle cx="132" cy="52" r="4" />
 crystal: *gold-silver
-heartgold-soulsilver: *gold-silver
+heartgold-soulsilver:
+  region: *gold-silver.region
+  name: *gold-silver.name
+  areas: *gold-silver.areas
+  super: *gold-silver.super

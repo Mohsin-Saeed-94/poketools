@@ -1,19 +1,48 @@
 gold-silver: &gold-silver
-  region: johto
-  name: 'Whirl Islands'
+  region: &gold-silver.region johto
+  name: &gold-silver.name 'Whirl Islands'
   areas:
-    1f:
-      name: 1F
+    1f-nw: &gold-silver.areas.1f-nw
+      name: '1F (Northwest)'
       default: true
-    b1f:
+    1f-ne: &gold-silver.areas.1f-ne
+      name: '1F (Northeast)'
+    1f-sw: &gold-silver.areas.1f-sw
+      name: '1F (Southwest)'
+    1f-se: &gold-silver.areas.1f-se
+      name: '1F (Southeast'
+    b1f: &gold-silver.areas.b1f
       name: B1F
-    empty-floor-x:
-      name: 'empty floor X'
-    b2f:
+    b1f-middle:
+      name: 'B1F (Middle room)'
+    b2f: &gold-silver.areas.b2f
       name: B2F
-    empty-floor-y:
-      name: 'empty floor Y'
+    b2f-lugia:
+      name: 'B2F (Lugia''s Room)'
+  super: &gold-silver.super johto-route-41
+  map:
+    map: &gold-silver.map.map johto
+    z: &gold-silver.map.z 10
+    overlay: |
+      <circle cx="20" cy="76" r="4" />
+crystal: *gold-silver
+heartgold-soulsilver:
+  region: *gold-silver.region
+  name: *gold-silver.name
+  areas:
+    1f-nw: *gold-silver.areas.1f-nw
+    1f-ne: *gold-silver.areas.1f-ne
+    1f-sw: *gold-silver.areas.1f-sw
+    1f-se: *gold-silver.areas.1f-se
+    b1f: *gold-silver.areas.b1f
+    b2f: *gold-silver.areas.b2f
     b3f:
       name: B3F
-crystal: *gold-silver
-heartgold-soulsilver: *gold-silver
+    b3f-lugia:
+      name: 'B3F (Lugia''s Room)'
+  super: *gold-silver.super
+  map:
+    map: *gold-silver.map.map
+    z: *gold-silver.map.z
+    overlay: |
+      <circle r="3" cy="101" cx="53" />

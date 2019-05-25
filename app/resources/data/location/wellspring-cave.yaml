@@ -1,8 +1,22 @@
-black-white: &black-white
-  region: unova
-  name: 'Wellspring Cave'
-  areas:
+black-white:
+  region: &black-white.region unova
+  name: &black-white.name 'Wellspring Cave'
+  areas: &black-white.areas
     whole-area:
       name: 'Whole area'
       default: true
-black-2-white-2: *black-white
+  super: &black-white.super unova-route-3
+  map:
+    map: &black-white.map.map unova
+    overlay: |
+      <circle r="3" cy="110" cx="215" />
+      
+black-2-white-2:
+  region: *black-white.region
+  name: *black-white.name
+  areas: *black-white.areas
+  super: *black-white.super
+  map:
+    map: *black-white.map.map
+    overlay: |
+      <rect height="6" width="6" y="107" x="212" />
