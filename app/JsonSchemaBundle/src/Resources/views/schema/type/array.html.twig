@@ -1,0 +1,97 @@
+{% extends '@JsonSchema/schema/type/type.html.twig' %}
+{# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\SchemaArray schema */ #}
+
+{% block basics %}
+    {% import '@JsonSchema/schema/type/type.html.twig' as typeHelpers %}
+
+    <table class="jsb--infolist">
+        {% if schema.minItems is not null
+            or schema.maxItems is not null %}
+            <tr>
+                <th>Property count range</th>
+                <td>
+                    <code>{{ schema.minItems|default(0) }}</code>
+                    &lt;
+                    <var>count</var>
+                    {% if schema.maxItems is not null %}
+                        &lt;
+                        <code>{{ schema.maxItems }}</code>
+                    {% endif %}
+                    <table class="jsb--infolist">
+                        {% if schema.minItems is not null %}
+                            <tr id="{{ typeHelpers.getId(path|default(['requirements']), 'minItems') }}">
+                                <th><code>minProperties</code></th>
+                                <td><code>{{ schema.minItems }}</code></td>
+                            </tr>
+                        {% endif %}
+                        {% if schema.maxItems is not null %}
+                            <tr id="{{ typeHelpers.getId(path|default(['requirements']), 'maxItems') }}">
+                                <th><code>maxProperties</code></th>
+                                <td><code>{{ schema.maxItems }}</code></td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </td>
+            </tr>
+        {% endif %}
+        {% if schema.uniqueItems is not null %}
+            <tr id="{{ typeHelpers.getId(path|default(['requirements']), 'uniqueItems') }}">
+                <th><code>uniqueItems</code></th>
+                <td><code>{{ typeHelpers.renderAsBoolean(schema.uniqueItems) }}</code></td>
+            </tr>
+        {% endif %}
+        {% if schema.additionalItems is not schema_type %}
+            <tr id="{{ typeHelpers.getId(path|default(['requirements']), 'additionalItems') }}">
+                <th><code>additionalItems</code></th>
+                <td><code>{{ typeHelpers.renderAsBoolean(schema.additionalItems) }}</code></td>
+            </tr>
+        {% endif %}
+        {% if schema.validationType is not null %}
+            <tr>
+                <th>Validation type</th>
+                <td>
+                    {{ schema.validationType }}
+                    {% if schema.validationType is constant('\\DragoonBoots\\JsonSchemaBundle\\Schema\\Type\\SchemaArray::VALIDATION_TYPE_LIST') %}
+                        <small>(Each item in the array matches the same schema, defined in
+                            <code>items</code>)</small>
+                    {% elseif schema.validationType is constant('\\DragoonBoots\\JsonSchemaBundle\\Schema\\Type\\SchemaArray::VALIDATION_TYPE_TUPLE') %}
+                        <small>
+                            (The array contents are a sequence of fixed length where each item may have a different
+                            schema. The position of each schema in <code>items</code> lines up with the position of
+                            the item it should validate.)
+                        </small>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endif %}
+    </table>
+{% endblock %}
+
+{% block requirements %}
+    {% import '@JsonSchema/schema/type/type.html.twig' as typeHelpers %}
+
+    {# items #}
+    {% if schema.items %}
+        {% if schema.validationType is constant('\\DragoonBoots\\JsonSchemaBundle\\Schema\\Type\\SchemaArray::VALIDATION_TYPE_LIST') %}
+            <div id="{{ typeHelpers.getId(path, 'items') }}">
+                {{ typeHelpers.renderSchema(schema.items, path|merge(['items']), 'items') }}
+            </div>
+        {% elseif schema.validationType is constant('\\DragoonBoots\\JsonSchemaBundle\\Schema\\Type\\SchemaArray::VALIDATION_TYPE_TUPLE') %}
+            {{ typeHelpers.renderContainer('items', 'array', schema.items, path|merge(['items'])) }}
+        {% endif %}
+    {% endif %}
+
+    {# additionalItems #}
+    {% if schema.additionalItems is schema_type %}
+        <div id="{{ typeHelpers.getId(path, 'additionalItems') }}">
+            {{ typeHelpers.renderSchema(schema.additionalItems, path|merge(['additionalItems']), 'additionalItems') }}
+        </div>
+    {% endif %}
+
+    {# contains #}
+    {% if schema.contains %}
+        <div id="{{ typeHelpers.getId(path, 'contains') }}">
+            {{ typeHelpers.renderSchema(schema.contains, path|merge(['contains']), 'contains') }}
+        </div>
+    {% endif %}
+{% endblock %}

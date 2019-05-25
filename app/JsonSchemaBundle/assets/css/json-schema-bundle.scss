@@ -7,10 +7,14 @@
 }
 
 .jsb--sidebar {
+    position: sticky;
     height: 100%;
+    top: 0;
+    z-index: 1000;
 
     &.jsb--nav {
         @extend .bg-light;
+        order: 0;
 
         ul.nav {
             @extend .flex-column;
@@ -19,7 +23,19 @@
 
     &.jsb--page-nav {
         @extend .border-left;
+        order: 2;
+
+        ul.nav {
+            @extend .flex-column;
+        }
     }
+}
+
+main.jsb--content {
+    order: 1;
+    position: relative;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 // Index page
@@ -35,8 +51,103 @@
     }
 }
 
+// Show page
+.jsb--schema--show--title {
+    @extend .d-flex;
+    @extend .align-items-baseline;
+
+    .jsb--schema--show--type {
+        @extend .text-muted;
+        @extend .text-monospace;
+        @extend .mx-3;
+    }
+}
+
+.jsb--schema--show--requirements {
+    .card {
+        .card-header {
+            @extend .d-flex;
+            @extend .align-items-baseline;
+
+            h3 {
+                @extend .mb-0;
+                @extend .mr-3;
+            }
+
+            .jsb--schema--show--type {
+                @extend .text-muted;
+                @extend .text-monospace;
+            }
+        }
+    }
+}
+
+.jsb--schema--show--json {
+    pre {
+        @extend .pre-scrollable;
+    }
+}
+
 // Formatting utilities
+table.table {
+    ul, ol {
+        @extend .mb-0;
+        @extend .pl-4;
+    }
+}
+
+pre {
+    @extend .d-inline;
+}
+
+.jsb--content {
+    height: 100%;
+}
+
 .jsb--empty {
     @extend .font-italic;
     @extend .text-muted;
+}
+
+.nav-link.active {
+    @extend .font-weight-bold;
+    @extend .text-muted;
+}
+
+.jsb--infolist {
+    @extend .table;
+    @extend .table-sm;
+    @extend .table-borderless;
+
+    width: auto;
+
+    th {
+        white-space: nowrap;
+
+        &::after {
+            content: ":";
+        }
+    }
+
+    // Nested infolist need help to not create extra space everywhere.
+    td .jsb--infolist {
+        margin: 0;
+        padding: 0;
+
+        th {
+            padding-left: 0;
+        }
+
+        tr:first-of-type {
+            th, td {
+                padding-top: 0;
+            }
+        }
+
+        tr:last-of-type {
+            th, td {
+                padding-bottom: 0;
+            }
+        }
+    }
 }

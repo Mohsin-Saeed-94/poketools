@@ -14,7 +14,7 @@ use DragoonBoots\JsonSchemaBundle\Schema\Type\AbstractSchemaType;
  *
  * @see http://json-schema.org/understanding-json-schema/reference/combining.html
  */
-class AbstractSchemaCombination extends AbstractSchemaCollectionType
+abstract class AbstractSchemaCombination extends AbstractSchemaCollectionType
 {
     protected $type = 'combination';
 

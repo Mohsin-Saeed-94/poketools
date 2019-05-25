@@ -32,11 +32,7 @@ class JsonSchemaExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $schemaPathLoader = $container->getDefinition('json_schema.loader.path_loader');
-        $registerSchemaArgs = [
-            '$dir' => $config['schemas']['path'],
-            '$uriPrefix' => $config['schemas']['prefix'],
-        ];
-        $schemaPathLoader->addMethodCall('registerPath', $registerSchemaArgs);
+        $container->setParameter('json_schema.schema_path', $config['schemas']['path']);
         $container->setParameter('json_schema.schema_prefix', $config['schemas']['prefix']);
     }
 }

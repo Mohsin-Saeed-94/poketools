@@ -1,0 +1,116 @@
+{# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\AbstractSchemaType schema */ #}
+{% import _self as typeHelpers %}
+{% if path|length > 1 %}
+    <div class="card" id="{{ typeHelpers.getId(path) }}">
+        <a class="card-header" data-toggle="collapse" data-target="#{{ typeHelpers.getId(path) }} > .card-body">
+            {% if title or schema.title %}
+                <h3>
+                    {% if title %}<code>{{ title }}</code>{% endif %}{% if title and schema.title %}: {% endif %}
+                    {% if schema.title %}{{ schema.title }}{% endif %}
+                </h3>
+            {% endif %}
+            {% if schema.type %}
+                <div class="jsb--schema--show--type">"type": "{{ schema.type }}"</div>
+            {% elseif schema.combinationType is defined %}
+                <div class="jsb--schema--show--type">combination</div>
+            {% endif %}
+        </a>
+        <div class="card-body">
+            <div class="card-text">
+                {{ schema.htmlDescription|raw }}
+            </div>
+            <div class="card-text">
+                {{ typeHelpers.renderBasics(schema, path, block('basics')) }}
+            </div>
+
+            {% block requirements %}{% endblock %}
+        </div>
+    </div>
+{% else %}
+    {% block basics %}{# This displays the info that root nodes would display seperately. #}{% endblock %}
+    {{ block('requirements') }}
+{% endif %}
+
+{% macro renderSchema(schema, path, title = null) %}
+    {% import _self as typeHelpers %}
+    {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\AbstractSchemaType schema */ #}
+
+    {%- set schemaMap = {
+        'integer': '@JsonSchema/schema/type/number.html.twig',
+        'number': '@JsonSchema/schema/type/number.html.twig',
+        'array': '@JsonSchema/schema/type/array.html.twig',
+        'object': '@JsonSchema/schema/type/object.html.twig',
+        'string': '@JsonSchema/schema/type/string.html.twig',
+    } -%}
+    {% if schema.type is null and schema.combinationType is defined %}
+        {%- set template = '@JsonSchema/schema/type/combination.html.twig' -%}
+    {% elseif schemaMap[schema.type] is defined %}
+        {%- set template = schemaMap[schema.type] -%}
+    {% else %}
+        {%- set template = _self -%}
+    {% endif %}
+    {{ include(template, {'schema': schema, 'path': path, 'title': title}) }}
+{% endmacro %}
+
+{% macro renderChildren(children, path) %}
+    {% import _self as typeHelpers %}
+    {% for key, child in children %}
+        {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\AbstractSchemaType child */ #}
+        {{ typeHelpers.renderSchema(child, path|merge([key]), key) }}
+    {% endfor %}
+{% endmacro %}
+
+{% macro renderContainer(title, type, children, path) %}
+    {% import _self as typeHelpers %}
+    <div id="{{ typeHelpers.getId(path) }}" class="card">
+        <div class="card-header">
+            <h3><code>{{ title }}</code></h3>
+            <div class="jsb--schema--show--type">{{ type }}</div>
+        </div>
+        <div class="card-body">
+            {{ typeHelpers.renderChildren(children, path) }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro renderBasics(schema, path) %}
+    {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\AbstractSchemaType schema */ #}
+    {% import _self as typeHelpers %}
+
+    <table class="jsb--infolist">
+        <tr id="{{ typeHelpers.getId(path, 'default') }}">
+            <th><code>default</code></th>
+            <td>
+                <pre><code>{{ schema.default|json_encode(constant('JSON_PRETTY_PRINT'))|trim }}</code></pre>
+            </td>
+        </tr>
+        {% if schema.examples %}
+            <tr id="{{ typeHelpers.getId(path, 'examples') }}">
+                <th><code>examples</code></th>
+                <td>
+                    <ul class="jsb--schema--show--examples">
+                        {% for example in schema.examples %}
+                            <li>
+                                <samp>
+                                    {{ example }}
+                                </samp>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        {% endif %}
+    </table>
+{% endmacro %}
+
+{% macro getId(path, branch = null) %}
+    {%- if branch -%}
+        {{- path|merge([branch])|join('-') -}}
+    {%- else -%}
+        {{- path|join('-') -}}
+    {%- endif -%}
+{% endmacro %}
+
+{% macro renderAsBoolean(value) %}
+    {{- value ? 'true' : 'false' -}}
+{% endmacro %}

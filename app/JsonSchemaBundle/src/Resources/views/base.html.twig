@@ -9,7 +9,7 @@
 
     <title>{% block title %}Schemas{% endblock %}</title>
 </head>
-<body>
+<body data-spy="scroll" data-target="#page-nav > .nav" data-offset="0">
 {# Top bar #}
 <div class="navbar navbar-expand-lg jsb--navbar">
 </div>
@@ -19,20 +19,20 @@
     <div class="row flex-xl-nowrap">
         {# Left sidebar #}
         <div class="col-12 col-md-3 col-xl-2 jsb--sidebar jsb--nav">
-            {{ helpers.sidebarNav(schemas|default([])) }}
-        </div>
-
-        {# Content #}
-        <div class="col jsb--content">
-            {% block body %}
-            {% endblock %}
+            {{ helpers.sidebarNav(schemas|default([]), schema|default(null)) }}
         </div>
 
         {# Right sidebar #}
-        <div class="d-none d-xl-block col-xl-2 jsb--sidebar jsb--page-nav">
+        <nav id="page-nav" class="d-none d-xl-block col-xl-2 jsb--sidebar jsb--page-nav">
             {% block nav %}
             {% endblock %}
-        </div>
+        </nav>
+
+        {# Content #}
+        <main class="col-12 col-md-9 col-xl-8 jsb--content">
+            {% block body %}
+            {% endblock %}
+        </main>
     </div>
 </div>
 
@@ -40,17 +40,17 @@
 </body>
 </html>
 
-{% macro sidebarNav(schemas, current = null) %}
+{% macro sidebarNav(schemas, current) %}
     {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\SchemaObject[] schemas **/ #}
     {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\SchemaObject|null current **/ #}
     <nav>
         <h2>Schemas</h2>
         <ul class="nav">
-            {% for schema in schemas %}
+            {% for list_schema in schemas %}
                 <li class="nav-item">
-                    <a class="nav-link{% if schema == current %} active{% endif %}"
-                       href="{{ path('json_schema_schema_show', {'path': schema.relativeId}) }}">
-                        {{ schema.title }}
+                    <a class="nav-link{% if list_schema.id == current.id %} active{% endif %}"
+                       href="{{ path('json_schema_schema_show', {'relPath': list_schema.relativeId}) }}">
+                        {{ list_schema.title }}
                     </a>
                 </li>
             {% endfor %}

@@ -7,6 +7,7 @@ namespace DragoonBoots\JsonSchemaBundle\Schema\Type;
 
 use DragoonBoots\JsonSchemaBundle\Schema\SchemaType;
 use DragoonBoots\JsonSchemaBundle\Schema\Type\Combination\SchemaAnyOf;
+use MergeSchema;
 
 /**
  * "object" type
@@ -140,14 +141,14 @@ class SchemaObject extends AbstractSchemaCollectionType
                 $this->dependencies[$dependentKey] = [];
                 if (is_object($dependency)) {
                     // Specific schema dependencies
-                    $this->dependencies[$dependentKey] = new \MergeSchema(
+                    $this->dependencies[$dependentKey] = new MergeSchema(
                         $dependency,
                         $this->findPropertySchema($dependentKey)
                     );
                 } else {
                     // This is just a list of property names.
                     foreach ($dependency as $dependencyKey) {
-                        $this->dependencies[$dependentKey][] = $this->findPropertySchema($dependencyKey);
+                        $this->dependencies[$dependentKey][$dependencyKey] = $this->findPropertySchema($dependencyKey);
                     }
                 }
             }

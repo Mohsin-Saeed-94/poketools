@@ -33,7 +33,7 @@ class SchemaArray extends AbstractSchemaCollectionType
     /**
      * One of:
      * - A list of SchemaTypes if $validationType is VALIDATION_TYPE_TUPLE
-     * - A SchemaType if $validationType is VALIDATION_TYPE_LIST
+     * - A single SchemaType if $validationType is VALIDATION_TYPE_LIST
      * - null if $validationType is null and no schema validation will be
      *   performed.
      *
