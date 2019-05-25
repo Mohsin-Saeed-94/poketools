@@ -15,7 +15,7 @@ return [
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
     DragoonBoots\A2B\A2BBundle::class => ['all' => true],
-    DragoonBoots\JsonSchemaBundle\JsonSchemaBundle::class => ['dev' => true],
+    DragoonBoots\JsonSchemaBundle\JsonSchemaBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
     Omines\DataTablesBundle\DataTablesBundle::class => ['all' => true],
