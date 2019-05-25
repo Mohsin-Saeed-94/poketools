@@ -86,4 +86,23 @@
             {{ typeHelpers.renderSchema(schema.propertyNames, path|merge(['propertyNames']), 'propertyNames') }}
         </div>
     {% endif %}
+
+    {# dependencies #}
+    {% if schema.dependencies %}
+        <div id="{{ typeHelpers.getId(path, 'dependencies') }}">
+            {% for dependent_key, dependency in schema.dependencies %}
+                {% if dependency is schema_type %}
+                    {# Full schema to validate against #}
+                    {{ typeHelpers.renderSchema(dependency, path|merge(['dependencies', dependent_key]), dependent_key) }}
+                {% else %}
+                    {# Depends only on specific properties existing #}
+                    <ul>
+                        {% for dependency_key, dependency_target in dependency %}
+                            <li><code>{{ dependency_key }}</code> must be set.</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}
