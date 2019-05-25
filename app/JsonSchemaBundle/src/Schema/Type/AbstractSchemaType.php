@@ -58,6 +58,11 @@ abstract class AbstractSchemaType
     protected $examples;
 
     /**
+     * @var string|null
+     */
+    protected $exampleFormat;
+
+    /**
      * @var array|null
      */
     protected $enum;
@@ -88,6 +93,7 @@ abstract class AbstractSchemaType
         $this->description = $schema->description ?? null;
         $this->default = $schema->default ?? null;
         $this->examples = $schema->examples ?? null;
+        $this->exampleFormat = $schema->_example_format ?? null;
         $this->enum = $schema->enum ?? null;
         $this->const = $schema->const ?? null;
 
@@ -174,6 +180,14 @@ abstract class AbstractSchemaType
     public function getExamples(): ?array
     {
         return $this->examples;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getExampleFormat(): ?string
+    {
+        return $this->exampleFormat;
     }
 
     /**
