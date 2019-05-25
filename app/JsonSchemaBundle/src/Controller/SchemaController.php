@@ -6,13 +6,16 @@
 namespace DragoonBoots\JsonSchemaBundle\Controller;
 
 
+use DragoonBoots\JsonSchemaBundle\Exception\UnknownSchemaException;
 use DragoonBoots\JsonSchemaBundle\Schema\Inspector;
 use DragoonBoots\JsonSchemaBundle\Schema\Type\AbstractSchemaType;
 use DragoonBoots\JsonSchemaBundle\Schema\Type\Combination\AbstractSchemaCombination;
 use DragoonBoots\JsonSchemaBundle\Schema\Type\SchemaArray;
 use DragoonBoots\JsonSchemaBundle\Schema\Type\SchemaObject;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Control data schema presentation
@@ -68,14 +71,23 @@ class SchemaController extends AbstractController
     /**
      * Schema info page
      *
+     * @param Request $request
      * @param string $relPath
      *
      * @return Response
      */
-    public function show(string $relPath): Response
+    public function show(Request $request, string $relPath): Response
     {
-        $schema = $this->schemaInspector->getSchemaInfo($this->schemaPrefix.'/'.$relPath, $this->schemaPrefix);
+        $relPath .= '.json';
+        try {
+            $schema = $this->schemaInspector->getSchemaInfo($this->schemaPrefix.'/'.$relPath, $this->schemaPrefix);
+        } catch (UnknownSchemaException $e) {
+            throw new NotFoundHttpException();
+        }
         $json = file_get_contents($this->schemaPath.'/'.$relPath);
+        if ($request->getRequestFormat() === 'json') {
+            return new Response($json);
+        }
 
         $requirementsTree = $this->buildRequirementsTree($schema);
 

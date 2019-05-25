@@ -122,11 +122,17 @@ abstract class AbstractSchemaType
     }
 
     /**
+     * @param bool $withExtension
+     *
      * @return string|null
      */
-    public function getRelativeId(): ?string
+    public function getRelativeId(bool $withExtension = true): ?string
     {
-        return $this->relativeId;
+        if ($withExtension) {
+            return $this->relativeId;
+        }
+
+        return substr($this->relativeId, 0, strpos($this->relativeId, '.json'));
     }
 
     /**
