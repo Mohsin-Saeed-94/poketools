@@ -59,13 +59,41 @@ class SchemaController extends AbstractController
     public function index(): Response
     {
         $schemas = $this->schemaInspector->schemaList($this->schemaPrefix);
+        $schemaTree = $this->buildSchemaTree($schemas);
 
         return $this->render(
             '@JsonSchema/schema/index.html.twig',
             [
-                'schemas' => $schemas,
+                'schemas' => $schemaTree,
             ]
         );
+    }
+
+    /**
+     * @param AbstractSchemaType[] $schemaList
+     *
+     * @return array[]|AbstractSchemaType[]
+     */
+    private function buildSchemaTree(array $schemaList): array
+    {
+        $tree = [];
+        foreach ($schemaList as $schema) {
+            $parents = array_reverse(explode('/', $schema->getRelativeId(), -1));
+
+            // Navigate the tree branches (creating them if necessary) to get
+            // to the parent of this schema.
+            $treeParent = &$tree;
+            while (!empty($parents)) {
+                $parent = array_pop($parents);
+                if (!isset($treeParent[$parent])) {
+                    $treeParent[$parent] = [];
+                }
+                $treeParent = &$treeParent[$parent];
+            }
+            $treeParent[] = $schema;
+        }
+
+        return $tree;
     }
 
     /**
@@ -89,12 +117,14 @@ class SchemaController extends AbstractController
             return new Response($json);
         }
 
+        $schemas = $this->schemaInspector->schemaList($this->schemaPrefix);
+        $schemaTree = $this->buildSchemaTree($schemas);
         $requirementsTree = $this->buildRequirementsTree($schema);
 
         return $this->render(
             '@JsonSchema/schema/show.html.twig',
             [
-                'schemas' => $this->schemaInspector->schemaList($this->schemaPrefix),
+                'schemas' => $schemaTree,
                 'schema' => $schema,
                 'requirements_tree' => $requirementsTree,
                 'json' => $json,

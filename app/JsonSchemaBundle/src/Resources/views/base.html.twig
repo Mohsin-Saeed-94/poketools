@@ -19,7 +19,10 @@
     <div class="row flex-xl-nowrap">
         {# Left sidebar #}
         <div class="col-12 col-md-3 col-xl-2 jsb--sidebar jsb--nav">
-            {{ helpers.sidebarNav(schemas|default([]), schema|default(null)) }}
+            <nav>
+                <h2><a href="{{ path('json_schema_schema_index') }}">Schemas</a></h2>
+                {{ helpers.sidebarNav(schemas|default([]), schema|default(null)) }}
+            </nav>
         </div>
 
         {# Right sidebar #}
@@ -40,20 +43,25 @@
 </body>
 </html>
 
-{% macro sidebarNav(schemas, current) %}
-    {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\SchemaObject[] schemas **/ #}
+{% macro sidebarNav(schemas, current = null, path = []) %}
+    {% import _self as helpers %}
+    {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\SchemaObject[]|array[] schemas **/ #}
     {# /** @var \DragoonBoots\JsonSchemaBundle\Schema\Type\SchemaObject|null current **/ #}
-    <nav>
-        <h2>Schemas</h2>
-        <ul class="nav">
-            {% for list_schema in schemas %}
-                <li class="nav-item">
-                    <a class="nav-link{% if list_schema.id == current.id %} active{% endif %}"
-                       href="{{ path('json_schema_schema_show', {'relPath': list_schema.relativeId(false)}) }}">
-                        {{ list_schema.title }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </nav>
+
+    <h3>/{{ path|join('/') }}</h3>
+    <ul class="nav">
+        {% for key, list_schema in schemas %}
+            <li class="nav-item">
+                {% if list_schema is schema_type %}
+                <a class="nav-link{% if current is not null and list_schema.id == current.id %} active{% endif %}"
+                   href="{{ path('json_schema_schema_show', {'relPath': list_schema.relativeId(false)}) }}">
+                    {{ list_schema.title }}
+                    {% else %}
+                        {# This is the start of a new branch #}
+                        {{ helpers.sidebarNav(list_schema, current, path|merge([key])) }}
+                    {% endif %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endmacro %}

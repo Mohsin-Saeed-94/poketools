@@ -1,6 +1,7 @@
 {% extends "@JsonSchema/base.html.twig" %}
 
 {% block body %}
+    {% import _self as helpers %}
     <h1>Schema index</h1>
     <p>
         This site contains the documentation for all provided schemas following the
@@ -9,15 +10,31 @@
 
     <h2>Schema list</h2>
     <div class="list-group jsb--schema--list">
-        {% for schema in schemas %}
-            <div class="list-group-item">
-                <div class="jsb--schema--list--title">
-                    <h3>
-                        <a href="{{ path('json_schema_schema_show', {'relPath': schema.relativeId}) }}">
-                            {{ schema.title }}
-                        </a>
-                    </h3>
+        {{ helpers.renderSchemaList(schemas) }}
+    </div>
+{% endblock %}
+
+{% macro renderSchemaList(schemas, path = []) %}
+    {% import _self as helpers %}
+
+    {% if path is empty %}
+        <h3>/</h3>
+    {% endif %}
+    {% for key, schema in schemas %}
+        <div class="list-group-item">
+            <div class="jsb--schema--list--title">
+                {% if schema is schema_type %}
+                    <a href="{{ path('json_schema_schema_show', {'relPath': schema.relativeId(false)}) }}">
+                        <h3>{{ schema.title }}</h3>
+                    </a>
                     <small class="jsb--schema--list-type">{{ schema.type }}</small>
+                {% else %}
+                    <h3>/{{ path|merge([key])|join('/') }}</h3>
+                {% endif %}
+            </div>
+            {% if schema is schema_type %}
+                <div class="jsb--schema--list--id">
+                    <code>{{ schema.id }}</code>
                 </div>
                 <div class="jsb--schema--list--description">
                     {% if schema.description %}
@@ -25,9 +42,10 @@
                     {% else %}
                         <p class="jsb--empty">No description provided.</p>
                     {% endif %}
-                    {{ dump(schema) }}
                 </div>
-            </div>
-        {% endfor %}
-    </div>
-{% endblock %}
+            {% else %}
+                {{ helpers.renderSchemaList(schema, path|merge([key])) }}
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endmacro %}
