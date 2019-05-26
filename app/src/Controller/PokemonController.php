@@ -4,13 +4,13 @@ namespace App\Controller;
 
 use App\DataTable\Type\BreedingPokemonTableType;
 use App\DataTable\Type\MoveTableType;
-use App\DataTable\Type\PokemonEncounterTableType;
 use App\DataTable\Type\PokemonHeldItemTableType;
 use App\DataTable\Type\PokemonMoveTableType;
 use App\DataTable\Type\PokemonTableType;
 use App\Entity\EvolutionTrigger;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\LocationMap;
+use App\Entity\Media\RegionMap;
 use App\Entity\Pokemon;
 use App\Entity\Version;
 use App\Mechanic\Breeding;
@@ -226,25 +226,43 @@ class PokemonController extends AbstractDexController
         }
 
         // Encounters table
-        $encounterTable = $this->dataTableFactory->createFromType(
-            PokemonEncounterTableType::class,
-            [
-                'version' => $version,
-                'pokemon' => $pokemon,
-            ]
-        )->handleRequest($request);
-        if ($encounterTable->isCallback()) {
-            return $encounterTable->getResponse();
-        }
+        //        $encounterTable = $this->dataTableFactory->createFromType(
+        //            PokemonEncounterTableType::class,
+        //            [
+        //                'version' => $version,
+        //                'pokemon' => $pokemon,
+        //            ]
+        //        )->handleRequest($request);
+        //        if ($encounterTable->isCallback()) {
+        //            return $encounterTable->getResponse();
+        //        }
 
         // Encounters
         $encounters = $this->encounterRepo->findByPokemon($pokemon, $version);
         // Unique locations
         $locations = [];
+        // Multi-level map:
+        // location_id => [
+        //   'location' => Location entity,
+        //   'areas' => [
+        //     location_area_id => [
+        //       'area' => Area entity,
+        //       'encounters' => [
+        //         Encounter entity
+        //         ...
+        //       ],
+        //     ],
+        //     ...
+        //   ],
+        // ]
+        $encountersByLocation = [];
         foreach ($encounters as $encounter) {
             $locationArea = $encounter->getLocationArea();
             $location = $locationArea->getLocation();
             $locations[$location->getId()] = $location;
+
+            // Organize encounters for display
+            $encountersByLocation[$location->getId()]['areas'][$locationArea->getId()]['encounters'][] = $encounter;
         }
         $encounterMaps = [];
         $encounterMapsUse = [];
@@ -257,7 +275,20 @@ class PokemonController extends AbstractDexController
             }
             $encounterMaps[$map->getMap()->getSlug()][] = $map;
             $encounterMapsUse[$map->getMap()->getSlug()] = $map->getMap();
+
+            // Add location entities to organized encounter list
+            $encountersByLocation[$location->getId()]['location'] = $location;
+            foreach ($location->getAreas() as $area) {
+                $encountersByLocation[$location->getId()]['areas'][$area->getId()]['area'] = $area;
+            }
+
         }
+        usort(
+            $encounterMapsUse,
+            function (RegionMap $a, RegionMap $b) {
+                return $a->getPosition() - $b->getPosition();
+            }
+        );
         foreach ($encounterMaps as &$encounterMapSet) {
             usort(
                 $encounterMapSet,
@@ -310,8 +341,9 @@ class PokemonController extends AbstractDexController
                 'evo_tree_data' => $evoTreeData,
                 'move_learn_methods' => $moveLearnMethods,
                 'move_tables' => $moveTables,
-                'encounter_table' => $encounterTable,
+//                'encounter_table' => $encounterTable,
                 'encounters' => $encounters,
+                'encounters_by_location' => $encountersByLocation,
                 'encounter_maps' => $encounterMaps,
                 'encounter_maps_use' => $encounterMapsUse,
                 'not_highlighted_locations' => $notHighlightedLocations,

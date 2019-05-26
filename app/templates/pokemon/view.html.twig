@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% import '_macros/datatable.html.twig' as datatable %}
 {% import 'location/view.html.twig' as locationHelpers %}
+{% import _self as helpers %}
 
 {% block title %}Pokèmon - {{ pokemon.name }}{% endblock %}
 
@@ -401,6 +402,7 @@
 
             <h3>Wild encounters</h3>
             <div class="pkt-pokemon-view-locations-wild">
+                {# Encounter maps #}
                 <div class="pkt-pokemon-view-locations-wild-maps">
                     {% for map in encounter_maps_use %}
                         <div>
@@ -413,7 +415,10 @@
                         </div>
                     {% endfor %}
                 </div>
-                {{ datatable.datatable(encounter_table, 'pkt-pokemon-view-locations-wild') }}
+                {# {{ datatable.datatable(encounter_table, 'pkt-pokemon-view-locations-wild') }} #}
+                <div class="pkt-pokemon-view-locations-wild-encounters">
+                    {{ helpers.showEncounterCards(encounters_by_location, version) }}
+                </div>
             </div>
         </div>
     </div>
@@ -543,3 +548,67 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('pokemon_view') }}
 {% endblock %}
+
+{% macro showEncounterCards(encounters_by_location, version) %}
+    {% for location_data in encounters_by_location %}
+        {# /** @var \App\Entity\LocationInVersionGroup location */ #}
+        {%- set location = location_data.location -%}
+
+        <div class="card">
+            <h4 class="card-header">
+                <a href="{{ path('location_view', {'locationSlug': location.slug, 'versionSlug': version.slug}) }}">
+                    {{ location.name }}
+                </a>
+            </h4>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Chance</th>
+                        <th>Lvl.</th>
+                        <th>Conditions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for area_data in location_data.areas if area_data.encounters is defined %}
+                        {# /** @var \App\Entity\LocationArea area */ #}
+                        {%- set area = area_data.area -%}
+
+                        <tr>
+                            <th colspan="4">{{ area.name }}</th>
+                        </tr>
+                        {% for encounter in area_data.encounters %}
+                            {# /** @var \App\Entity\Encounter encounter */ #}
+                            <tr>
+                                <td class="pkt-encounter-table-method">{# @todo icon #}{{ encounter.method.name }}</td>
+                                <td class="pkt-encounter-table-chance">
+                                    {% if encounter.chance %}
+                                        {{ encounter.chance }}%
+                                    {% else %}
+                                        *
+                                    {% endif %}
+                                </td>
+                                <td class="pkt-encounter-table-level">{{ encounter.level }}</td>
+                                <td class="pkt-encounter-table-conditions">
+                                    <ul>
+                                        {% for condition in encounter.conditions %}
+                                            <li>{{ include('_data_table/encounter_condition.html.twig', {'value': condition}) }}</li>
+                                        {% endfor %}
+                                        {% if encounter.note %}
+                                            <li>
+                                                <a href="#" data-toggle="tooltip" data-html="true"
+                                                   title="{{ encounter.note|markdown }}">Special note!</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}
