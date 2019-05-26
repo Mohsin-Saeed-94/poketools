@@ -221,7 +221,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     protected $eggGroups;
 
     /**
-     * @var PokemonPalParkData
+     * @var PokemonPalParkData|null
      *
      * @ORM\OneToOne(targetEntity="App\Entity\PokemonPalParkData", mappedBy="pokemon", cascade={"ALL"},
      *     orphanRemoval=true)
@@ -757,7 +757,7 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     }
 
     /**
-     * @return PokemonPalParkData
+     * @return PokemonPalParkData|null
      */
     public function getPalParkData(): ?PokemonPalParkData
     {
@@ -765,13 +765,16 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     }
 
     /**
-     * @param PokemonPalParkData $palParkData
+     * @param PokemonPalParkData|null $palParkData
      *
      * @return self
      */
-    public function setPalParkData(PokemonPalParkData $palParkData): self
+    public function setPalParkData(?PokemonPalParkData $palParkData): self
     {
         $this->palParkData = $palParkData;
+        if ($palParkData !== null) {
+            $palParkData->setPokemon($this);
+        }
 
         return $this;
     }

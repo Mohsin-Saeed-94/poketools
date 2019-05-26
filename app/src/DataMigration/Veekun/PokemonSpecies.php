@@ -112,6 +112,9 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
      */
     protected $oldMediaVersionGroups;
 
+    /**
+     * A list of version groups that don't have a given feature
+     */
     protected $featureExclusions = [
         'color' => [
             'red-blue',
@@ -227,7 +230,10 @@ SELECT "pokemon_species"."id",
        "growth_rates"."identifier" AS "growth_rate",
        "pokemon_species"."forms_switchable",
        "pokemon_species"."order" AS "position",
-       "pokemon_species_prose"."form_description" AS "forms_note"
+       "pokemon_species_prose"."form_description" AS "forms_note",
+       "pal_park_areas"."identifier" AS "pal_park_area",
+       "pal_park"."rate" AS "pal_park_rate",
+       "pal_park"."base_score" AS "pal_park_score"
 FROM "pokemon_species"
      JOIN "version_groups"
           ON "pokemon_species"."generation_id" <= "version_groups"."generation_id"
@@ -248,6 +254,8 @@ FROM "pokemon_species"
           ON "pokemon_species"."id" = "pokemon_species_names"."pokemon_species_id"
      LEFT OUTER JOIN "pokemon_species_prose"
                      ON "pokemon_species"."id" = "pokemon_species_prose"."pokemon_species_id"
+     LEFT OUTER JOIN "pal_park" ON "pokemon_species"."id" = "pal_park"."species_id"
+     LEFT OUTER JOIN "pal_park_areas" ON "pal_park"."area_id" = "pal_park_areas"."id"
 WHERE "pokemon_species_names"."local_language_id" = 9
   AND ("pokemon_species_prose"."local_language_id" = 9 OR "pokemon_species_prose"."local_language_id" IS NULL)
 GROUP BY "pokemon_species"."id";
@@ -639,6 +647,16 @@ SQL
         $sourceData['forms_switchable'] = (bool)$sourceData['forms_switchable'];
         $sourceData = $this->removeNulls($sourceData);
 
+        // Clean up pal park data
+        if (isset($sourceData['pal_park_area'], $sourceData['pal_park_rate'], $sourceData['pal_park_score'])) {
+            $sourceData['pal_park'] = [
+                'area' => $sourceData['pal_park_area'],
+                'rate' => (int)$sourceData['pal_park_rate'],
+                'score' => (int)$sourceData['pal_park_score'],
+            ];
+            unset($sourceData['pal_park_area'], $sourceData['pal_park_rate'], $sourceData['pal_park_score']);
+        }
+
         // Map flavor text by version
         $this->flavorTextData->execute(['species' => $speciesId]);
         $flavorTextData = $this->flavorTextData->fetchAll(FetchMode::ASSOCIATIVE);
@@ -723,7 +741,9 @@ SQL
                     if ($formVersionGroup == 'heartgold-soulsilver') {
                         // Add Pokeathlon
                         $this->pokathlonStatData->execute(['form' => $formId]);
-                        foreach ($this->pokathlonStatData->fetchAll(FetchMode::ASSOCIATIVE) as $pokeathlonSourceData) {
+                        foreach ($this->pokathlonStatData->fetchAll(
+                            FetchMode::ASSOCIATIVE
+                        ) as $pokeathlonSourceData) {
                             $pokeathlonStat = $pokeathlonSourceData['pokeathlon_stat'];
                             unset($pokeathlonSourceData['pokeathlon_stat']);
                             $pokeathlonSourceData['range'] = $this->buildRangeString(
@@ -920,6 +940,9 @@ SQL
                 if (in_array($pokemonVersionGroup, $this->featureExclusions['mega'])) {
                     unset($versionGroupData['mega']);
                 }
+                if (!in_array($pokemonVersionGroup, ['diamond-pearl', 'platinum', 'heartgold-soulsilver'])) {
+                    unset($versionGroupData['pal_park']);
+                }
 
                 // Merge in abilities and wild held items
                 if (isset($versionGroupAbilityData[$pokemonVersionGroup])) {
@@ -1032,8 +1055,11 @@ SQL
      *
      * @return array
      */
-    protected function arrayMergeOnly(array $fields, ...$arrays): array
-    {
+    protected
+    function arrayMergeOnly(
+        array $fields,
+        ...$arrays
+    ): array {
         $arrays = array_reverse($arrays);
         $out = array_pop($arrays);
         while ($array = array_pop($arrays)) {
@@ -1051,8 +1077,10 @@ SQL
      * {@inheritdoc}
      * @param YamlDestinationDriver $destinationDriver
      */
-    public function configureDestination(DestinationDriverInterface $destinationDriver)
-    {
+    public
+    function configureDestination(
+        DestinationDriverInterface $destinationDriver
+    ) {
         $destinationDriver->setOption(
             'refs',
             [

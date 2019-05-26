@@ -10,6 +10,7 @@ use App\Entity\PokemonAbility;
 use App\Entity\PokemonFlavorText;
 use App\Entity\PokemonForm;
 use App\Entity\PokemonFormPokeathlonStat;
+use App\Entity\PokemonPalParkData;
 use App\Entity\PokemonSpeciesInVersionGroup;
 use App\Entity\PokemonSpeciesPokedexNumber;
 use App\Entity\PokemonStat;
@@ -44,7 +45,8 @@ use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
  *         "App\DataMigration\Ability",
  *         "App\DataMigration\Item",
  *         "App\DataMigration\Stat",
- *         "App\DataMigration\PokeathlonStat"
+ *         "App\DataMigration\PokeathlonStat",
+ *         "App\DataMigration\PalParkArea"
  *     }
  * )
  */
@@ -309,6 +311,24 @@ class PokemonSpecies extends AbstractDoctrineDataMigration implements DataMigrat
                 $flavorTexts[] = $pokemonFlavorText;
             }
             $sourceData['flavor_text'] = $flavorTexts;
+        }
+
+        // Pal park
+        if (isset($sourceData['pal_park'])) {
+            $palPark = $destinationData->getPalParkData();
+            if ($palPark === null) {
+                $palPark = new PokemonPalParkData();
+            }
+            $palParkArea = $this->referenceStore->get(
+                PalParkArea::class,
+                ['identifier' => $sourceData['pal_park']['area']]
+            );
+            $palPark->setArea($palParkArea);
+            $palPark->setRate($sourceData['pal_park']['rate']);
+            $palPark->setScore($sourceData['pal_park']['score']);
+            $destinationData->setPalParkData($palPark);
+        } else {
+            $destinationData->setPalParkData(null);
         }
 
         // Forms
