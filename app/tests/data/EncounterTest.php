@@ -18,26 +18,22 @@ class EncounterTest extends DataTestCase
 
     /**
      * Test that the note is valid Markdown.
-     *
-     * @dataProvider encountersDataProvider
      */
-    public function testNote(array $encounter): void
+    public function testNote(): void
     {
-        if (empty($encounter['note'])) {
-            self::markTestSkipped('Encounter has no note.');
-            return;
+        $allData = $this->getIteratorForCsv('encounter');
+        $hasNotes = false;
+        foreach ($allData as $encounter) {
+            if (empty($encounter['note'])) {
+                continue;
+            }
+            $hasNotes = true;
+
+            $converter = $this->getMarkdownConverter($encounter['version']);
+            self::assertNotEmpty($converter->convertToHtml($encounter['note']));
         }
-
-        $converter = $this->getMarkdownConverter($encounter['version']);
-        self::assertNotEmpty($converter->convertToHtml($encounter['note']));
-
-    }
-
-    /**
-     * @return \Generator
-     */
-    public function encountersDataProvider(): \Generator
-    {
-        return $this->buildArrayDataProvider($this->getIteratorForCsv('encounter'), ['id']);
+        if (!$hasNotes) {
+            $this->markTestSkipped('No encounters have a note.');
+        }
     }
 }

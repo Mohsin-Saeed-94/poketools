@@ -30,39 +30,6 @@ use Symfony\Component\Yaml\Parser;
  */
 abstract class DataTestCase extends KernelTestCase
 {
-    protected const SUPPORTED_VERSIONS = [
-        'red',
-        'blue',
-        'yellow',
-        'gold',
-        'silver',
-        'crystal',
-        'ruby',
-        'sapphire',
-        'emerald',
-        'colosseum',
-        'xd',
-        'firered',
-        'leafgreen',
-        'diamond',
-        'pearl',
-        'platinum',
-        'heartgold',
-        'soulsilver',
-        'black',
-        'white',
-        'black-2',
-        'white-2',
-        'x',
-        'y',
-        'omega-ruby',
-        'alpha-sapphire',
-        'sun',
-        'moon',
-        'ultra-sun',
-        'ultra-moon',
-    ];
-
     /**
      * @param string $yaml
      *
@@ -135,16 +102,23 @@ abstract class DataTestCase extends KernelTestCase
 
     /**
      * @param string|null $versionSlug
+     * @param array $context
      *
      * @return CommonMarkConverter
      * @throws \ReflectionException
      */
-    protected function getMarkdownConverter(string $versionSlug = null): CommonMarkConverter
+    protected function getMarkdownConverter(?string $versionSlug = null, array $context = []): CommonMarkConverter
     {
         // Build the LinkParser mock
         /** @var LoggerInterface|MockObject $logger */
         $logger = $this->getMockBuilder(LoggerInterface::class)->getMock();
-        $logger->expects($this->never())->method('warning');
+        foreach (['error', 'critical', 'alert', 'emergency'] as $logType) {
+            $logger->method($logType)->willReturnCallback(
+                function ($message) use ($logType, $context) {
+                    $this->logToException($logType, $message, $context);
+                }
+            );
+        }
         /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->getMockBuilder(UrlGeneratorInterface::class)->getMock();
         $urlGenerator->method('generate')->willReturnArgument(0);
@@ -174,6 +148,29 @@ abstract class DataTestCase extends KernelTestCase
         $config = $this->getContainer()->getParameter('commonmark_config');
 
         return new CommonMarkConverter($config, $environment);
+    }
+
+    /**
+     * Callback to turn log calls into exceptions.
+     *
+     * @param string $type
+     * @param string $message
+     * @param array $context
+     */
+    protected function logToException(string $type, string $message, array $context = [])
+    {
+        $message = sprintf('"%s" logged: "%s"', $type, $message);
+
+        // Add the context to the message.
+        if (!empty($context)) {
+            $contextStrings = [];
+            foreach ($context as $contextItem) {
+                $contextStrings[] = sprintf('[%s]', $contextItem);
+            }
+            $message = implode(' ', $contextStrings).' '.$message;
+        }
+
+        throw new \RuntimeException($message);
     }
 
     /**

@@ -207,7 +207,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
         $uri = $this->getUri($refParts['category'], $refParts['slug']);
         if ($uri === null) {
             // Help with finding bad links in the data.
-            $this->logger->warning(sprintf('Could not find destination for internal link: "%s".', $ref));
+            $this->logger->error(sprintf('Could not find destination for internal link: "%s".', $ref));
         }
 
         return $uri;
