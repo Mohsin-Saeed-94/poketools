@@ -236,8 +236,10 @@
                 <tr>
                     <th>Capture Rate</th>
                     <td>
-                        {# @todo make this a gauge #}
-                        {{ pokemon.captureRate }}
+                        <div class="pkt-gauge-labeled">
+                            {{ gauge_radial((pokemon.captureRate / 255) * 100) }}
+                            <div class="pkt-gauge-label">{{ pokemon.captureRate }}%</div>
+                        </div>
                     </td>
                 </tr>
                 {% if version.versionGroup.featureString('happiness') %}
@@ -396,11 +398,32 @@
     <div class="row">
         <div class="col">
             <h2>Locations</h2>
-            {% if version.versionGroup.featureString('pal-park') %}
-                {# @todo pal park #}
-            {% endif %}
+            {% if version.versionGroup.featureString('pal-park') and pokemon.palParkData %}
+                <h3>Pal Park</h3>
+                <table class="pkt-infolist">
+                    <tr>
+                        <th>Area</th>
+                        <td>{{ pokemon.palParkData.area.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Rate</th>
+                        <td>
+                            <div class="pkt-gauge-labeled">
+                                {{ gauge_radial(pokemon.palParkData.rate) }}
+                                <div class="pkt-gauge-label">
+                                    {{ pokemon.palParkData.rate }}%
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Score</th>
+                        <td>{{ pokemon.palParkData.score }}</td>
+                    </tr>
+                </table>
 
-            <h3>Wild encounters</h3>
+                <h3>Wild encounters</h3>
+            {% endif %}
             <div class="pkt-pokemon-view-locations-wild">
                 {# Encounter maps #}
                 {% if encounters is not empty %}

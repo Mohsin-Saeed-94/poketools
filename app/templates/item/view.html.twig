@@ -66,14 +66,24 @@
                             <a href="#" data-toggle="tooltip"
                                title="When encountered in the wild, these Pokèmon have a chance of holding this item.">
                                 Held</a></th>
-                        <td>
-                            <table class="pkt-infolist">
+                        <td class="pkt-infolist pkt-item-view-held">
+                            <table>
                                 {% for wild_held_item in wild_held_items %}
+                                    {%- set pokemon = wild_held_item.pokemon -%}
                                     <tr>
-                                        {# @todo icons #}
-                                        <td>{{ wild_held_item.pokemon }}:</td>
-                                        {# @todo gauge #}
-                                        <td>{{ wild_held_item.rate }}%</td>
+                                        <td class="pkt-item-view-held-pokemon">
+                                            <a href="{{ path('pokemon_view', {
+                                                'speciesSlug': pokemon.species.slug,
+                                                'pokemonSlug': pokemon.default ? null : pokemon.slug,
+                                                'versionSlug': version.slug
+                                            }) }}">{{ label_pokemon(pokemon) }}</a>:
+                                        </td>
+                                        <td class="pkt-item-view-held-rate">
+                                            <div class="pkt-gauge-labeled">
+                                                {{ gauge_radial(wild_held_item.rate) }}
+                                                <div class="pkt-gauge-label">{{ wild_held_item.rate }}%</div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                             </table>
