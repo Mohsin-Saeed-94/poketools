@@ -36,17 +36,33 @@
                 {% endif %}
 
                 {# Maps #}
-                <div class="pkt-imagelist pkt-location-index-maps">
+                <div class="pkt-location-index-maps">
                     {% for map in region.maps %}
-                        <figure class="figure pkt-imagelist-img">
-                            <a href="#" data-toggle="modal" data-target="#pkt-locations-map-{{ map.slug }}">
-                                <img class="figure-img img-fluid img-thumbnail"
-                                     src="{{ asset('build/static/map/'~map.url) }}">
-                            </a>
-                            <figcaption class="figure-caption">{{ map.name }}</figcaption>
-                        </figure>
+                        <div>
+                            <div class="card">
+                                <a class="stretched-link" href="#" data-toggle="modal"
+                                   data-target="#pkt-locations-map-{{ map.slug }}">
+                                    <img class="card-img-top" src="{{ asset('build/static/map/'~map.url) }}">
+                                </a>
+                                <div class="card-footer">
+                                    {{ map.name }}
+                                </div>
+                            </div>
+                        </div>
                     {% endfor %}
                 </div>
+
+                {#                <div class="pkt-imagelist pkt-location-index-maps">#}
+                {#                    {% for map in region.maps %}#}
+                {#                        <figure class="figure pkt-imagelist-img">#}
+                {#                            <a href="#" data-toggle="modal" data-target="#pkt-locations-map-{{ map.slug }}">#}
+                {#                                <img class="figure-img img-fluid img-thumbnail"#}
+                {#                                     src="{{ asset('build/static/map/'~map.url) }}">#}
+                {#                            </a>#}
+                {#                            <figcaption class="figure-caption">{{ map.name }}</figcaption>#}
+                {#                        </figure>#}
+                {#                    {% endfor %}#}
+                {#                </div>#}
 
                 <ul class="pkt-location-index-list">
                     {% for location in locations[region.slug] if location.superLocation is null %}

@@ -98,12 +98,16 @@
     {% import _self as helpers %}
     {# Use the provided map is available #}
     {% if location.map %}
-        <figure class="mb-3 pkt-location-view-map img-thumbnail">
-            <div class="figure-img">
-                {{ location.map|location_map }}
+        <div class="d-flex justify-content-around">
+            <div class="pkt-location-view-map card">
+                <div class="card-img-top">
+                    {{ location.map|location_map }}
+                </div>
+                <div class="card-footer">
+                    {{ location.map.map.name }}
+                </div>
             </div>
-            <figcaption class="figure-caption">{{ location.map.map.name }}</figcaption>
-        </figure>
+        </div>
     {% elseif location.superLocation and location.superLocation.map %}
         {# If this is a sub-location and the super has a map, try to use that. #}
         {{ helpers.location_map(location.superLocation, version) }}
