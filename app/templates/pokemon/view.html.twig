@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% import '_macros/datatable.html.twig' as datatable %}
+{% import 'location/view.html.twig' as locationHelpers %}
 
 {% block title %}Pokèmon - {{ pokemon.name }}{% endblock %}
 
@@ -395,8 +396,25 @@
         <div class="col">
             <h2>Locations</h2>
             {% if version.versionGroup.featureString('pal-park') %}
-
+                {# @todo pal park #}
             {% endif %}
+
+            <h3>Wild encounters</h3>
+            <div class="pkt-pokemon-view-locations-wild">
+                <div class="pkt-pokemon-view-locations-wild-maps">
+                    {% for map in encounter_maps_use %}
+                        <div>
+                            <div class="card">
+                                {{ encounter_maps[map.slug]|location_map(link=true) }}
+                                <div class="card-footer">
+                                    {{ map.name }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {{ datatable.datatable(encounter_table, 'pkt-pokemon-view-locations-wild') }}
+            </div>
         </div>
     </div>
 

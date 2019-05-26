@@ -4,17 +4,20 @@ namespace App\Controller;
 
 use App\DataTable\Type\BreedingPokemonTableType;
 use App\DataTable\Type\MoveTableType;
+use App\DataTable\Type\PokemonEncounterTableType;
 use App\DataTable\Type\PokemonHeldItemTableType;
 use App\DataTable\Type\PokemonMoveTableType;
 use App\DataTable\Type\PokemonTableType;
 use App\Entity\EvolutionTrigger;
+use App\Entity\LocationInVersionGroup;
+use App\Entity\LocationMap;
 use App\Entity\Pokemon;
 use App\Entity\Version;
 use App\Mechanic\Breeding;
 use App\Mechanic\LevelUp;
+use App\Repository\EncounterRepository;
 use App\Repository\MoveLearnMethodRepository;
 use App\Repository\PokemonFormRepository;
-use App\Repository\PokemonMoveRepository;
 use App\Repository\PokemonRepository;
 use App\Repository\PokemonSpeciesInVersionGroupRepository;
 use App\Repository\PokemonStatRepository;
@@ -64,6 +67,11 @@ class PokemonController extends AbstractDexController
     private $moveLearnMethodRepo;
 
     /**
+     * @var EncounterRepository
+     */
+    private $encounterRepo;
+
+    /**
      * @var LevelUp
      */
     private $levelUp;
@@ -83,6 +91,7 @@ class PokemonController extends AbstractDexController
      * @param PokemonWildHeldItemRepository $wildHeldItemRepo
      * @param PokemonStatRepository $pokemonStatRepo
      * @param MoveLearnMethodRepository $moveLearnMethodRepo
+     * @param EncounterRepository $encounterRepo
      * @param LevelUp $levelUp
      * @param Breeding $breeding
      */
@@ -94,6 +103,7 @@ class PokemonController extends AbstractDexController
         PokemonWildHeldItemRepository $wildHeldItemRepo,
         PokemonStatRepository $pokemonStatRepo,
         MoveLearnMethodRepository $moveLearnMethodRepo,
+        EncounterRepository $encounterRepo,
         LevelUp $levelUp,
         Breeding $breeding
     ) {
@@ -105,6 +115,7 @@ class PokemonController extends AbstractDexController
         $this->wildHeldItemRepo = $wildHeldItemRepo;
         $this->pokemonStatRepo = $pokemonStatRepo;
         $this->moveLearnMethodRepo = $moveLearnMethodRepo;
+        $this->encounterRepo = $encounterRepo;
         $this->levelUp = $levelUp;
         $this->breeding = $breeding;
     }
@@ -171,6 +182,7 @@ class PokemonController extends AbstractDexController
             throw new NotFoundHttpException();
         }
 
+        // Can breed with table
         $canBreedWithTable = $this->dataTableFactory->createFromType(
             BreedingPokemonTableType::class,
             [
@@ -182,6 +194,7 @@ class PokemonController extends AbstractDexController
             return $canBreedWithTable->getResponse();
         }
 
+        // Held items table
         $heldItemsTable = $this->dataTableFactory->createFromType(
             PokemonHeldItemTableType::class,
             [
@@ -193,6 +206,7 @@ class PokemonController extends AbstractDexController
             return $heldItemsTable->getResponse();
         }
 
+        // Moves table
         $moveLearnMethods = $this->moveLearnMethodRepo->findUsedMethodsForPokemon($pokemon);
         /** @var MoveTableType[] $moveTables */
         $moveTables = [];
@@ -211,6 +225,50 @@ class PokemonController extends AbstractDexController
             $moveTables[$learnMethod->getSlug()] = $moveTable;
         }
 
+        // Encounters table
+        $encounterTable = $this->dataTableFactory->createFromType(
+            PokemonEncounterTableType::class,
+            [
+                'version' => $version,
+                'pokemon' => $pokemon,
+            ]
+        )->handleRequest($request);
+        if ($encounterTable->isCallback()) {
+            return $encounterTable->getResponse();
+        }
+
+        // Encounters
+        $encounters = $this->encounterRepo->findByPokemon($pokemon, $version);
+        // Unique locations
+        $locations = [];
+        foreach ($encounters as $encounter) {
+            $locationArea = $encounter->getLocationArea();
+            $location = $locationArea->getLocation();
+            $locations[$location->getId()] = $location;
+        }
+        $encounterMaps = [];
+        $encounterMapsUse = [];
+        $notHighlightedLocations = [];
+        foreach ($locations as $location) {
+            $map = $this->findLocationMap($location);
+            if ($map === null) {
+                $notHighlightedLocations[] = $location;
+                continue;
+            }
+            $encounterMaps[$map->getMap()->getSlug()][] = $map;
+            $encounterMapsUse[$map->getMap()->getSlug()] = $map->getMap();
+        }
+        foreach ($encounterMaps as &$encounterMapSet) {
+            usort(
+                $encounterMapSet,
+                function (LocationMap $a, LocationMap $b) {
+                    return $b->getZIndex() - $a->getZIndex();
+                }
+            );
+        }
+        unset($encounterMapSet);
+
+        // Held items count
         $heldItemsCount = $this->wildHeldItemRepo->countByPokemon($pokemon, $version);
 
         // Stat Percentiles
@@ -252,8 +310,31 @@ class PokemonController extends AbstractDexController
                 'evo_tree_data' => $evoTreeData,
                 'move_learn_methods' => $moveLearnMethods,
                 'move_tables' => $moveTables,
+                'encounter_table' => $encounterTable,
+                'encounters' => $encounters,
+                'encounter_maps' => $encounterMaps,
+                'encounter_maps_use' => $encounterMapsUse,
+                'not_highlighted_locations' => $notHighlightedLocations,
             ]
         );
+    }
+
+    /**
+     * @param LocationInVersionGroup $location
+     *
+     * @return LocationMap|null
+     */
+    private function findLocationMap(LocationInVersionGroup $location): ?LocationMap
+    {
+        if ($location->getMap() !== null) {
+            return $location->getMap();
+        }
+
+        if ($location->getSuperLocation() !== null) {
+            return $this->findLocationMap($location->getSuperLocation());
+        }
+
+        return null;
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\DataTable\Type\EncounterPokemonTableType;
+use App\DataTable\Type\LocationEncounterPokemonTableType;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\Version;
 use App\Repository\LocationInVersionGroupRepository;
@@ -114,11 +114,11 @@ class LocationController extends AbstractDexController
             throw new NotFoundHttpException();
         }
 
-        /** @var EncounterPokemonTableType[] $encounterTables */
+        /** @var LocationEncounterPokemonTableType[] $encounterTables */
         $encounterTables = [];
         foreach ($location->getAreas() as $area) {
             $encounterTable = $this->dataTableFactory->createFromType(
-                EncounterPokemonTableType::class,
+                LocationEncounterPokemonTableType::class,
                 [
                     'version' => $version,
                     'location_area' => $area,

@@ -6,6 +6,7 @@ require('popper.js');
 require('chart.js');
 require('datatables.net-bs4');
 require('datatables.net-fixedheader-bs4');
+require('datatables.net-rowgroup');
 require('datatables-bundle/datatables');
 require('orgchart');
 const Plyr = require('plyr');
@@ -76,16 +77,22 @@ $(document).ready(function () {
         }
     });
 
+    // Tables
+    // Breeding table
     const breedingPokemonTable = $('#pkt-pokemon-view-breeding-compatibility-pokemon');
     if (breedingPokemonTable.length > 0) {
         const breedingPokemonTableSettings = breedingPokemonTable.data('table-settings');
         breedingPokemonTable.initDataTables(breedingPokemonTableSettings);
     }
+
+    // Held Items table
     const heldItemTable = $('#pkt-pokemon-view-helditems');
     if (heldItemTable.length > 0) {
         const heldItemTableSettings = heldItemTable.data('table-settings');
         heldItemTable.initDataTables(heldItemTableSettings);
     }
+
+    // Move table
     const moveTables = $('#pkt-pokemon-view-moves').find('.pkt-datatable-container');
     if (moveTables.length > 0) {
         moveTables.each(function () {
@@ -94,7 +101,7 @@ $(document).ready(function () {
                 // This is necessary because datatable.js doesn't know about column classes
                 // until the data is loaded.  This results in the createdCell callbacks below
                 // happening before the columns have classes, making the built-in "columnDefs"
-                // target resolution useless.  This will find set the callback when the column is known.
+                // target resolution useless.  This will set the callback when the column is known.
                 preDrawCallback: function (settings) {
                     for (let column of settings['aoColumns']) {
                         if (column['className'] === 'pkt-move-index-table-type') {
@@ -113,6 +120,21 @@ $(document).ready(function () {
                     }
                 }
             })
+        });
+    }
+
+    // Encounter table
+    const encounterTable = $('#pkt-pokemon-view-locations-wild');
+    if (encounterTable.length > 0) {
+        const encounterTableSettings = encounterTable.data('table-settings');
+        encounterTable.initDataTables(encounterTableSettings, {
+            rowGroup: {
+                dataSrc: 'location',
+            }
+        }).then(function (dataTable) {
+            dataTable.on('draw', function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
         });
     }
 

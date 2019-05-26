@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Encounter;
+use App\Entity\Pokemon;
+use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,32 +21,25 @@ class EncounterRepository extends ServiceEntityRepository
         parent::__construct($registry, Encounter::class);
     }
 
-    // /**
-    //  * @return Encounter[] Returns an array of Encounter objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Find encounters by Pokemon
+     *
+     * @param Pokemon $pokemon
+     *
+     * @param Version $version
+     *
+     * @return Encounter[]
+     */
+    public function findByPokemon(Pokemon $pokemon, Version $version): array
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('encounter');
+        $qb->andWhere('encounter.version = :version')
+            ->andWhere('encounter.pokemon = :pokemon')
+            ->setParameter('version', $version)
+            ->setParameter('pokemon', $pokemon);
+        $q = $qb->getQuery();
+        $q->execute();
 
-    /*
-    public function findOneBySomeField($value): ?Encounter
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $q->getResult();
     }
-    */
 }
