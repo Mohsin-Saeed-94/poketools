@@ -403,22 +403,38 @@
             <h3>Wild encounters</h3>
             <div class="pkt-pokemon-view-locations-wild">
                 {# Encounter maps #}
-                <div class="pkt-pokemon-view-locations-wild-maps">
-                    {% for map in encounter_maps_use %}
-                        <div>
-                            <div class="card">
-                                {{ encounter_maps[map.slug]|location_map(link=true) }}
-                                <div class="card-footer">
-                                    {{ map.name }}
+                {% if encounters is not empty %}
+                    <div class="pkt-pokemon-view-locations-wild-maps">
+                        {% for map in encounter_maps_use %}
+                            <div>
+                                <div class="card">
+                                    {{ encounter_maps[map.slug]|location_map(link=true) }}
+                                    <div class="card-footer">
+                                        {{ map.name }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                {# {{ datatable.datatable(encounter_table, 'pkt-pokemon-view-locations-wild') }} #}
-                <div class="pkt-pokemon-view-locations-wild-encounters">
-                    {{ helpers.showEncounterCards(encounters_by_location, version) }}
-                </div>
+                        {% endfor %}
+                        {% if encounters_not_highlighted is not empty %}
+                            <p>Some encounters take place in locations not on the map:</p>
+                            <ul>
+                                {% for location in encounters_not_highlighted %}
+                                    <li>
+                                        <a href="{{ path('location_view', {'locationSlug': location.slug, 'versionSlug': version.slug}) }}">
+                                            {{ location.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    {# {{ datatable.datatable(encounter_table, 'pkt-pokemon-view-locations-wild') }} #}
+                    <div class="pkt-pokemon-view-locations-wild-encounters">
+                        {{ helpers.showEncounterCards(encounters_by_location, version) }}
+                    </div>
+                {% else %}
+                    <p>This Pokèmon is not encountered in the wild in this version.</p>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -576,18 +592,14 @@
                         {%- set area = area_data.area -%}
 
                         <tr>
-                            <th colspan="4">{{ area.name }}</th>
+                            <th colspan="4" class="pkt-encounter-table-area">{{ area.name }}</th>
                         </tr>
                         {% for encounter in area_data.encounters %}
                             {# /** @var \App\Entity\Encounter encounter */ #}
                             <tr>
                                 <td class="pkt-encounter-table-method">{# @todo icon #}{{ encounter.method.name }}</td>
                                 <td class="pkt-encounter-table-chance">
-                                    {% if encounter.chance %}
-                                        {{ encounter.chance }}%
-                                    {% else %}
-                                        *
-                                    {% endif %}
+                                    {{ include('_data_table/encounter_chance.html.twig', {'value': encounter.chance}) }}
                                 </td>
                                 <td class="pkt-encounter-table-level">{{ encounter.level }}</td>
                                 <td class="pkt-encounter-table-conditions">

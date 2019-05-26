@@ -33,16 +33,16 @@ trait EncounterTableTrait
             ]
         )->add(
             'chance',
-            // @todo make this a gauge
-            TextColumn::class,
+            TwigColumn::class,
             [
                 'label' => 'Chance',
                 'field' => 'encounter.chance',
                 'orderable' => false,
                 'className' => 'pkt-encounter-table-chance',
+                'template' => '_data_table/encounter_chance.html.twig',
                 'render' => function (?int $value) {
                     if ($value === null) {
-                        return '';
+                        return 0;
                     }
 
                     return $value.'%';

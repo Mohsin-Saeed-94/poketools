@@ -12,6 +12,7 @@ use App\Entity\LocationInVersionGroup;
 use App\Entity\LocationMap;
 use App\Entity\Media\RegionMap;
 use App\Entity\Pokemon;
+use App\Entity\Region;
 use App\Entity\Version;
 use App\Mechanic\Breeding;
 use App\Mechanic\LevelUp;
@@ -265,12 +266,14 @@ class PokemonController extends AbstractDexController
             $encountersByLocation[$location->getId()]['areas'][$locationArea->getId()]['encounters'][] = $encounter;
         }
         $encounterMaps = [];
+        /** @var RegionMap[] $encounterMapsUse */
         $encounterMapsUse = [];
-        $notHighlightedLocations = [];
+        /** @var LocationInVersionGroup[] $encountersNotHighlighted */
+        $encountersNotHighlighted = [];
         foreach ($locations as $location) {
             $map = $this->findLocationMap($location);
             if ($map === null) {
-                $notHighlightedLocations[] = $location;
+                $encountersNotHighlighted[] = $location;
                 continue;
             }
             $encounterMaps[$map->getMap()->getSlug()][] = $map;
@@ -346,7 +349,7 @@ class PokemonController extends AbstractDexController
                 'encounters_by_location' => $encountersByLocation,
                 'encounter_maps' => $encounterMaps,
                 'encounter_maps_use' => $encounterMapsUse,
-                'not_highlighted_locations' => $notHighlightedLocations,
+                'encounters_not_highlighted' => $encountersNotHighlighted,
             ]
         );
     }

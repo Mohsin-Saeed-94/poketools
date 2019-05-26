@@ -1,4 +1,16 @@
-.pkt-gauge {
+svg.pkt-gauge {
+    $gauge-colors: (
+        $blue,
+        $purple,
+        $pink,
+        $red,
+        $orange,
+        $yellow,
+        $green,
+        $teal,
+        $cyan,
+    );
+
     &-linear {
         $height: 1em;
 
@@ -6,6 +18,27 @@
 
         rect {
             height: $height;
+        }
+    }
+
+    &-radial {
+        width: 1.5rem;
+        height: 1.5rem;
+
+        circle, path {
+            fill: none;
+            stroke-width: 90;
+
+            @for $index from 1 through length($gauge-colors) {
+                &.pkt-gauge-value-#{$index - 1} {
+                    $color: nth($gauge-colors, $index);
+                    stroke: $color;
+                }
+            }
+
+            &.pkt-gauge-empty {
+                stroke: $gray-300;
+            }
         }
     }
 }

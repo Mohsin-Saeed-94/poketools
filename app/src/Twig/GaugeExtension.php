@@ -23,6 +23,12 @@ class GaugeExtension extends AbstractExtension
                     'is_safe' => ['html'],
                 ]
             ),
+            new TwigFunction(
+                'gauge_radial', [GaugeExtensionRuntime::class, 'gaugeRadial'], [
+                    'needs_environment' => true,
+                    'is_safe' => ['html'],
+                ]
+            ),
         ];
     }
 }

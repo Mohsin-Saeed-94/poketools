@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     id="svg8"
+     version="1.1"
+     class="pkt-gauge-radial"
+     viewBox="0 0 {{ size }} {{ size }}"
+     preserveAspectRatio="xMidYMid meet">
+    <g transform="rotate(-90, {{ center }}, {{ center }})">
+        {% if values|length == 1 and values|first == 100 %}
+            {# A 360 degree arc will be calculated wrong, so draw a circle instead. #}
+            <circle class="pkt-gauge-value-0" cx="{{ center }}" cy="{{ center }}" r="{{ r }}"/>
+        {% else %}
+            {# Draw the arcs #}
+            <circle class="pkt-gauge-empty" cx="{{ center }}" cy="{{ center }}" r="{{ r }}"/>
+            {% for path in paths %}
+                <path class="pkt-gauge-value-{{ loop.index0 }}" d="{{ path }}"/>
+            {% endfor %}
+        {% endif %}
+    </g>
+</svg>
