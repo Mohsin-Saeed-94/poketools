@@ -20,7 +20,6 @@ trait EntityHasNameTrait
      *
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
-     * @Groups({"elastica"})
      */
     protected $name;
 

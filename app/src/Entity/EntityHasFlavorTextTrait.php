@@ -18,7 +18,6 @@ trait EntityHasFlavorTextTrait
      * @var null|string
      *
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"elastica"})
      */
     protected $flavorText;
 

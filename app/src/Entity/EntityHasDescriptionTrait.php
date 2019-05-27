@@ -24,7 +24,6 @@ trait EntityHasDescriptionTrait
      * @var null|string
      *
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"elastica"})
      */
     protected $description;
 

@@ -1,17 +1,168 @@
 # Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/Resources/doc/setup.md
 fos_elastica:
-  serializer: ~
   clients:
     default:
       host: '%env(ELASTICA_CLIENT_HOST)%'
       port: 9200
   indexes:
-    app:
-      finder: ~
+    generation:
+      types:
+        generation:
+          persistence:
+            driver: orm
+            model: App\Entity\Generation
+          properties:
+            id: ~
+            name: ~
+            version_groups:
+              type: nested
+              property_path: versionGroups
+              properties:
+                id: ~
+                name: ~
+                versions:
+                  type: nested
+                  properties:
+                    id: ~
+                    name: ~
+    
+    version_group:
+      types:
+        version_group:
+          persistence:
+            driver: orm
+            model: App\Entity\VersionGroup
+          properties:
+            id: ~
+            name: ~
+            generation:
+              type: object
+              properties:
+                id: ~
+                name: ~
+            versions:
+              type: nested
+              properties:
+                id: ~
+                name: ~
+    
+    version:
+      types:
+        version:
+          persistence:
+            driver: orm
+            model: App\Entity\Version
+          properties:
+            id: ~
+            name: ~
+            version_group:
+              type: object
+              property_path: versionGroup
+              properties:
+                id: ~
+                name: ~
+                generation:
+                  type: object
+                  properties:
+                    id: ~
+                    name: ~
+    
+    pokemon:
       types:
         pokemon:
           persistence:
             driver: orm
             model: App\Entity\Pokemon
-          serializer:
-            groups: [elastica]
+          properties:
+            id: ~
+            name:
+            version_group:
+              type: object
+              property_path: species.versionGroup
+              properties:
+                id: ~
+                name: ~
+            evolution_parent:
+              type: object
+              property_path: evolutionParent
+              properties:
+                id: ~
+                name: ~
+            evolution_children:
+              type: nested
+              property_path: evolutionChildren
+              properties:
+                id: ~
+                name: ~
+            color:
+              type: object
+              properties:
+                id: ~
+                name: ~
+            shape:
+              type: object
+              properties:
+                id: ~
+                name: ~
+            habitat:
+              type: object
+              properties:
+                id: ~
+                name: ~
+            growth_rate:
+              type: object
+              properties:
+                name: ~
+            genus: ~
+            flavor_text:
+              type: nested
+              property_path: flavorText
+              properties:
+                version:
+                  type: object
+                  properties:
+                    id: ~
+                    name: ~
+                flavor_text:
+                  property_path: flavorText
+            egg_groups:
+              type: nested
+              property_path: eggGroups
+              properties:
+                id: ~
+                name: ~
+            abilities:
+              type: nested
+              property_path: abilities
+              properties:
+                id:
+                  property_path: ability.id
+                name:
+                  property_path: ability.name
+                hidden:
+            wild_held_items:
+              type: nested
+              property_path: wildHeldItems
+              properties:
+                id:
+                  property_path: item.id
+                version:
+                  type: object
+                  properties:
+                    id: ~
+                    name: ~
+                name:
+                  property_path: item.name
+                rate: ~
+            types:
+              type: nested
+              properties:
+                id:
+                  property_path: type.id
+                name:
+                  property_path: type.name
+            forms:
+              type: nested
+              properties:
+                id: ~
+                name: ~

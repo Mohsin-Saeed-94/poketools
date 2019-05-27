@@ -2,82 +2,167 @@
 
 namespace App\Controller;
 
+use App\Elastica\ElasticaToModelTransformer;
 use App\Entity\Version;
 use App\Form\SiteSearchType;
-use FOS\ElasticaBundle\Finder\FinderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Repository\VersionRepository;
+use Elastica\Client;
+use Elastica\Query;
+use Elastica\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class SearchController
  *
- * @Route("/dex/{versionSlug}/search", name="search_")
+ * @Route("/dex/{versionSlug}/search", name="search_", defaults={"versionSlug": "any"})
  */
 class SearchController extends AbstractController
 {
+    public const ALL_VERSIONS_SLUG = 'any';
+    private const BOOST_VERSION = 10.0;
+
     /**
      * @var FormFactoryInterface
      */
     private $formFactory;
 
     /**
-     * @var FinderInterface
+     * @var Client
      */
-    private $finder;
+    private $elasticaClient;
+
+    /**
+     * @var ElasticaToModelTransformer
+     */
+    private $elasticaToModelTransformer;
+
+    /**
+     * @var VersionRepository
+     */
+    private $versionRepo;
 
     /**
      * SearchController constructor.
      *
      * @param FormFactoryInterface $formFactory
-     * @param FinderInterface $finder
+     * @param Client $elasticClient
+     * @param ElasticaToModelTransformer $elasticaToModelTransformer
+     * @param VersionRepository $versionRepo
      */
-    public function __construct(FormFactoryInterface $formFactory, FinderInterface $finder)
-    {
+    public function __construct(
+        FormFactoryInterface $formFactory,
+        Client $elasticClient,
+        ElasticaToModelTransformer $elasticaToModelTransformer,
+        VersionRepository $versionRepo
+    ) {
         $this->formFactory = $formFactory;
-        $this->finder = $finder;
+        $this->elasticaClient = $elasticClient;
+        $this->elasticaToModelTransformer = $elasticaToModelTransformer;
+        $this->versionRepo = $versionRepo;
     }
 
     /**
      * @param Request $request
-     * @param Version $version
+     * @param string $versionSlug
      *
      * @return Response
      *
      * @Route("/", name="search")
-     * @ParamConverter("version", options={"mapping": {"versionSlug": "slug"}})
      */
-    public function search(Request $request, Version $version): Response
+    public function search(Request $request, string $versionSlug): Response
     {
-        // Need to handle both the form in the navbar and the form on the results page.
-        $navbarForm = $this->formFactory->create(SiteSearchType::class);
-        $navbarForm->handleRequest($request);
-        $resultsForm = $this->formFactory->createNamed($navbarForm->getName().'_results', SiteSearchType::class);
-        $resultsForm->handleRequest($request);
-        if ($navbarForm->isSubmitted()) {
-            $submittedForm = $navbarForm;
-        } else {
-            $submittedForm = $resultsForm;
-        }
+        $version = $this->getVersion($versionSlug);
+        $form = $this->formFactory->create(SiteSearchType::class, null, ['version' => $version]);
+        $form->handleRequest($request);
 
-        if ($submittedForm->isSubmitted() && $submittedForm->isValid()) {
-            $searchQ = $submittedForm->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $searchQ = $form->getData();
             $q = $searchQ['q'];
-            $results = $this->finder->find($q);
+            $query = $this->buildSearchQuery($q, $version);
+            $search = new Search($this->elasticaClient);
+            $search->setQuery($query);
+            $results = $search->search();
+            $results = $this->elasticaToModelTransformer->transform($results->getResults());
         }
 
-        return $this->render(
-            'search/search.html.twig',
-            [
-                'version' => $version,
-                'uri_template' => $this->generateUrl('search_search', ['versionSlug' => '__VERSION__']),
-                'form' => $resultsForm->createView(),
-                'query' => $q ?? null,
-                'results' => $results ?? [],
-            ]
-        );
+        $params = [
+            'uri_template' => $this->generateUrl('search_search', ['versionSlug' => '__VERSION__']),
+            'form' => $form->createView(),
+            'query' => $q ?? null,
+            'results' => $results ?? [],
+        ];
+        if ($version) {
+            $params['version'] = $version;
+        }
+
+        return $this->render('search/search.html.twig', $params);
+    }
+
+    /**
+     * @param string $versionSlug
+     *
+     * @return Version|null
+     */
+    private function getVersion(string $versionSlug): ?Version
+    {
+        if ($versionSlug !== self::ALL_VERSIONS_SLUG) {
+            $version = $this->versionRepo->findOneBy(['slug' => $versionSlug]);
+            if ($version === null) {
+                throw new NotFoundHttpException();
+            }
+        } else {
+            $version = null;
+        }
+
+        return $version;
+    }
+
+    /**
+     * Integrate the current version into the search query.
+     *
+     * @param string $q
+     * @param Version|null $version
+     * @param bool $fromAllVersions
+     *   Include results from all versions
+     *
+     * @return Query\AbstractQuery
+     */
+    private function buildSearchQuery(string $q, ?Version $version, bool $fromAllVersions = false): Query\AbstractQuery
+    {
+        $query = new Query\BoolQuery();
+
+        // Using query string allows some primitive advanced searches
+        // See https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax
+        $queryString = new Query\QueryString($q);
+        $query->addMust($queryString);
+        if ($version) {
+            $versions = [
+                'version.id' => $version->getId(),
+                'version_group.id' => $version->getVersionGroup()->getId(),
+                'generation.id' => $version->getVersionGroup()->getGeneration()->getId(),
+            ];
+            if ($fromAllVersions) {
+                foreach ($versions as $key => $value) {
+                    $termQuery = new Query\Term();
+                    $termQuery->setTerm($key, $value, self::BOOST_VERSION);
+                    $query->addShould($termQuery);
+                }
+            } else {
+                $orQuery = new Query\BoolQuery();
+                foreach ($versions as $key => $value) {
+                    $termQuery = new Query\Term();
+                    $termQuery->setTerm($key, $value);
+                    $orQuery->addShould($termQuery);
+                }
+                $query->addFilter($orQuery);
+            }
+        }
+
+        return $query;
     }
 }

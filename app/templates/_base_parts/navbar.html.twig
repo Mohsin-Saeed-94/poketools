@@ -20,7 +20,9 @@
         </form>
         {{ knp_menu_render('navbar') }}
         {%- set nav_search_form = form_create('App\\Form\\SiteSearchType') -%}
-        {%- form_theme nav_search_form 'search/form_inline.html.twig' -%}
-        {{ form(nav_search_form) }}
+        {{ form_start(nav_search_form, {'attr': {'class': (nav_search_form.vars.attr.class~' form-inline')|trim}}) }}
+        {{ form_widget(nav_search_form.q) }}
+        {{ form_widget(nav_search_form.search) }}
+        {{ form_end(nav_search_form, {'render_rest': false}) }}
     </div>
 </nav>
