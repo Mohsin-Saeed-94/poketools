@@ -7,6 +7,7 @@ namespace App\Entity\Media;
 
 use App\Entity\PokemonForm;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Pokemon Sprite

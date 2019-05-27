@@ -6,6 +6,7 @@
 namespace App\Entity\Media;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Class AbstractMediaEntity

@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait EntityHasDescriptionTrait
 {
@@ -23,6 +24,7 @@ trait EntityHasDescriptionTrait
      * @var null|string
      *
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"elastica"})
      */
     protected $description;
 

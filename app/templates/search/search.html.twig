@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SearchController!{% endblock %}
+
+{% block body %}
+    <h1>Search</h1>
+    {# Need to explicitly set the theme used because it will default to inline from the navbar #}
+    {#    {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}#}
+    {{ form(form) }}
+
+    {% if query is not empty %}
+        <h2>Search Results</h2>
+        {% if results is not empty %}
+            <p>{{ results|length }} results found for "{{ query }}"</p>
+            {% for result in results %}
+                {{ result|entity_teaser }}
+            {% endfor %}
+        {% else %}
+            <p>No results found for "{{ query }}"</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('search_results') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('search_results') }}
+{% endblock %}

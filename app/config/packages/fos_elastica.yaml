@@ -1,0 +1,17 @@
+# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/Resources/doc/setup.md
+fos_elastica:
+  serializer: ~
+  clients:
+    default:
+      host: '%env(ELASTICA_CLIENT_HOST)%'
+      port: 9200
+  indexes:
+    app:
+      finder: ~
+      types:
+        pokemon:
+          persistence:
+            driver: orm
+            model: App\Entity\Pokemon
+          serializer:
+            groups: [elastica]

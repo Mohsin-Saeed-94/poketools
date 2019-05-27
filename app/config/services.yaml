@@ -55,6 +55,7 @@ services:
     public: true
     synthetic: true
   
+  # Commands
   App\Command\DataCleanYamlCommand:
     arguments:
       $yamlSourceDriver: '@a2b.source.yaml'
@@ -69,6 +70,7 @@ services:
     arguments:
       $assetPath: '%asset_path%'
   
+  # Markdown
   App\CommonMark\Extension\PoketoolsCommonMarkExtension:
   App\CommonMark\Block\Parser\CallableParser:
     arguments:
@@ -81,18 +83,22 @@ services:
     arguments:
       $version: '@app.active_version'
   
+  # Classes that require a specific service injected
+  App\Controller\SearchController:
+    arguments:
+      $finder: '@fos_elastica.finder.app'
   App\EventSubscriber\DexVersionSubscriber:
     arguments:
       $defaultVersionSlug: '%default_version%'
-  
+  App\Form\SiteSearchType:
+    arguments:
+      $activeVersion: '@app.active_version'
   App\Helpers\Labeler:
     arguments:
       $activeVersion: '@app.active_version'
-  
   App\Repository\VersionRepository:
     arguments:
       $defaultVersionSlug: '%default_version%'
-  
   App\Twig\AppExtensionRuntime:
     arguments:
       $activeVersion: '@app.active_version'

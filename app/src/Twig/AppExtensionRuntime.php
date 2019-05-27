@@ -14,6 +14,7 @@ use App\Entity\PokemonType;
 use App\Entity\Type;
 use App\Entity\TypeEfficacy;
 use App\Entity\Version;
+use App\Entity\VersionGroup;
 use App\Helpers\Labeler;
 use App\Mechanic\TypeMatchup;
 use App\Repository\TypeChartRepository;
@@ -95,6 +96,25 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     public function versionList(): array
     {
         return $this->versionRepo->findAllVersionsGroupedByGeneration();
+    }
+
+    /**
+     * Decide which version to use in the version group.
+     *
+     * Prioritises the current version if it is part of the given version group,
+     * otherwise uses the first version in the version group.
+     *
+     * @param VersionGroup $versionGroup
+     *
+     * @return Version
+     */
+    public function useVersion(VersionGroup $versionGroup): Version
+    {
+        if (isset($this->activeVersion) && $versionGroup->getVersions()->contains($this->activeVersion)) {
+            return $this->activeVersion;
+        }
+
+        return $versionGroup->getVersions()->first();
     }
 
     /**
@@ -347,5 +367,35 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
                 'link' => $link,
             ]
         );
+    }
+
+    /**
+     * Render a specific entity as a short teaser.
+     *
+     * @param Environment $twig
+     * @param array $context
+     * @param object $entity
+     *
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function entityTeaser(Environment $twig, array $context, object $entity): string
+    {
+        $entityTemplates = [
+            Pokemon::class => 'pokemon/teaser.html.twig',
+        ];
+
+        $templateArgs = [
+            'entity' => $entity,
+        ];
+
+        if (isset($entityTemplates[get_class($entity)])) {
+            return $twig->render($entityTemplates[get_class($entity)], $templateArgs);
+        }
+
+        // Default teaser, is an empty string.
+        return '';
     }
 }

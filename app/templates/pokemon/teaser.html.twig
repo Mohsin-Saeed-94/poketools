@@ -1,0 +1,19 @@
+{% extends 'search/base_teaser_image.html.twig' %}
+{# /** @var \App\Entity\Pokemon entity */ #}
+
+{% block image %}
+    {%- set sprite = entity.defaultForm.defaultSprite -%}
+    {% if sprite %}
+        <img src="{{ asset('build/static/pokemon/sprite/'~sprite.url) }}" aria-hidden="true">
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    <a href="{{ path('pokemon_view', {
+        'versionSlug': use_version(entity.species.versionGroup).slug,
+        'speciesSlug': entity.species.slug,
+        'pokemonSlug': entity.default ? null : entity.slug
+    }) }}">
+        {{ entity.name }}
+    </a>
+{% endblock %}

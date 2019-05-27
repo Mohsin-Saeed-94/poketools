@@ -39,6 +39,7 @@ Encore
     .addEntry('pokemon_view', './assets/js/pokemon_view.js')
     .addEntry('type_index', './assets/js/type_index.js')
     .addEntry('type_view', './assets/js/type_view.js')
+    .addEntry('search_results', './assets/js/search_results.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
