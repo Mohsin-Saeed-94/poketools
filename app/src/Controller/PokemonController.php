@@ -12,7 +12,6 @@ use App\Entity\LocationInVersionGroup;
 use App\Entity\LocationMap;
 use App\Entity\Media\RegionMap;
 use App\Entity\Pokemon;
-use App\Entity\Region;
 use App\Entity\Version;
 use App\Mechanic\Breeding;
 use App\Mechanic\LevelUp;
