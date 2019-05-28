@@ -77,21 +77,25 @@ class SearchController extends AbstractController
     public function search(Request $request, string $versionSlug): Response
     {
         $version = $this->getVersion($versionSlug);
-        $form = $this->formFactory->create(SiteSearchType::class, null, ['version' => $version]);
+        $form = $this->formFactory->create(SiteSearchType::class, ['all_versions' => SiteSearchType::CHOICE_ALL_VERSIONS], ['version' => $version]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $searchQ = $form->getData();
             $q = $searchQ['q'];
-            $query = $this->buildSearchQuery($q, $version);
+            $query = $this->buildSearchQuery($q, $version, $searchQ['all_versions']);
             $search = new Search($this->elasticaClient);
             $search->setQuery($query);
             $results = $search->search();
             $results = $this->elasticaToModelTransformer->transform($results->getResults());
         }
 
+        $uriTemplate = $this->generateUrl(
+            'search_search',
+            array_merge(['versionSlug' => '__VERSION__'], $request->query->all())
+        );
         $params = [
-            'uri_template' => $this->generateUrl('search_search', ['versionSlug' => '__VERSION__']),
+            'uri_template' => $uriTemplate,
             'form' => $form->createView(),
             'query' => $q ?? null,
             'results' => $results ?? [],

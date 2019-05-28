@@ -15,7 +15,11 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('version_list', [AppExtensionRuntime::class, 'versionList']),
-            new TwigFunction('use_version', [AppExtensionRuntime::class, 'useVersion']),
+            new TwigFunction(
+                'use_version', [AppExtensionRuntime::class, 'useVersion'], [
+                    'needs_context' => true,
+                ]
+            ),
             new TwigFunction(
                 'damage_chart_attacking', [AppExtensionRuntime::class, 'damageChartAttacking'],
                 [

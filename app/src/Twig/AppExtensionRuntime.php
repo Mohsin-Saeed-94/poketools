@@ -104,14 +104,16 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
      * Prioritises the current version if it is part of the given version group,
      * otherwise uses the first version in the version group.
      *
+     * @param array $context
      * @param VersionGroup $versionGroup
      *
      * @return Version
      */
-    public function useVersion(VersionGroup $versionGroup): Version
+    public function useVersion(array $context, VersionGroup $versionGroup): Version
     {
-        if (isset($this->activeVersion) && $versionGroup->getVersions()->contains($this->activeVersion)) {
-            return $this->activeVersion;
+        $version = $context['version'] ?? $this->activeVersion;
+        if ($version !== null && $versionGroup->getVersions()->contains($version)) {
+            return $version;
         }
 
         return $versionGroup->getVersions()->first();
@@ -389,6 +391,7 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
 
         $templateArgs = [
             'entity' => $entity,
+            'version' => $context['version'] ?? $this->activeVersion,
         ];
 
         if (isset($entityTemplates[get_class($entity)])) {
