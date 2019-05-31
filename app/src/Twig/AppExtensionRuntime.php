@@ -390,6 +390,7 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
         $entityTemplates = [
             Pokemon::class => 'pokemon/teaser.html.twig',
             MoveInVersionGroup::class => 'move/teaser.html.twig',
+            Type::class => 'type/teaser.html.twig',
         ];
 
         $templateArgs = [

@@ -1,0 +1,15 @@
+{% extends 'search/base_teaser.html.twig' %}
+{# /** @var \App\Entity\Type entity */ #}
+
+{% block title %}
+    <a href="{{ path('type_view', {'versionSlug': version.slug, 'typeSlug': entity.slug}) }}">
+        {{ entity.name }}
+    </a>
+{% endblock %}
+
+{% block contents %}
+    <div class="h6">Attacking</div>
+    {{ damage_chart_attacking(entity) }}
+    <div class="h6">Defending</div>
+    {{ damage_chart_defending(entity) }}
+{% endblock %}

@@ -24,7 +24,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     public const ALL_VERSIONS_SLUG = 'any';
-    private const BOOST_VERSION = 10.0;
 
     /**
      * @var FormFactoryInterface
@@ -89,6 +88,7 @@ class SearchController extends AbstractController
             $query = $this->buildSearchQuery($q, $version, $searchQ['all_versions']);
             $search = new Search($this->elasticaClient);
             $search->setQuery($query);
+            $search->setOption('search_type', 'dfs_query_then_fetch');
             $elasticaResults = $search->search();
             $resultEntities = $this->elasticaToModelTransformer->transform($elasticaResults->getResults());
             $results = [];
@@ -131,33 +131,49 @@ class SearchController extends AbstractController
     {
         $query = new Query\BoolQuery();
 
-        // Using query string allows some primitive advanced searches
-        // See https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax
-        $queryString = new Query\QueryString($q);
-        $query->addMust($queryString);
+        $nameQuery = new Query\QueryString();
+        $nameQuery->setQuery($q);
+        $nameQuery->setBoost(20);
+        $query->addShould($nameQuery);
+        $bodyQuery = new Query\QueryString($q);
+        $bodyQuery->setBoost(0.5);
+        $query->addShould($bodyQuery);
         if ($version) {
-            $versions = [
-                'version.id' => $version->getId(),
-                'version_group.id' => $version->getVersionGroup()->getId(),
-                'generation.id' => $version->getVersionGroup()->getGeneration()->getId(),
-            ];
             if ($fromAllVersions) {
-                foreach ($versions as $key => $value) {
-                    $termQuery = new Query\Term();
-                    $termQuery->setTerm($key, $value, self::BOOST_VERSION);
-                    $query->addShould($termQuery);
-                }
+                // Allow results from all versions, but prioritize those from the current version
+                $query->addShould($this->getSearchQueryVersionConstraints($version, 2));
             } else {
-                $orQuery = new Query\BoolQuery();
-                foreach ($versions as $key => $value) {
-                    $termQuery = new Query\Term();
-                    $termQuery->setTerm($key, $value);
-                    $orQuery->addShould($termQuery);
-                }
-                $query->addFilter($orQuery);
+                // Only allow results from the current version
+                $query->addFilter($this->getSearchQueryVersionConstraints($version));
             }
         }
 
         return $query;
+    }
+
+    private function getSearchQueryVersionConstraints(Version $version, float $boost = 1.0): Query\AbstractQuery
+    {
+        $versionConstraints = [
+            'version.id' => $version->getId(),
+            'version_group.id' => $version->getVersionGroup()->getId(),
+            'generation.id' => $version->getVersionGroup()->getGeneration()->getId(),
+        ];
+
+        $orQuery = new Query\BoolQuery();
+        $withVersionsQuery = new Query\BoolQuery();
+        $withoutVersionsQuery = new Query\BoolQuery();
+        foreach ($versionConstraints as $key => $value) {
+            $termQuery = new Query\Term();
+            $termQuery->setTerm($key, $value);
+            $withVersionsQuery->addShould($termQuery);
+
+            // Allow things with no version info
+            $withoutVersionsQuery->addMustNot(new Query\Exists($key));
+        }
+        $orQuery->addShould($withVersionsQuery);
+        $orQuery->addShould($withoutVersionsQuery);
+        $orQuery->setBoost($boost);
+
+        return $orQuery;
     }
 }
