@@ -5,73 +5,73 @@ fos_elastica:
       host: '%env(ELASTICA_CLIENT_HOST)%'
       port: 9200
   indexes:
-    generation:
-      types:
-        generation:
-          persistence:
-            driver: orm
-            model: App\Entity\Generation
-            listener:
-              enabled: false
-          properties:
-            id: ~
-            name: ~
-            version_groups:
-              type: nested
-              property_path: versionGroups
-              properties:
-                id: ~
-                name: ~
-                versions:
-                  type: nested
-                  properties:
-                    id: ~
-                    name: ~
-    
-    version_group:
-      types:
-        version_group:
-          persistence:
-            driver: orm
-            model: App\Entity\VersionGroup
-            listener:
-              enabled: false
-          properties:
-            id: ~
-            name: ~
-            generation:
-              type: object
-              properties:
-                id: ~
-                name: ~
-            versions:
-              type: nested
-              properties:
-                id: ~
-                name: ~
-    
-    version:
-      types:
-        version:
-          persistence:
-            driver: orm
-            model: App\Entity\Version
-            listener:
-              enabled: false
-          properties:
-            id: ~
-            name: ~
-            version_group:
-              type: object
-              property_path: versionGroup
-              properties:
-                id: ~
-                name: ~
-                generation:
-                  type: object
-                  properties:
-                    id: ~
-                    name: ~
+    #    generation:
+    #      types:
+    #        generation:
+    #          persistence:
+    #            driver: orm
+    #            model: App\Entity\Generation
+    #            listener:
+    #              enabled: false
+    #          properties:
+    #            id: ~
+    #            name: ~
+    #            version_groups:
+    #              type: nested
+    #              property_path: versionGroups
+    #              properties:
+    #                id: ~
+    #                name: ~
+    #                versions:
+    #                  type: nested
+    #                  properties:
+    #                    id: ~
+    #                    name: ~
+    #
+    #    version_group:
+    #      types:
+    #        version_group:
+    #          persistence:
+    #            driver: orm
+    #            model: App\Entity\VersionGroup
+    #            listener:
+    #              enabled: false
+    #          properties:
+    #            id: ~
+    #            name: ~
+    #            generation:
+    #              type: object
+    #              properties:
+    #                id: ~
+    #                name: ~
+    #            versions:
+    #              type: nested
+    #              properties:
+    #                id: ~
+    #                name: ~
+    #
+    #    version:
+    #      types:
+    #        version:
+    #          persistence:
+    #            driver: orm
+    #            model: App\Entity\Version
+    #            listener:
+    #              enabled: false
+    #          properties:
+    #            id: ~
+    #            name: ~
+    #            version_group:
+    #              type: object
+    #              property_path: versionGroup
+    #              properties:
+    #                id: ~
+    #                name: ~
+    #                generation:
+    #                  type: object
+    #                  properties:
+    #                    id: ~
+    #                    name: ~
     
     pokemon:
       types:
@@ -174,3 +174,43 @@ fos_elastica:
               properties:
                 id: ~
                 name: ~
+    move:
+      types:
+        move:
+          persistence:
+            driver: orm
+            model: App\Entity\MoveInVersionGroup
+            listener:
+              enabled: false
+          properties:
+            id: ~
+            name: ~
+            version_group:
+              type: object
+              property_path: versionGroup
+              properties:
+                id: ~
+                name: ~
+            description: ~
+            flavor_text:
+              property_path: flavorText
+            effect:
+              property_path: effect.description
+            categories:
+              type: nested
+              properties:
+                id: ~
+                name: ~
+                description: ~
+            machine:
+              type: object
+              properties:
+                name:
+                  property_path: item.name
+                move:
+                  property_path: move.name
+            flags:
+              type: nested
+              properties:
+                name: ~
+                description: ~

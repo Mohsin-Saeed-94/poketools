@@ -9,6 +9,7 @@ namespace App\Twig;
 use App\Entity\ContestType;
 use App\Entity\ItemInVersionGroup;
 use App\Entity\LocationMap;
+use App\Entity\MoveInVersionGroup;
 use App\Entity\Pokemon;
 use App\Entity\PokemonType;
 use App\Entity\Type;
@@ -372,30 +373,36 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * Render a specific entity as a short teaser.
+     * Render a search result.
      *
      * @param Environment $twig
      * @param array $context
-     * @param object $entity
+     * @param array $result
      *
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function entityTeaser(Environment $twig, array $context, object $entity): string
+    public function searchResultTeaser(Environment $twig, array $context, array $result): string
     {
+        ['entity' => $entity, 'elastica' => $elastica] = $result;
         $entityTemplates = [
             Pokemon::class => 'pokemon/teaser.html.twig',
+            MoveInVersionGroup::class => 'move/teaser.html.twig',
         ];
 
         $templateArgs = [
             'entity' => $entity,
             'version' => $context['version'] ?? $this->activeVersion,
+            'search_meta' => $elastica,
         ];
 
-        if (isset($entityTemplates[get_class($entity)])) {
-            return $twig->render($entityTemplates[get_class($entity)], $templateArgs);
+        // Must allow that the actual entity class may be different because of proxy objects.
+        foreach ($entityTemplates as $entityClass => $entityTemplate) {
+            if (is_a($entity, $entityClass)) {
+                return $twig->render($entityTemplate, $templateArgs);
+            }
         }
 
         // Default teaser, is an empty string.

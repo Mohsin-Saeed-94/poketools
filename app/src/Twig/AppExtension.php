@@ -77,7 +77,7 @@ class AppExtension extends AbstractExtension
                 ]
             ),
             new TwigFilter(
-                'entity_teaser', [AppExtensionRuntime::class, 'entityTeaser'], [
+                'search_result', [AppExtensionRuntime::class, 'searchResultTeaser'], [
                     'needs_environment' => true,
                     'needs_context' => true,
                     'is_safe' => ['html'],

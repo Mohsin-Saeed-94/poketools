@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Controller\SearchController;
 use App\Entity\Version;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -26,18 +25,32 @@ class SiteSearchType extends AbstractType
     private $urlGenerator;
 
     /**
+     * @var Version|null
+     */
+    private $activeVersion;
+
+    /**
+     * @var string
+     */
+    private $defaultVersionSlug;
+
+    /**
      * SearchFormType constructor.
      *
      * @param UrlGeneratorInterface $urlGenerator
+     * @param Version $activeVersion
+     * @param string $defaultVersionSlug
      */
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(UrlGeneratorInterface $urlGenerator, ?Version $activeVersion, string $defaultVersionSlug)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->activeVersion = $activeVersion;
+        $this->defaultVersionSlug = $defaultVersionSlug;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        /** @var Version|null $version */
+        /** @var Version $version */
         $version = $options['version'];
 
         $builder->add(
@@ -90,11 +103,29 @@ class SiteSearchType extends AbstractType
             $this->urlGenerator->generate(
                 'search_search',
                 [
-                    'versionSlug' => $version ? $version->getSlug() : SearchController::ALL_VERSIONS_SLUG,
+                    'versionSlug' => $this->useVersionSlug($version),
                 ]
             )
         )
             ->setMethod('get');
+    }
+
+    /**
+     * @param Version|null $version
+     *
+     * @return string
+     */
+    private function useVersionSlug(?Version $version): string
+    {
+        if ($version) {
+            return $version->getSlug();
+        }
+
+        if ($this->activeVersion) {
+            return $this->activeVersion->getSlug();
+        }
+
+        return $this->defaultVersionSlug;
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -9,17 +9,17 @@ use App\Repository\VersionRepository;
 use Elastica\Client;
 use Elastica\Query;
 use Elastica\Search;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class SearchController
  *
- * @Route("/dex/{versionSlug}/search", name="search_", defaults={"versionSlug": "any"})
+ * @Route("/dex/{versionSlug}/search", name="search_")
  */
 class SearchController extends AbstractController
 {
@@ -68,16 +68,19 @@ class SearchController extends AbstractController
 
     /**
      * @param Request $request
-     * @param string $versionSlug
+     * @param Version $version
      *
      * @return Response
      *
      * @Route("/", name="search")
+     * @ParamConverter("version", options={"mapping": {"versionSlug": "slug"}})
      */
-    public function search(Request $request, string $versionSlug): Response
+    public function search(Request $request, Version $version): Response
     {
-        $version = $this->getVersion($versionSlug);
-        $form = $this->formFactory->create(SiteSearchType::class, ['all_versions' => SiteSearchType::CHOICE_ALL_VERSIONS], ['version' => $version]);
+        $searchDefaults = [
+            'all_versions' => SiteSearchType::CHOICE_ALL_VERSIONS,
+        ];
+        $form = $this->formFactory->create(SiteSearchType::class, $searchDefaults, ['version' => $version]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,8 +89,15 @@ class SearchController extends AbstractController
             $query = $this->buildSearchQuery($q, $version, $searchQ['all_versions']);
             $search = new Search($this->elasticaClient);
             $search->setQuery($query);
-            $results = $search->search();
-            $results = $this->elasticaToModelTransformer->transform($results->getResults());
+            $elasticaResults = $search->search();
+            $resultEntities = $this->elasticaToModelTransformer->transform($elasticaResults->getResults());
+            $results = [];
+            foreach ($elasticaResults as $k => $elasticaResult) {
+                $results[] = [
+                    'elastica' => $elasticaResult,
+                    'entity' => $resultEntities[$k],
+                ];
+            }
         }
 
         $uriTemplate = $this->generateUrl(
@@ -105,25 +115,6 @@ class SearchController extends AbstractController
         }
 
         return $this->render('search/search.html.twig', $params);
-    }
-
-    /**
-     * @param string $versionSlug
-     *
-     * @return Version|null
-     */
-    private function getVersion(string $versionSlug): ?Version
-    {
-        if ($versionSlug !== self::ALL_VERSIONS_SLUG) {
-            $version = $this->versionRepo->findOneBy(['slug' => $versionSlug]);
-            if ($version === null) {
-                throw new NotFoundHttpException();
-            }
-        } else {
-            $version = null;
-        }
-
-        return $version;
     }
 
     /**
