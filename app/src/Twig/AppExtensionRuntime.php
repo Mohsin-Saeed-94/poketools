@@ -6,6 +6,7 @@
 namespace App\Twig;
 
 
+use App\Entity\AbilityInVersionGroup;
 use App\Entity\ContestType;
 use App\Entity\ItemInVersionGroup;
 use App\Entity\LocationInVersionGroup;
@@ -396,6 +397,7 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
             ItemInVersionGroup::class => 'item/teaser.html.twig',
             LocationInVersionGroup::class => 'location/teaser.html.twig',
             Nature::class => 'nature/teaser.html.twig',
+            AbilityInVersionGroup::class => 'ability/teaser.html.twig',
         ];
 
         $templateArgs = [
