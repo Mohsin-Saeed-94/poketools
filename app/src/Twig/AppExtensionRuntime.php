@@ -7,8 +7,8 @@ namespace App\Twig;
 
 
 use App\Entity\ContestType;
-use App\Entity\Item;
 use App\Entity\ItemInVersionGroup;
+use App\Entity\LocationInVersionGroup;
 use App\Entity\LocationMap;
 use App\Entity\MoveInVersionGroup;
 use App\Entity\Pokemon;
@@ -393,6 +393,7 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
             MoveInVersionGroup::class => 'move/teaser.html.twig',
             Type::class => 'type/teaser.html.twig',
             ItemInVersionGroup::class => 'item/teaser.html.twig',
+            LocationInVersionGroup::class => 'location/teaser.html.twig',
         ];
 
         $templateArgs = [
