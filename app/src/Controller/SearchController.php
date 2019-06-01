@@ -3,7 +3,15 @@
 namespace App\Controller;
 
 use App\Elastica\ElasticaToModelTransformer;
+use App\Entity\AbilityInVersionGroup;
+use App\Entity\ItemInVersionGroup;
+use App\Entity\LocationInVersionGroup;
+use App\Entity\MoveInVersionGroup;
+use App\Entity\Nature;
+use App\Entity\Pokemon;
+use App\Entity\Type;
 use App\Entity\Version;
+use App\Entity\VersionGroup;
 use App\Form\SiteSearchType;
 use App\Repository\VersionRepository;
 use Elastica\Client;
@@ -96,6 +104,14 @@ class SearchController extends AbstractController
             $search->setOption('search_type', 'dfs_query_then_fetch');
             $elasticaResults = $search->search();
             $resultEntities = $this->elasticaToModelTransformer->transform($elasticaResults->getResults());
+
+            // If there is only one result, redirect there
+            if (count($resultEntities) === 1) {
+                return $this->redirect(
+                    $this->getEntityUrl($resultEntities[array_key_first($resultEntities)], $version)
+                );
+            }
+
             $results = [];
             foreach ($elasticaResults as $k => $elasticaResult) {
                 $results[] = [
@@ -156,6 +172,12 @@ class SearchController extends AbstractController
         return $query;
     }
 
+    /**
+     * @param Version $version
+     * @param float $boost
+     *
+     * @return Query\AbstractQuery
+     */
     private function getSearchQueryVersionConstraints(Version $version, float $boost = 1.0): Query\AbstractQuery
     {
         $versionConstraints = [
@@ -180,5 +202,109 @@ class SearchController extends AbstractController
         $orQuery->setBoost($boost);
 
         return $orQuery;
+    }
+
+    /**
+     * Get the entity Url
+     *
+     * @param object $entity
+     * @param Version $version
+     *
+     * @return string
+     */
+    private function getEntityUrl(object $entity, Version $version): string
+    {
+
+        switch (get_class($entity)) {
+            case Pokemon::class:
+                /** @var Pokemon $entity */
+                return $this->generateUrl(
+                    'pokemon_view',
+                    [
+                        'versionSlug' => $this->useVersion($version, $entity->getSpecies()->getVersionGroup())->getSlug(
+                        ),
+                        'speciesSlug' => $entity->getSpecies()->getSlug(),
+                        'pokemonSlug' => $entity->getSlug(),
+                    ]
+                );
+            case MoveInVersionGroup::class:
+                /** @var MoveInVersionGroup $entity */
+                return $this->generateUrl(
+                    'move_view',
+                    [
+                        'versionSlug' => $this->useVersion($version, $entity->getVersionGroup())->getSlug(),
+                        'moveSlug' => $entity->getSlug(),
+                    ]
+                );
+            case Type::class:
+                /** @var Type $entity */
+                return $this->generateUrl(
+                    'type_view',
+                    [
+                        'versionSlug' => $version->getSlug(),
+                        'typeSlug' => $entity->getSlug(),
+                    ]
+                );
+            case ItemInVersionGroup::class:
+                /** @var ItemInVersionGroup $entity */
+                return $this->generateUrl(
+                    'item_view',
+                    [
+                        'versionSlug' => $this->useVersion($version, $entity->getVersionGroup())->getSlug(),
+                        'itemSlug' => $entity->getSlug(),
+                    ]
+                );
+            case LocationInVersionGroup::class:
+                /** @var LocationInVersionGroup $entity */
+                return $this->generateUrl(
+                    'location_view',
+                    [
+                        'versionSlug' => $this->useVersion($version, $entity->getVersionGroup())->getSlug(),
+                        'locationSlug' => $entity->getSlug(),
+                    ]
+                );
+            case Nature::class:
+                /** @var Nature $entity */
+                return $this->generateUrl(
+                    'nature_view',
+                    [
+                        'versionSlug' => $version->getSlug(),
+                        'natureSlug' => $entity->getSlug(),
+                    ]
+                );
+            case AbilityInVersionGroup::class:
+                /** @var AbilityInVersionGroup $entity */
+                return $this->generateUrl(
+                    'ability_view',
+                    [
+                        'versionSlug' => $this->useVersion($version, $entity->getVersionGroup())->getSlug(),
+                        'abilitySlug' => $entity->getSlug(),
+                    ]
+                );
+        }
+
+        throw new \UnexpectedValueException(
+            sprintf(
+                'Cannot generate url for entity of type "%s".',
+                get_class($entity)
+            )
+        );
+    }
+
+    /**
+     * Resolve which version to use when creating the route
+     *
+     * @param Version $version
+     * @param VersionGroup $entityVersionGroup
+     *
+     * @return Version
+     */
+    private function useVersion(Version $version, VersionGroup $entityVersionGroup): Version
+    {
+        if ($entityVersionGroup->getVersions()->contains($version)) {
+            return $version;
+        }
+
+        return $entityVersionGroup->getVersions()->first();
     }
 }
