@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\ItemCategory;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Tree\Entity\Repository\MaterializedPathRepository;
+use LogicException;
 
 /**
  * @method ItemCategory|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,11 +15,27 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method ItemCategory[]    findAll()
  * @method ItemCategory[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ItemCategoryRepository extends ServiceEntityRepository
+class ItemCategoryRepository extends MaterializedPathRepository implements ServiceEntityRepositoryInterface
 {
-    public function __construct(RegistryInterface $registry)
+    /**
+     * @param ManagerRegistry $registry
+     */
+    public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ItemCategory::class);
+        $entityClass = ItemCategory::class;
+        /** @var EntityManagerInterface $manager */
+        $manager = $registry->getManagerForClass($entityClass);
+
+        if ($manager === null) {
+            throw new LogicException(
+                sprintf(
+                    'Could not find the entity manager for class "%s". Check your Doctrine configuration to make sure it is configured to load this entity’s metadata.',
+                    $entityClass
+                )
+            );
+        }
+
+        parent::__construct($manager, $manager->getClassMetadata($entityClass));
     }
 
 //    /**

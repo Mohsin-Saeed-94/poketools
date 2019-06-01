@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Gedmo\Mapping\Annotation as Gedmo;
 use PhpUnitsOfMeasure\PhysicalQuantity\Length;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
@@ -376,11 +375,47 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     }
 
     /**
-     * @return int|null
+     * @return Pokemon[]
      */
-    public function getEvolutionStage(): ?int
+    public function getEvolutionFamily(): array
     {
-        return $this->evolutionStage;
+        return $this->calcEvolutionFamily();
+    }
+
+    /**
+     * @param array $family
+     *
+     * @return Pokemon[]
+     */
+    private function calcEvolutionFamily(array &$family = []): array
+    {
+        if (empty($family)) {
+            $root = $this->getEvolutionRoot();
+            $family[] = $root;
+            foreach ($root->getEvolutionChildren() as $child) {
+                $child->calcEvolutionFamily($family);
+            }
+        } else {
+            $family[] = $this;
+
+            foreach ($this->evolutionChildren as $evolutionChild) {
+                $evolutionChild->calcEvolutionFamily($family);
+            }
+        }
+
+        return $family;
+    }
+
+    /**
+     * @return Pokemon
+     */
+    private function getEvolutionRoot(): Pokemon
+    {
+        if (isset($this->evolutionParent)) {
+            return $this->evolutionParent->getEvolutionRoot();
+        }
+
+        return $this;
     }
 
     /**
@@ -389,6 +424,14 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     public function getEvolutionChildren()
     {
         return $this->evolutionChildren;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getEvolutionStage(): ?int
+    {
+        return $this->evolutionStage;
     }
 
     /**
