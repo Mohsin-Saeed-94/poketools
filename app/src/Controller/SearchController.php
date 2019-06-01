@@ -87,7 +87,12 @@ class SearchController extends AbstractController
             $q = $searchQ['q'];
             $query = $this->buildSearchQuery($q, $version, $searchQ['all_versions']);
             $search = new Search($this->elasticaClient);
-            $search->setQuery($query);
+            $search->setQuery(
+                [
+                    'min_score' => 1.0,
+                    'query' => $query->toArray(),
+                ]
+            );
             $search->setOption('search_type', 'dfs_query_then_fetch');
             $elasticaResults = $search->search();
             $resultEntities = $this->elasticaToModelTransformer->transform($elasticaResults->getResults());
