@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% import '_macros/datatable.html.twig' as datatable %}
+{% import _self as helpers %}
 
 {% block title %}Natures - {{ nature.name }}{% endblock %}
 
@@ -15,44 +16,7 @@
     </nav>
 
     <h1>{{ nature.name }}</h1>
-    {% set sameStats = nature.statIncreased is same as(nature.statDecreased)
-        and nature.flavorLikes is same as(nature.flavorHates) %}
-    {% if sameStats %}
-        <p>This Nature has no effect on stats.</p>
-    {% else %}
-        <table class="pkt-infolist pkt-nature-view-statchanges">
-            <tr>
-                <th>Stat Changes</th>
-                <td>
-                    <ul class="list-unstyled">
-                        <li>{{ nature.statIncreased }} +10%</li>
-                        <li>{{ nature.statDecreased }} &minus;10%</li>
-                    </ul>
-                </td>
-            </tr>
-            {% set showContestInfo = version.versionGroup.featureString('contests')
-                or version.versionGroup.featureString('super-contests') %}
-            <tr>
-                <th>Flavor Preferences</th>
-                <td>
-                    <ul class="list-unstyled">
-                        <li>
-                            Likes {{ nature.flavorLikes }}
-                            {% if showContestInfo %}
-                                (Helps increase {{ nature.flavorLikes.contestType|type_emblem }})
-                            {% endif %}
-                        </li>
-                        <li>
-                            Hates {{ nature.flavorHates }}
-                            {% if showContestInfo %}
-                                (Bad for {{ nature.flavorHates.contestType|type_emblem }})
-                            {% endif %}
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        </table>
-    {% endif %}
+    {{ helpers.nature_info(nature, version) }}
 
     {# Battle Style Preferences #}
     {% if version.versionGroup.featureString('battle-palace') %}
@@ -98,6 +62,8 @@
     {# Pokemon table #}
     <h2>Pokèmon</h2>
     <p>
+        {%- set sameStats = nature.statIncreased is same as(nature.statDecreased)
+            and nature.flavorLikes is same as(nature.flavorHates) -%}
         {% if sameStats %}
             This is a list of Pokèmon with similar stats.
         {% else %}
@@ -114,3 +80,45 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('nature_view') }}
 {% endblock %}
+
+{% macro nature_info(nature, version) %}
+    {# /** @var \App\Entity\Nature nature */ #}
+    {% set sameStats = nature.statIncreased is same as(nature.statDecreased)
+        and nature.flavorLikes is same as(nature.flavorHates) %}
+    {% if sameStats %}
+        <p>This Nature has no effect on stats.</p>
+    {% else %}
+        <table class="pkt-infolist pkt-nature-view-statchanges">
+            <tr>
+                <th>Stat Changes</th>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>{{ nature.statIncreased }} +10%</li>
+                        <li>{{ nature.statDecreased }} &minus;10%</li>
+                    </ul>
+                </td>
+            </tr>
+            {% set showContestInfo = version.versionGroup.featureString('contests')
+                or version.versionGroup.featureString('super-contests') %}
+            <tr>
+                <th>Flavor Preferences</th>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>
+                            Likes {{ nature.flavorLikes }}
+                            {% if showContestInfo %}
+                                (Helps increase {{ nature.flavorLikes.contestType|type_emblem }})
+                            {% endif %}
+                        </li>
+                        <li>
+                            Hates {{ nature.flavorHates }}
+                            {% if showContestInfo %}
+                                (Bad for {{ nature.flavorHates.contestType|type_emblem }})
+                            {% endif %}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+{% endmacro %}

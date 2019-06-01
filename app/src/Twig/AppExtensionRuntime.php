@@ -11,6 +11,7 @@ use App\Entity\ItemInVersionGroup;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\LocationMap;
 use App\Entity\MoveInVersionGroup;
+use App\Entity\Nature;
 use App\Entity\Pokemon;
 use App\Entity\PokemonType;
 use App\Entity\Type;
@@ -394,6 +395,7 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
             Type::class => 'type/teaser.html.twig',
             ItemInVersionGroup::class => 'item/teaser.html.twig',
             LocationInVersionGroup::class => 'location/teaser.html.twig',
+            Nature::class => 'nature/teaser.html.twig',
         ];
 
         $templateArgs = [

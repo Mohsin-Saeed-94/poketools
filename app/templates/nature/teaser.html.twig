@@ -1,0 +1,13 @@
+{% extends 'search/base_teaser.html.twig' %}
+{# /** @var \App\Entity\Nature entity */ #}
+
+{% block title %}
+    <a href="{{ path('nature_view', {'versionSlug': version.slug, 'natureSlug': entity.slug}) }}">
+        {{ entity.name }}
+    </a>
+{% endblock %}
+
+{% block contents %}
+    {% import 'nature/view.html.twig' as natureHelpers %}
+    {{ natureHelpers.nature_info(entity, version) }}
+{% endblock %}
