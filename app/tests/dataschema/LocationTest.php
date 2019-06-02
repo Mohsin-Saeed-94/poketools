@@ -28,7 +28,7 @@ class LocationTest extends DataSchemaTestCase
 
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
-            self::assertDataSchema('location', $data, $identifier);
+            self::assertDataSchema('location', (object)$data, $identifier);
         }
     }
 

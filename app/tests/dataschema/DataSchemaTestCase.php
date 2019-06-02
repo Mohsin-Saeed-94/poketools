@@ -5,8 +5,9 @@
 
 namespace App\Tests\dataschema;
 
-use JsonSchema\Constraints\Constraint;
-use JsonSchema\Validator;
+use Opis\JsonSchema\Schema;
+use Opis\JsonSchema\ValidationError;
+use Opis\JsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Parser;
 
@@ -22,23 +23,23 @@ abstract class DataSchemaTestCase extends TestCase
      * Assert the data follows the schema.
      *
      * @param string $name
-     * @param array $data
+     * @param array|object $data
      * @param string|null $context
-     * @param int $flags
      */
-    protected static function assertDataSchema(string $name, array $data, ?string $context = null, int $flags = 0): void
+    protected static function assertDataSchema(string $name, $data, ?string $context = null): void
     {
+        static $schemas = [];
+        if (!isset($schemas[$name])) {
+            $schemaPath = realpath(sprintf('%s/%s.json', self::BASE_DIR_SCHEMA, $name));
+            $schemas[$name] = Schema::fromJsonString(file_get_contents($schemaPath));
+        }
         $validator = new Validator();
-        $validator->validate(
-            $data,
-            (object)['$ref' => 'file://'.realpath(sprintf('%s/%s.json', self::BASE_DIR_SCHEMA, $name))],
-            Constraint::CHECK_MODE_TYPE_CAST | Constraint::CHECK_MODE_VALIDATE_SCHEMA | $flags
-        );
-        self::assertTrue($validator->isValid(), self::buildSchemaErrorMessage($validator->getErrors(), $context));
+        $result = $validator->dataValidation($data, $schemas[$name]);
+        self::assertTrue($result->isValid(), self::buildSchemaErrorMessage($result->getErrors(), $context));
     }
 
     /**
-     * @param array[] $errors
+     * @param ValidationError[] $errors
      *
      * @param string|null $context
      *
@@ -52,7 +53,7 @@ abstract class DataSchemaTestCase extends TestCase
         }
         $messages = [$header];
         foreach ($errors as $error) {
-            $messages[] = sprintf('[%s] %s', $error['property'], $error['message']);
+            $messages[] = sprintf("[%s]\n%s", $error->keyword(), json_encode($error->keywordArgs(), JSON_PRETTY_PRINT));
         }
 
         return implode("\n", $messages);

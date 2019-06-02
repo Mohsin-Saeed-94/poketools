@@ -8,7 +8,6 @@ namespace App\Tests\dataschema;
 
 use App\Entity\Embeddable\Range;
 use App\Tests\data\CsvParserTrait;
-use JsonSchema\Constraints\Constraint;
 
 /**
  * Test Encounter data
@@ -27,7 +26,7 @@ class EncounterTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('encounter');
-        self::assertDataSchema('encounter', $allData, null, Constraint::CHECK_MODE_COERCE_TYPES);
+        self::assertDataSchema('encounter', $allData);
     }
 
     /**
