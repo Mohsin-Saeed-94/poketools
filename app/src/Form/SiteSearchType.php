@@ -41,8 +41,11 @@ class SiteSearchType extends AbstractType
      * @param Version $activeVersion
      * @param string $defaultVersionSlug
      */
-    public function __construct(UrlGeneratorInterface $urlGenerator, ?Version $activeVersion, string $defaultVersionSlug)
-    {
+    public function __construct(
+        UrlGeneratorInterface $urlGenerator,
+        ?Version $activeVersion,
+        string $defaultVersionSlug
+    ) {
         $this->urlGenerator = $urlGenerator;
         $this->activeVersion = $activeVersion;
         $this->defaultVersionSlug = $defaultVersionSlug;
@@ -61,6 +64,10 @@ class SiteSearchType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'class' => 'pkt-form-search-query',
+                    'data-autocomplete-source' => $this->urlGenerator->generate(
+                        'search_autocomplete',
+                        ['versionSlug' => $this->useVersionSlug($version)]
+                    ),
                 ],
             ]
         );
@@ -115,7 +122,7 @@ class SiteSearchType extends AbstractType
      *
      * @return string
      */
-    private function useVersionSlug(?Version $version): string
+    private function useVersionSlug(?Version $version = null): string
     {
         if ($version) {
             return $version->getSlug();

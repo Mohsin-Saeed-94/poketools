@@ -1,10 +1,12 @@
 const $ = require('jquery');
 require('bootstrap');
+require('autocomplete.js/dist/autocomplete.jquery');
 
 $(document).ready(function () {
     const navbarLinks = $('.pkt-navbar-main ul.navbar-nav a.nav-link');
     const versionSelector = $('#pkt-version-select');
 
+    // Replace __VERSION__ in navbar links with the actual version slug.
     function updateNavVersionLinks() {
         const selectedVersion = versionSelector.val();
 
@@ -27,4 +29,23 @@ $(document).ready(function () {
     });
 
     updateNavVersionLinks();
+
+    // Autocomplete
+    const searchForm = $('.pkt-form-search input[type=search]');
+    const autoCompleteSourceUrl = searchForm.data('autocomplete-source');
+    const autocompleteSource = function (query, cb) {
+        $.getJSON(autoCompleteSourceUrl, {q: query}, cb);
+    };
+    searchForm.autocomplete({
+        debug: true
+    }, [
+        {
+            source: autocompleteSource,
+            debounce: 500,
+            templates: {
+                suggestion: (suggestion) => suggestion.html,
+                empty: () => '<div class="aa-empty">No results found.</div>'
+            }
+        }
+    ]);
 });

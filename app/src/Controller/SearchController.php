@@ -17,9 +17,11 @@ use App\Repository\VersionRepository;
 use Elastica\Client;
 use Elastica\Query;
 use Elastica\Search;
+use Elastica\Suggest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -306,5 +308,97 @@ class SearchController extends AbstractController
         }
 
         return $entityVersionGroup->getVersions()->first();
+    }
+
+    /**
+     * @param Request $request
+     * @param Version $version
+     *
+     * @return Response
+     *
+     * @Route("/autocomplete.json", name="autocomplete")
+     * @ParamConverter("version", options={"mapping": {"versionSlug": "slug"}})
+     */
+    public function autocomplete(Request $request, Version $version): Response
+    {
+        $q = $request->query->get('q');
+        if (empty($q)) {
+            return new JsonResponse([]);
+        }
+
+        $search = new Search($this->elasticaClient);
+        $search->setQuery($this->buildAutocompleteQuery($q, $version));
+        $results = $search->search()->getSuggests();
+        if (empty($results)) {
+            return new JsonResponse([]);
+        }
+        $results = $results['suggest'][0];
+
+        $suggests = [];
+        $entities = $this->elasticaToModelTransformer->transform($results['options']);
+        foreach ($results['options'] as $k => $result) {
+            $suggests[] = [
+                'value' => $result['text'],
+                'html' => $this->renderSuggestion($entities[$k], $result),
+            ];
+        }
+
+        return new JsonResponse($suggests);
+    }
+
+    /**
+     * @param string $q
+     * @param Version $version
+     * @param bool $fromAllVersions
+     *
+     * @return Query\AbstractQuery
+     */
+    private function buildAutocompleteQuery(
+        string $q,
+        Version $version,
+        bool $fromAllVersions = false
+    ): Suggest {
+        $completionQuery = new Suggest\Completion('suggest', 'suggest');
+        $completionQuery->setPrefix($q);
+        $completionQuery->setSize(10);
+        $completionQuery->setParam('skip_duplicates', true);
+
+        if (!$fromAllVersions) {
+            $contexts = [
+                'version_group' => [$version->getVersionGroup()->getSlug()],
+            ];
+            $completionQuery->setParam('contexts', $contexts);
+        }
+
+        return new Suggest($completionQuery);
+    }
+
+    /**
+     * @param object $entity
+     * @param array $result
+     *
+     * @return string
+     */
+    private function renderSuggestion(object $entity, array $result): string
+    {
+        $entityTemplates = [
+            Pokemon::class => 'pokemon/suggestion.html.twig',
+            ItemInVersionGroup::class => 'item/suggestion.html.twig',
+            Type::class => 'type/suggestion.html.twig',
+        ];
+
+        $templateArgs = [
+            'entity' => $entity,
+            'search_meta' => $result,
+        ];
+
+        // Must allow that the actual entity class may be different because of proxy objects.
+        foreach ($entityTemplates as $entityClass => $entityTemplate) {
+            if (is_a($entity, $entityClass)) {
+                return $this->renderView($entityTemplate, $templateArgs);
+            }
+        }
+
+        return $this->renderView('search/base_suggestion.html.twig', $templateArgs);
     }
 }

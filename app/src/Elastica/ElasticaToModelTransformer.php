@@ -43,7 +43,7 @@ class ElasticaToModelTransformer
      * Transforms an array of elastica objects into an array of
      * model objects fetched from the doctrine repository.
      *
-     * @param Result[] $elasticaObjects
+     * @param array[]|Result[] $elasticaObjects
      *   An array of Elastica result objects
      *
      * @return object[]
@@ -55,13 +55,17 @@ class ElasticaToModelTransformer
         $load = [];
 
         // Sort out the objects by class to reduce database queries
-        foreach ($elasticaObjects as $elasticaObject) {
+        foreach ($elasticaObjects as &$elasticaObject) {
+            if (is_array($elasticaObject)) {
+                $elasticaObject = new Result($elasticaObject);
+            }
             $class = $this->getClassForElasticaObject($elasticaObject);
             $id = $elasticaObject->getId();
             // Current value is used to get the hydrated entity from the database later.
             $results[] = [$class, $id];
             $load[$class][] = $id;
         }
+        unset($elasticaObject);
 
         // Load the entities, grouped by class to reduce database queries.
         $this->loadEntities($load);
