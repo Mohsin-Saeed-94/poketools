@@ -42,8 +42,6 @@ class MoveTableType implements DataTableTypeInterface
                     'moveSlug' => function ($move) {
                         if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
                             $move = $move->getMove();
-                        } else {
-                            return null;
                         }
 
                         /** @var $move MoveInVersionGroup */
@@ -66,8 +64,6 @@ class MoveTableType implements DataTableTypeInterface
                     'typeSlug' => function ($move) {
                         if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
                             $move = $move->getMove();
-                        } else {
-                            return null;
                         }
 
                         /** @var $move MoveInVersionGroup */
@@ -77,8 +73,6 @@ class MoveTableType implements DataTableTypeInterface
                 'linkClassName' => function ($move) {
                     if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
                         $move = $move->getMove();
-                    } else {
-                        return null;
                     }
 
                     /** @var $move MoveInVersionGroup */

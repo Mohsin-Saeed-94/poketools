@@ -106,6 +106,10 @@ class PokemonMoveTableType extends MoveTableType
                     } else {
                         $damageClass = $move->getType()->getDamageClass();
                     }
+                    if (!$damageClass) {
+                        // Special case for types like "???" that have no damage class.
+                        return '';
+                    }
 
                     $attackVal = $pokemon->getStatData('attack')->getBaseValue();
                     $specialAttackVal = $pokemon->getStatData('special-attack')->getBaseValue();
