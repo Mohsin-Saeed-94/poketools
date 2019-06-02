@@ -270,14 +270,6 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
     }
 
     /**
-     * @return LocationInVersionGroup[]|Collection
-     */
-    public function getSubLocations()
-    {
-        return $this->subLocations;
-    }
-
-    /**
      * @param LocationInVersionGroup $subLocation
      *
      * @return self
@@ -305,5 +297,57 @@ class LocationInVersionGroup extends AbstractDexEntity implements EntityHasParen
         }
 
         return $this;
+    }
+
+    /**
+     * @return LocationInVersionGroup[]
+     */
+    public function getFullTree(): array
+    {
+        return $this->calcFullTree();
+    }
+
+    /**
+     * @param array $tree
+     *
+     * @return LocationInVersionGroup[]
+     */
+    private function calcFullTree(array &$tree = []): array
+    {
+        if (empty($tree)) {
+            $root = $this->getTreeRoot();
+            $tree[] = $root;
+            foreach ($root->getSubLocations() as $child) {
+                $child->calcFullTree($tree);
+            }
+        } else {
+            $tree[] = $this;
+
+            foreach ($this->subLocations as $child) {
+                $child->calcFullTree($tree);
+            }
+        }
+
+        return $tree;
+    }
+
+    /**
+     * @return LocationInVersionGroup
+     */
+    private function getTreeRoot(): LocationInVersionGroup
+    {
+        if (isset($this->superLocation)) {
+            return $this->superLocation->getTreeRoot();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return LocationInVersionGroup[]|Collection
+     */
+    public function getSubLocations()
+    {
+        return $this->subLocations;
     }
 }

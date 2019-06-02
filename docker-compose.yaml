@@ -7,8 +7,12 @@ services:
       context: .
       dockerfile: Dockerfile
       target: app
+    environment:
+      - ELASTICA_CLIENT_HOST=search
     expose:
       - "9000"
+    depends_on:
+      - search
 
   web:
     image: registry.gitlab.com/gamestuff.info/poketools/web:latest
@@ -20,3 +24,23 @@ services:
       - "8080:80"
     depends_on:
       - app
+
+  search:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.0
+    container_name: poketools_search_1
+    environment:
+      - cluster.name=poketools-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - searchdata:/usr/share/elasticsearch/data
+    expose:
+      - "9200"
+
+volumes:
+  searchdata:
+    driver: local

@@ -1,0 +1,16 @@
+{% extends 'search/base_teaser.html.twig' %}
+{# /** @var \App\Entity\LocationInVersionGroup entity */ #}
+
+{% block title %}
+    <a href="{{ path('location_view', {'versionSlug': use_version(entity.versionGroup).slug, 'locationSlug': entity.slug}) }}">
+        {{ entity.name }}
+    </a>
+{% endblock %}
+
+{% block contents %}
+    {% import "location/view.html.twig" as locationHelpers %}
+    {{ locationHelpers.location_map(entity, version) }}
+    {% if entity.shortDescription %}
+        {{ entity.description|markdown }}
+    {% endif %}
+{% endblock %}

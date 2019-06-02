@@ -1,0 +1,28 @@
+<nav class="navbar pkt-navbar-main navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" href="{{ path('front') }}">{{ app_name }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#pkt-navbar-content"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="pkt-navbar-content">
+        <form class="form-inline">
+            <select class="form-control" id="pkt-version-select" aria-label="Choose Version">
+                {% for generation_name, versions in version_list() %}
+                    {# /** @var \App\Entity\Version[] versions */ #}
+                    <optgroup label="{{ generation_name }}">
+                        {% for list_version in versions %}
+                            <option{% if list_version.slug == active_version %} selected{% endif %}
+                                    value="{{ list_version.slug }}">{{ list_version.name }}</option>
+                        {% endfor %}
+                    </optgroup>
+                {% endfor %}
+            </select>
+        </form>
+        {{ knp_menu_render('navbar') }}
+        {%- set nav_search_form = form_create('App\\Form\\SiteSearchType') -%}
+        {{ form_start(nav_search_form, {'attr': {'class': (nav_search_form.vars.attr.class~' form-inline')|trim}}) }}
+        {{ form_widget(nav_search_form.q) }}
+        {{ form_widget(nav_search_form.search) }}
+        {{ form_end(nav_search_form, {'render_rest': false}) }}
+    </div>
+</nav>

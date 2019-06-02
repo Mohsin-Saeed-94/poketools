@@ -7,6 +7,7 @@ use App\Entity\Media\PokemonSprite;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -304,6 +305,18 @@ class PokemonForm extends AbstractDexEntity implements EntityHasNameInterface, E
     public function getSprites()
     {
         return $this->sprites;
+    }
+
+    /**
+     * @return PokemonSprite|null
+     */
+    public function getDefaultSprite(): ?PokemonSprite
+    {
+        if ($this->sprites->isEmpty()) {
+            return null;
+        }
+
+        return $this->sprites->first();
     }
 
     /**

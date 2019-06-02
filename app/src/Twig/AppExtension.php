@@ -16,6 +16,11 @@ class AppExtension extends AbstractExtension
         return [
             new TwigFunction('version_list', [AppExtensionRuntime::class, 'versionList']),
             new TwigFunction(
+                'use_version', [AppExtensionRuntime::class, 'useVersion'], [
+                    'needs_context' => true,
+                ]
+            ),
+            new TwigFunction(
                 'damage_chart_attacking', [AppExtensionRuntime::class, 'damageChartAttacking'],
                 [
                     'needs_environment' => true,
@@ -66,6 +71,13 @@ class AppExtension extends AbstractExtension
             ),
             new TwigFilter(
                 'location_map', [AppExtensionRuntime::class, 'locationMap'], [
+                    'needs_environment' => true,
+                    'needs_context' => true,
+                    'is_safe' => ['html'],
+                ]
+            ),
+            new TwigFilter(
+                'search_result', [AppExtensionRuntime::class, 'searchResultTeaser'], [
                     'needs_environment' => true,
                     'needs_context' => true,
                     'is_safe' => ['html'],

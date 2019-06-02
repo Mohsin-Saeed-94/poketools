@@ -1,0 +1,12 @@
+{% extends 'search/base_teaser.html.twig' %}
+{# /** @var \App\Entity\MoveInVersionGroup entity */ #}
+
+{% block title %}
+    <a href="{{ path('move_view', {'versionSlug': use_version(entity.versionGroup).slug, 'moveSlug': entity.slug}) }}">
+        {{ entity.name }}
+    </a>
+{% endblock %}
+
+{% block contents %}
+    {{ (entity.shortDescription|default(entity.effect.shortDescription))|replace({'$effect_chance': entity.effectChance})|markdown }}
+{% endblock %}

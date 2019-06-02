@@ -1,0 +1,18 @@
+{% extends 'search/base_teaser_image.html.twig' %}
+{# /** @var \App\Entity\ItemInVersionGroup entity */ #}
+
+{% block image %}
+    {%- set icon = entity.icon -%}
+    {% if icon %}
+        <img src="{{ asset('build/static/item/'~icon) }}" aria-hidden="true">
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    <a href="{{ path('item_view', {
+        'versionSlug': use_version(entity.versionGroup).slug,
+        'itemSlug': entity.slug
+    }) }}">
+        {{ entity.name }}
+    </a>
+{% endblock %}

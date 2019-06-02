@@ -10,6 +10,7 @@ use App\Entity\EntityIsSortableInterface;
 use App\Entity\EntityIsSortableTrait;
 use App\Entity\RegionInVersionGroup;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

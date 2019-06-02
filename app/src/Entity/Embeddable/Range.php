@@ -4,6 +4,7 @@
 namespace App\Entity\Embeddable;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A range of values

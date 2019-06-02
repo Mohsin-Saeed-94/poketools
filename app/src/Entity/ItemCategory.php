@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * An item category. Not official.
@@ -69,14 +68,6 @@ class ItemCategory extends AbstractDexEntity implements EntityHasNameInterface, 
     }
 
     /**
-     * @return ItemCategory|Collection
-     */
-    public function getTreeChildren()
-    {
-        return $this->treeChildren;
-    }
-
-    /**
      * @return ItemCategory
      */
     public function getTreeParent(): ?ItemCategory
@@ -94,5 +85,57 @@ class ItemCategory extends AbstractDexEntity implements EntityHasNameInterface, 
         $this->treeParent = $treeParent;
 
         return $this;
+    }
+
+    /**
+     * @return ItemCategory[]
+     */
+    public function getFullTree(): array
+    {
+        return $this->calcFullTree();
+    }
+
+    /**
+     * @param array $tree
+     *
+     * @return ItemCategory[]
+     */
+    private function calcFullTree(array &$tree = []): array
+    {
+        if (empty($tree)) {
+            $root = $this->getTreeRoot();
+            $tree[] = $root;
+            foreach ($root->getTreeChildren() as $child) {
+                $child->calcFullTree($tree);
+            }
+        } else {
+            $tree[] = $this;
+
+            foreach ($this->treeChildren as $child) {
+                $child->calcFullTree($tree);
+            }
+        }
+
+        return $tree;
+    }
+
+    /**
+     * @return ItemCategory
+     */
+    private function getTreeRoot(): ItemCategory
+    {
+        if (isset($this->treeParent)) {
+            return $this->treeParent->getTreeRoot();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return ItemCategory|Collection
+     */
+    public function getTreeChildren()
+    {
+        return $this->treeChildren;
     }
 }
