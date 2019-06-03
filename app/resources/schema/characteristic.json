@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/characteristic.json",
+  "title": "Characteristic List",
+  "description": "Characteristics give a hint to the Pokemon's highest IV.  They are rather confusing, see [here](https://bulbapedia.bulbagarden.net/wiki/Characteristic) for a full explanation.",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "stat": {
+        "title": "Stat identifier",
+        "$ref": "types/identifier.json"
+      },
+      "iv_determinator": {
+        "type": "integer",
+        "title": "IV Determinator",
+        "description": "This is the value of `highest IV value % 5`.",
+        "minimum": 0,
+        "maximum": 4
+      },
+      "flavor_text": {
+        "$ref": "types/flavor_text.json"
+      }
+    },
+    "required": [
+      "stat",
+      "iv_determinator",
+      "flavor_text"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/contest_effect.json",
+  "title": "Contest Effect List",
+  "description": "In versions with Pokemon Contests (but not Super Contests), every move has one of these effects.",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "types/id.json"
+      },
+      "appeal": {
+        "type": "integer",
+        "title": "Appeal points",
+        "minimum": 0
+      },
+      "jam": {
+        "type": "integer",
+        "title": "Jam points",
+        "minimum": 0
+      },
+      "flavor_text": {
+        "$ref": "types/flavor_text.json"
+      },
+      "description": {
+        "title": "Description",
+        "$ref": "types/markdown.json"
+      }
+    },
+    "required": [
+      "id",
+      "appeal",
+      "jam",
+      "flavor_text",
+      "description"
+    ]
+  }
+}
