@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/stat.json",
+  "title": "Battle Stat list",
+  "description": "Stats applicable in battle",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "identifier": {
+        "$ref": "types/identifier.json"
+      },
+      "damage_class": {
+        "title": "Damage Class identifier",
+        "description": "If this stat plays a part in damage calculations, which damage class it should be involved with.",
+        "oneOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "title": "Blank",
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
+          }
+        ]
+      },
+      "battle_only": {
+        "title": "Is battle only",
+        "type": "integer",
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "name": {
+        "$ref": "types/name.json"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "identifier",
+      "battle_only",
+      "name"
+    ]
+  }
+}

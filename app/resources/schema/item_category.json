@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/item_category.json",
+  "title": "Item Category tree",
+  "description": "Item categories are organized in a tree.  Categories with a blank for `parent` are roots.",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "identifier": {
+        "$ref": "types/identifier.json"
+      },
+      "parent": {
+        "title": "Parent category identifier",
+        "oneOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "title": "Blank",
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
+          }
+        ],
+        "default": ""
+      },
+      "name": {
+        "$ref": "types/name.json"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "identifier",
+      "name"
+    ]
+  }
+}

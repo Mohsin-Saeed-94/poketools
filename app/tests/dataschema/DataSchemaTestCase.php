@@ -95,7 +95,7 @@ abstract class DataSchemaTestCase extends TestCase
                 array_unshift($errorContext, $context);
             }
             $messages[] = sprintf(
-                "[%s] %s:\nData: %s\nError:%s\n",
+                "[%s]:\nCaused by: %s\nData: %s\nError:%s\n",
                 implode('.', $errorContext),
                 $error->keyword(),
                 json_encode($error->data(), JSON_PRETTY_PRINT),

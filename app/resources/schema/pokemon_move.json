@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/pokemon_move.json",
+  "title": "Pokemon Move Map",
+  "description": "Maps Pokemon to Moves they can learn as well as describing requirements and methods to learn those moves.",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "species": {
+        "title": "Species identifier",
+        "$ref": "types/identifier.json"
+      },
+      "pokemon": {
+        "title": "Pokemon identifier",
+        "$ref": "types/identifier.json"
+      },
+      "version_group": {
+        "title": "Version Group identifier",
+        "$ref": "types/identifier.json"
+      },
+      "move": {
+        "title": "Move identifier",
+        "$ref": "types/identifier.json"
+      },
+      "learn_method": {
+        "title": "Learn method identifier",
+        "$ref": "types/identifier.json"
+      },
+      "level": {
+        "title": "Learn level",
+        "description": "Only applicable if `learn_method` is `level-up`.",
+        "oneOf": [
+          {
+            "title": "Level",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          {
+            "title": "Blank",
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
+          }
+        ]
+      },
+      "machine": {
+        "title": "Machine identifier",
+        "description": "Only applicable if `learn_method` is `machine`.",
+        "oneOf": [
+          {
+            "title": "Item identifier",
+            "$ref": "types/identifier.json"
+          },
+          {
+            "title": "Blank",
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
+          }
+        ]
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "species",
+      "pokemon",
+      "version_group",
+      "move",
+      "learn_method"
+    ]
+  }
+}

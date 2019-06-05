@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/move_ailment.json",
+  "title": "Move Ailment list",
+  "description": "A list of status conditions moves can cause",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "identifier": {
+        "$ref": "types/identifier.json"
+      },
+      "name": {
+        "$ref": "types/name.json"
+      },
+      "volatile": {
+        "title": "Is Volatile",
+        "description": "A volatile status condition will wear off when a Pokemon is switched out or when a battle ends.",
+        "type": "integer",
+        "enum": [
+          0,
+          1
+        ],
+        "default": 0
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "identifier",
+      "name",
+      "volatile"
+    ]
+  }
+}
