@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/generation.json",
+  "title": "Generation list",
+  "description": "List of all mainline generations",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "title": "Generation number",
+        "examples": [
+          "3"
+        ],
+        "$ref": "types/id.json"
+      },
+      "name": {
+        "examples": [
+          "Generation III"
+        ],
+        "$ref": "types/name.json"
+      },
+      "main_region": {
+        "title": "Main Region identifier",
+        "description": "The primary region in the generation; i.e. Generation II would be Johto, even through Kanto is playable.",
+        "$ref": "types/identifier.json"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "name",
+      "main_region"
+    ]
+  }
+}
