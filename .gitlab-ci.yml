@@ -1,7 +1,7 @@
 stages:
   - prepare
   - build
-  - pretest
+  - app
   - data
   - test
 
@@ -53,7 +53,7 @@ build:
     - docker push ${IMAGE_BASENAME}/web:${BUILD_NUMBER}
 
 pretest:
-  stage: pretest
+  stage: app
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   dependencies: []
   variables:
@@ -68,6 +68,35 @@ pretest:
     - cd /var/www
     - composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
     - php -d memory_limit=-1 bin/phpunit --configuration=phpunit.xml.dist --testsuite="Data Schema"
+    
+pages:
+  stage: app
+  only:
+    - master
+  image: $IMAGE_BASENAME/app:$BUILD_NUMBER
+  variables:
+    # Don't need to checkout because this job operates in the application image
+    GIT_STRATEGY: none
+    APP_ENV: prod
+    APP_SECRET: 318586181a01928e0aca714a0e4beeb0
+    DATABASE_URL: 'sqlite:///:memory:'
+    # Need a fake IDE env var.  It will never be used.
+    IDE: phpstorm
+  before_script:
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php composer-setup.php
+    - php -r "unlink('composer-setup.php');"
+    - mv composer.phar /usr/bin/composer
+  script:
+    - cd /var/www
+    - composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
+    # Remove the public directory that may or may not exist
+    - mkdir -p ${CI_PROJECT_DIR}/public
+    - rm -Rf ${CI_PROJECT_DIR}/public
+    - bin/console jsonschema:generate ${CI_PROJECT_DIR}/public
+  artifacts:
+    paths:
+      - public
 
 data:
   stage: data
