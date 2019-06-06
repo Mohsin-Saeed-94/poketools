@@ -13,6 +13,7 @@ RUN set -xe \
 COPY docker/app/entrypoint.sh /usr/local/bin/php-entrypoint
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+COPY docker/app/custom.ini $PHP_INI_DIR/conf.d/
 
 CMD ["/usr/local/bin/php-entrypoint"]
 
