@@ -20,22 +20,22 @@ class LocationTest extends DataSchemaTestCase
     protected const DIR_DATA = self::BASE_DIR_SCHEMA.'/../data/location';
 
     /**
-     * Test data structure
+     * Test data matches schema
      */
     public function testData(): void
     {
-        $allData = $this->getLocationsData();
+        $allData = $this->getData();
 
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
-            self::assertDataSchema('location', (object)$data, $identifier);
+            self::assertDataSchema('location', $data, $identifier);
         }
     }
 
     /**
      * @return \Generator
      */
-    public function getLocationsData(): \Generator
+    public function getData(): \Generator
     {
         $finder = $this->getFinderForDirectory('location');
         $finder->name('*.yaml');
@@ -52,7 +52,7 @@ class LocationTest extends DataSchemaTestCase
      */
     public function testVersionGroup(): void
     {
-        $allData = $this->getLocationsData();
+        $allData = $this->getData();
 
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
@@ -78,7 +78,7 @@ class LocationTest extends DataSchemaTestCase
      */
     public function testRegion(): void
     {
-        $allData = $this->getLocationsData();
+        $allData = $this->getData();
 
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
@@ -115,7 +115,7 @@ class LocationTest extends DataSchemaTestCase
      */
     public function testSuper(): void
     {
-        $allData = $this->getLocationsData();
+        $allData = $this->getData();
 
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
@@ -159,7 +159,7 @@ class LocationTest extends DataSchemaTestCase
      */
     public function testAreas(): void
     {
-        $allData = $this->getLocationsData();
+        $allData = $this->getData();
 
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
@@ -189,7 +189,7 @@ class LocationTest extends DataSchemaTestCase
      */
     public function testMap(): void
     {
-        $allData = $this->getLocationsData();
+        $allData = $this->getData();
 
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
