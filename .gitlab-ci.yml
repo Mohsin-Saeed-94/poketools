@@ -4,6 +4,7 @@ stages:
   - pretest
   - data
   - test
+  - deploy
 
 variables:
   BUILD_NUMBER: ${CI_BUILD_REF_NAME}_${CI_BUILD_REF}
@@ -129,3 +130,15 @@ test:
     - cd /var/www
     - composer install --prefer-dist --no-progress --no-suggest --no-interaction
     - php -d memory_limit=-1 bin/phpunit --configuration=phpunit.xml.dist --testsuite="Data Content"
+
+deploy:
+  stage: deploy
+  image: lwolf/kubectl_deployer
+  environment:
+    name: prod
+    url: http://poketools.gamestuff.info
+  only:
+    - master
+  dependencies: []
+  script:
+    - /bin/sh deploy.sh ${CI_ENVIRONMENT_SLUG}
