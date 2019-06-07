@@ -39,13 +39,10 @@ services:
       - "9200:9200"
       
   db:
-    image: postgres:11
-    ports:
-      - "4321:5432"
+    build:
+      target: db_dev
     environment:
       - POSTGRES_USER=poketools
       - POSTGRES_PASSWORD=secret
     volumes:
       - /var/lib/postgresql/data
-      # Template data volume
-      # - ./db/template.pg.sql:/docker-entrypoint-initdb.d/template.sql:ro
