@@ -133,13 +133,10 @@ build_data:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
   before_script:
+    - mv template.generated.pg.sql docker/db/
     - apk add --no-cache gcc libc-dev libffi-dev make openssl-dev py-pip python2-dev
     - pip install docker-compose
   script:
-    - pwd
-    - ls
-    - ls -R docker
-    - mv template.generated.pg.sql docker/data/
     - docker info
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
     - docker-compose build db
