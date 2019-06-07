@@ -39,11 +39,11 @@ spec:
           image: ${IMAGE_BASENAME}/db:${BUILD_NUMBER}
           name: db
           ports:
-            - containerPort: 4321
+            - containerPort: 5432
               name: postgres
           readinessProbe:
             tcpSocket:
-              port: 4321
-            initialDelaySeconds: 10
+              port: 5432
+            initialDelaySeconds: 60
             periodSeconds: 30
       restartPolicy: Always

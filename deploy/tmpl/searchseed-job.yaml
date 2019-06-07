@@ -1,19 +1,17 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: php
-  namespace: poketools
+  name: searchseed
 spec:
-  replicas: 1
-  revisionHistoryLimit: 1
-  selector:
-    matchLabels:
-      app: php
   template:
-    metadata:
-      labels:
-        app: php
     spec:
+      initContainers:
+        - name: wait-elasticsearch
+          image: busybox
+          command: ['sh', '-c', 'until nc -vz elasticsearch-service 9200; do echo waiting for elasticsearch-service; sleep 2; done;']
+        - name: wait-db
+          image: busybox
+          command: ['sh', '-c', 'until nc -vz db-service 5432; do echo waiting for db-service; sleep 30; done;']
       containers:
         - env:
             - name: APP_VERSION
@@ -43,12 +41,12 @@ spec:
               value: elasticsearch-service
           image: ${IMAGE_BASENAME}/app:${BUILD_NUMBER}
           name: php
-          ports:
-            - containerPort: 9000
-              name: php-fpm
-          readinessProbe:
-            tcpSocket:
-              port: 9000
-            initialDelaySeconds: 10
-            periodSeconds: 30
-      restartPolicy: Always
+          command: ["/bin/sh","-c"]
+          args:
+            - |
+              php -d memory_limit=256M bin/console cache:clear &&
+              bin/console assets:install &&
+              chown -R www-data:www-data var &&
+              php -d memory_limit=256M bin/console fos:elastica:populate
+      restartPolicy: Never
+  backoffLimit: 4
