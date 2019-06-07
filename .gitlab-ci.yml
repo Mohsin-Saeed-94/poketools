@@ -6,6 +6,7 @@ stages:
   - test
   - build_data
   - deploy
+  - notify
 
 variables:
   BUILD_NUMBER: ${CI_BUILD_REF_NAME}_${CI_BUILD_REF}
@@ -152,3 +153,16 @@ deploy:
   dependencies: []
   script:
     - /bin/sh deploy.sh ${CI_ENVIRONMENT_SLUG}
+
+sentry:
+  stage: notify
+  image: getsentry/sentry-cli
+  only:
+    - master
+  dependencies: []
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - sentry-cli releases new -p poketools ${BUILD_NUMBER}
+    - sentry-cli releases set-commits --auto ${BUILD_NUMBER}
+    - sentry-cli releases deploys ${BUILD_NUMBER} new -e prod
