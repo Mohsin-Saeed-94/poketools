@@ -140,3 +140,24 @@ deploy:
   dependencies: []
   script:
     - /bin/sh deploy.sh ${CI_ENVIRONMENT_SLUG}
+
+data_deploy:
+  stage: deploy
+  image: docker:stable
+  services:
+    - docker:dind
+  dependencies:
+    - data
+  variables:
+    COMPOSE_FILE: docker-compose.yaml
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+  before_script:
+    - mv template.generated.pg.sql docker/data/
+  script:
+    - docker info
+    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
+    - docker build -f Dockerfile.data -t ${IMAGE_BASENAME}/data:latest docker/data/
+    - docker image tag ${IMAGE_BASENAME}/data:latest ${IMAGE_BASENAME}/data:${BUILD_NUMBER}
+    - docker push ${IMAGE_BASENAME}/data:latest
+    - docker push ${IMAGE_BASENAME}/data:${BUILD_NUMBER}

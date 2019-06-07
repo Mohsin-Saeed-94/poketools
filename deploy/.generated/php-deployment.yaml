@@ -19,9 +19,11 @@ spec:
             - name: APP_VERSION
               value: dev
             - name: BUILD_NUMBER
-              value: master_1e36ed8ec958619cecaa832d1391324ea96eefce
+              value: k8s_fb09e2677065fda1f25756897fd4539efde7476f
             - name: APP_ENV
-              value: prod
+              value: dev
+            - name: IDE
+              value: phpstorm
             - name: APP_SECRET
               valueFrom:
                 secretKeyRef:
@@ -37,7 +39,7 @@ spec:
                 secretKeyRef:
                   name: poketools-secret
                   key: mailer.url
-          image: registry.gitlab.com/gamestuff.info/poketools/app:master_1e36ed8ec958619cecaa832d1391324ea96eefce
+          image: registry.gitlab.com/gamestuff.info/poketools/app:k8s_fb09e2677065fda1f25756897fd4539efde7476f
           name: php
           ports:
             - containerPort: 9000

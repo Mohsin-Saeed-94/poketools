@@ -21,7 +21,9 @@ spec:
             - name: BUILD_NUMBER
               value: ${BUILD_NUMBER}
             - name: APP_ENV
-              value: prod
+              value: dev
+            - name: IDE
+              value: phpstorm
             - name: APP_SECRET
               valueFrom:
                 secretKeyRef:
@@ -45,4 +47,6 @@ spec:
           readinessProbe:
             tcpSocket:
               port: 9000
+            initialDelaySeconds: 10
+            periodSeconds: 30
       restartPolicy: Always
