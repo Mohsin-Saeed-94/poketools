@@ -12,30 +12,11 @@ variables:
   IMAGE_BASENAME: ${CI_REGISTRY}/gamestuff.info/poketools
   SYMFONY_PHPUNIT_VERSION: "8.1"
 
-# This job exists because the docker build process requires the vendors directory to exist
-# in the context.
-composer:
-  stage: prepare
-  image: composer:1.8
-  cache:
-    paths:
-      - app/vendor
-  script:
-    - cd app
-    - composer install --ignore-platform-reqs --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
-  artifacts:
-    paths:
-      - app/vendor
-    # Only used for preparing the build
-    expire_in: 1 day
-
 build:
   stage: build
   image: docker:stable
   services:
     - docker:dind
-  dependencies:
-    - composer
   variables:
     COMPOSE_FILE: docker-compose.yaml
     DOCKER_HOST: tcp://docker:2375
