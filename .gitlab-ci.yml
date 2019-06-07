@@ -68,10 +68,16 @@ data:
     DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
     # Need a fake IDE env var.  It will never be used.
     IDE: phpstorm
+  before_script:
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php composer-setup.php
+    - php -r "unlink('composer-setup.php');"
+    - mv composer.phar /usr/bin/composer
   script:
     - export PGPASSWORD=$POSTGRES_PASSWORD
     - apk add --no-cache postgresql-client
     - cd /var/www
+    - composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
     - php bin/console doctrine:schema:update --force
     - php -d memory_limit=-1 bin/console a2b:migrate --preserve
     - cp resources/data/data_migration_map.sqlite ${CI_PROJECT_DIR}/
