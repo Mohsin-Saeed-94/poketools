@@ -99,7 +99,8 @@ ENV SENTRY_DSN $SENTRY_DSN
 ENV BUILD_NUMBER $BUILD_NUMBER
 
 COPY --from=build /var/www/ /var/www/
-COPY --from=webpack /var/www/public/build /var/www/public/build
+COPY --from=webpack /var/www/public/build/manifest.json /var/www/public/build/manifest.json
+COPY --from=webpack /var/www/public/build/entrypoints.json /var/www/public/build/entrypoints.json
 
 RUN mkdir -p var/cache \
     && chown -R www-data:www-data var
