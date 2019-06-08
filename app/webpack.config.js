@@ -1,5 +1,9 @@
 const Encore = require('@symfony/webpack-encore');
 
+if (!Encore.isRuntimeEnvironmentConfigured()) {
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+}
+
 Encore
 // directory where compiled assets will be stored
     .setOutputPath('public/build/')
@@ -53,7 +57,7 @@ Encore
      * https://symfony.com/doc/current/frontend.html#adding-more-features
      */
     .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
+    .enableBuildNotifications(!Encore.isProduction())
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
@@ -79,6 +83,8 @@ Encore
 
     // split chunks
     .splitEntryChunks()
+
+    .enablePostCssLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();
