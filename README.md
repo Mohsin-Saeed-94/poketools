@@ -2,6 +2,8 @@
 
 [![pipeline status](https://gitlab.com/gamestuff.info/poketools/badges/master/pipeline.svg)](https://gitlab.com/gamestuff.info/poketools/commits/master)
 
+[![](https://poketools.gamestuff.info/build/static/logo-cropped.svg)](https://poketools.gamestuff.info)
+
 https://poketools.gamestuff.info
 
 A web application all about Pokèmon.
