@@ -25,30 +25,32 @@
 </head>
 
 <body{% if version is defined %} data-active-version="{{ version.slug }}"{% endif %}{% if uri_template is defined %} data-uri-template="{{ uri_template }}"{% endif %}>
-{# Navbar #}
-{{ include('_base_parts/navbar.html.twig') }}
+<div class="content-wrapper">
+    {# Navbar #}
+    {{ include('_base_parts/navbar.html.twig') }}
 
-{# Flash messages #}
-{% for label, messages in app.flashes %}
-    {% for message in messages %}
-        <div class="alert alert-{{ label }}">
-            {{ message }}
-        </div>
+    {# Flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
 
-{# Main content #}
-<main class="container">
-    {% block body %}{% endblock %}
-</main>
+    {# Main content #}
+    <main class="container">
+        {% block body %}{% endblock %}
+    </main>
 
-{# Footer #}
-<footer>
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-        {{ knp_menu_render('footer') }}
-        <p class="navbar-text my-0 ml-auto">Release: {{ app_version }}</p>
-    </nav>
-</footer>
+    {# Footer #}
+    <footer>
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            {{ knp_menu_render('footer') }}
+            <p class="navbar-text my-0 ml-auto">Release: {{ app_version }}</p>
+        </nav>
+    </footer>
+</div>
 
 {% block javascripts %}
     {{ encore_entry_script_tags('other') }}
