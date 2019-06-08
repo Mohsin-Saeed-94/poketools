@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  namespace: poketools
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: poketools-secret
+                  key: database.user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: poketools-secret
+                  key: database.password
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: poketools-secret
+                  key: database.password
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: poketools-secret
+                  key: database.db
+          image: ${IMAGE_BASENAME}/db:${BUILD_NUMBER}
+          name: db
+          ports:
+            - containerPort: 5432
+              name: postgres
+          readinessProbe:
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 60
+            periodSeconds: 30
+      restartPolicy: Always

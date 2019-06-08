@@ -1,9 +1,12 @@
 stages:
   - prepare
   - build
-  - app
+  - pretest
   - data
   - test
+  - build_data
+  - deploy
+  - notify
 
 variables:
   BUILD_NUMBER: ${CI_BUILD_REF_NAME}_${CI_BUILD_REF}
@@ -11,40 +14,22 @@ variables:
   IMAGE_BASENAME: ${CI_REGISTRY}/gamestuff.info/poketools
   SYMFONY_PHPUNIT_VERSION: "8.1"
 
-# This job exists because the docker build process requires the vendors directory to exist
-# in the context.
-composer:
-  stage: prepare
-  image: composer:1.8
-  cache:
-    paths:
-      - app/vendor
-  script:
-    - cd app
-    - composer install --ignore-platform-reqs --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
-  artifacts:
-    paths:
-      - app/vendor
-    # Only used for preparing the build
-    expire_in: 1 day
-
 build:
   stage: build
   image: docker:stable
   services:
     - docker:dind
-  dependencies:
-    - composer
   variables:
     COMPOSE_FILE: docker-compose.yaml
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
-  script:
+  before_script:
     - apk add --no-cache gcc libc-dev libffi-dev make openssl-dev py-pip python2-dev
     - pip install docker-compose
+  script:
     - docker info
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
-    - docker-compose build
+    - docker-compose build app web
     - docker image tag ${IMAGE_BASENAME}/app:latest ${IMAGE_BASENAME}/app:${BUILD_NUMBER}
     - docker image tag ${IMAGE_BASENAME}/web:latest ${IMAGE_BASENAME}/web:${BUILD_NUMBER}
     - docker push ${IMAGE_BASENAME}/app:latest
@@ -53,7 +38,7 @@ build:
     - docker push ${IMAGE_BASENAME}/web:${BUILD_NUMBER}
 
 pretest:
-  stage: app
+  stage: pretest
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   dependencies: []
   variables:
@@ -68,35 +53,6 @@ pretest:
     - cd /var/www
     - composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
     - php -d memory_limit=-1 bin/phpunit --configuration=phpunit.xml.dist --testsuite="Data Schema"
-    
-pages:
-  stage: app
-  only:
-    - master
-  image: $IMAGE_BASENAME/app:$BUILD_NUMBER
-  variables:
-    # Don't need to checkout because this job operates in the application image
-    GIT_STRATEGY: none
-    APP_ENV: prod
-    APP_SECRET: 318586181a01928e0aca714a0e4beeb0
-    DATABASE_URL: 'sqlite:///:memory:'
-    # Need a fake IDE env var.  It will never be used.
-    IDE: phpstorm
-  before_script:
-    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php composer-setup.php
-    - php -r "unlink('composer-setup.php');"
-    - mv composer.phar /usr/bin/composer
-  script:
-    - cd /var/www
-    - composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
-    # Remove the public directory that may or may not exist
-    - mkdir -p ${CI_PROJECT_DIR}/public
-    - rm -Rf ${CI_PROJECT_DIR}/public
-    - bin/console jsonschema:generate ${CI_PROJECT_DIR}/public
-  artifacts:
-    paths:
-      - public
 
 data:
   stage: data
@@ -115,10 +71,16 @@ data:
     DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
     # Need a fake IDE env var.  It will never be used.
     IDE: phpstorm
+  before_script:
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php composer-setup.php
+    - php -r "unlink('composer-setup.php');"
+    - mv composer.phar /usr/bin/composer
   script:
     - export PGPASSWORD=$POSTGRES_PASSWORD
     - apk add --no-cache postgresql-client
     - cd /var/www
+    - composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
     - php bin/console doctrine:schema:update --force
     - php -d memory_limit=-1 bin/console a2b:migrate --preserve
     - cp resources/data/data_migration_map.sqlite ${CI_PROJECT_DIR}/
@@ -158,3 +120,49 @@ test:
     - cd /var/www
     - composer install --prefer-dist --no-progress --no-suggest --no-interaction
     - php -d memory_limit=-1 bin/phpunit --configuration=phpunit.xml.dist --testsuite="Data Content"
+
+build_data:
+  stage: build_data
+  image: docker:stable
+  services:
+    - docker:dind
+  dependencies:
+    - data
+  variables:
+    COMPOSE_FILE: docker-compose.yaml
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+  before_script:
+    - mv template.generated.pg.sql docker/db/
+    - apk add --no-cache gcc libc-dev libffi-dev make openssl-dev py-pip python2-dev
+    - pip install docker-compose
+  script:
+    - docker info
+    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
+    - docker-compose build db
+    - docker image tag ${IMAGE_BASENAME}/db:latest ${IMAGE_BASENAME}/db:${BUILD_NUMBER}
+    - docker push ${IMAGE_BASENAME}/db:latest
+    - docker push ${IMAGE_BASENAME}/db:${BUILD_NUMBER}
+
+deploy:
+  stage: deploy
+  image: lwolf/kubectl_deployer
+  environment:
+    name: prod
+    url: http://poketools.gamestuff.info
+  dependencies: []
+  script:
+    - /bin/sh deploy.sh ${CI_ENVIRONMENT_SLUG}
+
+sentry:
+  stage: notify
+  image: getsentry/sentry-cli
+  only:
+    - master
+  dependencies: []
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - sentry-cli releases new -p poketools ${BUILD_NUMBER}
+    - sentry-cli releases set-commits --auto ${BUILD_NUMBER}
+    - sentry-cli releases deploys ${BUILD_NUMBER} new -e prod

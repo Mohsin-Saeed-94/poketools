@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: poketools
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - env:
+            - name: NGINX_BACKEND_HOST
+              value: php-service
+          image: ${IMAGE_BASENAME}/web:${BUILD_NUMBER}
+          name: nginx
+          ports:
+            - containerPort: 80
+              name: http
+      initContainers:
+        - name: wait-php
+          image: busybox
+          command: ['sh', '-c', 'until nc -vz php-service 9000; do echo waiting for php-service; sleep 2; done;']
+      restartPolicy: Always

@@ -18,7 +18,7 @@ services:
     image: registry.gitlab.com/gamestuff.info/poketools/web:latest
     build:
       context: .
-      dockerfile: Dockerfile.web
+      dockerfile: Dockerfile
       target: web
     ports:
       - "8080:80"
@@ -40,6 +40,19 @@ services:
       - searchdata:/usr/share/elasticsearch/data
     expose:
       - "9200"
+      
+  db:
+    image: registry.gitlab.com/gamestuff.info/poketools/db:latest
+    build:
+      dockerfile: Dockerfile.data
+      context: docker/db
+      target: db
+    environment:
+      - POSTGRES_USER=poketools
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB=poketools
+    ports:
+      - "4321:5432"
 
 volumes:
   searchdata:
