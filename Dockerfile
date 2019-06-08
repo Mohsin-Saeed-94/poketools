@@ -49,7 +49,7 @@ ARG APP_ENV=prod
 RUN rm -rf /var/www && mkdir /var/www
 WORKDIR /var/www
 
-COPY app/public app/yarn.lock app/package.json app/webpack.config.js /var/www/
+COPY app/public app/yarn.lock app/package.json app/webpack.config.js app/postcss.config.js /var/www/
 COPY app/assets /var/www/assets
 # Some assets come from PHP vendors
 COPY --from=build /var/www/vendor/ /var/www/vendor/
@@ -65,24 +65,6 @@ RUN set -xe \
 # Cleanup sources to reduce image size
 RUN set -xe \
     && rm -R /var/www/assets
-
-#######################################
-# WEB SERVER
-#######################################
-FROM nginx:1.15-alpine as web
-
-ARG NGINX_BACKEND_HOST=app
-ENV NGINX_BACKEND_HOST $NGINX_BACKEND_HOST
-
-WORKDIR /var/www/public
-
-COPY docker/web/entrypoint.sh /usr/local/bin/nginx-entrypoint
-
-COPY docker/web/default.conf /etc/nginx/conf.d/default.conf.tmpl
-
-COPY --from=webpack /var/www/public /var/www/public
-
-CMD ["/usr/local/bin/nginx-entrypoint"]
 
 #######################################
 # APPLICATION
@@ -104,6 +86,27 @@ COPY --from=webpack /var/www/public/build/entrypoints.json /var/www/public/build
 
 RUN mkdir -p var/cache \
     && chown -R www-data:www-data var
+
+RUN bin/console assets:install
+RUN chown -R www-data:www-data var
+
+#######################################
+# WEB SERVER
+#######################################
+FROM nginx:1.15-alpine as web
+
+ARG NGINX_BACKEND_HOST=app
+ENV NGINX_BACKEND_HOST $NGINX_BACKEND_HOST
+
+WORKDIR /var/www/public
+
+COPY docker/web/entrypoint.sh /usr/local/bin/nginx-entrypoint
+COPY docker/web/default.conf /etc/nginx/conf.d/default.conf.tmpl
+
+COPY --from=webpack /var/www/public/build /var/www/public/build
+COPY --from=app /var/www/public/bundles /var/www/public/bundles
+
+CMD ["/usr/local/bin/nginx-entrypoint"]
 
 #######################################
 # APP DEVELOPMENT SUPPORT
