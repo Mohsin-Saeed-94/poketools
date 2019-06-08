@@ -3,9 +3,25 @@
 {% block title %}Hello{% endblock %}
 
 {% block body %}
-    <div class="d-flex justify-content-center">
-        <img src="{{ asset('build/static/logo.svg') }}" style="height: 20rem">
+    <div class="jumbotron">
+        <div class="d-flex flex-column flex-md-row justify-content-around align-items-center">
+            <img class="pkt-logo" src="{{ asset('build/static/logo-cropped.svg') }}" aria-hidden="true">
+            <div class="d-flex flex-column">
+                <h1 class="display-4">This is {{ app_name }}.</h1>
+                <p class="lead">
+                    Accurate tools and data tailored to each version.
+                </p>
+            </div>
+        </div>
+        <hr class="my-4">
+        {%- if version is defined -%}
+            {%- set version_slug = version.slug -%}
+        {%- else -%}
+            {%- set version_slug = default_version -%}
+        {%- endif -%}
+        <a class="btn btn-primary btn-lg" href="{{ path('search_search', {'versionSlug': version_slug}) }}">Search</a>
     </div>
+
     <h1>What?</h1>
     <p>This is a site dedicated to sharing information about various Pokèmon games.</p>
 
