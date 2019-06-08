@@ -12,5 +12,5 @@ do
 done
 
 # Jobs must be deleted to retrigger them.
-kubectl delete jobs --all
+kubectl --namespace=poketools delete job --all
 kubectl apply -f ./deploy/ -f ./deploy/.generated/

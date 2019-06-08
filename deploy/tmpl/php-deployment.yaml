@@ -14,6 +14,13 @@ spec:
       labels:
         app: php
     spec:
+      initContainers:
+        - name: wait-db
+          image: busybox
+          command: ['sh', '-c', 'until nc -vz db-service 5432; do echo waiting for db-service; sleep 30; done;']
+        - name: wait-elasticsearch
+          image: busybox
+          command: ['sh', '-c', 'until nc -vz elasticsearch-service 9200; do echo waiting for elasticsearch-service; sleep 2; done;']
       containers:
         - env:
             - name: APP_VERSION
@@ -21,9 +28,7 @@ spec:
             - name: BUILD_NUMBER
               value: ${BUILD_NUMBER}
             - name: APP_ENV
-              value: dev
-            - name: IDE
-              value: phpstorm
+              value: prod
             - name: APP_SECRET
               valueFrom:
                 secretKeyRef:

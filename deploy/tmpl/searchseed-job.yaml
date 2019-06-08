@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: searchseed
+  namespace: poketools
 spec:
   template:
     spec:
@@ -19,9 +20,7 @@ spec:
             - name: BUILD_NUMBER
               value: ${BUILD_NUMBER}
             - name: APP_ENV
-              value: dev
-            - name: IDE
-              value: phpstorm
+              value: prod
             - name: APP_SECRET
               valueFrom:
                 secretKeyRef:
