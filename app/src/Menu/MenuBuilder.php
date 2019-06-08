@@ -127,7 +127,7 @@ class MenuBuilder
             ]
         );
         $menu->addChild(
-            'Source',
+            'Contribute',
             [
                 'uri' => 'https://gitlab.com/gamestuff.info/poketools',
             ]
