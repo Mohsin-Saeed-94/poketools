@@ -2,9 +2,11 @@ red-blue: &red-blue
   region: &red-blue.region kanto
   name: &red-blue.name 'Route 4'
   areas: &red-blue.areas
-    whole-area:
+    whole-area: &red-blue.areas.whole-area
       name: 'Whole area'
       default: true
+    pokemon-center:
+      name: 'Pokèmon Center'
   map:
     map: &red-blue.map.map kanto
     overlay: |
@@ -13,7 +15,8 @@ yellow: *red-blue
 gold-silver: &gold-silver
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas: &gold-silver.areas
+    whole-area: *red-blue.areas.whole-area
   map:
     map: *red-blue.map.map
     overlay: '<rect width="16" height="8" x="72" y="32" />'
@@ -28,7 +31,7 @@ firered-leafgreen:
 heartgold-soulsilver:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas: *gold-silver.areas
   map:
     map: *red-blue.map.map
     overlay: |
