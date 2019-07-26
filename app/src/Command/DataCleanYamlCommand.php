@@ -3,13 +3,12 @@
 namespace App\Command;
 
 use DragoonBoots\A2B\Annotations\DataMigration;
-use DragoonBoots\A2B\Annotations\IdField;
+use DragoonBoots\A2B\DataMigration\DataMigrationManagerInterface;
 use DragoonBoots\A2B\Drivers\Destination\YamlDestinationDriver;
 use DragoonBoots\A2B\Drivers\Source\YamlSourceDriver;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -33,19 +32,27 @@ class DataCleanYamlCommand extends Command
     private $yamlDestinationDriver;
 
     /**
+     * @var DataMigrationManagerInterface
+     */
+    private $migrationManager;
+
+    /**
      * DataCleanYamlCommand constructor.
      *
      * @param YamlSourceDriver $yamlSourceDriver
      * @param YamlDestinationDriver $yamlDestinationDriver
+     * @param DataMigrationManagerInterface $migrationManager
      */
     public function __construct(
         YamlSourceDriver $yamlSourceDriver,
-        YamlDestinationDriver $yamlDestinationDriver
+        YamlDestinationDriver $yamlDestinationDriver,
+        DataMigrationManagerInterface $migrationManager
     ) {
         parent::__construct();
 
         $this->yamlSourceDriver = $yamlSourceDriver;
         $this->yamlDestinationDriver = $yamlDestinationDriver;
+        $this->migrationManager = $migrationManager;
     }
 
     protected function configure()
@@ -54,42 +61,7 @@ class DataCleanYamlCommand extends Command
             ->setDescription(
                 'Clean a YAML data directory, normalizing data presentation and generating anchors/references'
             )
-            ->addArgument('path', InputArgument::REQUIRED, 'YAML directory path')
-            ->addOption(
-                'id',
-                null,
-                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-                '(Required) Id field in the YAML files'
-            )
-            ->addOption('no-refs', null, InputOption::VALUE_NONE, "Don't generate anchors/references");
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function interact(InputInterface $input, OutputInterface $output)
-    {
-        parent::interact($input, $output);
-
-        if (!$input->getOption('id')) {
-            $io = new SymfonyStyle($input, $output);
-            $ids = $io->ask(
-                'Enter id field names separated by commas.',
-                null,
-                function ($ids) {
-                    if (empty($ids)) {
-                        throw new \RuntimeException('You must enter at least one id field.');
-                    }
-
-                    $ids = explode(',', $ids);
-                    array_map('trim', $ids);
-
-                    return $ids;
-                }
-            );
-
-            $input->setOption('id', $ids);
-        }
+            ->addArgument('migration', InputArgument::REQUIRED, 'Migration class');
     }
 
     /**
@@ -105,16 +77,27 @@ class DataCleanYamlCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $path = realpath($input->getArgument('path'));
-        $useRefs = !$input->getOption('no-refs');
+        $migration = $this->migrationManager->getMigration($input->getArgument('migration'));
+        $destinationDefinition = $migration->getDefinition();
+        $path = $destinationDefinition->getDestination();
+        $path = preg_replace('`^yaml://`', '', $path, -1, $replacements);
+        if ($replacements < 1) {
+            $this->io->error(
+                sprintf(
+                    'The migration "%s" does not use the YAML driver.',
+                    $input->getArgument('migration')
+                )
+            );
+        }
+        $path = realpath($path);
+        if ($path === false) {
+            $this->io->error(sprintf('The path "%s" given in the migration is unusable.', $path));
+        }
 
         // Pretend this is a migration so the Yaml Driver can process it.
         $driverUri = sprintf('yaml://%s', $path);
-        $idFields = [];
-        foreach ($input->getOption('id') as $id) {
-            $idFields[] = new IdField(['name' => $id, 'type' => 'string']);
-        }
-        $definition = new DataMigration(
+        $idFields = $destinationDefinition->getDestinationIds();
+        $sourceDefinition = new DataMigration(
             [
                 'name' => 'Clean YAML',
                 'source' => $driverUri,
@@ -123,9 +106,9 @@ class DataCleanYamlCommand extends Command
                 'destinationIds' => $idFields,
             ]
         );
-        $this->yamlSourceDriver->configure($definition);
-        $this->yamlDestinationDriver->configure($definition);
-        $this->yamlDestinationDriver->setOption('refs', $useRefs);
+        $this->yamlSourceDriver->configure($sourceDefinition);
+        $this->yamlDestinationDriver->configure($sourceDefinition);
+        $migration->configureDestination($this->yamlDestinationDriver);
 
         // Run the data through the Yaml Driver
         $it = $this->yamlSourceDriver->getIterator();

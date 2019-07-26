@@ -1055,8 +1055,7 @@ SQL
      *
      * @return array
      */
-    protected
-    function arrayMergeOnly(
+    protected function arrayMergeOnly(
         array $fields,
         ...$arrays
     ): array {
@@ -1077,8 +1076,7 @@ SQL
      * {@inheritdoc}
      * @param YamlDestinationDriver $destinationDriver
      */
-    public
-    function configureDestination(
+    public function configureDestination(
         DestinationDriverInterface $destinationDriver
     ) {
         $destinationDriver->setOption(
