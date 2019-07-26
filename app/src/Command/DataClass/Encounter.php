@@ -239,7 +239,7 @@ final class Encounter
      *
      * @return self
      */
-    public function setChance(?int $chance): self
+    public function setChance($chance): self
     {
         if (empty($chance)) {
             $chance = null;
