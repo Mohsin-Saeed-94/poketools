@@ -44,15 +44,15 @@ class ListNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * A type is a collection if it is an array or implements Doctrine\Common\Collections\Collection.
      *
-     * @param string $type
+     * @param mixed $list
      *
      * @return bool
      */
-    private function typeIsCollection(string $type): bool
+    private function typeIsCollection($list): bool
     {
-        return $type === 'array'
-            || is_a($type, Collection::class)
-            || is_subclass_of($type, Collection::class);
+        return is_array($list)
+            || is_a($list, Collection::class)
+            || is_subclass_of($list, Collection::class);
     }
 
     /**
@@ -74,7 +74,7 @@ class ListNormalizer implements NormalizerInterface, DenormalizerInterface
      */
     public function supportsNormalization($data, $format = null)
     {
-        if (!is_array($data) && !$this->typeIsCollection(get_class($data))) {
+        if (!$this->typeIsCollection($data)) {
             return false;
         }
 

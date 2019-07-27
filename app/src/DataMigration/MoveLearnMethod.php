@@ -25,11 +25,13 @@ class MoveLearnMethod extends AbstractDoctrineDataMigration implements DataMigra
      */
     public function transform($sourceData, $destinationData)
     {
+        $sourceData['slug'] = $sourceData['identifier'];
         unset($sourceData['identifier']);
         $sourceData['position'] = $sourceData['sort'];
 
         $properties = [
             'name',
+            'slug',
             'position',
             'description',
         ];
