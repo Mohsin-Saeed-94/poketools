@@ -77,7 +77,7 @@ class LocationEvolutionCondition extends PokemonEvolutionCondition
             }
         );
 
-        return sprintf('Triggered in %s', implode(', ', $locationLinks));
+        return sprintf('Triggered in %s', implode(', ', $locationLinks->toArray()));
     }
 
     /**
