@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/encounter_condition.json",
+  "title": "Encounter Condition",
+  "description": "A condition in the game world that affects Pokémon encounters, such as time of day.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "$ref": "types/name.json"
+    },
+    "position": {
+      "$ref": "types/position.json"
+    },
+    "states": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "types/identifier.json"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "types/name.json"
+          },
+          "default": {
+            "description": "Is this entity the default in the collection?",
+            "title": "Is default",
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "minProperties": 1
+    }
+  },
+  "required": [
+    "name",
+    "position",
+    "states"
+  ]
+}

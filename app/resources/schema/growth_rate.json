@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/growth_rate.json",
+  "title": "Growth Rate",
+  "description": "Growth rate of a Pokémon, i.e. the EXP to level function.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "$ref": "types/name.json"
+    },
+    "formula": {
+      "title": "Formula",
+      "description": "The user-facing representation of the growth rate formula as a [Presentation MathML](https://en.wikipedia.org/wiki/MathML) document, including surrounding `<math>` tags.",
+      "type": "string",
+      "contentMediaType": "application/mathml+xml"
+    },
+    "expression": {
+      "title": "Expression",
+      "description": "This is the computed representation of the growth rate formula, as a [Symfony Expression](https://symfony.com/doc/current/components/expression_language/syntax.html).  In addition to the standard Expression functions, all [PHP Math functions](https://www.php.net/manual/en/ref.math.php) are also available.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "formula",
+    "expression"
+  ]
+}

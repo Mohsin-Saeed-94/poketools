@@ -6,6 +6,7 @@
 namespace App\Tests\dataschema;
 
 use App\Tests\dataschema\Validator\MediaType\CommonMarkMediaType;
+use App\Tests\dataschema\Validator\MediaType\MathMlMediaType;
 use App\Tests\dataschema\Validator\MediaType\SvgMediaType;
 use Opis\JsonSchema\IValidator;
 use Opis\JsonSchema\Loaders\File;
@@ -70,6 +71,7 @@ abstract class DataSchemaTestCase extends TestCase
     {
         $mediaTypes = [
             'text/markdown; variant=CommonMark' => new CommonMarkMediaType(),
+            'application/mathml+xml' => new MathMlMediaType(),
             'image/svg+xml' => new SvgMediaType(),
         ];
 

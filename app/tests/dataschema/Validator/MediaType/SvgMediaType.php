@@ -18,16 +18,15 @@ class SvgMediaType implements IMediaType
     {
         // Support SVG Fragments
         if (strpos($data, '<svg') !== 0) {
-            $data = '<svg xmlns="http://www.w3.org/2000/svg">'.$data.'</svg>';
+            $data = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">'.$data.'</svg>';
         }
-
-        $finfo = new \finfo(FILEINFO_MIME_TYPE);
-        if (strpos($finfo->buffer($data), 'image/svg') !== 0) {
-            return false;
-        }
+        $data = sprintf(
+                '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "%s/dtd/svg11-flat-20110816.dtd">',
+                __DIR__
+            ).$data;
 
         $svg = new \DOMDocument();
 
-        return $svg->loadXML($data) !== false;
+        return $svg->loadXML($data, LIBXML_DTDLOAD | LIBXML_DTDATTR | LIBXML_DTDVALID) !== false;
     }
 }
