@@ -22,6 +22,6 @@ class PalParkAreaTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('pal_park_area');
-        self::assertDataSchema('pal_park_area', $allData);
+        $this->assertDataSchema('pal_park_area', $allData);
     }
 }

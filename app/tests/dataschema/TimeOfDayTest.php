@@ -22,6 +22,6 @@ class TimeOfDayTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('time_of_day');
-        self::assertDataSchema('time_of_day', $allData);
+        $this->assertDataSchema('time_of_day', $allData);
     }
 }

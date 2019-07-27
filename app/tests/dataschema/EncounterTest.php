@@ -6,8 +6,12 @@
 namespace App\Tests\dataschema;
 
 
-use App\Entity\Embeddable\Range;
 use App\Tests\data\CsvParserTrait;
+use App\Tests\data\YamlParserTrait;
+use App\Tests\dataschema\Filter\CsvIdentifierExists;
+use App\Tests\dataschema\Filter\EntityHasVersionGroup;
+use App\Tests\dataschema\Filter\RangeFilter;
+use App\Tests\dataschema\Filter\YamlIdentifierExists;
 
 /**
  * Test Encounter data
@@ -19,6 +23,7 @@ use App\Tests\data\CsvParserTrait;
 class EncounterTest extends DataSchemaTestCase
 {
     use CsvParserTrait;
+    use YamlParserTrait;
 
     /**
      * Test data matches schema
@@ -26,7 +31,7 @@ class EncounterTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('encounter');
-        self::assertDataSchema('encounter', $allData);
+        $this->assertDataSchema('encounter', $allData);
     }
 
     /**
@@ -222,37 +227,6 @@ class EncounterTest extends DataSchemaTestCase
     }
 
     /**
-     * Test that the level is a valid range
-     *
-     * @depends testData
-     * @depends testId
-     */
-    public function testLevel(): void
-    {
-        $allData = $this->getIteratorForCsv('encounter');
-        $levels = array_column($allData, 'level', 'id');
-        foreach (array_unique($levels) as $level) {
-            $usedIn = array_keys($levels, $level, true);
-            $range = Range::fromString($level);
-            self::assertEquals(
-                $level,
-                (string)$range,
-                sprintf('[%s] The level "%s" is not a valid range.', implode(', ', $usedIn), $level)
-            );
-            self::assertGreaterThanOrEqual(
-                1,
-                $range->getMin(),
-                sprintf('[%s] Levels must be in the range 1-100.', implode(', ', $usedIn))
-            );
-            self::assertLessThanOrEqual(
-                100,
-                $range->getMax(),
-                sprintf('[%s] Levels must be in the range 1-100.', implode(', ', $usedIn))
-            );
-        }
-    }
-
-    /**
      * Test that the conditions list is formatted properly and that they exist.
      *
      * @depends testData
@@ -310,5 +284,23 @@ class EncounterTest extends DataSchemaTestCase
                 );
             }
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFilters(): array
+    {
+        return [
+            'string' => [
+                'versionIdentifier' => new CsvIdentifierExists('version'),
+                'locationIdentifier' => new YamlIdentifierExists('location'),
+                'locationInVersionGroup' => new EntityHasVersionGroup('location'),
+                'encounterMethodIdentifier' => new CsvIdentifierExists('encounter_method'),
+                'speciesIdentifier' => new YamlIdentifierExists('pokemon'),
+                'speciesInVersionGroup' => new EntityHasVersionGroup('pokemon'),
+                'range' => new RangeFilter(),
+            ],
+        ];
     }
 }

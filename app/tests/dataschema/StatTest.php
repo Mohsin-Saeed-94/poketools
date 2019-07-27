@@ -4,6 +4,7 @@ namespace App\Tests\dataschema;
 
 
 use App\Tests\data\CsvParserTrait;
+use App\Tests\dataschema\Filter\CsvIdentifierExists;
 
 /**
  * Test Stat
@@ -22,6 +23,18 @@ class StatTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('stat');
-        self::assertDataSchema('stat', $allData);
+        $this->assertDataSchema('stat', $allData);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFilters(): array
+    {
+        return [
+            'string' => [
+                'damageClassIdentifier' => new CsvIdentifierExists('move_damage_class'),
+            ],
+        ];
     }
 }

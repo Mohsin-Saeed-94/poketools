@@ -22,6 +22,6 @@ class ContestEffectTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('contest_effect');
-        self::assertDataSchema('contest_effect', $allData);
+        $this->assertDataSchema('contest_effect', $allData);
     }
 }

@@ -22,6 +22,6 @@ class SuperContestEffectTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('super_contest_effect');
-        self::assertDataSchema('super_contest_effect', $allData);
+        $this->assertDataSchema('super_contest_effect', $allData);
     }
 }

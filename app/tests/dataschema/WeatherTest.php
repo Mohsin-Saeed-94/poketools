@@ -22,6 +22,6 @@ class WeatherTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('weather');
-        self::assertDataSchema('weather', $allData);
+        $this->assertDataSchema('weather', $allData);
     }
 }

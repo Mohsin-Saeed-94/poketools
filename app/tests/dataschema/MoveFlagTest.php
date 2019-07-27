@@ -22,6 +22,6 @@ class MoveFlagTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('move_flag');
-        self::assertDataSchema('move_flag', $allData);
+        $this->assertDataSchema('move_flag', $allData);
     }
 }

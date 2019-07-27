@@ -4,6 +4,7 @@ namespace App\Tests\dataschema;
 
 
 use App\Tests\data\CsvParserTrait;
+use App\Tests\dataschema\Filter\YamlIdentifierExists;
 
 /**
  * Test Generation
@@ -22,6 +23,18 @@ class GenerationTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('generation');
-        self::assertDataSchema('generation', $allData);
+        $this->assertDataSchema('generation', $allData);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFilters(): array
+    {
+        return [
+            'string' => [
+                'regionIdentifier' => new YamlIdentifierExists('region'),
+            ],
+        ];
     }
 }

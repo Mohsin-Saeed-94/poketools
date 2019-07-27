@@ -4,6 +4,7 @@ namespace App\Tests\dataschema;
 
 
 use App\Tests\data\DataFinderTrait;
+use App\Tests\data\YamlParserTrait;
 
 /**
  * Test Ability
@@ -15,7 +16,7 @@ use App\Tests\data\DataFinderTrait;
 class AbilityTest extends DataSchemaTestCase
 {
     use DataFinderTrait;
-    protected const DIR_DATA = self::BASE_DIR_SCHEMA.'/../data/ability';
+    use YamlParserTrait;
 
     /**
      * Test data matches schema
@@ -25,7 +26,7 @@ class AbilityTest extends DataSchemaTestCase
         $allData = $this->getData();
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
-            self::assertDataSchema('ability', $data, $identifier);
+            $this->assertDataSchema('ability', $data, $identifier);
         }
     }
 

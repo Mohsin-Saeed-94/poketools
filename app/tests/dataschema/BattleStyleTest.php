@@ -24,6 +24,6 @@ class BattleStyleTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('battle_style');
-        self::assertDataSchema('battle_style', $allData);
+        $this->assertDataSchema('battle_style', $allData);
     }
 }

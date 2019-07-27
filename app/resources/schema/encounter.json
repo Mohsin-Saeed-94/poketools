@@ -13,11 +13,36 @@
       },
       "version": {
         "title": "Version identifier",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "versionIdentifier"
+          }
+        ]
       },
       "location": {
         "title": "Location identifier",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "$filters": [
+              "locationIdentifier",
+              {
+                "$func": "locationInVersionGroup",
+                "$vars": {
+                  "version": {
+                    "$ref": "1/version"
+                  }
+                }
+              }
+            ]
+          }
+        ]
       },
       "area": {
         "title": "Location Area identifier",
@@ -25,12 +50,38 @@
       },
       "method": {
         "title": "Encounter Method identifier",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "encounterMethodIdentifier"
+          }
+        ]
       },
       "species": {
         "title": "Pokemon Species identifier",
         "description": "This refers to the Species (e.g. `basculin`).",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": [
+              "speciesIdentifier",
+              {
+                "$func": "speciesInVersionGroup",
+                "$vars": {
+                  "version": {
+                    "$ref": "1/version"
+                  }
+                }
+              }
+            ]
+          }
+        ]
       },
       "pokemon": {
         "title": "Pokemon identifier",
@@ -47,7 +98,21 @@
             "maximum": 100
           },
           {
-            "$ref": "types/range.json"
+            "allOf": [
+              {
+                "$ref": "types/range.json"
+              },
+              {
+                "type": "string",
+                "$filters": {
+                  "$func": "range",
+                  "$vars": {
+                    "min": 1,
+                    "max": 100
+                  }
+                }
+              }
+            ]
           }
         ]
       },
@@ -64,6 +129,9 @@
             "type": "string",
             "minLength": 0,
             "maxLength": 0
+          },
+          {
+            "type": "null"
           }
         ]
       },

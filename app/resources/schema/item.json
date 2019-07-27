@@ -6,7 +6,15 @@
   "type": "object",
   "propertyNames": {
     "title": "Version Group identifier",
-    "$ref": "types/identifier.json"
+    "allOf": [
+      {
+        "$ref": "types/identifier.json"
+      },
+      {
+        "type": "string",
+        "$filters": "versionGroupIdentifier"
+      }
+    ]
   },
   "minProperties": 1,
   "additionalProperties": {
@@ -18,12 +26,38 @@
       "category": {
         "title": "Category",
         "description": "Identifier for the ItemCategory this item belongs to.",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "categoryIdentifier"
+          }
+        ]
       },
       "pocket": {
         "title": "Pocket",
         "description": "Identifier for the ItemPocket this item appears in.",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": [
+              "pocketIdentifier",
+              {
+                "$func": "pocketInVersionGroup",
+                "$vars": {
+                  "versionGroup": {
+                    "$ref": "1#"
+                  }
+                }
+              }
+            ]
+          }
+        ]
       },
       "buy": {
         "title": "Item purchase price",
@@ -56,13 +90,29 @@
         "description": "Special attributes that affect how the game treats this item.",
         "type": "array",
         "items": {
-          "$ref": "types/identifier.json"
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": "flagIdentifier"
+            }
+          ]
         }
       },
       "fling_effect": {
         "title": "Fling effect",
         "description": "The identifier of the effect the move *Fling* has when used by a Pokemon holding this item.",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "flingEffectIdentifier"
+          }
+        ]
       },
       "fling_power": {
         "title": "Fling power",
@@ -91,7 +141,25 @@
           "move": {
             "title": "Move taught",
             "description": "The identifier for the move taught",
-            "$ref": "types/identifier.json"
+            "allOf": [
+              {
+                "$ref": "types/identifier.json"
+              },
+              {
+                "type": "string",
+                "$filters": [
+                  "moveIdentifier",
+                  {
+                    "$func": "moveInVersionGroup",
+                    "$vars": {
+                      "versionGroup": {
+                        "$ref": "2#"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
           }
         },
         "required": [
@@ -107,12 +175,28 @@
         "properties": {
           "firmness": {
             "title": "Firmness",
-            "$ref": "types/identifier.json"
+            "allOf": [
+              {
+                "$ref": "types/identifier.json"
+              },
+              {
+                "type": "string",
+                "$filters": "berryFirmnessIdentifier"
+              }
+            ]
           },
           "natural_gift_type": {
             "title": "Natural Gift move type",
             "description": "The type the move *Natural Gift* has when used by a Pokemon holding this item.",
-            "$ref": "types/identifier.json"
+            "allOf": [
+              {
+                "$ref": "types/identifier.json"
+              },
+              {
+                "type": "string",
+                "$filters": "typeIdentifier"
+              }
+            ]
           },
           "natural_gift_power": {
             "title": "Natural Gift move power",
@@ -148,7 +232,15 @@
             "type": "object",
             "propertyNames": {
               "title": "BerryFlavor identifier",
-              "$ref": "types/identifier.json"
+              "allOf": [
+                {
+                  "$ref": "types/identifier.json"
+                },
+                {
+                  "type": "string",
+                  "$filters": "berryFlavorIdentifier"
+                }
+              ]
             },
             "additionalProperties": {
               "type": "integer",
@@ -157,7 +249,20 @@
           },
           "harvest": {
             "title": "The number of berries that can grow on one tree",
-            "$ref": "types/range.json"
+            "allOf": [
+              {
+                "$ref": "types/range.json"
+              },
+              {
+                "type": "string",
+                "$filters": {
+                  "$func": "range",
+                  "$vars": {
+                    "min": 1
+                  }
+                }
+              }
+            ]
           }
         }
       },

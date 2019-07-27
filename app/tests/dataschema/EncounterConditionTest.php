@@ -4,6 +4,7 @@ namespace App\Tests\dataschema;
 
 
 use App\Tests\data\DataFinderTrait;
+use App\Tests\data\YamlParserTrait;
 
 /**
  * Test Encounter Condition
@@ -15,7 +16,7 @@ use App\Tests\data\DataFinderTrait;
 class EncounterConditionTest extends DataSchemaTestCase
 {
     use DataFinderTrait;
-    protected const DIR_DATA = self::BASE_DIR_SCHEMA.'/../data/encounter_condition';
+    use YamlParserTrait;
 
     /**
      * Test data matches schema
@@ -25,7 +26,7 @@ class EncounterConditionTest extends DataSchemaTestCase
         $allData = $this->getData();
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
-            self::assertDataSchema('encounter_condition', $data, $identifier);
+            $this->assertDataSchema('encounter_condition', $data, $identifier);
         }
     }
 

@@ -22,6 +22,6 @@ class ItemFlagTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('item_flag');
-        self::assertDataSchema('item_flag', $allData);
+        $this->assertDataSchema('item_flag', $allData);
     }
 }

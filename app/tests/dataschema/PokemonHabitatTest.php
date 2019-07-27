@@ -23,6 +23,6 @@ class PokemonHabitatTest extends DataSchemaTestCase
     {
         // @todo Implement
         $allData = $this->getIteratorForCsv('pokemon_habitat');
-        self::assertDataSchema('pokemon_habitat', $allData);
+        $this->assertDataSchema('pokemon_habitat', $allData);
     }
 }

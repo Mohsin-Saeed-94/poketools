@@ -22,6 +22,6 @@ class GenderTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('gender');
-        self::assertDataSchema('gender', $allData);
+        $this->assertDataSchema('gender', $allData);
     }
 }

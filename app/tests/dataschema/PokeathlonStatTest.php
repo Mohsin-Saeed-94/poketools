@@ -22,6 +22,6 @@ class PokeathlonStatTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('pokeathlon_stat');
-        self::assertDataSchema('pokeathlon_stat', $allData);
+        $this->assertDataSchema('pokeathlon_stat', $allData);
     }
 }

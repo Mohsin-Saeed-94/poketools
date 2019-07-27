@@ -22,6 +22,6 @@ class EvolutionTriggerTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('evolution_trigger');
-        self::assertDataSchema('evolution_trigger', $allData);
+        $this->assertDataSchema('evolution_trigger', $allData);
     }
 }

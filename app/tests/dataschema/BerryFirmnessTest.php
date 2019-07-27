@@ -24,6 +24,6 @@ class BerryFirmnessTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('berry_firmness');
-        self::assertDataSchema('berry_firmness', $allData);
+        $this->assertDataSchema('berry_firmness', $allData);
     }
 }

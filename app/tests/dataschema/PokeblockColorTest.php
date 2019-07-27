@@ -22,6 +22,6 @@ class PokeblockColorTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('pokeblock_color');
-        self::assertDataSchema('pokeblock_color', $allData);
+        $this->assertDataSchema('pokeblock_color', $allData);
     }
 }

@@ -22,6 +22,6 @@ class FeatureTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('feature');
-        self::assertDataSchema('feature', $allData);
+        $this->assertDataSchema('feature', $allData);
     }
 }

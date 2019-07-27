@@ -6,7 +6,15 @@
   "type": "object",
   "propertyNames": {
     "title": "Version Group identifier",
-    "$ref": "types/identifier.json"
+    "allOf": [
+      {
+        "$ref": "types/identifier.json"
+      },
+      {
+        "type": "string",
+        "$filters": "versionGroupIdentifier"
+      }
+    ]
   },
   "minProperties": 1,
   "additionalProperties": {
@@ -14,7 +22,25 @@
     "properties": {
       "region": {
         "title": "Region identifier",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": [
+              "regionIdentifier",
+              {
+                "$func": "regionInVersionGroup",
+                "$vars": {
+                  "versionGroup": {
+                    "$ref": "1#"
+                  }
+                }
+              }
+            ]
+          }
+        ]
       },
       "name": {
         "$ref": "types/name.json"
@@ -48,6 +74,7 @@
             "name"
           ]
         },
+        "$filters": "singleDefault",
         "default": {
           "whole-area": {
             "title": "Whole area",
@@ -58,7 +85,25 @@
       "super": {
         "title": "Parent location",
         "description": "A parent location is generally the location that contains this one entirely.  For example, the Kanto Safari Zone would list `fuchsia-city` as it's super.",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": [
+              "locationIdentifier",
+              {
+                "$func": "locationInVersionGroup",
+                "$vars": {
+                  "versionGroup": {
+                    "$ref": "1#"
+                  }
+                }
+              }
+            ]
+          }
+        ]
       },
       "map": {
         "title": "Map data",

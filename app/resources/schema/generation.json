@@ -24,7 +24,15 @@
       "main_region": {
         "title": "Main Region identifier",
         "description": "The primary region in the generation; i.e. Generation II would be Johto, even through Kanto is playable.",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "regionIdentifier"
+          }
+        ]
       }
     },
     "additionalProperties": false,

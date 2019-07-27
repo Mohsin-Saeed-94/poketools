@@ -4,6 +4,7 @@ namespace App\Tests\dataschema;
 
 
 use App\Tests\data\CsvParserTrait;
+use App\Tests\dataschema\Filter\CsvIdentifierExists;
 
 /**
  * Test Contest Type
@@ -22,6 +23,21 @@ class ContestTypeTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('contest_type');
-        self::assertDataSchema('contest_type', $allData);
+        $this->assertDataSchema('contest_type', $allData);
     }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFilters(): array
+    {
+        return [
+            'string' => [
+                'berryFlavorIdentifier' => new CsvIdentifierExists('berry_flavor'),
+                'pokeblockColorIdentifier' => new CsvIdentifierExists('pokeblock_color'),
+            ],
+        ];
+    }
+
+
 }

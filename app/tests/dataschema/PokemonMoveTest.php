@@ -4,6 +4,8 @@ namespace App\Tests\dataschema;
 
 
 use App\Tests\data\CsvParserTrait;
+use App\Tests\dataschema\Filter\EntityHasVersionGroup;
+use App\Tests\dataschema\Filter\YamlIdentifierExists;
 
 /**
  * Test Pokemon Move
@@ -26,7 +28,7 @@ class PokemonMoveTest extends DataSchemaTestCase
         // This loop is needed to work around an unknown bug in the validator.  Allowing the validator to iterate
         // will cause the test to take literal hours instead of seconds.
         foreach ($allData as $i => $data) {
-            self::assertDataSchema('pokemon_move', [$data], $i);
+            $this->assertDataSchema('pokemon_move', [$data], $i);
         }
     }
 
@@ -46,5 +48,24 @@ class PokemonMoveTest extends DataSchemaTestCase
         $uniqueStrings = array_unique($strings);
         $duplicates = array_diff($strings, $uniqueStrings);
         self::assertEmpty($duplicates, count($duplicates).' rows are duplicated');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFilters(): array
+    {
+        return [
+            'string' => [
+                'speciesIdentifier' => new YamlIdentifierExists('pokemon'),
+                'speciesInVersionGroup' => new EntityHasVersionGroup('pokemon'),
+                'versionGroupIdentifier' => new YamlIdentifierExists('version_group'),
+                'moveIdentifier' => new YamlIdentifierExists('move'),
+                'moveInVersionGroup' => new EntityHasVersionGroup('move'),
+                'learnMethodIdentifier' => new YamlIdentifierExists('move_learn_method'),
+                'itemIdentifier' => new YamlIdentifierExists('item'),
+                'itemInVersionGroup' => new EntityHasVersionGroup('item'),
+            ],
+        ];
     }
 }

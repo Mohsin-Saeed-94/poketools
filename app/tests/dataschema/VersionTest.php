@@ -4,6 +4,7 @@ namespace App\Tests\dataschema;
 
 
 use App\Tests\data\CsvParserTrait;
+use App\Tests\dataschema\Filter\YamlIdentifierExists;
 
 /**
  * Test Version
@@ -22,6 +23,18 @@ class VersionTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('version');
-        self::assertDataSchema('version', $allData);
+        $this->assertDataSchema('version', $allData);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFilters(): array
+    {
+        return [
+            'string' => [
+                'versionGroupIdentifier' => new YamlIdentifierExists('version_group'),
+            ],
+        ];
     }
 }

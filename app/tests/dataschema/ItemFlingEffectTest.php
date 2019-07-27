@@ -22,6 +22,6 @@ class ItemFlingEffectTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('item_fling_effect');
-        self::assertDataSchema('item_fling_effect', $allData);
+        $this->assertDataSchema('item_fling_effect', $allData);
     }
 }

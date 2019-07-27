@@ -22,6 +22,6 @@ class MoveDamageClassTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('move_damage_class');
-        self::assertDataSchema('move_damage_class', $allData);
+        $this->assertDataSchema('move_damage_class', $allData);
     }
 }

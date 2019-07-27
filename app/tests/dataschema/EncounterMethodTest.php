@@ -22,6 +22,6 @@ class EncounterMethodTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('encounter_method');
-        self::assertDataSchema('encounter_method', $allData);
+        $this->assertDataSchema('encounter_method', $allData);
     }
 }

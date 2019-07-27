@@ -22,6 +22,6 @@ class MoveCategoryTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('move_category');
-        self::assertDataSchema('move_category', $allData);
+        $this->assertDataSchema('move_category', $allData);
     }
 }

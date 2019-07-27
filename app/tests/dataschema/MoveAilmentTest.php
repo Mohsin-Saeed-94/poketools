@@ -22,6 +22,6 @@ class MoveAilmentTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('move_ailment');
-        self::assertDataSchema('move_ailment', $allData);
+        $this->assertDataSchema('move_ailment', $allData);
     }
 }

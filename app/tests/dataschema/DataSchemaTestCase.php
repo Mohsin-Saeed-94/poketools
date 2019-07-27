@@ -8,14 +8,13 @@ namespace App\Tests\dataschema;
 use App\Tests\dataschema\Validator\MediaType\CommonMarkMediaType;
 use App\Tests\dataschema\Validator\MediaType\MathMlMediaType;
 use App\Tests\dataschema\Validator\MediaType\SvgMediaType;
+use Opis\JsonSchema\FilterContainer;
 use Opis\JsonSchema\IValidator;
 use Opis\JsonSchema\Loaders\File;
 use Opis\JsonSchema\Schema;
 use Opis\JsonSchema\ValidationError;
 use Opis\JsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Yaml\Parser;
 
 /**
  * Base Test Case for schema validation
@@ -33,33 +32,34 @@ abstract class DataSchemaTestCase extends TestCase
      * @param array|object $data
      * @param string|null $context
      */
-    protected static function assertDataSchema(string $name, $data, ?string $context = null): void
+    protected function assertDataSchema(string $name, $data, ?string $context = null): void
     {
         static $schemas = [];
         if (!isset($schemas[$name])) {
             $schemaPath = realpath(self::BASE_DIR_SCHEMA.$name.'.json');
             $schemas[$name] = Schema::fromJsonString(file_get_contents($schemaPath));
         }
-        $validator = self::getValidator();
+        $validator = $this->getValidator();
 
         // Kludge to get data to be properly encapsulated (arrays vs objects)
         $data = json_decode(json_encode($data, JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION), false);
 
         $result = $validator->schemaValidation($data, $schemas[$name], 1, $validator->getLoader());
-        self::assertTrue($result->isValid(), self::buildSchemaErrorMessage($result->getErrors(), $context));
+        self::assertTrue($result->isValid(), $this->buildSchemaErrorMessage($result->getErrors(), $context));
     }
 
     /**
      * @return IValidator
      */
-    private static function getValidator(): IValidator
+    private function getValidator(): IValidator
     {
         static $validator = null;
         if ($validator === null) {
             $loader = new File(self::SCHEMA_BASE_URI, [self::BASE_DIR_SCHEMA]);
             $validator = new Validator(null, $loader);
-            self::addMediaTypes($validator);
         }
+        $this->addMediaTypes($validator);
+        $this->addFilters($validator);
 
         return $validator;
     }
@@ -67,18 +67,55 @@ abstract class DataSchemaTestCase extends TestCase
     /**
      * @param Validator $validator
      */
-    private static function addMediaTypes(Validator $validator): void
+    private function addMediaTypes(Validator $validator): void
     {
-        $mediaTypes = [
-            'text/markdown; variant=CommonMark' => new CommonMarkMediaType(),
-            'application/mathml+xml' => new MathMlMediaType(),
-            'image/svg+xml' => new SvgMediaType(),
-        ];
+        $mediaTypes = $this->getMediaTypes();
 
         $mediaTypeContainer = $validator->getMediaType();
         foreach ($mediaTypes as $mime => $mediaType) {
             $mediaTypeContainer->add($mime, $mediaType);
         }
+    }
+
+    /**
+     * @return array
+     *   An array mapping content types to their MediaType objects
+     */
+    protected function getMediaTypes(): array
+    {
+        return [
+            'text/markdown; variant=CommonMark' => new CommonMarkMediaType(),
+            'application/mathml+xml' => new MathMlMediaType(),
+            'image/svg+xml' => new SvgMediaType(),
+        ];
+    }
+
+    /**
+     * @param Validator $validator
+     */
+    private function addFilters(Validator $validator): void
+    {
+        $filters = $this->getFilters();
+
+        $filterContainer = new FilterContainer();
+        foreach ($filters as $dataType => $dataTypeFilters) {
+            foreach ($dataTypeFilters as $name => $filter) {
+                $filterContainer->add($dataType, $name, $filter);
+            }
+        }
+        $validator->setFilters($filterContainer);
+    }
+
+    /**
+     * @return array
+     *   An multi-level array:
+     *   - json data type (boolean, number, integer, string, null, array, object)
+     *   - name: the name you will use in your schemas
+     *   - the filter object that implements Opis\JsonSchema\IFilter
+     */
+    protected function getFilters(): array
+    {
+        return [];
     }
 
     /**
@@ -88,7 +125,7 @@ abstract class DataSchemaTestCase extends TestCase
      *
      * @return string
      */
-    private static function buildSchemaErrorMessage(array $errors, ?string $context = null): string
+    private function buildSchemaErrorMessage(array $errors, ?string $context = null): string
     {
         $messages = [];
         foreach ($errors as $error) {
@@ -109,62 +146,5 @@ abstract class DataSchemaTestCase extends TestCase
         }
 
         return "Data does not follow schema:\n".implode(str_repeat('-', 10)."\n", $messages);
-    }
-
-    /**
-     * @return JsonEncoder
-     */
-    private static function getJsonEncoder(): JsonEncoder
-    {
-        static $encoder = null;
-        if ($encoder === null) {
-            $encoder = new JsonEncoder();
-        }
-
-        return $encoder;
-    }
-
-    /**
-     * Read a YAML file from the given path.
-     *
-     * @param string $filePath
-     *
-     * @return array
-     */
-    protected function getDataFromYaml(string $filePath): array
-    {
-        static $cache = [];
-        if (!isset($cache[$filePath])) {
-            $cache[$filePath] = $this->parseYaml(file_get_contents($filePath));
-        }
-
-        return $cache[$filePath];
-    }
-
-    /**
-     * @param string $yaml
-     *
-     * @return array
-     */
-    protected function parseYaml(string $yaml): array
-    {
-        $data = $this->getYamlParser()->parse($yaml);
-        self::assertNotEmpty($data, 'Data is empty');
-
-        return $data;
-    }
-
-    /**
-     * @return Parser
-     */
-    protected function getYamlParser(): Parser
-    {
-        static $parser = null;
-
-        if (!isset($parser)) {
-            $parser = new Parser();
-        }
-
-        return $parser;
     }
 }

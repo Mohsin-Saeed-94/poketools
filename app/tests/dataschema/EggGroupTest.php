@@ -22,6 +22,6 @@ class EggGroupTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('egg_group');
-        self::assertDataSchema('egg_group', $allData);
+        $this->assertDataSchema('egg_group', $allData);
     }
 }

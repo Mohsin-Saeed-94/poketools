@@ -22,6 +22,6 @@ class MoveTargetTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('move_target');
-        self::assertDataSchema('move_target', $allData);
+        $this->assertDataSchema('move_target', $allData);
     }
 }

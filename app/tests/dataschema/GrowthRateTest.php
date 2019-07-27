@@ -4,6 +4,8 @@ namespace App\Tests\dataschema;
 
 
 use App\Tests\data\DataFinderTrait;
+use App\Tests\data\YamlParserTrait;
+use App\Tests\dataschema\Filter\ExpressionFilter;
 
 /**
  * Test Growth Rate
@@ -15,7 +17,7 @@ use App\Tests\data\DataFinderTrait;
 class GrowthRateTest extends DataSchemaTestCase
 {
     use DataFinderTrait;
-    protected const DIR_DATA = self::BASE_DIR_SCHEMA.'/../data/growth_rate';
+    use YamlParserTrait;
 
     /**
      * Test data matches schema
@@ -25,7 +27,7 @@ class GrowthRateTest extends DataSchemaTestCase
         $allData = $this->getData();
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
-            self::assertDataSchema('growth_rate', $data, $identifier);
+            $this->assertDataSchema('growth_rate', $data, $identifier);
         }
     }
 
@@ -40,5 +42,17 @@ class GrowthRateTest extends DataSchemaTestCase
         foreach ($finder as $fileInfo) {
             yield $fileInfo->getFilename() => $fileInfo->getContents();
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFilters(): array
+    {
+        return [
+            'string' => [
+                'expression' => new ExpressionFilter(),
+            ],
+        ];
     }
 }

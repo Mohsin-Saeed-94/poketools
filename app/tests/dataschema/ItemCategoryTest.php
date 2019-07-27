@@ -4,6 +4,7 @@ namespace App\Tests\dataschema;
 
 
 use App\Tests\data\CsvParserTrait;
+use App\Tests\dataschema\Filter\CsvIdentifierExists;
 
 /**
  * Test Item Category
@@ -22,6 +23,18 @@ class ItemCategoryTest extends DataSchemaTestCase
     public function testData(): void
     {
         $allData = $this->getIteratorForCsv('item_category');
-        self::assertDataSchema('item_category', $allData);
+        $this->assertDataSchema('item_category', $allData);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFilters(): array
+    {
+        return [
+            'string' => [
+                'categoryIdentifier' => new CsvIdentifierExists('item_category'),
+            ],
+        ];
     }
 }

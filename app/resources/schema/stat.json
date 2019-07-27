@@ -16,7 +16,15 @@
         "description": "If this stat plays a part in damage calculations, which damage class it should be involved with.",
         "oneOf": [
           {
-            "$ref": "types/identifier.json"
+            "allOf": [
+              {
+                "$ref": "types/identifier.json"
+              },
+              {
+                "type": "string",
+                "$filters": "damageClassIdentifier"
+              }
+            ]
           },
           {
             "title": "Blank",

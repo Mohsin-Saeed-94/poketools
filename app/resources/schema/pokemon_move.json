@@ -10,7 +10,25 @@
     "properties": {
       "species": {
         "title": "Species identifier",
-        "$ref": "types/identifier.json"
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": [
+              "speciesIdentifier",
+              {
+                "$func": "speciesInVersionGroup",
+                "$vars": {
+                  "versionGroup": {
+                    "$ref": "1/version_group"
+                  }
+                }
+              }
+            ]
+          }
+        ]
       },
       "pokemon": {
         "title": "Pokemon identifier",
@@ -18,51 +36,134 @@
       },
       "version_group": {
         "title": "Version Group identifier",
-        "$ref": "types/identifier.json"
-      },
-      "move": {
-        "title": "Move identifier",
-        "$ref": "types/identifier.json"
-      },
-      "learn_method": {
-        "title": "Learn method identifier",
-        "$ref": "types/identifier.json"
-      },
-      "level": {
-        "title": "Learn level",
-        "description": "Only applicable if `learn_method` is `level-up`.",
-        "oneOf": [
+        "allOf": [
           {
-            "title": "Level",
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 100
-          },
-          {
-            "title": "Blank",
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 0
-          }
-        ]
-      },
-      "machine": {
-        "title": "Machine identifier",
-        "description": "Only applicable if `learn_method` is `machine`.",
-        "oneOf": [
-          {
-            "title": "Item identifier",
             "$ref": "types/identifier.json"
           },
           {
-            "title": "Blank",
             "type": "string",
-            "minLength": 0,
-            "maxLength": 0
+            "$filters": "versionGroupIdentifier"
           }
         ]
+      },
+      "move": {
+        "title": "Move identifier",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": [
+              "moveIdentifier",
+              {
+                "$func": "moveInVersionGroup",
+                "$vars": {
+                  "versionGroup": {
+                    "$ref": "1/version_group"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "learn_method": {
+        "title": "Learn method identifier",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "learnMethodIdentifier"
+          }
+        ]
+      },
+      "level": {
+        "title": "Learn level",
+        "description": "Only applicable if `learn_method` is `level-up`."
+      },
+      "machine": {
+        "title": "Machine identifier",
+        "description": "Only applicable if `learn_method` is `machine`."
       }
     },
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "learn_method": {
+              "const": "level-up"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "level": {
+              "title": "Level",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        },
+        "else": {
+          "properties": {
+            "level": {
+              "title": "Blank",
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 0
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "learn_method": {
+              "const": "machine"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "machine": {
+              "allOf": [
+                {
+                  "$ref": "types/identifier.json"
+                },
+                {
+                  "type": "string",
+                  "$filter": [
+                    "itemIdentifier",
+                    {
+                      "$func": "itemInVersionGroup",
+                      "$vars": {
+                        "versionGroup": {
+                          "$ref": "1/version_group"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "else": {
+          "properties": {
+            "machine": {
+              "title": "Blank",
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 0
+            }
+          }
+        }
+      }
+    ],
     "additionalProperties": false,
     "required": [
       "species",

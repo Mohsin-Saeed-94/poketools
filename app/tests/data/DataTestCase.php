@@ -31,33 +31,6 @@ use Symfony\Component\Yaml\Parser;
 abstract class DataTestCase extends KernelTestCase
 {
     /**
-     * @param string $yaml
-     *
-     * @return array
-     */
-    protected function parseYaml(string $yaml): array
-    {
-        $data = $this->getYamlParser()->parse($yaml);
-        self::assertNotEmpty($data, 'Data is empty');
-
-        return $data;
-    }
-
-    /**
-     * @return Parser
-     */
-    protected function getYamlParser(): Parser
-    {
-        static $parser = null;
-
-        if (!isset($parser)) {
-            $parser = $this->getContainer()->get('test.yaml.parser');
-        }
-
-        return $parser;
-    }
-
-    /**
      * @return ContainerInterface
      */
     protected function getContainer(): ContainerInterface

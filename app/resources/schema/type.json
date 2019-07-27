@@ -19,7 +19,15 @@
         "description": "For versions where damage class comes from the type.  Types introduced after the switch will have this blank.",
         "oneOf": [
           {
-            "$ref": "types/identifier.json"
+            "allOf": [
+              {
+                "$ref": "types/identifier.json"
+              },
+              {
+                "type": "string",
+                "$filters": "damageClassIdentifier"
+              }
+            ]
           },
           {
             "title": "Blank",

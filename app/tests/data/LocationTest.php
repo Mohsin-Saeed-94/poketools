@@ -15,6 +15,7 @@ namespace App\Tests\data;
 class LocationTest extends DataTestCase
 {
     use DataFinderTrait;
+    use YamlParserTrait;
 
     /**
      * Test descriptions are valid Markdown
