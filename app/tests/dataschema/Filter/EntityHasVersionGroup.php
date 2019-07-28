@@ -29,6 +29,8 @@ class EntityHasVersionGroup implements IFilter
      */
     private $entityType;
 
+    private $versionGroups = [];
+
     /**
      * EntityHasVersionGroup constructor.
      *
@@ -53,9 +55,13 @@ class EntityHasVersionGroup implements IFilter
             $versionGroup = $args['versionGroup'];
         }
 
-        $entity = $this->loadEntityYaml($this->entityType.'/'.$data);
+        $identifier = $this->entityType.'/'.$data;
+        if (!isset($this->versionGroups[$identifier])) {
+            $entity = $this->loadEntityYaml($identifier);
+            $this->versionGroups[$identifier] = array_fill_keys(array_keys($entity), 0);
+        }
 
-        return isset($entity[$versionGroup]);
+        return isset($this->versionGroups[$identifier][$versionGroup]);
     }
 
     /**

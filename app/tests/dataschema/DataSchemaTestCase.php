@@ -39,7 +39,11 @@ abstract class DataSchemaTestCase extends TestCase
             $schemaPath = realpath(self::BASE_DIR_SCHEMA.$name.'.json');
             $schemas[$name] = Schema::fromJsonString(file_get_contents($schemaPath));
         }
-        $validator = $this->getValidator();
+        static $validators = [];
+        if (!isset($validators[$name])) {
+            $validators[$name] = $this->getValidator();
+        }
+        $validator = $validators[$name];
 
         // Kludge to get data to be properly encapsulated (arrays vs objects)
         $data = json_decode(json_encode($data, JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION), false);
