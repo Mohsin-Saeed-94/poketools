@@ -82,88 +82,53 @@
       },
       "level": {
         "title": "Learn level",
-        "description": "Only applicable if `learn_method` is `level-up`."
+        "description": "Only applicable if `learn_method` is `level-up`.",
+        "oneOf": [
+          {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
+          }
+        ]
       },
       "machine": {
         "title": "Machine identifier",
-        "description": "Only applicable if `learn_method` is `machine`."
-      }
-    },
-    "allOf": [
-      {
-        "if": {
-          "properties": {
-            "learn_method": {
-              "const": "level-up"
-            }
-          }
-        },
-        "then": {
-          "properties": {
-            "level": {
-              "title": "Level",
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            }
-          }
-        },
-        "else": {
-          "properties": {
-            "level": {
-              "title": "Blank",
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 0
-            }
-          }
-        }
-      },
-      {
-        "if": {
-          "properties": {
-            "learn_method": {
-              "const": "machine"
-            }
-          }
-        },
-        "then": {
-          "properties": {
-            "machine": {
-              "allOf": [
-                {
-                  "$ref": "types/identifier.json"
-                },
-                {
-                  "type": "string",
-                  "$filter": [
-                    "itemIdentifier",
-                    {
-                      "$func": "itemInVersionGroup",
-                      "$vars": {
-                        "versionGroup": {
-                          "$ref": "1/version_group"
-                        }
+        "description": "Only applicable if `learn_method` is `machine`.",
+        "oneOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "types/identifier.json"
+              },
+              {
+                "type": "string",
+                "$filter": [
+                  "itemIdentifier",
+                  {
+                    "$func": "itemInVersionGroup",
+                    "$vars": {
+                      "versionGroup": {
+                        "$ref": "1/version_group"
                       }
                     }
-                  ]
-                }
-              ]
-            }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
           }
-        },
-        "else": {
-          "properties": {
-            "machine": {
-              "title": "Blank",
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 0
-            }
-          }
-        }
+        ]
       }
-    ],
+    },
     "additionalProperties": false,
     "required": [
       "species",
