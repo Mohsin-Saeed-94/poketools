@@ -1,0 +1,855 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/pokemon.json",
+  "title": "Pokemon Species",
+  "description": "A Pokémon species is a single named entity in the Pokédex.",
+  "type": "object",
+  "propertyNames": {
+    "title": "Version Group identifier",
+    "allOf": [
+      {
+        "$ref": "types/identifier.json"
+      },
+      {
+        "type": "string",
+        "$filters": "versionGroupIdentifier"
+      }
+    ]
+  },
+  "minProperties": 1,
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "$ref": "types/name.json"
+      },
+      "position": {
+        "$ref": "types/position.json"
+      },
+      "numbers": {
+        "title": "Pokedex numbers",
+        "type": "object",
+        "minProperties": 1,
+        "propertyNames": {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": "pokedexIdentifier"
+            }
+          ]
+        }
+      },
+      "pokemon": {
+        "title": "Pokemon",
+        "description": "Pokémon are defined as a form with different types, moves, or other game-changing properties; e.g. There are four separate \"Pokemon\" for Deoxys, but only one for Unown.",
+        "minProperties": 1,
+        "propertyNames": {
+          "$ref": "types/identifier.json"
+        },
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "genus": {
+              "title": "Genus",
+              "type": "string"
+            },
+            "color": {
+              "title": "Color",
+              "allOf": [
+                {
+                  "$ref": "types/identifier.json"
+                },
+                {
+                  "type": "string",
+                  "$filters": "pokemonColorIdentifier"
+                }
+              ]
+            },
+            "shape": {
+              "title": "Shape",
+              "allOf": [
+                {
+                  "$ref": "types/identifier.json"
+                },
+                {
+                  "type": "string",
+                  "$filters": [
+                    "pokemonShapeIdentifier",
+                    {
+                      "$func": "pokemonShapeInVersionGroup",
+                      "$vars": {
+                        "versionGroup": {
+                          "$ref": "3#"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "habitat": {
+              "title": "Habitat",
+              "allOf": [
+                {
+                  "$ref": "types/identifier.json"
+                },
+                {
+                  "type": "string",
+                  "$filters": "habitatIdentifier"
+                }
+              ]
+            },
+            "female_rate": {
+              "title": "Female rate",
+              "description": "Percentage of encounters that are female",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "capture_rate": {
+              "title": "Capture rate",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 255
+            },
+            "happiness": {
+              "title": "Initial happiness",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "baby": {
+              "title": "Is baby?",
+              "type": "boolean",
+              "default": false
+            },
+            "hatch_steps": {
+              "title": "Steps in one egg cycle",
+              "type": "integer",
+              "minimum": 1
+            },
+            "growth_rate": {
+              "title": "Growth rate",
+              "allOf": [
+                {
+                  "$ref": "types/identifier.json"
+                },
+                {
+                  "type": "string",
+                  "$filters": "growthRateIdentifier"
+                }
+              ]
+            },
+            "forms_switchable": {
+              "title": "Has manually-switchable forms",
+              "type": "boolean"
+            },
+            "forms_note": {
+              "title": "Forms note",
+              "$ref": "types/markdown.json"
+            },
+            "pal_park": {
+              "title": "Pal Park location",
+              "type": "object",
+              "properties": {
+                "area": {
+                  "title": "Area",
+                  "allOf": [
+                    {
+                      "$ref": "types/identifier.json"
+                    },
+                    {
+                      "type": "string",
+                      "$filters": "palParkAreaIdentifier"
+                    }
+                  ]
+                },
+                "rate": {
+                  "title": "Encounter rate",
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100
+                },
+                "score": {
+                  "title": "Score",
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "area",
+                "rate",
+                "score"
+              ]
+            },
+            "name": {
+              "$ref": "types/name.json"
+            },
+            "default": {
+              "title": "Default",
+              "type": "boolean",
+              "default": false
+            },
+            "height": {
+              "title": "Height (dm)",
+              "type": "integer",
+              "minimum": 1
+            },
+            "weight": {
+              "title": "Weight (hg)",
+              "type": "integer",
+              "minimum": 1
+            },
+            "experience": {
+              "title": "Experience",
+              "type": "integer",
+              "minimum": 1
+            },
+            "types": {
+              "title": "Types",
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "types/identifier.json"
+                  },
+                  {
+                    "type": "string",
+                    "$filters": [
+                      "typeIdentifier",
+                      {
+                        "$func": "typeInVersionGroup",
+                        "$vars": {
+                          "versionGroup": {
+                            "$ref": "4#"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "egg_groups": {
+              "title": "Egg groups",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "types/identifier.json"
+                  },
+                  {
+                    "type": "string",
+                    "$filters": "eggGroupIdentifier"
+                  }
+                ]
+              }
+            },
+            "mega": {
+              "title": "Is Mega Evolution",
+              "type": "boolean",
+              "default": false
+            },
+            "stats": {
+              "title": "Stats",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "$filters": "statIdentifier"
+              },
+              "minProperties": 1,
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "base_value": {
+                    "title": "Base value",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 255
+                  },
+                  "effort_change": {
+                    "title": "Effort change",
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "base_value",
+                  "effort_change"
+                ]
+              }
+            },
+            "evolution_conditions": {
+              "title": "Evolution conditions",
+              "type": "object",
+              "propertyNames": {
+                "title": "Evolution trigger",
+                "allOf": [
+                  {
+                    "$ref": "types/identifier.json"
+                  },
+                  {
+                    "type": "string",
+                    "$filters": "evolutionTriggerIdentifier"
+                  }
+                ]
+              },
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "minItems": 0,
+                    "maxItems": 0
+                  },
+                  {
+                    "type": "object",
+                    "minProperties": 1,
+                    "additionalProperties": false,
+                    "properties": {
+                      "trigger_item": {
+                        "title": "Trigger item",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": [
+                              "itemIdentifier",
+                              {
+                                "$func": "itemInVersionGroup",
+                                "$vars": {
+                                  "versionGroup": {
+                                    "$ref": "5#"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "minimum_level": {
+                        "title": "Minimum level",
+                        "type": "integer",
+                        "minimum": 2,
+                        "maximum": 100
+                      },
+                      "gender": {
+                        "title": "Gender",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": "genderIdentifier"
+                          }
+                        ]
+                      },
+                      "location": {
+                        "title": "Location",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": [
+                              "locationIdentifier",
+                              {
+                                "$func": "locationInVersionGroup",
+                                "$vars": {
+                                  "versionGroup": {
+                                    "$ref": "5#"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "held_item": {
+                        "title": "Held item",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": [
+                              "itemIdentifier",
+                              {
+                                "$func": "itemInVersionGroup",
+                                "$vars": {
+                                  "versionGroup": {
+                                    "$ref": "5#"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "time_of_day": {
+                        "title": "Time of day",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": "timeOfDayIdentifier"
+                          }
+                        ]
+                      },
+                      "known_move": {
+                        "title": "Knows move",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": [
+                              "moveIdentifier",
+                              {
+                                "$func": "moveInVersionGroup",
+                                "$vars": {
+                                  "versionGroup": {
+                                    "$ref": "5#"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "known_move_type": {
+                        "title": "Knows move of type",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": [
+                              "typeIdentifier",
+                              {
+                                "$func": "typeInVersionGroup",
+                                "$vars": {
+                                  "versionGroup": {
+                                    "$ref": "5#"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "minimum_happiness": {
+                        "title": "Minimum happiness",
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 255
+                      },
+                      "minimum_beauty": {
+                        "title": "Minimum beauty",
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 255
+                      },
+                      "minimum_affection": {
+                        "title": "Minimum affection",
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 5
+                      },
+                      "party_species": {
+                        "title": "In party with species",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": [
+                              "speciesIdentifier",
+                              {
+                                "$func": "speciesInVersionGroup",
+                                "$vars": {
+                                  "versionGroup": {
+                                    "$ref": "5#"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "party_type": {
+                        "title": "In party with type",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": [
+                              "typeIdentifier",
+                              {
+                                "$func": "typeInVersionGroup",
+                                "$vars": {
+                                  "versionGroup": {
+                                    "$ref": "5#"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "physical_stats_difference": {
+                        "title": "Physical stats difference",
+                        "type": "integer",
+                        "minimum": -1,
+                        "maximum": 1
+                      },
+                      "traded_for_species": {
+                        "title": "Traded for species",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": [
+                              "speciesIdentifier",
+                              {
+                                "$func": "speciesInVersionGroup",
+                                "$vars": {
+                                  "versionGroup": {
+                                    "$ref": "5#"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "overworld_weather": {
+                        "title": "Overworld weather",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": "weatherIdentifier"
+                          }
+                        ]
+                      },
+                      "console_inverted": {
+                        "title": "Console upside-down",
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "abilities": {
+              "title": "Abilities",
+              "type": "object",
+              "propertyNames": {
+                "allOf": [
+                  {
+                    "$ref": "types/identifier.json"
+                  },
+                  {
+                    "type": "string",
+                    "$filters": [
+                      "abilityIdentifier",
+                      {
+                        "$func": "abilityInVersionGroup",
+                        "$vars": {
+                          "versionGroup": {
+                            "$ref": "3#"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "hidden": {
+                    "title": "Hidden ability",
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "position": {
+                    "$ref": "types/position.json"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "position"
+                ]
+              }
+            },
+            "wild_held_items": {
+              "title": "Wild held items",
+              "type": "object",
+              "propertyNames": {
+                "title": "Version identifier",
+                "allOf": [
+                  {
+                    "$ref": "types/identifier.json"
+                  },
+                  {
+                    "type": "string",
+                    "$filters": [
+                      "versionIdentifier",
+                      {
+                        "$func": "versionInVersionGroup",
+                        "$vars": {
+                          "versionGroup": {
+                            "$ref": "3#"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "additionalProperties": {
+                "type": "object",
+                "propertyNames": {
+                  "title": "Item identifier",
+                  "allOf": [
+                    {
+                      "$ref": "types/identifier.json"
+                    },
+                    {
+                      "type": "string",
+                      "$filters": [
+                        "itemIdentifier",
+                        {
+                          "$func": "itemInVersionGroup",
+                          "$vars": {
+                            "version": {
+                              "$ref": "0#"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "additionalProperties": {
+                  "title": "Percent chance",
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100
+                }
+              }
+            },
+            "flavor_text": {
+              "title": "Flavor text",
+              "type": "object",
+              "minProperties": 1,
+              "propertyNames": {
+                "allOf": [
+                  {
+                    "$ref": "types/identifier.json"
+                  },
+                  {
+                    "type": "string",
+                    "$filters": [
+                      "versionIdentifier",
+                      {
+                        "$func": "versionInVersionGroup",
+                        "$vars": {
+                          "versionGroup": {
+                            "$ref": "3#"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "additionalProperties": {
+                "$ref": "types/flavor_text.json"
+              }
+            },
+            "evolution_parent": {
+              "title": "Evolves from",
+              "type": "string",
+              "pattern": "^[a-z0-9\\-]+/[a-z0-9\\-]+$",
+              "$filters": {
+                "$func": "speciesPokemonCombination",
+                "$vars": {
+                  "versionGroup": {
+                    "$ref": "3#"
+                  }
+                }
+              }
+            },
+            "forms": {
+              "title": "Forms",
+              "type": "object",
+              "minProperties": 1,
+              "propertyNames": {
+                "$ref": "types/identifier.json"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "$ref": "types/name.json"
+                  },
+                  "form_name": {
+                    "title": "Form name",
+                    "$ref": "types/name.json"
+                  },
+                  "default": {
+                    "title": "Default",
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "battle_only": {
+                    "title": "Battle only form",
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "pokeathlon_stats": {
+                    "title": "Pokeathlon stats",
+                    "propertyNames": {
+                      "title": "Pokeathlon stat",
+                      "allOf": [
+                        {
+                          "$ref": "types/identifier.json"
+                        },
+                        {
+                          "type": "string",
+                          "$filters": "pokeathlonStatIdentifier"
+                        }
+                      ]
+                    },
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "base_value": {
+                          "title": "Base value",
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 5
+                        },
+                        "range": {
+                          "title": "Range",
+                          "oneOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 5
+                            },
+                            {
+                              "allOf": [
+                                {
+                                  "$ref": "types/range.json"
+                                },
+                                {
+                                  "type": "string",
+                                  "$filters": {
+                                    "$func": "range",
+                                    "$vars": {
+                                      "min": 0,
+                                      "max": 5
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "base_value",
+                        "range"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "title": "Icon",
+                    "$ref": "types/asset_path.json"
+                  },
+                  "sprites": {
+                    "title": "Sprites",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "$ref": "types/asset_path.json"
+                    }
+                  },
+                  "art": {
+                    "title": "Concept art",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "$ref": "types/asset_path.json"
+                    }
+                  },
+                  "footprint": {
+                    "title": "Footprint",
+                    "$ref": "types/asset_path.json"
+                  },
+                  "cry": {
+                    "title": "Cry",
+                    "$ref": "types/asset_path.json"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "form_name"
+                ]
+              },
+              "$filters": "singleDefault"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "capture_rate",
+            "growth_rate",
+            "name",
+            "height",
+            "weight",
+            "experience",
+            "types",
+            "stats",
+            "forms"
+          ]
+        },
+        "$filters": "singleDefault"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "name",
+      "position",
+      "pokemon"
+    ]
+  }
+}

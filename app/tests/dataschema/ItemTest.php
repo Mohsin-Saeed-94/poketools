@@ -8,6 +8,7 @@ use App\Tests\data\YamlParserTrait;
 use App\Tests\dataschema\Filter\CsvIdentifierExists;
 use App\Tests\dataschema\Filter\EntityHasVersionGroup;
 use App\Tests\dataschema\Filter\RangeFilter;
+use App\Tests\dataschema\Filter\TypeInVersionGroup;
 use App\Tests\dataschema\Filter\YamlIdentifierExists;
 
 /**
@@ -64,6 +65,7 @@ class ItemTest extends DataSchemaTestCase
                 'moveInVersionGroup' => new EntityHasVersionGroup('move'),
                 'berryFirmnessIdentifier' => new CsvIdentifierExists('berry_firmness'),
                 'typeIdentifier' => new CsvIdentifierExists('type'),
+                'typeInVersionGroup' => new TypeInVersionGroup(),
                 'berryFlavorIdentifier' => new CsvIdentifierExists('berry_flavor'),
                 'range' => new RangeFilter(),
             ],

@@ -187,7 +187,17 @@
           },
           {
             "type": "string",
-            "$filters": "typeIdentifier"
+            "$filters": [
+              "typeIdentifier",
+              {
+                "$func": "typeInVersionGroup",
+                "$vars": {
+                  "versionGroup": {
+                    "$ref": "1#"
+                  }
+                }
+              }
+            ]
           }
         ]
       },

@@ -61,7 +61,7 @@ class DataCleanYamlCommand extends Command
             ->setDescription(
                 'Clean a YAML data directory, normalizing data presentation and generating anchors/references'
             )
-            ->addArgument('migration', InputArgument::REQUIRED, 'Migration class');
+            ->addArgument('migration', InputArgument::REQUIRED, 'Migration class with the YAML as the destination');
     }
 
     /**

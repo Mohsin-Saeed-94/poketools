@@ -8,6 +8,7 @@ use App\Tests\data\YamlParserTrait;
 use App\Tests\dataschema\Filter\CsvIdentifierExists;
 use App\Tests\dataschema\Filter\EntityHasVersionGroup;
 use App\Tests\dataschema\Filter\RangeFilter;
+use App\Tests\dataschema\Filter\TypeInVersionGroup;
 use App\Tests\dataschema\Filter\YamlIdentifierExists;
 
 /**
@@ -48,46 +49,6 @@ class MoveTest extends DataSchemaTestCase
     }
 
     /**
-     * Test move type is in the version group
-     *
-     * @depends testData
-     */
-    public function testType(): void
-    {
-        $versionGroupTypes = $this->getVersionGroupTypes();
-        $allData = $this->getData();
-        foreach ($allData as $identifier => $yaml) {
-            $data = $this->parseYaml($yaml);
-            foreach ($data as $versionGroupSlug => $versionGroupData) {
-                self::assertContains(
-                    $versionGroupData['type'],
-                    $versionGroupTypes[$versionGroupSlug],
-                    sprintf('[%s] [%s] Type not in this version group', $identifier, $versionGroupSlug)
-                );
-            }
-        }
-    }
-
-    /**
-     * @return array
-     */
-    private function getVersionGroupTypes(): array
-    {
-        $finder = $this->getFinderForDirectory('type_chart');
-        $finder->name('*.yaml');
-
-        $types = [];
-        foreach ($finder as $fileInfo) {
-            $data = $this->parseYaml($fileInfo->getContents());
-            foreach ($data['version_groups'] as $versionGroup) {
-                $types[$versionGroup] = array_keys($data['efficacy']);
-            }
-        }
-
-        return $types;
-    }
-
-    /**
      * @inheritDoc
      */
     protected function getFilters(): array
@@ -101,6 +62,7 @@ class MoveTest extends DataSchemaTestCase
                 'range' => new RangeFilter(),
                 'statIdentifier' => new CsvIdentifierExists('stat'),
                 'typeIdentifier' => new CsvIdentifierExists('type'),
+                'typeInVersionGroup' => new TypeInVersionGroup(),
                 'moveTargetIdentifier' => new CsvIdentifierExists('move_target'),
                 'moveDamageClassIdentifier' => new CsvIdentifierExists('move_damage_class'),
                 'contestTypeIdentifier' => new CsvIdentifierExists('contest_type'),
