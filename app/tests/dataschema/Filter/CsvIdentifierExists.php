@@ -58,6 +58,6 @@ class CsvIdentifierExists implements IFilter
      */
     public function validate($data, array $args): bool
     {
-        return in_array($data, $this->identifiers, true);
+        return in_array((string)$data, $this->identifiers, true);
     }
 }

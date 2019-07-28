@@ -11,6 +11,20 @@ use Opis\JsonSchema\IFilter;
  */
 class SingleDefault implements IFilter
 {
+    /**
+     * @var bool
+     */
+    private $allowNoDefaults;
+
+    /**
+     * SingleDefault constructor.
+     *
+     * @param bool $allowNoDefaults
+     */
+    public function __construct(bool $allowNoDefaults = false)
+    {
+        $this->allowNoDefaults = $allowNoDefaults;
+    }
 
     /**
      * @param $data
@@ -27,6 +41,6 @@ class SingleDefault implements IFilter
             }
         }
 
-        return $defaults === 1;
+        return $this->allowNoDefaults ? $defaults <= 1 : $defaults === 1;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Tests\dataschema;
 
 use App\Tests\data\DataFinderTrait;
 use App\Tests\data\YamlParserTrait;
+use App\Tests\dataschema\Filter\SingleDefault;
 
 /**
  * Test Encounter Condition
@@ -41,5 +42,17 @@ class EncounterConditionTest extends DataSchemaTestCase
         foreach ($finder as $fileInfo) {
             yield $fileInfo->getFilename() => $fileInfo->getContents();
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFilters(): array
+    {
+        return [
+            'object' => [
+                'singleDefault' => new SingleDefault(true),
+            ],
+        ];
     }
 }

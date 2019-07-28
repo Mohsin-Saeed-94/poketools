@@ -47,47 +47,10 @@ class EncounterTest extends DataSchemaTestCase
     }
 
     /**
-     * Test that version exists
-     *
-     * @depends testData
-     * @depends testId
-     */
-    public function testVersion(): void
-    {
-        $allData = $this->getIteratorForCsv('encounter');
-        $versions = array_column($allData, 'version', 'id');
-        foreach (array_unique($versions) as $version) {
-            $usedIn = array_keys($versions, $version, true);
-            self::assertContains(
-                $version,
-                array_keys($this->getVersions()),
-                sprintf('[%s] The version "%s" does not exist.', implode(', ', $usedIn), $version)
-            );
-        }
-    }
-
-    /**
-     * Get a map of versions to version groups
-     *
-     * @return string[]
-     */
-    private function getVersions(): array
-    {
-        static $versions = null;
-        if (!isset($versions)) {
-            $versionData = $this->getIteratorForCsv('version');
-            $versions = array_column($versionData, 'version_group', 'identifier');
-        }
-
-        return $versions;
-    }
-
-    /**
      * Test that the location and area exist
      *
      * @depends testData
      * @depends testId
-     * @depends testVersion
      */
     public function testLocationAndArea(): void
     {
@@ -138,11 +101,26 @@ class EncounterTest extends DataSchemaTestCase
     }
 
     /**
+     * Get a map of versions to version groups
+     *
+     * @return string[]
+     */
+    private function getVersions(): array
+    {
+        static $versions = null;
+        if (!isset($versions)) {
+            $versionData = $this->getIteratorForCsv('version');
+            $versions = array_column($versionData, 'version_group', 'identifier');
+        }
+
+        return $versions;
+    }
+
+    /**
      * Test that the Pokemon exists
      *
      * @depends testData
      * @depends testId
-     * @depends testVersion
      */
     public function testPokemon(): void
     {
@@ -190,7 +168,6 @@ class EncounterTest extends DataSchemaTestCase
      *
      * @depends testData
      * @depends testId
-     * @depends testVersion
      */
     public function testMethod(): void
     {

@@ -1,0 +1,401 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/move.json",
+  "title": "Move",
+  "description": "A technique or attack a Pokémon can learn to use.",
+  "type": "object",
+  "propertyNames": {
+    "title": "Version Group identifier",
+    "allOf": [
+      {
+        "$ref": "types/identifier.json"
+      },
+      {
+        "type": "string",
+        "$filters": "versionGroupIdentifier"
+      }
+    ]
+  },
+  "minProperties": 1,
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "$ref": "types/name.json"
+      },
+      "crit_rate_bonus": {
+        "title": "Critical-hit rate bonus",
+        "type": "integer",
+        "minimum": 1
+      },
+      "drain": {
+        "title": "Drain amount",
+        "type": "integer",
+        "minimum": 1,
+        "default": 0
+      },
+      "flinch_chance": {
+        "title": "Flinch chance",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "ailment": {
+        "title": "Ailment",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "ailmentIdentifier"
+          }
+        ]
+      },
+      "ailment_chance": {
+        "title": "Ailment chance",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "recoil": {
+        "title": "Recoil",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "healing": {
+        "title": "Healing",
+        "type": "integer",
+        "minimum": -100,
+        "maximum": 100
+      },
+      "flags": {
+        "title": "Move flags",
+        "description": "Special attributes that affect how the game treats this move.",
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": "moveFlagIdentifier"
+            }
+          ]
+        },
+        "default": []
+      },
+      "categories": {
+        "title": "Move categories",
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "$filters": "moveCategoryIdentifier"
+            }
+          ]
+        },
+        "default": []
+      },
+      "hits": {
+        "title": "Hit count",
+        "oneOf": [
+          {
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "types/range.json"
+              },
+              {
+                "type": "string",
+                "$filters": {
+                  "$func": "range",
+                  "$vars": {
+                    "min": 1
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "default": 1
+      },
+      "turns": {
+        "title": "Turn count",
+        "description": "Number of turns this move can last",
+        "oneOf": [
+          {
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "types/range.json"
+              },
+              {
+                "type": "string",
+                "$filters": {
+                  "$func": "range",
+                  "$vars": {
+                    "min": 1
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "default": 1
+      },
+      "stat_changes": {
+        "title": "Stat changes",
+        "type": "object",
+        "propertyNames": {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": "statIdentifier"
+            }
+          ]
+        },
+        "additionalProperties": {
+          "type": "integer"
+        }
+      },
+      "stat_change_chance": {
+        "title": "Stat change chance",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "type": {
+        "title": "Type",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "typeIdentifier"
+          }
+        ]
+      },
+      "power": {
+        "title": "Power",
+        "type": "integer",
+        "minimum": 1
+      },
+      "pp": {
+        "title": "PP",
+        "type": "integer",
+        "minimum": 1
+      },
+      "accuracy": {
+        "title": "Accuracy",
+        "description": "If this move doesn't consider accuracy (e.g. moves that affect the current team), leave this blank.",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "priority": {
+        "title": "Priority",
+        "type": "integer",
+        "default": 0
+      },
+      "target": {
+        "title": "Target",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "moveTargetIdentifier"
+          }
+        ]
+      },
+      "damage_class": {
+        "title": "Damage class",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "moveDamageClassIdentifier"
+          }
+        ]
+      },
+      "effect": {
+        "title": "Effect Id",
+        "type": "integer",
+        "minimum": 1,
+        "$filters": [
+          "moveEffectId",
+          {
+            "$func": "moveEffectInVersionGroup",
+            "$vars": {
+              "versionGroup": {
+                "$ref": "1#"
+              }
+            }
+          }
+        ]
+      },
+      "effect_chance": {
+        "title": "Effect chance",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "contest_type": {
+        "title": "Contest type",
+        "description": "Omit if this version group does not have Contests or Super Contests",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "contestTypeIdentifier"
+          }
+        ]
+      },
+      "contest_effect": {
+        "title": "Contest effect Id",
+        "description": "Omit if this version group does not have Contests",
+        "type": "integer",
+        "minimum": 1,
+        "$filters": "contestEffectId"
+      },
+      "super_contest_effect": {
+        "title": "Super Contest effect Id",
+        "description": "Omit if this version group does not have Super Contests",
+        "type": "integer",
+        "minimum": 1,
+        "$filters": "superContestEffectId"
+      },
+      "contest_use_before": {
+        "title": "Contest combo (use before)",
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": [
+                "moveIdentifier",
+                {
+                  "$func": "moveInVersionGroup",
+                  "$vars": {
+                    "versionGroup": {
+                      "$ref": "2#"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "contest_use_after": {
+        "title": "Contest combo (use after)",
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": [
+                "moveIdentifier",
+                {
+                  "$func": "moveInVersionGroup",
+                  "$vars": {
+                    "versionGroup": {
+                      "$ref": "2#"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "super_contest_use_before": {
+        "title": "Super Contest combo (use before)",
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": [
+                "moveIdentifier",
+                {
+                  "$func": "moveInVersionGroup",
+                  "$vars": {
+                    "versionGroup": {
+                      "$ref": "2#"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "super_contest_use_after": {
+        "title": "Super Contest combo (use after)",
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": [
+                "moveIdentifier",
+                {
+                  "$func": "moveInVersionGroup",
+                  "$vars": {
+                    "versionGroup": {
+                      "$ref": "2#"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "flavor_text": {
+        "$ref": "types/flavor_text.json"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "name",
+      "type",
+      "target",
+      "effect"
+    ]
+  }
+}
