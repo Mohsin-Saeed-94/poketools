@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/pokemon_shape.json",
+  "title": "Pokemon Shape",
+  "description": "The shape of a Pokémon’s body. Appears in the Pokédex starting with Generation IV.",
+  "type": "object",
+  "propertyNames": {
+    "title": "Version Group identifier",
+    "allOf": [
+      {
+        "$ref": "types/identifier.json"
+      },
+      {
+        "type": "string",
+        "$filters": "versionGroupIdentifier"
+      }
+    ]
+  },
+  "minProperties": 1,
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "$ref": "types/name.json"
+      },
+      "taxonomy_name": {
+        "title": "Taxonomy name",
+        "description": "A taxonomy name for this shape, roughly corresponding to a family name in zoological taxonomy.",
+        "type": "string",
+        "minLength": 1
+      },
+      "description": {
+        "title": "Description",
+        "$ref": "types/markdown.json"
+      },
+      "icon": {
+        "title": "Icon",
+        "$ref": "types/asset_path.json"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "name",
+      "taxonomy_name",
+      "icon"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/type_chart.json",
+  "title": "Type Chart",
+  "description": "A set of rules governing type efficacy.",
+  "type": "object",
+  "properties": {
+    "version_groups": {
+      "title": "Version groups",
+      "description": "Version groups that use this Type Chart",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "versionGroupIdentifier"
+          }
+        ]
+      }
+    },
+    "efficacy": {
+      "title": "Efficacies",
+      "type": "object",
+      "propertyNames": {
+        "title": "Attacking type",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "typeIdentifier"
+          }
+        ]
+      },
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "propertyNames": {
+          "title": "Defending type",
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": "typeIdentifier"
+            }
+          ]
+        },
+        "minProperties": 1,
+        "additionalProperties": {
+          "title": "Efficacy",
+          "type": "integer",
+          "enum": [
+            0,
+            50,
+            100,
+            200
+          ]
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "version_groups",
+    "efficacy"
+  ]
+}
