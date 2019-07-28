@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/move_effect.json",
+  "title": "Move Effect",
+  "description": "An effect of a move.",
+  "type": "object",
+  "propertyNames": {
+    "title": "Version Group identifier",
+    "allOf": [
+      {
+        "$ref": "types/identifier.json"
+      },
+      {
+        "type": "string",
+        "$filters": "versionGroupIdentifier"
+      }
+    ]
+  },
+  "minProperties": 1,
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "short_description": {
+        "title": "Short description",
+        "$ref": "types/markdown.json"
+      },
+      "description": {
+        "title": "Description",
+        "$ref": "types/markdown.json"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "short_description",
+      "description"
+    ]
+  }
+}

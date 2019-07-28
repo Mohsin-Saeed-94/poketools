@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/move_learn_method.json",
+  "title": "Move Learn Method",
+  "description": "A method a move can be learned by, such as \"Level up\" or \"Tutor\".",
+  "type": "object",
+  "properties": {
+    "sort": {
+      "$ref": "types/position.json"
+    },
+    "name": {
+      "$ref": "types/name.json"
+    },
+    "description": {
+      "title": "Description",
+      "$ref": "types/markdown.json"
+    },
+    "version_groups": {
+      "title": "Version groups",
+      "description": "List of version groups where this learn method is used",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "versionGroupIdentifier"
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": ["name", "description"]
+}

@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * A method a move can be learned by, such as “Level up” or “Tutor”.
+ * A method a move can be learned by, such as "Level up" or "Tutor".
  *
  * @ORM\Entity(repositoryClass="App\Repository\MoveLearnMethodRepository")
  */

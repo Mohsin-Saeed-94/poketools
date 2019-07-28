@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/nature.json",
+  "title": "Nature",
+  "description": "A nature a Pokémon can have, such as Calm or Brave.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "$ref": "types/name.json"
+    },
+    "stat_increased": {
+      "title": "Stat increased",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": "statIdentifier"
+        }
+      ]
+    },
+    "stat_decreased": {
+      "title": "Stat decreased",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": "statIdentifier"
+        }
+      ]
+    },
+    "flavor_likes": {
+      "title": "Berry Flavor likes",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": "berryFlavorIdentifier"
+        }
+      ]
+    },
+    "flavor_hates": {
+      "title": "Berry Flavor hates",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": "berryFlavorIdentifier"
+        }
+      ]
+    },
+    "battle_style_preferences": {
+      "title": "Battle Style preferences",
+      "description": "How a Pokemon with this nature will behave in the Battle Tent/Battle Palace.",
+      "type": "object",
+      "propertyNames": {
+        "title": "Battle Style identifier",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "battleStyleIdentifier"
+          }
+        ]
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "low_hp_chance": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "high_hp_chance": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "pokeathlon_stat_changes": {
+      "title": "Pokeathlon stat changes",
+      "type": "object",
+      "propertyNames": {
+        "title": "Pokeathlon stat identifier",
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "pokeathlonStatIdentifier"
+          }
+        ]
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "max_change": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "types/range.json"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

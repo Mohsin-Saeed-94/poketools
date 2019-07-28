@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://poketools.gamestuff.info/data/schema/pokedex.json",
+  "title": "Pokedex",
+  "description": "A collection of Pokémon species ordered in a particular way.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "$ref": "types/name.json"
+    },
+    "description": {
+      "title": "Description",
+      "$ref": "types/markdown.json"
+    },
+    "version_groups": {
+      "title": "Version groups",
+      "description": "Version groups that can use this Pokedex.",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "types/identifier.json"
+          },
+          {
+            "type": "string",
+            "$filters": "versionGroupIdentifier"
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "description",
+    "version_groups"
+  ]
+}
