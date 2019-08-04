@@ -35,7 +35,7 @@ class DescriptionListParser extends AbstractBlockParser
         $data = new ListData();
         $data->markerOffset = $cursor->getIndent();
 
-        if (preg_match('`^:(?P<term>.+):`', $rest, $matches) === 1) {
+        if (preg_match('`^:(?P<term>.+?):`', $rest, $matches) === 1) {
             $data->type = DescriptionListBlock::TYPE_DL;
             $data->delimiter = null;
             $data->bulletChar = null;

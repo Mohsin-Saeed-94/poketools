@@ -3,6 +3,6 @@ entity name.  An identifier must consist only of lowercase ASCII characters, 0-9
 and/or a hyphen.
 
 i.e. anything unique to the entity matching the regular expression
-`^[a-z0-9\-]+$`
+`^[a-z0-9\-]+$` ([Test it here](https://regex101.com/r/3wfIGJ/1))
 
 :type: string

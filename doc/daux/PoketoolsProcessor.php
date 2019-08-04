@@ -149,14 +149,14 @@ class PoketoolsProcessor extends BaseProcessor
 
         $summaryPieces = [];
         foreach ($summary as $name => $value) {
-            $summaryPieces[] = sprintf('<dt>%s</dt><dd>%s</dd>', $name, $value);
+            $summaryPieces[] = sprintf(':%s: %s', $name, $value);
         }
         $content->setContent(
             trim(
                 implode(
                     "\n\n",
                     [
-                        $summaryPieces ? "# Summary\n\n<dl>".implode("\n", $summaryPieces).'</dl>' : '',
+                        $summaryPieces ? "# Summary\n\n".implode("\n", $summaryPieces) : '',
                         $content->getContent(),
                         "# JSON Schema\n\n{{ schema:".$content->getName().'.json }}',
                     ]

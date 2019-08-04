@@ -16,12 +16,14 @@ Version group identifier
 # Fields
 ## name
 :type: string
+:required:
 
 ## short_description
 {{ include:types/markdown }}
 
 ## description
 {{ include:types/markdown }}
+:required:
 
 ## flavor_text
 {{ include:types/flavor_text }}
