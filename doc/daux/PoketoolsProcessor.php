@@ -16,6 +16,7 @@ use Todaymade\Daux\Extension\Markdown\Schema\SchemaRenderer;
 use Todaymade\Daux\Processor as BaseProcessor;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Directory;
+use Todaymade\Daux\Tree\Entry;
 use Todaymade\Daux\Tree\Root;
 
 /**
@@ -49,17 +50,18 @@ class PoketoolsProcessor extends BaseProcessor
      */
     public function manipulateTree(Root $root)
     {
+        $this->walkSchemas($root);
         $this->walkPages($root);
     }
 
     /**
      * @param Root|Directory $root
      */
-    private function walkPages($root)
+    private function walkSchemas($root)
     {
         foreach ($root->getEntries() as $entry) {
             if ($entry instanceof Directory) {
-                $this->walkPages($entry);
+                $this->walkSchemas($entry);
             } elseif ($entry instanceof Content) {
                 $this->processPage($entry);
             }
@@ -90,7 +92,7 @@ class PoketoolsProcessor extends BaseProcessor
     }
 
     /**
-     * Recursively resolve includes in markdown files.
+     * Handle {{ include:thing }}
      *
      * @param string $content
      *
@@ -191,5 +193,110 @@ class PoketoolsProcessor extends BaseProcessor
         $schemaString = file_get_contents(self::SCHEMA_ROOT.'/'.$schemaPath);
 
         return json_decode($schemaString, true);
+    }
+
+    /**
+     * @param Root|Directory $root
+     */
+    private function walkPages($root)
+    {
+        foreach ($root->getEntries() as $entry) {
+            if ($entry instanceof Directory) {
+                $this->walkPages($entry);
+            } elseif ($entry instanceof Content) {
+                $this->processTocTree($entry);
+            }
+        }
+    }
+
+    /**
+     * Handle {{ toctree }}
+     *
+     * @param Content $content
+     */
+    private function processTocTree(Content $content)
+    {
+        if (!preg_match_all(
+            '`{{\s*toctree:?(?P<path>\S.*)?\s*}}`',
+            $content->getContent(),
+            $matches,
+            PREG_SET_ORDER | PREG_UNMATCHED_AS_NULL
+        )) {
+            return;
+        }
+
+        $needles = [];
+        $replacements = [];
+        foreach ($matches as $match) {
+            $current = $match[0];
+            $parent = $content->getParent();
+            if (isset($match['path'])) {
+                // Path specified, get the node requested
+                $path = $match['path'];
+                $path = trim($path);
+                $path = rtrim($path, '/');
+
+                // Determine the path - is this relative or absolute?
+                if (strpos($path, '/') === 0) {
+                    // From root of tree
+                    while (!$parent instanceof Root) {
+                        $parent = $parent->getParent();
+                    }
+                }
+                $path = ltrim($path, '/');
+                $pathParts = explode('/', $path);
+                foreach ($pathParts as $pathPart) {
+                    if ($pathPart === '..') {
+                        // Up one level, if possible
+                        if ($parent instanceof Root) {
+                            user_error(
+                                sprintf('Cannot generate toctree as path "%s" goes above the root.', $match['path'])
+                            );
+                            continue 2;
+                        }
+                        $parent = $parent->getParent();
+                    } else {
+                        if (!$parent->offsetExists($pathPart)) {
+                            user_error('Cannot generate toctree as path "%s" does not exist.', $match['path']);
+                            continue 2;
+                        }
+                        $parent = $parent->offsetGet($pathPart);
+                    }
+                }
+            }
+            $tree = $this->buildTocTree($parent);
+            $needles[] = $current;
+            $replacements[] = $tree;
+        }
+
+        $content->setContent(str_replace($needles, $replacements, $content->getContent()));
+    }
+
+    /**
+     * @param Entry $parent
+     * @param int $indent
+     *
+     * @return string
+     */
+    private function buildTocTree(Entry $parent, int $indent = 0): string
+    {
+        $bullet = '- ';
+        $treeLinks = [];
+        foreach ($parent as $item) {
+            if ($item instanceof Content) {
+                $treeLinks[] = implode(
+                    '',
+                    [
+                        str_repeat(' ', $indent),
+                        $bullet,
+                        sprintf('[%s](%s)', $item->getTitle(), $item->getUrl()),
+                    ]
+                );
+            } else {
+                $treeLinks[] = $this->buildTocTree($item, $indent + strlen($bullet));
+            }
+        }
+
+        return implode("\n", $treeLinks);
     }
 }
