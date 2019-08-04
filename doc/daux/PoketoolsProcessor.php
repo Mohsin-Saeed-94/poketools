@@ -162,7 +162,11 @@ class PoketoolsProcessor extends BaseProcessor
         }
         if ($dataPath) {
             $dataPath = $dataPathRoot.'/'.$dataPath;
-            $summary['Data path'] = '<a href="https://gitlab.com/gamestuff.info/poketools/tree/master/app/'.$dataPath.'">'.$dataPath.'</a>';
+            $summary['Data path'] = sprintf(
+                '[%s](https://gitlab.com/gamestuff.info/poketools/tree/master/app/%s)',
+                $dataPath,
+                $dataPath
+            );
         }
 
         $summaryPieces = [];
