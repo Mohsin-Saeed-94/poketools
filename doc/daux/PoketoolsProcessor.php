@@ -86,7 +86,22 @@ class PoketoolsProcessor extends BaseProcessor
      */
     private function processIncludes(Content $content)
     {
-        preg_match_all(self::RE_INCLUDE, $content->getContent(), $matches, PREG_SET_ORDER);
+        $content->setContent($this->resolveIncludes($content->getContent()));
+    }
+
+    /**
+     * Recursively resolve includes in markdown files.
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    private function resolveIncludes(string $content): string
+    {
+        if (!preg_match_all(self::RE_INCLUDE, $content, $matches, PREG_SET_ORDER | PREG_UNMATCHED_AS_NULL)) {
+            return $content;
+        }
+
         $needles = [];
         $replacements = [];
         foreach ($matches as $match) {
@@ -100,10 +115,11 @@ class PoketoolsProcessor extends BaseProcessor
             }
             if (is_readable($path)) {
                 $needles[] = $current;
-                $replacements[] = file_get_contents($path);
+                $replacements[] = $this->resolveIncludes(file_get_contents($path));
             }
         }
-        $content->setContent(str_replace($needles, $replacements, $content->getContent()));
+
+        return str_replace($needles, $replacements, $content);
     }
 
     /**

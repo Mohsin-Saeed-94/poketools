@@ -15,14 +15,14 @@ Version group identifier
 
 # Fields
 ## name
-:type: string
+{{ include: types/name }}
 :required:
 
 ## short_description
-{{ include:types/markdown }}
+{{ include:types/short_description }}
 
 ## description
-{{ include:types/markdown }}
+{{ include:types/description }}
 :required:
 
 ## flavor_text
