@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * This includes every variant (except color differences) of every Pokémon,
  * regardless of how the games treat them. Even Pokémon with no alternate forms
- * have one form to represent their lone “normal” form.
+ * have one form to represent their lone "normal" form.
  *
  * @ORM\Entity(repositoryClass="App\Repository\PokemonFormRepository")
  */

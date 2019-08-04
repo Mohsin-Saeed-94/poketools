@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * A Pokéathlon stat, such as “Stamina” or “Jump”.
+ * A Pokéathlon stat, such as "Stamina" or "Jump".
  *
  * @ORM\Entity(repositoryClass="App\Repository\PokeathlonStatRepository")
  */

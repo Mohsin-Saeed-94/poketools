@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * An Item from the games, like “Poké Ball” or “Bicycle”.
+ * An Item from the games, like "Poké Ball" or "Bicycle".
  *
  * @ORM\Entity(repositoryClass="App\Repository\ItemInVersionGroupRepository")
  *
