@@ -1,5 +1,5 @@
 ---
-schema: berry_firmness.json
+schema: evolution_trigger.json
 format: csv
 ---
 
@@ -9,5 +9,5 @@ format: csv
 :required:
 
 ## name
-{{ include: types/name }}
+{{ include:types/name }}
 :required:

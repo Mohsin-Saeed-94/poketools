@@ -1,5 +1,5 @@
 ---
-schema: berry_firmness.json
+schema: feature.json
 format: csv
 ---
 
@@ -8,6 +8,6 @@ format: csv
 {{ include:types/identifier }}
 :required:
 
-## name
-{{ include: types/name }}
+## description
+{{ include:types/description }}
 :required:

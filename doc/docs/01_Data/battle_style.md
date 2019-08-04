@@ -9,5 +9,5 @@ format: csv
 :required:
 
 ## name
-:type: string
+{{ include: types/name }}
 :required:

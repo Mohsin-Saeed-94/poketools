@@ -6,3 +6,4 @@ i.e. anything unique to the entity matching the regular expression
 `^[a-z0-9\-]+$` ([Test it here](https://regex101.com/r/3wfIGJ/1))
 
 :type: string
+:pattern: `^[a-z0-9\-]+$` ([Test](https://regex101.com/r/3wfIGJ/1))
