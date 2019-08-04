@@ -40,6 +40,24 @@ COPY app/. /var/www
 RUN composer dump-autoload --classmap-authoritative
 
 #######################################
+# DATA DOCS
+#######################################
+FROM php:7.3-cli-alpine as docs
+
+COPY --from=composer:1.8 /usr/bin/composer /usr/local/bin/composer
+
+RUN rm -rf /var/www && mkdir /var/www
+WORKDIR /var/www
+
+COPY doc /var/www/doc
+COPY app/resources/schema /var/www/app/resources/schema
+WORKDIR /var/www/doc
+
+RUN composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction --no-dev
+
+RUN vendor/bin/daux generate --destination=/var/www/public
+
+#######################################
 # ASSETS
 #######################################
 FROM node:10.15-alpine as webpack
@@ -105,6 +123,8 @@ COPY docker/web/default.conf /etc/nginx/conf.d/default.conf.tmpl
 
 COPY --from=webpack /var/www/public/build /var/www/public/build
 COPY --from=app /var/www/public/bundles /var/www/public/bundles
+COPY --from=docs /var/www/public /var/www/public/doc
+COPY app/resources/schema /var/www/public/data/schema
 
 CMD ["/usr/local/bin/nginx-entrypoint"]
 
