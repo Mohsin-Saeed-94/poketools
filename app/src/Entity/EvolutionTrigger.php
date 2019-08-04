@@ -7,7 +7,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * An evolution type, such as “level” or “trade”.
+ * An evolution type, such as "level" or "trade".
  *
  * @ORM\Entity(repositoryClass="App\Repository\EvolutionTriggerRepository")
  */

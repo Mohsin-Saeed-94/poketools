@@ -7,7 +7,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A Berry firmness, such as “hard” or “very soft”.
+ * A Berry firmness, such as "hard" or "very soft".
  *
  * @ORM\Entity(repositoryClass="App\Repository\BerryFirmnessRepository")
  */

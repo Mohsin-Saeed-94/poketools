@@ -186,8 +186,8 @@ class Pokemon extends AbstractDexEntity implements EntityHasNameInterface, Entit
     protected $formsSwitchable = false;
 
     /**
-     * The short flavor text, such as “Seed” or “Lizard”; usually affixed with
-     * the word “Pokémon”
+     * The short flavor text, such as "Seed" or "Lizard"; usually affixed with
+     * the word "Pokémon"
      *
      * @var string
      *

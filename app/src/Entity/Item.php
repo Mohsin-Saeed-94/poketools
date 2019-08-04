@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * An Item from the games, like “Poké Ball” or “Bicycle”.
+ * An Item from the games, like "Poké Ball" or "Bicycle".
  *
  * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
  *

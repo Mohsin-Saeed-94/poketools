@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * The “Pokédex color” of a Pokémon species. Usually based on the Pokémon’s
+ * The "Pokédex color" of a Pokémon species. Usually based on the Pokémon’s
  * primary color.
  *
  * @ORM\Entity(repositoryClass="App\Repository\PokemonColorRepository")
