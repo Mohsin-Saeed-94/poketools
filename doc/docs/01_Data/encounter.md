@@ -40,8 +40,8 @@ Identifier for the Pokémon in the species above (e.g. `basculin-red-striped`).
 ## level
 Level range
 {{ include:types/range }}
-:minimum: `1`
-:maximum: `100`
+:minimum: 1
+:maximum: 100
 :required:
 
 ## chance
@@ -50,7 +50,7 @@ Encounter chance percentage.
 If this is a fateful encounter (e.g. from an event or in-game story point),
 leave this empty.
 
-:type: integer|null
+:type: integer
 :minimum: 1
 :maximum: 100
 

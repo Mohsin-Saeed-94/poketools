@@ -12,14 +12,14 @@ format: csv
 Appeal points
 
 :type: integer
-:minimum: `0`
+:minimum: 0
 :required:
 
 ## jam
 Jam points
 
 :type: integer
-:minimum: `0`
+:minimum: 0
 :required:
 
 ## flavor_text
