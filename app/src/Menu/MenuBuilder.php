@@ -126,6 +126,12 @@ class MenuBuilder
                 'uri' => $this->urlGenerator->generate('page_credits'),
             ]
         );
+//        $menu->addChild(
+//            'Docs',
+//            [
+//                'uri' => $this->urlGenerator->generate('page_docs'),
+//            ]
+//        );
         $menu->addChild(
             'Contribute',
             [

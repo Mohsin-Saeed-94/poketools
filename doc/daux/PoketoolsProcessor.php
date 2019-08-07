@@ -168,11 +168,21 @@ class PoketoolsProcessor extends BaseProcessor
                 $dataPath
             );
         }
+        $schemaUrl = sprintf('https://poketools.gamestuff.info/data/schema/%s.json', $content->getName());
+        $summary['Schema'] = sprintf('[%s](%s)', $schemaUrl, $schemaUrl);
 
         $summaryPieces = [];
         foreach ($summary as $name => $value) {
             $summaryPieces[] = sprintf(':%s: %s', $name, $value);
         }
+        $jsonSchemaInfo = implode(
+            "\n",
+            [
+                "# JSON Schema\n",
+                sprintf('[View raw](%s)', $schemaUrl),
+                sprintf('{{ schema:%s.json }}', $content->getName()),
+            ]
+        );
         $content->setContent(
             trim(
                 implode(
@@ -180,7 +190,7 @@ class PoketoolsProcessor extends BaseProcessor
                     [
                         $summaryPieces ? "# Summary\n\n".implode("\n", $summaryPieces) : '',
                         $content->getContent(),
-                        "# JSON Schema\n\n{{ schema:".$content->getName().'.json }}',
+                        $jsonSchemaInfo,
                     ]
                 )
             )
