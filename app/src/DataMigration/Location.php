@@ -6,6 +6,7 @@ use App\Entity\LocationArea;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\LocationMap;
 use App\Entity\Media\RegionMap;
+use App\Entity\Shop;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
@@ -135,6 +136,28 @@ class Location extends AbstractDoctrineDataMigration implements DataMigrationInt
             'default',
         ];
         $destinationData = $this->mergeProperties($sourceData, $destinationData, $properties);
+
+        // Shops
+        if (isset($sourceData['shops'])) {
+            foreach ($sourceData['shops'] as $shopIdentifier => $shopData) {
+                $shop = $destinationData->getShops()->filter(
+                    function (Shop $shop) use ($shopIdentifier) {
+                        return ($shop->getSlug() === $shopIdentifier);
+                    }
+                );
+                if (!$shop->isEmpty()) {
+                    $shop = $shop->first();
+                    $destinationData->removeShop($shop);
+                } else {
+                    $shop = new Shop();
+                    $shop->setSlug($shopIdentifier);
+                }
+
+                /** @var Shop $shop */
+                $shop = $this->mergeProperties($shopData, $shop);
+                $destinationData->addShop($shop);
+            }
+        }
 
         // Children
         if (isset($sourceData['children'])) {

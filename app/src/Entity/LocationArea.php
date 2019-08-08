@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -73,11 +72,20 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
     protected $treeChildren;
 
     /**
+     * @var Collection|Shop[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Shop", mappedBy="locationArea", cascade={"ALL"})
+     * @ORM\OrderBy({"isDefault": "ASC", "name": "ASC"})
+     */
+    protected $shops;
+
+    /**
      * LocationArea constructor.
      */
     public function __construct()
     {
         $this->treeChildren = new ArrayCollection();
+        $this->shops = new ArrayCollection();
     }
 
     public static function getGroupField(): string
@@ -213,5 +221,43 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
     public function getTreePath(): string
     {
         return $this->treePath;
+    }
+
+    /**
+     * @return Shop[]|Collection
+     */
+    public function getShops(): Collection
+    {
+        return $this->shops;
+    }
+
+    /**
+     * @param Shop $shop
+     *
+     * @return self
+     */
+    public function addShop(Shop $shop): self
+    {
+        if (!$this->shops->contains($shop)) {
+            $this->shops->add($shop);
+            $shop->setLocationArea($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Shop $shop
+     *
+     * @return self
+     */
+    public function removeShop(Shop $shop): self
+    {
+        if ($this->shops->contains($shop)) {
+            $this->shops->removeElement($shop);
+            $shop->setLocationArea(null);
+        }
+
+        return $this;
     }
 }
