@@ -38,7 +38,7 @@
         {{ location.description|markdown }}
     {% endif %}
 
-    {{ helpers.show_areas(location.areas, encounter_tables) }}
+    {{ helpers.show_areas(location.areas, encounter_tables, encounter_counts) }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -86,7 +86,7 @@
     {% endif %}
 {% endmacro %}
 
-{% macro show_areas(areas, encounter_tables) %}
+{% macro show_areas(areas, encounter_tables, encounter_counts) %}
     {% import _self as helpers %}
     {# /** @var \App\Entity\LocationArea[] areas **/ #}
     {# Areas nav #}
@@ -113,16 +113,17 @@
             <div class="tab-pane{% if loop.first %} show active{% endif %}"
                  id="pkt-location-view-area-{{ tree_path }}"
                  role="tabpanel" aria-labelledby="pkt-location-view-tabs-{{ tree_path }}">
-                {% if areas|length > 1 %}
+
+                {# Pokemon #}
+                {% if encounter_counts[area.treePath] > 0 %}
                     <h3>Pokèmon</h3>
+                    {{ datatable.datatable(encounter_tables[area.treePath], 'pkt-location-view-encounters-'~tree_path) }}
                 {% else %}
-                    <h2>Pokèmon</h2>
+                    <p>No Pokémon.</p>
                 {% endif %}
 
-                {{ datatable.datatable(encounter_tables[area.treePath], 'pkt-location-view-encounters-'~tree_path) }}
-
                 {% if area.treeChildren is not empty %}
-                    {{ helpers.show_areas(area.treeChildren, encounter_tables) }}
+                    {{ helpers.show_areas(area.treeChildren, encounter_tables, encounter_counts) }}
                 {% endif %}
             </div>
         {% endfor %}

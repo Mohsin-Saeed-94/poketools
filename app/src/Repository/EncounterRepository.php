@@ -83,4 +83,26 @@ class EncounterRepository extends ServiceEntityRepository
 
         return $result;
     }
+
+    /**
+     * Count the encounters that occur in an area
+     *
+     * @param LocationArea $area
+     * @param Version $version
+     *
+     * @return int
+     */
+    public function countInArea(LocationArea $area, Version $version): int
+    {
+        $qb = $this->createQueryBuilder('encounter');
+        $qb->select('COUNT(encounter.id)')
+            ->andWhere('encounter.version = :version')
+            ->andWhere('encounter.locationArea = :area')
+            ->setParameter('version', $version)
+            ->setParameter('area', $area);
+        $q = $qb->getQuery();
+        $q->execute();
+
+        return $q->getSingleScalarResult();
+    }
 }
