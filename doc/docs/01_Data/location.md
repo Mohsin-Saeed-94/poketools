@@ -47,6 +47,30 @@ only one area that area's identifier is `whole-area` and name is `Whole area`.
 Every location must have exactly one default area.
 {{ include:types/default }}
 
+### shops
+Shops (e.g. Poké Marts) inside this area.  Keys are used as the shop identifier
+when setting [Shop Items](shop_item.md).
+
+:type: object
+
+#### name
+Shop name.
+{{ include:types/name }}
+:required:
+
+#### default
+If shops are defined, exactly one shop must be default.  By convention, this is
+the Poke Mart if one is present.
+
+:type: boolean
+:default: false
+
+### children
+Areas inside this area.  Follows the same schema as areas.  Infinite levels are
+possible, but consider if an area should really be a top-level location.
+
+:type: object
+
 ## super
 A parent location.  A parent location is generally the location that contains
 this one entirely.  For example, the Kanto Safari Zone would list `fuchsia-city`
