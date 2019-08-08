@@ -68,6 +68,7 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
      * @var Collection|LocationArea[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\LocationArea", mappedBy="treeParent", cascade={"ALL"})
+     * @ORM\OrderBy({"position": "ASC"})
      */
     protected $treeChildren;
 
