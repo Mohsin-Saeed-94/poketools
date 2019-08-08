@@ -38,35 +38,7 @@
         {{ location.description|markdown }}
     {% endif %}
 
-    {# Areas nav #}
-    {% if location.areas|length > 1 %}
-        <ul class="nav nav-tabs" role="tablist">
-            {% for area in location.areas %}
-                <li class="nav-item">
-                    <a class="nav-link{% if loop.first %} active{% endif %}" id="pkt-location-view-tabs-{{ area.slug }}"
-                       data-toggle="tab" href="#pkt-location-view-area-{{ area.slug }}" role="tab"
-                       aria-controls="pkt-location-view-area-{{ area.slug }}"{% if loop.first %} aria-selected="true"{% endif %}>
-                        {{ area.name }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <div class="tab-content">
-        {% for area in location.areas %}
-            <div class="tab-pane{% if loop.first %} show active{% endif %}" id="pkt-location-view-area-{{ area.slug }}"
-                 role="tabpanel" aria-labelledby="pkt-location-view-tabs-{{ area.slug }}">
-                {% if location.areas|length > 1 %}
-                    <h2>{{ area.name }}</h2>
-                    <h3>Pokèmon</h3>
-                {% else %}
-                    <h2>Pokèmon</h2>
-                {% endif %}
-
-                {{ datatable.datatable(encounter_tables[area.slug], 'pkt-location-view-encounters-'~area.slug) }}
-            </div>
-        {% endfor %}
-    </div>
+    {{ helpers.show_areas(location.areas, encounter_tables) }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -112,4 +84,47 @@
         {# If this is a sub-location and the super has a map, try to use that. #}
         {{ helpers.location_map(location.superLocation, version) }}
     {% endif %}
+{% endmacro %}
+
+{% macro show_areas(areas, encounter_tables) %}
+    {% import _self as helpers %}
+    {# /** @var \App\Entity\LocationArea[] areas **/ #}
+    {# Areas nav #}
+    {% if areas|length > 1 %}
+        <ul class="nav nav-tabs" role="tablist">
+            {% for area in areas %}
+                {% set tree_path = area.treePath|trim(',')|split(',')|join('-') %}
+                <li class="nav-item">
+                    <a class="nav-link{% if loop.first %} active{% endif %}"
+                       id="pkt-location-view-tabs-{{ tree_path }}"
+                       data-toggle="tab" href="#pkt-location-view-area-{{ tree_path }}"
+                       role="tab"
+                       aria-controls="pkt-location-view-area-{{ tree_path }}"{% if loop.first %} aria-selected="true"{% endif %}
+                    >
+                        {{ area.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="tab-content">
+        {% for area in areas %}
+            {% set tree_path = area.treePath|trim(',')|split(',')|join('-') %}
+            <div class="tab-pane{% if loop.first %} show active{% endif %}"
+                 id="pkt-location-view-area-{{ tree_path }}"
+                 role="tabpanel" aria-labelledby="pkt-location-view-tabs-{{ tree_path }}">
+                {% if areas|length > 1 %}
+                    <h3>Pokèmon</h3>
+                {% else %}
+                    <h2>Pokèmon</h2>
+                {% endif %}
+
+                {{ datatable.datatable(encounter_tables[area.treePath], 'pkt-location-view-encounters-'~tree_path) }}
+
+                {% if area.treeChildren is not empty %}
+                    {{ helpers.show_areas(area.treeChildren, encounter_tables) }}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
 {% endmacro %}

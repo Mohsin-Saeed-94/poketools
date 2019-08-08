@@ -169,7 +169,7 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
     }
 
     /**
-     * @return LocationArea|Collection
+     * @return LocationArea[]|Collection
      */
     public function getTreeChildren()
     {
@@ -204,5 +204,13 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
         }
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTreePath(): string
+    {
+        return $this->treePath;
     }
 }
