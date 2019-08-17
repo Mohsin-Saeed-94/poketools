@@ -2,26 +2,46 @@ red-blue: &red-blue
   region: &red-blue.region kanto
   name: &red-blue.name 'Celadon City'
   areas: &red-blue.areas
-    whole-area:
+    whole-area: &red-blue.areas.whole-area
       name: 'Whole area'
-      default: true
-    mart:
-      name: 'Poké Mart'
+      default: &red-blue.areas.whole-area.default true
+    department-store:
+      name: &red-blue.areas.department-store.name 'Department store'
       children:
-        1f:
+        1f: &red-blue.areas.department-store.children.1f
           name: '1F (Service Counter)'
-          default: true
+          default: *red-blue.areas.whole-area.default
         2f:
-          name: '2F (Trainers'' Market)'
+          name: &red-blue.areas.department-store.children.2f.name '2F (Trainers'' Market)'
+          shops:
+            trainers-market-left:
+              name: 'Trainer''s Market (left counter)'
+              default: *red-blue.areas.whole-area.default
+            trainers-market-right:
+              name: 'Trainer''s Market (right counter)'
         3f:
           name: '3F (TV Game Shop)'
-        4f:
+        4f: &red-blue.areas.department-store.children.4f
           name: '4F (Wiseman Gifts)'
-        5f:
+          shops:
+            wiseman-gifts:
+              name: 'Wiseman Gifts'
+              default: *red-blue.areas.whole-area.default
+        5f: &red-blue.areas.department-store.children.5f
           name: '5F (Drugstore)'
+          shops:
+            drugstore-left:
+              name: 'Drugstore (left counter)'
+              default: *red-blue.areas.whole-area.default
+            drugstore-right:
+              name: 'Drugstore (right counter)'
         rooftop-square:
-          name: 'Rooftop Square (Vending Machines)'
-    celadon-mansion:
+          name: &red-blue.areas.department-store.children.rooftop-square.name 'Rooftop Square (Vending Machines)'
+          shops:
+            vending-machines:
+              name: 'Vending machines'
+              default: *red-blue.areas.whole-area.default
+    celadon-mansion: &red-blue.areas.celadon-mansion
       name: 'Celadon Mansion'
   map:
     map: &red-blue.map.map kanto
@@ -31,7 +51,31 @@ yellow: *red-blue
 gold-silver: &gold-silver
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas: &gold-silver.areas
+    whole-area: *red-blue.areas.whole-area
+    department-store:
+      name: *red-blue.areas.department-store.name
+      children:
+        1f: *red-blue.areas.department-store.children.1f
+        2f:
+          name: *red-blue.areas.department-store.children.2f.name
+          shops:
+            trainers-market-upper:
+              name: 'Trainer''s Market (upper counter)'
+              default: *red-blue.areas.whole-area.default
+            trainers-market-lowerr:
+              name: 'Trainer''s Market (lower counter)'
+        3f:
+          name: '3F (TM Shop)'
+          shops:
+            tm-shop:
+              name: 'TM Shop'
+              default: *red-blue.areas.whole-area.default
+        4f: *red-blue.areas.department-store.children.4f
+        5f: *red-blue.areas.department-store.children.5f
+        rooftop-square:
+          name: *red-blue.areas.department-store.children.rooftop-square.name
+    celadon-mansion: *red-blue.areas.celadon-mansion
   map:
     map: *red-blue.map.map
     overlay: '<rect x="64" y="48" width="8" height="8" />'
@@ -46,7 +90,7 @@ firered-leafgreen:
 heartgold-soulsilver:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas: *gold-silver.areas
   map:
     map: *red-blue.map.map
     overlay: |

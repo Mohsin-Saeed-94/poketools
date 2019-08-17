@@ -4,15 +4,54 @@ gold-silver: &gold-silver
   areas: &gold-silver.areas
     whole-area:
       name: 'Whole area'
-      default: true
+      default: &gold-silver.areas.whole-area.default true
+    department-store:
+      name: 'Department store'
+      children:
+        b1f:
+          name: Basement
+        1f:
+          name: '1F (Service Counter)'
+          default: *gold-silver.areas.whole-area.default
+        2f:
+          name: '2F (Trainer''s Market)'
+          shops:
+            trainers-market-upper:
+              name: 'Trainer''s Market (upper counter)'
+              default: *gold-silver.areas.whole-area.default
+            trainers-market-lower:
+              name: 'Trainer''s Market (lower counter)'
+        3f:
+          name: '3F (Battle Collection)'
+          shops:
+            battle-collection:
+              name: 'Battle Collection'
+              default: *gold-silver.areas.whole-area.default
+        4F:
+          name: '4F (Medicine Box)'
+          shops:
+            medicine-box:
+              name: 'Medicine Box'
+              default: *gold-silver.areas.whole-area.default
+        5F:
+          name: '5F (TM Corner)'
+          shops:
+            tm-corner:
+              name: 'TM Corner'
+              default: *gold-silver.areas.whole-area.default
+        6F:
+          name: '6F (Rooftop Atrium)'
+          shops:
+            vending-machines:
+              name: 'Vending machines'
+              default: *gold-silver.areas.whole-area.default
     north-gate:
       name: 'North gate'
     bills-house:
       name: 'Bill''s house'
   map:
     map: &gold-silver.map.map johto
-    overlay: |
-      <rect x="40" y="72" width="8" height="8" />
+    overlay: '<rect x="40" y="72" width="8" height="8" />'
 crystal: *gold-silver
 heartgold-soulsilver:
   region: *gold-silver.region
