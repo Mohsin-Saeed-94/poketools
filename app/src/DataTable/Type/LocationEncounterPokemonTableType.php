@@ -30,7 +30,7 @@ class LocationEncounterPokemonTableType extends EncounterPokemonTableType
 
         parent::configure($dataTable, $options);
 
-        $dataTable->setName(self::class.'__'.$locationArea->getSlug())->createAdapter(
+        $dataTable->setName(self::class.'__'.$locationArea->getTreePath())->createAdapter(
             ORMAdapter::class,
             [
                 'entity' => Encounter::class,

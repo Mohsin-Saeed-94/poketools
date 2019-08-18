@@ -55,6 +55,10 @@
         "description": "Every location must have at least one area.  By convention, if a location has only one area that area's identifier is `whole-area` and name is `Whole area`.",
         "type": "object",
         "minProperties": 1,
+        "propertyNames": {
+          "title": "Area identifier",
+          "$ref": "types/identifier.json"
+        },
         "additionalProperties": {
           "type": "object",
           "properties": {
@@ -67,6 +71,36 @@
               "description": "Every location must have exactly one default area.",
               "type": "boolean",
               "default": false
+            },
+            "shops": {
+              "title": "Shops",
+              "type": "object",
+              "propertyNames": {
+                "$ref": "types/identifier.json"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "title": "Shop name",
+                    "$ref": "types/name.json"
+                  },
+                  "default": {
+                    "title": "Is default shop",
+                    "description": "If shops are defined, exactly one shop must be default.  By convention, this is the Poke Mart if one is present.",
+                    "type": "boolean",
+                    "default": false
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            },
+            "children": {
+              "title": "Sub areas",
+              "$ref": "#/additionalProperties/properties/areas",
+              "default": {}
             }
           },
           "additionalProperties": false,

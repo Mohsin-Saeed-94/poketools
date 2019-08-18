@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\DataTable\Type\LocationEncounterPokemonTableType;
+use App\Entity\LocationArea;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\Version;
+use App\Repository\EncounterRepository;
 use App\Repository\LocationInVersionGroupRepository;
 use App\Repository\LocationMapRepository;
 use App\Repository\RegionInVersionGroupRepository;
@@ -38,24 +40,32 @@ class LocationController extends AbstractDexController
     private $locationMapRepo;
 
     /**
+     * @var EncounterRepository
+     */
+    private $encounterRepo;
+
+    /**
      * LocationController constructor.
      *
      * @param DataTableFactory $dataTableFactory
      * @param LocationInVersionGroupRepository $locationRepo
      * @param RegionInVersionGroupRepository $regionRepo
      * @param LocationMapRepository $locationMapRepo
+     * @param EncounterRepository $encounterRepo
      */
     public function __construct(
         DataTableFactory $dataTableFactory,
         LocationInVersionGroupRepository $locationRepo,
         RegionInVersionGroupRepository $regionRepo,
-        LocationMapRepository $locationMapRepo
+        LocationMapRepository $locationMapRepo,
+        EncounterRepository $encounterRepo
     ) {
         parent::__construct($dataTableFactory);
 
         $this->locationRepo = $locationRepo;
         $this->regionRepo = $regionRepo;
         $this->locationMapRepo = $locationMapRepo;
+        $this->encounterRepo = $encounterRepo;
     }
 
     /**
@@ -114,21 +124,13 @@ class LocationController extends AbstractDexController
             throw new NotFoundHttpException();
         }
 
-        /** @var LocationEncounterPokemonTableType[] $encounterTables */
-        $encounterTables = [];
-        foreach ($location->getAreas() as $area) {
-            $encounterTable = $this->dataTableFactory->createFromType(
-                LocationEncounterPokemonTableType::class,
-                [
-                    'version' => $version,
-                    'location_area' => $area,
-                ]
-            )->handleRequest($request);
-            if ($encounterTable->isCallback()) {
-                return $encounterTable->getResponse();
-            }
-            $encounterTables[$area->getSlug()] = $encounterTable;
+        $encounterTables = $this->getEncounterTables($version, $request, $location->getAreas());
+        // This may be a callback to get table data, in which case the table handled the request
+        // already.
+        if ($encounterTables instanceof Response) {
+            return $encounterTables;
         }
+        $encounterCounts = $this->getEncounterCounts($version, $location->getAreas());
 
         return $this->render(
             'location/view.html.twig',
@@ -143,7 +145,63 @@ class LocationController extends AbstractDexController
                 ),
                 'location' => $location,
                 'encounter_tables' => $encounterTables,
+                'encounter_counts' => $encounterCounts,
             ]
         );
+    }
+
+    /**
+     * @param Version $version
+     * @param Request $request
+     * @param LocationArea[] $areas
+     * @param LocationEncounterPokemonTableType[] $encounterTables
+     *
+     * @return Response|LocationEncounterPokemonTableType[]
+     */
+    private function getEncounterTables(Version $version, Request $request, $areas, array &$encounterTables = [])
+    {
+        foreach ($areas as $area) {
+            $encounterTable = $this->dataTableFactory->createFromType(
+                LocationEncounterPokemonTableType::class,
+                [
+                    'version' => $version,
+                    'location_area' => $area,
+                ]
+            )->handleRequest($request);
+            if ($encounterTable->isCallback()) {
+                return $encounterTable->getResponse();
+            }
+            $encounterTables[$area->getTreePath()] = $encounterTable;
+
+            // Recursively add children
+            if ($area->getTreeChildren()) {
+                $ret = $this->getEncounterTables($version, $request, $area->getTreeChildren(), $encounterTables);
+                if ($ret instanceof Response) {
+                    // If a table has handled the request, break out and return the response.
+                    return $ret;
+                }
+            }
+        }
+
+        return $encounterTables;
+    }
+
+    /**
+     * @param Version $version
+     * @param LocationArea[] $areas
+     * @param int[] $counts
+     *
+     * @return int[]
+     */
+    private function getEncounterCounts(Version $version, $areas, array &$counts = []): array
+    {
+        foreach ($areas as $area) {
+            $counts[$area->getTreePath()] = $this->encounterRepo->countInArea($area, $version);
+            if ($area->getTreeChildren()) {
+                $this->getEncounterCounts($version, $area->getTreeChildren(), $counts);
+            }
+        }
+
+        return $counts;
     }
 }

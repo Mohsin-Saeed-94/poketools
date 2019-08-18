@@ -1,15 +1,29 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Hard Stone'
-  category: &ruby-sapphire.category type-enhancement
-  pocket: &ruby-sapphire.pocket misc
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
-  flags: &ruby-sapphire.flags
+gold-silver: &gold-silver
+  name: 'HARD STONE'
+  pocket: &gold-silver.pocket misc
+  buy: 100
+  sell: 50
+  flavor_text: |
+    Powers up rock-
+    type moves. (HOLD)
+  
+  category: &gold-silver.category type-enhancement
+  flags: &gold-silver.flags
     - holdable
     - holdable-active
     - underground
-  short_description: &ruby-sapphire.short_description 'Held: Rock-Type moves from holder do 20% more damage.'
-  description: &ruby-sapphire.description 'Held: Increases the power of the holder''s Rock moves by 20%.'
+  short_description: &gold-silver.short_description 'Held: Rock-Type moves from holder do 20% more damage.'
+  description: &gold-silver.description 'Held: Increases the power of the holder''s  Rock moves by 20%.'
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Hard Stone'
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: &ruby-sapphire.buy 1000
+  sell: &ruby-sapphire.sell 500
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A hold item that
     raises the power of
@@ -21,13 +35,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a POKéMON.
     An unbreakable stone that boosts
@@ -36,15 +50,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 100
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a Pokémon.
     It is an unbreakable stone that ups
@@ -57,15 +71,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 100
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a Pokémon.
     It is a durable stone that boosts
@@ -75,17 +89,18 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 100
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a Pokémon. It’s a durable
     stone that boosts the power of Rock-type moves.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

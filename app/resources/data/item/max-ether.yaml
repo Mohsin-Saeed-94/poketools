@@ -1,19 +1,41 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Max Ether'
-  category: &ruby-sapphire.category pp-recovery
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 2000
-  sell: &ruby-sapphire.sell 1000
-  flags: &ruby-sapphire.flags
+red-blue: &red-blue
+  name: &red-blue.name 'MAX ETHER'
+  pocket: &red-blue.pocket misc
+  category: &red-blue.category pp-recovery
+  flags: &red-blue.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Restores PP to full for one move.'
-  description: &ruby-sapphire.description |
+  short_description: &red-blue.short_description 'Restores PP to full for one move.'
+  description: &red-blue.description |
     Used on a party Pokémon
     :   Restores [PP]{mechanic:pp} to full for a selected move.
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: &gold-silver.buy 2000
+  sell: &gold-silver.sell 1000
+  flavor_text: |
+    Fully restores PP
+    of one move.
+  
+  category: *red-blue.category
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Max Ether'
+  category: *red-blue.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Fully restores the
     PP of a selected
@@ -25,13 +47,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Fully restores a selected move’s PP
     for one POKéMON.
@@ -39,15 +61,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     It fully restores the PP of a single
     selected move that has been learned
@@ -60,15 +82,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     This medicine can fully restore the
     PP of a single selected move that
@@ -78,18 +100,19 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     This medicine can fully restore the PP of a single
     selected move that has been learned by
     a Pokémon.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

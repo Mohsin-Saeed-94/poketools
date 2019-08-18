@@ -45,6 +45,7 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
      */
     public function transform($sourceData, $destinationData)
     {
+        $identifier = $sourceData['identifier'];
         unset($sourceData['identifier']);
         foreach ($sourceData as $versionGroup => $versionGroupSourceData) {
             /** @var VersionGroup $versionGroup */
@@ -55,6 +56,7 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
                 $versionGroupDestinationData->setVersionGroup($versionGroup);
             }
 
+            $versionGroupSourceData['slug'] = $identifier;
             $versionGroupSourceData['category'] = $this->referenceStore->get(ItemCategory::class, ['identifier' => $versionGroupSourceData['category']]);
             /** @var \App\Entity\ItemPocket $itemPocket */
             $itemPocket = $this->referenceStore->get(ItemPocket::class, ['identifier' => $versionGroupSourceData['pocket']]);

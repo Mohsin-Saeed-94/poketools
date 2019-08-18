@@ -1,7 +1,33 @@
+red-blue: &red-blue
+  name: &red-blue.name TM35
+  pocket: misc
+  buy: null
+  sell: null
+  short_description: 'Teaches []{move:metronome} to a compatible Pokèmon.'
+  description: |
+    Teaches []{move:metronome} to a compatible Pokèmon.
+    
+    {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm35"})}}
+  
+  category: &red-blue.category tm
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: &gold-silver.pocket machines
+  buy: 1000
+  sell: 500
+  short_description: 'Teaches []{move:sleep-talk} to a compatible Pokèmon.'
+  description: |
+    Teaches []{move:sleep-talk} to a compatible Pokèmon.
+    
+    {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm35"})}}
+  
+  category: *red-blue.category
+crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: TM35
-  category: tm
-  pocket: machines
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
   buy: 10000
   sell: 5000
   machine:

@@ -1,19 +1,43 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Burn Heal'
-  category: &ruby-sapphire.category status-cures
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 300
-  sell: &ruby-sapphire.sell 150
-  flags: &ruby-sapphire.flags
+red-blue: &red-blue
+  name: &red-blue.name 'BURN HEAL'
+  pocket: &red-blue.pocket misc
+  buy: &red-blue.buy 250
+  sell: &red-blue.sell 125
+  category: &red-blue.category status-cures
+  flags: &red-blue.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Cures a burn.'
-  description: &ruby-sapphire.description |
+  short_description: &red-blue.short_description 'Cures a burn.'
+  description: &red-blue.description |
     Used on a party Pokémon
     :   Cures a [burn]{mechanic:burn}.
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: |
+    Heals burned
+    POKéMON.
+  
+  category: *red-blue.category
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Burn Heal'
+  category: *red-blue.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: &ruby-sapphire.buy 300
+  sell: &ruby-sapphire.sell 150
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Heals POKéMON
     of a burn.
@@ -24,13 +48,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine.
     It heals one POKéMON of a burn.
@@ -38,15 +62,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine.
     It heals a single Pokémon that is
@@ -59,15 +83,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine for treating
     burns. It can be used once to heal
@@ -77,17 +101,18 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine for treating burns. It can be
     used once to heal a Pokémon suffering from a burn.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

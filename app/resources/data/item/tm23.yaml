@@ -1,14 +1,40 @@
+red-blue: &red-blue
+  name: &red-blue.name TM23
+  pocket: misc
+  buy: null
+  sell: null
+  short_description: 'Teaches []{move:dragon-rage} to a compatible Pokèmon.'
+  description: |
+    Teaches []{move:dragon-rage} to a compatible Pokèmon.
+    
+    {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm23"})}}
+  
+  category: &red-blue.category tm
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: &gold-silver.pocket machines
+  buy: 3000
+  sell: 1500
+  short_description: &gold-silver.short_description 'Teaches []{move:iron-tail} to a compatible Pokèmon.'
+  description: |
+    Teaches []{move:iron-tail} to a compatible Pokèmon.
+    
+    {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm23"})}}
+  
+  category: *red-blue.category
+crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name TM23
-  category: &ruby-sapphire.category tm
-  pocket: &ruby-sapphire.pocket machines
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
   buy: &ruby-sapphire.buy 10000
   sell: &ruby-sapphire.sell 5000
   machine:
     type: &ruby-sapphire.machine.type TM
     number: &ruby-sapphire.machine.number 23
     move: iron-tail
-  short_description: 'Teaches []{move:iron-tail} to a compatible Pokèmon.'
+  short_description: *gold-silver.short_description
   description: |
     Teaches []{move:iron-tail} to a compatible Pokèmon.
     
@@ -23,9 +49,9 @@ diamond-pearl: *ruby-sapphire
 platinum: *ruby-sapphire
 heartgold-soulsilver: *ruby-sapphire
 black-white: &black-white
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   machine:

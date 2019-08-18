@@ -1,18 +1,42 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'X Attack'
-  category: &ruby-sapphire.category stat-boosts
-  pocket: &ruby-sapphire.pocket battle
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
-  flags: &ruby-sapphire.flags
+red-blue: &red-blue
+  name: &red-blue.name 'X ATTACK'
+  pocket: &red-blue.pocket misc
+  buy: &red-blue.buy 500
+  sell: &red-blue.sell 250
+  category: &red-blue.category stat-boosts
+  flags: &red-blue.flags
     - countable
     - consumable
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Raises Attack by one stage in battle.  Raises happiness.'
-  description: &ruby-sapphire.description |
+  short_description: &red-blue.short_description 'Raises Attack by one stage in battle.  Raises happiness.'
+  description: &red-blue.description |
     Used on a party Pokémon in battle
     :   [Raises]{mechanic:raise} the target's [Attack]{mechanic:attack} by one stage.  Increases happiness by 1/1/0.
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: |
+    Raises ATTACK.
+    (1 BTL)
+  
+  category: *red-blue.category
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'X Attack'
+  category: *red-blue.category
+  pocket: &ruby-sapphire.pocket battle
+  buy: &ruby-sapphire.buy 1000
+  sell: &ruby-sapphire.sell 500
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Raises the stat
     ATTACK during one
@@ -24,13 +48,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Raises the ATTACK stat of POKéMON
     in battle. Wears off if the POKéMON
@@ -39,15 +63,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     An item that raises the Attack stat
     of a Pokémon in battle. It wears off if
@@ -60,15 +84,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     An item that boosts the Attack stat
     of a Pokémon during a battle. It wears
@@ -78,18 +102,19 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     An item that sharply boosts the Attack stat of a
     Pokémon during a battle. It wears off once the
     Pokémon is withdrawn.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon
