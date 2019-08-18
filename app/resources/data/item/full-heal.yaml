@@ -1,19 +1,42 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Full Heal'
-  category: &ruby-sapphire.category status-cures
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 400
-  sell: &ruby-sapphire.sell 200
-  flags: &ruby-sapphire.flags
+red-blue: &red-blue
+  name: &red-blue.name 'FULL HEAL'
+  pocket: &red-blue.pocket misc
+  buy: &red-blue.buy 600
+  sell: &red-blue.sell 300
+  category: &red-blue.category status-cures
+  flags: &red-blue.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Cures any status ailment and confusion.'
-  description: &ruby-sapphire.description |
+  short_description: &red-blue.short_description 'Cures any status ailment and confusion.'
+  description: &red-blue.description |
     Used on a party Pokémon
     :   Cures any [status ailment]{mechanic:status-ailment} and [confusion]{mechanic:confusion}.
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: |
+    Eliminates all
+    status problems.
+  category: *red-blue.category
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Full Heal'
+  category: *red-blue.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: &ruby-sapphire.buy 400
+  sell: &ruby-sapphire.sell 200
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Heals all the status
     problems of one
@@ -22,13 +45,13 @@ ruby-sapphire: &ruby-sapphire
   icon: &ruby-sapphire.icon full-heal.png
 emerald:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Heals all the
     status problems of
@@ -39,13 +62,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine.
     It heals all the status problems of
@@ -54,15 +77,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine.
     It heals all the status problems of a
@@ -75,35 +98,37 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine that is broadly
     effective. It can be used once to heal
     all the status conditions of a Pokémon.
+  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine that is broadly effective.
     It can be used once to heal all the status conditions
     of a Pokémon.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

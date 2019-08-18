@@ -1,19 +1,32 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Heal Powder'
-  category: &ruby-sapphire.category status-cures
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 300
-  sell: &ruby-sapphire.sell 150
-  flags: &ruby-sapphire.flags
+gold-silver: &gold-silver
+  name: 'HEAL POWDER'
+  pocket: misc
+  buy: 450
+  sell: 225
+  flavor_text: |
+    Cures all status
+    problems. Bitter.
+  category: &gold-silver.category status-cures
+  flags: &gold-silver.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Cures any status ailment, but lowers happiness.'
-  description: &ruby-sapphire.description |
+  short_description: &gold-silver.short_description 'Cures any status ailment, but lowers happiness.'
+  description: &gold-silver.description |
     Used on a party Pokémon
     :   Cures any [status ailment]{mechanic:status-ailment}.  Decreases [happiness]{mechanic:happiness} by 5/5/10.
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Heal Powder'
+  category: *gold-silver.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: &ruby-sapphire.buy 300
+  sell: &ruby-sapphire.sell 150
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A bitter powder
     that heals all
@@ -25,13 +38,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A very bitter medicine powder.
     It heals all the status problems of
@@ -40,15 +53,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A very bitter medicine powder.
     It heals all the status problems of a
@@ -61,15 +74,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A very bitter medicine powder.
     When consumed, it heals all of
@@ -79,17 +92,18 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A very bitter medicinal powder. It can be used once
     to heal all the status conditions of a Pokémon.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

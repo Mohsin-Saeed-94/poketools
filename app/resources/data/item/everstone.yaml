@@ -1,15 +1,28 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Everstone
-  category: &ruby-sapphire.category training
-  pocket: &ruby-sapphire.pocket misc
-  buy: &ruby-sapphire.buy 3000
-  sell: &ruby-sapphire.sell 1500
-  flags: &ruby-sapphire.flags
+gold-silver: &gold-silver
+  name: EVERSTONE
+  pocket: &gold-silver.pocket misc
+  buy: 200
+  sell: 100
+  flavor_text: |
+    Stops evolution.
+    (HOLD)
+  category: &gold-silver.category training
+  flags: &gold-silver.flags
     - holdable
     - holdable-active
     - underground
-  short_description: &ruby-sapphire.short_description 'Held: Prevents level-based evolution from occuring.'
-  description: &ruby-sapphire.description 'Held: Prevents the holder from evolving naturally.  Evolution initiated by the trainer (Stones, etc) will still work.'
+  short_description: &gold-silver.short_description 'Held: Prevents level-based evolution from occuring.'
+  description: &gold-silver.description 'Held: Prevents the holder from evolving naturally.  Evolution initiated by the trainer (Stones, etc) will still work.'
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name Everstone
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: &ruby-sapphire.buy 3000
+  sell: &ruby-sapphire.sell 1500
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A wondrous stone
     & a hold item that
@@ -18,13 +31,13 @@ ruby-sapphire: &ruby-sapphire
   icon: &ruby-sapphire.icon everstone.png
 emerald:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A wondrous hold
     item that prevents
@@ -35,13 +48,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a POKéMON.
     The holding POKéMON is prevented
@@ -50,15 +63,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a Pokémon.
     The Pokémon holding this peculiar stone
@@ -71,35 +84,37 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a Pokémon.
     A Pokémon holding this peculiar
     stone is prevented from evolving.
+  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a Pokémon. A Pokémon
     holding this peculiar stone is prevented
     from evolving.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

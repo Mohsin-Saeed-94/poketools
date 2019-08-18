@@ -1,19 +1,42 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Soda Pop'
-  category: &ruby-sapphire.category healing
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 300
-  sell: &ruby-sapphire.sell 150
-  flags: &ruby-sapphire.flags
+red-blue: &red-blue
+  name: &red-blue.name 'SODA POP'
+  pocket: &red-blue.pocket misc
+  buy: &red-blue.buy 300
+  sell: &red-blue.sell 150
+  category: &red-blue.category healing
+  flags: &red-blue.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Restores 60 HP.'
-  description: &ruby-sapphire.description |
+  short_description: &red-blue.short_description 'Restores 60 HP.'
+  description: &red-blue.description |
     Used on a party Pokémon
     :   Restores 60 [HP]{mechanic:hp}.
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: |
+    Restores POKéMON
+    HP by 60.
+  category: *red-blue.category
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Soda Pop'
+  category: *red-blue.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A fizzy soda drink
     that restores HP
@@ -25,13 +48,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A fizzy soda drink.
     It restores the HP of one POKéMON
@@ -40,15 +63,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *red-blue.buy
+  sell: *red-blue.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A fizzy soda drink.
     It restores the HP of one Pokémon by
@@ -61,15 +84,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *red-blue.buy
+  sell: *red-blue.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A highly carbonated soda drink.
     When consumed, it restores
@@ -79,17 +102,18 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *red-blue.buy
+  sell: *red-blue.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A highly carbonated soda drink. When consumed,
     it restores up to 50 HP to an injured Pokémon.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

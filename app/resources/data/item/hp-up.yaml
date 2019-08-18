@@ -1,19 +1,42 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'HP Up'
-  category: &ruby-sapphire.category vitamins
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 10000
-  sell: &ruby-sapphire.sell 5000
-  flags: &ruby-sapphire.flags
+red-blue: &red-blue
+  name: &red-blue.name 'HP UP'
+  pocket: &red-blue.pocket misc
+  buy: &red-blue.buy 9800
+  sell: &red-blue.sell 4900
+  category: &red-blue.category vitamins
+  flags: &red-blue.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Raises HP effort and happiness.'
-  description: &ruby-sapphire.description |
+  short_description: &red-blue.short_description 'Raises HP effort and happiness.'
+  description: &red-blue.description |
     Used on a party Pokémon
     :   Increases [HP]{mechanic:hp} [effort]{mechanic:effort} by 10, but won't increase it beyond 100.  Increases [happiness]{mechanic:happiness} by 5/3/2.
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: |
+    Raises the HP of
+    one POKéMON.
+  category: *red-blue.category
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'HP Up'
+  category: *red-blue.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: &ruby-sapphire.buy 10000
+  sell: &ruby-sapphire.sell 5000
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Raises the HP of
     one POKéMON.
@@ -21,13 +44,13 @@ ruby-sapphire: &ruby-sapphire
   icon: &ruby-sapphire.icon hp-up.png
 emerald:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Raises the base HP
     of one POKéMON.
@@ -37,13 +60,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A nutritious drink for POKéMON.
     It raises the base HP of one
@@ -52,15 +75,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A nutritious drink for Pokémon.
     It raises the base HP of a single
@@ -73,34 +96,36 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A nutritious drink for Pokémon.
     When consumed, it raises the
     base HP of a single Pokémon.
+  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A nutritious drink for Pokémon. When consumed,
     it raises the base HP of a single Pokémon.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

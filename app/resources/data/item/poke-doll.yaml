@@ -1,18 +1,41 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Poké Doll'
-  category: &ruby-sapphire.category spelunking
-  pocket: &ruby-sapphire.pocket misc
-  buy: &ruby-sapphire.buy 100
-  sell: &ruby-sapphire.sell 50
-  flags: &ruby-sapphire.flags
+red-blue: &red-blue
+  name: &red-blue.name 'POKé DOLL'
+  pocket: &red-blue.pocket misc
+  buy: &red-blue.buy 1000
+  sell: &red-blue.sell 500
+  category: &red-blue.category spelunking
+  flags: &red-blue.flags
     - countable
     - consumable
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Ends a wild battle.'
-  description: &ruby-sapphire.description |
+  short_description: &red-blue.short_description 'Ends a wild battle.'
+  description: &red-blue.description |
     Used in battle
     :   Ends a wild battle.  Cannot be used in trainer battles.
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: |
+    Use to escape from
+    a wild POKéMON.
+  category: *red-blue.category
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Poké Doll'
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: &ruby-sapphire.buy 100
+  sell: &ruby-sapphire.sell 50
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Use to flee from
     any battle with
@@ -24,13 +47,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     An attractive doll.
     Use it to flee from any battle with
@@ -39,15 +62,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A doll that attracts Pokémon.
     Use it to flee from any battle with a
@@ -60,15 +83,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A doll that attracts the attention of a
     Pokémon. It guarantees escape from
@@ -78,18 +101,19 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *red-blue.category
+  pocket: *red-blue.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A doll that attracts the attention of a Pokémon.
     It guarantees escape from any battle with
     wild Pokémon.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

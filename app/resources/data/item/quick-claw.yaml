@@ -1,16 +1,29 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Quick Claw'
-  category: &ruby-sapphire.category held-items
-  pocket: &ruby-sapphire.pocket misc
-  buy: &ruby-sapphire.buy 4000
-  sell: &ruby-sapphire.sell 2000
-  flags: &ruby-sapphire.flags
+gold-silver: &gold-silver
+  name: 'QUICK CLAW'
+  pocket: &gold-silver.pocket misc
+  buy: 100
+  sell: 50
+  flavor_text: |
+    Raises 1st strike
+    ratio. (HOLD)
+  category: &gold-silver.category held-items
+  flags: &gold-silver.flags
     - holdable
     - holdable-active
-  short_description: &ruby-sapphire.short_description 'Held: Holder has a 3/16 (18.75%) chance to move first.'
-  description: &ruby-sapphire.description |
+  short_description: &gold-silver.short_description 'Held: Holder has a 3/16 (18.75%) chance to move first.'
+  description: &gold-silver.description |
     Held in battle
     :   Whenever the holder attempts to use a move, it has a 3/16 chance to act first among moves with the same [priority]{mechanic:priority}.  If multiple Pokémon have this effect at the same time, [Speed]{mechanic:speed} is the tie-breaker as normal, but the effect of []{move:trick-room} is ignored.
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Quick Claw'
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: &ruby-sapphire.buy 4000
+  sell: &ruby-sapphire.sell 2000
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A hold item that
     occasionally allows
@@ -22,13 +35,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a POKéMON.
     A light and sharp claw. The holder
@@ -37,15 +50,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 80
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a Pokémon.
     A light, sharp claw that lets the
@@ -58,15 +71,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 80
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a Pokémon.
     This light, sharp claw lets the
@@ -76,17 +89,18 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 80
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item to be held by a Pokémon. This light, sharp
     claw lets the bearer move first occasionally.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

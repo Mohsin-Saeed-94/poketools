@@ -1,12 +1,30 @@
+red-blue: &red-blue
+  name: &red-blue.name HM04
+  buy: null
+  sell: null
+  short_description: &red-blue.short_description 'Teaches []{move:strength} to a compatible Pokèmon.'
+  description: &red-blue.description |
+    Teaches []{move:strength} to a compatible Pokèmon.
+    
+    {{App\Controller\ ItemController::tmPokemon({"itemSlug": "hm04"})}}
+  category: &red-blue.category hm
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: &gold-silver.pocket machines
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+  category: *red-blue.category
+crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: HM04
-  category: hm
-  pocket: machines
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
   machine:
     type: HM
     number: 4
     move: strength
-  short_description: 'Teaches []{move:strength} to a compatible Pokèmon.'
+  short_description: *red-blue.short_description
   description: |
     Teaches []{move:strength} to a compatible Pokèmon.
     

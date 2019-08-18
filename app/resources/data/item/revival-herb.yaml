@@ -1,19 +1,32 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Revival Herb'
-  category: &ruby-sapphire.category revival
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 2800
-  sell: &ruby-sapphire.sell 1400
-  flags: &ruby-sapphire.flags
+gold-silver: &gold-silver
+  name: 'REVIVAL HERB'
+  pocket: misc
+  buy: &gold-silver.buy 2800
+  sell: &gold-silver.sell 1400
+  flavor_text: |
+    Revives fainted
+    POKéMON. Bitter.
+  category: &gold-silver.category revival
+  flags: &gold-silver.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Revives with full HP, but lowers happiness.'
-  description: &ruby-sapphire.description |
+  short_description: &gold-silver.short_description 'Revives with full HP, but lowers happiness.'
+  description: &gold-silver.description |
     Used on a party Pokémon
     :   Revives a [fainted]{mechanic:faint} Pokémon and restores its [HP]{mechanic:hp} to full.  Decreases [happiness]{mechanic:happiness} by 10/10/15.
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Revival Herb'
+  category: *gold-silver.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A very bitter herb
     that revives a
@@ -25,13 +38,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A very bitter medicinal herb.
     It revives a fainted POKéMON,
@@ -40,15 +53,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A very bitter medicinal herb.
     It revives a fainted Pokémon, fully
@@ -61,15 +74,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A terribly bitter medicinal herb.
     It revives a fainted Pokémon and
@@ -79,17 +92,18 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A terribly bitter medicinal herb. It revives a fainted
     Pokémon and fully restores its maximum HP.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

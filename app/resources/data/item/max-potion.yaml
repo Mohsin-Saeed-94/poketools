@@ -1,19 +1,42 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Max Potion'
-  category: &ruby-sapphire.category healing
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 2500
-  sell: &ruby-sapphire.sell 1250
-  flags: &ruby-sapphire.flags
+red-blue: &red-blue
+  name: &red-blue.name 'MAX POTION'
+  pocket: &red-blue.pocket misc
+  buy: &red-blue.buy 2500
+  sell: &red-blue.sell 1250
+  category: &red-blue.category healing
+  flags: &red-blue.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Restores HP to full.'
-  description: &ruby-sapphire.description |
+  short_description: &red-blue.short_description 'Restores HP to full.'
+  description: &red-blue.description |
     Used on a party Pokémon
     :   Restores [HP]{mechanic:hp} to full.
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: |
+    Fully restores
+    POKéMON HP.
+  category: *red-blue.category
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Max Potion'
+  category: *red-blue.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Fully restores the
     HP of a POKéMON.
@@ -24,13 +47,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type wound medicine.
     It fully restores the HP of one
@@ -39,15 +62,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *red-blue.buy
+  sell: *red-blue.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine for wounds.
     It completely restores the HP of a
@@ -60,15 +83,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *red-blue.buy
+  sell: *red-blue.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine for treating
     wounds. It will completely restore
@@ -78,17 +101,18 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *red-blue.buy
+  sell: *red-blue.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine for treating wounds. It will
     completely restore the max HP of a single Pokémon.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

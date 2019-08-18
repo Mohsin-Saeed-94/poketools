@@ -1,7 +1,30 @@
+red-blue: &red-blue
+  name: &red-blue.name TM48
+  buy: null
+  sell: null
+  short_description: 'Teaches []{move:rock-slide} to a compatible Pokèmon.'
+  description: |
+    Teaches []{move:rock-slide} to a compatible Pokèmon.
+    
+    {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm48"})}}
+  category: &red-blue.category tm
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: &gold-silver.pocket machines
+  buy: 3000
+  sell: 1500
+  short_description: 'Teaches []{move:fire-punch} to a compatible Pokèmon.'
+  description: |
+    Teaches []{move:fire-punch} to a compatible Pokèmon.
+    
+    {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm48"})}}
+  category: *red-blue.category
+crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name TM48
-  category: &ruby-sapphire.category tm
-  pocket: &ruby-sapphire.pocket machines
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
   buy: &ruby-sapphire.buy 10000
   sell: &ruby-sapphire.sell 5000
   machine:
@@ -23,9 +46,9 @@ diamond-pearl: *ruby-sapphire
 platinum: *ruby-sapphire
 heartgold-soulsilver: *ruby-sapphire
 black-white: &black-white
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   machine:

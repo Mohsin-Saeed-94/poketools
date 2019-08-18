@@ -1,19 +1,32 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Sacred Ash'
-  category: &ruby-sapphire.category revival
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 50000
-  sell: &ruby-sapphire.sell 25000
-  flags: &ruby-sapphire.flags
+gold-silver: &gold-silver
+  name: 'SACRED ASH'
+  pocket: misc
+  buy: 200
+  sell: 100
+  flavor_text: |
+    Fully revives all
+    fainted POKéMON.
+  category: &gold-silver.category revival
+  flags: &gold-silver.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Revives all fainted Pokémon with full HP.'
-  description: &ruby-sapphire.description |
+  short_description: &gold-silver.short_description 'Revives all fainted Pokémon with full HP.'
+  description: &gold-silver.description |
     Used
     :   Revives all [fainted]{mechanic:faint} Pokémon in the party and restores their [HP]{mechanic:hp} to full.
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Sacred Ash'
+  category: *gold-silver.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: &ruby-sapphire.buy 50000
+  sell: &ruby-sapphire.sell 25000
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     Fully revives and
     restores all
@@ -25,13 +38,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     Revives all fainted POKéMON,
     restoring HP fully.
@@ -39,15 +52,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     It revives all fainted Pokémon.
     In doing so, it also fully restores
@@ -60,15 +73,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     This rare ash can revive all fainted
     Pokémon in a party. In doing so, it
@@ -78,18 +91,19 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     This rare ash can revive all fainted Pokémon in a
     party. In doing so, it also fully restores their
     maximum HP.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

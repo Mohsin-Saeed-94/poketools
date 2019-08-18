@@ -1,19 +1,32 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Energy Root'
-  category: &ruby-sapphire.category healing
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 1200
-  sell: &ruby-sapphire.sell 600
-  flags: &ruby-sapphire.flags
+gold-silver: &gold-silver
+  name: 'ENERGY ROOT'
+  pocket: misc
+  buy: 800
+  sell: 400
+  flavor_text: |
+    Restores POKéMON
+    HP by 200. Bitter.
+  category: &gold-silver.category healing
+  flags: &gold-silver.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Restores 200 HP, but lowers happiness.'
-  description: &ruby-sapphire.description |
+  short_description: &gold-silver.short_description 'Restores 200 HP, but lowers happiness.'
+  description: &gold-silver.description |
     Used on a party Pokémon
     :   Restores 200 [HP]{mechanic:hp}.  Decreases [happiness]{mechanic:happiness} by 10/10/15.
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'Energy Root'
+  category: *gold-silver.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: &ruby-sapphire.buy 1200
+  sell: &ruby-sapphire.sell 600
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A bitter root
     that restores HP
@@ -25,13 +38,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A very bitter root.
     It restores the HP of one POKéMON
@@ -40,15 +53,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     A very bitter root.
     It restores the HP of one Pokémon by
@@ -61,15 +74,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An extremely bitter medicinal root.
     When consumed, it restores
@@ -79,17 +92,18 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *gold-silver.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An extremely bitter medicinal root. When consumed,
     it restores up to 120 HP to an injured Pokémon.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

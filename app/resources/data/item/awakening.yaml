@@ -1,19 +1,42 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Awakening
-  category: &ruby-sapphire.category status-cures
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 100
-  sell: &ruby-sapphire.sell 50
-  flags: &ruby-sapphire.flags
+red-blue: &red-blue
+  name: &red-blue.name AWAKENING
+  pocket: &red-blue.pocket misc
+  buy: 200
+  sell: 100
+  category: &red-blue.category status-cures
+  flags: &red-blue.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Cures sleep.'
-  description: &ruby-sapphire.description |
+  short_description: &red-blue.short_description 'Cures sleep.'
+  description: &red-blue.description |
     Used on a party Pokémon
     :   Cures [sleep]{mechanic:sleep}.
+yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: 250
+  sell: 125
+  flavor_text: |
+    Awakens sleeping
+    POKéMON.
+  category: *red-blue.category
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name Awakening
+  category: *red-blue.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: &ruby-sapphire.buy 100
+  sell: &ruby-sapphire.sell 50
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     Awakens a sleeping
     POKéMON.
@@ -24,13 +47,13 @@ colosseum: *ruby-sapphire
 xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine.
     It awakens a sleeping POKéMON.
@@ -38,15 +61,15 @@ firered-leafgreen:
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine.
     It awakens a Pokémon from the
@@ -59,15 +82,15 @@ black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine used against
     sleep. It can be used once to rouse a
@@ -77,18 +100,19 @@ x-y: &x-y
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
+  category: *red-blue.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *red-blue.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
   flavor_text: |
     A spray-type medicine used against sleep. It can
     be used once to rouse a Pokémon from the
     clutches of sleep.
+  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon
