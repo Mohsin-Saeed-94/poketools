@@ -318,10 +318,10 @@ SQL
         // Force a special description for all evolution items to display a list
         // of Pokemon that can use them.
 //        if ($sourceData['category'] === 'evolution') {
-//            $sourceData['short_description'] = 'Evolves certain Pokèmon.';
+//            $sourceData['short_description'] = 'Evolves certain Pokémon.';
 //            $sourceData['description'] = <<<EOT
-//When this item is used on some Pokèmon, the Pokèmon will evolve.  Below is a list
-//of compatible Pokèmon.
+//When this item is used on some Pokémon, the Pokémon will evolve.  Below is a list
+//of compatible Pokémon.
 //
 //{{App\Controller\ItemController::evolutionPokemon({"itemSlug": "${destinationData['identifier']}"})}}
 //EOT;
@@ -480,14 +480,14 @@ SQL
                 unset($destinationData[$versionGroup]['machine']['move_type']);
                 if (!isset($destinationData[$versionGroup]['short_description'])) {
                     $destinationData[$versionGroup]['short_description'] = sprintf(
-                        'Teaches []{move:%s} to a compatible Pokèmon.',
+                        'Teaches []{move:%s} to a compatible Pokémon.',
                         $machineData[$versionGroup]['move']
                     );
                 }
                 if (!isset($destinationData[$versionGroup]['description'])) {
                     $destinationData[$versionGroup]['description'] = sprintf(
                         <<<EOT
-Teaches []{move:%s} to a compatible Pokèmon.
+Teaches []{move:%s} to a compatible Pokémon.
 
 {{App\Controller\ItemController::tmPokemon({"itemSlug": "%s"})}}
 EOT

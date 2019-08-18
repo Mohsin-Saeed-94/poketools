@@ -48,7 +48,7 @@ class MenuBuilder
 
         $pokemonUri = $this->urlGenerator->generate('pokemon_index', ['versionSlug' => '__VERSION__']);
         $menu->addChild(
-            'Pokèmon',
+            'Pokémon',
             [
                 'uri' => $pokemonUri,
                 'linkAttributes' => ['data-uri-template' => $pokemonUri],

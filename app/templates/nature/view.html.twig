@@ -51,7 +51,7 @@
 
     {# Pokeathlon stats #}
     {% if version.versionGroup.featureString('pokeathlon') %}
-        <h2>Pokèathlon Stat Modifiers</h2>
+        <h2>Pokéathlon Stat Modifiers</h2>
         <ul class="pkt-nature-view-pokeathlon">
             {% for pokeathlon_stat_change in nature.pokeathlonStatChanges %}
                 <li>Up to {{ pokeathlon_stat_change.maxChange }} {{ pokeathlon_stat_change.pokeathlonStat }}</li>
@@ -60,14 +60,14 @@
     {% endif %}
 
     {# Pokemon table #}
-    <h2>Pokèmon</h2>
+    <h2>Pokémon</h2>
     <p>
         {%- set sameStats = nature.statIncreased is same as(nature.statDecreased)
             and nature.flavorLikes is same as(nature.flavorHates) -%}
         {% if sameStats %}
-            This is a list of Pokèmon with similar stats.
+            This is a list of Pokémon with similar stats.
         {% else %}
-            This is a list of Pokèmon with high {{ nature.statIncreased }} and low {{ nature.statDecreased }}.
+            This is a list of Pokémon with high {{ nature.statIncreased }} and low {{ nature.statDecreased }}.
         {% endif %}
     </p>
     {{ datatable.datatable(pokemon_table, 'pkt-nature-view-pokemon') }}
