@@ -12,12 +12,25 @@
     </nav>
 
     <h1>Items</h1>
-    {% for pocket in pockets %}
-        {% if pockets|length > 1 %}
-            <h2>{{ pocket.name }}</h2>
-        {% endif %}
-        {{ datatable.datatable(item_tables[pocket.slug], 'pkt-item-index-table-'~pocket.slug) }}
-    {% endfor %}
+    <ul class="nav nav-tabs" id="pkt-item-index-nav" role="tablist">
+        {% for pocket in pockets %}
+            <li class="nav-item">
+                <a class="nav-link{% if loop.first %} active{% endif %}" id="pkt-item-index-nav-{{ pocket.slug }}"
+                   data-toggle="tab" href="#pkt-item-index-{{ pocket.slug }}"
+                   aria-controls="pkt-item-index-{{ pocket.slug }}"{% if loop.first %} aria-selected="true"{% endif %}>
+                    {{ pocket.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="tab-content">
+        {% for pocket in pockets %}
+            <div class="tab-pane fade show{% if loop.first %} active{% endif %}" id="pkt-item-index-{{ pocket.slug }}"
+                 role="tabpanel" aria-labelledby="pkt-item-index-nav-{{ pocket.slug }}">
+                {{ datatable.datatable(item_tables[pocket.slug], 'pkt-item-index-table-'~pocket.slug) }}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block stylesheets %}
