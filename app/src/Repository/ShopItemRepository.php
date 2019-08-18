@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\ItemInVersionGroup;
 use App\Entity\ShopItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -19,32 +20,19 @@ class ShopItemRepository extends ServiceEntityRepository
         parent::__construct($registry, ShopItem::class);
     }
 
-    // /**
-    //  * @return ShopItem[] Returns an array of ShopItem objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param ItemInVersionGroup $item
+     *
+     * @return ShopItem[]
+     */
+    public function findByItem(ItemInVersionGroup $item): array
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('shop_item');
+        $qb->where('shop_item.item = :item')
+            ->setParameter('item', $item);
+        $q = $qb->getQuery();
+        $q->execute();
 
-    /*
-    public function findOneBySomeField($value): ?ShopItem
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $q->getResult();
     }
-    */
 }

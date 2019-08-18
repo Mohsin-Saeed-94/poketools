@@ -168,7 +168,7 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
     /**
      * @return LocationArea
      */
-    private function getTreeRoot(): LocationArea
+    public function getTreeRoot(): LocationArea
     {
         if (isset($this->treeParent)) {
             return $this->treeParent->getTreeRoot();
@@ -221,6 +221,43 @@ class LocationArea extends AbstractDexEntity implements EntityHasNameInterface, 
     public function getTreePath(): string
     {
         return $this->treePath;
+    }
+
+    /**
+     * @param bool $includeCurrent
+     *
+     * @return LocationArea[]
+     */
+    public function getTreeParents(bool $includeCurrent = false): array
+    {
+        $parents = $this->calcTreeParents();
+        if ($includeCurrent) {
+            $parents[] = $this;
+        }
+
+        return $parents;
+    }
+
+    /**
+     * @param array $parents
+     *
+     * @return LocationArea[]
+     */
+    private function calcTreeParents(array &$parents = []): array
+    {
+        if (empty($parents)) {
+            $root = $this->getTreeRoot();
+            $parents[] = $root;
+            foreach ($root->getTreeChildren() as $child) {
+                $child->calcTreeParents($parents);
+            }
+        } else {
+            foreach ($this->treeChildren as $child) {
+                $child->calcTreeParents($parents);
+            }
+        }
+
+        return $parents;
     }
 
     /**

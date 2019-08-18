@@ -11,6 +11,7 @@ use App\Repository\ItemInVersionGroupRepository;
 use App\Repository\ItemPocketInVersionGroupRepository;
 use App\Repository\MoveLearnMethodRepository;
 use App\Repository\PokemonWildHeldItemRepository;
+use App\Repository\ShopItemRepository;
 use Omines\DataTablesBundle\DataTableFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,6 +45,10 @@ class ItemController extends AbstractDexController
      * @var MoveLearnMethod
      */
     private $machineLearnMethod;
+    /**
+     * @var ShopItemRepository
+     */
+    private $shopItemRepo;
 
     /**
      * ItemController constructor.
@@ -53,13 +58,15 @@ class ItemController extends AbstractDexController
      * @param ItemPocketInVersionGroupRepository $pocketRepo
      * @param PokemonWildHeldItemRepository $heldItemRepo
      * @param MoveLearnMethodRepository $moveLearnMethodRepo
+     * @param ShopItemRepository $shopItemRepo
      */
     public function __construct(
         DataTableFactory $dataTableFactory,
         ItemInVersionGroupRepository $itemRepo,
         ItemPocketInVersionGroupRepository $pocketRepo,
         PokemonWildHeldItemRepository $heldItemRepo,
-        MoveLearnMethodRepository $moveLearnMethodRepo
+        MoveLearnMethodRepository $moveLearnMethodRepo,
+        ShopItemRepository $shopItemRepo
     ) {
         parent::__construct($dataTableFactory);
 
@@ -67,6 +74,7 @@ class ItemController extends AbstractDexController
         $this->pocketRepo = $pocketRepo;
         $this->heldItemRepo = $heldItemRepo;
         $this->machineLearnMethod = $moveLearnMethodRepo->findOneBy(['slug' => 'machine']);
+        $this->shopItemRepo = $shopItemRepo;
     }
 
     /**
@@ -126,6 +134,7 @@ class ItemController extends AbstractDexController
         }
 
         $wildHeldItems = $this->heldItemRepo->findByItemAndVersion($item, $version);
+        $shopItems = $this->shopItemRepo->findByItem($item);
 
         return $this->render(
             'item/view.html.twig',
@@ -137,6 +146,7 @@ class ItemController extends AbstractDexController
                 ),
                 'item' => $item,
                 'wild_held_items' => $wildHeldItems,
+                'shop_items' => $shopItems,
             ]
         );
     }

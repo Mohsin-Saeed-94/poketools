@@ -199,6 +199,37 @@
                 </table>
             </div>
         {% endif %}
+
+        {% if shop_items %}
+            <div class="col-md">
+                <h2>Shops</h2>
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Shop</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for shop_item in shop_items %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('location_view', {'versionSlug': version.slug, 'locationSlug': shop_item.shop.locationArea.treeRoot.location.slug}) }}">
+                                    {{ shop_item.shop.locationArea.treeRoot.location.name }}
+                                </a>
+                                {% if not shop_item.shop.locationArea.default %}
+                                    ({{ shop_item.shop.locationArea.treeParents(true)|join(', ') }})
+                                {% endif %}
+                            </td>
+                            <td>{{ shop_item.shop.name }}</td>
+                            <td><i class="pkt-icon pkt-icon-pokedollar"></i>{{ shop_item.buy }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
     </div>
 
     <h2>Description</h2>
