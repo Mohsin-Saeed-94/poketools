@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\DataTable\Type\LocationEncounterPokemonTableType;
+use App\DataTable\Type\ShopItemTableType;
 use App\Entity\LocationArea;
 use App\Entity\LocationInVersionGroup;
 use App\Entity\Version;
@@ -124,9 +125,13 @@ class LocationController extends AbstractDexController
             throw new NotFoundHttpException();
         }
 
-        $encounterTables = $this->getEncounterTables($version, $request, $location->getAreas());
         // This may be a callback to get table data, in which case the table handled the request
         // already.
+        $shopTables = $this->getShopTables($version, $request, $location->getAreas());
+        if ($shopTables instanceof Response) {
+            return $shopTables;
+        }
+        $encounterTables = $this->getEncounterTables($version, $request, $location->getAreas());
         if ($encounterTables instanceof Response) {
             return $encounterTables;
         }
@@ -144,10 +149,49 @@ class LocationController extends AbstractDexController
                     ]
                 ),
                 'location' => $location,
+                'shop_tables' => $shopTables,
                 'encounter_tables' => $encounterTables,
                 'encounter_counts' => $encounterCounts,
             ]
         );
+    }
+
+    /**
+     * @param Version $version
+     * @param Request $request
+     * @param LocationArea[] $areas
+     * @param ShopItemTableType[] $shopTables
+     *
+     * @return Response|ShopItemTableType[]
+     */
+    private function getShopTables(Version $version, Request $request, $areas, array &$shopTables = [])
+    {
+        foreach ($areas as $area) {
+            foreach ($area->getShops() as $shop) {
+                $shopTable = $this->dataTableFactory->createFromType(
+                    ShopItemTableType::class,
+                    [
+                        'version' => $version,
+                        'shop' => $shop,
+                    ]
+                )->handleRequest($request);
+                if ($shopTable->isCallback()) {
+                    return $shopTable->getResponse();
+                }
+                $shopTables[$shop->getId()] = $shopTable;
+            }
+
+            // Recursively add children
+            if ($area->getTreeChildren()) {
+                $ret = $this->getShopTables($version, $request, $area->getTreeChildren(), $shopTables);
+                if ($ret instanceof Response) {
+                    // If a table has handled the request, break out and return the response.
+                    return $ret;
+                }
+            }
+        }
+
+        return $shopTables;
     }
 
     /**

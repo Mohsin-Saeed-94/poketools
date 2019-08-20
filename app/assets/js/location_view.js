@@ -9,8 +9,9 @@ require('datatables.net-rowgroup');
 require('datatables-bundle/datatables');
 
 $(document).ready(function () {
-    const tables = $('.pkt-datatable-container');
-    for (let table of tables) {
+    // Encounter tables
+    const encounterTables = $('.pkt-location-view-encounters-table .pkt-datatable-container');
+    for (let table of encounterTables) {
         const tableSettings = $(table).data('table-settings');
         $(table).initDataTables(tableSettings, {
             rowGroup: {
@@ -20,6 +21,17 @@ $(document).ready(function () {
             dataTable.on('draw', function () {
                 $('[data-toggle="tooltip"]').tooltip();
             });
+        });
+    }
+
+    // Shop inventory tables
+    const shopTables = $('.pkt-location-view-shops-table .pkt-datatable-container');
+    for (let table of shopTables) {
+        const tableSettings = $(table).data('table-settings');
+        $(table).initDataTables(tableSettings, {
+            rowGroup: {
+                dataSrc: 'category'
+            }
         });
     }
 });

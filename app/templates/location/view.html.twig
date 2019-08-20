@@ -38,7 +38,7 @@
         {{ location.description|markdown }}
     {% endif %}
 
-    {{ helpers.show_areas(location.areas, encounter_tables, encounter_counts) }}
+    {{ helpers.show_areas(location.areas, shop_tables, encounter_tables, encounter_counts) }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -86,7 +86,7 @@
     {% endif %}
 {% endmacro %}
 
-{% macro show_areas(areas, encounter_tables, encounter_counts) %}
+{% macro show_areas(areas, shop_tables, encounter_tables, encounter_counts) %}
     {% import _self as helpers %}
     {# /** @var \App\Entity\LocationArea[] areas **/ #}
     {# Areas nav #}
@@ -95,11 +95,11 @@
             {% for area in areas %}
                 {% set tree_path = area.treePath|trim(',')|split(',')|join('-') %}
                 <li class="nav-item">
-                    <a class="nav-link{% if loop.first %} active{% endif %}"
+                    <a class="nav-link{% if area.default %} active{% endif %}"
                        id="pkt-location-view-tabs-{{ tree_path }}"
                        data-toggle="tab" href="#pkt-location-view-area-{{ tree_path }}"
                        role="tab"
-                       aria-controls="pkt-location-view-area-{{ tree_path }}"{% if loop.first %} aria-selected="true"{% endif %}
+                       aria-controls="pkt-location-view-area-{{ tree_path }}"{% if area.default %} aria-selected="true"{% endif %}
                     >
                         {{ area.name }}
                     </a>
@@ -110,20 +110,36 @@
     <div class="tab-content">
         {% for area in areas %}
             {% set tree_path = area.treePath|trim(',')|split(',')|join('-') %}
-            <div class="tab-pane{% if loop.first %} show active{% endif %}"
+            <div class="tab-pane{% if area.default %} show active{% endif %}"
                  id="pkt-location-view-area-{{ tree_path }}"
                  role="tabpanel" aria-labelledby="pkt-location-view-tabs-{{ tree_path }}">
+
+                {# Shops #}
+                {% if area.shops is not empty %}
+                    <h3>Shops</h3>
+                    {% for shop in area.shops %}
+                        <h4>{{ shop.name }}</h4>
+                        <div class="pkt-location-view-shops-table">
+                            {{ datatable.datatable(shop_tables[shop.id], 'pkt-location-view-shops-'~shop.id) }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
 
                 {# Pokemon #}
                 {% if encounter_counts[area.treePath] > 0 %}
                     <h3>Pokémon</h3>
-                    {{ datatable.datatable(encounter_tables[area.treePath], 'pkt-location-view-encounters-'~tree_path) }}
-                {% else %}
-                    <p>No Pokémon.</p>
+                    <div class="pkt-location-view-encounters-table">
+                        {{ datatable.datatable(encounter_tables[area.treePath], 'pkt-location-view-encounters-'~tree_path) }}
+                    </div>
+                {% endif %}
+
+                {# This area is empty #}
+                {% if area.shops is empty and encounter_counts[area.treePath] == 0 %}
+                    <p>This area has no points of interest.</p>
                 {% endif %}
 
                 {% if area.treeChildren is not empty %}
-                    {{ helpers.show_areas(area.treeChildren, encounter_tables, encounter_counts) }}
+                    {{ helpers.show_areas(area.treeChildren, shop_tables, encounter_tables, encounter_counts) }}
                 {% endif %}
             </div>
         {% endfor %}
