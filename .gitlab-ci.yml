@@ -84,11 +84,11 @@ data:
     - php bin/console doctrine:schema:update --force
     - php -d memory_limit=-1 bin/console a2b:migrate --preserve
     - cp resources/data/data_migration_map.sqlite ${CI_PROJECT_DIR}/
-    - pg_dump --host=postgres --username=${POSTGRES_USER} --dbname=${POSTGRES_DB} --blobs --inserts --no-owner --no-privileges --file="${CI_PROJECT_DIR}/template.generated.pg.sql"
+    - pg_dump --host=postgres --username=${POSTGRES_USER} --dbname=${POSTGRES_DB} --blobs --no-owner --no-privileges --format=custom --file="${CI_PROJECT_DIR}/template.generated.pgdump"
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
     paths:
-      - template.generated.pg.sql
+      - template.generated.pgdump
       - data_migration_map.sqlite
 
 test:
@@ -116,7 +116,7 @@ test:
   script:
     - export PGPASSWORD=$POSTGRES_PASSWORD
     - apk add --no-cache postgresql-client
-    - psql -q --host=postgres --username=${POSTGRES_USER} --dbname=${POSTGRES_DB} --file="${CI_PROJECT_DIR}/template.generated.pg.sql"
+    - pg_restore --host=postgres --username=${POSTGRES_USER} --dbname=${POSTGRES_DB} --exit-on-error --no-owner --no-privileges "${CI_PROJECT_DIR}/template.generated.pgdump"
     - cd /var/www
     - composer install --prefer-dist --no-progress --no-suggest --no-interaction
     - php -d memory_limit=-1 bin/phpunit --configuration=phpunit.xml.dist --testsuite="Data Content"
@@ -133,7 +133,7 @@ build_data:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
   before_script:
-    - mv template.generated.pg.sql docker/db/
+    - mv template.generated.pgdump docker/db/
     - apk add --no-cache gcc libc-dev libffi-dev make openssl-dev py-pip python2-dev
     - pip install docker-compose
   script:

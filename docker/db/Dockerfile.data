@@ -9,4 +9,5 @@ FROM postgres:11 as db_dev
 #######################################
 FROM db_dev as db
 
-COPY template.generated.pg.sql /docker-entrypoint-initdb.d/
+COPY init.sh /docker-entrypoint-initdb.d/
+COPY template.generated.pgdump /initdb.d/
