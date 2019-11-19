@@ -47,6 +47,8 @@ pretest-data:
         - app/resources/schema/**/*
       when: on_success
     - when: manual
+  # Bad workaround until https://gitlab.com/gitlab-org/gitlab/issues/30235 is completed
+  allow_failure: true
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   dependencies: []
   variables:
@@ -68,6 +70,8 @@ data:
     - changes: *data_changes
       when: on_success
     - when: manual
+  # Bad workaround until https://gitlab.com/gitlab-org/gitlab/issues/30235 is completed
+  allow_failure: true
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   services:
     - postgres:11
@@ -109,6 +113,8 @@ test-data:
     - changes: *data_changes
       when: on_success
     - when: manual
+  # Bad workaround until https://gitlab.com/gitlab-org/gitlab/issues/30235 is completed
+  allow_failure: true
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   services:
     - postgres:11
@@ -143,6 +149,8 @@ build-data:
     - changes: *data_changes
       when: on_success
     - when: manual
+  # Bad workaround until https://gitlab.com/gitlab-org/gitlab/issues/30235 is completed
+  allow_failure: true
   image: docker:stable
   services:
     - docker:dind
@@ -171,6 +179,8 @@ deploy-data:
       if: '$CI_COMMIT_REF_NAME == "master"'
       when: on_success
     - when: manual
+  # Bad workaround until https://gitlab.com/gitlab-org/gitlab/issues/30235 is completed
+  allow_failure: true
   image: lwolf/kubectl_deployer
   variables:
     DB_DEPLOYMENT_TMPL: ./deploy/tmpl/db-deployment.yaml
