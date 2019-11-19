@@ -37,8 +37,16 @@ build:
     - docker push ${IMAGE_BASENAME}/web:latest
     - docker push ${IMAGE_BASENAME}/web:${BUILD_NUMBER}
 
-pretest:
+pretest-data:
   stage: pretest
+  rules:
+    - changes: &data_changes
+        - app/resources/data/*
+        - app/resources/data/**/*
+        - app/resources/schema/*
+        - app/resources/schema/**/*
+      when: on_success
+    - when: manual
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   dependencies: []
   variables:
@@ -56,6 +64,10 @@ pretest:
 
 data:
   stage: data
+  rules:
+    - changes: *data_changes
+      when: on_success
+    - when: manual
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   services:
     - postgres:11
@@ -91,8 +103,12 @@ data:
       - template.generated.pgdump
       - data_migration_map.sqlite
 
-test:
+test-data:
   stage: test
+  rules:
+    - changes: *data_changes
+      when: on_success
+    - when: manual
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   services:
     - postgres:11
@@ -121,8 +137,12 @@ test:
     - composer install --prefer-dist --no-progress --no-suggest --no-interaction
     - php -d memory_limit=-1 bin/phpunit --configuration=phpunit.xml.dist --testsuite="Data Content"
 
-build_data:
+build-data:
   stage: build_data
+  rules:
+    - changes: *data_changes
+      when: on_success
+    - when: manual
   image: docker:stable
   services:
     - docker:dind
@@ -144,23 +164,47 @@ build_data:
     - docker push ${IMAGE_BASENAME}/db:latest
     - docker push ${IMAGE_BASENAME}/db:${BUILD_NUMBER}
 
+deploy-data:
+  stage: deploy
+  rules:
+    - changes: *data_changes
+      if: '$CI_COMMIT_REF_NAME == "master"'
+      when: on_success
+    - when: manual
+  image: lwolf/kubectl_deployer
+  variables:
+    DB_DEPLOYMENT_TMPL: ./deploy/tmpl/db-deployment.yaml
+    ENVIRONMENT: "${CI_ENVIRONMENT_SLUG}"
+  environment:
+    name: prod
+    url: http://poketools.gamestuff.info
+  dependencies: []
+  script:
+    # This is from deploy.sh, without the iteration over all templates.
+    - envsubst < "${DB_DEPLOYMENT_TMPL}" > "./deploy/.generated/$(basename "${DB_DEPLOYMENT_TMPL}")"
+    - kubectl apply -f "./deploy/.generated/$(basename "${DB_DEPLOYMENT_TMPL}")"
+
 deploy:
   stage: deploy
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: on_success
+    - when: manual
   image: lwolf/kubectl_deployer
   environment:
     name: prod
     url: http://poketools.gamestuff.info
-  only:
-    - master
   dependencies: []
   script:
     - /bin/sh deploy.sh ${CI_ENVIRONMENT_SLUG}
 
 sentry:
   stage: notify
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: on_success
+    - when: manual
   image: getsentry/sentry-cli
-  only:
-    - master
   dependencies: []
   script:
     - sentry-cli releases new -p poketools ${BUILD_NUMBER}
