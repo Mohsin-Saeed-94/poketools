@@ -222,6 +222,8 @@ deploy:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: on_success
     - when: manual
+  needs:
+    - build
   image: lwolf/kubectl_deployer
   environment:
     name: prod
@@ -236,6 +238,9 @@ sentry:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: on_success
     - when: manual
+  needs:
+    - build
+    - deploy
   image: getsentry/sentry-cli
   dependencies: []
   script:
