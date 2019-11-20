@@ -49,8 +49,11 @@ pretest-data:
     - when: manual
   # Bad workaround until https://gitlab.com/gitlab-org/gitlab/issues/30235 is completed
   allow_failure: true
+  interruptible: true
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   dependencies: []
+  needs:
+    - build
   variables:
     # Don't need to checkout because this job operates in the application image
     GIT_STRATEGY: none
@@ -72,10 +75,14 @@ data:
     - when: manual
   # Bad workaround until https://gitlab.com/gitlab-org/gitlab/issues/30235 is completed
   allow_failure: true
+  interruptible: true
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   services:
     - postgres:11
   dependencies: []
+  needs:
+    - build
+    - pretest-data
   variables:
     # Don't need to checkout because this job operates in the application image
     GIT_STRATEGY: none
@@ -120,6 +127,10 @@ test-data:
     - postgres:11
   dependencies:
     - data
+  needs:
+    - build
+    - pretest-data
+    - data
   variables:
     # Don't need to checkout because this job operates in the application image
     GIT_STRATEGY: none
@@ -156,6 +167,11 @@ build-data:
     - docker:dind
   dependencies:
     - data
+  needs:
+    - build
+    - pretest-data
+    - data
+    - test-data
   variables:
     COMPOSE_FILE: docker-compose.yaml
     DOCKER_HOST: tcp://docker:2375
@@ -189,6 +205,12 @@ deploy-data:
     name: prod
     url: http://poketools.gamestuff.info
   dependencies: []
+  needs:
+    - build
+    - pretest-data
+    - data
+    - test-data
+    - build-data
   script:
     # This is from deploy.sh, without the iteration over all templates.
     - envsubst < "${DB_DEPLOYMENT_TMPL}" > "./deploy/.generated/$(basename "${DB_DEPLOYMENT_TMPL}")"
