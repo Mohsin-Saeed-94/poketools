@@ -53,7 +53,7 @@
                 </div>
 
                 <ul class="pkt-location-index-list">
-                    {% for location in locations[region.slug] if location.superLocation is null %}
+                    {% for location in locations[region.slug]|filter(location => location.superLocation is null) %}
                         {{ helpers.location_tree(location, version) }}
                     {% endfor %}
                 </ul>

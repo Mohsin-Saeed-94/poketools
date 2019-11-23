@@ -36,7 +36,7 @@
                 {% for stat in stats %}
                     <tr>
                         <th>{{ stat }}</th>
-                        {% for characteristic in characteristics if characteristic.stat is same as(stat) %}
+                        {% for characteristic in characteristics|filter(characteristic => characteristic.stat is same as(stat)) %}
                             <td>{{ characteristic.flavorText }}</td>
                         {% endfor %}
                     </tr>

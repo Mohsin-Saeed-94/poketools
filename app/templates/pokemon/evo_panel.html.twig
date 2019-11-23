@@ -1,4 +1,4 @@
-{%- spaceless -%}
+{%- apply spaceless -%}
     <div class="card pkt-pokemon-evo-card{% if active %} active{% endif %}">
         <div class="card-body">
             <h5 class="card-title">
@@ -13,7 +13,7 @@
                             <th>{{ trigger.name }}</th>
                             <td>
                                 <ul class="list-unstyled">
-                                    {% for condition in pokemon.evolutionConditions if condition.evolutionTrigger == trigger %}
+                                    {% for condition in pokemon.evolutionConditions|filter(condition => condition.evolutionTrigger == trigger) %}
                                         <li>{{ condition.label|markdown }}</li>
                                     {% endfor %}
                                 </ul>
@@ -24,4 +24,4 @@
             {% endif %}
         </div>
     </div>
-{%- endspaceless -%}
+{%- endapply -%}

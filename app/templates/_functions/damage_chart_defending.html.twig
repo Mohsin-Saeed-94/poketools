@@ -2,14 +2,14 @@
     <table class="table pkt-type-chart-matchup">
         <thead>
         <tr>
-            {% for attacking_type in type_chart.types if not attacking_type.hidden %}
+            {% for attacking_type in type_chart.types|filter(attacking_type => attacking_type != attacking_type.hidden) %}
                 <th class="pkt-type-chart-type">{{ attacking_type|type_emblem }}</th>
             {% endfor %}
         </tr>
         </thead>
         <tbody>
         <tr>
-            {% for attacking_type in type_chart.types if not attacking_type.hidden %}
+            {% for attacking_type in type_chart.types|filter(attacking_type => attacking_type != attacking_type.hidden) %}
                 <td class="pkt-type-chart-efficacy">{{ efficacies[attacking_type.slug]|type_efficacy }}</td>
             {% endfor %}
         </tr>
@@ -19,7 +19,7 @@
 {# Vertical format, for smaller screens #}
 <div class="table-responsive d-md-none">
     <table class="table pkt-type-chart-matchup pkt-type-chart-matchup-vertical">
-        {% for attacking_type in type_chart.types if not attacking_type.hidden %}
+        {% for attacking_type in type_chart.types|filter(attacking_type => attacking_type != attacking_type.hidden) %}
             <tr>
                 <th class="pkt-type-chart-type">{{ attacking_type|type_emblem }}</th>
                 <td class="pkt-type-chart-efficacy">{{ efficacies[attacking_type.slug]|type_efficacy }}</td>

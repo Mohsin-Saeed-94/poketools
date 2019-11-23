@@ -224,7 +224,7 @@
                     <th>Effort</th>
                     <td>
                         <table class="pkt-infolist">
-                            {% for pokemon_stat in pokemon.stats if pokemon_stat.effortChange != 0 %}
+                            {% for pokemon_stat in pokemon.stats|filter(pokemon_stat => pokemon_stat.effortChange != 0) %}
                                 <tr>
                                     <th>{{ pokemon_stat.stat }}</th>
                                     <td>{{ '%+d'|format(pokemon_stat.effortChange) }}</td>
@@ -610,7 +610,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for area_data in location_data.areas if area_data.encounters is defined %}
+                    {% for area_data in location_data.areas|filter(area_data => area_data.encounters is defined) %}
                         {# /** @var \App\Entity\LocationArea area */ #}
                         {%- set area = area_data.area -%}
 
