@@ -18,9 +18,13 @@ use App\Entity\Version;
 use App\Repository\SlugAndVersionInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use League\CommonMark\Cursor;
+use League\CommonMark\EnvironmentAwareInterface;
+use League\CommonMark\EnvironmentInterface;
+use League\CommonMark\Inline\Element\AbstractWebResource;
+use League\CommonMark\Inline\Element\Image;
 use League\CommonMark\Inline\Element\Link;
 use League\CommonMark\Inline\Element\Text;
-use League\CommonMark\Inline\Parser\CloseBracketParser;
+use League\CommonMark\Inline\Parser\InlineParserInterface;
 use League\CommonMark\InlineParserContext;
 use League\CommonMark\Util\RegexHelper;
 use Psr\Log\LoggerInterface;
@@ -31,32 +35,27 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  *
  * Links should be in the format `[optional label]{category:slug}`.
  */
-class CloseBracketInternalLinkParser extends CloseBracketParser
+class CloseBracketInternalLinkParser implements InlineParserInterface, EnvironmentAwareInterface
 {
     protected const BRACKET_OPEN = '{';
 
     protected const BRACKET_CLOSE = '}';
-
     /**
      * @var LoggerInterface
      */
     protected $logger;
-
     /**
      * @var UrlGeneratorInterface
      */
     protected $urlGenerator;
-
     /**
      * @var EntityManagerInterface
      */
     protected $em;
-
     /**
      * @var Version
      */
     protected $currentVersion;
-
     /**
      * Track the current link being worked with.
      *
@@ -65,13 +64,16 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
      * @var Link|null
      */
     protected $currentLink;
-
     /**
      * Current entity being worked with, guaranteed to have a getName() method.
      *
      * @var EntityHasNameInterface
      */
     protected $currentEntity;
+    /**
+     * @var EnvironmentInterface
+     */
+    private $environment;
 
     /**
      * CloseBracketInternalLinkParser constructor.
@@ -98,33 +100,56 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
      */
     public function parse(InlineParserContext $inlineContext): bool
     {
-        // see createInline for the odd reasons behind this.
-        $this->currentLink = null;
-        $this->currentEntity = null;
-
-        if (parent::parse($inlineContext) === false) {
+        // Look through stack of delimiters for a [ or !
+        $opener = $inlineContext->getDelimiterStack()->searchByCharacter(['[', '!']);
+        if ($opener === null) {
             return false;
         }
 
-        if ($this->currentLink->firstChild() === null) {
-            // The link has no text.
-            $label = new Text($this->currentEntity->getName());
-            $this->currentLink->appendChild($label);
+        if (!$opener->isActive()) {
+            // no matched opener; remove from emphasis stack
+            $inlineContext->getDelimiterStack()->removeDelimiter($opener);
+
+            return false;
         }
 
+        $cursor = $inlineContext->getCursor();
+
+        $previousState = $cursor->saveState();
+        $cursor->advance();
+
+        // Check to see if we have a link/image
+        $link = $this->tryParseInlineLinkAndTitle($cursor);
+        if (!$link) {
+            // No match
+            $inlineContext->getDelimiterStack()->removeDelimiter($opener); // Remove this opener from stack
+            $cursor->restoreState($previousState);
+
+            return false;
+        }
+
+        $isImage = ($opener->getChar() === '!');
+
+        $inline = $this->createInline($link['url'], $link['title'], $isImage);
+
+        // Add link text if needed
+        if (!$inline->firstChild()) {
+            // The link has no text.
+            $inline->appendChild(new Text($this->currentEntity->getName()));
+        }
+
+        $opener->getInlineNode()->replaceWith($inline);
+        while (($label = $inline->next()) !== null) {
+            $inline->appendChild($label);
+        }
+
+        // Process delimiters such as emphasis inside link/image
+        $delimiterStack = $inlineContext->getDelimiterStack();
+        $stackBottom = $opener->getPrevious();
+        $delimiterStack->processDelimiters($stackBottom, $this->environment->getDelimiterProcessors());
+        $delimiterStack->removeAll($stackBottom);
+
         return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function createInline($url, $title, $isImage)
-    {
-        // Capture the link when it is created so it can be further modified.
-        // This is the only hook into the parent parsing process.
-        $this->currentLink = parent::createInline($url, $title ?? '', $isImage);
-
-        return $this->currentLink;
     }
 
     /**
@@ -136,7 +161,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
             return $this->tryParseInternalLink($cursor);
         }
 
-        return parent::tryParseInlineLinkAndTitle($cursor);
+        return false;
     }
 
     /**
@@ -228,6 +253,13 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
         return $matches;
     }
 
+    /**
+     * Get the URI for the link.
+     *
+     * @param string $category
+     * @param string $slug
+     * @return string|null
+     */
     protected function getUri(string $category, string $slug): ?string
     {
         // Make sure version is available if necessary.
@@ -403,4 +435,35 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
         return null;
     }
 
+    /**
+     * @param string $url
+     * @param string|null $title
+     * @param bool $isImage
+     *
+     * @return AbstractWebResource
+     */
+    private function createInline(string $url, ?string $title, bool $isImage): AbstractWebResource
+    {
+        if ($isImage) {
+            return new Image($url, null, $title);
+        }
+
+        return new Link($url, null, $title);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCharacters(): array
+    {
+        return [']'];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setEnvironment(EnvironmentInterface $environment)
+    {
+        $this->environment = $environment;
+    }
 }

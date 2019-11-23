@@ -118,7 +118,7 @@ services:
           - '@PhpScience\TextRank\Tool\StopWords\English'
 
   League\CommonMark\Extension\CommonMarkCoreExtension:
-  Webuni\CommonMark\TableExtension\TableExtension:
+  League\CommonMark\Ext\Table\TableExtension:
   League\CommonMark\Environment:
     calls:
       - method: addExtension
@@ -126,7 +126,7 @@ services:
           - '@League\CommonMark\Extension\CommonMarkCoreExtension'
       - method: addExtension
         arguments:
-          - '@Webuni\CommonMark\TableExtension\TableExtension'
+          - '@League\CommonMark\Ext\Table\TableExtension'
       - method: addExtension
         arguments:
           - '@App\CommonMark\Extension\PoketoolsTableExtension'
@@ -139,6 +139,7 @@ services:
   League\CommonMark\HtmlRenderer:
     arguments:
       - '@League\CommonMark\Environment'
+  League\CommonMark\Ext\Table\TableRenderer:
   League\CommonMark\CommonMarkConverter:
     arguments:
       - '%commonmark_config%'

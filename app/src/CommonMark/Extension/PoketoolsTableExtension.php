@@ -8,9 +8,8 @@ namespace App\CommonMark\Extension;
 
 use App\CommonMark\Block\Renderer\TableRenderer;
 use League\CommonMark\ConfigurableEnvironmentInterface;
+use League\CommonMark\Ext\Table\Table;
 use League\CommonMark\Extension\ExtensionInterface;
-use Webuni\CommonMark\TableExtension\Table;
-use Webuni\CommonMark\TableExtension\TableExtension;
 
 /**
  * Extend the TableExtension to support special rendering
