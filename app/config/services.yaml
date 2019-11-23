@@ -22,20 +22,20 @@ services:
     public: false       # Allows optimizing the container by removing unused services; this also means
     # fetching services directly from the container via $container->get() won't work.
     # The best practice is to be explicit about your dependencies anyway.
-  
+
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
   App\:
     resource: '../src/*'
     exclude: '../src/{Menu,Entity,Migrations,Tests}'
-  
+
   # controllers are imported separately to make sure services can be injected
   # as action arguments even if you don't extend any base controller class
   App\Controller\:
     resource: '../src/Controller'
     public: true
     tags: ['controller.service_arguments']
-  
+
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
   App\A2B\Drivers\Destination\DbalDestinationDriver:
@@ -48,13 +48,13 @@ services:
   App\A2B\Drivers\Destination\FileDestinationDriver:
     arguments:
       - '@a2b.league.uri.parser'
-  
+
   # Current version, only available after controller resolution
   app.active_version:
     class: App\Entity\Version
     public: true
     synthetic: true
-  
+
   # Commands
   App\Command\DataCleanYamlCommand:
     arguments:
@@ -72,7 +72,7 @@ services:
   App\Command\ExportLocationMapCommand:
     arguments:
       $assetPath: '%asset_path%'
-  
+
   # Markdown
   App\CommonMark\Extension\PoketoolsCommonMarkExtension:
   App\CommonMark\Extension\PoketoolsTableExtension:
@@ -86,7 +86,7 @@ services:
   App\CommonMark\Inline\Parser\CloseBracketInternalLinkParser:
     arguments:
       $version: '@app.active_version'
-  
+
   # Classes that require a specific service injected
   App\EventSubscriber\DexVersionSubscriber:
     arguments:
@@ -108,7 +108,7 @@ services:
   App\Twig\AssetHelperExtensionRuntime:
     arguments:
       $projectDir: '%kernel.project_dir%'
-  
+
   # VENDORS
   PhpScience\TextRank\Tool\StopWords\English:
   PhpScience\TextRank\TextRankFacade:
@@ -116,9 +116,17 @@ services:
       - method: setStopWords
         arguments:
           - '@PhpScience\TextRank\Tool\StopWords\English'
-  
+
+  League\CommonMark\Extension\CommonMarkCoreExtension:
+  Webuni\CommonMark\TableExtension\TableExtension:
   League\CommonMark\Environment:
     calls:
+      - method: addExtension
+        arguments:
+          - '@League\CommonMark\Extension\CommonMarkCoreExtension'
+      - method: addExtension
+        arguments:
+          - '@Webuni\CommonMark\TableExtension\TableExtension'
       - method: addExtension
         arguments:
           - '@App\CommonMark\Extension\PoketoolsTableExtension'

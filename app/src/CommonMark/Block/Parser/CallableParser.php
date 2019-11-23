@@ -1,6 +1,6 @@
 <?php
 /**
- * @file ControllerParser.php
+ * @file CallableParser.php
  */
 
 namespace App\CommonMark\Block\Parser;
@@ -8,7 +8,7 @@ namespace App\CommonMark\Block\Parser;
 
 use App\CommonMark\Block\Element\CallableBlock;
 use App\Entity\Version;
-use League\CommonMark\Block\Parser\AbstractBlockParser;
+use League\CommonMark\Block\Parser\BlockParserInterface;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 use Psr\Log\LoggerInterface;
@@ -31,7 +31,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
  * The method will receive the given arguments, plus the currently active
  * Version entity as the last argument.
  */
-class CallableParser extends AbstractBlockParser
+class CallableParser implements BlockParserInterface
 {
     /**
      * The regex for the reference.
@@ -54,7 +54,7 @@ class CallableParser extends AbstractBlockParser
     protected $jsonEncoder;
 
     /**
-     * ControllerParser constructor.
+     * CallableParser constructor.
      *
      * @param Version $version
      * @param LoggerInterface $logger
@@ -73,7 +73,7 @@ class CallableParser extends AbstractBlockParser
     /**
      * {@inheritdoc}
      */
-    public function parse(ContextInterface $context, Cursor $cursor)
+    public function parse(ContextInterface $context, Cursor $cursor): bool
     {
         $previousState = $cursor->saveState();
 

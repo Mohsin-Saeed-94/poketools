@@ -7,23 +7,38 @@ namespace App\CommonMark\Extension;
 
 
 use App\CommonMark\Block\Renderer\TableRenderer;
+use League\CommonMark\ConfigurableEnvironmentInterface;
+use League\CommonMark\Extension\ExtensionInterface;
+use Webuni\CommonMark\TableExtension\Table;
 use Webuni\CommonMark\TableExtension\TableExtension;
 
 /**
  * Extend the TableExtension to support special rendering
  */
-class PoketoolsTableExtension extends TableExtension
+class PoketoolsTableExtension implements ExtensionInterface
 {
-    public function getBlockRenderers()
+
+    /**
+     * @var TableRenderer
+     */
+    private $tableRenderer;
+
+    /**
+     * PoketoolsTableExtension constructor.
+     *
+     * @param TableRenderer $tableRenderer
+     */
+    public function __construct(TableRenderer $tableRenderer)
     {
-        $renderers = parent::getBlockRenderers();
+        $this->tableRenderer = $tableRenderer;
+    }
 
-        foreach ($renderers as &$renderer) {
-            if ($renderer instanceof \Webuni\CommonMark\TableExtension\TableRenderer) {
-                $renderer = new TableRenderer();
-            }
-        }
-
-        return $renderers;
+    /**
+     * {@inheritDoc}
+     */
+    public function register(ConfigurableEnvironmentInterface $environment)
+    {
+        $environment
+            ->addBlockRenderer(Table::class, $this->tableRenderer, 200);
     }
 }

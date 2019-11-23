@@ -10,13 +10,13 @@ use App\CommonMark\Block\Element\CallableBlock;
 use App\CommonMark\Block\Parser\CallableParser;
 use App\CommonMark\Block\Renderer\CallableRenderer;
 use App\CommonMark\Inline\Parser\CloseBracketInternalLinkParser;
-use League\CommonMark\Extension\CommonMarkCoreExtension;
-use League\CommonMark\Inline\Parser\CloseBracketParser;
+use League\CommonMark\ConfigurableEnvironmentInterface;
+use League\CommonMark\Extension\ExtensionInterface;
 
 /**
  * CommonMark Extension to manage special app-specific pieces.
  */
-class PoketoolsCommonMarkExtension extends CommonMarkCoreExtension
+class PoketoolsCommonMarkExtension implements ExtensionInterface
 {
     /**
      * @var CloseBracketInternalLinkParser
@@ -50,45 +50,11 @@ class PoketoolsCommonMarkExtension extends CommonMarkCoreExtension
         $this->callableRenderer = $callableRenderer;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getInlineParsers(): array
+    public function register(ConfigurableEnvironmentInterface $environment)
     {
-        $parsers = parent::getInlineParsers();
-
-        // Replace the stock CloseBracketParser with one that understands internal links.
-        foreach ($parsers as &$parser) {
-            if ($parser instanceof CloseBracketParser) {
-                $parser = $this->closeBrackerInternalLinkParser;
-            }
-        }
-        unset($parser);
-
-        return $parsers;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockParsers()
-    {
-        $parsers = parent::getBlockParsers();
-
-        $parsers[] = $this->callableParser;
-
-        return $parsers;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockRenderers()
-    {
-        $renderers = parent::getBlockRenderers();
-
-        $renderers[CallableBlock::class] = $this->callableRenderer;
-
-        return $renderers;
+        $environment
+            ->addBlockParser($this->callableParser)
+            ->addBlockRenderer(CallableBlock::class, $this->callableRenderer)
+            ->addInlineParser($this->closeBrackerInternalLinkParser, 200);
     }
 }

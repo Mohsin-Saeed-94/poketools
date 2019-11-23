@@ -96,7 +96,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
     /**
      * {@inheritdoc}
      */
-    public function parse(InlineParserContext $inlineContext)
+    public function parse(InlineParserContext $inlineContext): bool
     {
         // see createInline for the odd reasons behind this.
         $this->currentLink = null;
@@ -122,7 +122,7 @@ class CloseBracketInternalLinkParser extends CloseBracketParser
     {
         // Capture the link when it is created so it can be further modified.
         // This is the only hook into the parent parsing process.
-        $this->currentLink = parent::createInline($url, $title, $isImage);
+        $this->currentLink = parent::createInline($url, $title ?? '', $isImage);
 
         return $this->currentLink;
     }
