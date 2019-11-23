@@ -22,7 +22,7 @@ CMD ["/usr/local/bin/php-entrypoint"]
 #######################################
 FROM base as build
 
-COPY --from=composer:1.8 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer
 
 RUN rm -rf /var/www && mkdir /var/www
 WORKDIR /var/www
@@ -44,7 +44,7 @@ RUN composer dump-autoload --classmap-authoritative
 #######################################
 FROM php:7.3-cli-alpine as docs
 
-COPY --from=composer:1.8 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer
 
 RUN rm -rf /var/www && mkdir /var/www
 WORKDIR /var/www
@@ -113,7 +113,7 @@ RUN chown -R www-data:www-data var
 #######################################
 # WEB SERVER
 #######################################
-FROM nginx:1.15-alpine as web
+FROM nginx:stable-alpine as web
 
 ARG NGINX_BACKEND_HOST=app
 ENV NGINX_BACKEND_HOST $NGINX_BACKEND_HOST
