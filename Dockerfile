@@ -60,7 +60,7 @@ RUN vendor/bin/daux generate --destination=/var/www/public
 #######################################
 # ASSETS
 #######################################
-FROM node:10.15-alpine as webpack
+FROM node:10-alpine as webpack
 
 ARG APP_ENV=prod
 
