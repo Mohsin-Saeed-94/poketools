@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @method Version|null find($id, $lockMode = null, $lockVersion = null)
@@ -25,7 +25,7 @@ class VersionRepository extends ServiceEntityRepository
      * @param RegistryInterface $registry
      * @param string $defaultVersionSlug
      */
-    public function __construct(RegistryInterface $registry, string $defaultVersionSlug)
+    public function __construct(ManagerRegistry $registry, string $defaultVersionSlug)
     {
         parent::__construct($registry, Version::class);
 

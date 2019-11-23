@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\ItemInVersionGroup;
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @method ItemInVersionGroup|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class ItemInVersionGroupRepository extends ServiceEntityRepository implements SlugAndVersionInterface
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ItemInVersionGroup::class);
     }

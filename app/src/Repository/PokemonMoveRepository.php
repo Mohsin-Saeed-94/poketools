@@ -7,7 +7,7 @@ use App\Entity\MoveLearnMethod;
 use App\Entity\Pokemon;
 use App\Entity\PokemonMove;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @method PokemonMove|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,7 +17,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class PokemonMoveRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, PokemonMove::class);
     }

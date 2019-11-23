@@ -6,7 +6,7 @@ use App\Entity\Type;
 use App\Entity\TypeChart;
 use App\Entity\TypeEfficacy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @method TypeEfficacy|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class TypeEfficacyRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, TypeEfficacy::class);
     }

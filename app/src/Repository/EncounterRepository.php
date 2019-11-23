@@ -8,7 +8,7 @@ use App\Entity\Pokemon;
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @method Encounter|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class EncounterRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Encounter::class);
     }
