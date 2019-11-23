@@ -64,6 +64,8 @@ FROM node:10-alpine as webpack
 
 ARG APP_ENV=prod
 
+RUN apk add --no-cache git
+
 RUN rm -rf /var/www && mkdir /var/www
 WORKDIR /var/www
 
