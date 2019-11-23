@@ -132,15 +132,19 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
 
         $inline = $this->createInline($link['url'], $link['title'], $isImage);
 
-        // Add link text if needed
-        if (!$inline->firstChild()) {
-            // The link has no text.
-            $inline->appendChild(new Text($this->currentEntity->getName()));
-        }
-
         $opener->getInlineNode()->replaceWith($inline);
         while (($label = $inline->next()) !== null) {
             $inline->appendChild($label);
+        }
+        // Add link text if needed
+        if (empty($inline->children())) {
+            // The link has no text.
+            if ($this->currentEntity) {
+                $inline->appendChild(new Text($this->currentEntity->getName()));
+            } else {
+                $this->logger->error(sprintf('Internal link to "%s" has no text.', $link['url']));
+                $inline->appendChild(new Text('NO LINK TEXT'));
+            }
         }
 
         // Process delimiters such as emphasis inside link/image
@@ -278,6 +282,7 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
 
         switch ($category) {
             case 'mechanic':
+                $this->currentEntity = null;
                 return $this->getMechanicLink($slug);
             case 'ability':
                 if ($this->getEntityForLink(AbilityInVersionGroup::class, $slug, $this->currentVersion) === null) {
