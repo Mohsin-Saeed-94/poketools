@@ -8,6 +8,7 @@ require('datatables.net-bs4');
 require('datatables.net-fixedheader-bs4');
 require('datatables.net-rowgroup');
 require('datatables-bundle/datatables');
+require('mathjax/es5/mml-chtml');
 require('orgchart');
 const Plyr = require('plyr');
 const Masonry = require('masonry-layout/dist/masonry.pkgd');
@@ -28,6 +29,8 @@ $(document).ready(function () {
         controls: ['play']
     });
 
+    // Experience math
+
     // Load experience table for growth rate
     const expTable = $('.pkt-pokemon-view-growthrate-experience');
     const expChartCanvas = $('.pkt-pokemon-view-growthrate-chart');
@@ -45,6 +48,7 @@ $(document).ready(function () {
         expData.push(exp);
     }
 
+    // Experience line graph
     const expChart = new Chart(expChartCanvas[0], {
         type: 'line',
         data: {
