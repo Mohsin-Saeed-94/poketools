@@ -27,8 +27,6 @@ class CallableBlock extends AbstractBlock
      */
     public function __construct(ControllerReference $fragment)
     {
-        parent::__construct();
-
         $this->fragment = $fragment;
     }
 
