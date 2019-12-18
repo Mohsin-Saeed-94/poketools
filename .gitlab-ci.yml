@@ -212,6 +212,7 @@ deploy-data:
   #   - build-data
   script:
     # This is from deploy.sh, without the iteration over all templates.
+    - mkdir -p ./deploy/.generated
     - envsubst < "${DB_DEPLOYMENT_TMPL}" > "./deploy/.generated/$(basename "${DB_DEPLOYMENT_TMPL}")"
     - kubectl apply -f "./deploy/.generated/$(basename "${DB_DEPLOYMENT_TMPL}")"
 
