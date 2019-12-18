@@ -8,7 +8,9 @@ namespace App\Tests\data;
 
 use App\CommonMark\Block\Parser\CallableParser;
 use App\CommonMark\Block\Renderer\CallableRenderer;
+use App\CommonMark\Block\Renderer\TableRenderer;
 use App\CommonMark\Extension\PoketoolsCommonMarkExtension;
+use App\CommonMark\Extension\PoketoolsTableExtension;
 use App\CommonMark\Inline\Parser\CloseBracketInternalLinkParser;
 use App\Entity\Version;
 use App\Entity\VersionGroup;
@@ -17,19 +19,38 @@ use App\Repository\VersionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
+use League\CommonMark\Ext\Table\TableExtension;
+use League\CommonMark\Ext\Table\TableRenderer as CommonMarkTableRenderer;
+use League\CommonMark\Extension\CommonMarkCoreExtension;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Yaml\Parser;
 
 /**
  * Base class for testing data.
  */
 abstract class DataTestCase extends KernelTestCase
 {
+    /**
+     * @param string $versionGroupSlug
+     *
+     * @return VersionGroup
+     */
+    protected function getVersionGroup(string $versionGroupSlug): VersionGroup
+    {
+        /** @var VersionGroupRepository $versionGroupRepo */
+        $versionGroupRepo = $this->getContainer()
+            ->get('doctrine')
+            ->getManagerForClass(VersionGroup::class)
+            ->getRepository(VersionGroup::class);
+        $versionGroup = $versionGroupRepo->findOneBy(['slug' => $versionGroupSlug]);
+
+        return $versionGroup;
+    }
+
     /**
      * @return ContainerInterface
      */
@@ -54,23 +75,6 @@ abstract class DataTestCase extends KernelTestCase
         }
 
         return $kernel;
-    }
-
-    /**
-     * @param string $versionGroupSlug
-     *
-     * @return VersionGroup
-     */
-    protected function getVersionGroup(string $versionGroupSlug): VersionGroup
-    {
-        /** @var VersionGroupRepository $versionGroupRepo */
-        $versionGroupRepo = $this->getContainer()
-            ->get('doctrine')
-            ->getManagerForClass(VersionGroup::class)
-            ->getRepository(VersionGroup::class);
-        $versionGroup = $versionGroupRepo->findOneBy(['slug' => $versionGroupSlug]);
-
-        return $versionGroup;
     }
 
     /**
@@ -115,9 +119,16 @@ abstract class DataTestCase extends KernelTestCase
         $callableRenderer->method('render')->willReturn('');
 
         // Put it all together
-        $extension = new PoketoolsCommonMarkExtension($linkParser, $callableParser, $callableRenderer);
+        $extensions = [
+            new CommonMarkCoreExtension(),
+            new TableExtension(),
+            new PoketoolsTableExtension(new TableRenderer(new CommonMarkTableRenderer())),
+            new PoketoolsCommonMarkExtension($linkParser, $callableParser, $callableRenderer),
+        ];
         $environment = new Environment();
-        $environment->addExtension($extension);
+        foreach ($extensions as $extension) {
+            $environment->addExtension($extension);
+        }
         $config = $this->getContainer()->getParameter('commonmark_config');
 
         return new CommonMarkConverter($config, $environment);
