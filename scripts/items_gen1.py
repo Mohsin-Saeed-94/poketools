@@ -11,14 +11,14 @@ import pokemon_text
 
 
 def getFile() -> bytes:
-    return open(sys.argv[2], 'rb').read()
+    return open(sys.argv[1], 'rb').read()
 
 
 def _getMoveNames(data: bytes, versiongroup: str) -> dict:
-    if versiongroup == 'crystal':
-        movenames = data[0x1C9F29:0x1CA895]
+    if versiongroup == 'yellow':
+        movenames = data[0x0BC000:0x0BC60E]
     else:
-        movenames = data[0x1B1574:0x1B1EE1]
+        movenames = data[0x0B0000:0x0B060E]
 
     moveid = 1
     moves = {}
@@ -28,7 +28,7 @@ def _getMoveNames(data: bytes, versiongroup: str) -> dict:
             namebytes.append(namebyte)
             continue
 
-        name = namebytes.decode('pokemon_gen2')
+        name = namebytes.decode('pokemon_gen1')
         moves[moveid] = name
 
         namebytes = bytearray()
@@ -39,101 +39,92 @@ def _getMoveNames(data: bytes, versiongroup: str) -> dict:
 
 def items():
     _shop_order = [
-        'cherrygrove-city/whole-area/mart-no-dex',
-        'cherrygrove-city/whole-area/mart',
-        'violet-city/whole-area/mart',
-        'azalea-town/whole-area/mart',
-        'cianwood-city/whole-area/mart',
-        'goldenrod-city/department-store/2f/trainers-market-left',
-        'goldenrod-city/department-store/2f/trainers-market-right',
-        'goldenrod-city/department-store/3f/battle-collection',
-        'goldenrod-city/department-store/4f/medicine-box',
-        'goldenrod-city/department-store/5f/tm-corner-1',
-        'goldenrod-city/department-store/5f/tm-corner-2',
-        'goldenrod-city/department-store/5f/tm-corner-3',
-        'goldenrod-city/department-store/5f/tm-corner-4',
-        'olivine-city/whole-area/mart',
-        'ecruteak-city/whole-area/mart',
-        'mahogany-town/whole-area/shop',
-        'mahogany-town/whole-area/shop-no-rockets',
-        'blackthorn-city/whole-area/mart',
         'viridian-city/whole-area/mart',
         'pewter-city/whole-area/mart',
         'cerulean-city/whole-area/mart',
-        'lavender-town/whole-area/mart',
+        'cerulean-city/whole-area/bike-shop',
         'vermilion-city/whole-area/mart',
-        'celadon-city/department-store/2f/trainers-market-upper',
-        'celadon-city/department-store/2f/trainers-market-lower',
-        'celadon-city/department-store/3f/tm-shop',
+        'lavender-town/whole-area/mart',
+        'celadon-city/department-store/2f/trainers-market-left',
+        'celadon-city/department-store/2f/trainers-market-right',
         'celadon-city/department-store/4f/wiseman-gifts',
         'celadon-city/department-store/5f/drugstore-left',
         'celadon-city/department-store/5f/drugstore-right',
         'fuchsia-city/whole-area/mart',
+        None,
+        'cinnabar-island/whole-area/mart',
         'saffron-city/whole-area/mart',
-        'mt-moon/mt-moon-square/shop',
-        'indigo-plateau/whole-area/mart',
-        'goldenrod-underground/whole-area/herb-shop'
+        'indigo-plateau/whole-area/mart'
     ]
 
     data = getFile()
 
     # What version is this?
     versiongroupmap = {
-        'POKEMON_GLDAAUE': 'gold-silver',
-        'POKEMON_SLVAAXE': 'red-blue',
-        'PM_CRYSTAL\x00BYTE': 'crystal'
+        'POKEMON RED': 'red-blue',
+        'POKEMON BLUE': 'red-blue',
+        'POKEMON YELLOW': 'yellow'
     }
-    versiongroup = data[0x134:0x143]
+    versiongroup = data[0x134:0x143].rstrip(b'\x00')
     versiongroup = versiongroupmap[versiongroup.decode('ascii')]
 
     # Get item names and IDs
-    if versiongroup == 'crystal':
-        itemnames = data[0x1C8000:]
+    if versiongroup == 'yellow':
+        itemnames = data[0x45B7:0x491E]
     else:
-        itemnames = data[0x1B0000:]
+        itemnames = data[0x472B:0x4A91]
     iteminfo = {}
     itemid = 1
-    namebytes = bytearray()
-    for namebyte in itemnames:
-        if itemid > 256:
-            break
-        if namebyte != 0x50:
-            namebytes.append(namebyte)
-            continue
-
-        name = namebytes.decode(encoding='pokemon_gen2', errors='ignore')
+    for namedata in itemnames.split(b'\x50'):
+        name = namedata.decode(encoding='pokemon_gen1', errors='ignore')
         iteminfo[itemid] = {
             'identifier': slugify(name),
             'name': name,
-            'pocket': None,
+            'pocket': 'misc',
             'buy': None,
-            'sell': None,
-            'flavor_text': None
+            'sell': None
         }
         itemid = itemid + 1
-        namebytes = bytearray()
 
-    # item prices/pockets
-    if versiongroup == 'crystal':
-        itemattrs = data[0x67C1:0x6EC0]
+    # Add TM/HM to the item table
+    for machine in range(1, 51):
+        name = 'TM{:02}'.format(machine)
+        itemid = 0xC8 + machine
+        iteminfo[itemid] = {
+            'identifier': slugify(name),
+            'name': name,
+            'pocket': 'misc',
+            'buy': None,
+            'sell': None
+        }
+    for machine in range(1, 6):
+        name = 'HM{:02}'.format(machine)
+        itemid = 0xC3 + machine
+        iteminfo[itemid] = {
+            'identifier': slugify(name),
+            'name': name,
+            'pocket': 'misc',
+            'buy': None,
+            'sell': None
+        }
+
+    # item prices
+    if versiongroup == 'yellow':
+        itemprices = data[0x4494:0x45B6]
     else:
-        itemattrs = data[0x68A0:0x6F9F]
-    attrbytes = bytearray()
+        itemprices = data[0x4608:0x472A]
+    pricebytes = bytearray()
     itemid = 1
-    pocketmap = {
-        0x01: 'misc',
-        0x02: 'key',
-        0x03: 'pokeballs',
-        0x04: 'machines'
-    }
-    for byte in itemattrs:
-        # The item attributes are stored in a seven byte sequence.  The first
-        # two bytes are an unsigned integer with the price.
-        attrbytes.append(byte)
-        if len(attrbytes) < 7:
+    for byte in itemprices:
+        # The item prices are stored as binary-coded decimal in three bytes.
+        pricebytes.append(byte)
+        if len(pricebytes) < 3:
             continue
 
-        price = attrbytes[0] + (attrbytes[1] << 8)
+        price = int(pricebytes.hex())
+        # Special case for the bicycle
+        if iteminfo[itemid]['identifier'] == 'bicycle':
+            price = 1000000
         if price > 0:
             iteminfo[itemid]['buy'] = price
             iteminfo[itemid]['sell'] = math.floor(price / 2)
@@ -141,32 +132,28 @@ def items():
             del iteminfo[itemid]['buy']
             del iteminfo[itemid]['sell']
 
-        iteminfo[itemid]['pocket'] = pocketmap[attrbytes[5]]
-
         itemid = itemid + 1
-        attrbytes = bytearray()
+        pricebytes = bytearray()
 
     # shops
-    if versiongroup == 'crystal':
-        shoppointers = data[0x160A9:0x160ED]
+    if versiongroup == 'yellow':
+        shops = data[0x233B:0x23D0]
     else:
-        shoppointers = data[0x162FE:0x16342]
+        shops = data[0x2442:0x24D6]
+    shops = shops.split(b'\xFF\xFE')
     shopinfo = []
     shopid = 0
-    shoppointerbytes = bytearray()
-    for shoppointerbyte in shoppointers:
-        shoppointerbytes.append(shoppointerbyte)
-        if len(shoppointerbytes) < 2:
+    for shopdata in shops:
+        if _shop_order[shopid] is None:
+            # This will skip the dummy shop in the game data.
             continue
-        shoppointer = shoppointerbytes[0] + (shoppointerbytes[1] << 8) + 0x10000
 
-        shopdata = data[shoppointer:]
-        shopitemcount = int(shopdata[0])
+        shopdata = shopdata.lstrip(b'\xFE').rstrip(b'\xFF')
         shoplocationparts = _shop_order[shopid].split('/')
         shoplocation = shoplocationparts.pop(0)
         shopidentifier = shoplocationparts.pop(-1)
         shoparea = '/'.join(shoplocationparts)
-        for itemid in shopdata[1:shopitemcount]:
+        for itemid in shopdata[1:]:
             shopinfo.append({
                 'version_group': versiongroup,
                 'location': shoplocation,
@@ -175,37 +162,14 @@ def items():
                 'item': iteminfo[itemid]['identifier'],
                 'buy': iteminfo[itemid]['buy']
             })
-
         shopid = shopid + 1
-        shoppointerbytes = bytearray()
-
-    # Flavor text
-    if versiongroup == 'crystal':
-        flavordata = data[0x1C8B85:]
-    else:
-        flavordata = data[0x1B8200:]
-    itemid = 1
-    flavorbytes = bytearray()
-    for flavorbyte in flavordata:
-        if itemid > 256:
-            break
-        if flavorbyte != 0x50:
-            # String terminator
-            flavorbytes.append(flavorbyte)
-            continue
-
-        flavor = flavorbytes.decode('pokemon_gen2')
-        iteminfo[itemid]['flavor_text'] = flavor
-
-        itemid = itemid + 1
-        flavorbytes = bytearray()
 
     # Machine descriptions
     movenames = _getMoveNames(data, versiongroup)
-    if versiongroup == 'crystal':
-        machinemoves = data[0x01167A:0x0116B3]
+    if versiongroup == 'yellow':
+        machinemoves = data[0x01232D:0x012365]
     else:
-        machinemoves = data[0x011A66:0x011A9F]
+        machinemoves = data[0x013773:0x0137AA]
     re_ismachine = re.compile(r'^(?P<type>tm|hm)(?P<number>\d{2})$', flags=re.IGNORECASE)
     for item in iteminfo.values():
         match = re_ismachine.match(item['identifier'])
@@ -225,7 +189,6 @@ Teaches []{{move:{move}}} to a compatible Pokèmon.
         '''.format(move=moveidentifier, item=item['identifier']).strip()
         item['short_description'] = short_description
         item['description'] = description
-        del item['flavor_text']
 
     # Write output
     os.makedirs('item', exist_ok=True)
@@ -243,7 +206,7 @@ Teaches []{{move:{move}}} to a compatible Pokèmon.
         identifier = item['identifier']
         del item['identifier']
 
-        if identifier == 'teru-sama' or not identifier:
+        if not identifier:
             # Skip dummy items
             continue
 
@@ -290,9 +253,4 @@ Teaches []{{move:{move}}} to a compatible Pokèmon.
 if __name__ == '__main__':
     pokemon_text.register()
 
-    mode = sys.argv[1]
-    if mode == 'items':
-        exit(items())
-
-    print('Wrong mode')
-    exit(1)
+    exit(items())
