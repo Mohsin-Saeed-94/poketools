@@ -8,7 +8,7 @@ namespace App\CommonMark\Block\Renderer;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Ext\Table\TableRenderer as ParentTableRenderer;
+use League\CommonMark\Extension\Table\TableRenderer as ParentTableRenderer;
 
 /**
  * Add required styling to all tables
