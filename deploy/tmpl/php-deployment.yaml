@@ -17,12 +17,29 @@ spec:
       initContainers:
         - name: wait-db
           image: busybox
-          command: ['sh', '-c', 'until nc -vz db-service 5432; do echo waiting for db-service; sleep 30; done;']
+          command:
+            - 'sh'
+            - '-c'
+            - 'until nc -vz db-service 5432; do echo waiting for db-service; sleep 30; done;'
         - name: wait-elasticsearch
           image: busybox
-          command: ['sh', '-c', 'until nc -vz elasticsearch-service 9200; do echo waiting for elasticsearch-service; sleep 2; done;']
+          command:
+            - 'sh'
+            - '-c'
+            - 'until nc -vz elasticsearch-service 9200; do echo waiting for elasticsearch-service; sleep 2; done;'
+        - name: setup-log
+          image: busybox
+          command:
+            - 'sh'
+            - '-c'
+            - 'touch /var/www/var/log/prod.log'
+          volumeMounts:
+            - name: applog
+              mountPath: /var/www/var/log
       containers:
-        - env:
+        - name: php
+          image: ${IMAGE_BASENAME}/app:${BUILD_NUMBER}
+          env:
             - name: APP_VERSION
               value: ${APP_VERSION}
             - name: BUILD_NUMBER
@@ -46,8 +63,6 @@ spec:
                   key: mailer.url
             - name: ELASTICA_CLIENT_HOST
               value: elasticsearch-service
-          image: ${IMAGE_BASENAME}/app:${BUILD_NUMBER}
-          name: php
           ports:
             - containerPort: 9000
               name: php-fpm
@@ -56,4 +71,19 @@ spec:
               port: 9000
             initialDelaySeconds: 10
             periodSeconds: 30
+          volumeMounts:
+            - name: applog
+              mountPath: /var/www/var/log
+        - name: app-log
+          image: busybox
+          args:
+            - 'sh'
+            - '-c'
+            - 'tail -n+1 -f /var/www/var/log/prod.log'
+          volumeMounts:
+            - name: applog
+              mountPath: /var/www/var/log
       restartPolicy: Always
+      volumes:
+        - name: applog
+          emptyDir: {}
