@@ -14,9 +14,11 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *
  * @DataMigration(
  *     name="Encounter Method",
- *     source="csv:///%kernel.project_dir%/resources/data/encounter_method.csv",
+ *     source="/%kernel.project_dir%/resources/data/encounter_method.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/EncounterMethod",
+ *     destination="\App\Entity\EncounterMethod",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")}
  * )
  */

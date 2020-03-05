@@ -17,7 +17,8 @@ use Symfony\Component\Process\Process;
  *     group="Media",
  *     source="veekun",
  *     sourceIds={@IdField(name="group", type="string"), @IdField(name="species_id"), @IdField(name="form_id")},
- *     destination="file:///%kernel.project_dir%/assets/static/pokemon/cry",
+ *     destination="/%kernel.project_dir%/assets/static/pokemon/cry",
+ *     destinationDriver="App\A2B\Drivers\Destination\FileDestinationDriver",
  *     destinationIds={@IdField(name="group", type="string"), @IdField(name="id", type="string")}
  * )
  */

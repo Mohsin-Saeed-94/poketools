@@ -13,9 +13,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Type Chart",
- *     source="yaml:///%kernel.project_dir%/resources/data/type_chart",
+ *     source="/%kernel.project_dir%/resources/data/type_chart",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="id")},
- *     destination="doctrine:///App/Entity/TypeChart",
+ *     destination="\App\Entity\TypeChart",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     depends={"App\DataMigration\VersionGroup", "App\DataMigration\Type"}
  * )

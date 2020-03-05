@@ -17,7 +17,8 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *     group="Veekun",
  *     source="veekun",
  *     sourceIds={@IdField(name="id")},
- *     destination="csv:///%kernel.project_dir%/resources/data/characteristic.csv",
+ *     destination="/%kernel.project_dir%/resources/data/characteristic.csv",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\CsvDestinationDriver",
  *     destinationIds={@IdField(name="iv_determinator"), @IdField(name="stat", type="string")}
  * )
  */

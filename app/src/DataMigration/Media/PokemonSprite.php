@@ -22,7 +22,8 @@ use Symfony\Component\Process\Process;
  *         @IdField(name="species_id"),
  *         @IdField(name="form_id")
  *     },
- *     destination="file:///%kernel.project_dir%/assets/static/pokemon/sprite",
+ *     destination="/%kernel.project_dir%/assets/static/pokemon/sprite",
+ *     destinationDriver="App\A2B\Drivers\Destination\FileDestinationDriver",
  *     destinationIds={
  *         @IdField(name="version_group", type="string"),
  *         @IdField(name="id", type="string")

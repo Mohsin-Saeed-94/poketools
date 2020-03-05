@@ -12,9 +12,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Pokemon Shape",
- *     source="yaml:///%kernel.project_dir%/resources/data/pokemon_shape",
+ *     source="/%kernel.project_dir%/resources/data/pokemon_shape",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/PokemonShape",
+ *     destination="\App\Entity\PokemonShape",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     depends={"App\DataMigration\VersionGroup"}
  * )

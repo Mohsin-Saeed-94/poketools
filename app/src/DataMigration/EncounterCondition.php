@@ -12,9 +12,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Encounter Condition",
- *     source="yaml:///%kernel.project_dir%/resources/data/encounter_condition",
+ *     source="/%kernel.project_dir%/resources/data/encounter_condition",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/EncounterCondition",
+ *     destination="\App\Entity\EncounterCondition",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")}
  * )
  */

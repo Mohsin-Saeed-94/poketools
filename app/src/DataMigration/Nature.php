@@ -13,9 +13,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Nature",
- *     source="yaml:///%kernel.project_dir%/resources/data/nature",
+ *     source="/%kernel.project_dir%/resources/data/nature",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/Nature",
+ *     destination="\App\Entity\Nature",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     depends={
  *       "App\DataMigration\Stat",

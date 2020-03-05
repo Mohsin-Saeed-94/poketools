@@ -11,9 +11,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Move Category",
- *     source="csv:///%kernel.project_dir%/resources/data/move_category.csv",
+ *     source="/%kernel.project_dir%/resources/data/move_category.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/MoveCategory",
+ *     destination="\App\Entity\MoveCategory",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")}
  * )
  */

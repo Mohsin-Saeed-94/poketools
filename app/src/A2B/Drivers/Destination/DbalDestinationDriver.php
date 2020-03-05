@@ -13,7 +13,6 @@ use DragoonBoots\A2B\Drivers\AbstractDestinationDriver;
 use DragoonBoots\A2B\Drivers\DestinationDriverInterface;
 use DragoonBoots\A2B\Exception\BadUriException;
 use DragoonBoots\A2B\Exception\MigrationException;
-use League\Uri\Parser;
 
 /**
  * Doctrine DBAL source driver.
@@ -30,12 +29,7 @@ use League\Uri\Parser;
  * - Multi-table/multi row: pass write() an array keyed by table name; each
  *   second-level array is a list of arrays that match the standard data format.
  *
- * @Driver({
- *     "pgsql",
- *     "postgres",
- *     "postgresql",
- *     "pdo_pgsql",
- * })
+ * @Driver()
  */
 class DbalDestinationDriver extends AbstractDestinationDriver implements DestinationDriverInterface
 {
@@ -69,7 +63,7 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
      *
      * @var array
      */
-    protected $ids = [];
+    protected $tableIds = [];
 
     /**
      * A list of existing ids.  Used to determine UPDATE or INSERT.
@@ -81,12 +75,11 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
     /**
      * DbalDestinationDriver constructor.
      *
-     * @param Parser $uriParser
      * @param ConnectionFactory $connectionFactory
      */
-    public function __construct(Parser $uriParser, ConnectionFactory $connectionFactory)
+    public function __construct(ConnectionFactory $connectionFactory)
     {
-        parent::__construct($uriParser);
+        parent::__construct();
 
         $this->connectionFactory = $connectionFactory;
     }
@@ -98,11 +91,11 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
     {
         parent::configure($definition);
 
-        $this->baseTable = $this->destUri['fragment'];
+        $this->baseTable = parse_url($this->migrationDefinition->getDestination(), PHP_URL_FRAGMENT);
         $this->tables = [$this->baseTable];
-        $this->ids = [];
-        foreach ($this->destIds as $destId) {
-            $this->ids[$this->baseTable][] = $destId->getName();
+        $this->tableIds = [];
+        foreach ($this->ids as $destId) {
+            $this->tableIds[$this->baseTable][] = $destId->getName();
         }
 
         $destination = $definition->getDestination();
@@ -119,22 +112,6 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
     }
 
     /**
-     * Add additional tables to manage.
-     *
-     * @param string $table
-     * @param array $ids
-     *
-     * @return $this
-     */
-    public function addTable(string $table, array $ids)
-    {
-        $this->tables[] = $table;
-        $this->ids[$table] = $ids;
-
-        return $this;
-    }
-
-    /**
      * {@inheritdoc}
      * @throws \Doctrine\DBAL\ConnectionException
      * @throws \Exception
@@ -143,7 +120,7 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
     {
         try {
             $qb = $this->connection->createQueryBuilder();
-            foreach ($this->destIds as $destId) {
+            foreach ($this->ids as $destId) {
                 $qb->addSelect($destId->getName());
             }
             $qb->from($this->connection->quoteIdentifier($this->baseTable));
@@ -152,7 +129,7 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
             $this->existingIds = [];
             foreach ($results as $idRow) {
                 $id = [];
-                foreach ($this->destIds as $destId) {
+                foreach ($this->ids as $destId) {
                     $id[$destId->getName()] = $this->resolveIdType($destId, $idRow[$destId->getName()]);
                 }
                 $this->existingIds[] = $id;
@@ -198,7 +175,7 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
             $ids = $this->getIdsFromNewData($tableDataset[$this->baseTable]);
 
             foreach ($tableDataset as $table => $tableData) {
-                $this->upsert($table, $this->ids[$table], $tableData);
+                $this->upsert($table, $this->tableIds[$table], $tableData);
             }
 
             return $ids;
@@ -228,7 +205,7 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
     protected function getIdsFromNewData(array $data)
     {
         $ids = [];
-        foreach ($this->destIds as $destId) {
+        foreach ($this->ids as $destId) {
             if (isset($data[$destId->getName()])) {
                 $ids[$destId->getName()] = $data[$destId->getName()];
             } else {
@@ -343,5 +320,21 @@ SQL;
         parent::flush();
 
         $this->connection->commit();
+    }
+
+    /**
+     * Add additional tables to manage.
+     *
+     * @param string $table
+     * @param array $ids
+     *
+     * @return $this
+     */
+    public function addTable(string $table, array $ids)
+    {
+        $this->tables[] = $table;
+        $this->tableIds[$table] = $ids;
+
+        return $this;
     }
 }

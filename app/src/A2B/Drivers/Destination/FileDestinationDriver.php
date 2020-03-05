@@ -1,7 +1,4 @@
 <?php
-/**
- * @file FileDestinationDriver.php
- */
 
 namespace App\A2B\Drivers\Destination;
 
@@ -19,7 +16,7 @@ use Symfony\Component\Finder\Finder;
  * Migrations using this driver must handle copying/writing/etc. files themselves.
  * Return an array with the proper ids to allow the system to track the files.
  *
- * @Driver("file")
+ * @Driver()
  */
 class FileDestinationDriver extends AbstractDestinationDriver
 {
@@ -56,7 +53,7 @@ class FileDestinationDriver extends AbstractDestinationDriver
     {
         parent::configure($definition);
 
-        $this->path = $this->destUri['path'];
+        $this->path = $this->migrationDefinition->getDestination();
         if (!is_dir($this->path)) {
             mkdir($this->path, 0755, true);
         }
@@ -77,7 +74,7 @@ class FileDestinationDriver extends AbstractDestinationDriver
     {
         $ids = [];
         foreach ($this->finder as $fileInfo) {
-            $ids[] = $this->buildIdsFromFilePath($fileInfo, $this->destIds);
+            $ids[] = $this->buildIdsFromFilePath($fileInfo, $this->ids);
         }
 
         return $ids;
@@ -145,7 +142,7 @@ class FileDestinationDriver extends AbstractDestinationDriver
         foreach ($destIdSet as $destIds) {
             $matched = 0;
             foreach (self::DEFAULT_EXTS as $ext) {
-                $searchPath = $this->buildFilePathFromIds($destIds, $this->destUri['path'], $ext);
+                $searchPath = $this->buildFilePathFromIds($destIds, $this->migrationDefinition->getDestination(), $ext);
                 if (file_exists($searchPath)) {
                     $matched++;
                     $entityFiles[] = new \SplFileInfo($searchPath);
@@ -200,6 +197,10 @@ class FileDestinationDriver extends AbstractDestinationDriver
      */
     public function write($data)
     {
+        if ($data instanceof \SplFileInfo) {
+            $data = ['id' => $data->getFilename()];
+        }
+
         return $data;
     }
 }

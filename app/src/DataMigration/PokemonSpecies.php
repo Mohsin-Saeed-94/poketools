@@ -28,9 +28,11 @@ use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
  *
  * @DataMigration(
  *     name="Pokemon",
- *     source="yaml:///%kernel.project_dir%/resources/data/pokemon",
+ *     source="/%kernel.project_dir%/resources/data/pokemon",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/PokemonSpecies",
+ *     destination="\App\Entity\PokemonSpecies",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     depends={
  *         "App\DataMigration\VersionGroup",

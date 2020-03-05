@@ -11,9 +11,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Pokemon Color",
- *     source="csv:///%kernel.project_dir%/resources/data/pokemon_color.csv",
+ *     source="/%kernel.project_dir%/resources/data/pokemon_color.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/PokemonColor",
+ *     destination="\App\Entity\PokemonColor",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")}
  * )
  */

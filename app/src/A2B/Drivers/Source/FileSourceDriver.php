@@ -1,8 +1,4 @@
 <?php
-/**
- * @file FileSourceDriver.php
- */
-
 namespace App\A2B\Drivers\Source;
 
 use DragoonBoots\A2B\Annotations\DataMigration;
@@ -13,7 +9,7 @@ use Symfony\Component\Finder\Finder;
 /**
  * Class FileSourceDriver
  *
- * @Driver("file")
+ * @Driver()
  */
 class FileSourceDriver extends AbstractSourceDriver
 {
@@ -39,26 +35,10 @@ class FileSourceDriver extends AbstractSourceDriver
         parent::configure($definition);
 
         $this->finder = new Finder();
-        $this->finder->files()->in($this->sourceUri['path']);
+        $this->finder->files()->in($this->migrationDefinition->getSource());
         foreach (self::DEFAULT_EXTS as $ext) {
             $this->finder->name(sprintf('*.%s', $ext));
         }
-    }
-
-    /**
-     * Configure the finder
-     *
-     * @param callable $configure
-     *   A callable that will receive the finder and the source uri info array
-     *   as arguments.
-     *
-     * @return self
-     */
-    public function configureFinder(callable $configure): self
-    {
-        $configure($this->finder, $this->sourceUri);
-
-        return $this;
     }
 
     /**
@@ -87,5 +67,21 @@ class FileSourceDriver extends AbstractSourceDriver
     public function count(): int
     {
         return $this->finder->count();
+    }
+
+    /**
+     * Configure the finder
+     *
+     * @param callable $configure
+     *   A callable that will receive the finder and the source uri info array
+     *   as arguments.
+     *
+     * @return self
+     */
+    public function configureFinder(callable $configure): self
+    {
+        $configure($this->finder, $this->migrationDefinition->getSource());
+
+        return $this;
     }
 }

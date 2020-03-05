@@ -14,9 +14,11 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *
  * @DataMigration(
  *     name="Item Category",
- *     source="csv:///%kernel.project_dir%/resources/data/item_category.csv",
+ *     source="/%kernel.project_dir%/resources/data/item_category.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/ItemCategory",
+ *     destination="\App\Entity\ItemCategory",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     flush=true
  * )

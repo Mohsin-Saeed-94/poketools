@@ -14,9 +14,11 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *
  * @DataMigration(
  *     name="Weather",
- *     source="csv:///%kernel.project_dir%/resources/data/weather.csv",
+ *     source="/%kernel.project_dir%/resources/data/weather.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/Weather",
+ *     destination="\App\Entity\Weather",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")}
  * )
  */

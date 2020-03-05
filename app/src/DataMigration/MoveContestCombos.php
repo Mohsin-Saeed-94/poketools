@@ -14,9 +14,11 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *
  * @DataMigration(
  *     name="Move Contest Combos",
- *     source="yaml:///%kernel.project_dir%/resources/data/move",
+ *     source="/%kernel.project_dir%/resources/data/move",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/Move",
+ *     destination="\App\Entity\Move",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     depends={"App\DataMigration\Move", "App\DataMigration\VersionGroup"},
  *     extends="App\DataMigration\Move"

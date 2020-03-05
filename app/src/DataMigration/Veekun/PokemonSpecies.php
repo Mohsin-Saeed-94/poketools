@@ -25,7 +25,8 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
  *     group="Veekun",
  *     source="veekun",
  *     sourceIds={@IdField(name="id")},
- *     destination="yaml:///%kernel.project_dir%/resources/data/pokemon",
+ *     destination="/%kernel.project_dir%/resources/data/pokemon",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\YamlDestinationDriver",
  *     destinationIds={@IdField(name="identifier", type="string")}
  * )
  */

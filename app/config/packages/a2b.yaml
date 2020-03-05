@@ -2,8 +2,11 @@ a2b:
   sources:
     - name: veekun
       uri: "sqlite:///%kernel.project_dir%/resources/pokedex/pokedex/data/pokedex.sqlite"
+      driver: 'DragoonBoots\A2B\Drivers\Source\DbalSourceDriver'
   destinations:
     - name: pokemon_move
       uri: "%env(resolve:DATABASE_URL)%#pokemon_move"
+      driver: 'App\A2B\Drivers\Destination\DbalDestinationDriver'
     - name: encounter
       uri: "%env(resolve:DATABASE_URL)%#encounter"
+      driver: 'App\A2B\Drivers\Destination\DbalDestinationDriver'

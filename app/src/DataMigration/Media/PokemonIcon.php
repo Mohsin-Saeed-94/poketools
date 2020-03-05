@@ -16,7 +16,8 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *     group="Media",
  *     source="veekun",
  *     sourceIds={@IdField(name="group", type="string"), @IdField(name="species_id"), @IdField(name="form_id")},
- *     destination="file:///%kernel.project_dir%/assets/static/pokemon/icon",
+ *     destination="/%kernel.project_dir%/assets/static/pokemon/icon",
+ *     destinationDriver="App\A2B\Drivers\Destination\FileDestinationDriver",
  *     destinationIds={@IdField(name="group", type="string"), @IdField(name="id", type="string")}
  * )
  */

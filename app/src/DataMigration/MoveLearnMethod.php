@@ -11,9 +11,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Move Learn Method",
- *     source="yaml:///%kernel.project_dir%/resources/data/move_learn_method",
+ *     source="/%kernel.project_dir%/resources/data/move_learn_method",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/MoveLearnMethod",
+ *     destination="\App\Entity\MoveLearnMethod",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")}
  * )
  */

@@ -13,7 +13,8 @@ use DragoonBoots\A2B\Exception\MigrationException;
  *
  * @DataMigration(
  *     name="Shop Item",
- *     source="csv:///%kernel.project_dir%/resources/data/shop_item.csv",
+ *     source="/%kernel.project_dir%/resources/data/shop_item.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={
  *       @IdField(name="version_group", type="string"),
  *       @IdField(name="location", type="string"),
@@ -21,7 +22,8 @@ use DragoonBoots\A2B\Exception\MigrationException;
  *       @IdField(name="shop", type="string"),
  *       @IdField(name="item", type="string")
  *     },
- *     destination="doctrine:///App/Entity/ShopItem",
+ *     destination="\App\Entity\ShopItem",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     depends={
  *       "App\DataMigration\Location",

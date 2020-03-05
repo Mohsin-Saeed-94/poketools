@@ -14,7 +14,8 @@ use DragoonBoots\A2B\Exception\MigrationException;
  *
  * @DataMigration(
  *     name="Pokemon Move",
- *     source="csv:///%kernel.project_dir%/resources/data/pokemon_move.csv",
+ *     source="/%kernel.project_dir%/resources/data/pokemon_move.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={
  *         @IdField(name="pokemon", type="string"),
  *         @IdField(name="version_group", type="string"),

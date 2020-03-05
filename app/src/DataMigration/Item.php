@@ -19,9 +19,11 @@ use PhpUnitsOfMeasure\PhysicalQuantity\Time;
  *
  * @DataMigration(
  *     name="Item",
- *     source="yaml:///%kernel.project_dir%/resources/data/item",
+ *     source="/%kernel.project_dir%/resources/data/item",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/Item",
+ *     destination="\App\Entity\Item",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     depends={
  *         "App\DataMigration\VersionGroup",

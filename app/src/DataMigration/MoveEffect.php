@@ -12,9 +12,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Move Effect",
- *     source="yaml:///%kernel.project_dir%/resources/data/move_effect",
+ *     source="/%kernel.project_dir%/resources/data/move_effect",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="id")},
- *     destination="doctrine:///App/Entity/MoveEffect",
+ *     destination="\App\Entity\MoveEffect",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     depends={"App\DataMigration\VersionGroup"}
  * )

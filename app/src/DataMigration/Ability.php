@@ -12,9 +12,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Ability",
- *     source="yaml:///%kernel.project_dir%/resources/data/ability",
+ *     source="/%kernel.project_dir%/resources/data/ability",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\YamlSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/Ability",
+ *     destination="\App\Entity\Ability",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")},
  *     depends={"App\DataMigration\VersionGroup"}
  * )

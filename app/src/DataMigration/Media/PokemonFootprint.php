@@ -16,7 +16,8 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *     group="Media",
  *     source="veekun",
  *     sourceIds={@IdField(name="id")},
- *     destination="file:///%kernel.project_dir%/assets/static/pokemon/footprint",
+ *     destination="/%kernel.project_dir%/assets/static/pokemon/footprint",
+ *     destinationDriver="App\A2B\Drivers\Destination\FileDestinationDriver",
  *     destinationIds={@IdField(name="id", type="string")}
  * )
  */

@@ -15,7 +15,8 @@ use DragoonBoots\A2B\Exception\MigrationException;
  *
  * @DataMigration(
  *     name="Encounter",
- *     source="csv:///%kernel.project_dir%/resources/data/encounter.csv",
+ *     source="/%kernel.project_dir%/resources/data/encounter.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={@IdField(name="id")},
  *     destination="encounter",
  *     destinationIds={@IdField(name="id")},

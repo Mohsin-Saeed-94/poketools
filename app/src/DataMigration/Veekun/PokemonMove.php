@@ -23,7 +23,8 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *         @IdField(name="move", type="string"),
  *         @IdField(name="learn_method", type="string")
  *     },
- *     destination="csv:///%kernel.project_dir%/resources/data/pokemon_move.csv",
+ *     destination="/%kernel.project_dir%/resources/data/pokemon_move.csv",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\CsvDestinationDriver",
  *     destinationIds={
  *         @IdField(name="pokemon", type="string"),
  *         @IdField(name="version_group", type="string"),

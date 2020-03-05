@@ -17,8 +17,10 @@ use Symfony\Component\Finder\SplFileInfo;
  *     name="Item Icon",
  *     group="Media",
  *     source="file:///%kernel.project_dir%/resources/pokedex-media/items",
+ *     sourceDriver="App\A2B\Drivers\Source\FileSourceDriver",
  *     sourceIds={@IdField(name="id")},
- *     destination="file:///%kernel.project_dir%/assets/static/item",
+ *     destination="/%kernel.project_dir%/assets/static/item",
+ *     destinationDriver="App\A2B\Drivers\Destination\FileDestinationDriver",
  *     destinationIds={@IdField(name="id", type="string")}
  * )
  */

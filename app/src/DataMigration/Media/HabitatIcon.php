@@ -16,9 +16,11 @@ use Symfony\Component\Finder\SplFileInfo;
  * @DataMigration(
  *     name="Habitat Icon",
  *     group="Media",
- *     source="file:///%kernel.project_dir%/resources/pokedex-media/habitats",
+ *     source="/%kernel.project_dir%/resources/pokedex-media/habitats",
+ *     sourceDriver="App\A2B\Drivers\Source\FileSourceDriver",
  *     sourceIds={@IdField(name="id")},
- *     destination="file:///%kernel.project_dir%/assets/static/habitat",
+ *     destination="/%kernel.project_dir%/assets/static/habitat",
+ *     destinationDriver="App\A2B\Drivers\Destination\FileDestinationDriver",
  *     destinationIds={@IdField(name="id", type="string")}
  * )
  */

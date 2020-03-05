@@ -11,9 +11,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Item Fling Effect",
- *     source="csv:///%kernel.project_dir%/resources/data/item_fling_effect.csv",
+ *     source="/%kernel.project_dir%/resources/data/item_fling_effect.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="doctrine:///App/Entity/ItemFlingEffect",
+ *     destination="\App\Entity\ItemFlingEffect",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")}
  * )
  */

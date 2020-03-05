@@ -11,9 +11,11 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *
  * @DataMigration(
  *     name="Contest Effect",
- *     source="csv:///%kernel.project_dir%/resources/data/contest_effect.csv",
+ *     source="/%kernel.project_dir%/resources/data/contest_effect.csv",
+ *     sourceDriver="DragoonBoots\A2B\Drivers\Source\CsvSourceDriver",
  *     sourceIds={@IdField(name="id")},
- *     destination="doctrine:///App/Entity/ContestEffect",
+ *     destination="\App\Entity\ContestEffect",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
  *     destinationIds={@IdField(name="id")}
  * )
  */

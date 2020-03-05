@@ -18,7 +18,8 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *     name="Region",
  *     group="Veekun",
  *     source="veekun",
- *     destination="yaml:///%kernel.project_dir%/resources/data/region",
+ *     destination="/%kernel.project_dir%/resources/data/region",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\YamlDestinationDriver",
  *     sourceIds={@IdField(name="id")},
  *     destinationIds={@IdField(name="identifier", type="string")}
  * )

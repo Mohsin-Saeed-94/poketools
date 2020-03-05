@@ -24,7 +24,8 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *     group="Veekun",
  *     source="veekun",
  *     sourceIds={@IdField(name="identifier", type="string")},
- *     destination="csv:///%kernel.project_dir%/resources/data/move_category.csv",
+ *     destination="/%kernel.project_dir%/resources/data/move_category.csv",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\CsvDestinationDriver",
  *     destinationIds={@IdField(name="identifier", type="string")}
  * )
  */
