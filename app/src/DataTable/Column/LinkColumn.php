@@ -10,7 +10,7 @@ use Omines\DataTablesBundle\Column\TextColumn;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Twig_Environment;
+use Twig\Environment;
 
 /**
  * Link to a route.
@@ -37,7 +37,7 @@ class LinkColumn extends TextColumn
     private $accessor;
 
     /**
-     * @var \Twig_Environment
+     * @var \Twig\Environment
      */
     private $twigEnvironment;
 
@@ -46,12 +46,12 @@ class LinkColumn extends TextColumn
      *
      * @param UrlGeneratorInterface $urlGenerator
      * @param PropertyAccessorInterface $accessor
-     * @param Twig_Environment $twigEnvironment
+     * @param \Twig\Environment $twigEnvironment
      */
     public function __construct(
         UrlGeneratorInterface $urlGenerator,
         PropertyAccessorInterface $accessor,
-        Twig_Environment $twigEnvironment
+        Environment $twigEnvironment
     ) {
         $this->urlGenerator = $urlGenerator;
         $this->accessor = $accessor;

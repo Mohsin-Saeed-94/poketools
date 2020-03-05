@@ -9,6 +9,7 @@ use App\Entity\ItemInVersionGroup;
 use App\Entity\Pokemon;
 use App\Entity\Version;
 use App\Repository\VersionRepository;
+use Twig\Environment;
 
 /**
  * Generate labels for entities
@@ -16,7 +17,7 @@ use App\Repository\VersionRepository;
 final class Labeler
 {
     /**
-     * @var \Twig_Environment
+     * @var \Twig\Environment
      */
     protected $twig;
 
@@ -33,11 +34,11 @@ final class Labeler
     /**
      * Labeler constructor.
      *
-     * @param \Twig_Environment $twig
+     * @param \Twig\Environment $twig
      * @param Version $activeVersion
      * @param VersionRepository $versionRepo
      */
-    public function __construct(\Twig_Environment $twig, ?Version $activeVersion, VersionRepository $versionRepo)
+    public function __construct(Environment $twig, ?Version $activeVersion, VersionRepository $versionRepo)
     {
         $this->twig = $twig;
         $this->version = $activeVersion;

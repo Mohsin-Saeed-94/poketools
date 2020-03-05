@@ -6,7 +6,7 @@ use App\Entity\Version;
 use App\Repository\VersionRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 /**
  * Event Subscriber to resolve the Version from the request.
@@ -66,9 +66,9 @@ class DexVersionSubscriber implements EventSubscriberInterface
      *
      * Makes the resolved version available everywhere.
      *
-     * @param FilterControllerEvent $event
+     * @param \Symfony\Component\HttpKernel\Event\ControllerEvent $event
      */
-    public function onKernelController(FilterControllerEvent $event): void
+    public function onKernelController(ControllerEvent $event): void
     {
         if ($event->getRequest()->attributes->has('version')) {
             $this->container->set('app.active_version', $event->getRequest()->attributes->get('version'));

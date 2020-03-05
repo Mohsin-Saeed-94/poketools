@@ -9,14 +9,14 @@ namespace App\DataTable\Column;
 use Omines\DataTablesBundle\Column\AbstractColumn;
 use Omines\DataTablesBundle\DependencyInjection\Instantiator;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Twig_Environment;
+use Twig\Environment;
 
 class CollectionColumn extends AbstractColumn
 {
     private const TEMPLATE_PATH = '_data_table/column/collection.html.twig';
 
     /**
-     * @var \Twig_Environment
+     * @var \Twig\Environment
      */
     private $twigEnvironment;
 
@@ -28,10 +28,10 @@ class CollectionColumn extends AbstractColumn
     /**
      * CollectionColumn constructor.
      *
-     * @param Twig_Environment $twigEnvironment
+     * @param \Twig\Environment $twigEnvironment
      * @param Instantiator $instantiator
      */
-    public function __construct(Twig_Environment $twigEnvironment, Instantiator $instantiator)
+    public function __construct(Environment $twigEnvironment, Instantiator $instantiator)
     {
         $this->twigEnvironment = $twigEnvironment;
         $this->instantiator = $instantiator;

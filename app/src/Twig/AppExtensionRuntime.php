@@ -124,16 +124,16 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param \Twig_Environment $twig
+     * @param Environment $twig
      * @param array $context
      * @param Type $attackingType
      *
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function damageChartAttacking(\Twig_Environment $twig, array $context, Type $attackingType): string
+    public function damageChartAttacking(Environment $twig, array $context, Type $attackingType): string
     {
         $version = $this->resolveActiveVersion($context);
         $typeChart = $this->typeChartRepo->findOneByVersion($version);
@@ -177,16 +177,16 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param \Twig_Environment $twig
+     * @param Environment $twig
      * @param array $context
      * @param PokemonType|Type|PokemonType[]|Type[] $defendingType
      *
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function damageChartDefending(\Twig_Environment $twig, array $context, $defendingType): string
+    public function damageChartDefending(Environment $twig, array $context, $defendingType): string
     {
         $version = $this->resolveActiveVersion($context);
         $typeChart = $this->typeChartRepo->findOneByVersion($version);
@@ -236,18 +236,18 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param \Twig_Environment $twig
+     * @param Environment $twig
      * @param array $context
      * @param Type|ContestType $value
      *
      * @param bool $link
      *
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function typeEmblem(\Twig_Environment $twig, array $context, $value, bool $link = true): string
+    public function typeEmblem(Environment $twig, array $context, $value, bool $link = true): string
     {
         if (!$value instanceof Type && !$value instanceof ContestType) {
             $type = is_object($value) ? get_class($value) : gettype($value);
@@ -267,15 +267,15 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param \Twig_Environment $twig
+     * @param Environment $twig
      * @param TypeEfficacy|int $value
      *
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function typeEfficacy(\Twig_Environment $twig, $value): string
+    public function typeEfficacy(Environment $twig, $value): string
     {
         if ($value instanceof TypeEfficacy) {
             $value = $value->getEfficacy();
