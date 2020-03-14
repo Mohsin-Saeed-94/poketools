@@ -107,7 +107,7 @@ COPY --from=webpack /var/www/public/build/entrypoints.json /var/www/public/build
 RUN mkdir -p var/cache \
     && chown -R www-data:www-data var
 
-RUN bin/console assets:install
+RUN IDE=none bin/console assets:install
 RUN chown -R www-data:www-data var
 
 #######################################
@@ -144,11 +144,11 @@ RUN set -xe \
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
-VOLUME /var/www
+#VOLUME /var/www
 
 #######################################
 # WEB DEVELOPMENT SUPPORT
 #######################################
 FROM web as web_dev
 
-VOLUME /var/www
+#VOLUME /var/www
