@@ -30,29 +30,21 @@ build:
     - docker info
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
     - docker-compose build app web
-    - docker image tag ${IMAGE_BASENAME}/app:latest ${IMAGE_BASENAME}/app:${BUILD_NUMBER}
-    - docker image tag ${IMAGE_BASENAME}/web:latest ${IMAGE_BASENAME}/web:${BUILD_NUMBER}
-    - docker push ${IMAGE_BASENAME}/app:latest
+    - docker image tag app ${IMAGE_BASENAME}/app:${BUILD_NUMBER}
+    - docker image tag app ${IMAGE_BASENAME}/app:${CI_COMMIT_BRANCH}
+    - docker image tag web ${IMAGE_BASENAME}/web:${BUILD_NUMBER}
+    - docker image tag web ${IMAGE_BASENAME}/web:${CI_COMMIT_BRANCH}
     - docker push ${IMAGE_BASENAME}/app:${BUILD_NUMBER}
-    - docker push ${IMAGE_BASENAME}/web:latest
+    - docker push ${IMAGE_BASENAME}/app:${CI_COMMIT_BRANCH}
     - docker push ${IMAGE_BASENAME}/web:${BUILD_NUMBER}
+    - docker push ${IMAGE_BASENAME}/web:${CI_COMMIT_BRANCH}
 
 pretest-data:
   stage: pretest
   image: $IMAGE_BASENAME/app:$BUILD_NUMBER
   dependencies: []
-  variables:
-    # Don't need to checkout because this job operates in the application image
-    GIT_STRATEGY: none
-  before_script:
-    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php composer-setup.php
-    - php -r "unlink('composer-setup.php');"
-    - mv composer.phar /usr/bin/composer
   script:
-    - cd /var/www
-    - composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
-    - php -d memory_limit=-1 bin/phpunit --configuration=phpunit.xml.dist --testsuite="Data Schema"
+    - bash ci_scripts/pretest-data.sh
 
 data:
   stage: data
@@ -61,8 +53,6 @@ data:
     - postgres:12
   dependencies: []
   variables:
-    # Don't need to checkout because this job operates in the application image
-    GIT_STRATEGY: none
     POSTGRES_DB: poketools
     POSTGRES_USER: poketools
     POSTGRES_PASSWORD: secret
@@ -71,20 +61,8 @@ data:
     DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
     # Need a fake IDE env var.  It will never be used.
     IDE: phpstorm
-  before_script:
-    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php composer-setup.php
-    - php -r "unlink('composer-setup.php');"
-    - mv composer.phar /usr/bin/composer
   script:
-    - export PGPASSWORD=$POSTGRES_PASSWORD
-    - apk add --no-cache postgresql-client
-    - cd /var/www
-    - composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction
-    - php bin/console doctrine:schema:update --force
-    - php -d memory_limit=-1 bin/console a2b:migrate --preserve
-    - cp resources/data/data_migration_map.sqlite ${CI_PROJECT_DIR}/
-    - pg_dump --host=postgres --username=${POSTGRES_USER} --dbname=${POSTGRES_DB} --blobs --no-owner --no-privileges --format=custom --file="${CI_PROJECT_DIR}/template.generated.pgdump"
+    - bash ci_scripts/data.sh
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
     paths:
@@ -132,17 +110,8 @@ build-data:
     COMPOSE_FILE: docker-compose.yaml
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
-  before_script:
-    - mv template.generated.pgdump docker/db/
-    - apk add --no-cache gcc libc-dev libffi-dev make openssl-dev py-pip python2-dev
-    - pip install docker-compose
   script:
-    - docker info
-    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
-    - docker-compose build db
-    - docker image tag ${IMAGE_BASENAME}/db:latest ${IMAGE_BASENAME}/db:${BUILD_NUMBER}
-    - docker push ${IMAGE_BASENAME}/db:latest
-    - docker push ${IMAGE_BASENAME}/db:${BUILD_NUMBER}
+    - bash ci_scripts/build-data.sh
 
 deploy-data:
   stage: deploy
