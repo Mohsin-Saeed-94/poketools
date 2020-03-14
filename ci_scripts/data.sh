@@ -3,6 +3,10 @@ set -e
 
 last_artifact_code=$(curl -IL "https://gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/-/jobs/artifacts/${CI_COMMIT_BRANCH}/download?job=data" 2>/dev/null | head -n 1 | cut -d$' ' -f2)
 if [[ ${CI_COMMIT_MESSAGE} =~ ^.*\[data\] || ${last_artifact_code} -eq "404" ]]; then
+  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+  php composer-setup.php
+  php -r "unlink('composer-setup.php');"
+  mv composer.phar /usr/bin/composer
   export PGPASSWORD=${POSTGRES_PASSWORD}
   apk add --no-cache postgresql-client
   cd /var/www
