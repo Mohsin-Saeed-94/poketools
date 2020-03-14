@@ -4,7 +4,11 @@ set -e
 docker info
 docker login -u gitlab-ci-token -p "${CI_JOB_TOKEN}" "${CI_REGISTRY}"
 
-if [[ ${CI_COMMIT_MESSAGE} =~ ^.*\[data\] ]]; then
+set +e
+docker pull "${IMAGE_BASENAME}/db:${CI_COMMIT_BRANCH}"
+pull_failed=$?
+set -e
+if [[ ${CI_COMMIT_MESSAGE} =~ ^.*\[data\] || ${pull_failed} -gt 0 ]]; then
   mv template.generated.pgdump docker/db/
   apk add --no-cache gcc libc-dev libffi-dev make openssl-dev py-pip python2-dev
   pip install docker-compose
