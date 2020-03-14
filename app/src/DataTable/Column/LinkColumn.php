@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
+use Twig_Environment;
 
 /**
  * Link to a route.
@@ -37,7 +38,7 @@ class LinkColumn extends TextColumn
     private $accessor;
 
     /**
-     * @var \Twig\Environment
+     * @var \Twig_Environment
      */
     private $twigEnvironment;
 
