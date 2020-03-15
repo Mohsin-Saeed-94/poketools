@@ -115,25 +115,6 @@ build-search:
     - docker push ${IMAGE_BASENAME}/search:${BUILD_NUMBER}
     - docker push ${IMAGE_BASENAME}/search:${CI_COMMIT_BRANCH}
 
-deploy-data:
-  stage: deploy
-  rules:
-    - if: '$CI_COMMIT_REF_NAME == "master"'
-      when: on_success
-  image: lwolf/kubectl_deployer
-  variables:
-    DB_DEPLOYMENT_TMPL: ./deploy/tmpl/db-deployment.yaml
-    ENVIRONMENT: "${CI_ENVIRONMENT_SLUG}"
-  environment:
-    name: prod
-    url: http://poketools.gamestuff.info
-  dependencies: []
-  script:
-    # This is from deploy.sh, without the iteration over all templates.
-    - mkdir -p ./deploy/.generated
-    - envsubst < "${DB_DEPLOYMENT_TMPL}" > "./deploy/.generated/$(basename "${DB_DEPLOYMENT_TMPL}")"
-    - kubectl apply -f "./deploy/.generated/$(basename "${DB_DEPLOYMENT_TMPL}")"
-
 deploy:
   stage: deploy
   rules:

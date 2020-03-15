@@ -6,13 +6,8 @@ export ENVIRONMENT=${1}
 mkdir -p ./deploy/.generated
 
 # Iterate through each template file to apply the template.
-for f in ./deploy/tmpl/*.yaml
-do
-  # Skip db deployment template
-  if [ "$(basename "$f")" != "db-deployment.yaml" ]
-  then
-    envsubst < "$f" > "./deploy/.generated/$(basename "$f")"
-  fi
+for f in ./deploy/tmpl/*.yaml; do
+  envsubst <"$f" >"./deploy/.generated/$(basename "$f")"
 done
 
 # Jobs must be deleted to retrigger them.
