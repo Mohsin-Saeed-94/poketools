@@ -46,7 +46,8 @@ services:
     build:
       dockerfile: Dockerfile.data
       context: docker/db
-      target: db
+      # Allows overriding to get a blank db if needed.
+      target: "${DB_TARGET:-db}"
     environment:
       - POSTGRES_USER=poketools
       - POSTGRES_PASSWORD=secret
