@@ -35,7 +35,11 @@ RUN set -xe \
     && if [ "$APP_ENV" = "prod" ]; then export ARGS="--no-dev"; fi \
     && composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction $ARGS
 
+# Remove assets from app image except those required for app function
 COPY app/. /var/www
+RUN set -xe \
+    && rm -R /var/www/assets/*
+COPY app/assets/static/map /var/www/assets/static/map
 
 RUN composer dump-autoload --classmap-authoritative
 
@@ -144,11 +148,7 @@ RUN set -xe \
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
-#VOLUME /var/www
-
 #######################################
 # WEB DEVELOPMENT SUPPORT
 #######################################
 FROM web as web_dev
-
-#VOLUME /var/www

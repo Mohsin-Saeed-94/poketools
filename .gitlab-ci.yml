@@ -139,7 +139,7 @@ build-search:
     - docker-compose up --detach search app db
     # Wait for the containers to be ready before seeding search index
     - sleep 30
-    - docker-compose exec -e DATABASE_URL=postgres://poketools:secret@db:5432/poketools app bin/console fos:elastica:populate
+    - docker-compose exec -T -e DATABASE_URL=postgres://poketools:secret@db:5432/poketools app bin/console fos:elastica:populate
     - docker container commit $(docker-compose ps -q search) ${IMAGE_BASENAME}/search:${BUILD_NUMBER}
     - docker tag ${IMAGE_BASENAME}/search:${BUILD_NUMBER} ${IMAGE_BASENAME}/search:${CI_COMMIT_BRANCH}
     - docker push ${IMAGE_BASENAME}/search:${BUILD_NUMBER}
