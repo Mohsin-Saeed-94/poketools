@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -xe
 
 docker info
 docker login -u gitlab-ci-token -p "${CI_JOB_TOKEN}" "${CI_REGISTRY}"

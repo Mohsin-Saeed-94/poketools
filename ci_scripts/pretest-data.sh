@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -xe
 
 if [[ ${CI_COMMIT_MESSAGE} =~ ^.*\[data\] ]]; then
   php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
