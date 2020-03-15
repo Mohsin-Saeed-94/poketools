@@ -63,6 +63,11 @@ spec:
                   key: mailer.url
             - name: ELASTICSEARCH_URL
               value: "http://elasticsearch-service:9200"
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                    name: poketools-secret
+                    key: sentry.dsn
           ports:
             - containerPort: 9000
               name: php-fpm

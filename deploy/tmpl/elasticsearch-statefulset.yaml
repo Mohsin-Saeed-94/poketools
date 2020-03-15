@@ -55,7 +55,9 @@ spec:
           securityContext:
             privileged: true
       containers:
-        - env:
+        - image: ${IMAGE_BASENAME}/search:${BUILD_NUMBER}
+          name: elasticsearch
+          env:
             - name: cluster.name
               value: poketools-cluster
             - name: node.name
@@ -64,8 +66,8 @@ spec:
                   fieldPath: metadata.name
             - name: ES_JAVA_OPTS
               value: '-Xms512m -Xmx512m'
-          image: ${IMAGE_BASENAME}/search:${BUILD_NUMBER}
-          name: elasticsearch
+            - name: bootstrap.memory_lock
+              value: "false"
           ports:
             - containerPort: 9200
               name: http
