@@ -26,7 +26,6 @@ if [[ ${CI_COMMIT_MESSAGE} =~ ^.*\[data\] || ${pull_failed} -gt 0 ]]; then
     -e POSTGRES_PASSWORD=secret \
     -e POSTGRES_DB=poketools \
     app bash /var/www/migrate_data.sh
-  docker-compose exec -T app ls -l
 
   # Get artifacts
   docker cp "$(docker-compose ps -q app):/var/www/template.generated.pgdump" "${CI_PROJECT_DIR}/docker/db/"
