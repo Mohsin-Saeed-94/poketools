@@ -25,7 +25,7 @@ if [[ ${CI_COMMIT_MESSAGE} =~ ^.*\[data\] || ${pull_failed} -gt 0 ]]; then
     -e POSTGRES_USER=poketools \
     -e POSTGRES_PASSWORD=secret \
     -e POSTGRES_DB=poketools \
-    app migrate_data.sh
+    app bash /var/www/migrate_data.sh
   docker-compose exec -T app ls -l
 
   # Get artifacts
