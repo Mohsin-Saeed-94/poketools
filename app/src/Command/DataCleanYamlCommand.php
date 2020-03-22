@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class DataCleanYamlCommand extends Command
+final class DataCleanYamlCommand extends Command
 {
     protected static $defaultName = 'app:data:clean-yaml';
 
@@ -80,8 +80,7 @@ class DataCleanYamlCommand extends Command
         $migration = $this->migrationManager->getMigration($input->getArgument('migration'));
         $destinationDefinition = $migration->getDefinition();
         $path = $destinationDefinition->getDestination();
-        $path = preg_replace('`^yaml://`', '', $path, -1, $replacements);
-        if ($replacements < 1) {
+        if ($destinationDefinition->getDestinationDriver() !== YamlDestinationDriver::class) {
             $this->io->error(
                 sprintf(
                     'The migration "%s" does not use the YAML driver.',
@@ -95,13 +94,14 @@ class DataCleanYamlCommand extends Command
         }
 
         // Pretend this is a migration so the Yaml Driver can process it.
-        $driverUri = sprintf('yaml://%s', $path);
         $idFields = $destinationDefinition->getDestinationIds();
         $sourceDefinition = new DataMigration(
             [
                 'name' => 'Clean YAML',
-                'source' => $driverUri,
-                'destination' => $driverUri,
+                'source' => $path,
+                'sourceDriver' => YamlDestinationDriver::class,
+                'destination' => $path,
+                'destinationDriver' => YamlDestinationDriver::class,
                 'sourceIds' => $idFields,
                 'destinationIds' => $idFields,
             ]
@@ -121,5 +121,7 @@ class DataCleanYamlCommand extends Command
         $progress->finish();
         $this->io->newLine(2);
         $this->io->success('Finished cleaning YAML files.');
+
+        return 0;
     }
 }
