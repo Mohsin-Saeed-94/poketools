@@ -1,3 +1,7 @@
+# Rip Gen 1 pokemon data
+# Usage:
+# pokemon_gen1.py pokemon <path to gen 1 rom> <path to existing Pokemon YAML files>
+
 import os
 import sys
 
@@ -170,6 +174,24 @@ def pokemon():
         'mew',
     ]
 
+    _type_map = {
+        0x00: 'normal',
+        0x01: 'fighting',
+        0x02: 'flying',
+        0x03: 'poison',
+        0x04: 'ground',
+        0x05: 'rock',
+        0x07: 'bug',
+        0x08: 'ghost',
+        0x14: 'fire',
+        0x15: 'water',
+        0x16: 'grass',
+        0x17: 'electric',
+        0x18: 'psychic',
+        0x19: 'ice',
+        0x1A: 'dragon',
+    }
+
     data = getFile()
     yaml_dir = sys.argv[2]
 
@@ -206,6 +228,12 @@ def pokemon():
         }
         capture_rate = entry[8]
         experience = entry[9]
+        type_1 = _type_map[entry[6]]
+        type_2 = _type_map[entry[7]]
+        if type_1 == type_2:
+            types = [type_1]
+        else:
+            types = [type_1, type_2]
 
         # Write data
         yaml_path = os.path.join(yaml_dir, '{species}.yaml'.format(species=species_slug))
@@ -213,7 +241,8 @@ def pokemon():
             species_data = yaml.load(species_yaml.read())
             species_data[version_group]['pokemon'][species_slug].update({
                 'capture_rate': capture_rate,
-                'experience': experience
+                'experience': experience,
+                'types': types
             })
             for stat, value in stats.items():
                 species_data[version_group]['pokemon'][species_slug]['stats'].update({
