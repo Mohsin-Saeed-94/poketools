@@ -100,7 +100,11 @@ class PokemonMoveTableType extends MoveTableType
                 'visible' => false,
                 'propertyPath' => 'move',
                 'className' => 'pkt-move-index-table-samedamageclass',
-                'data' => function (PokemonMove $context, MoveInVersionGroup $move) use ($pokemon, $moveDamageClass) {
+                'data' => function (PokemonMove $context, MoveInVersionGroup $move) use (
+                    $pokemon,
+                    $moveDamageClass,
+                    $version
+                ) {
                     if ($moveDamageClass) {
                         $damageClass = $move->getDamageClass();
                     } else {
@@ -112,12 +116,16 @@ class PokemonMoveTableType extends MoveTableType
                     }
 
                     $attackVal = $pokemon->getStatData('attack')->getBaseValue();
-                    $specialAttackVal = $pokemon->getStatData('special-attack')->getBaseValue();
-                    if ($attackVal > $specialAttackVal
+                    if ($version->getVersionGroup()->hasFeatureString('special-stat')) {
+                        $specialVal = $pokemon->getStatData('special')->getBaseValue();
+                    } else {
+                        $specialVal = $pokemon->getStatData('special-attack')->getBaseValue();
+                    }
+                    if ($attackVal > $specialVal
                         && $damageClass->getSlug() === 'physical') {
                         return '1';
                     }
-                    if ($attackVal < $specialAttackVal
+                    if ($attackVal < $specialVal
                         && $damageClass->getSlug() === 'special') {
                         return '1';
                     }

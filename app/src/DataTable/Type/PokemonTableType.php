@@ -61,7 +61,7 @@ class PokemonTableType implements DataTableTypeInterface
                 'route' => 'pokemon_view',
                 'routeParams' => [
                     'versionSlug' => $version->getSlug(),
-                    'speciesSlug' => function ($pokemon): string {
+                    'speciesSlug' => function ($pokemon): ?string {
                         // If this table is extended, the context can be something other than a Pokemon.
                         /** @var Pokemon $pokemon */
                         if (!is_a($pokemon, Pokemon::class)) {
@@ -193,31 +193,49 @@ class PokemonTableType implements DataTableTypeInterface
                     return $this->renderPokemonStat($this->filterStatsCollection('defense', $value));
                 },
             ]
-        )->add(
-            'special-attack',
-            TextColumn::class,
-            [
-                'label' => 'Sp. Atk.',
-                'propertyPath' => 'stats',
+        );
+        if ($version->getVersionGroup()->hasFeatureString('special-stat')) {
+            $dataTable->add(
+                'special',
+                TextColumn::class,
+                [
+                    'label' => 'Special',
+                    'propertyPath' => 'stats',
 //                'orderable' => true,
-                'className' => 'pkt-pokemon-index-table-specialattack',
-                'data' => function ($context, $value) {
-                    return $this->renderPokemonStat($this->filterStatsCollection('special-attack', $value));
-                },
-            ]
-        )->add(
-            'special-defense',
-            TextColumn::class,
-            [
-                'label' => 'Sp. Def.',
-                'propertyPath' => 'stats',
+                    'className' => 'pkt-pokemon-index-table-special',
+                    'data' => function ($context, $value) {
+                        return $this->renderPokemonStat($this->filterStatsCollection('special', $value));
+                    },
+                ]
+            );
+        } else {
+            $dataTable->add(
+                'special-attack',
+                TextColumn::class,
+                [
+                    'label' => 'Sp. Atk.',
+                    'propertyPath' => 'stats',
 //                'orderable' => true,
-                'className' => 'pkt-pokemon-index-table-specialdefense',
-                'data' => function ($context, $value) {
-                    return $this->renderPokemonStat($this->filterStatsCollection('special-defense', $value));
-                },
-            ]
-        )->add(
+                    'className' => 'pkt-pokemon-index-table-specialattack',
+                    'data' => function ($context, $value) {
+                        return $this->renderPokemonStat($this->filterStatsCollection('special-attack', $value));
+                    },
+                ]
+            )->add(
+                'special-defense',
+                TextColumn::class,
+                [
+                    'label' => 'Sp. Def.',
+                    'propertyPath' => 'stats',
+//                'orderable' => true,
+                    'className' => 'pkt-pokemon-index-table-specialdefense',
+                    'data' => function ($context, $value) {
+                        return $this->renderPokemonStat($this->filterStatsCollection('special-defense', $value));
+                    },
+                ]
+            );
+        }
+        $dataTable->add(
             'speed',
             TextColumn::class,
             [
