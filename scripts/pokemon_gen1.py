@@ -1,18 +1,20 @@
 import os
-import re
 import sys
+
 from ruamel.yaml import YAML
+
+import pokemon_text
 
 yaml = YAML()
 yaml.default_flow_style = False
 yaml.indent(mapping=2, sequence=4, offset=2)
 
 
-def icons():
-    asm_file = sys.argv[1]
-    yaml_dir = sys.argv[2]
-    version_group = sys.argv[3]
+def getFile() -> bytes:
+    return open(sys.argv[1], 'rb').read()
 
+
+def pokemon():
     # A fixed species order is fine, as this is a snapshot in time
     _species_order = [
         'bulbasaur',
@@ -167,26 +169,80 @@ def icons():
         'mewtwo',
         'mew',
     ]
-    species_index = 0
 
-    with open(asm_file, mode='rt') as asm_data:
-        for asm_line in asm_data:
-            entries = asm_line.strip().split()
-            for entry in entries:
-                entry = entry.rstrip(', ')
-                match = re.fullmatch('^SPRITE_(?P<sprite>[\w_]+)$', entry)
-                if match:
-                    species_slug = _species_order[species_index]
-                    sprite = match.group('sprite').lower()
-                    yaml_path = os.path.join(yaml_dir, '{species}.yaml'.format(species=species_slug))
-                    with open(yaml_path, 'rt') as species_yaml:
-                        species_data = yaml.load(species_yaml.read())
-                        species_data[version_group]['pokemon'][species_slug]['forms'][species_slug][
-                            'icon'] = 'gen1/{sprite}.png'.format(sprite=sprite)
-                    with open(yaml_path, 'wt') as species_yaml:
-                        yaml.dump(species_data, species_yaml)
-                    species_index = species_index + 1
+    data = getFile()
+    yaml_dir = sys.argv[2]
+
+    # What version is this?
+    versiongroupmap = {
+        'POKEMON RED': 'red-blue',
+        'POKEMON BLUE': 'red-blue',
+        'POKEMON YELLOW': 'yellow'
+    }
+    version_group = data[0x134:0x143].rstrip(b'\x00')
+    version_group = versiongroupmap[version_group.decode('ascii')]
+
+    # Iterate over the pokemon base stats table
+    stats_offset = 0x383DE
+    stats_length = 28
+    species_index = 0
+    for species_slug in _species_order:
+        # Get Pokemon data entry
+        # Mew is stored in a different place in red/blue
+        if species_slug == 'mew' and version_group == 'red-blue':
+            start = 0x425B
+        else:
+            start = stats_offset + (species_index * stats_length)
+        end = start + stats_length
+        entry = data[start:end]
+
+        # Base stats
+        stats = {
+            'hp': entry[1],
+            'attack': entry[2],
+            'defense': entry[3],
+            'speed': entry[4],
+            'special': entry[5]
+        }
+        capture_rate = entry[8]
+        experience = entry[9]
+
+        # Write data
+        yaml_path = os.path.join(yaml_dir, '{species}.yaml'.format(species=species_slug))
+        with open(yaml_path, 'rt') as species_yaml:
+            species_data = yaml.load(species_yaml.read())
+            species_data[version_group]['pokemon'][species_slug].update({
+                'capture_rate': capture_rate,
+                'experience': experience
+            })
+            for stat, value in stats.items():
+                species_data[version_group]['pokemon'][species_slug]['stats'].update({
+                    # Gen 1/2 use a different EV system than modern games.
+                    stat: {
+                        'base_value': value,
+                        'effort_change': value
+                    }
+                })
+            # Remove obsolete data
+            try:
+                del species_data[version_group]['pokemon'][species_slug]['stats']['special-attack']
+            except KeyError:
+                # Already deleted
+                pass
+            try:
+                del species_data[version_group]['pokemon'][species_slug]['stats']['special-defense']
+            except KeyError:
+                # Already deleted
+                pass
+        with open(yaml_path, 'wt') as species_yaml:
+            yaml.dump(species_data, species_yaml)
+        print('Updated {count:3}/{total:3} ({pokemon})'.format(count=species_index + 1, total=len(_species_order),
+                                                               pokemon=species_slug))
+
+        species_index += 1
 
 
 if __name__ == '__main__':
-    exit(icons())
+    pokemon_text.register()
+
+    exit(pokemon())
