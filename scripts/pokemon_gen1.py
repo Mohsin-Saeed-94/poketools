@@ -5,13 +5,8 @@
 import os
 import sys
 
-from ruamel.yaml import YAML
-
-import pokemon_text
-
-yaml = YAML()
-yaml.default_flow_style = False
-yaml.indent(mapping=2, sequence=4, offset=2)
+from inc import pokemon_text
+from inc.yaml import remove_anchors, yaml
 
 
 def getFile() -> bytes:
@@ -239,6 +234,7 @@ def pokemon():
         yaml_path = os.path.join(yaml_dir, '{species}.yaml'.format(species=species_slug))
         with open(yaml_path, 'rt') as species_yaml:
             species_data = yaml.load(species_yaml.read())
+            remove_anchors(species_data)
             species_data[version_group]['pokemon'][species_slug].update({
                 'capture_rate': capture_rate,
                 'experience': experience,

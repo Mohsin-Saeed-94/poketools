@@ -1,11 +1,8 @@
 import os
 import re
 import sys
-from ruamel.yaml import YAML
 
-yaml = YAML()
-yaml.default_flow_style = False
-yaml.indent(mapping=2, sequence=4, offset=2)
+from inc.yaml import yaml
 
 
 def icons():

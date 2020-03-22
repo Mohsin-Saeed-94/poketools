@@ -4,10 +4,10 @@ import os
 import re
 import sys
 
-from ruamel.yaml import YAML
 from slugify import slugify
 
-import pokemon_text
+from inc import pokemon_text
+from inc.yaml import yaml
 
 
 def getFile() -> bytes:
@@ -192,9 +192,6 @@ Teaches []{{move:{move}}} to a compatible Pokèmon.
 
     # Write output
     os.makedirs('item', exist_ok=True)
-    yaml = YAML()
-    yaml.default_flow_style = False
-    yaml.indent(mapping=2, sequence=4, offset=2)
     # Copy these values from later data
     pulldownkeys = [
         'category',
