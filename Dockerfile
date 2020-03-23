@@ -31,6 +31,10 @@ COPY app/composer.* /var/www/
 
 ARG APP_ENV=prod
 
+# Some packages require git to install
+RUN set -xe \
+    && apk add --no-cache git
+
 RUN set -xe \
     && if [ "$APP_ENV" = "prod" ]; then export ARGS="--no-dev"; fi \
     && composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction $ARGS
@@ -57,6 +61,10 @@ COPY doc /var/www/doc
 COPY app/resources/schema /var/www/app/resources/schema
 WORKDIR /var/www/doc
 
+# Some packages require git to install
+RUN set -xe \
+    && apk add --no-cache git
+
 RUN composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction --no-dev
 
 RUN vendor/bin/daux generate --destination=/var/www/public
@@ -77,6 +85,10 @@ COPY app/public app/yarn.lock app/package.json app/webpack.config.js app/postcss
 COPY app/assets /var/www/assets
 # Some assets come from PHP vendors
 COPY --from=build /var/www/vendor/ /var/www/vendor/
+
+# Some packages require git to install
+RUN set -xe \
+    && apk add --no-cache git
 
 RUN set -xe \
     && yarn install --non-interactive  --frozen-lockfile $ARGS
