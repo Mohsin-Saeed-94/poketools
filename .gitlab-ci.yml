@@ -110,6 +110,7 @@ build-search:
     - sleep 60
     - docker-compose logs -t --no-color search
     - docker-compose exec -T -e DATABASE_URL=postgres://poketools:secret@db:5432/poketools -e ELASTICSEARCH_URL=http://search:9200/ app bin/console fos:elastica:populate
+    - docker-compose stop
     - docker container commit $(docker-compose ps -q search) ${IMAGE_BASENAME}/search:${BUILD_NUMBER}
     - docker tag ${IMAGE_BASENAME}/search:${BUILD_NUMBER} ${IMAGE_BASENAME}/search:${CI_COMMIT_BRANCH}
     - docker push ${IMAGE_BASENAME}/search:${BUILD_NUMBER}
