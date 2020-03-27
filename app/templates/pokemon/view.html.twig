@@ -614,24 +614,25 @@
                         {% for encounter in area_data.encounters %}
                             {# /** @var \App\Entity\Encounter encounter */ #}
                             <tr>
-                                <td class="pkt-encounter-table-method">{# @todo icon #}{{ encounter.method.name }}</td>
-                                <td class="pkt-encounter-table-chance">
-                                    {{ include('_data_table/encounter_chance.html.twig', {'value': encounter.chance}) }}
+                            <td class="pkt-encounter-table-method">{# @todo icon #}{{ encounter.method.name }}</td>
+                            <td class="pkt-encounter-table-chance">
+                                {{ include('_data_table/encounter_chance.html.twig', {'value': encounter.chance}) }}
+                            </td>
+                            <td class="pkt-encounter-table-level">{{ encounter.level }}</td>
+                            <td class="pkt-encounter-table-conditions">
+                                <ul>
+                                    {% for condition in encounter.conditions %}
+                                        <li>{{ include('_data_table/encounter_condition.html.twig', {'value': condition}) }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            {% if encounter.note %}
+                                </tr>
+                                <tr>
+                                <td colspan="4" class="pkt-encounter-table-note">
+                                    {{ encounter.note|markdown(false) }}
                                 </td>
-                                <td class="pkt-encounter-table-level">{{ encounter.level }}</td>
-                                <td class="pkt-encounter-table-conditions">
-                                    <ul>
-                                        {% for condition in encounter.conditions %}
-                                            <li>{{ include('_data_table/encounter_condition.html.twig', {'value': condition}) }}</li>
-                                        {% endfor %}
-                                        {% if encounter.note %}
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" data-html="true"
-                                                   title="{{ encounter.note|markdown(false)|e('html_attr') }}">Special note!</a>
-                                            </li>
-                                        {% endif %}
-                                    </ul>
-                                </td>
+                            {% endif %}
                             </tr>
                         {% endfor %}
                     {% endfor %}

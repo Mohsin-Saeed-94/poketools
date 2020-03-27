@@ -7,7 +7,6 @@ namespace App\DataTable\Type;
 
 
 use App\DataTable\Column\CollectionColumn;
-use App\Entity\Encounter;
 use Omines\DataTablesBundle\Column\TextColumn;
 use Omines\DataTablesBundle\Column\TwigColumn;
 use Omines\DataTablesBundle\DataTable;
@@ -65,20 +64,26 @@ trait EncounterTableTrait
                 'field' => 'encounter.conditions',
                 'orderable' => false,
                 'className' => 'pkt-encounter-table-conditions',
-                'render' => function (array $conditions, Encounter $encounter) {
-                    if ($encounter->getNote()) {
-                        $conditions[] = sprintf(
-                            '<a href="#" data-toggle="tooltip" data-html="true" title="%s">Special note!</a>',
-                            htmlspecialchars($this->markdown->convertToHtml($encounter->getNote()))
-                        );
-                    }
-
-                    return $conditions;
-                },
                 'childType' => TwigColumn::class,
                 'childOptions' => [
                     'template' => '_data_table/encounter_condition.html.twig',
                 ],
+            ]
+        )->add(
+            'note',
+            TextColumn::class,
+            [
+                'label' => 'Note',
+                'field' => 'encounter.note',
+                'orderable' => false,
+                'visible' => false,
+                'render' => function (?string $value) {
+                    if ($value) {
+                        return $this->markdown->convertToHtml($value);
+                    }
+
+                    return null;
+                },
             ]
         );
     }
