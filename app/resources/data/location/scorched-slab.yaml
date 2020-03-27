@@ -1,21 +1,29 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Scorched Slab'
-  areas: &ruby-sapphire.areas
+  areas:
     whole-area:
       name: 'Whole area'
-      default: true
+      default: &ruby-sapphire.areas.whole-area.default true
   super: &ruby-sapphire.super hoenn-route-120
   map:
     map: &ruby-sapphire.map.map hoenn
     z: &ruby-sapphire.map.z 10
-    overlay: |
-      <circle r="4" cy="22" cx="116" />
+    overlay: '<circle r="4" cy="22" cx="116" />'
 emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    1f:
+      name: 1F
+      default: *ruby-sapphire.areas.whole-area.default
+    b1f:
+      name: B1F
+    b2f:
+      name: B2F
+    b3f:
+      name: B3F
   super: *ruby-sapphire.super
   map:
     map: *ruby-sapphire.map.map

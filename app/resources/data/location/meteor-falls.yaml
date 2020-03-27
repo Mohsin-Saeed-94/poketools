@@ -1,13 +1,13 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Meteor Falls'
-  areas: &ruby-sapphire.areas
+  areas:
     whole-area:
       name: 'Whole area'
-      default: true
+      default: &ruby-sapphire.areas.whole-area.default true
     back:
       name: back
-    b1f:
+    b1f: &ruby-sapphire.areas.b1f
       name: B1F
     backsmall-room:
       name: 'back/small room'
@@ -18,7 +18,15 @@ emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    1f:
+      name: 1F
+      default: *ruby-sapphire.areas.whole-area.default
+    1f-back:
+      name: '1F (Back)'
+    b1f: *ruby-sapphire.areas.b1f
+    b1f-back:
+      name: 'B1F (Back)'
   map:
     map: *ruby-sapphire.map.map
     overlay: |

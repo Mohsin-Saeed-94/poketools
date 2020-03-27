@@ -1,24 +1,33 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Victory Road'
-  areas: &ruby-sapphire.areas
+  areas:
     1f:
-      name: 1F
-      default: true
-    b1f:
+      name: &ruby-sapphire.areas.1f.name 1F
+      default: &ruby-sapphire.areas.1f.default true
+    b1f: &ruby-sapphire.areas.b1f
       name: B1F
     b2f:
       name: B2F
   map:
     map: &ruby-sapphire.map.map hoenn
     z: 10
-    overlay: |
-      <circle cx="228" cy="88" r="4" />
+    overlay: '<circle cx="228" cy="88" r="4" />'
 emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    entrance:
+      name: Entrance
+      default: *ruby-sapphire.areas.1f.default
+    1f:
+      name: *ruby-sapphire.areas.1f.name
+    b1f: *ruby-sapphire.areas.b1f
+    field:
+      name: Field
+    exit:
+      name: Exit
   map:
     map: *ruby-sapphire.map.map
     overlay: |

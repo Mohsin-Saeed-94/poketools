@@ -1,10 +1,10 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Route 120'
-  areas: &ruby-sapphire.areas
+  areas:
     whole-area:
       name: 'Whole area'
-      default: true
+      default: &ruby-sapphire.areas.whole-area.default true
   map:
     map: &ruby-sapphire.map.map hoenn
     overlay: |
@@ -13,7 +13,12 @@ emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    main-area:
+      name: 'Main area'
+      default: *ruby-sapphire.areas.whole-area.default
+    ancient-tomb-area:
+      name: 'Ancient Tomb Surroundings'
   map:
     map: *ruby-sapphire.map.map
     overlay: |
