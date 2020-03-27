@@ -1,7 +1,4 @@
 <?php
-/**
- * @file PoketoolsCommonMarkExtension.php
- */
 
 namespace App\CommonMark\Extension;
 
@@ -9,19 +6,14 @@ namespace App\CommonMark\Extension;
 use App\CommonMark\Block\Element\CallableBlock;
 use App\CommonMark\Block\Parser\CallableParser;
 use App\CommonMark\Block\Renderer\CallableRenderer;
-use App\CommonMark\Inline\Parser\CloseBracketInternalLinkParser;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Extension\ExtensionInterface;
 
 /**
- * CommonMark Extension to manage special app-specific pieces.
+ * CommonMark Extension to manage special app-specific pieces (blocks only).
  */
-class PoketoolsCommonMarkExtension implements ExtensionInterface
+class PoketoolsBlockExtension implements ExtensionInterface
 {
-    /**
-     * @var CloseBracketInternalLinkParser
-     */
-    private $closeBrackerInternalLinkParser;
 
     /**
      * @var CallableParser
@@ -36,16 +28,13 @@ class PoketoolsCommonMarkExtension implements ExtensionInterface
     /**
      * PoketoolsCommonMarkExtension constructor.
      *
-     * @param CloseBracketInternalLinkParser $closeBracketInternalLinkParser
      * @param CallableParser $controllerParser
      * @param CallableRenderer $callableRenderer
      */
     public function __construct(
-        CloseBracketInternalLinkParser $closeBracketInternalLinkParser,
         CallableParser $controllerParser,
         CallableRenderer $callableRenderer
     ) {
-        $this->closeBrackerInternalLinkParser = $closeBracketInternalLinkParser;
         $this->callableParser = $controllerParser;
         $this->callableRenderer = $callableRenderer;
     }
@@ -54,7 +43,6 @@ class PoketoolsCommonMarkExtension implements ExtensionInterface
     {
         $environment
             ->addBlockParser($this->callableParser)
-            ->addBlockRenderer(CallableBlock::class, $this->callableRenderer)
-            ->addInlineParser($this->closeBrackerInternalLinkParser, 200);
+            ->addBlockRenderer(CallableBlock::class, $this->callableRenderer);
     }
 }

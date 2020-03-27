@@ -69,7 +69,7 @@ trait EncounterTableTrait
                     if ($encounter->getNote()) {
                         $conditions[] = sprintf(
                             '<a href="#" data-toggle="tooltip" data-html="true" title="%s">Special note!</a>',
-                            $this->markdown->convertToHtml($encounter->getNote())
+                            htmlspecialchars($this->markdown->convertToHtml($encounter->getNote()))
                         );
                     }
 

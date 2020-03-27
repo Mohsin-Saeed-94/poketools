@@ -29,13 +29,13 @@ class EncounterPokemonTableType extends PokemonTableType
      *
      * @param Labeler $labeler
      * @param PokemonRepository $pokemonRepo
-     * @param CommonMarkConverter $markdown
+     * @param CommonMarkConverter $inlineMarkdown
      */
-    public function __construct(Labeler $labeler, PokemonRepository $pokemonRepo, CommonMarkConverter $markdown)
+    public function __construct(Labeler $labeler, PokemonRepository $pokemonRepo, CommonMarkConverter $inlineMarkdown)
     {
         parent::__construct($labeler, $pokemonRepo);
 
-        $this->markdown = $markdown;
+        $this->markdown = $inlineMarkdown;
     }
 
     /**

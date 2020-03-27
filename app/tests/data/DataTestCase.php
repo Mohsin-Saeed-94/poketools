@@ -9,7 +9,7 @@ namespace App\Tests\data;
 use App\CommonMark\Block\Parser\CallableParser;
 use App\CommonMark\Block\Renderer\CallableRenderer;
 use App\CommonMark\Block\Renderer\TableRenderer;
-use App\CommonMark\Extension\PoketoolsCommonMarkExtension;
+use App\CommonMark\Extension\PoketoolsBlockExtension;
 use App\CommonMark\Extension\PoketoolsTableExtension;
 use App\CommonMark\Inline\Parser\CloseBracketInternalLinkParser;
 use App\Entity\Version;
@@ -123,7 +123,7 @@ abstract class DataTestCase extends KernelTestCase
             new CommonMarkCoreExtension(),
             new TableExtension(),
             new PoketoolsTableExtension(new TableRenderer(new CommonMarkTableRenderer())),
-            new PoketoolsCommonMarkExtension($linkParser, $callableParser, $callableRenderer),
+            new PoketoolsBlockExtension($callableParser, $callableRenderer),
         ];
         $environment = new Environment();
         foreach ($extensions as $extension) {

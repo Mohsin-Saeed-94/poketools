@@ -69,6 +69,57 @@ services:
       $assetPath: '%asset_path%'
 
   # Markdown
+  League\CommonMark\Extension\CommonMarkCoreExtension:
+  League\CommonMark\Extension\InlinesOnly\InlinesOnlyExtension:
+  League\CommonMark\Extension\Table\TableExtension:
+  app.commonmark.environment.standard:
+    class: 'League\CommonMark\Environment'
+    calls:
+      - method: addExtension
+        arguments:
+          - '@League\CommonMark\Extension\CommonMarkCoreExtension'
+      - method: addExtension
+        arguments:
+          - '@League\CommonMark\Extension\Table\TableExtension'
+      - method: addExtension
+        arguments:
+          - '@App\CommonMark\Extension\PoketoolsTableExtension'
+      - method: addExtension
+        arguments:
+          - '@App\CommonMark\Extension\PoketoolsInlineExtension'
+      - method: addExtension
+        arguments:
+          - '@App\CommonMark\Extension\PoketoolsBlockExtension'
+  app.commonmark.environment.inline:
+    class: 'League\CommonMark\Environment'
+    calls:
+      - method: addExtension
+        arguments:
+          - '@League\CommonMark\Extension\InlinesOnly\InlinesOnlyExtension'
+      - method: addExtension
+        arguments:
+          - '@App\CommonMark\Extension\PoketoolsInlineExtension'
+  League\CommonMark\Environment: '@app.commonmark.environment.standard'
+  League\CommonMark\Environment $inlineEnvironment: '@app.commonmark.environment.inline'
+  League\CommonMark\DocParser:
+    arguments:
+      - '@League\CommonMark\Environment'
+  League\CommonMark\HtmlRenderer:
+    arguments:
+      - '@League\CommonMark\Environment'
+  League\CommonMark\Extension\Table\TableRenderer:
+  app.commonmark.converter.standard:
+    class: 'League\CommonMark\CommonMarkConverter'
+    arguments:
+      - '%commonmark_config%'
+      - '@app.commonmark.environment.standard'
+  app.commonmark.converter.inline:
+    class: 'League\CommonMark\CommonMarkConverter'
+    arguments:
+      - '%commonmark_config%'
+      - '@app.commonmark.environment.inline'
+  League\CommonMark\CommonMarkConverter: '@app.commonmark.converter.standard'
+  League\CommonMark\CommonMarkConverter $inlineMarkdown: '@app.commonmark.converter.inline'
   App\CommonMark\Extension\PoketoolsCommonMarkExtension:
   App\CommonMark\Extension\PoketoolsTableExtension:
   App\CommonMark\Block\Parser\CallableParser:
@@ -111,31 +162,3 @@ services:
       - method: setStopWords
         arguments:
           - '@PhpScience\TextRank\Tool\StopWords\English'
-
-  League\CommonMark\Extension\CommonMarkCoreExtension:
-  League\CommonMark\Extension\Table\TableExtension:
-  League\CommonMark\Environment:
-    calls:
-      - method: addExtension
-        arguments:
-          - '@League\CommonMark\Extension\CommonMarkCoreExtension'
-      - method: addExtension
-        arguments:
-          - '@League\CommonMark\Extension\Table\TableExtension'
-      - method: addExtension
-        arguments:
-          - '@App\CommonMark\Extension\PoketoolsTableExtension'
-      - method: addExtension
-        arguments:
-          - '@App\CommonMark\Extension\PoketoolsCommonMarkExtension'
-  League\CommonMark\DocParser:
-    arguments:
-      - '@League\CommonMark\Environment'
-  League\CommonMark\HtmlRenderer:
-    arguments:
-      - '@League\CommonMark\Environment'
-  League\CommonMark\Extension\Table\TableRenderer:
-  League\CommonMark\CommonMarkConverter:
-    arguments:
-      - '%commonmark_config%'
-      - '@League\CommonMark\Environment'

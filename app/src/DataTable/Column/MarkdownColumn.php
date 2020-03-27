@@ -14,22 +14,33 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * TextColumn in Markdown format.
  *
  * This will automatically set the text to be raw.
+ *
+ * Options:
+ * - inlinesOnly: Only parse inline markdown elements.  This requires the content
+ *   to have only inline tags to work properly.
  */
 class MarkdownColumn extends TextColumn
 {
     /**
      * @var CommonMarkConverter
      */
-    private $markdown;
+    private $standardMarkdown;
+
+    /**
+     * @var CommonMarkConverter
+     */
+    private $inlineMarkdown;
 
     /**
      * MarkdownColumn constructor.
      *
-     * @param CommonMarkConverter $markdown
+     * @param CommonMarkConverter $standardMarkdown
+     * @param CommonMarkConverter $inlineMarkdown
      */
-    public function __construct(CommonMarkConverter $markdown)
+    public function __construct(CommonMarkConverter $standardMarkdown, CommonMarkConverter $inlineMarkdown)
     {
-        $this->markdown = $markdown;
+        $this->standardMarkdown = $standardMarkdown;
+        $this->inlineMarkdown = $inlineMarkdown;
     }
 
     /**
@@ -37,7 +48,13 @@ class MarkdownColumn extends TextColumn
      */
     public function normalize($value): string
     {
-        return parent::normalize($this->markdown->convertToHtml($value));
+        if ($this->options['inlinesOnly']) {
+            $markdown = $this->inlineMarkdown;
+        } else {
+            $markdown = $this->standardMarkdown;
+        }
+
+        return parent::normalize($markdown->convertToHtml($value));
     }
 
     /**
@@ -49,6 +66,9 @@ class MarkdownColumn extends TextColumn
 
         // CommonMark parser will output HTML and make everything safe.
         $resolver->setDefault('raw', true);
+
+        $resolver->setDefault('inlinesOnly', false)
+            ->setAllowedTypes('inlinesOnly', ['bool']);
 
         return $this;
     }
