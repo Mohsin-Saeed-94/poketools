@@ -254,7 +254,7 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
             foreach ($dataRow as $key => $value) {
                 $param = 'value_'.$paramKey;
                 $paramKey++;
-                $params[$param] = is_string($value) ? $this->connection->quote($value) : $value;
+                $params[$param] = $value;
                 $valueRow[] = ":${param}";
             }
             $values[] = $valueRow;
