@@ -17,26 +17,34 @@ class CommonMarkExtensionRuntime implements RuntimeExtensionInterface
     /**
      * @var CommonMarkConverter
      */
-    private $markdown;
+    private $standardMarkdown;
 
-    public function __construct(CommonMarkConverter $markdown)
+    /**
+     * @var CommonMarkConverter
+     */
+    private $inlineMarkdown;
+
+    public function __construct(CommonMarkConverter $standardMarkdown, CommonMarkConverter $inlineMarkdown)
     {
-        $this->markdown = $markdown;
+        $this->standardMarkdown = $standardMarkdown;
+        $this->inlineMarkdown = $inlineMarkdown;
     }
 
     /**
      * @param string $value
-     * @param bool $paragraph
-     *   Should the output be wrapped in `<p>` tags?
+     * @param bool $allowBlocks
+     *   Parse block-level Markdown tags
      *
      * @return string
      */
-    public function markdown(string $value, bool $paragraph = true)
+    public function markdown(string $value, bool $allowBlocks = true)
     {
-        $html = trim($this->markdown->convertToHtml($value));
-        if (!$paragraph) {
-            $html = preg_replace('`(?:^<p>)|(?:</p>$)`', '', $html);
+        if ($allowBlocks) {
+            $markdown = $this->standardMarkdown;
+        } else {
+            $markdown = $this->inlineMarkdown;
         }
+        $html = trim($markdown->convertToHtml($value));
 
         return $html;
     }

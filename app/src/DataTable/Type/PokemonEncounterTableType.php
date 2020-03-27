@@ -35,12 +35,12 @@ class PokemonEncounterTableType implements DataTableTypeInterface
     /**
      * PokemonEncounterTableType constructor.
      *
-     * @param CommonMarkConverter $markdown
+     * @param CommonMarkConverter $inlineMarkdown
      * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(CommonMarkConverter $markdown, UrlGeneratorInterface $urlGenerator)
+    public function __construct(CommonMarkConverter $inlineMarkdown, UrlGeneratorInterface $urlGenerator)
     {
-        $this->markdown = $markdown;
+        $this->markdown = $inlineMarkdown;
         $this->urlGenerator = $urlGenerator;
     }
 
