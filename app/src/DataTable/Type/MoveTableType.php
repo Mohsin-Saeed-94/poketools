@@ -129,22 +129,23 @@ class MoveTableType implements DataTableTypeInterface
             [
                 'label' => 'Description',
                 'className' => 'pkt-move-index-table-description',
-//                'field' => 'effect.shortDescription',
                 'propertyPath' => 'effect.shortDescription',
                 'orderable' => false,
                 'render' => function (string $value, $move) {
+                    // Some uses of this type retrieve an intermediate entity.
                     if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
                         $move = $move->getMove();
-                    } else {
-                        return null;
                     }
 
-                    /** @var $move MoveInVersionGroup */
-                    if ($move->getEffectChance() !== null) {
-                        return str_replace('$effect_chance', $move->getEffectChance(), $value);
+                    if (is_a($move, MoveInVersionGroup::class)) {
+                        if ($move->getEffectChance() !== null) {
+                            return str_replace('$effect_chance', $move->getEffectChance(), $value);
+                        }
+
+                        return $value;
                     }
 
-                    return $value;
+                    return null;
                 },
             ]
         )->addOrderBy('name')->createAdapter(
