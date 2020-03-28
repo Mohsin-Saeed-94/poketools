@@ -54,6 +54,10 @@ class MarkdownColumn extends TextColumn
             $markdown = $this->standardMarkdown;
         }
 
+        if ($value === null) {
+            $value = '';
+        }
+
         return parent::normalize($markdown->convertToHtml($value));
     }
 
