@@ -39,9 +39,10 @@ class ShopItemTableType extends ItemTableType
             TextColumn::class,
             [
                 'label' => 'Price',
+                'className' => 'pkt-text',
                 'field' => 'shop_item.buy',
                 'raw' => true,
-                'render' => '<i class="pkt-icon pkt-icon-pokedollar"></i>%d',
+                'render' => '$%d',
             ]
         );
 

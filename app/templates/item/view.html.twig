@@ -25,9 +25,9 @@
             <table class="pkt-infolist">
                 <tr>
                     <th>Buy</th>
-                    <td>
+                    <td class="pkt-text">
                         {% if item.buy %}
-                            <i class="pkt-icon pkt-icon-pokedollar"></i>{{ item.buy }}
+                            ${{ item.buy }}
                         {% else %}
                             Cannot be purchased.
                         {% endif %}
@@ -35,9 +35,9 @@
                 </tr>
                 <tr>
                     <th>Sell</th>
-                    <td>
+                    <td class="pkt-text">
                         {% if item.sell %}
-                            <i class="pkt-icon pkt-icon-pokedollar"></i>{{ item.sell }}
+                            ${{ item.sell }}
                         {% else %}
                             Cannot be sold.
                         {% endif %}
@@ -54,7 +54,7 @@
                                 </tr>
                                 <tr>
                                     <th>Effect</th>
-                                    <td>{{ item.flingEffect.description|markdown }}</td>
+                                    <td class="pkt-text">{{ item.flingEffect.description|markdown }}</td>
                                 </tr>
                             </table>
                         </td>
@@ -100,7 +100,7 @@
                     {% for flag in item.flags %}
                         <li>
                             <div class="pkt-flag-name">{{ flag.name }}</div>
-                            <div class="pkt-flag-description">{{ flag.description|markdown }}</div>
+                            <div class="pkt-flag-description pkt-text">{{ flag.description|markdown }}</div>
                         </li>
                     {% endfor %}
                 </ul>
@@ -223,7 +223,7 @@
                                 {% endif %}
                             </td>
                             <td>{{ shop_item.shop.name }}</td>
-                            <td><i class="pkt-icon pkt-icon-pokedollar"></i>{{ shop_item.buy }}</td>
+                            <td class="pkt-text">${{ shop_item.buy }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -233,7 +233,7 @@
     </div>
 
     <h2>Description</h2>
-    <div class="pkt-item-view-description">
+    <div class="pkt-item-view-description pkt-text">
         {{ item.description|markdown }}
     </div>
 {% endblock %}

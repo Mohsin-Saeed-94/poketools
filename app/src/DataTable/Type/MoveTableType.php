@@ -128,7 +128,7 @@ class MoveTableType implements DataTableTypeInterface
             MarkdownColumn::class,
             [
                 'label' => 'Description',
-                'className' => 'pkt-move-index-table-description',
+                'className' => 'pkt-move-index-table-description pkt-text',
                 'propertyPath' => 'effect.shortDescription',
                 'orderable' => false,
                 'render' => function (string $value, $move) {

@@ -101,6 +101,7 @@ class ItemTableType implements DataTableTypeInterface
             MarkdownColumn::class,
             [
                 'label' => 'Description',
+                'className' => 'pkt-text',
                 'propertyPath' => 'shortDescription',
                 'orderable' => false,
             ]

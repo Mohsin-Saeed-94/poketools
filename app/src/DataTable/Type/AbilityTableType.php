@@ -46,7 +46,7 @@ class AbilityTableType implements DataTableTypeInterface
                 MarkdownColumn::class,
                 [
                     'label' => 'Description',
-                    'className' => 'pkt-ability-index-table-description',
+                    'className' => 'pkt-ability-index-table-description pkt-text',
                     'orderable' => false,
                 ]
             )

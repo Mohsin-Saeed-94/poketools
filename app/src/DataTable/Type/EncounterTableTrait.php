@@ -74,6 +74,7 @@ trait EncounterTableTrait
             TextColumn::class,
             [
                 'label' => 'Note',
+                'className' => 'pkt-text',
                 'field' => 'encounter.note',
                 'orderable' => false,
                 'visible' => false,
