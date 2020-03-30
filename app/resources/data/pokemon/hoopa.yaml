@@ -59,12 +59,15 @@ x-y:
           its loop to teleport them to a secret place.
       forms: &x-y.pokemon.hoopa.forms
         hoopa:
-          name: 'Confined Hoopa'
-          form_name: 'Hoopa Confined'
+          name: &x-y.pokemon.hoopa.forms.hoopa.name 'Confined Hoopa'
+          form_name: &x-y.pokemon.hoopa.forms.hoopa.form_name 'Hoopa Confined'
           default: *x-y.pokemon.hoopa.default
           battle_only: &x-y.pokemon.hoopa.forms.hoopa.battle_only false
-          icon: hoopa-confined.png
+          icon: &x-y.pokemon.hoopa.forms.hoopa.icon hoopa-confined.png
           footprint: &x-y.pokemon.hoopa.forms.hoopa.footprint hoopa.png
+          sprites:
+            - x-y/shiny/hoopa-default.png
+            - x-y/hoopa-default.png
     hoopa-unbound:
       genus: *x-y.pokemon.hoopa.genus
       color: *x-y.pokemon.hoopa.color
@@ -106,7 +109,7 @@ x-y:
           effort_change: 0
       abilities: *x-y.pokemon.hoopa.abilities
       flavor_text: *x-y.pokemon.hoopa.flavor_text
-      forms: &x-y.pokemon.hoopa-unbound.forms
+      forms:
         hoopa-unbound:
           name: *x-y.pokemon.hoopa-unbound.name
           form_name: &x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.form_name 'Hoopa Unbound'
@@ -116,6 +119,9 @@ x-y:
           art: &x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.art
             - hoopa-unbound.png
           footprint: *x-y.pokemon.hoopa.forms.hoopa.footprint
+          sprites:
+            - x-y/shiny/hoopa-unbound.png
+            - x-y/hoopa-unbound.png
 omega-ruby-alpha-sapphire:
   name: *x-y.name
   position: *x-y.position
@@ -151,7 +157,17 @@ omega-ruby-alpha-sapphire:
           It is said to be able to seize anything it desires
           with its six rings and six huge arms. With its power
           sealed, it is transformed into a much smaller form.
-      forms: *x-y.pokemon.hoopa.forms
+      forms:
+        hoopa:
+          name: *x-y.pokemon.hoopa.forms.hoopa.name
+          form_name: *x-y.pokemon.hoopa.forms.hoopa.form_name
+          default: *x-y.pokemon.hoopa.default
+          battle_only: *x-y.pokemon.hoopa.forms.hoopa.battle_only
+          icon: *x-y.pokemon.hoopa.forms.hoopa.icon
+          footprint: *x-y.pokemon.hoopa.forms.hoopa.footprint
+          sprites:
+            - omega-ruby-alpha-sapphire/shiny/hoopa-default.png
+            - omega-ruby-alpha-sapphire/hoopa-default.png
     hoopa-unbound:
       genus: *x-y.pokemon.hoopa.genus
       color: *x-y.pokemon.hoopa.color
@@ -173,7 +189,18 @@ omega-ruby-alpha-sapphire:
       stats: *x-y.pokemon.hoopa-unbound.stats
       abilities: *x-y.pokemon.hoopa.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.hoopa.flavor_text
-      forms: *x-y.pokemon.hoopa-unbound.forms
+      forms:
+        hoopa-unbound:
+          name: *x-y.pokemon.hoopa-unbound.name
+          form_name: *x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.form_name
+          default: *x-y.pokemon.hoopa.default
+          battle_only: *x-y.pokemon.hoopa.forms.hoopa.battle_only
+          icon: *x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.icon
+          art: *x-y.pokemon.hoopa-unbound.forms.hoopa-unbound.art
+          footprint: *x-y.pokemon.hoopa.forms.hoopa.footprint
+          sprites:
+            - omega-ruby-alpha-sapphire/shiny/hoopa-unbound.png
+            - omega-ruby-alpha-sapphire/hoopa-unbound.png
 sun-moon:
   name: *x-y.name
   position: *x-y.position
