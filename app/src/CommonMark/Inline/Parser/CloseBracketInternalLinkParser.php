@@ -122,7 +122,6 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
         $link = $this->tryParseInlineLinkAndTitle($cursor);
         if (!$link) {
             // No match
-            $inlineContext->getDelimiterStack()->removeDelimiter($opener); // Remove this opener from stack
             $cursor->restoreState($previousState);
 
             return false;
