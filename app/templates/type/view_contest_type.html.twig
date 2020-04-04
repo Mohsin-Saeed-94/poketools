@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% import '_macros/datatable.html.twig' as datatable %}
+
+{% block title %}Contest Types - {{ type.name }}{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ version }}</li>
+            <li class="breadcrumb-item"><a href="{{ path('type_index', {'versionSlug': version.slug}) }}">Types</a></li>
+            <li class="breadcrumb-item active">{{ type.name }}</li>
+        </ol>
+    </nav>
+
+    <h1>
+        Contest Types - {{ type|type_emblem(false) }}
+    </h1>
+
+    <h2>Moves</h2>
+    {{ datatable.datatable(move_table, 'pkt-type-view-moves') }}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('contest_type_view') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('contest_type_view') }}
+{% endblock %}

@@ -79,7 +79,39 @@ class MoveTableType implements DataTableTypeInterface
                     return sprintf('pkt-type-emblem-%s', $move->getType()->getSlug());
                 },
             ]
-        )->add(
+        );
+        if ($version->getVersionGroup()->hasFeatureString('contests')
+            || $version->getVersionGroup()->hasFeatureString('super-contests')) {
+            $dataTable->add(
+                'contestType',
+                LinkColumn::class,
+                [
+                    'label' => 'Contest',
+                    'propertyPath' => 'contestType',
+                    'className' => 'pkt-move-index-table-contesttype',
+                    'orderField' => 'contest_type.position',
+                    'route' => 'type_view',
+                    'routeParams' => [
+                        'versionSlug' => $version->getSlug(),
+                        'typeSlug' => function ($move) {
+                            if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
+                                $move = $move->getMove();
+                            }
+
+                            return $move->getContestType()->getSlug();
+                        },
+                    ],
+                    'linkClassName' => function ($move) {
+                        if (!is_a($move, MoveInVersionGroup::class) && method_exists($move, 'getMove')) {
+                            $move = $move->getMove();
+                        }
+
+                        return sprintf('pkt-type-emblem-%s', $move->getContestType()->getSlug());
+                    },
+                ]
+            );
+        }
+        $dataTable->add(
             'damageClass',
             TwigColumn::class,
             [
@@ -176,6 +208,7 @@ class MoveTableType implements DataTableTypeInterface
             ->join('move.effect', 'effect')
             ->leftJoin('move.damageClass', 'damage_class')
             ->join('move.type', 'type')
+            ->leftJoin('move.contestType', 'contest_type')
             ->leftJoin('type.damageClass', 'type_damage_class')
             ->andWhere(':version MEMBER OF version_group.versions')
             ->setParameter('version', $version);

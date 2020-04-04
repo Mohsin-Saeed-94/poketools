@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\DataTable\Type\ContestTypeMoveTableType;
 use App\DataTable\Type\TypeMoveTableType;
 use App\DataTable\Type\TypePokemonTableType;
+use App\Entity\ContestType;
 use App\Entity\Version;
+use App\Repository\ContestTypeRepository;
 use App\Repository\TypeChartRepository;
 use Omines\DataTablesBundle\DataTableFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -25,17 +28,24 @@ class TypeController extends AbstractDexController
      */
     private $typeChartRepo;
 
+    private $contestTypeRepo;
+
     /**
      * TypeController constructor.
      *
      * @param DataTableFactory $dataTableFactory
      * @param TypeChartRepository $typeChartRepo
+     * @param ContestTypeRepository $contestTypeRepo
      */
-    public function __construct(DataTableFactory $dataTableFactory, TypeChartRepository $typeChartRepo)
-    {
+    public function __construct(
+        DataTableFactory $dataTableFactory,
+        TypeChartRepository $typeChartRepo,
+        ContestTypeRepository $contestTypeRepo
+    ) {
         parent::__construct($dataTableFactory);
 
         $this->typeChartRepo = $typeChartRepo;
+        $this->contestTypeRepo = $contestTypeRepo;
     }
 
     /**
@@ -52,6 +62,12 @@ class TypeController extends AbstractDexController
     {
         $typeChart = $this->typeChartRepo->findOneByVersion($version);
         $types = $typeChart->getTypes();
+        if ($version->getVersionGroup()->hasFeatureString('contests')
+            || $version->getVersionGroup()->hasFeatureString('super-contests')) {
+            $contestTypes = $this->contestTypeRepo->findAll();
+        } else {
+            $contestTypes = [];
+        }
 
         return $this->render(
             'type/index.html.twig',
@@ -60,6 +76,7 @@ class TypeController extends AbstractDexController
                 'uri_template' => $this->generateUrl('type_index', ['versionSlug' => '__VERSION__']),
                 'type_chart' => $typeChart,
                 'types' => $types,
+                'contest_types' => $contestTypes,
             ]
         );
     }
@@ -78,6 +95,14 @@ class TypeController extends AbstractDexController
     {
         $type = $this->typeChartRepo->findTypeInTypeChart($typeSlug, $version);
         if ($type === null) {
+            if ($version->getVersionGroup()->hasFeatureString('contests')
+                || $version->getVersionGroup()->hasFeatureString('super-contests')) {
+                // Is it a contest type?
+                $type = $this->contestTypeRepo->findOneBy(['slug' => $typeSlug]);
+                if ($type !== null) {
+                    return $this->viewContestType($request, $version, $type);
+                }
+            }
             throw new NotFoundHttpException();
         }
 
@@ -113,6 +138,42 @@ class TypeController extends AbstractDexController
                 ),
                 'type' => $type,
                 'pokemon_table' => $pokemonTable,
+                'move_table' => $moveTable,
+            ]
+        );
+    }
+
+    /**
+     * Requests to the route `type_view` are forwarded here if the slug is not a type
+     * but does match a contest type.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \App\Entity\Version $version
+     * @param \App\Entity\ContestType $type
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function viewContestType(Request $request, Version $version, ContestType $type): Response
+    {
+        $moveTable = $this->dataTableFactory->createFromType(
+            ContestTypeMoveTableType::class,
+            [
+                'version' => $version,
+                'type' => $type,
+            ]
+        )->handleRequest($request);
+        if ($moveTable->isCallback()) {
+            return $moveTable->getResponse();
+        }
+
+        return $this->render(
+            'type/view_contest_type.html.twig',
+            [
+                'version' => $version,
+                'uri_template' => $this->generateUrl(
+                    'type_view',
+                    ['versionSlug' => '__VERSION__', 'typeSlug' => $type->getSlug()]
+                ),
+                'type' => $type,
                 'move_table' => $moveTable,
             ]
         );
