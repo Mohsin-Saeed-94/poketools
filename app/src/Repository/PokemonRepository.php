@@ -151,8 +151,12 @@ class PokemonRepository extends MaterializedPathRepository implements ServiceEnt
             'children' => [],
         ];
 
+        /** @var Pokemon[] $children */
         $children = $this->getChildren($pokemon, true);
         foreach ($children as $child) {
+            if ($child->isMega()) {
+                continue;
+            }
             $tree['children'][] = $this->buildEvolutionTree($child, $activePokemon, false);
         }
 
