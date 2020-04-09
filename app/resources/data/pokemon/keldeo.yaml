@@ -14,8 +14,7 @@ black-white:
       baby: &black-white.pokemon.keldeo-ordinary.baby false
       hatch_steps: &black-white.pokemon.keldeo-ordinary.hatch_steps 80
       growth_rate: &black-white.pokemon.keldeo-ordinary.growth_rate slow
-      forms_switchable: &black-white.pokemon.keldeo-ordinary.forms_switchable true
-      forms_note: &black-white.pokemon.keldeo-ordinary.forms_note 'Forms only affect appearance.  In Black and White Versions 2, Keldeo becomes Resolute Form when it learns []{move:secret-sword} and reverts to Ordinary Form if it forgets that move.'
+      forms_switchable: false
       name: *black-white.name
       default: &black-white.pokemon.keldeo-ordinary.default true
       height: &black-white.pokemon.keldeo-ordinary.height 14
@@ -49,12 +48,11 @@ black-white:
         justified:
           hidden: false
           position: 1
-      flavor_text: &black-white.pokemon.keldeo-ordinary.flavor_text
+      flavor_text:
         black: |
           By blasting water from its hooves, it can
           glide across water. It excels at using
           leg moves while battling.
-
         white: |
           It crosses the world, running over
           the surfaces of oceans and rivers.
@@ -74,37 +72,6 @@ black-white:
           art: &black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.art
             - keldeo-ordinary.png
           footprint: &black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.footprint keldeo.png
-    keldeo-resolute:
-      genus: *black-white.pokemon.keldeo-ordinary.genus
-      color: *black-white.pokemon.keldeo-ordinary.color
-      shape: *black-white.pokemon.keldeo-ordinary.shape
-      capture_rate: *black-white.pokemon.keldeo-ordinary.capture_rate
-      happiness: *black-white.pokemon.keldeo-ordinary.happiness
-      baby: *black-white.pokemon.keldeo-ordinary.baby
-      hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
-      growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
-      name: &black-white.pokemon.keldeo-resolute.name 'Resolute Keldeo'
-      default: &black-white.pokemon.keldeo-resolute.default false
-      height: *black-white.pokemon.keldeo-ordinary.height
-      weight: *black-white.pokemon.keldeo-ordinary.weight
-      experience: *black-white.pokemon.keldeo-ordinary.experience
-      types: *black-white.pokemon.keldeo-ordinary.types
-      egg_groups: *black-white.pokemon.keldeo-ordinary.egg_groups
-      stats: *black-white.pokemon.keldeo-ordinary.stats
-      abilities: *black-white.pokemon.keldeo-ordinary.abilities
-      flavor_text: *black-white.pokemon.keldeo-ordinary.flavor_text
-      forms: &black-white.pokemon.keldeo-resolute.forms
-        keldeo-resolute:
-          name: *black-white.pokemon.keldeo-resolute.name
-          form_name: &black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name 'Resolute Form'
-          default: *black-white.pokemon.keldeo-ordinary.default
-          battle_only: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only
-          icon: gen5/keldeo-resolute.png
-          art: &black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.art
-            - keldeo-resolute.png
-          footprint: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.footprint
 black-2-white-2:
   name: *black-white.name
   position: *black-white.position
@@ -121,8 +88,8 @@ black-2-white-2:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
+      forms_switchable: &black-2-white-2.pokemon.keldeo-ordinary.forms_switchable true
+      forms_note: &black-2-white-2.pokemon.keldeo-ordinary.forms_note 'Forms only affect appearance.  Keldeo becomes Resolute Form when it learns []{move:secret-sword} and reverts to Ordinary Form if it forgets that move.'
       name: *black-white.name
       default: *black-white.pokemon.keldeo-ordinary.default
       height: *black-white.pokemon.keldeo-ordinary.height
@@ -137,7 +104,6 @@ black-2-white-2:
           When it is resolute, its body fills
           with power and it becomes swifter.
           Its jumps are then too fast to follow.
-
         white-2: |
           When it is resolute, its body fills
           with power and it becomes swifter.
@@ -160,10 +126,10 @@ black-2-white-2:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
-      name: *black-white.pokemon.keldeo-resolute.name
-      default: *black-white.pokemon.keldeo-resolute.default
+      forms_switchable: *black-2-white-2.pokemon.keldeo-ordinary.forms_switchable
+      forms_note: *black-2-white-2.pokemon.keldeo-ordinary.forms_note
+      name: &black-2-white-2.pokemon.keldeo-resolute.name 'Resolute Keldeo'
+      default: &black-2-white-2.pokemon.keldeo-resolute.default false
       height: *black-white.pokemon.keldeo-ordinary.height
       weight: *black-white.pokemon.keldeo-ordinary.weight
       experience: *black-white.pokemon.keldeo-ordinary.experience
@@ -172,7 +138,16 @@ black-2-white-2:
       stats: *black-white.pokemon.keldeo-ordinary.stats
       abilities: *black-white.pokemon.keldeo-ordinary.abilities
       flavor_text: *black-2-white-2.pokemon.keldeo-ordinary.flavor_text
-      forms: *black-white.pokemon.keldeo-resolute.forms
+      forms:
+        keldeo-resolute:
+          name: *black-2-white-2.pokemon.keldeo-resolute.name
+          form_name: &black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name 'Resolute Form'
+          default: *black-white.pokemon.keldeo-ordinary.default
+          battle_only: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only
+          icon: gen5/keldeo-resolute.png
+          art: &black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.art
+            - keldeo-resolute.png
+          footprint: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.footprint
 x-y:
   name: *black-white.name
   position: *black-white.position
@@ -188,8 +163,8 @@ x-y:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
+      forms_switchable: *black-2-white-2.pokemon.keldeo-ordinary.forms_switchable
+      forms_note: *black-2-white-2.pokemon.keldeo-ordinary.forms_note
       name: *black-white.name
       default: *black-white.pokemon.keldeo-ordinary.default
       height: *black-white.pokemon.keldeo-ordinary.height
@@ -204,7 +179,6 @@ x-y:
         x: |
           It crosses the world, running over the surfaces of
           oceans and rivers. It appears at scenic waterfronts.
-
         'y': |
           When it is resolute, its body fills with power and it
           becomes swifter. Its jumps are then too fast
@@ -230,10 +204,10 @@ x-y:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
-      name: *black-white.pokemon.keldeo-resolute.name
-      default: *black-white.pokemon.keldeo-resolute.default
+      forms_switchable: *black-2-white-2.pokemon.keldeo-ordinary.forms_switchable
+      forms_note: *black-2-white-2.pokemon.keldeo-ordinary.forms_note
+      name: *black-2-white-2.pokemon.keldeo-resolute.name
+      default: *black-2-white-2.pokemon.keldeo-resolute.default
       height: *black-white.pokemon.keldeo-ordinary.height
       weight: *black-white.pokemon.keldeo-ordinary.weight
       experience: *black-white.pokemon.keldeo-ordinary.experience
@@ -245,15 +219,15 @@ x-y:
       flavor_text: *x-y.pokemon.keldeo-ordinary.flavor_text
       forms:
         keldeo-resolute:
-          name: *black-white.pokemon.keldeo-resolute.name
-          form_name: *black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name
+          name: *black-2-white-2.pokemon.keldeo-resolute.name
+          form_name: *black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name
           default: *black-white.pokemon.keldeo-ordinary.default
           battle_only: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only
           icon: &x-y.pokemon.keldeo-resolute.forms.keldeo-resolute.icon keldeo-resolute.png
           sprites:
             - x-y/shiny/keldeo-resolute.png
             - x-y/keldeo-resolute.png
-          art: *black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.art
+          art: *black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.art
           footprint: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.footprint
 omega-ruby-alpha-sapphire:
   name: *black-white.name
@@ -269,8 +243,8 @@ omega-ruby-alpha-sapphire:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
+      forms_switchable: *black-2-white-2.pokemon.keldeo-ordinary.forms_switchable
+      forms_note: *black-2-white-2.pokemon.keldeo-ordinary.forms_note
       name: *black-white.name
       default: *black-white.pokemon.keldeo-ordinary.default
       height: *black-white.pokemon.keldeo-ordinary.height
@@ -285,7 +259,6 @@ omega-ruby-alpha-sapphire:
         omega-ruby: |
           It crosses the world, running over the surfaces of
           oceans and rivers. It appears at scenic waterfronts.
-
         alpha-sapphire: |
           When it is resolute, its body fills with power and it
           becomes swifter. Its jumps are then too fast
@@ -311,10 +284,10 @@ omega-ruby-alpha-sapphire:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
-      name: *black-white.pokemon.keldeo-resolute.name
-      default: *black-white.pokemon.keldeo-resolute.default
+      forms_switchable: *black-2-white-2.pokemon.keldeo-ordinary.forms_switchable
+      forms_note: *black-2-white-2.pokemon.keldeo-ordinary.forms_note
+      name: *black-2-white-2.pokemon.keldeo-resolute.name
+      default: *black-2-white-2.pokemon.keldeo-resolute.default
       height: *black-white.pokemon.keldeo-ordinary.height
       weight: *black-white.pokemon.keldeo-ordinary.weight
       experience: *black-white.pokemon.keldeo-ordinary.experience
@@ -326,12 +299,12 @@ omega-ruby-alpha-sapphire:
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.keldeo-ordinary.flavor_text
       forms:
         keldeo-resolute:
-          name: *black-white.pokemon.keldeo-resolute.name
-          form_name: *black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name
+          name: *black-2-white-2.pokemon.keldeo-resolute.name
+          form_name: *black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name
           default: *black-white.pokemon.keldeo-ordinary.default
           battle_only: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only
           icon: *x-y.pokemon.keldeo-resolute.forms.keldeo-resolute.icon
-          art: *black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.art
+          art: *black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.art
           footprint: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.footprint
           sprites:
             - omega-ruby-alpha-sapphire/shiny/keldeo-resolute.png
@@ -350,8 +323,8 @@ sun-moon:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
+      forms_switchable: *black-2-white-2.pokemon.keldeo-ordinary.forms_switchable
+      forms_note: *black-2-white-2.pokemon.keldeo-ordinary.forms_note
       name: *black-white.name
       default: *black-white.pokemon.keldeo-ordinary.default
       height: *black-white.pokemon.keldeo-ordinary.height
@@ -383,10 +356,10 @@ sun-moon:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
-      name: *black-white.pokemon.keldeo-resolute.name
-      default: *black-white.pokemon.keldeo-resolute.default
+      forms_switchable: *black-2-white-2.pokemon.keldeo-ordinary.forms_switchable
+      forms_note: *black-2-white-2.pokemon.keldeo-ordinary.forms_note
+      name: *black-2-white-2.pokemon.keldeo-resolute.name
+      default: *black-2-white-2.pokemon.keldeo-resolute.default
       height: *black-white.pokemon.keldeo-ordinary.height
       weight: *black-white.pokemon.keldeo-ordinary.weight
       experience: *black-white.pokemon.keldeo-ordinary.experience
@@ -397,15 +370,15 @@ sun-moon:
       abilities: *black-white.pokemon.keldeo-ordinary.abilities
       forms:
         keldeo-resolute:
-          name: *black-white.pokemon.keldeo-resolute.name
-          form_name: *black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name
+          name: *black-2-white-2.pokemon.keldeo-resolute.name
+          form_name: *black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name
           default: *black-white.pokemon.keldeo-ordinary.default
           battle_only: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only
           icon: *x-y.pokemon.keldeo-resolute.forms.keldeo-resolute.icon
           sprites:
             - sun-moon/shiny/keldeo-resolute.png
             - sun-moon/keldeo-resolute.png
-          art: *black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.art
+          art: *black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.art
           footprint: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.footprint
 ultra-sun-ultra-moon:
   name: *black-white.name
@@ -421,8 +394,8 @@ ultra-sun-ultra-moon:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
+      forms_switchable: *black-2-white-2.pokemon.keldeo-ordinary.forms_switchable
+      forms_note: *black-2-white-2.pokemon.keldeo-ordinary.forms_note
       name: *black-white.name
       default: *black-white.pokemon.keldeo-ordinary.default
       height: *black-white.pokemon.keldeo-ordinary.height
@@ -454,10 +427,10 @@ ultra-sun-ultra-moon:
       baby: *black-white.pokemon.keldeo-ordinary.baby
       hatch_steps: *black-white.pokemon.keldeo-ordinary.hatch_steps
       growth_rate: *black-white.pokemon.keldeo-ordinary.growth_rate
-      forms_switchable: *black-white.pokemon.keldeo-ordinary.forms_switchable
-      forms_note: *black-white.pokemon.keldeo-ordinary.forms_note
-      name: *black-white.pokemon.keldeo-resolute.name
-      default: *black-white.pokemon.keldeo-resolute.default
+      forms_switchable: *black-2-white-2.pokemon.keldeo-ordinary.forms_switchable
+      forms_note: *black-2-white-2.pokemon.keldeo-ordinary.forms_note
+      name: *black-2-white-2.pokemon.keldeo-resolute.name
+      default: *black-2-white-2.pokemon.keldeo-resolute.default
       height: *black-white.pokemon.keldeo-ordinary.height
       weight: *black-white.pokemon.keldeo-ordinary.weight
       experience: *black-white.pokemon.keldeo-ordinary.experience
@@ -468,13 +441,13 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.keldeo-ordinary.abilities
       forms:
         keldeo-resolute:
-          name: *black-white.pokemon.keldeo-resolute.name
-          form_name: *black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name
+          name: *black-2-white-2.pokemon.keldeo-resolute.name
+          form_name: *black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.form_name
           default: *black-white.pokemon.keldeo-ordinary.default
           battle_only: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.battle_only
           icon: *x-y.pokemon.keldeo-resolute.forms.keldeo-resolute.icon
           sprites:
             - ultra-sun-ultra-moon/shiny/keldeo-resolute.png
             - ultra-sun-ultra-moon/keldeo-resolute.png
-          art: *black-white.pokemon.keldeo-resolute.forms.keldeo-resolute.art
+          art: *black-2-white-2.pokemon.keldeo-resolute.forms.keldeo-resolute.art
           footprint: *black-white.pokemon.keldeo-ordinary.forms.keldeo-ordinary.footprint

@@ -4,15 +4,14 @@ red-blue: &red-blue
   buy: &red-blue.buy 950
   sell: &red-blue.sell 475
   category: &red-blue.category stat-boosts
-  flags: &red-blue.flags
+  flags:
     - countable
     - consumable
     - usable-in-battle
-    - holdable
-  short_description: &red-blue.short_description 'Raises accuracy by one stage in battle.  Raises happiness.'
-  description: &red-blue.description |
+  short_description: 'Causes the target''s moves to never miss.'
+  description: |
     Used on a party Pokémon in battle
-    :   [Raises]{mechanic:raise} the target's [accuracy]{mechanic:accuracy} by one stage.  Increases happiness by 1/1/0.
+    :   Causes the target's moves to never miss, ignoring [accuracy]{mechanic:accuracy} checks.
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -22,11 +21,16 @@ gold-silver: &gold-silver
   flavor_text: |
     Raises accuracy.
     (1 BTL)
-  
   category: *red-blue.category
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: &gold-silver.flags
+    - countable
+    - consumable
+    - usable-in-battle
+    - holdable
+  short_description: 'Causes the target''s moves to never miss.  Raises happiness.'
+  description: |
+    Used on a party Pokémon in battle
+    :   Causes the target's moves to never miss, ignoring [accuracy]{mechanic:accuracy} checks.  Raises happiness 1/1/0.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name 'X Accuracy'
@@ -34,14 +38,15 @@ ruby-sapphire: &ruby-sapphire
   pocket: &ruby-sapphire.pocket battle
   buy: &ruby-sapphire.buy 1000
   sell: &ruby-sapphire.sell 500
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: &ruby-sapphire.short_description 'Raises [accuracy]{mechanic:accuracy} by one stage in battle.  Raises happiness.'
+  description: &ruby-sapphire.description |
+    Used on a party Pokémon in battle
+    :   [Raises]{mechanic:raise} the target's [accuracy]{mechanic:accuracy} by one stage.  Increases happiness by 1/1/0.
   flavor_text: |
     Raises accuracy
     of attack moves
     during one battle.
-  
   icon: &ruby-sapphire.icon x-accuracy.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -52,14 +57,13 @@ firered-leafgreen:
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
   flavor_text: |
     Raises the accuracy stat of
     POKéMON in battle. Wears off if the
     POKéMON is withdrawn.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -69,14 +73,13 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
   flavor_text: |
     An item that raises the accuracy
     of a Pokémon in battle. It wears off if
     the Pokémon is withdrawn.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
@@ -90,14 +93,13 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
   flavor_text: |
     An item that boosts the accuracy of
     a Pokémon during a battle. It wears
     off once the Pokémon is withdrawn.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -108,13 +110,12 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
   flavor_text: |
     An item that sharply boosts the accuracy of a
     Pokémon during a battle. It wears off once the
     Pokémon is withdrawn.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

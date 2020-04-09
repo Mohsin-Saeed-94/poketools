@@ -4,14 +4,12 @@ red-blue: &red-blue
   buy: &red-blue.buy 4000
   sell: &red-blue.sell 2000
   category: &red-blue.category revival
-  flags: &red-blue.flags
+  flags:
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
-    - holdable
-    - underground
-  short_description: &red-blue.short_description 'Revives with full HP.'
+  short_description: &red-blue.short_description 'Revives with full [HP]{mechanic:hp}.'
   description: &red-blue.description |
     Used on a party Pokémon
     :   Revives the Pokémon and restores its [HP]{mechanic:hp} to full.
@@ -24,9 +22,13 @@ gold-silver: &gold-silver
   flavor_text: |
     Fully restores a
     fainted POKéMON.
-  
   category: *red-blue.category
-  flags: *red-blue.flags
+  flags: &gold-silver.flags
+    - countable
+    - consumable
+    - usable-overworld
+    - usable-in-battle
+    - holdable
   short_description: *red-blue.short_description
   description: *red-blue.description
 crystal: *gold-silver
@@ -36,14 +38,13 @@ ruby-sapphire: &ruby-sapphire
   pocket: &ruby-sapphire.pocket medicine
   buy: *red-blue.buy
   sell: *red-blue.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     Revives a fainted
     POKéMON with all
     its HP.
-  
   icon: &ruby-sapphire.icon max-revive.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -54,13 +55,12 @@ firered-leafgreen:
   pocket: *ruby-sapphire.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A medicine that revives a fainted
     POKéMON, restoring HP fully.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -70,19 +70,36 @@ diamond-pearl: &diamond-pearl
   sell: *red-blue.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags:
+    - countable
+    - consumable
+    - usable-overworld
+    - usable-in-battle
+    - holdable
+    - underground
   short_description: *red-blue.short_description
   description: *red-blue.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     A medicine that revives a fainted
     Pokémon. It fully restores the
     Pokémon’s HP.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+heartgold-soulsilver: &heartgold-soulsilver
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *ruby-sapphire.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  fling_effect: damage
+  fling_power: 30
+  flags: *gold-silver.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *red-blue.category
@@ -91,14 +108,13 @@ x-y: &x-y
   sell: *red-blue.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A medicine that can revive fainted
     Pokémon. It also fully restores a
     fainted Pokémon’s maximum HP.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -109,12 +125,11 @@ sun-moon: &sun-moon
   sell: *red-blue.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A medicine that can revive fainted Pokémon. It also
     fully restores a fainted Pokémon’s maximum HP.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

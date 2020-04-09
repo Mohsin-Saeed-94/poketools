@@ -121,6 +121,73 @@ class PokemonController extends AbstractDexController
     }
 
     /**
+     * Present Pokemon data for debugging
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \App\Entity\Version $version
+     * @param string $appEnv
+     * @param \App\Repository\PokemonMoveRepository $pokemonMoveRepo
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/debug_view", name="item_debug")
+     * @ParamConverter("version", options={"mapping": {"versionSlug": "slug"}})
+     */
+    public function debug(
+        Request $request,
+        Version $version,
+        string $appEnv
+    ): Response {
+        if ($appEnv == 'prod') {
+            throw new NotFoundHttpException();
+        }
+        // This can use a large amount of memory, but for debug purposes this is ok.
+        ini_set('memory_limit', '-1');
+        ini_set('max_execution_time', '0');
+
+        $qb = $this->pokemonRepo->createQueryBuilder('p');
+        $qb->join('p.species', 'ps')
+            ->andWhere('ps.versionGroup = :versionGroup')
+            ->setParameter('versionGroup', $version->getVersionGroup());
+        $q = $qb->getQuery();
+        $pokemonList = $q->execute();
+
+        // Check for potential problems
+        $redFlagPokemon = [];
+        // Compare a list of all Pokemon set for this version group with a list of Pokemon
+        // that can learn moves.  The one's that can't learn moves likely don't belong
+        // in this version group.
+        $qb = $this->pokemonRepo->createQueryBuilder('p');
+        $qb->select('p.id')
+            ->join('p.species', 'ps')
+            ->andWhere('ps.versionGroup = :versionGroup')
+            ->setParameter('versionGroup', $version->getVersionGroup());
+        $q = $qb->getQuery();
+        $allIds = array_column($q->execute(), 'id');
+        $qb = $this->pokemonRepo->createQueryBuilder('p');
+        $qb->select('p.id')->distinct()
+            ->join('p.moves', 'pm')
+            ->join('p.species', 'ps')
+            ->andWhere('ps.versionGroup = :versionGroup')
+            ->setParameter('versionGroup', $version->getVersionGroup());
+        $q = $qb->getQuery();
+        $learnerIds = array_column($q->execute(), 'id');
+        $qb = $this->pokemonRepo->createQueryBuilder('p');
+        $qb->where('p.id IN (:diffIds)')
+            ->setParameter('diffIds', array_diff($allIds, $learnerIds));
+        $q = $qb->getQuery();
+        $redFlagPokemon = array_merge($redFlagPokemon, $q->execute());
+
+        return $this->render(
+            'pokemon/debug.html.twig',
+            [
+                'version' => $version,
+                'pokemon_list' => $pokemonList,
+                'red_flags' => $redFlagPokemon,
+            ]
+        );
+    }
+
+    /**
      * @param Request $request
      * @param Version $version
      *

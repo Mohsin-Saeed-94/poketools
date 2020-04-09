@@ -40,6 +40,37 @@ class AbilityController extends AbstractDexController
     }
 
     /**
+     * Present Ability data for debugging
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \App\Entity\Version $version
+     * @param string $appEnv
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/debug_view", name="item_debug")
+     * @ParamConverter("version", options={"mapping": {"versionSlug": "slug"}})
+     */
+    public function debug(Request $request, Version $version, string $appEnv): Response
+    {
+        if ($appEnv == 'prod') {
+            throw new NotFoundHttpException();
+        }
+        // This can use a large amount of memory, but for debug purposes this is ok.
+        ini_set('memory_limit', '-1');
+        ini_set('max_execution_time', '0');
+
+        $abilities = $this->abilityRepo->findBy(['versionGroup' => $version->getVersionGroup()], ['name' => 'ASC']);
+
+        return $this->render(
+            'ability/debug.html.twig',
+            [
+                'version' => $version,
+                'abilities' => $abilities,
+            ]
+        );
+    }
+
+    /**
      * @param Request $request
      * @param Version $version
      *

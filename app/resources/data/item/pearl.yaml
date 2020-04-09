@@ -6,10 +6,9 @@ gold-silver: &gold-silver
   flavor_text: |
     A beautiful pearl.
     Sell low.
-  
   category: &gold-silver.category loot
-  short_description: &gold-silver.short_description 'Sell for $700, or to Ore Collector for $1400.'
-  description: &gold-silver.description 'Vendor trash.'
+  short_description: &gold-silver.short_description 'No effect.  Sell to shops.'
+  description: &gold-silver.description 'No effect.  Sell to shops.'
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name Pearl
@@ -22,7 +21,6 @@ ruby-sapphire: &ruby-sapphire
   flavor_text: |
     A pretty pearl.
     Can be sold cheaply.
-  
   icon: &ruby-sapphire.icon pearl.png
 emerald:
   name: *ruby-sapphire.name
@@ -36,7 +34,6 @@ emerald:
     A pretty pearl
     that would sell at a
     cheap price.
-  
   icon: *ruby-sapphire.icon
 colosseum: *ruby-sapphire
 xd: *ruby-sapphire
@@ -52,7 +49,6 @@ firered-leafgreen:
     A relatively small pearl that
     sparkles in a pretty silver color.
     It can be sold cheaply.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -64,16 +60,26 @@ diamond-pearl: &diamond-pearl
   fling_power: 30
   short_description: *gold-silver.short_description
   description: *gold-silver.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     A somewhat-small pearl that sparkles
     in a pretty silver color.
     It can be sold cheaply to shops.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: &black-white
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: 'No effect.  Sell to shops for $1000 or to the Ore Maniac for $1400.'
+  description: 'No effect.  Sell to shops for $1000, or the Ore Maniac in the []{location:icirrus-city} Pokémon Center for $1400.'
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *gold-silver.category
@@ -88,7 +94,6 @@ x-y: &x-y
     A rather small pearl that has a
     very nice silvery sheen to it.
     It can be sold cheaply to shops.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -104,6 +109,5 @@ sun-moon: &sun-moon
   flavor_text: |
     A rather small pearl that has a very nice silvery
     sheen to it. It can be sold cheaply to shops.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

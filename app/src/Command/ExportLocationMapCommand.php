@@ -121,6 +121,8 @@ final class ExportLocationMapCommand extends Command
         }
         $progress->finish();
         $this->io->newLine();
+
+        return 0;
     }
 
     /**

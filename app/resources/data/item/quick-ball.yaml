@@ -9,22 +9,31 @@ diamond-pearl: &diamond-pearl
     - consumable
     - usable-in-battle
     - holdable
-  short_description: &diamond-pearl.short_description 'Tries to catch a wild Pokémon. Success rate is 4× (Gen V: 5×), but only on the first turn.'
-  description: &diamond-pearl.description |
+  short_description: 'Tries to [catch]{mechanic:catch} a wild Pokémon. Success rate is 4×, but only on the first turn.'
+  description: |
     Used in battle
-    :   Attempts to [catch]{mechanic:catch} a wild Pokémon, using a catch rate of 4× on the first turn of a battle, but 1× any other time.
-    
-        If used in a trainer battle, nothing happens and the ball is lost.
-  flavor_text: |
+    :   Attempts to [catch]{mechanic:catch} a wild Pokémon, using a catch rate of 4× on the first turn of a battle, but 1× any other time.  If used in a trainer battle, nothing happens and the ball is lost.
+  flavor_text: &diamond-pearl.flavor_text |
     A somewhat different Poké Ball that
     provides a better catch rate if it is
     used at the start of a wild encounter.
-  
   icon: &diamond-pearl.icon quick-ball.png
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: &black-white
+  name: *diamond-pearl.name
+  category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
+  flags: *diamond-pearl.flags
+  short_description: &black-white.short_description 'Tries to [catch]{mechanic:catch} a wild Pokémon. Success rate is 5×, but only on the first turn.'
+  description: &black-white.description |
+    Used in battle
+    :   Attempts to [catch]{mechanic:catch} a wild Pokémon, using a catch rate of 5× on the first turn of a battle, but 1× any other time.  If used in a trainer battle, nothing happens and the ball is lost.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *diamond-pearl.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *diamond-pearl.name
   category: *diamond-pearl.category
@@ -32,13 +41,12 @@ x-y: &x-y
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   flags: *diamond-pearl.flags
-  short_description: *diamond-pearl.short_description
-  description: *diamond-pearl.description
+  short_description: *black-white.short_description
+  description: *black-white.description
   flavor_text: |
     A somewhat different Poké Ball that
     has a more successful catch rate if
     used at the start of a wild encounter.
-  
   icon: *diamond-pearl.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -48,12 +56,11 @@ sun-moon: &sun-moon
   buy: *diamond-pearl.buy
   sell: *diamond-pearl.sell
   flags: *diamond-pearl.flags
-  short_description: *diamond-pearl.short_description
-  description: *diamond-pearl.description
+  short_description: *black-white.short_description
+  description: *black-white.description
   flavor_text: |
     A somewhat different Poké Ball that has a more
     successful catch rate if used at the start of a
     wild encounter.
-  
   icon: *diamond-pearl.icon
 ultra-sun-ultra-moon: *sun-moon

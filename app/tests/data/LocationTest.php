@@ -24,7 +24,7 @@ class LocationTest extends DataTestCase
     {
         $allData = $this->getLocationsData();
 
-        $hasDescription = false;
+        $badDescriptions = [];
         foreach ($allData as $identifier => $yaml) {
             $data = $this->parseYaml($yaml);
 
@@ -33,18 +33,15 @@ class LocationTest extends DataTestCase
                     continue;
                 }
 
-                $hasDescription = true;
                 $versionGroup = $this->getVersionGroup($versionGroupSlug);
                 foreach ($versionGroup->getVersions() as $version) {
-                    $converter = $this->getMarkdownConverter($version->getSlug(), [$identifier, $versionGroupSlug]);
+                    $converter = $this->getMarkdownConverter($version->getSlug(), [$identifier, $versionGroupSlug], $badDescriptions);
                     self::assertNotEmpty($converter->convertToHtml($versionData['description']));
                 }
             }
         }
 
-        if (!$hasDescription) {
-            self::markTestSkipped('No locations have a description');
-        }
+        self::assertEmpty($badDescriptions, "Some descriptions are bad:".implode("\n", $badDescriptions));
     }
 
     /**

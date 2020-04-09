@@ -1,0 +1,48 @@
+{% extends 'debug_base.html.twig' %}
+
+{% block title %}Pokemon{% endblock %}
+
+{% block body %}
+    <p>{{ pokemon_list|length }} items</p>
+    {% if red_flags %}
+        <h1>Red Flags</h1>
+        <p>These Pokémon need adjustment.</p>
+        {{ _self.mon_table(version, red_flags) }}
+    {% endif %}
+
+    <h1>All Pokemon</h1>
+    {{ _self.mon_table(version, pokemon_list) }}
+
+{% endblock %}
+
+{% macro mon_table(version, list) %}
+    <table class="table table-bordered"
+           data-tables="{}">
+        <thead>
+        <tr>
+            <th>Slug</th>
+            <th>Name</th>
+            <th>default</th>
+            <th>baby</th>
+            <th>forms</th>
+            <th>forms note</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pokemon in list %}
+            <tr>
+                <th>
+                    <a href="{{ path('pokemon_view', {'speciesSlug': pokemon.species.slug,'pokemonSlug': pokemon.slug, 'versionSlug': version.slug}) }}">
+                        {{ pokemon.slug }}
+                    </a>
+                </th>
+                <td>{{ pokemon.name }}</td>
+                <td>{{ pokemon.default }}</td>
+                <td>{{ pokemon.baby }}</td>
+                <td>{{ pokemon.formsSwitchable }}</td>
+                <td class="pkt-text">{% if pokemon.formsNote %}{{ pokemon.formsNote|markdown }}{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}

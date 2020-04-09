@@ -5,7 +5,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-// directory where compiled assets will be stored
+    // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
     .setPublicPath('/build')
@@ -87,5 +87,9 @@ Encore
 
     .enablePostCssLoader()
 ;
+if (!Encore.isProduction()) {
+    Encore
+        .addEntry('debug', './assets/js/debug.js')
+}
 
 module.exports = Encore.getWebpackConfig();

@@ -4,16 +4,15 @@ red-blue: &red-blue
   buy: &red-blue.buy 9800
   sell: &red-blue.sell 4900
   category: &red-blue.category vitamins
-  flags: &red-blue.flags
+  flags:
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
-    - holdable
-  short_description: &red-blue.short_description 'Raises Speed effort and happiness.'
-  description: &red-blue.description |
+  short_description: 'Raises [Speed]{mechanic:speed} experience'
+  description: |
     Used on a party Pokémon
-    :   Increases [Speed]{mechanic:speed} [effort]{mechanic:effort} by 10, but won't increase it beyond 100.  Increases [happiness]{mechanic:happiness} by 5/3/2.
+    :   Increases [Speed]{mechanic:speed} [Stat Experience]{mechanic:stat-experience} by 2560.
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -23,11 +22,17 @@ gold-silver: &gold-silver
   flavor_text: |
     Raises SPEED of
     one POKéMON.
-  
   category: *red-blue.category
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: &gold-silver.flags
+    - countable
+    - consumable
+    - usable-overworld
+    - usable-in-battle
+    - holdable
+  short_description: 'Raises [Speed]{mechanic:speed} experience and happiness'
+  description: |
+    Used on a party Pokémon
+    :   Increases [Speed]{mechanic:speed} [Stat Experience]{mechanic:stat-experience} by 2560.  Increases [happiness]{mechanic:happiness} by 5/3/2.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name Carbos
@@ -35,14 +40,15 @@ ruby-sapphire: &ruby-sapphire
   pocket: &ruby-sapphire.pocket medicine
   buy: &ruby-sapphire.buy 10000
   sell: &ruby-sapphire.sell 5000
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: &ruby-sapphire.short_description 'Raises [Speed]{mechanic:speed} [effort]{mechanic:effort} and happiness.'
+  description: &ruby-sapphire.description |
+    Used on a party Pokémon
+    :   Increases [Speed]{mechanic:speed} [effort]{mechanic:effort} by 10, but won't increase it beyond 100.  Increases [happiness]{mechanic:happiness} by 5/3/2.
   flavor_text: |
     Raises the stat
     SPEED of one
     POKéMON.
-  
   icon: &ruby-sapphire.icon carbos.png
 emerald:
   name: *ruby-sapphire.name
@@ -50,14 +56,13 @@ emerald:
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
   flavor_text: |
     Raises the base
     SPEED stat of one
     POKéMON.
-  
   icon: *ruby-sapphire.icon
 colosseum: *ruby-sapphire
 xd: *ruby-sapphire
@@ -67,14 +72,13 @@ firered-leafgreen:
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
   flavor_text: |
     A nutritious drink for POKéMON.
     It raises the base SPEED stat of
     one POKéMON.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -84,14 +88,13 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
   flavor_text: |
     A nutritious drink for Pokémon.
     It raises the base Speed stat of a
     single Pokémon.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
@@ -105,14 +108,13 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
   flavor_text: |
     A nutritious drink for Pokémon.
     When consumed, it raises the base
     Speed stat of a single Pokémon.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -123,12 +125,11 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
   flavor_text: |
     A nutritious drink for Pokémon. When consumed,
     it raises the base Speed stat of a single Pokémon.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

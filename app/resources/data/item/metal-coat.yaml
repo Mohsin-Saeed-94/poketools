@@ -6,15 +6,18 @@ gold-silver: &gold-silver
   flavor_text: |
     Powers up steel-
     type moves. (HOLD)
-  
   category: &gold-silver.category type-enhancement
   flags: &gold-silver.flags
     - holdable
     - holdable-active
-  short_description: &gold-silver.short_description 'Held: Steel-Type moves from holder do 20% more damage.'
+  short_description: &gold-silver.short_description 'Held: []{type:steel} moves from holder do 20% more damage; Traded: Some Pokémon will evolve.'
   description: &gold-silver.description |
-    Held: Increases the power of the holder's Steel moves by 20%.
-    Held by Onix or Scyther: Evolves the holder into Steelix or Scizor when traded, respectively.
+    Held: Increases the power of the holder's []{type:steel} moves by 20%.
+    
+    When some Pokémon are traded holding this item, they will evolve.  Below is a list
+    of compatible Pokémon.
+    
+    {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "metal-coat"})}}
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name 'Metal Coat'
@@ -29,7 +32,6 @@ ruby-sapphire: &ruby-sapphire
     A hold item that
     raises the power of
     STEEL-type moves.
-  
   icon: &ruby-sapphire.icon metal-coat.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -47,7 +49,6 @@ firered-leafgreen:
     An item to be held by a POKéMON.
     A special metallic film that boosts
     the power of STEEL-type moves.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -64,7 +65,6 @@ diamond-pearl: &diamond-pearl
     An item to be held by a Pokémon.
     It is a special metallic film that ups
     the power of Steel-type moves.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
@@ -85,7 +85,6 @@ x-y: &x-y
     An item to be held by a Pokémon.
     It is a special metallic film that can
     boost the power of Steel-type moves.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -103,6 +102,5 @@ sun-moon: &sun-moon
     An item to be held by a Pokémon. It’s a special
     metallic film that can boost the power of
     Steel-type moves.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

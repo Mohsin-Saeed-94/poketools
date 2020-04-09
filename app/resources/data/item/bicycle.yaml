@@ -2,10 +2,12 @@ red-blue: &red-blue
   name: &red-blue.name BICYCLE
   pocket: misc
   buy: 1000000
-  sell: 500000
   category: &red-blue.category gameplay
   short_description: &red-blue.short_description 'Use for fast transit.'
-  description: &red-blue.description 'Increases movement speed outside or in caves.  In high gear, allows the trainer to hop over some rocks and ascend muddy slopes.'
+  description: &red-blue.description |
+    Increases movement speed outside or in caves.
+    
+    Cannot be acquired without the []{item:bike-voucher}.
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -13,34 +15,12 @@ gold-silver: &gold-silver
   flavor_text: |
     A collapsible bike
     for fast movement.
-  
   category: *red-blue.category
   short_description: *red-blue.short_description
-  description: *red-blue.description
+  description: &gold-silver.description 'Increases movement speed outside or in caves.'
 crystal: *gold-silver
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Bicycle
-  category: *red-blue.category
-  pocket: *gold-silver.pocket
-  short_description: *red-blue.short_description
-  description: *red-blue.description
-  icon: &ruby-sapphire.icon bicycle.png
-emerald:
-  name: *ruby-sapphire.name
-  category: *red-blue.category
-  pocket: *gold-silver.pocket
-  short_description: *red-blue.short_description
-  description: *red-blue.description
-  flavor_text: |
-    A folding bicycle
-    that is faster than
-    the RUNNING SHOES.
-  
-  icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: &firered-leafgreen.name Bicycle
   category: *red-blue.category
   pocket: *gold-silver.pocket
   short_description: *red-blue.short_description
@@ -49,34 +29,37 @@ firered-leafgreen:
     A folding bicycle that allows
     faster movement than the RUNNING
     SHOES.
-  
-  icon: *ruby-sapphire.icon
+  icon: &firered-leafgreen.icon bicycle.png
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *firered-leafgreen.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
   short_description: *red-blue.short_description
-  description: *red-blue.description
-  flavor_text: |
+  description: 'Increases movement speed outside or in caves.  In high gear, allows the trainer to hop over some rocks and ascend muddy slopes.'
+  flavor_text: &diamond-pearl.flavor_text |
     A folding Bicycle that enables much
     faster movement than the Running
     Shoes.
-  
-  icon: *ruby-sapphire.icon
+  icon: *firered-leafgreen.icon
 platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
-x-y: &x-y
-  name: *ruby-sapphire.name
+heartgold-soulsilver: &heartgold-soulsilver
+  name: *firered-leafgreen.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
   short_description: *red-blue.short_description
-  description: *red-blue.description
+  description: *gold-silver.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *firered-leafgreen.icon
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
+x-y:
+  name: *firered-leafgreen.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  short_description: *red-blue.short_description
+  description: *gold-silver.description
   flavor_text: |
     A folding Bicycle that enables a rider
     to get around much faster than a pair
     of Running Shoes will allow.
-  
-  icon: *ruby-sapphire.icon
-omega-ruby-alpha-sapphire: *x-y
+  icon: *firered-leafgreen.icon

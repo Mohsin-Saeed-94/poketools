@@ -11,7 +11,7 @@ parameters:
   asset_path: '%kernel.project_dir%/assets'
   data_path: '%kernel.project_dir%/resources/data'
   commonmark_config:
-    html_input: strip
+    html_input: allow
     allow_unsafe_links: false
 
 services:
@@ -22,6 +22,9 @@ services:
     public: false       # Allows optimizing the container by removing unused services; this also means
     # fetching services directly from the container via $container->get() won't work.
     # The best practice is to be explicit about your dependencies anyway.
+    bind:
+      $appEnv: '%kernel.environment%'
+      $dataPath: '%data_path%'
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
@@ -72,6 +75,7 @@ services:
   League\CommonMark\Extension\CommonMarkCoreExtension:
   League\CommonMark\Extension\InlinesOnly\InlinesOnlyExtension:
   League\CommonMark\Extension\Table\TableExtension:
+  League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension:
   app.commonmark.environment.standard:
     class: 'League\CommonMark\Environment'
     calls:
@@ -81,6 +85,9 @@ services:
       - method: addExtension
         arguments:
           - '@League\CommonMark\Extension\Table\TableExtension'
+      - method: addExtension
+        arguments:
+          - '@League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension'
       - method: addExtension
         arguments:
           - '@App\CommonMark\Extension\PoketoolsTableExtension'
@@ -96,6 +103,9 @@ services:
       - method: addExtension
         arguments:
           - '@League\CommonMark\Extension\InlinesOnly\InlinesOnlyExtension'
+      - method: addExtension
+        arguments:
+          - '@League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension'
       - method: addExtension
         arguments:
           - '@App\CommonMark\Extension\PoketoolsInlineExtension'

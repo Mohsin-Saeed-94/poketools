@@ -115,7 +115,8 @@ final class DataCleanYamlCommand extends Command
         $progress = $this->io->createProgressBar(count($this->yamlSourceDriver));
         $progress->setFormat('debug');
         foreach ($it as $row) {
-            $this->yamlDestinationDriver->write($row);
+            $newRow = $this->fixupData($row);
+            $this->yamlDestinationDriver->write($newRow);
             $progress->advance();
         }
         $progress->finish();
@@ -123,5 +124,31 @@ final class DataCleanYamlCommand extends Command
         $this->io->success('Finished cleaning YAML files.');
 
         return 0;
+    }
+
+    /**
+     * Recursive function to clean up data of common problems
+     *
+     * @param $val
+     * @return array|string
+     */
+    protected function fixupData($val)
+    {
+        // Remove double single-quotes, trailing quotes, and surrounding whitespace
+        // that are common errors
+        if (is_string($val)) {
+            $val = str_replace("''", "'", $val);
+            $val = trim($val);
+            $val = trim($val, "'");
+        }
+
+        // Apply fixes to members
+        if (is_array($val)) {
+            foreach ($val as &$member) {
+                $member = $this->fixupData($member);
+            }
+        }
+
+        return $val;
     }
 }

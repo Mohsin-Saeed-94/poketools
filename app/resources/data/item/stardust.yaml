@@ -6,10 +6,9 @@ gold-silver: &gold-silver
   flavor_text: |
     Pretty, red sand.
     Sell high.
-  
   category: &gold-silver.category loot
-  short_description: &gold-silver.short_description 'Sell for $1000, or to Ore Collector for $2000.'
-  description: &gold-silver.description 'Vendor trash.'
+  short_description: &gold-silver.short_description 'No effect.  Sell to shops.'
+  description: &gold-silver.description 'No effect.  Sell to shops.'
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name Stardust
@@ -23,7 +22,6 @@ ruby-sapphire: &ruby-sapphire
     Beautiful red sand.
     Can be sold at a
     high price.
-  
   icon: &ruby-sapphire.icon stardust.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -40,7 +38,6 @@ firered-leafgreen:
     A pretty red sand with a loose,
     silky feel.
     It can be sold at a high price.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -52,16 +49,26 @@ diamond-pearl: &diamond-pearl
   fling_power: 30
   short_description: *gold-silver.short_description
   description: *gold-silver.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     Lovely, red-colored sand with a loose,
     silky feel. It can be sold at a high
     price to shops.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: &black-white
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: 'No effect.  Sell to shops for $1000 or to the Ore Maniac for $2000.'
+  description: 'No effect.  Sell to shops for $1000, or the Ore Maniac in the []{location:icirrus-city} Pokémon Center for $2000.'
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *gold-silver.category
@@ -76,7 +83,6 @@ x-y: &x-y
     Lovely, red sand that flows between
     the fingers with a loose, silky feel.
     It can be sold at a high price to shops.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -93,6 +99,5 @@ sun-moon: &sun-moon
     Lovely red sand that flows between the fingers
     with a loose, silky feel. It can be sold at a low price
     to shops.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

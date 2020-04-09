@@ -4,13 +4,12 @@ red-blue: &red-blue
   buy: &red-blue.buy 100
   sell: &red-blue.sell 50
   category: &red-blue.category status-cures
-  flags: &red-blue.flags
+  flags:
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
-    - holdable
-  short_description: &red-blue.short_description 'Cures poison.'
+  short_description: &red-blue.short_description 'Cures [poison]{mechanic:poison}.'
   description: &red-blue.description |
     Used on a party Pokémon
     :   Cures [poison]{mechanic:poison}.
@@ -23,9 +22,13 @@ gold-silver: &gold-silver
   flavor_text: |
     Cures poisoned
     POKéMON.
-  
   category: *red-blue.category
-  flags: *red-blue.flags
+  flags: &gold-silver.flags
+    - countable
+    - consumable
+    - usable-overworld
+    - usable-in-battle
+    - holdable
   short_description: *red-blue.short_description
   description: *red-blue.description
 crystal: *gold-silver
@@ -35,13 +38,12 @@ ruby-sapphire: &ruby-sapphire
   pocket: &ruby-sapphire.pocket medicine
   buy: &ruby-sapphire.buy 200
   sell: &ruby-sapphire.sell 100
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     Heals a poisoned
     POKéMON.
-  
   icon: &ruby-sapphire.icon antidote.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -52,14 +54,13 @@ firered-leafgreen:
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A spray-type medicine.
     It heals one POKéMON from a
     poisoning.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -69,14 +70,13 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A spray-type medicine.
     It lifts the effect of poison from one
     Pokémon.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
@@ -90,14 +90,13 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A spray-type medicine for poisoning.
     It can be used once to lift the effects
     of being poisoned from a Pokémon.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -108,13 +107,12 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A spray-type medicine for poisoning. It can be used
     once to lift the effects of being poisoned from
     a Pokémon.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

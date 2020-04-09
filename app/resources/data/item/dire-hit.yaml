@@ -4,15 +4,14 @@ red-blue: &red-blue
   buy: &red-blue.buy 650
   sell: &red-blue.sell 325
   category: &red-blue.category stat-boosts
-  flags: &red-blue.flags
+  flags:
     - countable
     - consumable
     - usable-in-battle
-    - holdable
-  short_description: &red-blue.short_description 'Increases the chance of a critical hit in battle.  Raises happiness.'
-  description: &red-blue.description |
+  short_description: 'Bugged item decreases [critical hit chance]{mechanic:critical-hit-chance}.'
+  description: |
     Used on a party Pokémon in battle
-    :   Increases the target's [critical hit chance]{mechanic:critical-hit-chance} by one stage until it leaves the field.  Increases happiness by 1/1/0.
+    :   Because of a [bug](https://glitchcity.info/wiki/Focus_Energy_glitch), reduces the target's critical hit chance by 75%.
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -22,11 +21,16 @@ gold-silver: &gold-silver
   flavor_text: |
     Ups critical hit
     ratio. (1 BTL)
-  
   category: *red-blue.category
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: &gold-silver.flags
+    - countable
+    - consumable
+    - usable-in-battle
+    - holdable
+  short_description: &gold-silver.short_description 'Increases the chance of a [critical hit]{mechanic:critical-hit} in battle.  Raises happiness.'
+  description: &gold-silver.description |
+    Used on a party Pokémon in battle
+    :   Increases the target's [critical hit chance]{mechanic:critical-hit-chance} by one stage until it leaves the field.  Increases happiness by 1/1/0.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name 'Dire Hit'
@@ -34,14 +38,13 @@ ruby-sapphire: &ruby-sapphire
   pocket: &ruby-sapphire.pocket battle
   buy: &ruby-sapphire.buy 1000
   sell: &ruby-sapphire.sell 500
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     Raises the
     critical-hit ratio
     during one battle.
-  
   icon: &ruby-sapphire.icon dire-hit.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -52,14 +55,13 @@ firered-leafgreen:
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     Raises the critical-hit ratio of
     POKéMON in battle. Wears off if the
     POKéMON is withdrawn.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -69,14 +71,13 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item that raises the critical-hit
     ratio of a Pokémon in battle. It wears
     off if the Pokémon is withdrawn.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
@@ -88,14 +89,13 @@ black-white: &black-white
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     It raises the critical-hit ratio greatly.
     It can be used only once and wears off
     if the Pokémon is withdrawn.
-  
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
@@ -106,14 +106,13 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item that raises the critical-hit ratio
     greatly. It can be used only once and
     wears off if the Pokémon is withdrawn.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -124,13 +123,12 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
   flavor_text: |
     An item that raises the critical-hit ratio greatly.
     It can be used only once and wears off if the
     Pokémon is withdrawn.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

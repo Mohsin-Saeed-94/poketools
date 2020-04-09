@@ -2,20 +2,17 @@ red-blue: &red-blue
   name: 'HELIX FOSSIL'
   pocket: &red-blue.pocket misc
   category: &red-blue.category dex-completion
-  flags: &red-blue.flags
-    - underground
-  short_description: &red-blue.short_description 'Can be revived into an Omanyte.'
-  description: &red-blue.description 'Give to a scientist in the []{location:mining-museum} in []{location:oreburgh-city} or the Museum of Science in []{location:pewter-city} to receive a []{pokemon:omanyte}.'
+  short_description: &red-blue.short_description 'Can be revived into an []{pokemon:omanyte}.'
+  description: &red-blue.description 'Give to a scientist in the lab on []{location:cinnabar-island} to receive an []{pokemon:omanyte}.'
 yellow: *red-blue
-ruby-sapphire: &ruby-sapphire
+ruby-sapphire:
   name: &ruby-sapphire.name 'Helix Fossil'
   category: *red-blue.category
   pocket: *red-blue.pocket
   buy: &ruby-sapphire.buy 7000
   sell: &ruby-sapphire.sell 3500
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
-  description: *red-blue.description
+  description: &ruby-sapphire.description 'Give to a scientist in the Devon HQ in []{location:rustboro-city} to receive an []{pokemon:omanyte}.'
   icon: &ruby-sapphire.icon helix-fossil.png
 emerald:
   name: *ruby-sapphire.name
@@ -23,31 +20,25 @@ emerald:
   pocket: *red-blue.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
-  description: *red-blue.description
+  description: *ruby-sapphire.description
   flavor_text: |
     A piece of an
     ancient marine
     POKéMON’s seashell.
-  
   icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *red-blue.category
   pocket: *red-blue.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A fossil of an ancient, seafloor-
     dwelling POKéMON. It appears to be
     part of a seashell.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -57,20 +48,17 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 100
-  flags: *red-blue.flags
+  flags: &diamond-pearl.flags
+    - underground
   short_description: *red-blue.short_description
-  description: *red-blue.description
-  flavor_text: |
+  description: 'Give to a scientist in the Mining Museum in []{location:oreburgh-city} to receive an []{pokemon:omanyte}.'
+  flavor_text: &diamond-pearl.flavor_text |
     A fossil of an ancient Pokémon that
     lived in the sea. It appears to be
     part of a seashell.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
-x-y: &x-y
+heartgold-soulsilver:
   name: *ruby-sapphire.name
   category: *red-blue.category
   pocket: *red-blue.pocket
@@ -78,16 +66,62 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 100
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
-  description: *red-blue.description
-  flavor_text: |
+  description: 'Give to a scientist in the Museum of Science in []{location:pewter-city} to receive an []{pokemon:omanyte}.'
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-white:
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 100
+  flags: *diamond-pearl.flags
+  short_description: *red-blue.short_description
+  description: &black-white.description 'Give to a scientist in the Nacrene Museum in []{location:nacrene-city} to receive an []{pokemon:omanyte}.'
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2:
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 100
+  short_description: *red-blue.short_description
+  description: *black-white.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+x-y:
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 100
+  short_description: *red-blue.short_description
+  description: 'Give to a scientist in the Fossil Lab in []{location:ambrette-town} to receive an []{pokemon:omanyte}.'
+  flavor_text: &x-y.flavor_text |
     A fossil from a prehistoric Pokémon
     that once lived in the sea. It might be
     a piece of a seashell.
-  
   icon: *ruby-sapphire.icon
-omega-ruby-alpha-sapphire: *x-y
+omega-ruby-alpha-sapphire:
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 100
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  flavor_text: *x-y.flavor_text
+  icon: *ruby-sapphire.icon
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
   category: *red-blue.category
@@ -96,12 +130,10 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 100
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
-  description: *red-blue.description
+  description: 'Give to a scientist in the Fossil Restoration Center on []{location:alola-route-8} to receive an []{pokemon:omanyte}.'
   flavor_text: |
     A fossil from a prehistoric Pokémon that once lived
     in the sea. It might be a piece of a seashell.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

@@ -6,13 +6,11 @@ gold-silver: &gold-silver
   flavor_text: |
     Stops evolution.
     (HOLD)
-  
   category: &gold-silver.category training
   flags: &gold-silver.flags
     - holdable
     - holdable-active
-    - underground
-  short_description: &gold-silver.short_description 'Held: Prevents level-based evolution from occuring.'
+  short_description: &gold-silver.short_description 'Held: Prevents level-based evolution from occurring.'
   description: &gold-silver.description 'Held: Prevents the holder from evolving naturally.  Evolution initiated by the trainer (Stones, etc) will still work.'
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -28,7 +26,6 @@ ruby-sapphire: &ruby-sapphire
     A wondrous stone
     & a hold item that
     prevents evolution.
-  
   icon: &ruby-sapphire.icon everstone.png
 emerald:
   name: *ruby-sapphire.name
@@ -43,7 +40,6 @@ emerald:
     A wondrous hold
     item that prevents
     evolution.
-  
   icon: *ruby-sapphire.icon
 colosseum: *ruby-sapphire
 xd: *ruby-sapphire
@@ -60,9 +56,28 @@ firered-leafgreen:
     An item to be held by a POKéMON.
     The holding POKéMON is prevented
     from evolving.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  flags:
+    - holdable
+    - holdable-active
+    - underground
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+  flavor_text: &diamond-pearl.flavor_text |
+    An item to be held by a Pokémon.
+    The Pokémon holding this peculiar stone
+    is prevented from evolving.
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: &heartgold-soulsilver
   name: *ruby-sapphire.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
@@ -73,16 +88,10 @@ diamond-pearl: &diamond-pearl
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
-  flavor_text: |
-    An item to be held by a Pokémon.
-    The Pokémon holding this peculiar stone
-    is prevented from evolving.
-  
+  flavor_text: *diamond-pearl.flavor_text
   icon: *ruby-sapphire.icon
-platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *gold-silver.category
@@ -98,7 +107,6 @@ x-y: &x-y
     An item to be held by a Pokémon.
     A Pokémon holding this peculiar
     stone is prevented from evolving.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -116,6 +124,5 @@ sun-moon: &sun-moon
     An item to be held by a Pokémon. A Pokémon
     holding this peculiar stone is prevented
     from evolving.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

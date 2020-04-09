@@ -2,65 +2,37 @@ red-blue: &red-blue
   name: 'POKé FLUTE'
   pocket: misc
   category: &red-blue.category plot-advancement
-  short_description: &red-blue.short_description 'Use to awaken sleeping Pokémon, including Snorlax on roads.'
-  description: &red-blue.description 'Wakes up [sleeping]{mechanic:sleep} Pokémon.  Required to wake up sleeping []{pokemon:snorlax} on the overworld.'
+  flags: &red-blue.flags
+    - usable-in-battle
+    - usable-overworld
+  short_description: &red-blue.short_description 'Use to awaken [sleeping]{mechanic:sleep} Pokémon, including []{pokemon:snorlax} on roads.'
+  description: &red-blue.description |
+    Used in battle
+    :   Wakes up all [sleeping]{mechanic:sleep} Pokémon.
+    
+    Used by trainer outside of battle
+    :   Wakes []{pokemon:snorlax} found sleeping on the road.
 yellow: *red-blue
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Poké Flute'
-  category: *red-blue.category
-  pocket: &ruby-sapphire.pocket key
-  short_description: *red-blue.short_description
-  description: *red-blue.description
-  icon: &ruby-sapphire.icon poke-flute.png
-emerald:
-  name: *ruby-sapphire.name
-  category: *red-blue.category
-  pocket: *ruby-sapphire.pocket
-  short_description: *red-blue.short_description
-  description: *red-blue.description
-  flavor_text: |
-    A sweet-sounding
-    flute that awakens
-    POKéMON.
-  
-  icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: &firered-leafgreen.name 'Poké Flute'
   category: *red-blue.category
-  pocket: *ruby-sapphire.pocket
+  pocket: &firered-leafgreen.pocket key
+  flags: *red-blue.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A flute that is said to instantly
     awaken any POKéMON. It has a
     lovely tone.
-  
-  icon: *ruby-sapphire.icon
-x-y: &x-y
-  name: *ruby-sapphire.name
+  icon: &firered-leafgreen.icon poke-flute.png
+x-y:
+  name: *firered-leafgreen.name
   category: *red-blue.category
-  pocket: *ruby-sapphire.pocket
+  pocket: *firered-leafgreen.pocket
   short_description: *red-blue.short_description
-  description: *red-blue.description
+  description: 'Use to awaken [sleeping]{mechanic:sleep} Pokémon, including []{pokemon:snorlax} on roads.'
   flavor_text: |
     A flute which can play with such a
     beautiful tone that even sleeping
     Pokémon find themselves roused.
-  
-  icon: *ruby-sapphire.icon
-omega-ruby-alpha-sapphire: *x-y
-sun-moon: &sun-moon
-  name: *ruby-sapphire.name
-  category: *red-blue.category
-  pocket: *ruby-sapphire.pocket
-  short_description: *red-blue.short_description
-  description: *red-blue.description
-  flavor_text: |
-    A flute that can play with such a beautiful tone
-    that even sleeping Pokémon find
-    themselves roused.
-  
-  icon: *ruby-sapphire.icon
-ultra-sun-ultra-moon: *sun-moon
+  icon: *firered-leafgreen.icon

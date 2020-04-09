@@ -7,15 +7,14 @@ ruby-sapphire: &ruby-sapphire
   flags: &ruby-sapphire.flags
     - holdable
     - holdable-active
-  short_description: &ruby-sapphire.short_description 'Held: Consumed to cure infatuation. Gen V: Also removes Taunt, Encore, Torment, Disable, and Cursed Body.'
+  short_description: &ruby-sapphire.short_description 'Held: When the holder is [attracted]{move:attract}, consumed to cure [infatuation]{mechanic:infatuation}.'
   description: &ruby-sapphire.description |
     Held in battle
-    :   When the holder is [attracted]{move:attract}, it consumes this item to cure the attraction.
+    :   When the holder is [attracted]{move:attract}, it consumes this item to cure the [infatuation]{mechanic:infatuation}.
   flavor_text: |
     A hold item that
     snaps POKéMON out
     of infatuation.
-  
   icon: &ruby-sapphire.icon mental-herb.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -33,7 +32,6 @@ firered-leafgreen:
     An item to be held by a POKéMON.
     It snaps the holder out of
     infatuation. It can be used once.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -46,16 +44,29 @@ diamond-pearl: &diamond-pearl
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     An item to be held by a Pokémon. It
     snaps the holder out of infatuation.
     It can be used only once.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: &black-white
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: herb-effect
+  fling_power: 10
+  flags: *ruby-sapphire.flags
+  short_description: &black-white.short_description 'Held: Removes the effects of []{move:attract}, []{move:taunt}, []{move:encore}, []{move:torment}, []{move:disable}, and []{ability:cursed-body}.'
+  description: &black-white.description |
+    Held in battle
+    :   Removes the effects of []{move:attract}, []{move:taunt}, []{move:encore}, []{move:torment}, []{move:disable}, and []{ability:cursed-body}.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
@@ -65,13 +76,12 @@ x-y: &x-y
   fling_effect: herb-effect
   fling_power: 10
   flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  short_description: *black-white.short_description
+  description: *black-white.description
   flavor_text: |
     An item to be held by a Pokémon.
     It snaps the holder out of infatuation.
     It can be used only once.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -83,12 +93,11 @@ sun-moon: &sun-moon
   fling_effect: herb-effect
   fling_power: 10
   flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  short_description: *black-white.short_description
+  description: *black-white.description
   flavor_text: |
     An item to be held by a Pokémon. The holder
     shakes off move-binding effects to move freely.
     It can be used only once.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

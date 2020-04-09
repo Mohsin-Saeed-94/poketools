@@ -1,12 +1,11 @@
 gold-silver: &gold-silver
   name: 'LUCKY EGG'
   pocket: &gold-silver.pocket misc
-  buy: 200
-  sell: 100
+  buy: &gold-silver.buy 200
+  sell: &gold-silver.sell 100
   flavor_text: |
     Earns extra EXP.
     points. (HOLD)
-  
   category: &gold-silver.category training
   flags: &gold-silver.flags
     - holdable
@@ -18,8 +17,8 @@ ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name 'Lucky Egg'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 10000
-  sell: &ruby-sapphire.sell 5000
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
@@ -27,7 +26,6 @@ ruby-sapphire: &ruby-sapphire
     A hold item that
     boosts EXP. points
     earned in battle.
-  
   icon: &ruby-sapphire.icon lucky-egg.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -36,8 +34,8 @@ firered-leafgreen:
   name: *ruby-sapphire.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
@@ -45,35 +43,49 @@ firered-leafgreen:
     An item to be held by a POKéMON.
     An egg filled with happiness that
     earns extra EXP. points in battle.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     An item to be held by a Pokémon.
     It is an egg filled with happiness that
     earns extra Exp. Points in battle.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: &black-white
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  fling_effect: damage
+  fling_power: 30
+  flags: *gold-silver.flags
+  short_description: 'Held: Increases EXP earned in battle by 50%. Can also be sold to the Hungry Maid for $200.'
+  description: |
+    Held
+    :   Increases any Exp the holder gains by 50%.
+    
+    Can also be sold to the Hungry Maid on []{location:unova-route-5} for $200.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -83,15 +95,14 @@ x-y: &x-y
     An item to be held by a Pokémon.
     It’s an egg filled with happiness that
     earns extra Exp. Points in battle.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: 10000
+  sell: 5000
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -101,6 +112,5 @@ sun-moon: &sun-moon
     An item to be held by a Pokémon. It’s an egg filled
     with happiness that earns extra Exp. Points
     in battle.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

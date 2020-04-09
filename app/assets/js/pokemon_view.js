@@ -8,7 +8,6 @@ require('datatables.net-bs4');
 require('datatables.net-fixedheader-bs4');
 require('datatables.net-rowgroup');
 require('datatables-bundle/datatables');
-require('mathjax/es5/mml-chtml');
 require('orgchart');
 const Plyr = require('plyr');
 const Masonry = require('masonry-layout/dist/masonry.pkgd');

@@ -1,0 +1,34 @@
+{% extends 'debug_base.html.twig' %}
+
+{% block title %}Ability{% endblock %}
+
+{% block body %}
+    <p>{{ abilities|length }} items</p>
+    <table class="table table-bordered"
+           data-tables="{}">
+        <thead>
+        <tr>
+            <th>Slug</th>
+            <th>Name</th>
+            <th>Short Desc.</th>
+            <th>Desc.</th>
+            <th>Flavor</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ability in abilities %}
+            <tr>
+                <th>
+                    <a href="{{ path('ability_view', {'abilitySlug': ability.slug, 'versionSlug': version.slug}) }}">
+                        {{ ability.slug }}
+                    </a>
+                </th>
+                <td>{{ ability.name }}</td>
+                <td class="pkt-text">{{ ability.shortDescription|markdown(false) }}</td>
+                <td class="pkt-text">{{ ability.description|markdown }}</td>
+                <td>{{ ability.flavorText|nl2br }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -22,18 +22,15 @@ class EncounterTest extends DataTestCase
     public function testNote(): void
     {
         $allData = $this->getIteratorForCsv('encounter');
-        $hasNotes = false;
+        $badNotes = [];
         foreach ($allData as $encounter) {
             if (empty($encounter['note'])) {
                 continue;
             }
-            $hasNotes = true;
 
-            $converter = $this->getMarkdownConverter($encounter['version']);
+            $converter = $this->getMarkdownConverter($encounter['version'], [$encounter['id']], $badNotes);
             self::assertNotEmpty($converter->convertToHtml($encounter['note']));
         }
-        if (!$hasNotes) {
-            $this->markTestSkipped('No encounters have a note.');
-        }
+        self::assertEmpty($badNotes, "Some notes are bad:".implode("\n", $badNotes));
     }
 }

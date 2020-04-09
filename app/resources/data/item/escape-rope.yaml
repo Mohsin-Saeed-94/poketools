@@ -4,10 +4,10 @@ red-blue: &red-blue
   buy: &red-blue.buy 550
   sell: &red-blue.sell 275
   category: &red-blue.category spelunking
-  short_description: &red-blue.short_description 'Transports user to the outside entrance of a cave.'
+  short_description: 'Transports user to the last Pokémon Center they visited.'
   description: &red-blue.description |
     Used outside of battle
-    :   Transports the trainer to the last-entered dungeon entrance.  Cannot be used outside, in buildings, or in []{location:distortion-world}, []{location:sinnoh-hall-of-origin-1}, []{location:spear-pillar}, or []{location:turnback-cave}.
+    :   Transports the trainer to the last-entered dungeon entrance.  Cannot be used outside or in buildings.
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -17,9 +17,8 @@ gold-silver: &gold-silver
   flavor_text: |
     Use for escaping
     from caves, etc.
-  
   category: *red-blue.category
-  short_description: *red-blue.short_description
+  short_description: &gold-silver.short_description 'Transports user to the outside entrance of a cave.'
   description: *red-blue.description
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -28,32 +27,28 @@ ruby-sapphire: &ruby-sapphire
   pocket: *red-blue.pocket
   buy: &ruby-sapphire.buy 1000
   sell: &ruby-sapphire.sell 500
-  short_description: *red-blue.short_description
+  short_description: *gold-silver.short_description
   description: *red-blue.description
   flavor_text: |
     Use to escape
     instantly from a
     cave or a dungeon.
-  
   icon: &ruby-sapphire.icon escape-rope.png
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *red-blue.category
   pocket: *red-blue.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  short_description: *red-blue.short_description
+  short_description: *gold-silver.short_description
   description: *red-blue.description
   flavor_text: |
     A long, durable rope.
     Use it to escape instantly from a
     cave or a dungeon.
-  
   icon: *ruby-sapphire.icon
-diamond-pearl: &diamond-pearl
+diamond-pearl:
   name: *ruby-sapphire.name
   category: *red-blue.category
   pocket: *red-blue.pocket
@@ -61,18 +56,43 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  short_description: *red-blue.short_description
-  description: *red-blue.description
-  flavor_text: |
+  short_description: *gold-silver.short_description
+  description: |
+    Used outside of battle
+    :   Transports the trainer to the last-entered dungeon entrance.  Cannot be used outside, in buildings, or in the []{location:sinnoh-hall-of-origin}, []{location:spear-pillar}, or []{location:turnback-cave}.
+  flavor_text: &diamond-pearl.flavor_text |
     A long, durable rope.
     Use it to escape instantly from a cave
     or a dungeon.
-  
   icon: *ruby-sapphire.icon
-platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+platinum:
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: *gold-silver.short_description
+  description: |
+    Used outside of battle
+    :   Transports the trainer to the last-entered dungeon entrance.  Cannot be used outside, in buildings, or in []{location:distortion-world}, []{location:sinnoh-hall-of-origin}, []{location:spear-pillar}, or []{location:turnback-cave}.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+heartgold-soulsilver: &heartgold-soulsilver
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: *gold-silver.short_description
+  description: *red-blue.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *red-blue.category
@@ -81,13 +101,12 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  short_description: *red-blue.short_description
+  short_description: *gold-silver.short_description
   description: *red-blue.description
   flavor_text: |
     A long and durable rope.
     Use it to escape instantly
     from a cave or a dungeon.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -98,11 +117,10 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  short_description: *red-blue.short_description
+  short_description: *gold-silver.short_description
   description: *red-blue.description
   flavor_text: |
     A long and durable rope. Use it to escape instantly
     from a cave or a dungeon.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

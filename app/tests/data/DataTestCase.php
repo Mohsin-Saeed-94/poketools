@@ -10,6 +10,7 @@ use App\CommonMark\Block\Parser\CallableParser;
 use App\CommonMark\Block\Renderer\CallableRenderer;
 use App\CommonMark\Block\Renderer\TableRenderer;
 use App\CommonMark\Extension\PoketoolsBlockExtension;
+use App\CommonMark\Extension\PoketoolsInlineExtension;
 use App\CommonMark\Extension\PoketoolsTableExtension;
 use App\CommonMark\Inline\Parser\CloseBracketInternalLinkParser;
 use App\Entity\Version;
@@ -19,9 +20,10 @@ use App\Repository\VersionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
+use League\CommonMark\Extension\CommonMarkCoreExtension;
+use League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension;
 use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\Extension\Table\TableRenderer as CommonMarkTableRenderer;
-use League\CommonMark\Extension\CommonMarkCoreExtension;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -80,19 +82,27 @@ abstract class DataTestCase extends KernelTestCase
     /**
      * @param string|null $versionSlug
      * @param array $context
-     *
+     * @param string[]|null $logs
+     *   This will be filled with the log output from the converter.
      * @return CommonMarkConverter
      * @throws \ReflectionException
      */
-    protected function getMarkdownConverter(?string $versionSlug = null, array $context = []): CommonMarkConverter
-    {
+    protected function getMarkdownConverter(
+        ?string $versionSlug = null,
+        array $context = [],
+        ?array &$logs = null
+    ): CommonMarkConverter {
         // Build the LinkParser mock
         /** @var LoggerInterface|MockObject $logger */
         $logger = $this->getMockBuilder(LoggerInterface::class)->getMock();
         foreach (['error', 'critical', 'alert', 'emergency'] as $logType) {
             $logger->method($logType)->willReturnCallback(
-                function ($message) use ($logType, $context) {
-                    $this->logToException($logType, $message, $context);
+                function ($message) use ($logType, $context, &$logs) {
+                    if ($logs === null) {
+                        $this->logToException($logType, $message, $context);
+                    } else {
+                        $logs[] = $this->formatLoggedMessage($logType, $message, $context);
+                    }
                 }
             );
         }
@@ -122,7 +132,9 @@ abstract class DataTestCase extends KernelTestCase
         $extensions = [
             new CommonMarkCoreExtension(),
             new TableExtension(),
+            new DisallowedRawHtmlExtension(),
             new PoketoolsTableExtension(new TableRenderer(new CommonMarkTableRenderer())),
+            new PoketoolsInlineExtension($linkParser),
             new PoketoolsBlockExtension($callableParser, $callableRenderer),
         ];
         $environment = new Environment();
@@ -143,6 +155,19 @@ abstract class DataTestCase extends KernelTestCase
      */
     protected function logToException(string $type, string $message, array $context = [])
     {
+        $message = $this->formatLoggedMessage($type, $message, $context);
+
+        throw new \RuntimeException($message);
+    }
+
+    /**
+     * @param string $type
+     * @param string $message
+     * @param array $context
+     * @return string
+     */
+    private function formatLoggedMessage(string $type, string $message, array $context): string
+    {
         $message = sprintf('"%s" logged: "%s"', $type, $message);
 
         // Add the context to the message.
@@ -154,7 +179,7 @@ abstract class DataTestCase extends KernelTestCase
             $message = implode(' ', $contextStrings).' '.$message;
         }
 
-        throw new \RuntimeException($message);
+        return $message;
     }
 
     /**

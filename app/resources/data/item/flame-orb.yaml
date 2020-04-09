@@ -9,18 +9,37 @@ diamond-pearl: &diamond-pearl
   flags: &diamond-pearl.flags
     - holdable
     - holdable-active
-  short_description: &diamond-pearl.short_description 'Held: Inflicts Burn on the holder at the end of the turn. Activates after Burn damage would occur.'
-  description: &diamond-pearl.description 'Held: Burns the holder at the end of each turn.'
-  flavor_text: |
+  short_description: &diamond-pearl.short_description 'Held: Inflicts [Burn]{mechanic:burn} on the holder at the end of the turn. Activates after Burn damage would occur.'
+  description: |
+    Held: [Burns]{mechanic:burn} the holder at the end of each turn.
+    
+    This is most effectivley used with techniques that move held items around, such as []{move:fling}, []{move:trick}, or
+    []{move:switcheroo}.
+  flavor_text: &diamond-pearl.flavor_text |
     An item to be held by a Pokémon.
     It is a bizarre orb that inflicts a
     burn on the holder in battle.
-  
   icon: &diamond-pearl.icon flame-orb.png
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: &black-white
+  name: *diamond-pearl.name
+  category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
+  fling_effect: burn
+  fling_power: 30
+  flags: *diamond-pearl.flags
+  short_description: *diamond-pearl.short_description
+  description: &black-white.description |
+    Held: [Burns]{mechanic:burn} the holder at the end of each turn.
+    
+    This is most effectivley used with techniques that move held items around, such as []{move:fling}, []{move:trick},
+    []{move:switcheroo}, or []{move:bestow}.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *diamond-pearl.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *diamond-pearl.name
   category: *diamond-pearl.category
@@ -31,12 +50,11 @@ x-y: &x-y
   fling_power: 30
   flags: *diamond-pearl.flags
   short_description: *diamond-pearl.short_description
-  description: *diamond-pearl.description
+  description: *black-white.description
   flavor_text: |
     An item to be held by a Pokémon.
     It is a bizarre orb that will afflict the
     holder with a burn during battle.
-  
   icon: *diamond-pearl.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -49,10 +67,9 @@ sun-moon: &sun-moon
   fling_power: 30
   flags: *diamond-pearl.flags
   short_description: *diamond-pearl.short_description
-  description: *diamond-pearl.description
+  description: *black-white.description
   flavor_text: |
     An item to be held by a Pokémon. It’s a bizarre orb
     that will afflict the holder with a burn during battle.
-  
   icon: *diamond-pearl.icon
 ultra-sun-ultra-moon: *sun-moon

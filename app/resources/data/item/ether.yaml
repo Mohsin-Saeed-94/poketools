@@ -2,13 +2,12 @@ red-blue: &red-blue
   name: &red-blue.name ETHER
   pocket: &red-blue.pocket misc
   category: &red-blue.category pp-recovery
-  flags: &red-blue.flags
+  flags:
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
-    - holdable
-  short_description: &red-blue.short_description 'Restores 10 PP for one move.'
+  short_description: &red-blue.short_description 'Restores 10 [PP]{mechanic:pp} for one move.'
   description: &red-blue.description |
     Used on a party Pokémon
     :   Restores 10 [PP]{mechanic:pp} for a selected move.
@@ -21,9 +20,13 @@ gold-silver: &gold-silver
   flavor_text: |
     Restores PP of one
     move by 10.
-  
   category: *red-blue.category
-  flags: *red-blue.flags
+  flags: &gold-silver.flags
+    - countable
+    - consumable
+    - usable-overworld
+    - usable-in-battle
+    - holdable
   short_description: *red-blue.short_description
   description: *red-blue.description
 crystal: *gold-silver
@@ -33,14 +36,13 @@ ruby-sapphire: &ruby-sapphire
   pocket: &ruby-sapphire.pocket medicine
   buy: *gold-silver.buy
   sell: *gold-silver.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     Restores the PP
     of a selected move
     by 10.
-  
   icon: &ruby-sapphire.icon ether.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -51,13 +53,12 @@ firered-leafgreen:
   pocket: *ruby-sapphire.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     Restores a selected move’s PP by
     10 points for one POKéMON.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -67,14 +68,13 @@ diamond-pearl: &diamond-pearl
   sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     It restores the PP of a Pokémon’s
     selected move by a maximum of
     10 points.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
@@ -88,14 +88,13 @@ x-y: &x-y
   sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     This medicine can restore 10 PP
     to a single selected move that
     has been learned by a Pokémon.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -106,13 +105,12 @@ sun-moon: &sun-moon
   sell: *gold-silver.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     This medicine can restore 10 PP to a single
     selected move that has been learned by
     a Pokémon.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

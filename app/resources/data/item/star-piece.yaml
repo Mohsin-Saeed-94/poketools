@@ -6,12 +6,9 @@ gold-silver: &gold-silver
   flavor_text: |
     A hunk of red gem.
     Sell very high.
-  
   category: &gold-silver.category loot
-  flags: &gold-silver.flags
-    - underground
-  short_description: &gold-silver.short_description 'Platinum: Trade for one of each color Shard. Black and White: Trade for PP Up. Sell for $4900, or to Ore Collector for $9800.'
-  description: &gold-silver.description 'Vendor trash.'
+  short_description: &gold-silver.short_description 'No effect.  Sell to shops.'
+  description: &gold-silver.description 'No effect.  Sell to shops.'
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name 'Star Piece'
@@ -19,14 +16,12 @@ ruby-sapphire: &ruby-sapphire
   pocket: *gold-silver.pocket
   buy: &ruby-sapphire.buy 12000
   sell: &ruby-sapphire.sell 6000
-  flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
   flavor_text: |
     A red gem shard.
     It would sell for a
     very high price.
-  
   icon: &ruby-sapphire.icon star-piece.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -37,16 +32,14 @@ firered-leafgreen:
   pocket: *gold-silver.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
   flavor_text: |
     A shard of a pretty gem that
     sparkles in a red color.
     It can be sold at a high price.
-  
   icon: *ruby-sapphire.icon
-diamond-pearl: &diamond-pearl
+diamond-pearl:
   name: *ruby-sapphire.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
@@ -54,19 +47,59 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *gold-silver.flags
+  flags: &diamond-pearl.flags
+    - underground
   short_description: *gold-silver.short_description
   description: *gold-silver.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     A shard of a pretty gem that sparkles
     in a red color. It can be sold at a
     high price to shops.
-  
   icon: *ruby-sapphire.icon
-platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+platinum:
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  flags: *diamond-pearl.flags
+  short_description: 'No effect.  Sell to shops.  Can also trade for one of each color shard.'
+  description: |
+    No effect.  Sell to shops.
+    
+    Can also be traded with Mr. Fuego in []{location:fuego-ironworks} for one of each color shard.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+heartgold-soulsilver:
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-white: &black-white
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: 'No effect.  Sell to shops for $4900 or to the Ore Maniac for $9800.  Can also be traded for a []{item:pp-up}.'
+  description: |
+    No effect.  Sell to shops for $4900, or the Ore Maniac in the []{location:icirrus-city} Pokémon Center for $9800.
+    
+    Can also be traded with a man in []{location:anville-town} for a []{item:pp-up} on Saturday or Sunday.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *gold-silver.category
@@ -75,14 +108,12 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
   flavor_text: |
     A small shard of a beautiful gem that
     demonstrates a distinctly red sparkle.
     It can be sold at a high price to shops.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -93,13 +124,11 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
   flavor_text: |
     A small shard of a beautiful gem that demonstrates
     a distinctly red sparkle. It can be sold at a high
     price to shops.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

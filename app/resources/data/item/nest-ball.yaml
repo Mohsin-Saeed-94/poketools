@@ -9,17 +9,15 @@ ruby-sapphire: &ruby-sapphire
     - consumable
     - usable-in-battle
     - holdable
-  short_description: &ruby-sapphire.short_description 'Tries to catch a wild Pokémon.  Success rate is 3.9× for level 1 Pokémon, and drops steadily to 1× at level 30.'
+  short_description: &ruby-sapphire.short_description 'Tries to [catch]{mechanic:catch} a wild Pokémon.  Success rate is 3.9× for level 1 Pokémon, and drops steadily to 1× at level 30.'
   description: &ruby-sapphire.description |
     Used in battle
-    :   Attempts to [catch]{mechanic:catch} a wild Pokémon.  Has a catch rate of given by `(40 - level) / 10`, where `level` is the wild Pokémon's level, to a maximum of 3.9× for level 1 Pokémon.  If the wild Pokémon's level is higher than 30, this ball has a catch rate of 1×.
-    
-        If used in a trainer battle, nothing happens and the ball is lost.
+    :   Attempts to [catch]{mechanic:catch} a wild Pokémon.  The catch rate formula is <math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mn>40</mn> <mo>&minus;</mo> <mi>n</mi> </mrow> <mrow> <mn>10</mn> </mrow> </mfrac> </math>,
+    to a maximum of 3.9× for level 1 Pokémon.  If the wild Pokémon's level is higher than 30, this ball has a catch rate of 1×.  If used in a trainer battle, nothing happens and the ball is lost.
   flavor_text: |
     A BALL that works
     better on weaker
     POKéMON.
-  
   icon: &ruby-sapphire.icon nest-ball.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -37,7 +35,6 @@ firered-leafgreen:
     A somewhat different BALL that
     works especially well on weaker
     POKéMON.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -48,16 +45,28 @@ diamond-pearl: &diamond-pearl
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     A somewhat different Poké Ball that
     works especially well on weaker
     Pokémon in the wild.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: &black-white
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flags: *ruby-sapphire.flags
+  short_description: 'Tries to [catch]{mechanic:catch} a wild Pokémon.  Success rate is 4× for level 1 Pokémon, and drops steadily to 1× at level 30.'
+  description: |
+    Used in battle
+    :   Attempts to [catch]{mechanic:catch} a wild Pokémon.  The catch rate formula is <math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mn>41</mn> <mo>&minus;</mo> <mi>n</mi> </mrow> <mrow> <mn>10</mn> </mrow> </mfrac> </math>,
+    to a maximum of 4× for level 1 Pokémon.  If the wild Pokémon's level is higher than 30, this ball has a catch rate of 1×.  If used in a trainer battle, nothing happens and the ball is lost.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
@@ -65,13 +74,15 @@ x-y: &x-y
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  short_description: &x-y.short_description 'Tries to [catch]{mechanic:catch} a wild Pokémon.  Success rate is 4× for level 1 Pokémon, and drops steadily to 1× at level 29.'
+  description: &x-y.description |
+    Used in battle
+    :   Attempts to [catch]{mechanic:catch} a wild Pokémon.  The catch rate formula is <math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mn>41</mn> <mo>&minus;</mo> <mi>n</mi> </mrow> <mrow> <mn>10</mn> </mrow> </mfrac> </math>,
+    to a maximum of 4× for level 1 Pokémon.  If the wild Pokémon's level is higher than 29, this ball has a catch rate of 1×.  If used in a trainer battle, nothing happens and the ball is lost.
   flavor_text: |
     A somewhat different Poké Ball that
     becomes more effective the lower
     the level of the wild Pokémon.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -81,11 +92,10 @@ sun-moon: &sun-moon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  short_description: *x-y.short_description
+  description: *x-y.description
   flavor_text: |
     A somewhat different Poké Ball that becomes more
     effective the lower the level of the wild Pokémon.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

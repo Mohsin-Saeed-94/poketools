@@ -7,6 +7,7 @@ namespace App\CommonMark\Inline\Parser;
 
 
 use App\Entity\AbilityInVersionGroup;
+use App\Entity\ContestType;
 use App\Entity\EntityHasNameInterface;
 use App\Entity\ItemInVersionGroup;
 use App\Entity\LocationInVersionGroup;
@@ -249,7 +250,7 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
     protected function getRefParts(string $ref): ?array
     {
         $badChars = ':'.self::BRACKET_OPEN.self::BRACKET_CLOSE;
-        if (!preg_match("/^(?P<category>[^${badChars}]+):(?P<slug>[^${badChars}]+)$/", $ref, $matches)) {
+        if (!preg_match("/^(?P<category>[^${badChars}]+):(?P<slug>[^${badChars}]*)$/", $ref, $matches)) {
             return null;
         }
 
@@ -278,12 +279,32 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
         if ($this->currentVersion === null && in_array($category, $requiresVersion, true)) {
             return null;
         }
+        if (empty($slug)) {
+            $indexRef = true;
+            $this->currentEntity = null;
+        } else {
+            $indexRef = false;
+        }
 
         switch ($category) {
             case 'mechanic':
+                if ($indexRef) {
+                    return null;
+                }
+
                 $this->currentEntity = null;
+
                 return $this->getMechanicLink($slug);
             case 'ability':
+                if ($indexRef) {
+                    return $this->urlGenerator->generate(
+                        'ability_index',
+                        [
+                            'versionSlug' => $this->currentVersion->getSlug(),
+                        ]
+                    );
+                }
+
                 if ($this->getEntityForLink(AbilityInVersionGroup::class, $slug, $this->currentVersion) === null) {
                     return $this->noEntityFound();
                 }
@@ -296,6 +317,15 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
                     ]
                 );
             case 'item':
+                if ($indexRef) {
+                    return $this->urlGenerator->generate(
+                        'item_index',
+                        [
+                            'versionSlug' => $this->currentVersion->getSlug(),
+                        ]
+                    );
+                }
+
                 if ($this->getEntityForLink(ItemInVersionGroup::class, $slug, $this->currentVersion) === null) {
                     return $this->noEntityFound();
                 }
@@ -308,6 +338,15 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
                     ]
                 );
             case 'location':
+                if ($indexRef) {
+                    return $this->urlGenerator->generate(
+                        'location_index',
+                        [
+                            'versionSlug' => $this->currentVersion->getSlug(),
+                        ]
+                    );
+                }
+
                 if ($this->getEntityForLink(LocationInVersionGroup::class, $slug, $this->currentVersion) === null) {
                     return $this->noEntityFound();
                 }
@@ -320,6 +359,15 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
                     ]
                 );
             case 'move':
+                if ($indexRef) {
+                    return $this->urlGenerator->generate(
+                        'move_index',
+                        [
+                            'versionSlug' => $this->currentVersion->getSlug(),
+                        ]
+                    );
+                }
+
                 if ($this->getEntityForLink(MoveInVersionGroup::class, $slug, $this->currentVersion) === null) {
                     return $this->noEntityFound();
                 }
@@ -332,6 +380,15 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
                     ]
                 );
             case 'nature':
+                if ($indexRef) {
+                    return $this->urlGenerator->generate(
+                        'nature_index',
+                        [
+                            'versionSlug' => $this->currentVersion->getSlug(),
+                        ]
+                    );
+                }
+
                 if ($this->getEntityForLink(AbilityInVersionGroup::class, $slug, $this->currentVersion) === null) {
                     return $this->noEntityFound();
                 }
@@ -344,6 +401,15 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
                     ]
                 );
             case 'pokemon':
+                if ($indexRef) {
+                    return $this->urlGenerator->generate(
+                        'pokemon_index',
+                        [
+                            'versionSlug' => $this->currentVersion->getSlug(),
+                        ]
+                    );
+                }
+
                 $slugParts = explode('/', $slug);
                 /** @var PokemonSpeciesInVersionGroup|null $species */
                 $species = $this->getEntityForLink(
@@ -366,15 +432,35 @@ class CloseBracketInternalLinkParser implements InlineParserInterface, Environme
                     if ($pokemon === null) {
                         return $this->noEntityFound();
                     }
+                    $this->currentEntity = $pokemon;
                     $params['pokemonSlug'] = $slugParts[1];
                 }
 
                 return $this->urlGenerator->generate('pokemon_view', $params);
             case 'type':
+                if ($indexRef) {
+                    return $this->urlGenerator->generate(
+                        'type_index',
+                        [
+                            'versionSlug' => $this->currentVersion->getSlug(),
+                        ]
+                    );
+                }
+
                 $typeChartRepo = $this->em->getRepository(TypeChart::class);
                 $type = $typeChartRepo->findTypeInTypeChart($slug, $this->currentVersion);
                 if ($type === null) {
-                    return $this->noEntityFound();
+                    // Check contest types, if applicable
+                    if ($this->currentVersion->getVersionGroup()->hasFeatureString('contests')
+                        || $this->currentVersion->getVersionGroup()->hasFeatureString('super-contests')) {
+                        $contestTypeRepo = $this->em->getRepository(ContestType::class);
+                        $type = $contestTypeRepo->findOneBy(['slug' => $slug]);
+                        if ($type === null) {
+                            return $this->noEntityFound();
+                        }
+                    } else {
+                        return $this->noEntityFound();
+                    }
                 }
                 $this->currentEntity = $type;
 

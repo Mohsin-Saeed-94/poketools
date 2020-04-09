@@ -1,5 +1,6 @@
 const $ = require('jquery');
 require('bootstrap');
+require('mathjax/es5/mml-chtml');
 require('autocomplete.js/dist/autocomplete.jquery');
 
 $(document).ready(function () {

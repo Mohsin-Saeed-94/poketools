@@ -1,27 +1,15 @@
-ruby-sapphire: &ruby-sapphire
+ruby-sapphire:
   name: &ruby-sapphire.name 'Green Shard'
   category: &ruby-sapphire.category collectibles
   pocket: &ruby-sapphire.pocket misc
   buy: &ruby-sapphire.buy 1000
   sell: &ruby-sapphire.sell 500
-  flags: &ruby-sapphire.flags
-    - underground
-  short_description: &ruby-sapphire.short_description 'No effect. Can be traded for items or moves.'
-  description: &ruby-sapphire.description |
-    No effect.
-    
-    In Diamond and Pearl, trade ten for a []{move:hail} [TM]{item:tm07} in the house midway along the southern section of []{location:sinnoh-route-212}.
-    
-    In Platinum, trade to [move tutors]{mechanic:move-tutor} on []{location:sinnoh-route-212}, in []{location:snowpoint-city}, and in the []{location:survival-area}.  Eight shards total are required per tutelage, but the particular combination of colors varies by move.
-    
-    In HeartGold and SoulSilver, trade one for an []{item:aguav-berry}, a []{item:lum-berry}, and a []{item:rawst-berry} with the Juggler near the Pokémon Center in []{location:violet-city}.
-    
-    In HeartGold and SoulSilver, trade one for a []{item:durin-berry}, a []{item:hondew-berry}, and a []{item:wepear-berry} with the Juggler near the []{location:pal-park} entrance in []{location:fuchsia-city}.
-  flavor_text: |
+  short_description: &ruby-sapphire.short_description 'No effect. Trade for a []{item:leaf-stone}'
+  description: &ruby-sapphire.description 'Trade to the Treasure Hunter on []{location:hoenn-route-124} for a []{item:leaf-stone}.'
+  flavor_text: &ruby-sapphire.flavor_text |
     A shard from an
     ancient item.
     Can be sold cheaply.
-  
   icon: &ruby-sapphire.icon green-shard.png
 emerald:
   name: *ruby-sapphire.name
@@ -29,33 +17,38 @@ emerald:
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
   flavor_text: |
     A shard from an
     ancient item. Can
     be sold cheaply.
-  
   icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  short_description: &colosseum.short_description 'No effect.'
+  description: &colosseum.description 'No effect.'
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  short_description: *colosseum.short_description
+  description: *colosseum.description
   flavor_text: |
     A small green shard.
     It appears to be from some sort of
     a tool made long ago.
-  
   icon: *ruby-sapphire.icon
-diamond-pearl: &diamond-pearl
+diamond-pearl:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
@@ -63,20 +56,19 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  flavor_text: |
+  flags: &diamond-pearl.flags
+    - underground
+  short_description: 'No effect. Can be traded for a []{item:tm07}'
+  description: |
+    No effect.
+    
+    Trade ten for a []{item:tm07} in the house midway along the southern section of []{location:sinnoh-route-212}.
+  flavor_text: &diamond-pearl.flavor_text |
     A small green shard.
     It appears to be from some sort of
     implement made long ago.
-  
   icon: *ruby-sapphire.icon
-platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
-x-y: &x-y
+platinum:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
@@ -84,16 +76,73 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  flags: *diamond-pearl.flags
+  short_description: &platinum.short_description 'No effect. Can be traded for assorted moves.'
+  description: |
+    No effect.
+    
+    Trade to [move tutors]{mechanic:move-tutor} on []{location:sinnoh-route-212}, in []{location:snowpoint-city}, and in the []{location:survival-area}.  Eight shards total are required per tutelage, but the particular combination of colors varies by move.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+heartgold-soulsilver:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: 'No effect. Can be traded for assorted items.'
+  description: |
+    No effect.
+    
+    Trade one for an []{item:aguav-berry}, a []{item:lum-berry}, and a []{item:rawst-berry} with the Juggler near the Pokémon Center in []{location:violet-city}.
+    
+    Trade one for a []{item:durin-berry}, a []{item:hondew-berry}, and a []{item:wepear-berry} with the Juggler near the []{location:pal-park} entrance in []{location:fuchsia-city}.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-white:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: *colosseum.short_description
+  description: *colosseum.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: *platinum.short_description
+  description: |
+    No effect.
+    
+    Trade to the [move tutor]{mechanic:move-tutor} in []{location:nacrene-city}.  Two, four, six, or eight shards are required per tutelage.
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+omega-ruby-alpha-sapphire:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: *colosseum.short_description
+  description: *colosseum.description
   flavor_text: |
     A small green shard. It appears
     to be a fragment of some sort
     of implement made long ago.
-  
   icon: *ruby-sapphire.icon
-omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
@@ -102,12 +151,13 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  short_description: 'No effect. Can be traded for a []{item:bottle-cap}'
+  description: |
+    No effect.
+    
+    Trade 30 with the old man in the [Festival Plaza]{mechanic:festival-plaza} for a []{item:bottle-cap}
   flavor_text: |
     A small green shard. It appears to be a fragment of
     some sort of implement made long ago.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

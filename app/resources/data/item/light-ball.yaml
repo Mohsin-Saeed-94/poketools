@@ -6,14 +6,15 @@ gold-silver: &gold-silver
   flavor_text: |
     An odd, electrical
     orb. (HOLD)
-  
   category: &gold-silver.category species-specific
   flags: &gold-silver.flags
     - holdable
-  short_description: &gold-silver.short_description 'Doubles Pikachu''s Attack and  Special Attack. Breed on Pikachu or Raichu: Pichu Egg will have Volt Tackle.'
-  description: &gold-silver.description 'Held by Pikachu: Doubles the holder''s initial  Attack and Special Attack.'
+  short_description: &gold-silver.short_description 'Doubles [Pikachu''s]{pokemon:pikachu} [Special Attack]{mechanic:special-attack}.'
+  description: &gold-silver.description |
+    Held by []{pokemon:pikachu}
+    :   Doubles the holder's [Special Attack]{mechanic:special-attack}.
 crystal: *gold-silver
-ruby-sapphire: &ruby-sapphire
+ruby-sapphire:
   name: &ruby-sapphire.name 'Light Ball'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
@@ -22,15 +23,29 @@ ruby-sapphire: &ruby-sapphire
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     A hold item that
     raises the SP. ATK
     of PIKACHU.
-  
   icon: &ruby-sapphire.icon light-ball.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+emerald: &emerald
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flags: *gold-silver.flags
+  short_description: &emerald.short_description 'Doubles [Pikachu''s]{pokemon:pikachu} [Special Attack]{mechanic:special-attack}.  Also affects offspring []{pokemon:pichu}'
+  description: &emerald.description |
+    Held by []{pokemon:pikachu}
+    :   Doubles the holder's [Special Attack]{mechanic:special-attack}.
+    
+    If held by a []{pokemon:pikachu} or []{pokemon:raichu} who produce an egg, that []{pokemon:pichu} will know
+    the move []{move:volt-tackle}.
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+colosseum: *emerald
+xd: *emerald
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *gold-silver.category
@@ -38,13 +53,12 @@ firered-leafgreen:
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
+  short_description: *emerald.short_description
+  description: *emerald.description
   flavor_text: |
     An orb to be held by a PIKACHU
     that raises the SP. ATK stat.
     Touching it may cause a shock.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl:
   name: *ruby-sapphire.name
@@ -55,13 +69,17 @@ diamond-pearl:
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
+  short_description: &diamond-pearl.short_description 'Doubles [Pikachu''s]{pokemon:pikachu} [Attack]{mechanic:attack} and [Special Attack]{mechanic:special-attack}.  Also affects offspring []{pokemon:pichu}'
+  description: &diamond-pearl.description |
+    Held by []{pokemon:pikachu}
+    :   Doubles the holder's [Attack]{mechanic:attack} and [Special Attack]{mechanic:special-attack}.
+    
+    If held by a []{pokemon:pikachu} or []{pokemon:raichu} who produce an egg, that []{pokemon:pichu} will know
+    the move []{move:volt-tackle}.
   flavor_text: |
     An item to be held by PIKACHU.
     It is a puzzling orb that raises the
     Sp. Atk stat.
-  
   icon: *ruby-sapphire.icon
 platinum: &platinum
   name: *ruby-sapphire.name
@@ -72,13 +90,12 @@ platinum: &platinum
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
+  short_description: *diamond-pearl.short_description
+  description: *diamond-pearl.description
   flavor_text: |
     An item to be held by PIKACHU.
     It is a puzzling orb that raises
     the Attack and Sp. Atk stat.
-  
   icon: *ruby-sapphire.icon
 heartgold-soulsilver: *platinum
 black-white: &black-white
@@ -90,13 +107,12 @@ black-white: &black-white
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
+  short_description: *diamond-pearl.short_description
+  description: *diamond-pearl.description
   flavor_text: |
     An item to be held by Pikachu.
     It is a puzzling orb that raises
     the Attack and Sp. Atk stat.
-  
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
@@ -108,13 +124,12 @@ x-y: &x-y
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
+  short_description: *diamond-pearl.short_description
+  description: *diamond-pearl.description
   flavor_text: |
     An item to be held by Pikachu.
     It’s a puzzling orb that boosts
     its Attack and Sp. Atk stats.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -126,11 +141,10 @@ sun-moon: &sun-moon
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
+  short_description: *diamond-pearl.short_description
+  description: *diamond-pearl.description
   flavor_text: |
     An item to be held by Pikachu. It’s a puzzling orb
     that boosts its Attack and Sp. Atk stats.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

@@ -4,8 +4,6 @@ red-blue: &red-blue
   buy: &red-blue.buy 2100
   sell: &red-blue.sell 1050
   category: &red-blue.category evolution
-  flags: &red-blue.flags
-    - underground
   short_description: &red-blue.short_description 'Evolves certain Pokémon.'
   description: &red-blue.description |
     When this item is used on some Pokémon, the Pokémon will evolve.  Below is a list
@@ -21,9 +19,7 @@ gold-silver: &gold-silver
   flavor_text: |
     Evolves certain
     kinds of POKéMON.
-  
   category: *red-blue.category
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
 crystal: *gold-silver
@@ -33,14 +29,12 @@ ruby-sapphire: &ruby-sapphire
   pocket: *red-blue.pocket
   buy: &ruby-sapphire.buy 3000
   sell: &ruby-sapphire.sell 1500
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     Makes certain
     species of POKéMON
     evolve.
-  
   icon: &ruby-sapphire.icon water-stone.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -51,14 +45,12 @@ firered-leafgreen:
   pocket: *red-blue.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A peculiar stone that makes certain
     species of POKéMON evolve.
     It is a clear light blue.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -68,19 +60,30 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: &diamond-pearl.flags
+    - underground
   short_description: *red-blue.short_description
   description: *red-blue.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     A peculiar stone that makes certain
     species of Pokémon evolve.
     It is a clear, light blue.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+heartgold-soulsilver: &heartgold-soulsilver
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *red-blue.category
@@ -89,17 +92,15 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A peculiar stone that can make
     certain species of Pokémon evolve.
     It is the blue of a pool of clear water.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
-sun-moon: &sun-moon
+sun-moon:
   name: *ruby-sapphire.name
   category: *red-blue.category
   pocket: *red-blue.pocket
@@ -107,13 +108,23 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
-  flavor_text: |
+  flavor_text: &sun-moon.flavor_text |
     A peculiar stone that can make certain species of
     Pokémon evolve. It is the blue of a pool of
     clear water.
-  
   icon: *ruby-sapphire.icon
-ultra-sun-ultra-moon: *sun-moon
+ultra-sun-ultra-moon:
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  flags: *diamond-pearl.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+  flavor_text: *sun-moon.flavor_text
+  icon: *ruby-sapphire.icon

@@ -1,21 +1,71 @@
 gold-silver: &gold-silver
   name: ENERGYPOWDER
-  category: healing
+  category: &gold-silver.category healing
   pocket: misc
-  buy: 500
-  sell: 250
-  flags:
+  buy: &gold-silver.buy 500
+  sell: &gold-silver.sell 250
+  flags: &gold-silver.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
-  short_description: 'Restores 50 HP, but lowers happiness.'
-  description: |
+  short_description: 'Restores 50 HP, but lowers [happiness]{mechanic:happiness}.'
+  description: &gold-silver.description |
     Used on a party Pokémon
     :   Restores 50 [HP]{mechanic:hp}.  Decreases [happiness]{mechanic:happiness} by 5/5/10.
-  
   flavor_text: |
     Restores POKéMON
     HP by 50. Bitter.
 crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name EnergyPowder
+  category: *gold-silver.category
+  pocket: &ruby-sapphire.pocket medicine
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flags: *gold-silver.flags
+  short_description: &ruby-sapphire.short_description 'Restores 50 [HP]{mechanic:hp}, but lowers [happiness]{mechanic:happiness}.'
+  description: *gold-silver.description
+  flavor_text: |
+    A bitter powder
+    that restores HP
+    by 50 points.
+  icon: &ruby-sapphire.icon energy-powder.png
+emerald: *ruby-sapphire
+colosseum: *ruby-sapphire
+xd: *ruby-sapphire
+firered-leafgreen:
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *ruby-sapphire.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *gold-silver.description
+  flavor_text: |
+    A very bitter medicine powder.
+    It restores the HP of one POKéMON
+    by 50 points.
+  icon: *ruby-sapphire.icon
+diamond-pearl: &diamond-pearl
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *ruby-sapphire.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  fling_effect: damage
+  fling_power: 30
+  flags: *gold-silver.flags
+  short_description: *ruby-sapphire.short_description
+  description: *gold-silver.description
+  flavor_text: |
+    A very bitter medicine powder.
+    It restores the HP of one Pokémon by
+    50 points.
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl
+black-white: *diamond-pearl
+black-2-white-2: *diamond-pearl

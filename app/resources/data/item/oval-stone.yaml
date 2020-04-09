@@ -6,7 +6,7 @@ diamond-pearl: &diamond-pearl
   sell: &diamond-pearl.sell 1000
   fling_effect: damage
   fling_power: 80
-  flags: &diamond-pearl.flags
+  flags:
     - underground
   short_description: &diamond-pearl.short_description 'Evolves certain Pokémon.'
   description: &diamond-pearl.description |
@@ -14,16 +14,26 @@ diamond-pearl: &diamond-pearl
     of compatible Pokémon.
     
     {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "oval-stone"})}}
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     A peculiar stone that makes certain
     species of Pokémon evolve.
     It is shaped like an egg.
-  
   icon: &diamond-pearl.icon oval-stone.png
 platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+heartgold-soulsilver: &heartgold-soulsilver
+  name: *diamond-pearl.name
+  category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
+  fling_effect: damage
+  fling_power: 80
+  short_description: *diamond-pearl.short_description
+  description: *diamond-pearl.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *diamond-pearl.icon
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *diamond-pearl.name
   category: *diamond-pearl.category
@@ -32,14 +42,12 @@ x-y: &x-y
   sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 80
-  flags: *diamond-pearl.flags
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
     A peculiar stone that can make
     certain species of Pokémon evolve.
     It’s as round as a Pokémon Egg.
-  
   icon: *diamond-pearl.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -50,12 +58,10 @@ sun-moon: &sun-moon
   sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 80
-  flags: *diamond-pearl.flags
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
     A peculiar stone that can make certain species of
     Pokémon evolve. It’s as round as a Pokémon Egg.
-  
   icon: *diamond-pearl.icon
 ultra-sun-ultra-moon: *sun-moon

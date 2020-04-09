@@ -6,24 +6,37 @@ diamond-pearl: &diamond-pearl
   sell: &diamond-pearl.sell 500
   fling_effect: damage
   fling_power: 90
-  flags: &diamond-pearl.flags
+  flags:
     - holdable
     - holdable-active
     - underground
-  short_description: &diamond-pearl.short_description 'Held: Bug-Type moves from holder do 20% more damage. Changes Arceus''s and Judgment''s type to Bug.'
+  short_description: &diamond-pearl.short_description 'Held: []{type:bug} moves from holder do 20% more damage. Changes [Arceus''s]{pokemon:arceus} and [Judgment''s]{move:judgment} type to []{type:bug}.'
   description: &diamond-pearl.description |
-    Held: Increases the power of the holder's Bug moves by 20%.
-    Held by a Multitype Pokémon: Holder's type becomes Bug.
-  flavor_text: |
+    Held: Increases the power of the holder's []{type:bug} moves by 20%.
+    Held by a []{ability:multitype} (i.e. []{pokemon:arceus}) Pokémon: Holder's type becomes []{type:bug}.
+  flavor_text: &diamond-pearl.flavor_text |
     An item to be held by a Pokémon.
     It is a stone tablet that boosts the
     power of Bug-type moves.
-  
   icon: &diamond-pearl.icon insect-plate.png
 platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+heartgold-soulsilver: &heartgold-soulsilver
+  name: *diamond-pearl.name
+  category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
+  fling_effect: damage
+  fling_power: 90
+  flags: &heartgold-soulsilver.flags
+    - holdable
+    - holdable-active
+  short_description: *diamond-pearl.short_description
+  description: *diamond-pearl.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *diamond-pearl.icon
+black-white: *heartgold-soulsilver
+black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
   name: *diamond-pearl.name
   category: *diamond-pearl.category
@@ -32,14 +45,13 @@ x-y: &x-y
   sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 90
-  flags: *diamond-pearl.flags
+  flags: *heartgold-soulsilver.flags
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
     An item to be held by a Pokémon.
     It’s a stone tablet that boosts the
     power of Bug-type moves.
-  
   icon: *diamond-pearl.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -50,12 +62,11 @@ sun-moon: &sun-moon
   sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 90
-  flags: *diamond-pearl.flags
+  flags: *heartgold-soulsilver.flags
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
     An item to be held by a Pokémon. It’s a stone tablet
     that boosts the power of Bug-type moves.
-  
   icon: *diamond-pearl.icon
 ultra-sun-ultra-moon: *sun-moon

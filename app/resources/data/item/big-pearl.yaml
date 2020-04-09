@@ -1,16 +1,23 @@
-gold-silver: &gold-silver
-  name: 'BIG PEARL'
+gold-silver:
+  name: &gold-silver.name 'BIG PEARL'
   pocket: &gold-silver.pocket misc
-  buy: 7500
-  sell: 3750
-  flavor_text: |
+  buy: &gold-silver.buy 7500
+  sell: &gold-silver.sell 3750
+  flavor_text: &gold-silver.flavor_text |
     A big, beautiful
     pearl. Sell high.
-  
   category: &gold-silver.category loot
-  short_description: &gold-silver.short_description 'Sell for $3750, or to Ore Collector for $7500.'
-  description: &gold-silver.description 'Vendor trash.'
-crystal: *gold-silver
+  short_description: &gold-silver.short_description 'No effect.  Sell to shops.'
+  description: &gold-silver.description 'No effect.  Sell to shops.'
+crystal:
+  name: *gold-silver.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *gold-silver.flavor_text
+  category: *gold-silver.category
+  short_description: 'Sell for $3750, or to Ore Collector for $7500.'
+  description: 'Vendor trash.'
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name 'Big Pearl'
   category: *gold-silver.category
@@ -23,7 +30,6 @@ ruby-sapphire: &ruby-sapphire
     A lovely large pearl
     that would sell at a
     high price.
-  
   icon: &ruby-sapphire.icon big-pearl.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -40,7 +46,6 @@ firered-leafgreen:
     A quite-large pearl that sparkles
     in a pretty silver color.
     It can be sold at a high price.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -52,16 +57,26 @@ diamond-pearl: &diamond-pearl
   fling_power: 30
   short_description: *gold-silver.short_description
   description: *gold-silver.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     A quite-large pearl that sparkles in a
     pretty silver color. It can be sold at
     a high price to shops.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: &black-white
+  name: *ruby-sapphire.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: 'No effect.  Sell to shops for $4000 or to the Ore Maniac for $7500.'
+  description: 'No effect.  Sell to shops for $4000, or the Ore Maniac in the []{location:icirrus-city} Pokémon Center for $7500.'
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *gold-silver.category
@@ -75,7 +90,6 @@ x-y: &x-y
   flavor_text: |
     A rather large pearl that has a very nice silvery
     sheen. It can be sold to shops for a high price.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: *x-y

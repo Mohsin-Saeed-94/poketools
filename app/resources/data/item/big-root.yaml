@@ -1,4 +1,4 @@
-diamond-pearl: &diamond-pearl
+diamond-pearl:
   name: &diamond-pearl.name 'Big Root'
   category: &diamond-pearl.category held-items
   pocket: &diamond-pearl.pocket misc
@@ -9,15 +9,52 @@ diamond-pearl: &diamond-pearl
   flags: &diamond-pearl.flags
     - holdable
     - holdable-active
-  short_description: &diamond-pearl.short_description 'Held: Increases HP recovered from draining moves, Ingrain, and Aqua Ring by 3/10 (30%).'
-  description: &diamond-pearl.description 'Held: HP restored from Absorb, Aqua Ring, Drain Punch, Dream Eater, Giga Drain, Ingrain, Leech Life, Leech Seed, and Mega Drain is increased by 30%.  Damage inflicted is not affected.'
-  flavor_text: |
+  short_description: &diamond-pearl.short_description 'Held: Increases HP recovered from draining moves, []{move:ingrain}, and []{move:aqua-ring} by 30%.'
+  description: |
+    Held: HP restored from draining moves is increased by 30%.  Damage inflicted is not affected.
+    As it affects draining moves, damage taken via []{ability:liquid-ooze} is increased by 30%.
+    
+    Draining moves are:
+    - []{move:absorb}
+    - []{move:aqua-ring}
+    - []{move:drain-punch}
+    - []{move:dream-eater}
+    - []{move:giga-drain}
+    - []{move:ingrain}
+    - []{move:leech-life}
+    - []{move:leech-seed}
+    - []{move:mega-drain}
+  flavor_text: &diamond-pearl.flavor_text |
     A Pokémon hold item that boosts the
     power of HP-stealing moves to let the
     holder recover more HP.
-  
   icon: &diamond-pearl.icon big-root.png
-platinum: *diamond-pearl
+platinum:
+  name: *diamond-pearl.name
+  category: *diamond-pearl.category
+  pocket: *diamond-pearl.pocket
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
+  fling_effect: damage
+  fling_power: 10
+  flags: *diamond-pearl.flags
+  short_description: *diamond-pearl.short_description
+  description: &platinum.description |
+    Held: HP restored from draining moves is increased by 30%.  Damage inflicted is not affected.
+    As it affects draining moves, damage taken via []{ability:liquid-ooze} is increased by 30%.
+    
+    Draining mnoves are:
+    - []{move:absorb}
+    - []{move:aqua-ring}
+    - []{move:drain-punch}
+    - []{move:dream-eater}
+    - []{move:giga-drain}
+    - []{move:ingrain}
+    - []{move:leech-life}
+    - []{move:leech-seed}
+    - []{move:mega-drain}
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *diamond-pearl.icon
 heartgold-soulsilver: &heartgold-soulsilver
   name: *diamond-pearl.name
   category: *diamond-pearl.category
@@ -28,12 +65,11 @@ heartgold-soulsilver: &heartgold-soulsilver
   fling_power: 10
   flags: *diamond-pearl.flags
   short_description: *diamond-pearl.short_description
-  description: *diamond-pearl.description
+  description: *platinum.description
   flavor_text: |
     A Pokémon held item that boosts the
     power of HP-stealing moves to let the
     holder recover more HP.
-  
   icon: *diamond-pearl.icon
 black-white: *heartgold-soulsilver
 black-2-white-2: *heartgold-soulsilver
@@ -47,12 +83,11 @@ x-y: &x-y
   fling_power: 10
   flags: *diamond-pearl.flags
   short_description: *diamond-pearl.short_description
-  description: *diamond-pearl.description
+  description: *platinum.description
   flavor_text: |
     An item to be held by a Pokémon.
     It boosts the power of HP-stealing
     moves so the holder recovers more HP.
-  
   icon: *diamond-pearl.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -65,11 +100,10 @@ sun-moon: &sun-moon
   fling_power: 10
   flags: *diamond-pearl.flags
   short_description: *diamond-pearl.short_description
-  description: *diamond-pearl.description
+  description: *platinum.description
   flavor_text: |
     An item to be held by a Pokémon. It boosts the
     amount of HP the holder recovers from 
     HP-stealing moves.
-  
   icon: *diamond-pearl.icon
 ultra-sun-ultra-moon: *sun-moon

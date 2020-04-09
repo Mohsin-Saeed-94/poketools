@@ -56,25 +56,27 @@ class Region extends AbstractDoctrineDataMigration implements DataMigrationInter
     protected function transformVersionGroup($sourceData, RegionInVersionGroup $destinationData): RegionInVersionGroup
     {
         // Maps
-        $mapPosition = 1;
-        foreach ($sourceData['maps'] as $mapSlug => &$mapData) {
-            $mapData['position'] = $mapPosition;
-            $mapPosition++;
-            $map = null;
-            foreach ($destinationData->getMaps() as $checkMap) {
-                if ($checkMap->getSlug() === $mapSlug) {
-                    $map = $checkMap;
-                    break;
+        if (isset($sourceData['maps'])) {
+            $mapPosition = 1;
+            foreach ($sourceData['maps'] as $mapSlug => &$mapData) {
+                $mapData['position'] = $mapPosition;
+                $mapPosition++;
+                $map = null;
+                foreach ($destinationData->getMaps() as $checkMap) {
+                    if ($checkMap->getSlug() === $mapSlug) {
+                        $map = $checkMap;
+                        break;
+                    }
                 }
+                if ($map === null) {
+                    $map = new RegionMap();
+                    $map->setSlug($mapSlug);
+                }
+                $map = $this->mergeProperties($mapData, $map);
+                $mapData = $map;
             }
-            if ($map === null) {
-                $map = new RegionMap();
-                $map->setSlug($mapSlug);
-            }
-            $map = $this->mergeProperties($mapData, $map);
-            $mapData = $map;
+            unset($mapData);
         }
-        unset($mapData);
 
         /** @var RegionInVersionGroup $region */
         $region = $this->mergeProperties($sourceData, $destinationData);

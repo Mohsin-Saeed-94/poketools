@@ -4,14 +4,12 @@ red-blue: &red-blue
   buy: &red-blue.buy 1500
   sell: &red-blue.sell 750
   category: &red-blue.category revival
-  flags: &red-blue.flags
+  flags:
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
-    - holdable
-    - underground
-  short_description: &red-blue.short_description 'Revives with half HP.'
+  short_description: &red-blue.short_description 'Revives with half [HP]{mechanic:hp}.'
   description: &red-blue.description |
     Used on a party Pokémon
     :   Revives the Pokémon and restores half its [HP]{mechanic:hp}.
@@ -24,9 +22,13 @@ gold-silver: &gold-silver
   flavor_text: |
     Restores a fainted
     POKéMON to 1/2 HP.
-  
   category: *red-blue.category
-  flags: *red-blue.flags
+  flags: &gold-silver.flags
+    - countable
+    - consumable
+    - usable-overworld
+    - usable-in-battle
+    - holdable
   short_description: *red-blue.short_description
   description: *red-blue.description
 crystal: *gold-silver
@@ -36,14 +38,13 @@ ruby-sapphire: &ruby-sapphire
   pocket: &ruby-sapphire.pocket medicine
   buy: &ruby-sapphire.buy 2000
   sell: &ruby-sapphire.sell 1000
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     Revives a fainted
     POKéMON with half
     its HP.
-  
   icon: &ruby-sapphire.icon revive.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -54,16 +55,15 @@ firered-leafgreen:
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A medicine that revives a fainted
     POKéMON, restoring HP by half the
     maximum amount.
-  
   icon: *ruby-sapphire.icon
-diamond-pearl: &diamond-pearl
+diamond-pearl:
   name: *ruby-sapphire.name
   category: *red-blue.category
   pocket: *ruby-sapphire.pocket
@@ -71,19 +71,36 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags:
+    - countable
+    - consumable
+    - usable-overworld
+    - usable-in-battle
+    - holdable
+    - underground
   short_description: *red-blue.short_description
   description: *red-blue.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     A medicine that revives a fainted
     Pokémon. It restores half the
     Pokémon’s maximum HP.
-  
   icon: *ruby-sapphire.icon
-platinum: *diamond-pearl
-heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+platinum: &platinum
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 30
+  flags: *gold-silver.flags
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+heartgold-soulsilver: *platinum
+black-white: *platinum
+black-2-white-2: *platinum
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *red-blue.category
@@ -92,14 +109,13 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A medicine that can revive fainted
     Pokémon. It also restores half of
     a fainted Pokémon’s maximum HP.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -110,12 +126,11 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A medicine that can revive fainted Pokémon. It also
     restores half of a fainted Pokémon’s maximum HP.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

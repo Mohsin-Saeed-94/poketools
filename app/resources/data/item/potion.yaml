@@ -4,13 +4,12 @@ red-blue: &red-blue
   buy: &red-blue.buy 300
   sell: &red-blue.sell 150
   category: &red-blue.category healing
-  flags: &red-blue.flags
+  flags:
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
-    - holdable
-  short_description: &red-blue.short_description 'Restores 20 HP.'
+  short_description: &red-blue.short_description 'Restores 20 [HP]{mechanic:hp}.'
   description: &red-blue.description |
     Used on a friendly Pokémon
     :   Restores 20 [HP]{mechanic:hp}.
@@ -23,9 +22,13 @@ gold-silver: &gold-silver
   flavor_text: |
     Restores POKéMON
     HP by 20.
-  
   category: *red-blue.category
-  flags: *red-blue.flags
+  flags: &gold-silver.flags
+    - countable
+    - consumable
+    - usable-overworld
+    - usable-in-battle
+    - holdable
   short_description: *red-blue.short_description
   description: *red-blue.description
 crystal: *gold-silver
@@ -35,14 +38,13 @@ ruby-sapphire: &ruby-sapphire
   pocket: &ruby-sapphire.pocket medicine
   buy: &ruby-sapphire.buy 200
   sell: &ruby-sapphire.sell 100
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     Restores the HP of
     a POKéMON by
     20 points.
-  
   icon: &ruby-sapphire.icon potion.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -53,14 +55,13 @@ firered-leafgreen:
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A spray-type wound medicine.
     It restores the HP of one POKéMON
     by 20 points.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -70,14 +71,13 @@ diamond-pearl: &diamond-pearl
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A spray-type medicine for wounds.
     It restores the HP of one Pokémon by
     just 20 points.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
@@ -91,14 +91,13 @@ x-y: &x-y
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A spray-type medicine for treating
     wounds. It can be used to restore
     20 HP to an injured Pokémon.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -109,12 +108,11 @@ sun-moon: &sun-moon
   sell: *ruby-sapphire.sell
   fling_effect: damage
   fling_power: 30
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A spray-type medicine for treating wounds. It can
     be used to restore 20 HP to an injured Pokémon.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

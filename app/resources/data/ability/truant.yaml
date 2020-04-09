@@ -1,7 +1,25 @@
 ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name Truant
   short_description: &ruby-sapphire.short_description 'Skips every second turn.'
-  description: &ruby-sapphire.description |
+  description: |
+    Every second turn on which this Pokémon should attempt to use a move, it will instead do nothing ("loaf around").
+    
+    Loafing around interrupts moves that take multiple turns the same way [paralysis]{mechanic:paralysis}, [flinching]{mechanic:flinching}, etc do.  Most such moves, for example []{move:bide} or []{move:rollout}, are simply cut off upon loafing around.  Attacks with a recharge turn, such as []{move:hyper-beam}, do not have to recharge; attacks with a preparation turn, such as []{move:fly}, do not end up being used.  Moves that are forced over multiple turns and keep going through failure, such as []{move:outrage}, []{move:uproar}, or any move forced by []{move:encore}, keep going as usual.
+    
+    If this Pokémon is [confused]{mechanic:confusion}, its confusion is not checked when loafing around; the Pokémon cannot hurt itself, and its confusion does not end or come closer to ending.
+    
+    If this Pokémon attempts to move but fails, e.g. because of [paralysis]{mechanic:paralysis}, it still counts as having moved and will loaf around the next turn.  If it does not attempt to move, e.g. because it is [asleep]{mechanic:sleep} or [frozen]{mechanic:freezing}, whatever it would have done will be postponed until its next attempt; that is, it will either loaf around or move as usual, depending on what it last did.
+    
+    This ability can be changed with []{move:role-play} or traded away with []{move:skill-swap}.
+  flavor_text: 'Moves only every two turns.'
+emerald: *ruby-sapphire
+colosseum: *ruby-sapphire
+xd: *ruby-sapphire
+firered-leafgreen: *ruby-sapphire
+diamond-pearl: &diamond-pearl
+  name: *ruby-sapphire.name
+  short_description: *ruby-sapphire.short_description
+  description: &diamond-pearl.description |
     Every second turn on which this Pokémon should attempt to use a move, it will instead do nothing ("loaf around").
     
     Loafing around interrupts moves that take multiple turns the same way [paralysis]{mechanic:paralysis}, [flinching]{mechanic:flinching}, etc do.  Most such moves, for example []{move:bide} or []{move:rollout}, are simply cut off upon loafing around.  Attacks with a recharge turn, such as []{move:hyper-beam}, do not have to recharge; attacks with a preparation turn, such as []{move:fly}, do not end up being used.  Moves that are forced over multiple turns and keep going through failure, such as []{move:outrage}, []{move:uproar}, or any move forced by []{move:encore}, keep going as usual.
@@ -11,15 +29,6 @@ ruby-sapphire: &ruby-sapphire
     If this Pokémon attempts to move but fails, e.g. because of [paralysis]{mechanic:paralysis} or []{move:gravity}, it still counts as having moved and will loaf around the next turn.  If it does not attempt to move, e.g. because it is [asleep]{mechanic:sleep} or [frozen]{mechanic:freezing}, whatever it would have done will be postponed until its next attempt; that is, it will either loaf around or move as usual, depending on what it last did.
     
     This ability cannot be changed with []{move:worry-seed}, but it can be disabled with []{move:gastro-acid}, changed with []{move:role-play}, or traded away with []{move:skill-swap}.
-  flavor_text: 'Moves only every two turns.'
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
   flavor_text: |
     The Pokémon can’t attack
     on consecutive turns.
@@ -27,7 +36,7 @@ platinum: *diamond-pearl
 heartgold-soulsilver: &heartgold-soulsilver
   name: *ruby-sapphire.name
   short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  description: *diamond-pearl.description
   flavor_text: |
     Pokémon can’t attack
     on consecutive turns.
@@ -38,7 +47,7 @@ omega-ruby-alpha-sapphire: *diamond-pearl
 sun-moon: &sun-moon
   name: *ruby-sapphire.name
   short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  description: *diamond-pearl.description
   flavor_text: |
     The Pokémon can’t use a move the following turn if it
     uses one.

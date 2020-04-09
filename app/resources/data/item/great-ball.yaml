@@ -4,17 +4,16 @@ red-blue: &red-blue
   buy: &red-blue.buy 600
   sell: &red-blue.sell 300
   category: &red-blue.category standard-balls
-  flags: &red-blue.flags
+  flags:
     - countable
     - consumable
     - usable-in-battle
-    - holdable
-  short_description: &red-blue.short_description 'Tries to catch a wild Pokémon.  Success rate is 1.5×.'
+  short_description: &red-blue.short_description 'Tries to [catch]{mechanic:catch} a wild Pokémon.  Success rate is 1.5×.'
   description: &red-blue.description |
     Used in battle
     :   Attempts to [catch]{mechanic:catch} a wild Pokémon, using a catch rate of 1.5×.
     
-        If used in a trainer battle, nothing happens and the ball is lost.
+    If used in a trainer battle, nothing happens and the ball is lost.
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -24,9 +23,12 @@ gold-silver: &gold-silver
   flavor_text: |
     A BALL with a de-
     cent success rate.
-  
   category: *red-blue.category
-  flags: *red-blue.flags
+  flags: &gold-silver.flags
+    - countable
+    - consumable
+    - usable-in-battle
+    - holdable
   short_description: *red-blue.short_description
   description: *red-blue.description
 crystal: *gold-silver
@@ -36,14 +38,13 @@ ruby-sapphire: &ruby-sapphire
   pocket: *gold-silver.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A good BALL with a
     higher catch rate
     than a POKé BALL.
-  
   icon: &ruby-sapphire.icon great-ball.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -54,14 +55,13 @@ firered-leafgreen:
   pocket: *gold-silver.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A good, quality BALL that offers
     a higher POKéMON catch rate than
     a standard POKé BALL.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -69,14 +69,13 @@ diamond-pearl: &diamond-pearl
   pocket: *gold-silver.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A good, high-performance Ball that
     provides a higher Pokémon catch rate
     than a standard Poké Ball.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
@@ -88,14 +87,13 @@ x-y: &x-y
   pocket: *gold-silver.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A good, high-performance Poké Ball
     that provides a higher Pokémon catch
     rate than a standard Poké Ball can.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -104,13 +102,12 @@ sun-moon: &sun-moon
   pocket: *gold-silver.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
-  flags: *red-blue.flags
+  flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A good, high-performance Poké Ball that provides
     a higher Pokémon catch rate than a standard
     Poké Ball.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

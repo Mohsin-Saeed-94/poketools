@@ -4,8 +4,8 @@ red-blue: &red-blue
   buy: &red-blue.buy 10000
   sell: &red-blue.sell 5000
   category: &red-blue.category loot
-  short_description: &red-blue.short_description 'Sell for $5000, or to Ore Collector for $10000.'
-  description: &red-blue.description 'Vendor trash.'
+  short_description: &red-blue.short_description 'No effect.  Sell to shops.'
+  description: &red-blue.description 'No effect.  Sell to shops.'
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
@@ -15,7 +15,6 @@ gold-silver: &gold-silver
   flavor_text: |
     Made of pure gold.
     Sell high.
-  
   category: *red-blue.category
   short_description: *red-blue.short_description
   description: *red-blue.description
@@ -32,7 +31,6 @@ ruby-sapphire: &ruby-sapphire
     A nugget of pure
     gold. Can be sold at
     a high price.
-  
   icon: &ruby-sapphire.icon nugget.png
 emerald: *ruby-sapphire
 colosseum: *ruby-sapphire
@@ -49,7 +47,6 @@ firered-leafgreen:
     A nugget of pure gold that gives
     off a lustrous gleam.
     It can be sold at a high price.
-  
   icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
@@ -61,16 +58,26 @@ diamond-pearl: &diamond-pearl
   fling_power: 30
   short_description: *red-blue.short_description
   description: *red-blue.description
-  flavor_text: |
+  flavor_text: &diamond-pearl.flavor_text |
     A nugget of pure gold that gives off a
     lustrous gleam. It can be sold at a
     high price to shops.
-  
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
-black-white: *diamond-pearl
-black-2-white-2: *diamond-pearl
+black-white: &black-white
+  name: *ruby-sapphire.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  fling_effect: damage
+  fling_power: 30
+  short_description: 'No effect.  Sell to shops for $5000 or to the Ore Maniac for $10000.'
+  description: 'No effect.  Sell to shops for $5000, or the Ore Maniac in the []{location:icirrus-city} Pokémon Center for $10000.'
+  flavor_text: *diamond-pearl.flavor_text
+  icon: *ruby-sapphire.icon
+black-2-white-2: *black-white
 x-y: &x-y
   name: *ruby-sapphire.name
   category: *red-blue.category
@@ -85,7 +92,6 @@ x-y: &x-y
     A nugget of the purest gold that gives
     off a lustrous gleam in direct light.
     It can be sold at a high price to shops.
-  
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -102,6 +108,5 @@ sun-moon: &sun-moon
     A nugget of the purest gold that gives off a
     lustrous gleam in direct light. It can be sold at a
     high price to shops.
-  
   icon: *ruby-sapphire.icon
 ultra-sun-ultra-moon: *sun-moon

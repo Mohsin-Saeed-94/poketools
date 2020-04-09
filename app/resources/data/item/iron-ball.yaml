@@ -6,17 +6,20 @@ diamond-pearl: &diamond-pearl
   sell: &diamond-pearl.sell 2000
   fling_effect: damage
   fling_power: 130
-  flags: &diamond-pearl.flags
+  flags:
     - holdable
     - holdable-active
     - underground
-  short_description: &diamond-pearl.short_description 'Held: Holder''s Speed is halved. Negates all Ground-type immunities, and makes Flying-types take neutral damage from Ground-type moves. Arena Trap. Spikes, and Toxic Spikes affect the holder.'
-  description: &diamond-pearl.description 'Held: Decreases the holder''s Speed by 50%.  If the holder is Flying or has Levitate, it takes regular damage from Ground attacks and is suspectible to Spikes and Toxic Spikes.'
+  short_description: &diamond-pearl.short_description 'Held: Holder''s [Speed]{mechanic:speed} is halved. Negates all []{type:ground} immunities, and makes []{type:flying} Pokémon take neutral damage from []{type:ground} moves. []{ability:arena-trap}, []{move:spikes}, and []{move:toxic-spikes} affect the holder.'
+  description: &diamond-pearl.description |
+    Held
+    :   Decreases the holder's [Speed]{mechanic:speed} by 50%.  If the holder is []{type:flying} or has
+    []{ability:levitate}, it takes regular damage from []{type:ground} attacks and is susceptible to
+    []{ability:arena-trap}, []{move:spikes}, and []{move:toxic-spikes}.
   flavor_text: |
     A Pokémon hold item that cuts Speed.
     It makes Flying-type and levitating
     holders susceptible to Ground moves.
-  
   icon: &diamond-pearl.icon iron-ball.png
 platinum: *diamond-pearl
 heartgold-soulsilver: &heartgold-soulsilver
@@ -27,14 +30,15 @@ heartgold-soulsilver: &heartgold-soulsilver
   sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 130
-  flags: *diamond-pearl.flags
+  flags: &heartgold-soulsilver.flags
+    - holdable
+    - holdable-active
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
     A Pokémon held item that cuts Speed.
     It makes Flying-type and levitating
     holders susceptible to Ground moves.
-  
   icon: *diamond-pearl.icon
 black-white: *heartgold-soulsilver
 black-2-white-2: *heartgold-soulsilver
@@ -46,14 +50,13 @@ x-y: &x-y
   sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 130
-  flags: *diamond-pearl.flags
+  flags: *heartgold-soulsilver.flags
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
     An item to be held by a Pokémon.
     It lowers Speed and allows Ground-type
     moves to hit Flying-type and levitating holders.
-  
   icon: *diamond-pearl.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
@@ -64,13 +67,12 @@ sun-moon: &sun-moon
   sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 130
-  flags: *diamond-pearl.flags
+  flags: *heartgold-soulsilver.flags
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
     An item to be held by a Pokémon. It lowers Speed
     and allows Ground-type moves to hit Flying-type
     and levitating holders.
-  
   icon: *diamond-pearl.icon
 ultra-sun-ultra-moon: *sun-moon

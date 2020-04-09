@@ -1,0 +1,56 @@
+{% extends 'debug_base.html.twig' %}
+
+{% block title %}Item{% endblock %}
+
+{% block body %}
+    <p>{{ items|length }} items</p>
+    <table class="table table-bordered"
+           data-tables="{}">
+        <thead>
+        <tr>
+            <th>Slug</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Pocket</th>
+            <th>Flags</th>
+            <th>Buy</th>
+            <th>Sell</th>
+            <th>Fling Effect</th>
+            <th>Fling Power</th>
+            <th>Short Desc.</th>
+            <th>Desc.</th>
+            <th>Flavor</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <th>
+                    <a href="{{ path('item_view', {'itemSlug': item.slug, 'versionSlug': version.slug}) }}">
+                        {{ item.slug }}
+                    </a>
+                </th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.category.slug }}</td>
+                <td>{{ item.pocket.slug }}</td>
+                <td>
+                    {% if item.flags %}
+                        <ul>
+                            {% for flag in item.flags %}
+                                <li>{{ flag.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </td>
+                <td>{{ item.buy }}</td>
+                <td>{{ item.sell }}</td>
+                <td>{% if item.flingEffect %}{{ item.flingEffect.description }}{% endif %}</td>
+                <td>{{ item.flingPower }}</td>
+                <td class="pkt-text">{{ item.shortDescription|markdown(false) }}</td>
+                <td class="pkt-text">{{ item.description|markdown }}</td>
+                <td>{{ item.flavorText|nl2br }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
