@@ -71,6 +71,27 @@ print('Using version group {version_group}'.format(version_group=version_group))
 
 # Slug maps keyed by internal id
 move_slugs = {}
+move_name_changes = {
+    'ancientpower': 'ancient-power',
+    'bubblebeam': 'bubble-beam',
+    'doubleslap': 'double-slap',
+    'dragonbreath': 'dragon-breath',
+    'dynamicpunch': 'dynamic-punch',
+    'extremespeed': 'extreme-speed',
+    'faint-attack': 'feint-attack',
+    'featherdance': 'feather-dance',
+    'grasswhistle': 'grass-whistle',
+    'hi-jump-kick': 'high-jump-kick',
+    'poisonpowder': 'poison-powder',
+    'selfdestruct': 'self-destruct',
+    'smellingsalt': 'smelling-salts',
+    'softboiled': 'soft-boiled',
+    'solarbeam': 'solar-beam',
+    'sonicboom': 'sonic-boom',
+    'thunderpunch': 'thunder-punch',
+    'thundershock': 'thunder-shock',
+    'vicegrip': 'vice-grip',
+}
 
 
 def get_moves():
@@ -80,29 +101,6 @@ def get_moves():
         move_names_offset = 0x0B0000
     else:
         move_names_offset = 0x0BC000
-    move_name_changes = {
-        'ancientpower': 'ancient-power',
-        'bubblebeam': 'bubble-beam',
-        'doubleslap': 'double-slap',
-        'dragonbreath': 'dragon-breath',
-        'dynamicpunch': 'dynamic-punch',
-        'extremespeed': 'extreme-speed',
-        'faint-attack': 'feint-attack',
-        'featherdance': 'feather-dance',
-        'grasswhistle': 'grass-whistle',
-        'hi-jump-kick': 'high-jump-kick',
-        'poisonpowder': 'poison-powder',
-        'sand-attack': 'sand-attack',
-        'selfdestruct': 'self-destruct',
-        'smellingsalt': 'smelling-salts',
-        'smokescreen': 'smokescreen',
-        'softboiled': 'soft-boiled',
-        'solarbeam': 'solar-beam',
-        'sonicboom': 'sonic-boom',
-        'thunderpunch': 'thunder-punch',
-        'thundershock': 'thunder-shock',
-        'vicegrip': 'vice-grip',
-    }
     move_names = {}
     name = bytearray()
     move_id = 1
@@ -111,8 +109,6 @@ def get_moves():
         if char == 0x50:
             decoded_name = name.decode('pokemon_gen1')
             move_slug = slugify.slugify(decoded_name)
-            if move_slug in move_name_changes:
-                move_slug = move_name_changes[move_slug]
             move_names[move_id] = decoded_name
             move_slugs[move_id] = move_slug
             name = bytearray()
@@ -163,16 +159,27 @@ def get_moves():
                 'name': move_names[move_index],
                 'power': entry[0x02],
                 'type': _type_map[entry[0x03]],
-                'accuracy': (entry[0x04] // 255) * 100,
+                'accuracy': round(entry[0x04] / 255 * 100),
                 'pp': entry[0x05],
                 'effect': effect_id + 1,
             }
         }
+        if out[move_slug][version_group]['power'] == 0:
+            del out[move_slug][version_group]['power']
 
         # Some extra info comes from the existing data
-        yaml_path = os.path.join(args.out_moves, '{move}.yaml'.format(move=move_slug))
+        if move_slug in move_name_changes:
+            yaml_path = os.path.join(args.out_moves, '{move}.yaml'.format(move=move_name_changes[move_slug]))
+        else:
+            yaml_path = os.path.join(args.out_moves, '{move}.yaml'.format(move=move_slug))
         with open(yaml_path, 'r') as move_yaml:
             old_move_data = yaml.load(move_yaml.read())
+        if version_group not in old_move_data:
+            # If the name has changed, try the original name, as it may have been moved already.
+            if move_slug in move_name_changes:
+                yaml_path = os.path.join(args.out_moves, '{move}.yaml'.format(move=move_slug))
+                with open(yaml_path, 'r') as move_yaml:
+                    old_move_data = yaml.load(move_yaml.read())
         for key in pullup_keys:
             if key in old_move_data[version_group]:
                 out[move_slug][version_group][key] = old_move_data[version_group][key]
@@ -185,11 +192,14 @@ out_moves = get_moves()
 # Slug maps keyed by internal id
 item_slugs = {}
 tm_moves = {}
+item_name_changes = {
+    'thunderstone': 'thunder-stone',
+}
 
 
 def get_items():
     print('Dumping items')
-    _shop_order = [
+    shop_order = [
         'viridian-city/whole-area/mart',
         'pewter-city/whole-area/mart',
         'cerulean-city/whole-area/mart',
@@ -289,12 +299,12 @@ def get_items():
     shopid = 0
     print('Dumping shop data')
     for shopdata in shops:
-        if _shop_order[shopid] is None:
+        if shop_order[shopid] is None:
             # This will skip the dummy shop in the game data.
             continue
 
         shopdata = shopdata.lstrip(b'\xFE').rstrip(b'\xFF')
-        shoplocationparts = _shop_order[shopid].split('/')
+        shoplocationparts = shop_order[shopid].split('/')
         shoplocation = shoplocationparts.pop(0)
         shopidentifier = shoplocationparts.pop(-1)
         shoparea = '/'.join(shoplocationparts)
@@ -802,7 +812,7 @@ def get_encounters():
         # 0x69: {'location': 'unused-map-69', 'area': 'whole-area'},
         # 0x6A: {'location': 'unused-map-6a', 'area': 'whole-area'},
         # 0x6B: {'location': 'unused-map-6b', 'area': 'whole-area'},
-        0x6C: {'location': 'victory-road', 'area': '1f'},
+        0x6C: {'location': 'kanto-victory-road', 'area': '1f'},
         # 0x6D: {'location': 'unused-map-6d', 'area': 'whole-area'},
         # 0x6E: {'location': 'unused-map-6e', 'area': 'whole-area'},
         # 0x6F: {'location': 'unused-map-6f', 'area': 'whole-area'},
@@ -850,7 +860,7 @@ def get_encounters():
         0x99: {'location': 'fuchsia-city', 'area': 'bills-grandpas-house'},
         0x9A: {'location': 'fuchsia-city', 'area': 'pokemon-center'},
         0x9B: {'location': 'fuchsia-city', 'area': 'wardens-house'},
-        0x9C: {'location': 'safari-zone', 'area': 'gate'},
+        0x9C: {'location': 'kanto-safari-zone', 'area': 'gate'},
         0x9D: {'location': 'fuchsia-city', 'area': 'gym'},
         0x9E: {'location': 'fuchsia-city', 'area': 'safari-zone-staff'},
         0x9F: {'location': 'seafoam-islands', 'area': 'b1f'},
@@ -888,11 +898,11 @@ def get_encounters():
         0xBF: {'location': 'kanto-route-18', 'area': 'gate-2f'},
         0xC0: {'location': 'seafoam-islands', 'area': '1f'},
         0xC1: {'location': 'route-23', 'area': 'entrance'},
-        0xC2: {'location': 'victory-road', 'area': '2f'},
+        0xC2: {'location': 'kanto-victory-road', 'area': '2f'},
         0xC3: {'location': 'route-12', 'area': 'gate-2f'},
         0xC4: {'location': 'vermilion-city', 'area': 'house-girl'},
         0xC5: {'location': 'digletts-cave', 'area': 'underground'},
-        0xC6: {'location': 'victory-road', 'area': '3f'},
+        0xC6: {'location': 'kanto-victory-road', 'area': '3f'},
         0xC7: {'location': 'rocket-hideout', 'area': 'b1f'},
         0xC8: {'location': 'rocket-hideout', 'area': 'b2f'},
         0xC9: {'location': 'rocket-hideout', 'area': 'b3f'},
@@ -911,15 +921,15 @@ def get_encounters():
         0xD6: {'location': 'pokemon-mansion', 'area': '2f'},
         0xD7: {'location': 'pokemon-mansion', 'area': '3f'},
         0xD8: {'location': 'pokemon-mansion', 'area': 'b1f'},
-        0xD9: {'location': 'safari-zone', 'area': 'area-1-east'},
-        0xDA: {'location': 'safari-zone', 'area': 'area-2-north'},
-        0xDB: {'location': 'safari-zone', 'area': 'area-3-west'},
-        0xDC: {'location': 'safari-zone', 'area': 'middle'},
-        0xDD: {'location': 'safari-zone', 'area': 'middle-rest-house'},
-        0xDE: {'location': 'safari-zone', 'area': 'area-3-west-secret-house'},
-        0xDF: {'location': 'safari-zone', 'area': 'area-3-west-rest-house'},
-        0xE0: {'location': 'safari-zone', 'area': 'area-1-east-rest-house'},
-        0xE1: {'location': 'safari-zone', 'area': 'area-2-north-rest-house'},
+        0xD9: {'location': 'kanto-safari-zone', 'area': 'area-1-east'},
+        0xDA: {'location': 'kanto-safari-zone', 'area': 'area-2-north'},
+        0xDB: {'location': 'kanto-safari-zone', 'area': 'area-3-west'},
+        0xDC: {'location': 'kanto-safari-zone', 'area': 'middle'},
+        0xDD: {'location': 'kanto-safari-zone', 'area': 'middle-rest-house'},
+        0xDE: {'location': 'kanto-safari-zone', 'area': 'area-3-west-secret-house'},
+        0xDF: {'location': 'kanto-safari-zone', 'area': 'area-3-west-rest-house'},
+        0xE0: {'location': 'kanto-safari-zone', 'area': 'area-1-east-rest-house'},
+        0xE1: {'location': 'kanto-safari-zone', 'area': 'area-2-north-rest-house'},
         0xE2: {'location': 'cerulean-cave', 'area': '2f'},
         0xE3: {'location': 'cerulean-cave', 'area': 'b1f'},
         0xE4: {'location': 'cerulean-cave', 'area': '1f'},
@@ -1139,10 +1149,55 @@ if args.write_moves:
         with open(yaml_path, 'w') as move_yaml:
             yaml.dump(data, move_yaml)
 
+    # Remove this version group's data from the new name file
+    for old_name, new_name in move_name_changes.items():
+        yaml_path = os.path.join(args.out_moves, '{slug}.yaml'.format(slug=new_name))
+        with open(yaml_path, 'r') as move_yaml:
+            data = yaml.load(move_yaml.read())
+        try:
+            del data[version_group]
+        except KeyError:
+            # No need to re-write this file
+            continue
+        with open(yaml_path, 'w') as move_yaml:
+            yaml.dump(data, move_yaml)
+
 if args.write_items:
+    skip_items = [
+        '10f',
+        '11f',
+        '1f',
+        '2f',
+        '3f',
+        '4f',
+        '5f',
+        '6f',
+        '7f',
+        '8f',
+        '9f',
+        'b1f',
+        'b2f',
+        'b4f',
+        'boulderbadge',
+        'cascadebadge',
+        'coin',
+        'earthbadge',
+        'marshbadge',
+        'oak-s-parcel',
+        'pokedex',
+        'rainbowbadge',
+        's-s-ticket',
+        'soulbadge',
+        'thunderbadge',
+        'volcanobadge',
+    ]
+
     print('Writing Items')
     for item_slug, item_data in progressbar.progressbar(out_items.items()):
-        yaml_path = os.path.join(args.out_moves, '{slug}.yaml'.format(slug=item_slug))
+        if item_slug in skip_items:
+            # There's a lot of bug items in the internal list
+            continue
+        yaml_path = os.path.join(args.out_items, '{slug}.yaml'.format(slug=item_slug))
         try:
             with open(yaml_path, 'r') as item_yaml:
                 data = yaml.load(item_yaml.read())
@@ -1151,6 +1206,19 @@ if args.write_items:
         data.update(item_data)
         with open(yaml_path, 'w') as item_yaml:
             yaml.dump(data, item_yaml)
+
+    # Remove this version group's data from the new name file
+    for old_name, new_name in item_name_changes.items():
+        yaml_path = os.path.join(args.out_items, '{slug}.yaml'.format(slug=new_name))
+        with open(yaml_path, 'r') as item_yaml:
+            data = yaml.load(item_yaml.read())
+        try:
+            del data[version_group]
+        except KeyError:
+            # No need to re-write this file
+            continue
+        with open(yaml_path, 'w') as move_yaml:
+            yaml.dump(data, move_yaml)
 
 if args.write_shops:
     print('Writing Shops')
