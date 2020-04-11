@@ -1,10 +1,14 @@
 red-blue: &red-blue
   region: &red-blue.region kanto
   name: &red-blue.name 'Diglett''s Cave'
-  areas: &red-blue.areas
-    whole-area:
-      name: 'Whole area'
-      default: true
+  areas:
+    underground:
+      name: Underground
+      default: &red-blue.areas.underground.default true
+    route-2:
+      name: 'Route 2 side'
+    route-11:
+      name: 'Route 11 side'
   map:
     map: &red-blue.map.map kanto
     z: &red-blue.map.z -10
@@ -13,7 +17,10 @@ yellow: *red-blue
 gold-silver: &gold-silver
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas: &gold-silver.areas
+    whole-area:
+      name: 'Whole area'
+      default: *red-blue.areas.underground.default
   map:
     map: *red-blue.map.map
     z: *red-blue.map.z
@@ -22,15 +29,14 @@ crystal: *gold-silver
 firered-leafgreen:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas: *gold-silver.areas
   map:
     map: *red-blue.map.map
     overlay: '<path d="m 44,56 a 4,4 0 0 0 -4,4 4,4 0 0 0 4,4 h 4 l 80,24 v 4 a 4,4 0 0 0 4,4 4,4 0 0 0 4,-4 V 88 81.5 L 48,56 Z" />'
 heartgold-soulsilver:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas: *gold-silver.areas
   map:
     map: *red-blue.map.map
-    overlay: |
-      <path d="M 83 42 C 81.343146 42 80 43.343146 80 45 C 80 46.656854 81.343146 48 83 48 L 86 48 L 160 81 L 160 85 C 160 86.656854 161.34315 88 163 88 C 164.65685 88 166 86.656854 166 85 L 166 78.755859 L 86 42 L 83 42 z " />
+    overlay: '<path d="M 83 42 C 81.343146 42 80 43.343146 80 45 C 80 46.656854 81.343146 48 83 48 L 86 48 L 160 81 L 160 85 C 160 86.656854 161.34315 88 163 88 C 164.65685 88 166 86.656854 166 85 L 166 78.755859 L 86 42 L 83 42 z " />'
