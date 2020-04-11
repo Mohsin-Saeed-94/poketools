@@ -104,7 +104,7 @@ final class DataPokemonMoveSortCommand extends Command
         $data = $this->sortData($data);
 
         $this->io->text(['Writing new data to '.$path, 'This will take a while...']);
-        $success = $this->writeData($data, str_replace('.csv', '.new.csv', $path));
+        $success = $this->writeData($data, $path);
 
         if ($success) {
             $this->io->success(
