@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name 'Sky Attack'
+  name: 'SKY ATTACK'
+  power: &red-blue.power 140
+  type: &red-blue.type flying
+  accuracy: 0
+  pp: &red-blue.pp 5
+  effect: 40
   crit_rate_bonus: &red-blue.crit_rate_bonus 1
   flinch_chance: &red-blue.flinch_chance 30
   flags: &red-blue.flags
@@ -11,18 +16,12 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type flying
-  power: &red-blue.power 140
-  pp: &red-blue.pp 5
-  accuracy: &red-blue.accuracy 90
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 76
   effect_chance: 10
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name 'Sky Attack'
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -32,18 +31,18 @@ gold-silver: &gold-silver
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: &gold-silver.accuracy 90
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class physical
+  effect: &gold-silver.effect 76
   effect_chance: &gold-silver.effect_chance 30
   flavor_text: |
     1st turn: Prepare
     2nd turn: Attack
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -53,11 +52,11 @@ ruby-sapphire: &ruby-sapphire
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 2
@@ -66,7 +65,7 @@ ruby-sapphire: &ruby-sapphire
     then strikes the next turn.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -76,15 +75,15 @@ colosseum: &colosseum
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -94,20 +93,19 @@ firered-leafgreen:
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A 2nd-turn attack
     move with a high
     critical-hit ratio.
     The foe may flinch.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -117,11 +115,11 @@ diamond-pearl: &diamond-pearl
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 6
@@ -133,7 +131,7 @@ diamond-pearl: &diamond-pearl
     target flinch.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -143,15 +141,15 @@ heartgold-soulsilver:
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -161,11 +159,11 @@ black-white: &black-white
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A second-turn attack move where
@@ -173,7 +171,7 @@ black-white: &black-white
     It may also make the target flinch.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -183,18 +181,18 @@ x-y:
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     A second-turn attack move where
     critical hits land more easily.
     This may also make the target flinch.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -204,17 +202,17 @@ omega-ruby-alpha-sapphire:
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
@@ -224,11 +222,11 @@ sun-moon: &sun-moon
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A second-turn attack move where critical hits land

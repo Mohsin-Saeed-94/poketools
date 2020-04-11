@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name 'Sonic Boom'
+  name: SONICBOOM
+  power: 1
+  type: &red-blue.type normal
+  accuracy: 0
+  pp: &red-blue.pp 20
+  effect: 42
   flags: &red-blue.flags
     - protect
     - mirror
@@ -7,84 +12,90 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  pp: &red-blue.pp 20
-  accuracy: &red-blue.accuracy 90
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 131
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name 'Sonic Boom'
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: &gold-silver.accuracy 90
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class physical
+  effect: &gold-silver.effect 131
   flavor_text: |
     Always inflicts
     20HP damage.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 12
   flavor_text: |
     Launches shock waves that
     always inflict 20 HP damage.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  pp: *red-blue.pp
+  accuracy: *gold-silver.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     The foe is hit with
     a shock wave that
     always inflicts 20-
     HP damage.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class special
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
@@ -94,66 +105,66 @@ diamond-pearl: &diamond-pearl
     inflicts 20 HP damage.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: &black-white.flavor_text |
     The target is hit with a destructive shock
     wave that always inflicts 20 HP damage.
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: |
     The target is hit with a destructive shock wave that
     always inflicts 20 HP damage.

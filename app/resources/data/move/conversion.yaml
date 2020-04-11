@@ -1,20 +1,21 @@
 red-blue: &red-blue
-  name: &red-blue.name Conversion
+  name: CONVERSION
+  power: 0
+  type: &red-blue.type normal
+  accuracy: 100
+  pp: &red-blue.pp 30
+  effect: 25
   flags: &red-blue.flags
     - snatch
   categories: &red-blue.categories
     - unique
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  pp: &red-blue.pp 30
   priority: &red-blue.priority 0
   target: &red-blue.target user
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 31
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Conversion
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -23,14 +24,14 @@ gold-silver: &gold-silver
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class physical
+  effect: &gold-silver.effect 31
   flavor_text: |
     Change user's type
     to a move's type.
 crystal: *gold-silver
 ruby-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -39,16 +40,15 @@ ruby-sapphire:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 12
   flavor_text: |
     Changes the user’s type
     into an own move’s type.
-
 emerald:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -57,18 +57,15 @@ emerald:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: |
     Changes the user’s type
     into a known move’s type.
-
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -77,16 +74,28 @@ firered-leafgreen:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  pp: *red-blue.pp
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     The user changes
     its type to match
     the type of one of
     its moves.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -96,7 +105,7 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 23
   flavor_text: &diamond-pearl.flavor_text |
@@ -106,7 +115,7 @@ diamond-pearl: &diamond-pearl
     its moves.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -116,10 +125,10 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -129,13 +138,13 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: |
     The user changes its type to become the
     same type as one of its moves.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -145,13 +154,13 @@ x-y:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: &x-y.flavor_text |
     The user changes its type to become the
     same type as the move at the top of the
     list of moves it knows.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -161,12 +170,12 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -176,7 +185,7 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: |
     The user changes its type to become the same type
     as the move at the top of the list of moves it knows.

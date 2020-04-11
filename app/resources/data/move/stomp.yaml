@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Stomp
+  name: STOMP
+  power: &red-blue.power 65
+  type: &red-blue.type normal
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 20
+  effect: 38
   flinch_chance: &red-blue.flinch_chance 30
   flags: &red-blue.flags
     - contact
@@ -10,18 +15,12 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  power: &red-blue.power 65
-  pp: &red-blue.pp 20
-  accuracy: &red-blue.accuracy 100
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 151
   effect_chance: &red-blue.effect_chance 30
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Stomp
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -33,15 +32,15 @@ gold-silver: &gold-silver
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class physical
+  effect: &gold-silver.effect 151
   effect_chance: *red-blue.effect_chance
   flavor_text: |
     An attack that may
     cause flinching.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -53,8 +52,8 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   contest_type: &ruby-sapphire.contest_type tough
   contest_effect: &ruby-sapphire.contest_effect 4
@@ -62,10 +61,8 @@ ruby-sapphire: &ruby-sapphire
     Stomps the enemy with a big
     foot. May cause flinching.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -77,17 +74,33 @@ firered-leafgreen:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
+  effect_chance: *red-blue.effect_chance
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  flinch_chance: *red-blue.flinch_chance
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  power: *red-blue.power
+  pp: *red-blue.pp
+  accuracy: *red-blue.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: |
     The foe is stomped
     with a big foot.
     It may make the
     foe flinch.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -99,8 +112,8 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
@@ -111,7 +124,7 @@ diamond-pearl: &diamond-pearl
     target flinch.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -123,12 +136,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -140,15 +153,15 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: |
     The target is stomped with a big foot.
     It may also make the target flinch.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -160,14 +173,14 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is stomped with a big foot.
     This may also make the target flinch.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -179,14 +192,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -198,8 +211,8 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: |
     The target is stomped with a big foot. This may also

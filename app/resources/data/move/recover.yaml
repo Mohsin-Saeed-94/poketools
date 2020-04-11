@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Recover
+  name: RECOVER
+  power: 0
+  type: &red-blue.type normal
+  accuracy: 100
+  pp: &red-blue.pp 20
+  effect: 57
   healing: &red-blue.healing 50
   flags: &red-blue.flags
     - snatch
@@ -8,15 +13,11 @@ red-blue: &red-blue
     - heal
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  pp: &red-blue.pp 20
   priority: &red-blue.priority 0
   target: &red-blue.target user
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 33
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Recover
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -26,14 +27,14 @@ gold-silver: &gold-silver
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class physical
+  effect: &gold-silver.effect 33
   flavor_text: |
     Restores HP by 1/2
     the max HP.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -43,18 +44,16 @@ ruby-sapphire: &ruby-sapphire
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 23
   flavor_text: |
     Recovers up to half the
     user’s maximum HP.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -64,16 +63,29 @@ firered-leafgreen:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  healing: *red-blue.healing
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  pp: *red-blue.pp
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     A self-healing move
     that restores HP by
     up to half of the
     user’s maximum HP.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -84,7 +96,7 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 8
   flavor_text: &diamond-pearl.flavor_text |
@@ -94,7 +106,7 @@ diamond-pearl: &diamond-pearl
     of its max HP.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -105,10 +117,10 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -119,7 +131,7 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: &black-white.flavor_text |
     Restoring its own cells, the user
     restores its own HP by half of
@@ -127,7 +139,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -138,12 +150,12 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -154,7 +166,7 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: |
     Restoring its own cells, the user restores its own HP
     by half of its max HP.

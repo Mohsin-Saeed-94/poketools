@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Bite
+  name: BITE
+  power: &red-blue.power 60
+  type: normal
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 25
+  effect: &red-blue.effect 32
   flinch_chance: &red-blue.flinch_chance 30
   flags: &red-blue.flags
     - contact
@@ -10,18 +15,12 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: normal
-  power: &red-blue.power 60
-  pp: &red-blue.pp 25
-  accuracy: &red-blue.accuracy 100
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 32
   effect_chance: 10
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Bite
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -41,7 +40,7 @@ gold-silver: &gold-silver
     cause flinching.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -63,7 +62,7 @@ ruby-sapphire: &ruby-sapphire
     May cause flinching.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -80,7 +79,7 @@ colosseum: &colosseum
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -100,9 +99,8 @@ firered-leafgreen:
     vicious fangs.
     It may make the
     foe flinch.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -114,7 +112,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: &diamond-pearl.damage_class physical
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -126,7 +124,7 @@ diamond-pearl: &diamond-pearl
     target flinch.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -138,12 +136,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -155,7 +153,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -164,7 +162,7 @@ black-white: &black-white
     It may make the target flinch.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -176,7 +174,7 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -184,7 +182,7 @@ x-y:
     with viciously sharp fangs.
     This may also make the target flinch.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -196,14 +194,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flinch_chance: *red-blue.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -215,7 +213,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

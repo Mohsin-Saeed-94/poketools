@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Agility
+  name: AGILITY
+  power: 0
+  type: &red-blue.type psychic
+  accuracy: 100
+  pp: &red-blue.pp 30
+  effect: &red-blue.effect 53
   flags: &red-blue.flags
     - snatch
   categories: &red-blue.categories
@@ -8,15 +13,11 @@ red-blue: &red-blue
   turns: &red-blue.turns 1
   stat_changes: &red-blue.stat_changes
     speed: 2
-  type: &red-blue.type psychic
-  pp: &red-blue.pp 30
   priority: &red-blue.priority 0
   target: &red-blue.target user
-  damage_class: &red-blue.damage_class special
-  effect: &red-blue.effect 53
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Agility
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -26,14 +27,14 @@ gold-silver: &gold-silver
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: &gold-silver.damage_class special
   effect: *red-blue.effect
   flavor_text: |
     Sharply increases
     the user's SPEED.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -43,7 +44,7 @@ ruby-sapphire: &ruby-sapphire
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 30
@@ -51,10 +52,8 @@ ruby-sapphire: &ruby-sapphire
     Relaxes the body to sharply
     boost SPEED.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -64,16 +63,29 @@ firered-leafgreen:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
+  effect: *red-blue.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *red-blue.stat_changes
+  type: *red-blue.type
+  pp: *red-blue.pp
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The user relaxes
     and lightens its
     body to sharply
     boost its SPEED.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -95,7 +107,7 @@ diamond-pearl: &diamond-pearl
     the Speed stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -109,7 +121,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -127,7 +139,7 @@ black-white: &black-white
     the Speed stat.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -143,7 +155,7 @@ x-y:
     The user relaxes and lightens its body to
     move faster. This sharply raises the Speed stat.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -159,7 +171,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Tackle
+  name: TACKLE
+  power: 35
+  type: &red-blue.type normal
+  accuracy: 0
+  pp: &red-blue.pp 35
+  effect: &red-blue.effect 1
   flags: &red-blue.flags
     - contact
     - protect
@@ -8,46 +13,40 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  power: &red-blue.power 50
-  pp: &red-blue.pp 35
-  accuracy: &red-blue.accuracy 100
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 1
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Tackle
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *red-blue.power
+  power: &gold-silver.power 50
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: &gold-silver.accuracy 100
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: &gold-silver.damage_class physical
   effect: *red-blue.effect
   flavor_text: |
     A full-body charge
     attack.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *red-blue.power
+  power: *gold-silver.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type tough
   contest_effect: &ruby-sapphire.contest_effect 1
@@ -55,41 +54,53 @@ ruby-sapphire: &ruby-sapphire
     Charges the foe with a full-
     body tackle.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *red-blue.power
+  power: *gold-silver.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
+  effect: *red-blue.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  power: *gold-silver.power
+  pp: *red-blue.pp
+  accuracy: *gold-silver.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: |
     A physical attack
     in which the user
     charges, full body,
     into the foe.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *red-blue.power
+  power: *gold-silver.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
@@ -101,33 +112,33 @@ diamond-pearl: &diamond-pearl
     its whole body.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *red-blue.power
+  power: *gold-silver.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *red-blue.power
+  power: *gold-silver.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: &black-white.flavor_text |
     A physical attack in which the user
@@ -136,24 +147,24 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *red-blue.power
+  power: *gold-silver.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -161,10 +172,10 @@ sun-moon: &sun-moon
   type: *red-blue.type
   power: 40
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: |
     A physical attack in which the user charges and

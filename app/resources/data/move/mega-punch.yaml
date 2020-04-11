@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name 'Mega Punch'
+  name: 'MEGA PUNCH'
+  power: &red-blue.power 80
+  type: &red-blue.type normal
+  accuracy: 0
+  pp: &red-blue.pp 20
+  effect: &red-blue.effect 1
   flags: &red-blue.flags
     - contact
     - protect
@@ -9,17 +14,11 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  power: &red-blue.power 80
-  pp: &red-blue.pp 20
-  accuracy: &red-blue.accuracy 85
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 1
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name 'Mega Punch'
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -27,17 +26,17 @@ gold-silver: &gold-silver
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: &gold-silver.accuracy 85
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: &gold-silver.damage_class physical
   effect: *red-blue.effect
   flavor_text: |
     A powerful punch
     thrown very hard.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -45,10 +44,10 @@ ruby-sapphire: &ruby-sapphire
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type tough
   contest_effect: &ruby-sapphire.contest_effect 1
@@ -56,10 +55,8 @@ ruby-sapphire: &ruby-sapphire
     A strong punch thrown with
     incredible power.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen: &firered-leafgreen
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -67,10 +64,25 @@ firered-leafgreen: &firered-leafgreen
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
+  effect: *red-blue.effect
+xd: *colosseum
+firered-leafgreen: &firered-leafgreen
+  name: *gold-silver.name
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  power: *red-blue.power
+  pp: *red-blue.pp
+  accuracy: *gold-silver.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: &firered-leafgreen.flavor_text |
     The foe is slugged
@@ -78,7 +90,7 @@ firered-leafgreen: &firered-leafgreen
     with muscle-packed
     power.
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -86,10 +98,10 @@ diamond-pearl: &diamond-pearl
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 18
@@ -97,7 +109,7 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *firered-leafgreen
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -105,10 +117,10 @@ black-white: &black-white
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: &black-white.flavor_text |
     The target is slugged by a punch thrown
@@ -116,7 +128,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -124,16 +136,16 @@ omega-ruby-alpha-sapphire:
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -141,10 +153,10 @@ sun-moon: &sun-moon
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The target is slugged by a punch thrown with

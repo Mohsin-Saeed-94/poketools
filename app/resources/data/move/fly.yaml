@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Fly
+  name: FLY
+  power: &red-blue.power 70
+  type: &red-blue.type flying
+  accuracy: 0
+  pp: &red-blue.pp 15
+  effect: 44
   flags: &red-blue.flags
     - contact
     - charge
@@ -11,17 +16,11 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type flying
-  power: &red-blue.power 70
-  pp: &red-blue.pp 15
-  accuracy: &red-blue.accuracy 95
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 156
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Fly
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -29,17 +28,17 @@ gold-silver: &gold-silver
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: &gold-silver.accuracy 95
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class physical
+  effect: &gold-silver.effect 156
   flavor_text: |
     1st turn: Fly
     2nd turn: Attack
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -47,21 +46,19 @@ ruby-sapphire: &ruby-sapphire
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 15
   flavor_text: |
     Flies up on the first turn,
     then strikes the next turn.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -69,19 +66,33 @@ firered-leafgreen:
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  power: *red-blue.power
+  pp: *red-blue.pp
+  accuracy: *gold-silver.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     A 2-turn move that
     hits on the 2nd
     turn. Use it to fly
     to any known town.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -89,11 +100,11 @@ diamond-pearl: &diamond-pearl
   type: *red-blue.type
   power: &diamond-pearl.power 90
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 6
   flavor_text: &diamond-pearl.flavor_text |
@@ -104,7 +115,7 @@ diamond-pearl: &diamond-pearl
     any familiar town.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -112,14 +123,14 @@ heartgold-soulsilver:
   type: *red-blue.type
   power: *diamond-pearl.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -127,18 +138,18 @@ black-white: &black-white
   type: *red-blue.type
   power: *diamond-pearl.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     The user soars, then strikes its target
     on the second turn. It can also be
     used for flying to any familiar town.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -146,17 +157,17 @@ x-y:
   type: *red-blue.type
   power: *diamond-pearl.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: &x-y.flavor_text |
     The user soars and then strikes
     its target on the next turn. This can
     also be used to fly to any familiar town.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -164,16 +175,16 @@ omega-ruby-alpha-sapphire:
   type: *red-blue.type
   power: *diamond-pearl.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -181,11 +192,11 @@ sun-moon: &sun-moon
   type: *red-blue.type
   power: *diamond-pearl.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     The user soars and then strikes its target on the
     next turn.

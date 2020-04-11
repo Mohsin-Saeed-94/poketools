@@ -1,18 +1,19 @@
 red-blue: &red-blue
-  name: &red-blue.name Metronome
+  name: METRONOME
+  power: 0
+  type: &red-blue.type normal
+  accuracy: 100
+  pp: &red-blue.pp 10
+  effect: &red-blue.effect 84
   categories: &red-blue.categories
     - unique
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  pp: &red-blue.pp 10
   priority: &red-blue.priority 0
   target: &red-blue.target user
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 84
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Metronome
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -20,14 +21,14 @@ gold-silver: &gold-silver
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: &gold-silver.damage_class physical
   effect: *red-blue.effect
   flavor_text: |
     Randomly uses any
     POKéMON move.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -35,7 +36,7 @@ ruby-sapphire: &ruby-sapphire
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type cute
   contest_effect: &ruby-sapphire.contest_effect 17
@@ -43,10 +44,8 @@ ruby-sapphire: &ruby-sapphire
     Waggles a finger to use any
     POKéMON move at random.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -54,16 +53,27 @@ firered-leafgreen:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
+  effect: *red-blue.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  pp: *red-blue.pp
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: |
     Waggles a finger
     and stimulates the
     brain into using any
     move at random.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -83,7 +93,7 @@ diamond-pearl: &diamond-pearl
     any move.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -95,7 +105,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -112,7 +122,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -126,7 +136,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns

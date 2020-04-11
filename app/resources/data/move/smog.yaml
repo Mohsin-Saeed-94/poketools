@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Smog
+  name: SMOG
+  power: &red-blue.power 20
+  type: &red-blue.type poison
+  accuracy: 0
+  pp: &red-blue.pp 20
+  effect: 34
   ailment: &red-blue.ailment poison
   ailment_chance: &red-blue.ailment_chance 40
   flags: &red-blue.flags
@@ -10,18 +15,12 @@ red-blue: &red-blue
     - ailment
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type poison
-  power: &red-blue.power 20
-  pp: &red-blue.pp 20
-  accuracy: &red-blue.accuracy 70
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 3
   effect_chance: &red-blue.effect_chance 40
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Smog
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -31,18 +30,18 @@ gold-silver: &gold-silver
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: &gold-silver.accuracy 70
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class physical
+  effect: &gold-silver.effect 3
   effect_chance: *red-blue.effect_chance
   flavor_text: |
     An attack that may
     poison the foe.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -52,11 +51,11 @@ ruby-sapphire: &ruby-sapphire
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   contest_type: &ruby-sapphire.contest_type tough
   contest_effect: &ruby-sapphire.contest_effect 5
@@ -66,10 +65,8 @@ ruby-sapphire: &ruby-sapphire
     An exhaust-gas attack
     that may also poison.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -79,20 +76,37 @@ firered-leafgreen:
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
+  effect_chance: *red-blue.effect_chance
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  ailment: *red-blue.ailment
+  ailment_chance: *red-blue.ailment_chance
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  power: *red-blue.power
+  pp: *red-blue.pp
+  accuracy: *gold-silver.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: |
     The foe is attacked
     with exhaust gases.
     It may also poison
     the foe.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -102,11 +116,11 @@ diamond-pearl: &diamond-pearl
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class special
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
@@ -118,7 +132,7 @@ diamond-pearl: &diamond-pearl
     the target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -128,15 +142,15 @@ heartgold-soulsilver:
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -146,11 +160,11 @@ black-white: &black-white
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: |
     The target is attacked with a
@@ -158,7 +172,7 @@ black-white: &black-white
     It may also poison the target.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -168,18 +182,18 @@ x-y:
   type: *red-blue.type
   power: &x-y.power 30
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is attacked with a
     discharge of filthy gases.
     This may also poison the target.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -189,18 +203,18 @@ omega-ruby-alpha-sapphire:
   type: *red-blue.type
   power: *x-y.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -210,11 +224,11 @@ sun-moon: &sun-moon
   type: *red-blue.type
   power: *x-y.power
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   effect_chance: *red-blue.effect_chance
   flavor_text: |
     The target is attacked with a discharge of filthy

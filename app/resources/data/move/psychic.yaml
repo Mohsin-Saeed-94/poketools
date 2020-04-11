@@ -1,6 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Psychic
-  stat_change_chance: &red-blue.stat_change_chance 10
+  name: PSYCHIC
+  power: &red-blue.power 90
+  type: &red-blue.type psychic
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 10
+  effect: 72
   flags: &red-blue.flags
     - protect
     - mirror
@@ -11,18 +15,13 @@ red-blue: &red-blue
   turns: &red-blue.turns 1
   stat_changes: &red-blue.stat_changes
     special-defense: -1
-  type: &red-blue.type psychic
-  power: &red-blue.power 90
-  pp: &red-blue.pp 10
-  accuracy: &red-blue.accuracy 100
+  stat_change_chance: &red-blue.stat_change_chance 10
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class special
-  effect: &red-blue.effect 73
   effect_chance: 30
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Psychic
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -35,15 +34,15 @@ gold-silver: &gold-silver
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class special
+  effect: &gold-silver.effect 73
   effect_chance: &gold-silver.effect_chance 10
   flavor_text: |
     An attack that may
     lower SPCL.DEF.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -56,8 +55,8 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 5
@@ -71,7 +70,7 @@ ruby-sapphire: &ruby-sapphire
     that may lower SP. DEF.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *red-blue.name
+  name: *gold-silver.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -84,12 +83,12 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *red-blue.name
+  name: *gold-silver.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -102,17 +101,16 @@ firered-leafgreen:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A strong telekinetic
     attack. It may also
     lower the foe’s
     SP. DEF stat.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -125,8 +123,8 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
@@ -138,7 +136,7 @@ diamond-pearl: &diamond-pearl
     Sp. Def stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -151,12 +149,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -169,8 +167,8 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is hit by a strong telekinetic
@@ -178,7 +176,7 @@ black-white: &black-white
     Sp. Def stat.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -191,15 +189,15 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is hit by a strong telekinetic
     force. This may also lower the target’s
     Sp. Def stat.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -212,15 +210,15 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   stat_change_chance: *red-blue.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -233,8 +231,8 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is hit by a strong telekinetic force.

@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name 'String Shot'
+  name: 'STRING SHOT'
+  power: 0
+  type: &red-blue.type bug
+  accuracy: 0
+  pp: &red-blue.pp 40
+  effect: &red-blue.effect 21
   flags: &red-blue.flags
     - protect
     - reflectable
@@ -10,16 +15,11 @@ red-blue: &red-blue
   turns: &red-blue.turns 1
   stat_changes: &red-blue.stat_changes
     speed: -2
-  type: &red-blue.type bug
-  pp: &red-blue.pp 40
-  accuracy: &red-blue.accuracy 95
   priority: &red-blue.priority 0
   target: &red-blue.target all-opponents
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 21
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name 'String Shot'
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -27,17 +27,17 @@ gold-silver: &gold-silver
   stat_changes: *red-blue.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: &gold-silver.accuracy 95
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: &gold-silver.damage_class physical
   effect: *red-blue.effect
   flavor_text: |
     A move that lowers
     the foe's SPEED.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -45,10 +45,10 @@ ruby-sapphire: &ruby-sapphire
   stat_changes: *red-blue.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 9
@@ -58,10 +58,8 @@ ruby-sapphire: &ruby-sapphire
     Binds the foe with string
     to reduce its SPEED.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -69,19 +67,33 @@ firered-leafgreen:
   stat_changes: *red-blue.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
+  effect: *red-blue.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *red-blue.stat_changes
+  type: *red-blue.type
+  pp: *red-blue.pp
+  accuracy: *gold-silver.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The foe is bound
     with strings shot
     from the mouth to
     reduce its SPEED.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -89,7 +101,7 @@ diamond-pearl: &diamond-pearl
   stat_changes: *red-blue.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
@@ -104,7 +116,7 @@ diamond-pearl: &diamond-pearl
     target’s Speed stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -112,14 +124,14 @@ heartgold-soulsilver:
   stat_changes: *red-blue.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -127,7 +139,7 @@ black-white: &black-white
   stat_changes: *red-blue.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
@@ -138,7 +150,7 @@ black-white: &black-white
     the targets’ Speed stat.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -146,7 +158,7 @@ x-y:
   stat_changes: *red-blue.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
@@ -156,7 +168,7 @@ x-y:
     with silk blown from the user’s mouth
     that harshly lowers the Speed stat.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -164,7 +176,7 @@ omega-ruby-alpha-sapphire:
   stat_changes: *red-blue.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
@@ -174,7 +186,7 @@ omega-ruby-alpha-sapphire:
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -182,7 +194,7 @@ sun-moon: &sun-moon
   stat_changes: *red-blue.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class

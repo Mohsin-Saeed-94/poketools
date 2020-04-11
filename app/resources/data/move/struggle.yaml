@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Struggle
+  name: STRUGGLE
+  power: &red-blue.power 50
+  type: &red-blue.type normal
+  accuracy: 100
+  pp: 10
+  effect: 49
   healing: &red-blue.healing -25
   flags: &red-blue.flags
     - contact
@@ -8,16 +13,11 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  power: &red-blue.power 50
-  pp: &red-blue.pp 1
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 255
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Struggle
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -25,17 +25,17 @@ gold-silver: &gold-silver
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: &gold-silver.pp 1
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class physical
+  effect: &gold-silver.effect 255
   flavor_text: |
     Used only if all
     PP are exhausted.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -43,21 +43,19 @@ ruby-sapphire: &ruby-sapphire
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 1
   flavor_text: |
     Used only if all PP are gone.
     Also hurts the user a little.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -65,19 +63,33 @@ firered-leafgreen:
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  healing: *red-blue.healing
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  power: *red-blue.power
+  pp: *gold-silver.pp
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     An attack that is
     used only if there
     is no PP. It also
     hurts the user.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -85,11 +97,11 @@ diamond-pearl: &diamond-pearl
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
@@ -100,7 +112,7 @@ diamond-pearl: &diamond-pearl
     the user slightly.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -108,14 +120,14 @@ heartgold-soulsilver:
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -123,18 +135,18 @@ black-white: &black-white
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     An attack that is used in desperation
     only if the user has no PP. It also hurts
     the user slightly.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -142,17 +154,17 @@ x-y:
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   priority: *red-blue.priority
   target: &x-y.target random-opponent
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: &x-y.flavor_text |
     An attack that is used in desperation
     only if the user has no PP. This also
     damages the user a little.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -160,16 +172,16 @@ omega-ruby-alpha-sapphire:
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *x-y.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -177,11 +189,11 @@ sun-moon: &sun-moon
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *x-y.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     This attack is used in desperation only if the user
     has no PP. It also damages the user a little.

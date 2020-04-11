@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name 'Mega Drain'
+  name: 'MEGA DRAIN'
+  power: &red-blue.power 40
+  type: &red-blue.type grass
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 10
+  effect: &red-blue.effect 4
   drain: &red-blue.drain 50
   flags: &red-blue.flags
     - protect
@@ -10,17 +15,11 @@ red-blue: &red-blue
     - heal
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type grass
-  power: &red-blue.power 40
-  pp: &red-blue.pp 10
-  accuracy: &red-blue.accuracy 100
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class special
-  effect: &red-blue.effect 4
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name 'Mega Drain'
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -32,14 +31,14 @@ gold-silver: &gold-silver
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: &gold-silver.damage_class special
   effect: *red-blue.effect
   flavor_text: |
     Steals 1/2 of the
     damage inflicted.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -51,7 +50,7 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 4
@@ -59,10 +58,8 @@ ruby-sapphire: &ruby-sapphire
     An attack that absorbs
     half the damage inflicted.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -74,16 +71,31 @@ firered-leafgreen:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
+  effect: *red-blue.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  drain: *red-blue.drain
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  power: *red-blue.power
+  pp: *red-blue.pp
+  accuracy: *red-blue.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: |
     A tough attack that
     drains half the
     damage it inflicted
     to restore HP.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -95,7 +107,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 20
@@ -107,7 +119,7 @@ diamond-pearl: &diamond-pearl
     by the target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -119,11 +131,11 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -135,7 +147,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: &black-white.flavor_text |
     A nutrient-draining attack. The user’s
@@ -144,7 +156,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -156,13 +168,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -174,7 +186,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: |
     A nutrient-draining attack. The user’s HP is restored

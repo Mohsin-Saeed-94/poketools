@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Slash
+  name: SLASH
+  power: &red-blue.power 70
+  type: &red-blue.type normal
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 20
+  effect: 1
   crit_rate_bonus: &red-blue.crit_rate_bonus 1
   flags: &red-blue.flags
     - contact
@@ -9,17 +14,11 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  power: &red-blue.power 70
-  pp: &red-blue.pp 20
-  accuracy: &red-blue.accuracy 100
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 44
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name Slash
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -31,14 +30,14 @@ gold-silver: &gold-silver
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: &gold-silver.damage_class physical
+  effect: &gold-silver.effect 44
   flavor_text: |
     Has a high criti­
     cal hit ratio.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -50,18 +49,16 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 2
   flavor_text: |
     Slashes with claws, etc. Has
     a high critical-hit ratio.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -73,16 +70,31 @@ firered-leafgreen:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  crit_rate_bonus: *red-blue.crit_rate_bonus
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  power: *red-blue.power
+  pp: *red-blue.pp
+  accuracy: *red-blue.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     The foe is slashed
     with claws, etc.
     It has a high
     critical-hit ratio.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -94,8 +106,8 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
@@ -106,7 +118,7 @@ diamond-pearl: &diamond-pearl
     critical-hit ratio.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -118,11 +130,11 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -134,8 +146,8 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: &black-white.flavor_text |
     The target is attacked with a slash
     of claws or blades.
@@ -143,7 +155,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -155,13 +167,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -173,8 +185,8 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  damage_class: *gold-silver.damage_class
+  effect: *gold-silver.effect
   flavor_text: |
     The target is attacked with a slash of claws or
     blades. Critical hits land more easily.

@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name 'Vine Whip'
+  name: 'VINE WHIP'
+  power: &red-blue.power 35
+  type: &red-blue.type grass
+  accuracy: &red-blue.accuracy 100
+  pp: 10
+  effect: &red-blue.effect 1
   flags: &red-blue.flags
     - contact
     - protect
@@ -8,46 +13,40 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type grass
-  power: &red-blue.power 35
-  pp: &red-blue.pp 15
-  accuracy: &red-blue.accuracy 100
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class special
-  effect: &red-blue.effect 1
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: *red-blue.name
+  name: &gold-silver.name 'Vine Whip'
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: &gold-silver.pp 15
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: &gold-silver.damage_class special
   effect: *red-blue.effect
   flavor_text: |
     Whips the foe with
     slender vines.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 1
@@ -55,36 +54,48 @@ ruby-sapphire: &ruby-sapphire
     Strikes the foe with
     slender, whiplike vines.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
-  name: *red-blue.name
+colosseum: &colosseum
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *gold-silver.damage_class
+  effect: *red-blue.effect
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  type: *red-blue.type
+  power: *red-blue.power
+  pp: *gold-silver.pp
+  accuracy: *red-blue.accuracy
+  priority: *red-blue.priority
+  target: *red-blue.target
+  damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The foe is struck
     with slender, whip­
     like vines.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
@@ -99,14 +110,14 @@ diamond-pearl: &diamond-pearl
     damage.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
@@ -114,14 +125,14 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
   power: *red-blue.power
-  pp: *red-blue.pp
+  pp: *gold-silver.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
@@ -132,7 +143,7 @@ black-white: &black-white
     whiplike vines to inflict damage.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -147,7 +158,7 @@ x-y:
   effect: *red-blue.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -164,7 +175,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *gold-silver.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
