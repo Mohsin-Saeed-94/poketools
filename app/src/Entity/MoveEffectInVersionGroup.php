@@ -19,7 +19,7 @@ class MoveEffectInVersionGroup extends AbstractDexEntity implements EntityGroupe
     use EntityHasDescriptionTrait;
 
     /**
-     * @var Ability
+     * @var \App\Entity\MoveEffect
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveEffect", inversedBy="children")
      */

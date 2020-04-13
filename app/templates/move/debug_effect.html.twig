@@ -1,0 +1,39 @@
+{% extends 'debug_base.html.twig' %}
+
+{% block title %}Move Effect{% endblock %}
+
+{% block body %}
+    <p>{{ effects|length }} items</p>
+    <table class="table table-bordered"
+           data-tables="{}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Moves</th>
+            <th>Short Desc.</th>
+            <th>Desc.</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for effect in effects %}
+            <tr>
+                <th>{{ effect.parent.id }}</th>
+                <td>
+                    <ul>
+                        {% for move in in_moves[effect.id] %}
+                            <li>
+                                <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': move.slug}) }}">
+                                    {{ move.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td class="pkt-text">{{ effect.shortDescription|markdown(false) }}</td>
+                <td class="pkt-text">{{ effect.description|markdown }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

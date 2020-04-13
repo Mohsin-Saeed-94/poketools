@@ -15,14 +15,13 @@ red-blue: &red-blue
   turns: &red-blue.turns 1
   stat_changes: &red-blue.stat_changes
     attack: -1
-  stat_change_chance: &red-blue.stat_change_chance 10
+  stat_change_chance: 33
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  effect_chance: &red-blue.effect_chance 10
 yellow: *red-blue
 gold-silver: &gold-silver
   name: &gold-silver.name 'Aurora Beam'
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: &gold-silver.stat_change_chance 10
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -36,14 +35,14 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: &gold-silver.damage_class special
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: &gold-silver.effect_chance 10
   flavor_text: |
     An attack that may
     lower ATTACK.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -57,7 +56,7 @@ ruby-sapphire: &ruby-sapphire
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 23
   flavor_text: |
@@ -66,7 +65,7 @@ ruby-sapphire: &ruby-sapphire
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -80,11 +79,11 @@ colosseum: &colosseum
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -98,7 +97,7 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A rainbow-colored
     attack beam.
@@ -106,7 +105,7 @@ firered-leafgreen:
     foe’s ATTACK stat.
 diamond-pearl: &diamond-pearl
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -120,7 +119,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
   flavor_text: &diamond-pearl.flavor_text |
@@ -132,7 +131,7 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver:
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -146,11 +145,11 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -164,7 +163,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &black-white.flavor_text |
     The target is hit with a rainbow-colored
     beam. This may also lower the target’s
@@ -173,7 +172,7 @@ black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -187,13 +186,13 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -207,7 +206,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is hit with a rainbow-colored beam.
     This may also lower the target’s Attack stat.

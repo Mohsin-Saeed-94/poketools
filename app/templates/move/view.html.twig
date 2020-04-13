@@ -98,10 +98,13 @@
                         <li>
                             {% if stat_change.change < 0 %}
                                 {{ stat_change.stat }} decreased by <span
-                                    class="pkt-value-negative">{{ stat_change.change|abs }}</span>.
+                                    class="pkt-value-negative">{{ stat_change.change|abs }}</span>
                             {% else %}
                                 {{ stat_change.stat }} increased by <span
-                                    class="pkt-value-positive">{{ stat_change.change }}</span>.
+                                    class="pkt-value-positive">{{ stat_change.change }}</span>
+                            {% endif %}
+                            {% if move.statChangeChance %}
+                                ({{ move.statChangeChance }}% chance)
                             {% endif %}
                         </li>
                     {% endfor %}

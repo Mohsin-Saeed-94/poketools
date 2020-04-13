@@ -6,7 +6,6 @@ red-blue: &red-blue
   pp: &red-blue.pp 20
   effect: &red-blue.effect 43
   ailment: &red-blue.ailment trap
-  ailment_chance: &red-blue.ailment_chance 100
   flags: &red-blue.flags
     - contact
     - protect
@@ -15,19 +14,18 @@ red-blue: &red-blue
     - damage
     - ailment
   hits: &red-blue.hits 1
-  turns: &red-blue.turns 5-6
+  turns: 1
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  effect_chance: &red-blue.effect_chance 100
 yellow: *red-blue
 gold-silver: &gold-silver
   name: &gold-silver.name Bind
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: &gold-silver.ailment_chance 100
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: &gold-silver.turns 5-6
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -36,7 +34,7 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: &gold-silver.damage_class physical
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: &gold-silver.effect_chance 100
   flavor_text: |
     Binds the target
     for 2-5 turns.
@@ -44,11 +42,11 @@ crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -57,7 +55,7 @@ ruby-sapphire: &ruby-sapphire
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type tough
   contest_effect: &ruby-sapphire.contest_effect 24
   flavor_text: |
@@ -67,11 +65,11 @@ emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -80,16 +78,16 @@ colosseum: &colosseum
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -98,7 +96,7 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A long body or
     tentacles are used
@@ -107,11 +105,11 @@ firered-leafgreen:
 diamond-pearl: &diamond-pearl
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -120,7 +118,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 21
   flavor_text: &diamond-pearl.flavor_text |
@@ -133,11 +131,11 @@ platinum: *diamond-pearl
 heartgold-soulsilver:
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -146,16 +144,16 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -164,7 +162,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &black-white.flavor_text |
     Things such as long bodies or tentacles
     are used to bind and squeeze
@@ -174,11 +172,11 @@ x-y: *black-white
 omega-ruby-alpha-sapphire:
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -187,18 +185,18 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -207,7 +205,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     Things such as long bodies or tentacles are used to
     bind and squeeze the target for four to five turns.

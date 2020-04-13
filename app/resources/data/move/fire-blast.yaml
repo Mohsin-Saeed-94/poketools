@@ -6,7 +6,7 @@ red-blue: &red-blue
   pp: &red-blue.pp 5
   effect: 35
   ailment: &red-blue.ailment burn
-  ailment_chance: &red-blue.ailment_chance 10
+  ailment_chance: 30
   flags: &red-blue.flags
     - protect
     - mirror
@@ -17,12 +17,11 @@ red-blue: &red-blue
   turns: &red-blue.turns 1
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  effect_chance: &red-blue.effect_chance 10
 yellow: *red-blue
 gold-silver: &gold-silver
   name: &gold-silver.name 'Fire Blast'
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: &gold-silver.ailment_chance 10
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -35,7 +34,7 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: &gold-silver.damage_class special
   effect: &gold-silver.effect 5
-  effect_chance: *red-blue.effect_chance
+  effect_chance: &gold-silver.effect_chance 10
   flavor_text: |
     An attack that
     may cause a burn.
@@ -43,7 +42,7 @@ crystal: *gold-silver
 ruby-sapphire:
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -56,7 +55,7 @@ ruby-sapphire:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 1
   flavor_text: |
@@ -65,7 +64,7 @@ ruby-sapphire:
 emerald:
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -78,7 +77,7 @@ emerald:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: |
@@ -87,7 +86,7 @@ emerald:
 colosseum: &colosseum
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -100,12 +99,12 @@ colosseum: &colosseum
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -118,7 +117,7 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The foe is hit with
     an intense flame.
@@ -127,7 +126,7 @@ firered-leafgreen:
 diamond-pearl: &diamond-pearl
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -140,7 +139,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
   flavor_text: &diamond-pearl.flavor_text |
@@ -153,7 +152,7 @@ platinum: *diamond-pearl
 heartgold-soulsilver:
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -166,12 +165,12 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -184,7 +183,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is attacked with an intense
     blast of all-consuming fire.
@@ -193,7 +192,7 @@ black-2-white-2: *black-white
 x-y:
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -206,7 +205,7 @@ x-y:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is attacked with an intense
     blast of all-consuming fire.
@@ -214,7 +213,7 @@ x-y:
 omega-ruby-alpha-sapphire:
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -227,14 +226,14 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
   name: *gold-silver.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -247,7 +246,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *gold-silver.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is attacked with an intense blast of
     all-consuming fire. This may also leave the target

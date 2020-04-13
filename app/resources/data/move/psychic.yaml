@@ -13,21 +13,21 @@ red-blue: &red-blue
     - lower
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  stat_changes: &red-blue.stat_changes
-    special-defense: -1
-  stat_change_chance: &red-blue.stat_change_chance 10
+  stat_changes:
+    special: -1
+  stat_change_chance: 33
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  effect_chance: 30
 yellow: *red-blue
 gold-silver: &gold-silver
   name: &gold-silver.name Psychic
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: &gold-silver.stat_change_chance 10
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: &gold-silver.stat_changes
+    special-defense: -1
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -43,12 +43,12 @@ gold-silver: &gold-silver
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -71,12 +71,12 @@ ruby-sapphire: &ruby-sapphire
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -89,12 +89,12 @@ colosseum: &colosseum
 xd: *colosseum
 firered-leafgreen:
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -111,12 +111,12 @@ firered-leafgreen:
     SP. DEF stat.
 diamond-pearl: &diamond-pearl
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -137,12 +137,12 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver:
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -155,12 +155,12 @@ heartgold-soulsilver:
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -177,12 +177,12 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y:
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -198,12 +198,12 @@ x-y:
     Sp. Def stat.
 omega-ruby-alpha-sapphire:
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -219,12 +219,12 @@ omega-ruby-alpha-sapphire:
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
   name: *gold-silver.name
-  stat_change_chance: *red-blue.stat_change_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp

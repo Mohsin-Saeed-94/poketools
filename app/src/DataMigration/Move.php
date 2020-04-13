@@ -49,7 +49,8 @@ class Move extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             /** @var \App\Entity\VersionGroup $versionGroup */
             $versionGroup = $this->referenceStore->get(VersionGroup::class, ['identifier' => $versionGroup]);
             $versionGroupSource['version_group'] = $versionGroup;
-            $versionGroupDestination = $destinationData->findChildByGrouping($versionGroup) ?? (new MoveInVersionGroup());
+            $versionGroupDestination = $destinationData->findChildByGrouping($versionGroup) ?? (new MoveInVersionGroup(
+                ));
             $versionGroupDestination = $this->transformVersionGroup($versionGroupSource, $versionGroupDestination);
             $destinationData->addChild($versionGroupDestination);
         }
@@ -58,7 +59,7 @@ class Move extends AbstractDoctrineDataMigration implements DataMigrationInterfa
     }
 
     /**
-     * @param array              $sourceData
+     * @param array $sourceData
      * @param MoveInVersionGroup $destinationData
      *
      * @return MoveInVersionGroup
@@ -74,25 +75,42 @@ class Move extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             }
         }
         if (isset($sourceData['ailment'])) {
-            $sourceData['ailment'] = $this->referenceStore->get(MoveAilment::class, ['identifier' => $sourceData['ailment']]);
+            $sourceData['ailment'] = $this->referenceStore->get(
+                MoveAilment::class,
+                ['identifier' => $sourceData['ailment']]
+            );
         }
         $sourceData['hits'] = Range::fromString($sourceData['hits']);
         $sourceData['turns'] = Range::fromString($sourceData['turns']);
         $sourceData['type'] = $this->referenceStore->get(Type::class, ['identifier' => $sourceData['type']]);
         $sourceData['target'] = $this->referenceStore->get(MoveTarget::class, ['identifier' => $sourceData['target']]);
-        $sourceData['damage_class'] = $this->referenceStore->get(MoveDamageClass::class, ['identifier' => $sourceData['damage_class']]);
+        if (isset($sourceData['damage_class'])) {
+            $sourceData['damage_class'] = $this->referenceStore->get(
+                MoveDamageClass::class,
+                ['identifier' => $sourceData['damage_class']]
+            );
+        }
         /** @var \App\Entity\MoveEffect $moveEffect */
         $moveEffect = $this->referenceStore->get(MoveEffect::class, ['id' => $sourceData['effect']]);
         $sourceData['effect'] = $moveEffect->findChildByGrouping($sourceData['version_group']);
         if (isset($sourceData['contest_type'])) {
-            $sourceData['contest_type'] = $this->referenceStore->get(ContestType::class, ['identifier' => $sourceData['contest_type']]);
+            $sourceData['contest_type'] = $this->referenceStore->get(
+                ContestType::class,
+                ['identifier' => $sourceData['contest_type']]
+            );
         }
         if (isset($sourceData['contest_effect'])) {
-            $sourceData['contest_effect'] = $this->referenceStore->get(ContestEffect::class, ['id' => $sourceData['contest_effect']]);
+            $sourceData['contest_effect'] = $this->referenceStore->get(
+                ContestEffect::class,
+                ['id' => $sourceData['contest_effect']]
+            );
         }
         unset($sourceData['contest_use_before']);
         if (isset($sourceData['super_contest_effect'])) {
-            $sourceData['super_contest_effect'] = $this->referenceStore->get(SuperContestEffect::class, ['id' => $sourceData['super_contest_effect']]);
+            $sourceData['super_contest_effect'] = $this->referenceStore->get(
+                SuperContestEffect::class,
+                ['id' => $sourceData['super_contest_effect']]
+            );
         }
         unset($sourceData['super_contest_use_before']);
         if (isset($sourceData['stat_changes'])) {

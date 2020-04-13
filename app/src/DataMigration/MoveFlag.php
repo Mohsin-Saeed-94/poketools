@@ -24,9 +24,11 @@ class MoveFlag extends AbstractDoctrineDataMigration implements DataMigrationInt
 
     /**
      * {@inheritdoc}
+     * @param $destinationData \App\Entity\MoveFlag
      */
     public function transform($sourceData, $destinationData)
     {
+        $destinationData->setSlug($sourceData['identifier']);
         unset($sourceData['identifier']);
 
         $destinationData = $this->mergeProperties($sourceData, $destinationData);

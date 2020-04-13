@@ -14,10 +14,9 @@ red-blue: &red-blue
     - damage
     - ailment
   hits: &red-blue.hits 1
-  turns: &red-blue.turns 2-5
+  turns: 1
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  effect_chance: &red-blue.effect_chance 10
 yellow: *red-blue
 gold-silver: &gold-silver
   name: &gold-silver.name Psybeam
@@ -26,7 +25,7 @@ gold-silver: &gold-silver
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: &gold-silver.turns 2-5
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -35,7 +34,7 @@ gold-silver: &gold-silver
   target: *red-blue.target
   damage_class: &gold-silver.damage_class special
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: &gold-silver.effect_chance 10
   flavor_text: |
     An attack that may
     confuse the foe.
@@ -47,7 +46,7 @@ ruby-sapphire: &ruby-sapphire
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -56,7 +55,7 @@ ruby-sapphire: &ruby-sapphire
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 21
   flavor_text: |
@@ -70,7 +69,7 @@ colosseum: &colosseum
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -79,7 +78,7 @@ colosseum: &colosseum
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *gold-silver.name
@@ -88,7 +87,7 @@ firered-leafgreen:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -97,7 +96,7 @@ firered-leafgreen:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A peculiar ray is
     shot at the foe.
@@ -110,7 +109,7 @@ diamond-pearl: &diamond-pearl
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -119,7 +118,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
   flavor_text: &diamond-pearl.flavor_text |
@@ -135,7 +134,7 @@ heartgold-soulsilver:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -144,7 +143,7 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *gold-silver.name
@@ -153,7 +152,7 @@ black-white: &black-white
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -162,7 +161,7 @@ black-white: &black-white
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is attacked with a peculiar ray.
     It may also cause confusion.
@@ -174,7 +173,7 @@ x-y:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -183,7 +182,7 @@ x-y:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is attacked with a peculiar ray.
     This may also leave the target confused.
@@ -194,7 +193,7 @@ omega-ruby-alpha-sapphire:
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -203,7 +202,7 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
@@ -214,7 +213,7 @@ sun-moon: &sun-moon
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
@@ -223,7 +222,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is attacked with a peculiar ray. This may
     also leave the target confused.

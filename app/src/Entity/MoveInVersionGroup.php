@@ -101,10 +101,9 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * Before Generation 4, this is taken from the move's type.
      *
-     * @var MoveDamageClass
+     * @var MoveDamageClass|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass", fetch="EAGER")
-     * @Assert\NotBlank()
      */
     protected $damageClass;
 
@@ -471,7 +470,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     }
 
     /**
-     * @return MoveDamageClass
+     * @return MoveDamageClass|null
      */
     public function getDamageClass(): ?MoveDamageClass
     {
@@ -479,11 +478,11 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     }
 
     /**
-     * @param MoveDamageClass $damageClass
+     * @param MoveDamageClass|null $damageClass
      *
      * @return self
      */
-    public function setDamageClass(MoveDamageClass $damageClass): self
+    public function setDamageClass(?MoveDamageClass $damageClass): self
     {
         $this->damageClass = $damageClass;
 

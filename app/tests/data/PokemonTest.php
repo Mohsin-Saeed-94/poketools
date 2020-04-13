@@ -6,7 +6,7 @@ namespace App\Tests\data;
  * Test Pokemon data
  *
  * @group data
- * @group location
+ * @group pokemon
  * @coversNothing
  */
 class PokemonTest extends DataTestCase

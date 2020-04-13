@@ -4,8 +4,7 @@ red-blue: &red-blue
   type: &red-blue.type normal
   accuracy: 100
   pp: 10
-  effect: 49
-  healing: &red-blue.healing -25
+  effect: &red-blue.effect 255
   flags: &red-blue.flags
     - contact
     - protect
@@ -18,7 +17,7 @@ red-blue: &red-blue
 yellow: *red-blue
 gold-silver: &gold-silver
   name: &gold-silver.name Struggle
-  healing: *red-blue.healing
+  healing: &gold-silver.healing -25
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -29,14 +28,14 @@ gold-silver: &gold-silver
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &gold-silver.damage_class physical
-  effect: &gold-silver.effect 255
+  effect: *red-blue.effect
   flavor_text: |
     Used only if all
     PP are exhausted.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
-  healing: *red-blue.healing
+  healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -47,7 +46,7 @@ ruby-sapphire: &ruby-sapphire
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 1
   flavor_text: |
@@ -56,7 +55,7 @@ ruby-sapphire: &ruby-sapphire
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *gold-silver.name
-  healing: *red-blue.healing
+  healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -67,11 +66,11 @@ colosseum: &colosseum
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
   name: *gold-silver.name
-  healing: *red-blue.healing
+  healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -82,7 +81,7 @@ firered-leafgreen:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  effect: *red-blue.effect
   flavor_text: |
     An attack that is
     used only if there
@@ -90,7 +89,7 @@ firered-leafgreen:
     hurts the user.
 diamond-pearl: &diamond-pearl
   name: *gold-silver.name
-  healing: *red-blue.healing
+  healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -101,7 +100,7 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
@@ -113,7 +112,7 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver:
   name: *gold-silver.name
-  healing: *red-blue.healing
+  healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -124,11 +123,11 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *gold-silver.name
-  healing: *red-blue.healing
+  healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -139,7 +138,7 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  effect: *red-blue.effect
   flavor_text: |
     An attack that is used in desperation
     only if the user has no PP. It also hurts
@@ -147,7 +146,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y:
   name: *gold-silver.name
-  healing: *red-blue.healing
+  healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -158,14 +157,14 @@ x-y:
   priority: *red-blue.priority
   target: &x-y.target random-opponent
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  effect: *red-blue.effect
   flavor_text: &x-y.flavor_text |
     An attack that is used in desperation
     only if the user has no PP. This also
     damages the user a little.
 omega-ruby-alpha-sapphire:
   name: *gold-silver.name
-  healing: *red-blue.healing
+  healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -176,13 +175,13 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *x-y.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
   name: *gold-silver.name
-  healing: *red-blue.healing
+  healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -193,7 +192,7 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *x-y.target
   damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  effect: *red-blue.effect
   flavor_text: |
     This attack is used in desperation only if the user
     has no PP. It also damages the user a little.

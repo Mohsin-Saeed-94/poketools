@@ -1,14 +1,14 @@
-red-blue: &red-blue
+gold-silver: &gold-silver
   short_description: 'Power and type depend upon user''s IVs.  Power can range from 30 to 70.'
   description: |
     Inflicts [regular damage]{mechanic:regular-damage}.  Power and type are determined by the user's [IV]{mechanic:iv}s.
-
+    
     Power is given by `x * 40 / 63 + 30`.  `x` is obtained by arranging bit 1 from the [IV]{mechanic:iv} for each of [Special Defense]{mechanic:special-defense}, [Special Attack]{mechanic:special-attack}, [Speed]{mechanic:speed}, [Defense]{mechanic:defense}, [Attack]{mechanic:attack}, and [HP]{mechanic:hp} in that order.  (Bit 1 is 1 if the [IV]{mechanic:iv} is of the form `4n + 2` or `4n + 3`.  `x` is then 64 * [Special Defense]{mechanic:special-defense} [IV]{mechanic:iv} bit 1, plus 32 * [Special Attack]{mechanic:special-attack} [IV]{mechanic:iv} bit 1, etc.)
-
+    
     Power is always between 30 and 70, inclusive.  Average power is 49.5.
-
+    
     Type is given by `y * 15 / 63`, where `y` is similar to `x` above, except constructed from bit 0.  (Bit 0 is 1 if the [IV]{mechanic:iv} is odd.)  The result is looked up in the following table.
-
+    
     Value | Type
     ----: | --------
     0     | []{type:fighting}
@@ -27,22 +27,20 @@ red-blue: &red-blue
     13    | []{type:ice}
     14    | []{type:dragon}
     15    | []{type:dark}
-
+    
     This move thus cannot be []{type:normal}.  Most other types have an equal 1/16 chance to be selected, given random [IV]{mechanic:iv}s.  However, due to the flooring used here, []{type:bug}, []{type:fighting}, and []{type:grass} appear 5/64 of the time, and []{type:dark} only 1/64 of the time.
-yellow: *red-blue
-gold-silver: *red-blue
-crystal: *red-blue
-ruby-sapphire: *red-blue
-emerald: *red-blue
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen: *red-blue
-diamond-pearl: *red-blue
-platinum: *red-blue
-heartgold-soulsilver: *red-blue
-black-white: *red-blue
-black-2-white-2: *red-blue
-x-y: *red-blue
-omega-ruby-alpha-sapphire: *red-blue
-sun-moon: *red-blue
-ultra-sun-ultra-moon: *red-blue
+crystal: *gold-silver
+ruby-sapphire: *gold-silver
+emerald: *gold-silver
+colosseum: *gold-silver
+xd: *gold-silver
+firered-leafgreen: *gold-silver
+diamond-pearl: *gold-silver
+platinum: *gold-silver
+heartgold-soulsilver: *gold-silver
+black-white: *gold-silver
+black-2-white-2: *gold-silver
+x-y: *gold-silver
+omega-ruby-alpha-sapphire: *gold-silver
+sun-moon: *gold-silver
+ultra-sun-ultra-moon: *gold-silver

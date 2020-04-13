@@ -147,6 +147,13 @@ def get_moves():
         'target',
         'effect_chance',
     ]
+    # move slug => effect id
+    fixed_damage_moves = {
+        'sonicboom': 131,
+        'seismic-toss': 88,
+        'dragon-rage': 42,
+        'night-shade': 88,
+    }
     print('Extracting move data')
     for move_index, move_slug in move_slugs.items():
         start = move_data_offset + ((move_index - 1) * move_data_length)
@@ -166,6 +173,9 @@ def get_moves():
         }
         if out[move_slug][version_group]['power'] == 0:
             del out[move_slug][version_group]['power']
+        if move_slug in fixed_damage_moves:
+            # The game uses the same effect id for different damage amounts
+            out[move_slug][version_group][effect_id] = fixed_damage_moves[move_slug]
 
         # Some extra info comes from the existing data
         if move_slug in move_name_changes:
