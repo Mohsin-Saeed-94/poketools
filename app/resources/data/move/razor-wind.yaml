@@ -1,5 +1,5 @@
 red-blue: &red-blue
-  name: 'RAZOR WIND'
+  name: &red-blue.name 'RAZOR WIND'
   power: &red-blue.power 80
   type: &red-blue.type normal
   accuracy: &red-blue.accuracy 75
@@ -18,26 +18,25 @@ red-blue: &red-blue
   target: &red-blue.target all-opponents
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name 'Razor Wind'
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: &gold-silver.turns 1
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class physical
-  effect: *red-blue.effect
   flavor_text: |
     1st turn: Prepare
     2nd turn: Attack
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name 'Razor Wind'
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -49,7 +48,7 @@ ruby-sapphire: &ruby-sapphire
   accuracy: &ruby-sapphire.accuracy 100
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class physical
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 2
@@ -58,7 +57,7 @@ ruby-sapphire: &ruby-sapphire
     the foe on the 2nd turn.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -70,11 +69,11 @@ colosseum: &colosseum
   accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -86,7 +85,7 @@ firered-leafgreen:
   accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     Blades of wind hit
@@ -94,7 +93,7 @@ firered-leafgreen:
     turn. It has a high
     critical-hit ratio.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -118,7 +117,7 @@ diamond-pearl: &diamond-pearl
     critical-hit ratio.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -134,7 +133,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -155,7 +154,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -173,7 +172,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories

@@ -1,5 +1,5 @@
 red-blue: &red-blue
-  name: 'THUNDER WAVE'
+  name: &red-blue.name 'THUNDER WAVE'
   type: &red-blue.type electric
   accuracy: &red-blue.accuracy 100
   pp: &red-blue.pp 20
@@ -17,25 +17,24 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name 'Thunder Wave'
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class special
-  effect: *red-blue.effect
   flavor_text: |
     A move that may
     cause paralysis.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name 'Thunder Wave'
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -46,7 +45,7 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class special
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 14
@@ -55,7 +54,7 @@ ruby-sapphire: &ruby-sapphire
     that paralyzes the foe.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -66,11 +65,11 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -81,7 +80,7 @@ firered-leafgreen:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     A weak electric
@@ -89,7 +88,7 @@ firered-leafgreen:
     to cause paralysis
     if it hits.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -112,7 +111,7 @@ diamond-pearl: &diamond-pearl
     it hits.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -127,7 +126,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -145,7 +144,7 @@ black-white: &black-white
     the target. It causes paralysis if it hits.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -162,7 +161,7 @@ x-y:
     The user launches a weak jolt
     of electricity that paralyzes the target.
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -179,7 +178,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories

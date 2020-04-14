@@ -1,5 +1,5 @@
 red-blue: &red-blue
-  name: HYPNOSIS
+  name: &red-blue.name HYPNOSIS
   type: &red-blue.type psychic
   accuracy: &red-blue.accuracy 60
   pp: &red-blue.pp 20
@@ -17,25 +17,24 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name Hypnosis
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: &gold-silver.effect 2
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: &gold-silver.turns 2-4
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: &gold-silver.accuracy 70
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class special
-  effect: &gold-silver.effect 2
   flavor_text: |
     May put the foe to
     sleep.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Hypnosis
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -43,10 +42,10 @@ ruby-sapphire: &ruby-sapphire
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *gold-silver.accuracy
+  accuracy: &ruby-sapphire.accuracy 70
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class special
   effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 5
@@ -58,7 +57,7 @@ ruby-sapphire: &ruby-sapphire
     may induce sleep.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -66,14 +65,14 @@ colosseum: &colosseum
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *gold-silver.accuracy
+  accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -81,10 +80,10 @@ firered-leafgreen:
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *gold-silver.accuracy
+  accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     Hypnotic suggestion
@@ -92,7 +91,7 @@ firered-leafgreen:
     foe fall into a
     deep sleep.
 diamond-pearl:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -100,7 +99,7 @@ diamond-pearl:
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *gold-silver.accuracy
+  accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
@@ -114,7 +113,7 @@ diamond-pearl:
     fall into a deep
     sleep.
 platinum:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -131,7 +130,7 @@ platinum:
   super_contest_effect: *diamond-pearl.super_contest_effect
   flavor_text: *diamond-pearl.flavor_text
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -146,7 +145,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -165,7 +164,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -183,7 +182,7 @@ omega-ruby-alpha-sapphire:
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories

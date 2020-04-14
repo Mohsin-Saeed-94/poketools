@@ -1,5 +1,5 @@
 red-blue: &red-blue
-  name: 'HORN ATTACK'
+  name: &red-blue.name 'HORN ATTACK'
   power: &red-blue.power 65
   type: &red-blue.type normal
   accuracy: &red-blue.accuracy 100
@@ -17,25 +17,24 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name 'Horn Attack'
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class physical
-  effect: *red-blue.effect
   flavor_text: |
     An attack using a
     horn to jab.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name 'Horn Attack'
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -46,7 +45,7 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class physical
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 1
@@ -58,7 +57,7 @@ ruby-sapphire: &ruby-sapphire
     horns.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -69,11 +68,11 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen: &firered-leafgreen
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -84,7 +83,7 @@ firered-leafgreen: &firered-leafgreen
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: &firered-leafgreen.flavor_text |
     The foe is jabbed
@@ -92,7 +91,7 @@ firered-leafgreen: &firered-leafgreen
     pointed horn to
     inflict damage.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -103,7 +102,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
@@ -111,7 +110,7 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *firered-leafgreen
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -122,7 +121,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: &black-white.flavor_text |
     The target is jabbed with a sharply
@@ -130,7 +129,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -141,14 +140,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -159,7 +158,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The target is jabbed with a sharply pointed horn to

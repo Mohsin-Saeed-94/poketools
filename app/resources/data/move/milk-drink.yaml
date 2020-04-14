@@ -1,5 +1,9 @@
 gold-silver: &gold-silver
-  name: &gold-silver.name 'Milk Drink'
+  name: 'MILK DRINK'
+  type: &gold-silver.type normal
+  accuracy: 100
+  pp: &gold-silver.pp 10
+  effect: &gold-silver.effect 33
   healing: &gold-silver.healing 50
   flags: &gold-silver.flags
     - snatch
@@ -8,18 +12,14 @@ gold-silver: &gold-silver
     - heal
   hits: &gold-silver.hits 1
   turns: &gold-silver.turns 1
-  type: &gold-silver.type normal
-  pp: &gold-silver.pp 10
   priority: &gold-silver.priority 0
   target: &gold-silver.target user
-  damage_class: &gold-silver.damage_class physical
-  effect: &gold-silver.effect 33
   flavor_text: |
     Restores HP by 1/2
     the max HP.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name 'Milk Drink'
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -29,7 +29,7 @@ ruby-sapphire: &ruby-sapphire
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class physical
   effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type cute
   contest_effect: &ruby-sapphire.contest_effect 12
@@ -38,7 +38,7 @@ ruby-sapphire: &ruby-sapphire
     user’s maximum HP.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -48,11 +48,11 @@ colosseum: &colosseum
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -62,7 +62,7 @@ firered-leafgreen:
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     Heals the user by
@@ -70,7 +70,7 @@ firered-leafgreen:
     HP. It can be used
     to heal an ally.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -92,7 +92,7 @@ diamond-pearl: &diamond-pearl
     to heal an ally’s HP.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -106,7 +106,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -124,7 +124,7 @@ black-white: &black-white
     May also be used in the field to heal HP.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -141,7 +141,7 @@ x-y:
     by up to half of its max HP.
     May also be used in the field to heal HP.
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -157,7 +157,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories

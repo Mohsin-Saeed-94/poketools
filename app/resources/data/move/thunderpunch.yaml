@@ -1,22 +1,42 @@
 red-blue: &red-blue
-  name: THUNDERPUNCH
-  power: 75
-  type: electric
-  accuracy: 100
-  pp: 15
-  effect: 7
-  ailment: paralysis
-  ailment_chance: 10
-  flags:
+  name: &red-blue.name THUNDERPUNCH
+  power: &red-blue.power 75
+  type: &red-blue.type electric
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 15
+  effect: &red-blue.effect 7
+  ailment: &red-blue.ailment paralysis
+  ailment_chance: &red-blue.ailment_chance 10
+  flags: &red-blue.flags
     - contact
     - protect
     - mirror
     - punch
-  categories:
+  categories: &red-blue.categories
     - damage
     - ailment
-  hits: 1
-  turns: 1
-  priority: 0
-  target: selected-pokemon
+  hits: &red-blue.hits 1
+  turns: &red-blue.turns 1
+  priority: &red-blue.priority 0
+  target: &red-blue.target selected-pokemon
 yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  effect_chance: 10
+  ailment: *red-blue.ailment
+  ailment_chance: *red-blue.ailment_chance
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  priority: *red-blue.priority
+  target: *red-blue.target
+  flavor_text: |
+    An electric punch.
+    It may paralyze.
+crystal: *gold-silver

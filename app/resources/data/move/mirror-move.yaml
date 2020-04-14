@@ -1,7 +1,7 @@
 red-blue: &red-blue
-  name: 'MIRROR MOVE'
+  name: &red-blue.name 'MIRROR MOVE'
   type: &red-blue.type flying
-  accuracy: 100
+  accuracy: &red-blue.accuracy 100
   pp: &red-blue.pp 20
   effect: &red-blue.effect 10
   categories: &red-blue.categories
@@ -12,22 +12,22 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name 'Mirror Move'
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class physical
-  effect: *red-blue.effect
   flavor_text: |
     Counters with the
     same move.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name 'Mirror Move'
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -35,7 +35,7 @@ ruby-sapphire: &ruby-sapphire
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class physical
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 19
@@ -44,7 +44,7 @@ ruby-sapphire: &ruby-sapphire
     with the same move.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -52,11 +52,11 @@ colosseum: &colosseum
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -64,7 +64,7 @@ firered-leafgreen:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The user counters
@@ -72,7 +72,7 @@ firered-leafgreen:
     by the foe with the
     same move.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -91,7 +91,7 @@ diamond-pearl: &diamond-pearl
     by the foe.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -103,7 +103,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -119,7 +119,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -133,7 +133,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns

@@ -1,10 +1,10 @@
 red-blue: &red-blue
-  name: BLIZZARD
+  name: &red-blue.name BLIZZARD
   power: &red-blue.power 120
   type: &red-blue.type ice
   accuracy: 90
   pp: &red-blue.pp 5
-  effect: 6
+  effect: &red-blue.effect 6
   ailment: &red-blue.ailment freeze
   ailment_chance: &red-blue.ailment_chance 10
   flags: &red-blue.flags
@@ -19,28 +19,27 @@ red-blue: &red-blue
   target: &red-blue.target all-opponents
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name Blizzard
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: &gold-silver.accuracy 70
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  effect_chance: &gold-silver.effect_chance 10
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: &gold-silver.accuracy 70
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class special
-  effect: &gold-silver.effect 261
-  effect_chance: &gold-silver.effect_chance 10
   flavor_text: |
     An attack that may
     freeze the foe.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Blizzard
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -53,8 +52,8 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: &ruby-sapphire.damage_class special
+  effect: &ruby-sapphire.effect 261
   effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 1
@@ -63,7 +62,7 @@ ruby-sapphire: &ruby-sapphire
     storm that may freeze it.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -76,12 +75,12 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -94,8 +93,8 @@ firered-leafgreen:
   accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The foe is blasted
@@ -103,7 +102,7 @@ firered-leafgreen:
     It may freeze the
     foe solid.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -116,8 +115,8 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
@@ -129,7 +128,7 @@ diamond-pearl: &diamond-pearl
     the target solid.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -142,12 +141,12 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -160,8 +159,8 @@ black-white: &black-white
   accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A howling blizzard is summoned to strike
@@ -169,7 +168,7 @@ black-white: &black-white
     them solid.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -182,15 +181,15 @@ x-y:
   accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     A howling blizzard is summoned to strike
     opposing Pokémon. This may also leave
     the opposing Pokémon frozen.
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -203,14 +202,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -223,8 +222,8 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A howling blizzard is summoned to strike opposing

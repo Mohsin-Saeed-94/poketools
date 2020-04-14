@@ -1,8 +1,8 @@
 red-blue: &red-blue
-  name: STRUGGLE
+  name: &red-blue.name STRUGGLE
   power: &red-blue.power 50
   type: &red-blue.type normal
-  accuracy: 100
+  accuracy: &red-blue.accuracy 100
   pp: 10
   effect: &red-blue.effect 255
   flags: &red-blue.flags
@@ -16,25 +16,25 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name Struggle
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: &gold-silver.pp 1
+  effect: 49
   healing: &gold-silver.healing -25
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: &gold-silver.pp 1
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class physical
-  effect: *red-blue.effect
   flavor_text: |
     Used only if all
     PP are exhausted.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Struggle
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -45,7 +45,7 @@ ruby-sapphire: &ruby-sapphire
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class physical
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: &ruby-sapphire.contest_effect 1
@@ -54,7 +54,7 @@ ruby-sapphire: &ruby-sapphire
     Also hurts the user a little.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -65,11 +65,11 @@ colosseum: &colosseum
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -80,7 +80,7 @@ firered-leafgreen:
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     An attack that is
@@ -88,7 +88,7 @@ firered-leafgreen:
     is no PP. It also
     hurts the user.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -99,7 +99,7 @@ diamond-pearl: &diamond-pearl
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
@@ -111,7 +111,7 @@ diamond-pearl: &diamond-pearl
     the user slightly.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -122,11 +122,11 @@ heartgold-soulsilver:
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -137,7 +137,7 @@ black-white: &black-white
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     An attack that is used in desperation
@@ -145,7 +145,7 @@ black-white: &black-white
     the user slightly.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -156,14 +156,14 @@ x-y:
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: &x-y.target random-opponent
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: &x-y.flavor_text |
     An attack that is used in desperation
     only if the user has no PP. This also
     damages the user a little.
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -174,13 +174,13 @@ omega-ruby-alpha-sapphire:
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *x-y.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -191,7 +191,7 @@ sun-moon: &sun-moon
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *x-y.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     This attack is used in desperation only if the user

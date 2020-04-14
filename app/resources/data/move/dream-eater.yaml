@@ -1,5 +1,5 @@
 red-blue: &red-blue
-  name: 'DREAM EATER'
+  name: &red-blue.name 'DREAM EATER'
   power: &red-blue.power 100
   type: &red-blue.type psychic
   accuracy: &red-blue.accuracy 100
@@ -18,26 +18,25 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name 'Dream Eater'
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   drain: &gold-silver.drain 50
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class special
-  effect: *red-blue.effect
   flavor_text: |
     Steals HP from a
     sleeping victim.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name 'Dream Eater'
   drain: *gold-silver.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -49,7 +48,7 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class special
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 8
@@ -58,7 +57,7 @@ ruby-sapphire: &ruby-sapphire
     inflicted on a sleeping foe.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   drain: *gold-silver.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -70,11 +69,11 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   drain: *gold-silver.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -86,7 +85,7 @@ firered-leafgreen:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     Absorbs half the
@@ -94,7 +93,7 @@ firered-leafgreen:
     on a sleeping foe
     to restore HP.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   drain: *gold-silver.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -106,7 +105,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 20
@@ -118,7 +117,7 @@ diamond-pearl: &diamond-pearl
     heal the user’s HP.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   drain: *gold-silver.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -130,11 +129,11 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   drain: *gold-silver.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -146,7 +145,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The user eats the dreams of a sleeping
@@ -154,7 +153,7 @@ black-white: &black-white
     caused to heal the user’s HP.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   drain: *gold-silver.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -166,14 +165,14 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: &x-y.flavor_text |
     The user eats the dreams of a sleeping
     target. It absorbs half the damage
     caused to heal its own HP.
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   drain: *gold-silver.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -185,13 +184,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   drain: *gold-silver.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -203,7 +202,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The user eats the dreams of a sleeping target. It

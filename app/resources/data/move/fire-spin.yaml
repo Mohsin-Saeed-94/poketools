@@ -1,5 +1,5 @@
 red-blue: &red-blue
-  name: 'FIRE SPIN'
+  name: &red-blue.name 'FIRE SPIN'
   power: &red-blue.power 15
   type: &red-blue.type fire
   accuracy: &red-blue.accuracy 70
@@ -18,28 +18,26 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name 'Fire Spin'
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   ailment: *red-blue.ailment
   ailment_chance: &gold-silver.ailment_chance 100
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: &gold-silver.turns 5-6
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class special
-  effect: *red-blue.effect
-  effect_chance: &gold-silver.effect_chance 100
   flavor_text: |
     Traps foe in fire
     for 2-5 turns.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name 'Fire Spin'
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -52,9 +50,9 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class special
   effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
+  effect_chance: &ruby-sapphire.effect_chance 100
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 24
   flavor_text: |
@@ -62,7 +60,7 @@ ruby-sapphire: &ruby-sapphire
     fire for 2 to 5 turns.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -75,12 +73,12 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
+  effect_chance: *ruby-sapphire.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -93,16 +91,16 @@ firered-leafgreen:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
+  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     The foe is trapped
     in an intense spiral
     of fire that rages
     two to five turns.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -115,9 +113,9 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
+  effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 21
   flavor_text: &diamond-pearl.flavor_text |
@@ -128,7 +126,7 @@ diamond-pearl: &diamond-pearl
     to five turns.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -141,12 +139,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
+  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -159,9 +157,9 @@ black-white: &black-white
   accuracy: &black-white.accuracy 85
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
+  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: &black-white.flavor_text |
     The target becomes trapped within a
     fierce vortex of fire that rages for four
@@ -169,7 +167,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -182,14 +180,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *black-white.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
+  effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -202,9 +200,9 @@ sun-moon: &sun-moon
   accuracy: *black-white.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
+  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     The target becomes trapped within a fierce vortex
     of fire that rages for four to five turns.

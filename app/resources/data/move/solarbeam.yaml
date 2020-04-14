@@ -1,18 +1,35 @@
 red-blue: &red-blue
-  name: SOLARBEAM
-  power: 120
-  type: grass
-  accuracy: 100
-  pp: 10
+  name: &red-blue.name SOLARBEAM
+  power: &red-blue.power 120
+  type: &red-blue.type grass
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 10
   effect: 40
-  flags:
+  flags: &red-blue.flags
     - charge
     - protect
     - mirror
-  categories:
+  categories: &red-blue.categories
     - damage
-  hits: 1
+  hits: &red-blue.hits 1
   turns: 2
-  priority: 0
-  target: selected-pokemon
+  priority: &red-blue.priority 0
+  target: &red-blue.target selected-pokemon
 yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: 152
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: 1
+  priority: *red-blue.priority
+  target: *red-blue.target
+  flavor_text: |
+    1st turn: Prepare
+    2nd turn: Attack
+crystal: *gold-silver

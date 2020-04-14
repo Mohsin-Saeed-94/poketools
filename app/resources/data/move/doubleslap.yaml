@@ -1,18 +1,35 @@
 red-blue: &red-blue
-  name: DOUBLESLAP
-  power: 15
-  type: normal
-  accuracy: 85
-  pp: 10
-  effect: 30
-  flags:
+  name: &red-blue.name DOUBLESLAP
+  power: &red-blue.power 15
+  type: &red-blue.type normal
+  accuracy: &red-blue.accuracy 85
+  pp: &red-blue.pp 10
+  effect: &red-blue.effect 30
+  flags: &red-blue.flags
     - contact
     - protect
     - mirror
-  categories:
+  categories: &red-blue.categories
     - damage
-  hits: 2-5
+  hits: &red-blue.hits 2-5
   turns: 2-5
-  priority: 0
-  target: selected-pokemon
+  priority: &red-blue.priority 0
+  target: &red-blue.target selected-pokemon
 yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: 1
+  priority: *red-blue.priority
+  target: *red-blue.target
+  flavor_text: |
+    Repeatedly slaps
+    2-5 times.
+crystal: *gold-silver

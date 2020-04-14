@@ -1,21 +1,41 @@
 red-blue: &red-blue
-  name: BUBBLEBEAM
-  power: 65
-  type: water
-  accuracy: 100
-  pp: 20
-  effect: 71
-  flags:
+  name: &red-blue.name BUBBLEBEAM
+  power: &red-blue.power 65
+  type: &red-blue.type water
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 20
+  effect: &red-blue.effect 71
+  flags: &red-blue.flags
     - protect
     - mirror
-  categories:
+  categories: &red-blue.categories
     - damage
     - lower
-  hits: 1
-  turns: 1
-  stat_changes:
+  hits: &red-blue.hits 1
+  turns: &red-blue.turns 1
+  stat_changes: &red-blue.stat_changes
     speed: -1
   stat_change_chance: 33
-  priority: 0
-  target: selected-pokemon
+  priority: &red-blue.priority 0
+  target: &red-blue.target selected-pokemon
 yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  effect_chance: 10
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *red-blue.stat_changes
+  stat_change_chance: 10
+  priority: *red-blue.priority
+  target: *red-blue.target
+  flavor_text: |
+    An attack that may
+    lower SPEED.
+crystal: *gold-silver

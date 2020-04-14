@@ -1,10 +1,10 @@
 red-blue: &red-blue
-  name: SURF
+  name: &red-blue.name SURF
   power: &red-blue.power 95
   type: &red-blue.type water
   accuracy: &red-blue.accuracy 100
   pp: &red-blue.pp 15
-  effect: 1
+  effect: &red-blue.effect 1
   flags: &red-blue.flags
     - protect
     - mirror
@@ -17,25 +17,24 @@ red-blue: &red-blue
   target: &red-blue.target all-other-pokemon
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name Surf
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class special
-  effect: &gold-silver.effect 258
   flavor_text: |
     A strong water-
     type attack.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Surf
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -46,8 +45,8 @@ ruby-sapphire: &ruby-sapphire
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: &ruby-sapphire.damage_class special
+  effect: &ruby-sapphire.effect 258
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 2
   contest_use_before: &ruby-sapphire.contest_use_before
@@ -57,7 +56,7 @@ ruby-sapphire: &ruby-sapphire
     crashes it down on the foe.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -68,11 +67,11 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -83,15 +82,15 @@ firered-leafgreen:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   flavor_text: |
     A big wave crashes
     down on the foe.
     Can also be used
     for crossing water.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -102,8 +101,8 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
   flavor_text: &diamond-pearl.flavor_text |
@@ -114,7 +113,7 @@ diamond-pearl: &diamond-pearl
     for crossing water.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -125,11 +124,11 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -140,15 +139,15 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   flavor_text: |
     It swamps the area around the user
     with a giant wave.
     It can also be used for crossing water.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -159,14 +158,14 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   flavor_text: &x-y.flavor_text |
     The user attacks everything around it by
     swamping its surroundings with a giant wave.
     This can also be used for crossing water.
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -177,14 +176,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -195,8 +194,8 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   flavor_text: |
     The user attacks everything around it by swamping
     its surroundings with a giant wave.

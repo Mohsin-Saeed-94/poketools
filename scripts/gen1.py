@@ -153,6 +153,7 @@ def get_moves():
         'seismic-toss': 88,
         'dragon-rage': 42,
         'night-shade': 88,
+        'psywave': 89,
     }
     print('Extracting move data')
     for move_index, move_slug in move_slugs.items():

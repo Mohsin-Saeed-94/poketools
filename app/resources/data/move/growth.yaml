@@ -1,9 +1,9 @@
 red-blue: &red-blue
-  name: GROWTH
+  name: &red-blue.name GROWTH
   type: &red-blue.type normal
-  accuracy: 100
+  accuracy: &red-blue.accuracy 100
   pp: &red-blue.pp 40
-  effect: 14
+  effect: &red-blue.effect 14
   flags: &red-blue.flags
     - snatch
   categories: &red-blue.categories
@@ -16,7 +16,11 @@ red-blue: &red-blue
   target: &red-blue.target user
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name Growth
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -24,18 +28,14 @@ gold-silver: &gold-silver
   stat_changes: &gold-silver.stat_changes
     attack: 1
     special-attack: 1
-  type: *red-blue.type
-  pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class physical
-  effect: &gold-silver.effect 317
   flavor_text: |
     Raises the SPCL.
     ATK rating.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Growth
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -45,8 +45,8 @@ ruby-sapphire: &ruby-sapphire
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: &ruby-sapphire.damage_class physical
+  effect: &ruby-sapphire.effect 317
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 32
   contest_use_before: &ruby-sapphire.contest_use_before
@@ -65,7 +65,7 @@ ruby-sapphire: &ruby-sapphire
     and heightens SP. ATK.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -75,11 +75,11 @@ colosseum: &colosseum
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -89,15 +89,15 @@ firered-leafgreen:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
+  damage_class: *ruby-sapphire.damage_class
+  effect: *ruby-sapphire.effect
   flavor_text: |
     The user’s body is
     forced to grow,
     raising the SP.
     ATK stat.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -108,7 +108,7 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
-  effect: *gold-silver.effect
+  effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 11
   super_contest_use_before:
@@ -120,7 +120,7 @@ diamond-pearl: &diamond-pearl
     Sp. Atk stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -131,10 +131,10 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *gold-silver.effect
+  effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -145,13 +145,13 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *gold-silver.effect
+  effect: *ruby-sapphire.effect
   flavor_text: &black-white.flavor_text |
     The user’s body grows all at once,
     raising the Attack and Sp. Atk stats.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -162,10 +162,10 @@ x-y:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *gold-silver.effect
+  effect: *ruby-sapphire.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -176,13 +176,13 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *gold-silver.effect
+  effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -193,7 +193,7 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *gold-silver.effect
+  effect: *ruby-sapphire.effect
   flavor_text: |
     The user’s body grows all at once, raising the
     Attack and Sp. Atk stats.

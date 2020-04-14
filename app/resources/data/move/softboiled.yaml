@@ -1,17 +1,34 @@
 red-blue: &red-blue
-  name: SOFTBOILED
-  type: normal
-  accuracy: 100
-  pp: 10
+  name: &red-blue.name SOFTBOILED
+  type: &red-blue.type normal
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 10
   effect: 57
-  healing: 50
-  flags:
+  healing: &red-blue.healing 50
+  flags: &red-blue.flags
     - snatch
     - heal
-  categories:
+  categories: &red-blue.categories
     - heal
-  hits: 1
-  turns: 1
-  priority: 0
-  target: user
+  hits: &red-blue.hits 1
+  turns: &red-blue.turns 1
+  priority: &red-blue.priority 0
+  target: &red-blue.target user
 yellow: *red-blue
+gold-silver: &gold-silver
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: 33
+  healing: *red-blue.healing
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  priority: *red-blue.priority
+  target: *red-blue.target
+  flavor_text: |
+    Restores HP by 1/2
+    the user's max HP.
+crystal: *gold-silver

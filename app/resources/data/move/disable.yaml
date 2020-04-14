@@ -1,7 +1,7 @@
 red-blue: &red-blue
-  name: DISABLE
+  name: &red-blue.name DISABLE
   type: &red-blue.type normal
-  accuracy: 55
+  accuracy: &red-blue.accuracy 55
   pp: &red-blue.pp 20
   effect: &red-blue.effect 87
   ailment: &red-blue.ailment disable
@@ -18,25 +18,24 @@ red-blue: &red-blue
   target: &red-blue.target selected-pokemon
 yellow: *red-blue
 gold-silver: &gold-silver
-  name: &gold-silver.name Disable
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: &gold-silver.turns 4
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: &gold-silver.accuracy 80
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: &gold-silver.damage_class physical
-  effect: *red-blue.effect
   flavor_text: |
     Disables the foe's
     most recent move.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Disable
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -44,10 +43,10 @@ ruby-sapphire: &ruby-sapphire
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *gold-silver.accuracy
+  accuracy: &ruby-sapphire.accuracy 80
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: &ruby-sapphire.damage_class physical
   effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: &ruby-sapphire.contest_effect 18
@@ -56,7 +55,7 @@ ruby-sapphire: &ruby-sapphire
     the foe’s moves.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -64,14 +63,14 @@ colosseum: &colosseum
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *gold-silver.accuracy
+  accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -79,10 +78,10 @@ firered-leafgreen:
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *gold-silver.accuracy
+  accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *ruby-sapphire.damage_class
   effect: *red-blue.effect
   flavor_text: |
     For a few turns,
@@ -90,7 +89,7 @@ firered-leafgreen:
     from using the move
     it last used.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -98,7 +97,7 @@ diamond-pearl: &diamond-pearl
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *gold-silver.accuracy
+  accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
@@ -113,7 +112,7 @@ diamond-pearl: &diamond-pearl
     used.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -121,14 +120,14 @@ heartgold-soulsilver:
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *gold-silver.accuracy
+  accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -147,7 +146,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -164,7 +163,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
