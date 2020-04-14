@@ -701,7 +701,7 @@ def get_pokemon():
                 'art': [
                     '{species}-default.png'.format(species=species_slug)
                 ],
-                'cry': '{species}-default.webm'.format(species=species_slug),
+                'cry': 'gen5/{species}-default.webm'.format(species=species_slug),
                 'icon': 'gen1/{icon}.png'.format(icon=icon),
             }
         }
