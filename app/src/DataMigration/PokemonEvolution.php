@@ -718,15 +718,17 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
         VersionGroup $versionGroup,
         array $value
     ): TimeOfDayEvolutionCondition {
-        /** @var \App\Entity\TimeOfDay $time */
-        $time = $this->referenceStore->get(
-            TimeOfDay::class,
-            [
-                'generation' => $versionGroup->getGeneration()->getNumber(),
-                'identifier' => array_pop($value),
-            ]
-        );
-        $condition->setTimeOfDay($time);
+        foreach ($value as $timeOfDayIdentifier) {
+            /** @var \App\Entity\TimeOfDay $time */
+            $time = $this->referenceStore->get(
+                TimeOfDay::class,
+                [
+                    'generation' => $versionGroup->getGeneration()->getNumber(),
+                    'identifier' => $timeOfDayIdentifier,
+                ]
+            );
+            $condition->addTimeOfDay($time);
+        }
 
         return $condition;
     }

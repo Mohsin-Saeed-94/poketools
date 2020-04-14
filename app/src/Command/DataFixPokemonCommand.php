@@ -90,6 +90,25 @@ final class DataFixPokemonCommand extends Command
             }
             $data = $this->sortVersionGroups($fileInfo->getRelativePathname(), $data, $changed);
 
+            // TODO: REMOVE ME
+            // Convert times of day to lists
+            foreach ($data as $versionGroup => &$versionGroupData) {
+                foreach ($versionGroupData['pokemon'] as $pokemon => &$pokemonData) {
+                    if (!isset($pokemonData['evolution_conditions'])) {
+                        continue;
+                    }
+                    foreach ($pokemonData['evolution_conditions'] as $trigger => &$conditions) {
+                        foreach ($conditions as $condition => &$values) {
+                            if ($condition !== 'time_of_day') {
+                                continue;
+                            }
+                            $values = [$values];
+                            $changed = true;
+                        }
+                    }
+                }
+            }
+
             if ($changed) {
                 $file = $fileInfo->openFile('w');
                 $file->fwrite(Yaml::dump($data, PHP_INT_MAX, 2, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));

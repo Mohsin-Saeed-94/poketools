@@ -229,7 +229,8 @@ Identifier for the [Item](item.md) that must be held.
 {{ include:types/identifier }}
 
 #### time_of_day
-Identifier for the [Time of Day](time_of_day.md) when evolution can take place.
+A list of identifiers for the [Time of Day](time_of_day.md) when evolution can
+take place.
 {{ include:types/identifier }}
 
 #### known_move
