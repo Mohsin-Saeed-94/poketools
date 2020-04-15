@@ -1,6 +1,7 @@
 # Rip Gen 2 pokemon data
 
 import argparse
+import csv
 import math
 import os
 import re
@@ -811,6 +812,29 @@ def get_pokemon():
                 'machine': None
             })
 
+    # Egg moves
+    if version_group == 'gold-silver':
+        egg_move_pointer_offset = 0x0239FE
+    else:
+        egg_move_pointer_offset = 0x023B11
+    for species_index, species_slug in pokemon_slugs.items():
+        start = egg_move_pointer_offset + ((species_index - 1) * 2)
+        pointer = rom[start:start + 2]
+        cursor = gb.address_from_pointer(pointer, 0x08)
+        while rom[cursor] != 0xFF:
+            move = rom[cursor]
+            move = move_slugs[move]
+            out_pokemon_moves.append({
+                'species': species_slug,
+                'pokemon': species_slug,
+                'version_group': version_group,
+                'move': move,
+                'learn_method': 'egg',
+                'level': None,
+                'machine': None
+            })
+            cursor += 1
+
     # Media/Form fill-in
     print('Extracting Pokemon icons')
     if version == 'gold':
@@ -1000,3 +1024,26 @@ if args.write_pokemon:
         data.update(species_data)
         with open(yaml_path, 'w') as pokemon_yaml:
             yaml.dump(data, pokemon_yaml)
+
+if args.write_pokemon_moves:
+    print('Writing Pokemon moves')
+
+    # Get existing data, removing those that have just been ripped.
+    delete_learn_methods = [
+        'level-up',
+        'machine',
+        'tutor',
+        'egg'
+    ]
+    data = []
+    with open(args.out_pokemon_moves, 'r') as pokemon_moves_csv:
+        for row in progressbar.progressbar(csv.DictReader(pokemon_moves_csv)):
+            if row['version_group'] != version_group or row['learn_method'] not in delete_learn_methods:
+                data.append(row)
+
+    data.extend(out_pokemon_moves)
+    with open(args.out_pokemon_moves, 'w') as pokemon_moves_csv:
+        writer = csv.DictWriter(pokemon_moves_csv, fieldnames=data[0].keys())
+        writer.writeheader()
+        for row in progressbar.progressbar(data):
+            writer.writerow(row)
