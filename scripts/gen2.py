@@ -268,6 +268,7 @@ def get_items():
     ]
     slug_overrides = {
         'king-s-rock': 'kings-rock',
+        's-s-ticket': 'ss-ticket',
     }
     # Get item names and IDs
     if version_group == 'crystal':
@@ -402,17 +403,18 @@ def get_items():
         match = re_ismachine.match(item['identifier'])
         if not match:
             continue
+        # Is a TM/HM
+        del item['flavor_text']
         searchnumber = int(match.group('number'))
         if match.group('type') == 'hm':
             searchnumber = searchnumber + 50
         move_id = int(machinemoves[searchnumber - 1])
         tm_moves[item['identifier']] = move_slugs[move_id]
-        short_description = 'Teaches []{{move:{move}}} to a compatible Pokèmon.'.format(move=move_slugs[move_id])
-        description = r'''
-    Teaches []{{move:{move}}} to a compatible Pokèmon.
-
-    {{{{App\Controller\ItemController::tmPokemon({{"itemSlug": "{item}"}})}}}}
-            '''.format(move=move_slugs[move_id], item=item['identifier']).strip()
+        short_description = 'Teaches []{{move:{move}}} to a compatible Pokémon.'.format(move=move_slugs[move_id])
+        description = '\n\n'.join([
+            r'Teaches []{{move:{move}}} to a compatible Pokémon.',
+            r'{{{{App\Controller\ItemController::tmPokemon({{"itemSlug": "{item}"}})}}}}'
+        ]).format(move=move_slugs[move_id], item=item['identifier']).strip()
         item['short_description'] = short_description
         item['description'] = description
 
@@ -435,7 +437,7 @@ def get_items():
             continue
 
         # Read the existing file to add to it.
-        filename = 'item/{name}.yaml'.format(name=identifier)
+        filename = os.path.join(args.out_items, '{slug}.yaml'.format(slug=identifier))
         if os.path.isfile(filename):
             outfile = open(filename, 'r')
             existingdata = yaml.load(outfile)
@@ -448,10 +450,8 @@ def get_items():
             if key in item:
                 # Don't overwrite existing data
                 continue
-            for laterversiondata in existingdata.values():
-                if key in laterversiondata:
-                    item[key] = laterversiondata[key]
-                    break
+            if version_group in existingdata and key in existingdata[version_group]:
+                item[key] = existingdata[version_group][key]
 
         out_items[identifier] = {version_group: item}
 

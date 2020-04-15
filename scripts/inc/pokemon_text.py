@@ -210,7 +210,7 @@ class Gen2Text(codecs.Codec):
         0x51: "\n",
         0x52: "<PLAYER>",
         0x53: "<RIVAL>",
-        0x54: "#",
+        0x54: "POKé",
         0x55: "\n",
         0x56: "……",
         0x57: "<DONE>",
@@ -355,9 +355,6 @@ class Gen2Text(codecs.Codec):
         0xFE: "8",
         0xFF: "9",
     }
-    replacements = {
-        '#MON': 'POKéMON'
-    }
 
     def decode(self, binary: bytes, errors='ignore'):
         out = []
@@ -368,8 +365,6 @@ class Gen2Text(codecs.Codec):
                 out.append(self._decode_table.get(byte, ' '))
 
         text = ''.join(out)
-        for find, replacement in self.replacements.items():
-            text.replace(find, replacement)
 
         return text, len(binary)
 
