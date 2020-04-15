@@ -542,22 +542,14 @@ def get_pokemon():
     # Dex flavor (e.g. genus, height/weight, etc.)
     print('Extracting flavor')
     if version_group == 'red-blue':
-        flavor_offset = 0x0405FA
-        # Stored in ID order
-        flavor_slugs = {}
-        i = 0
-        for slug in pokemon_slugs.values():
-            flavor_slugs[i] = slug
-            i += 1
+        dex_pointer_offset = 0x04047E
     else:
-        flavor_offset = 0x040687
-        # Stored in dex order
-        flavor_slugs = {}
-        for species_index, slug in pokemon_slugs.items():
-            flavor_slugs[dex_order[species_index - 1] - 1] = slug
+        dex_pointer_offset = 0x04050B
 
-    cursor = flavor_offset
-    for flavor_index, slug in flavor_slugs.items():
+    for species_index, slug in pokemon_slugs.items():
+        start = dex_pointer_offset + ((species_index - 1) * 2)
+        pointer = rom[start:start + 2]
+        cursor = gb.address_from_pointer(pointer, 0x10)
         # Read the genus
         genus = bytearray()
         while rom[cursor] != 0x50:
