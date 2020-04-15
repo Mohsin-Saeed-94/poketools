@@ -29,7 +29,7 @@ red-blue:
           base_value: 65
           effort_change: 65
       growth_rate: &red-blue.pokemon.snorlax.growth_rate slow
-      genus: 'SLEEPING Pokémon'
+      genus: &red-blue.pokemon.snorlax.genus 'SLEEPING Pokémon'
       height: &red-blue.pokemon.snorlax.height 21
       weight: 45995
       flavor_text:
@@ -99,29 +99,19 @@ yellow:
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
           icon: *red-blue.pokemon.snorlax.forms.snorlax.icon
 gold-silver:
-  name: &gold-silver.name Snorlax
-  position: &gold-silver.position 175
+  name: *red-blue.name
+  position: &gold-silver.position 142
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 225
+    original-johto: 224
+    original-johto-abc: 193
   pokemon:
     snorlax:
-      genus: &gold-silver.pokemon.snorlax.genus 'Sleeping Pokémon'
-      female_rate: &gold-silver.pokemon.snorlax.female_rate 12
-      capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: &gold-silver.pokemon.snorlax.happiness 70
-      baby: &gold-silver.pokemon.snorlax.baby false
-      hatch_steps: &gold-silver.pokemon.snorlax.hatch_steps 40
-      growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: &gold-silver.pokemon.snorlax.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.snorlax.default
-      height: *red-blue.pokemon.snorlax.height
-      weight: &gold-silver.pokemon.snorlax.weight 4600
+      capture_rate: *red-blue.pokemon.snorlax.capture_rate
       experience: *red-blue.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
-      egg_groups: &gold-silver.pokemon.snorlax.egg_groups
-        - monster
       stats: &gold-silver.pokemon.snorlax.stats
         hp:
           base_value: 160
@@ -141,16 +131,28 @@ gold-silver:
         special-defense:
           base_value: 110
           effort_change: 65
+      growth_rate: *red-blue.pokemon.snorlax.growth_rate
+      female_rate: &gold-silver.pokemon.snorlax.female_rate 12
+      hatch_steps: &gold-silver.pokemon.snorlax.hatch_steps 40
+      egg_groups: &gold-silver.pokemon.snorlax.egg_groups
+        - monster
+      wild_held_items:
+        gold: &gold-silver.pokemon.snorlax.wild_held_items.gold
+          leftovers: 2
+        silver: *gold-silver.pokemon.snorlax.wild_held_items.gold
+      genus: *red-blue.pokemon.snorlax.genus
+      height: *red-blue.pokemon.snorlax.height
+      weight: &gold-silver.pokemon.snorlax.weight 4599
       flavor_text:
         gold: |
           What sounds like
-          its cry may ac­
+          its cry may ac-
           tually be its
           snores or the
           rumblings of its
           hungry belly.
         silver: |
-          Its stomach's di­
+          Its stomach's di-
           gestive juices can
           dissolve any kind
           of poison. It can
@@ -158,43 +160,41 @@ gold-silver:
           off the ground.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
           sprites:
+            - gold-silver/snorlax-default.png
             - gold-silver/back/snorlax-default.png
             - gold-silver/shiny/snorlax-default.png
-            - gold-silver/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: &gold-silver.pokemon.snorlax.forms.snorlax.footprint snorlax.png
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
           icon: &gold-silver.pokemon.snorlax.forms.snorlax.icon gen2/snorlax.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
-      female_rate: *gold-silver.pokemon.snorlax.female_rate
-      capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
-      hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
-      growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.snorlax.default
-      height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      capture_rate: *red-blue.pokemon.snorlax.capture_rate
       experience: *red-blue.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
-      egg_groups: *gold-silver.pokemon.snorlax.egg_groups
       stats: *gold-silver.pokemon.snorlax.stats
+      growth_rate: *red-blue.pokemon.snorlax.growth_rate
+      female_rate: *gold-silver.pokemon.snorlax.female_rate
+      hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
+      egg_groups: *gold-silver.pokemon.snorlax.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.snorlax.wild_held_items.gold
+      genus: *red-blue.pokemon.snorlax.genus
+      height: *red-blue.pokemon.snorlax.height
+      weight: *gold-silver.pokemon.snorlax.weight
       flavor_text:
         crystal: |
-          This POKéMON's
+          This #MON's
           stomach is so
           strong, even
           eating moldy or
@@ -202,40 +202,37 @@ crystal:
           not affect it.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
           sprites:
+            - crystal/snorlax-default.png
             - crystal/back/snorlax-default.png
             - crystal/shiny/snorlax-default.png
-            - crystal/animated/snorlax-default.webm
-            - crystal/animated/shiny/snorlax-default.webm
-            - crystal/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
           icon: *gold-silver.pokemon.snorlax.forms.snorlax.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Snorlax
+  position: &ruby-sapphire.position 175
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: &ruby-sapphire.pokemon.snorlax.genus 'Sleeping Pokémon'
       color: &ruby-sapphire.pokemon.snorlax.color black
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: &ruby-sapphire.pokemon.snorlax.happiness 70
+      baby: &ruby-sapphire.pokemon.snorlax.baby false
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.snorlax.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: &ruby-sapphire.pokemon.snorlax.weight 4600
       experience: &ruby-sapphire.pokemon.snorlax.experience 189
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -284,7 +281,7 @@ ruby-sapphire:
           as a place to play.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -294,27 +291,27 @@ ruby-sapphire:
             - ruby-sapphire/shiny/snorlax-default.png
             - ruby-sapphire/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: &ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint snorlax.png
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       color: *ruby-sapphire.pokemon.snorlax.color
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -330,7 +327,7 @@ emerald:
           who use its big belly as a place to play.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -341,25 +338,25 @@ emerald:
             - emerald/animated/shiny/snorlax-default.webm
             - emerald/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -367,34 +364,34 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.snorlax.abilities
       forms: &colosseum.pokemon.snorlax.forms
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
           icon: *ruby-sapphire.pokemon.snorlax.forms.snorlax.icon
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       habitat: mountain
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -415,7 +412,7 @@ firered-leafgreen:
           more slothful.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -425,34 +422,34 @@ firered-leafgreen:
             - firered-leafgreen/shiny/snorlax-default.png
             - firered-leafgreen/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-sinnoh: 113
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       evolution_parent: &diamond-pearl.pokemon.snorlax.evolution_parent munchlax/munchlax
       shape: &diamond-pearl.pokemon.snorlax.shape humanoid
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
       pal_park: &diamond-pearl.pokemon.snorlax.pal_park
         area: field
         rate: 10
         score: 80
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -480,7 +477,7 @@ diamond-pearl:
           eats nearly 900 pounds a day.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -491,31 +488,31 @@ diamond-pearl:
             - diamond-pearl/shiny/snorlax-default.png
             - diamond-pearl/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 113
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       evolution_parent: *diamond-pearl.pokemon.snorlax.evolution_parent
       shape: *diamond-pearl.pokemon.snorlax.shape
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
       pal_park: *diamond-pearl.pokemon.snorlax.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -531,7 +528,7 @@ platinum:
           so it is safe to bounce on its belly.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -542,31 +539,31 @@ platinum:
             - platinum/shiny/snorlax-default.png
             - platinum/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 230
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       evolution_parent: *diamond-pearl.pokemon.snorlax.evolution_parent
       shape: *diamond-pearl.pokemon.snorlax.shape
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
       pal_park: *diamond-pearl.pokemon.snorlax.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -587,7 +584,7 @@ heartgold-soulsilver:
           even eat things off the ground.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -614,29 +611,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/snorlax-default.png
             - heartgold-soulsilver/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       evolution_parent: *diamond-pearl.pokemon.snorlax.evolution_parent
       color: *ruby-sapphire.pokemon.snorlax.color
       shape: *diamond-pearl.pokemon.snorlax.shape
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -657,7 +654,7 @@ black-white:
           so it is safe to bounce on its belly.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -668,29 +665,29 @@ black-white:
             - black-white/shiny/snorlax-default.png
             - black-white/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *red-blue.pokemon.snorlax.forms.snorlax.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       evolution_parent: *diamond-pearl.pokemon.snorlax.evolution_parent
       color: *ruby-sapphire.pokemon.snorlax.color
       shape: *diamond-pearl.pokemon.snorlax.shape
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -711,28 +708,28 @@ black-2-white-2:
           so it is safe to bounce on its belly.
       forms: *colosseum.pokemon.snorlax.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-central: 139
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       evolution_parent: *diamond-pearl.pokemon.snorlax.evolution_parent
       color: *ruby-sapphire.pokemon.snorlax.color
       shape: *diamond-pearl.pokemon.snorlax.shape
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -753,7 +750,7 @@ x-y:
           even if it happens to be moldy or rotten.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -762,29 +759,29 @@ x-y:
             - x-y/shiny/snorlax-default.png
             - x-y/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: &x-y.pokemon.snorlax.forms.snorlax.cry snorlax-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       evolution_parent: *diamond-pearl.pokemon.snorlax.evolution_parent
       color: *ruby-sapphire.pokemon.snorlax.color
       shape: *diamond-pearl.pokemon.snorlax.shape
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -803,41 +800,41 @@ omega-ruby-alpha-sapphire:
           who use its expansive belly as a place to play.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
           icon: *x-y.pokemon.snorlax.forms.snorlax.icon
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *x-y.pokemon.snorlax.forms.snorlax.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/snorlax-default.png
             - omega-ruby-alpha-sapphire/snorlax-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 36
     original-melemele: 36
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       evolution_parent: *diamond-pearl.pokemon.snorlax.evolution_parent
       color: *ruby-sapphire.pokemon.snorlax.color
       shape: *diamond-pearl.pokemon.snorlax.shape
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -855,7 +852,7 @@ sun-moon:
           to eat even while it’s asleep.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -864,32 +861,32 @@ sun-moon:
             - sun-moon/shiny/snorlax-default.png
             - sun-moon/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *x-y.pokemon.snorlax.forms.snorlax.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 43
     updated-melemele: 43
   pokemon:
     snorlax:
-      genus: *gold-silver.pokemon.snorlax.genus
+      genus: *ruby-sapphire.pokemon.snorlax.genus
       evolution_parent: *diamond-pearl.pokemon.snorlax.evolution_parent
       color: *ruby-sapphire.pokemon.snorlax.color
       shape: *diamond-pearl.pokemon.snorlax.shape
       female_rate: *gold-silver.pokemon.snorlax.female_rate
       capture_rate: *red-blue.pokemon.snorlax.capture_rate
-      happiness: *gold-silver.pokemon.snorlax.happiness
-      baby: *gold-silver.pokemon.snorlax.baby
+      happiness: *ruby-sapphire.pokemon.snorlax.happiness
+      baby: *ruby-sapphire.pokemon.snorlax.baby
       hatch_steps: *gold-silver.pokemon.snorlax.hatch_steps
       growth_rate: *red-blue.pokemon.snorlax.growth_rate
-      forms_switchable: *gold-silver.pokemon.snorlax.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.snorlax.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.snorlax.default
       height: *red-blue.pokemon.snorlax.height
-      weight: *gold-silver.pokemon.snorlax.weight
+      weight: *ruby-sapphire.pokemon.snorlax.weight
       experience: *ruby-sapphire.pokemon.snorlax.experience
       types: *red-blue.pokemon.snorlax.types
       egg_groups: *gold-silver.pokemon.snorlax.egg_groups
@@ -906,7 +903,7 @@ ultra-sun-ultra-moon:
           though, it apparently displays awesome power.
       forms:
         snorlax:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.snorlax.forms.snorlax.form_name
           default: *red-blue.pokemon.snorlax.default
           battle_only: *red-blue.pokemon.snorlax.forms.snorlax.battle_only
@@ -915,5 +912,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/snorlax-default.png
             - ultra-sun-ultra-moon/snorlax-default.png
           art: *red-blue.pokemon.snorlax.forms.snorlax.art
-          footprint: *gold-silver.pokemon.snorlax.forms.snorlax.footprint
+          footprint: *ruby-sapphire.pokemon.snorlax.forms.snorlax.footprint
           cry: *x-y.pokemon.snorlax.forms.snorlax.cry

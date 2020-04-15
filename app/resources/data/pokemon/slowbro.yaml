@@ -30,7 +30,7 @@ red-blue:
           base_value: 80
           effort_change: 80
       growth_rate: &red-blue.pokemon.slowbro.growth_rate medium
-      genus: 'HERMITCRAB Pokémon'
+      genus: &red-blue.pokemon.slowbro.genus 'HERMITCRAB Pokémon'
       height: &red-blue.pokemon.slowbro.height 16
       weight: 7847
       flavor_text:
@@ -106,31 +106,19 @@ yellow:
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
           icon: *red-blue.pokemon.slowbro.forms.slowbro.icon
 gold-silver:
-  name: &gold-silver.name Slowbro
-  position: &gold-silver.position 86
+  name: *red-blue.name
+  position: &gold-silver.position 79
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 81
+    original-johto: 80
+    original-johto-abc: 186
   pokemon:
     slowbro:
-      genus: &gold-silver.pokemon.slowbro.genus 'Hermit Crab Pokémon'
-      evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
-      female_rate: &gold-silver.pokemon.slowbro.female_rate 50
-      capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: &gold-silver.pokemon.slowbro.happiness 70
-      baby: &gold-silver.pokemon.slowbro.baby false
-      hatch_steps: &gold-silver.pokemon.slowbro.hatch_steps 20
-      growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: &gold-silver.pokemon.slowbro.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.slowbro.default
-      height: *red-blue.pokemon.slowbro.height
-      weight: &gold-silver.pokemon.slowbro.weight 785
+      capture_rate: *red-blue.pokemon.slowbro.capture_rate
       experience: *red-blue.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
-      egg_groups: &gold-silver.pokemon.slowbro.egg_groups
-        - monster
-        - water1
       stats: &gold-silver.pokemon.slowbro.stats
         hp:
           base_value: 95
@@ -150,14 +138,26 @@ gold-silver:
         special-defense:
           base_value: 80
           effort_change: 100
-      evolution_conditions: *red-blue.pokemon.slowbro.evolution_conditions
+      growth_rate: *red-blue.pokemon.slowbro.growth_rate
+      female_rate: &gold-silver.pokemon.slowbro.female_rate 50
+      hatch_steps: &gold-silver.pokemon.slowbro.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.slowbro.egg_groups
+        - monster
+        - water1
+      wild_held_items:
+        gold: &gold-silver.pokemon.slowbro.wild_held_items.gold
+          kings-rock: 2
+        silver: *gold-silver.pokemon.slowbro.wild_held_items.gold
+      genus: *red-blue.pokemon.slowbro.genus
+      height: *red-blue.pokemon.slowbro.height
+      weight: &gold-silver.pokemon.slowbro.weight 784
       flavor_text:
         gold: |
           If the tail-biting
           SHELLDER is thrown
           off in a harsh
           battle, it reverts
-          to being an ordi­
+          to being an ordi-
           nary SLOWPOKE.
         silver: |
           Naturally dull to
@@ -166,44 +166,42 @@ gold-silver:
           to feel pain due
           to SHELLDER's
           seeping poison.
+      evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
+      evolution_conditions: *red-blue.pokemon.slowbro.evolution_conditions
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
           sprites:
+            - gold-silver/slowbro-default.png
             - gold-silver/back/slowbro-default.png
             - gold-silver/shiny/slowbro-default.png
-            - gold-silver/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: &gold-silver.pokemon.slowbro.forms.slowbro.footprint slowbro.png
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
           icon: &gold-silver.pokemon.slowbro.forms.slowbro.icon gen2/slowpoke.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
-      evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
-      female_rate: *gold-silver.pokemon.slowbro.female_rate
-      capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
-      hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
-      growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.slowbro.default
-      height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      capture_rate: *red-blue.pokemon.slowbro.capture_rate
       experience: *red-blue.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
-      egg_groups: *gold-silver.pokemon.slowbro.egg_groups
       stats: *gold-silver.pokemon.slowbro.stats
-      evolution_conditions: *red-blue.pokemon.slowbro.evolution_conditions
+      growth_rate: *red-blue.pokemon.slowbro.growth_rate
+      female_rate: *gold-silver.pokemon.slowbro.female_rate
+      hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
+      egg_groups: *gold-silver.pokemon.slowbro.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.slowbro.wild_held_items.gold
+      genus: *red-blue.pokemon.slowbro.genus
+      height: *red-blue.pokemon.slowbro.height
+      weight: *gold-silver.pokemon.slowbro.weight
       flavor_text:
         crystal: |
           An attached
@@ -212,43 +210,42 @@ crystal:
           tasty flavor that
           oozes out of its
           tail.
+      evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
+      evolution_conditions: *red-blue.pokemon.slowbro.evolution_conditions
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
           sprites:
+            - crystal/slowbro-default.png
             - crystal/back/slowbro-default.png
             - crystal/shiny/slowbro-default.png
-            - crystal/slowbro-default.png
-            - crystal/animated/shiny/slowbro-default.webm
-            - crystal/animated/slowbro-default.webm
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
           icon: *gold-silver.pokemon.slowbro.forms.slowbro.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Slowbro
+  position: &ruby-sapphire.position 86
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: &ruby-sapphire.pokemon.slowbro.genus 'Hermit Crab Pokémon'
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: &ruby-sapphire.pokemon.slowbro.color pink
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: &ruby-sapphire.pokemon.slowbro.happiness 70
+      baby: &ruby-sapphire.pokemon.slowbro.baby false
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.slowbro.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: &ruby-sapphire.pokemon.slowbro.weight 785
       experience: &ruby-sapphire.pokemon.slowbro.experience 172
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -298,7 +295,7 @@ ruby-sapphire:
           and catch prey instead.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -308,28 +305,28 @@ ruby-sapphire:
             - ruby-sapphire/shiny/slowbro-default.png
             - ruby-sapphire/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: &ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint slowbro.png
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowbro.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -346,7 +343,7 @@ emerald:
           to reluctantly swim and catch prey.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -357,26 +354,26 @@ emerald:
             - emerald/animated/shiny/slowbro-default.webm
             - emerald/animated/slowbro-default.webm
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowbro.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -385,35 +382,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.slowbro.evolution_conditions
       forms: &colosseum.pokemon.slowbro.forms
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
           icon: *ruby-sapphire.pokemon.slowbro.forms.slowbro.icon
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       habitat: waters-edge
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowbro.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -431,7 +428,7 @@ firered-leafgreen:
           host’s leftover scraps.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -441,32 +438,32 @@ firered-leafgreen:
             - firered-leafgreen/shiny/slowbro-default.png
             - firered-leafgreen/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       shape: &diamond-pearl.pokemon.slowbro.shape upright
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.slowbro.forms_switchable
       pal_park: &diamond-pearl.pokemon.slowbro.pal_park
         area: pond
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -487,7 +484,7 @@ diamond-pearl:
           SHELLDER on its tail bites down.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -498,29 +495,29 @@ diamond-pearl:
             - diamond-pearl/shiny/slowbro-default.png
             - diamond-pearl/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.slowbro.forms_switchable
       pal_park: *diamond-pearl.pokemon.slowbro.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -536,7 +533,7 @@ platinum:
           SHELLDER on its tail bites down.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -547,31 +544,31 @@ platinum:
             - platinum/shiny/slowbro-default.png
             - platinum/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 81
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.slowbro.forms_switchable
       pal_park: *diamond-pearl.pokemon.slowbro.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -592,7 +589,7 @@ heartgold-soulsilver:
           to SHELLDER’s seeping poison.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -619,29 +616,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/slowbro-default.png
             - heartgold-soulsilver/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowbro.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -667,7 +664,7 @@ black-white:
           Shellder on its tail bites down.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -678,29 +675,29 @@ black-white:
             - black-white/shiny/slowbro-default.png
             - black-white/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *red-blue.pokemon.slowbro.forms.slowbro.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowbro.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -721,28 +718,28 @@ black-2-white-2:
           Shellder on its tail bites down.
       forms: *colosseum.pokemon.slowbro.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-coastal: 134
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowbro.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -763,7 +760,7 @@ x-y:
           into Slowbro.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -772,29 +769,29 @@ x-y:
             - x-y/shiny/slowbro-default.png
             - x-y/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: &x-y.pokemon.slowbro.forms.slowbro.cry slowbro-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
       forms_switchable: &omega-ruby-alpha-sapphire.pokemon.slowbro.forms_switchable true
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -814,26 +811,26 @@ omega-ruby-alpha-sapphire:
           causes Slowbro to grudgingly swim and catch prey instead.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
           icon: *x-y.pokemon.slowbro.forms.slowbro.icon
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *x-y.pokemon.slowbro.forms.slowbro.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/slowbro-default.png
             - omega-ruby-alpha-sapphire/slowbro-default.png
     slowbro-mega:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.slowbro.forms_switchable
@@ -877,11 +874,11 @@ omega-ruby-alpha-sapphire:
           icon: &omega-ruby-alpha-sapphire.pokemon.slowbro-mega.forms.slowbro-mega.icon slowbro-mega.png
           art: &omega-ruby-alpha-sapphire.pokemon.slowbro-mega.forms.slowbro-mega.art
             - slowbro-mega.png
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *x-y.pokemon.slowbro.forms.slowbro.cry
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 38
@@ -889,21 +886,21 @@ sun-moon:
     original-ulaula: 19
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -920,7 +917,7 @@ sun-moon:
           forgets a moment later.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -929,17 +926,17 @@ sun-moon:
             - sun-moon/shiny/slowbro-default.png
             - sun-moon/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *x-y.pokemon.slowbro.forms.slowbro.cry
     slowbro-mega:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.slowbro.forms_switchable
@@ -967,11 +964,11 @@ sun-moon:
             - sun-moon/slowbro-mega.png
             - sun-moon/shiny/slowbro-mega.png
           art: *omega-ruby-alpha-sapphire.pokemon.slowbro-mega.forms.slowbro-mega.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *x-y.pokemon.slowbro.forms.slowbro.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 45
@@ -979,21 +976,21 @@ ultra-sun-ultra-moon:
     updated-ulaula: 19
   pokemon:
     slowbro:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.slowbro.forms_switchable
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowbro.default
       height: *red-blue.pokemon.slowbro.height
-      weight: *gold-silver.pokemon.slowbro.weight
+      weight: *ruby-sapphire.pokemon.slowbro.weight
       experience: *ruby-sapphire.pokemon.slowbro.experience
       types: *red-blue.pokemon.slowbro.types
       egg_groups: *gold-silver.pokemon.slowbro.egg_groups
@@ -1010,7 +1007,7 @@ ultra-sun-ultra-moon:
           breaks off.
       forms:
         slowbro:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowbro.forms.slowbro.form_name
           default: *red-blue.pokemon.slowbro.default
           battle_only: *red-blue.pokemon.slowbro.forms.slowbro.battle_only
@@ -1019,17 +1016,17 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/slowbro-default.png
             - ultra-sun-ultra-moon/slowbro-default.png
           art: *red-blue.pokemon.slowbro.forms.slowbro.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *x-y.pokemon.slowbro.forms.slowbro.cry
     slowbro-mega:
-      genus: *gold-silver.pokemon.slowbro.genus
+      genus: *ruby-sapphire.pokemon.slowbro.genus
       evolution_parent: *red-blue.pokemon.slowbro.evolution_parent
       color: *ruby-sapphire.pokemon.slowbro.color
       shape: *diamond-pearl.pokemon.slowbro.shape
       female_rate: *gold-silver.pokemon.slowbro.female_rate
       capture_rate: *red-blue.pokemon.slowbro.capture_rate
-      happiness: *gold-silver.pokemon.slowbro.happiness
-      baby: *gold-silver.pokemon.slowbro.baby
+      happiness: *ruby-sapphire.pokemon.slowbro.happiness
+      baby: *ruby-sapphire.pokemon.slowbro.baby
       hatch_steps: *gold-silver.pokemon.slowbro.hatch_steps
       growth_rate: *red-blue.pokemon.slowbro.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.slowbro.forms_switchable
@@ -1057,5 +1054,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/slowbro-mega.png
             - ultra-sun-ultra-moon/shiny/slowbro-mega.png
           art: *omega-ruby-alpha-sapphire.pokemon.slowbro-mega.forms.slowbro-mega.art
-          footprint: *gold-silver.pokemon.slowbro.forms.slowbro.footprint
+          footprint: *ruby-sapphire.pokemon.slowbro.forms.slowbro.footprint
           cry: *x-y.pokemon.slowbro.forms.slowbro.cry

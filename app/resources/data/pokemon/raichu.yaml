@@ -29,7 +29,7 @@ red-blue:
           base_value: 90
           effort_change: 90
       growth_rate: &red-blue.pokemon.raichu.growth_rate medium
-      genus: 'MOUSE Pokémon'
+      genus: &red-blue.pokemon.raichu.genus 'MOUSE Pokémon'
       height: &red-blue.pokemon.raichu.height 7
       weight: 2993
       flavor_text:
@@ -105,31 +105,19 @@ yellow:
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
           icon: gen1/pikachu_family.png
 gold-silver:
-  name: &gold-silver.name Raichu
-  position: &gold-silver.position 27
+  name: *red-blue.name
+  position: &gold-silver.position 25
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 23
+    original-johto: 22
+    original-johto-abc: 166
   pokemon:
     raichu:
-      genus: &gold-silver.pokemon.raichu.genus 'Mouse Pokémon'
-      evolution_parent: *red-blue.pokemon.raichu.evolution_parent
-      female_rate: &gold-silver.pokemon.raichu.female_rate 50
-      capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: &gold-silver.pokemon.raichu.happiness 70
-      baby: &gold-silver.pokemon.raichu.baby false
-      hatch_steps: &gold-silver.pokemon.raichu.hatch_steps 10
-      growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: &gold-silver.pokemon.raichu.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.raichu.default
-      height: &gold-silver.pokemon.raichu.height 8
-      weight: &gold-silver.pokemon.raichu.weight 300
+      capture_rate: *red-blue.pokemon.raichu.capture_rate
       experience: *red-blue.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
-      egg_groups: &gold-silver.pokemon.raichu.egg_groups
-        - ground
-        - fairy
       stats: &gold-silver.pokemon.raichu.stats
         hp:
           base_value: 60
@@ -149,16 +137,26 @@ gold-silver:
         special-defense:
           base_value: 80
           effort_change: 90
-      evolution_conditions: &gold-silver.pokemon.raichu.evolution_conditions
-        use-item:
-          trigger_item: thunder-stone
+      growth_rate: *red-blue.pokemon.raichu.growth_rate
+      female_rate: &gold-silver.pokemon.raichu.female_rate 50
+      hatch_steps: &gold-silver.pokemon.raichu.hatch_steps 10
+      egg_groups: &gold-silver.pokemon.raichu.egg_groups
+        - ground
+        - fairy
+      wild_held_items:
+        gold: &gold-silver.pokemon.raichu.wild_held_items.gold
+          berry: 2
+        silver: *gold-silver.pokemon.raichu.wild_held_items.gold
+      genus: *red-blue.pokemon.raichu.genus
+      height: *red-blue.pokemon.raichu.height
+      weight: &gold-silver.pokemon.raichu.weight 299
       flavor_text:
         gold: |
-          When its electric­
+          When its electric-
           ity builds, its
-          muscles are stimu­
-          lated, and it be­
-          comes more aggres­
+          muscles are stimu-
+          lated, and it be-
+          comes more aggres-
           sive than usual.
         silver: |
           If the electric
@@ -167,90 +165,87 @@ gold-silver:
           fully charged,
           both ears will
           stand straight up.
+      evolution_parent: *red-blue.pokemon.raichu.evolution_parent
+      evolution_conditions: *red-blue.pokemon.raichu.evolution_conditions
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
           sprites:
+            - gold-silver/raichu-default.png
             - gold-silver/back/raichu-default.png
             - gold-silver/shiny/raichu-default.png
-            - gold-silver/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: &gold-silver.pokemon.raichu.forms.raichu.footprint raichu.png
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
           icon: &gold-silver.pokemon.raichu.forms.raichu.icon gen2/pikachu.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
-      evolution_parent: *red-blue.pokemon.raichu.evolution_parent
-      female_rate: *gold-silver.pokemon.raichu.female_rate
-      capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
-      hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
-      growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      capture_rate: *red-blue.pokemon.raichu.capture_rate
       experience: *red-blue.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
-      egg_groups: *gold-silver.pokemon.raichu.egg_groups
       stats: *gold-silver.pokemon.raichu.stats
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      growth_rate: *red-blue.pokemon.raichu.growth_rate
+      female_rate: *gold-silver.pokemon.raichu.female_rate
+      hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
+      egg_groups: *gold-silver.pokemon.raichu.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.raichu.wild_held_items.gold
+      genus: *red-blue.pokemon.raichu.genus
+      height: *red-blue.pokemon.raichu.height
+      weight: *gold-silver.pokemon.raichu.weight
       flavor_text:
         crystal: |
           If its electric
           pouches run empty,
           it raises its tail
-          to gather electri­
+          to gather electri-
           city from the
           atmosphere.
+      evolution_parent: *red-blue.pokemon.raichu.evolution_parent
+      evolution_conditions: *red-blue.pokemon.raichu.evolution_conditions
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
           sprites:
+            - crystal/raichu-default.png
             - crystal/back/raichu-default.png
             - crystal/shiny/raichu-default.png
-            - crystal/raichu-default.png
-            - crystal/animated/shiny/raichu-default.webm
-            - crystal/animated/raichu-default.webm
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
           icon: *gold-silver.pokemon.raichu.forms.raichu.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Raichu
+  position: &ruby-sapphire.position 27
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 157
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: &ruby-sapphire.pokemon.raichu.genus 'Mouse Pokémon'
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: &ruby-sapphire.pokemon.raichu.color yellow
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: &ruby-sapphire.pokemon.raichu.happiness 70
+      baby: &ruby-sapphire.pokemon.raichu.baby false
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.raichu.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: &ruby-sapphire.pokemon.raichu.height 8
+      weight: &ruby-sapphire.pokemon.raichu.weight 300
       experience: &ruby-sapphire.pokemon.raichu.experience 218
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
@@ -284,7 +279,9 @@ ruby-sapphire:
         ruby: &ruby-sapphire.pokemon.raichu.wild_held_items.ruby
           oran-berry: 5
         sapphire: *ruby-sapphire.pokemon.raichu.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: &ruby-sapphire.pokemon.raichu.evolution_conditions
+        use-item:
+          trigger_item: thunder-stone
       flavor_text:
         ruby: |
           If the electrical sacks become
@@ -300,7 +297,7 @@ ruby-sapphire:
           planting its tail in the ground.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -310,28 +307,28 @@ ruby-sapphire:
             - ruby-sapphire/shiny/raichu-default.png
             - ruby-sapphire/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: &ruby-sapphire.pokemon.raichu.forms.raichu.footprint raichu.png
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: *ruby-sapphire.pokemon.raichu.color
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
@@ -339,7 +336,7 @@ emerald:
       abilities: *ruby-sapphire.pokemon.raichu.abilities
       wild_held_items:
         emerald: *ruby-sapphire.pokemon.raichu.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text:
         emerald: |
           If it stores too much electricity, its
@@ -348,7 +345,7 @@ emerald:
           and calms itself down.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -359,69 +356,69 @@ emerald:
             - emerald/animated/shiny/raichu-default.webm
             - emerald/animated/raichu-default.webm
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
       stats: *ruby-sapphire.pokemon.raichu.stats
       abilities: *ruby-sapphire.pokemon.raichu.abilities
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       forms: &colosseum.pokemon.raichu.forms
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
           icon: *ruby-sapphire.pokemon.raichu.forms.raichu.icon
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       habitat: forest
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
       stats: *ruby-sapphire.pokemon.raichu.stats
       abilities: *ruby-sapphire.pokemon.raichu.abilities
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text:
         firered: |
           Its electric charges can reach even
@@ -433,7 +430,7 @@ firered-leafgreen:
           power.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -443,34 +440,34 @@ firered-leafgreen:
             - firered-leafgreen/shiny/raichu-default.png
             - firered-leafgreen/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-sinnoh: 105
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       shape: &diamond-pearl.pokemon.raichu.shape upright
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
       pal_park: &diamond-pearl.pokemon.raichu.pal_park
         area: forest
         rate: 3
         score: 90
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
@@ -479,7 +476,7 @@ diamond-pearl:
       wild_held_items:
         diamond: *ruby-sapphire.pokemon.raichu.wild_held_items.ruby
         pearl: *ruby-sapphire.pokemon.raichu.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text:
         diamond: |
           It turns aggressive if it has too
@@ -491,7 +488,7 @@ diamond-pearl:
           foes several times its size.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -504,31 +501,31 @@ diamond-pearl:
             - diamond-pearl/shiny/raichu-default.png
             - diamond-pearl/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 105
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
       pal_park: *diamond-pearl.pokemon.raichu.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
@@ -536,7 +533,7 @@ platinum:
       abilities: *ruby-sapphire.pokemon.raichu.abilities
       wild_held_items:
         platinum: *ruby-sapphire.pokemon.raichu.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text:
         platinum: |
           Its tail discharges electricity into
@@ -544,7 +541,7 @@ platinum:
           getting shocked.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -557,31 +554,31 @@ platinum:
             - platinum/shiny/raichu-default.png
             - platinum/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 23
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
       pal_park: *diamond-pearl.pokemon.raichu.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
@@ -590,7 +587,7 @@ heartgold-soulsilver:
       wild_held_items:
         heartgold: *ruby-sapphire.pokemon.raichu.wild_held_items.ruby
         soulsilver: *ruby-sapphire.pokemon.raichu.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text:
         heartgold: |
           When its electricity builds, its
@@ -602,7 +599,7 @@ heartgold-soulsilver:
           both ears will stand straight up.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -631,30 +628,30 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/raichu-default.png
             - heartgold-soulsilver/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &black-white.numbers
     national: *red-blue.numbers.national
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: *ruby-sapphire.pokemon.raichu.color
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
@@ -664,7 +661,7 @@ black-white:
         black: &black-white.pokemon.raichu.wild_held_items.black
           oran-berry: 50
         white: *black-white.pokemon.raichu.wild_held_items.black
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text:
         black: |
           Its tail discharges electricity into
@@ -676,7 +673,7 @@ black-white:
           getting shocked.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -690,35 +687,35 @@ black-white:
             - black-white/shiny/raichu-default.png
             - black-white/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *red-blue.pokemon.raichu.forms.raichu.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *black-white.numbers
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: *ruby-sapphire.pokemon.raichu.color
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
       stats: *ruby-sapphire.pokemon.raichu.stats
       abilities: *ruby-sapphire.pokemon.raichu.abilities
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text:
         black-2: |
           Its tail discharges electricity into
@@ -730,35 +727,35 @@ black-2-white-2:
           getting shocked.
       forms: *colosseum.pokemon.raichu.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-central: 37
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: *ruby-sapphire.pokemon.raichu.color
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
       mega: &x-y.pokemon.raichu.mega false
       stats: *ruby-sapphire.pokemon.raichu.stats
       abilities: *ruby-sapphire.pokemon.raichu.abilities
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text:
         x: |
           When its electricity builds, its muscles are stimulated,
@@ -768,7 +765,7 @@ x-y:
           instantly downing foes several times its size.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -779,38 +776,38 @@ x-y:
             - x-y/shiny/raichu-default.png
             - x-y/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: &x-y.pokemon.raichu.forms.raichu.cry raichu-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 164
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: *ruby-sapphire.pokemon.raichu.color
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
       mega: *x-y.pokemon.raichu.mega
       stats: *ruby-sapphire.pokemon.raichu.stats
       abilities: *ruby-sapphire.pokemon.raichu.abilities
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text:
         omega-ruby: |
           If the electrical sacs become excessively charged,
@@ -823,13 +820,13 @@ omega-ruby-alpha-sapphire:
           Raichu plants its tail in the ground to discharge electricity.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
           icon: *x-y.pokemon.raichu.forms.raichu.icon
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *x-y.pokemon.raichu.forms.raichu.cry
           sprites:
             - omega-ruby-alpha-sapphire/female/raichu-default.png
@@ -837,36 +834,36 @@ omega-ruby-alpha-sapphire:
             - omega-ruby-alpha-sapphire/shiny/raichu-default.png
             - omega-ruby-alpha-sapphire/raichu-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 26
     original-melemele: 26
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: *ruby-sapphire.pokemon.raichu.color
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
+      name: *ruby-sapphire.name
       default: &sun-moon.pokemon.raichu.default false
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
       mega: *x-y.pokemon.raichu.mega
       stats: *ruby-sapphire.pokemon.raichu.stats
       abilities: *ruby-sapphire.pokemon.raichu.abilities
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text: &sun-moon.pokemon.raichu.flavor_text
         moon: |
           It becomes aggressive when it has electricity
@@ -874,7 +871,7 @@ sun-moon:
           take care to avoid being attacked.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -885,20 +882,20 @@ sun-moon:
             - sun-moon/shiny/raichu-default.png
             - sun-moon/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *x-y.pokemon.raichu.forms.raichu.cry
     raichu-alola:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: *ruby-sapphire.pokemon.raichu.color
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
       name: &sun-moon.pokemon.raichu-alola.name 'Alolan Raichu'
       default: *red-blue.pokemon.raichu.default
       height: *red-blue.pokemon.raichu.height
@@ -930,7 +927,7 @@ sun-moon:
           effort_change: 0
       abilities: &sun-moon.pokemon.raichu-alola.abilities
         surge-surfer: *ruby-sapphire.pokemon.raichu.abilities.static
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text: *sun-moon.pokemon.raichu.flavor_text
       forms:
         raichu-alola:
@@ -942,39 +939,39 @@ sun-moon:
           sprites:
             - sun-moon/raichu-alola.png
             - sun-moon/shiny/raichu-alola.png
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *x-y.pokemon.raichu.forms.raichu.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 33
     updated-melemele: 33
   pokemon:
     raichu:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: *ruby-sapphire.pokemon.raichu.color
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
+      name: *ruby-sapphire.name
       default: *sun-moon.pokemon.raichu.default
-      height: *gold-silver.pokemon.raichu.height
-      weight: *gold-silver.pokemon.raichu.weight
+      height: *ruby-sapphire.pokemon.raichu.height
+      weight: *ruby-sapphire.pokemon.raichu.weight
       experience: *ruby-sapphire.pokemon.raichu.experience
       types: *red-blue.pokemon.raichu.types
       egg_groups: *gold-silver.pokemon.raichu.egg_groups
       mega: *x-y.pokemon.raichu.mega
       stats: *ruby-sapphire.pokemon.raichu.stats
       abilities: *ruby-sapphire.pokemon.raichu.abilities
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text: &ultra-sun-ultra-moon.pokemon.raichu.flavor_text
         ultra-sun: |
           As electricity builds up inside its body, it
@@ -982,7 +979,7 @@ ultra-sun-ultra-moon:
           the electricity buildup is actually causing stress.
       forms:
         raichu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.raichu.forms.raichu.form_name
           default: *red-blue.pokemon.raichu.default
           battle_only: *red-blue.pokemon.raichu.forms.raichu.battle_only
@@ -993,20 +990,20 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/raichu-default.png
             - ultra-sun-ultra-moon/raichu-default.png
           art: *red-blue.pokemon.raichu.forms.raichu.art
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *x-y.pokemon.raichu.forms.raichu.cry
     raichu-alola:
-      genus: *gold-silver.pokemon.raichu.genus
+      genus: *ruby-sapphire.pokemon.raichu.genus
       evolution_parent: *red-blue.pokemon.raichu.evolution_parent
       color: *ruby-sapphire.pokemon.raichu.color
       shape: *diamond-pearl.pokemon.raichu.shape
       female_rate: *gold-silver.pokemon.raichu.female_rate
       capture_rate: *red-blue.pokemon.raichu.capture_rate
-      happiness: *gold-silver.pokemon.raichu.happiness
-      baby: *gold-silver.pokemon.raichu.baby
+      happiness: *ruby-sapphire.pokemon.raichu.happiness
+      baby: *ruby-sapphire.pokemon.raichu.baby
       hatch_steps: *gold-silver.pokemon.raichu.hatch_steps
       growth_rate: *red-blue.pokemon.raichu.growth_rate
-      forms_switchable: *gold-silver.pokemon.raichu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.raichu.forms_switchable
       name: *sun-moon.pokemon.raichu-alola.name
       default: *red-blue.pokemon.raichu.default
       height: *red-blue.pokemon.raichu.height
@@ -1017,7 +1014,7 @@ ultra-sun-ultra-moon:
       mega: *x-y.pokemon.raichu.mega
       stats: *sun-moon.pokemon.raichu-alola.stats
       abilities: *sun-moon.pokemon.raichu-alola.abilities
-      evolution_conditions: *gold-silver.pokemon.raichu.evolution_conditions
+      evolution_conditions: *ruby-sapphire.pokemon.raichu.evolution_conditions
       flavor_text: *ultra-sun-ultra-moon.pokemon.raichu.flavor_text
       forms:
         raichu-alola:
@@ -1029,5 +1026,5 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/raichu-alola.png
             - ultra-sun-ultra-moon/shiny/raichu-alola.png
-          footprint: *gold-silver.pokemon.raichu.forms.raichu.footprint
+          footprint: *ruby-sapphire.pokemon.raichu.forms.raichu.footprint
           cry: *x-y.pokemon.raichu.forms.raichu.cry

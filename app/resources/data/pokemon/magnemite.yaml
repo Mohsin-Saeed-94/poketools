@@ -29,7 +29,7 @@ red-blue:
           base_value: 95
           effort_change: 95
       growth_rate: &red-blue.pokemon.magnemite.growth_rate medium
-      genus: 'MAGNET Pokémon'
+      genus: &red-blue.pokemon.magnemite.genus 'MAGNET Pokémon'
       height: &red-blue.pokemon.magnemite.height 3
       weight: 589
       flavor_text:
@@ -99,30 +99,21 @@ yellow:
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
           icon: *red-blue.pokemon.magnemite.forms.magnemite.icon
 gold-silver:
-  name: &gold-silver.name Magnemite
-  position: &gold-silver.position 88
+  name: *red-blue.name
+  position: &gold-silver.position 80
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 118
+    original-johto: 117
+    original-johto-abc: 109
   pokemon:
     magnemite:
-      genus: &gold-silver.pokemon.magnemite.genus 'Magnet Pokémon'
-      capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: &gold-silver.pokemon.magnemite.happiness 70
-      baby: &gold-silver.pokemon.magnemite.baby false
-      hatch_steps: &gold-silver.pokemon.magnemite.hatch_steps 20
-      growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: &gold-silver.pokemon.magnemite.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.magnemite.default
-      height: *red-blue.pokemon.magnemite.height
-      weight: &gold-silver.pokemon.magnemite.weight 60
+      capture_rate: *red-blue.pokemon.magnemite.capture_rate
       experience: *red-blue.pokemon.magnemite.experience
       types: &gold-silver.pokemon.magnemite.types
         - electric
         - steel
-      egg_groups: &gold-silver.pokemon.magnemite.egg_groups
-        - mineral
       stats: &gold-silver.pokemon.magnemite.stats
         hp:
           base_value: 25
@@ -142,6 +133,18 @@ gold-silver:
         special-defense:
           base_value: 55
           effort_change: 95
+      growth_rate: *red-blue.pokemon.magnemite.growth_rate
+      female_rate: &gold-silver.pokemon.magnemite.female_rate 100
+      hatch_steps: &gold-silver.pokemon.magnemite.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.magnemite.egg_groups
+        - mineral
+      wild_held_items:
+        gold: &gold-silver.pokemon.magnemite.wild_held_items.gold
+          metal-coat: 2
+        silver: *gold-silver.pokemon.magnemite.wild_held_items.gold
+      genus: *red-blue.pokemon.magnemite.genus
+      height: *red-blue.pokemon.magnemite.height
+      weight: &gold-silver.pokemon.magnemite.weight 58
       flavor_text:
         gold: |
           It is attracted by
@@ -149,49 +152,48 @@ gold-silver:
           waves. It may
           approach trainers
           if they are using
-          their POKéGEAR.
+          their #GEAR.
         silver: |
           The units at the
           sides of its body
-          generate anti­
+          generate anti-
           gravity energy to
           keep it aloft in
           the air.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
           sprites:
-            - gold-silver/back/magnemite-default.png
             - gold-silver/magnemite-default.png
+            - gold-silver/back/magnemite-default.png
             - gold-silver/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: &gold-silver.pokemon.magnemite.forms.magnemite.footprint magnemite.png
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
           icon: &gold-silver.pokemon.magnemite.forms.magnemite.icon gen2/voltorb.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
-      capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
-      hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
-      growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.magnemite.default
-      height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      capture_rate: *red-blue.pokemon.magnemite.capture_rate
       experience: *red-blue.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
-      egg_groups: *gold-silver.pokemon.magnemite.egg_groups
       stats: *gold-silver.pokemon.magnemite.stats
+      growth_rate: *red-blue.pokemon.magnemite.growth_rate
+      female_rate: *gold-silver.pokemon.magnemite.female_rate
+      hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
+      egg_groups: *gold-silver.pokemon.magnemite.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.magnemite.wild_held_items.gold
+      genus: *red-blue.pokemon.magnemite.genus
+      height: *red-blue.pokemon.magnemite.height
+      weight: *gold-silver.pokemon.magnemite.weight
       flavor_text:
         crystal: |
           The electricity
@@ -202,40 +204,37 @@ crystal:
           strong magnet.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
           sprites:
-            - crystal/back/magnemite-default.png
             - crystal/magnemite-default.png
+            - crystal/back/magnemite-default.png
             - crystal/shiny/magnemite-default.png
-            - crystal/animated/shiny/magnemite-default.webm
-            - crystal/animated/magnemite-default.webm
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
           icon: *gold-silver.pokemon.magnemite.forms.magnemite.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Magnemite
+  position: &ruby-sapphire.position 88
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 82
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: &ruby-sapphire.pokemon.magnemite.genus 'Magnet Pokémon'
       color: &ruby-sapphire.pokemon.magnemite.color gray
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: &ruby-sapphire.pokemon.magnemite.happiness 70
+      baby: &ruby-sapphire.pokemon.magnemite.baby false
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.magnemite.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: &ruby-sapphire.pokemon.magnemite.weight 60
       experience: &ruby-sapphire.pokemon.magnemite.experience 65
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -286,7 +285,7 @@ ruby-sapphire:
           is depleted.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -296,26 +295,26 @@ ruby-sapphire:
             - ruby-sapphire/magnemite-default.png
             - ruby-sapphire/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: &ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint magnemite.png
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       color: *ruby-sapphire.pokemon.magnemite.color
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -331,7 +330,7 @@ emerald:
           over 300 feet away.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -342,24 +341,24 @@ emerald:
             - emerald/animated/shiny/magnemite-default.webm
             - emerald/animated/magnemite-default.webm
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -367,33 +366,33 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.magnemite.abilities
       forms: &colosseum.pokemon.magnemite.forms
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
           icon: *ruby-sapphire.pokemon.magnemite.forms.magnemite.icon
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       habitat: rough-terrain
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -410,7 +409,7 @@ firered-leafgreen:
           WAVE and similar moves.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -420,31 +419,31 @@ firered-leafgreen:
             - firered-leafgreen/magnemite-default.png
             - firered-leafgreen/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       shape: &diamond-pearl.pokemon.magnemite.shape arms
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
       pal_park: &diamond-pearl.pokemon.magnemite.pal_park
         area: mountain
         rate: 30
         score: 50
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -464,7 +463,7 @@ diamond-pearl:
           airborne. It feeds on electricity.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -475,29 +474,29 @@ diamond-pearl:
             - diamond-pearl/magnemite-default.png
             - diamond-pearl/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 178
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       shape: *diamond-pearl.pokemon.magnemite.shape
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
       pal_park: *diamond-pearl.pokemon.magnemite.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -512,7 +511,7 @@ platinum:
           force they generate.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -523,29 +522,29 @@ platinum:
             - platinum/magnemite-default.png
             - platinum/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 119
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       shape: *diamond-pearl.pokemon.magnemite.shape
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
       pal_park: *diamond-pearl.pokemon.magnemite.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -565,7 +564,7 @@ heartgold-soulsilver:
           keep it aloft in the air.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -592,27 +591,27 @@ heartgold-soulsilver:
             - heartgold-soulsilver/magnemite-default.png
             - heartgold-soulsilver/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       color: *ruby-sapphire.pokemon.magnemite.color
       shape: *diamond-pearl.pokemon.magnemite.shape
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -637,7 +636,7 @@ black-white:
           force they generate.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -648,29 +647,29 @@ black-white:
             - black-white/magnemite-default.png
             - black-white/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *red-blue.pokemon.magnemite.forms.magnemite.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-unova: 48
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       color: *ruby-sapphire.pokemon.magnemite.color
       shape: *diamond-pearl.pokemon.magnemite.shape
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -690,26 +689,26 @@ black-2-white-2:
           antigravity, which allows it to float.
       forms: *colosseum.pokemon.magnemite.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 69
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       color: *ruby-sapphire.pokemon.magnemite.color
       shape: *diamond-pearl.pokemon.magnemite.shape
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -728,7 +727,7 @@ x-y:
           Thunder Wave and so on from the units at its sides.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -737,29 +736,29 @@ x-y:
             - x-y/magnemite-default.png
             - x-y/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: &x-y.pokemon.magnemite.forms.magnemite.cry magnemite-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 84
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       color: *ruby-sapphire.pokemon.magnemite.color
       shape: *diamond-pearl.pokemon.magnemite.shape
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -779,20 +778,20 @@ omega-ruby-alpha-sapphire:
           supply is depleted.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
           icon: *x-y.pokemon.magnemite.forms.magnemite.icon
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *x-y.pokemon.magnemite.forms.magnemite.cry
           sprites:
             - omega-ruby-alpha-sapphire/magnemite-default.png
             - omega-ruby-alpha-sapphire/shiny/magnemite-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 47
@@ -800,19 +799,19 @@ sun-moon:
     original-ulaula: 25
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       color: *ruby-sapphire.pokemon.magnemite.color
       shape: *diamond-pearl.pokemon.magnemite.shape
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -828,7 +827,7 @@ sun-moon:
           electricity will give you a full-body shock.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -837,11 +836,11 @@ sun-moon:
             - sun-moon/magnemite-default.png
             - sun-moon/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *x-y.pokemon.magnemite.forms.magnemite.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 54
@@ -849,19 +848,19 @@ ultra-sun-ultra-moon:
     updated-ulaula: 25
   pokemon:
     magnemite:
-      genus: *gold-silver.pokemon.magnemite.genus
+      genus: *ruby-sapphire.pokemon.magnemite.genus
       color: *ruby-sapphire.pokemon.magnemite.color
       shape: *diamond-pearl.pokemon.magnemite.shape
       capture_rate: *red-blue.pokemon.magnemite.capture_rate
-      happiness: *gold-silver.pokemon.magnemite.happiness
-      baby: *gold-silver.pokemon.magnemite.baby
+      happiness: *ruby-sapphire.pokemon.magnemite.happiness
+      baby: *ruby-sapphire.pokemon.magnemite.baby
       hatch_steps: *gold-silver.pokemon.magnemite.hatch_steps
       growth_rate: *red-blue.pokemon.magnemite.growth_rate
-      forms_switchable: *gold-silver.pokemon.magnemite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magnemite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magnemite.default
       height: *red-blue.pokemon.magnemite.height
-      weight: *gold-silver.pokemon.magnemite.weight
+      weight: *ruby-sapphire.pokemon.magnemite.weight
       experience: *ruby-sapphire.pokemon.magnemite.experience
       types: *gold-silver.pokemon.magnemite.types
       egg_groups: *gold-silver.pokemon.magnemite.egg_groups
@@ -877,7 +876,7 @@ ultra-sun-ultra-moon:
           electrical signals that it can’t stand.
       forms:
         magnemite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magnemite.forms.magnemite.form_name
           default: *red-blue.pokemon.magnemite.default
           battle_only: *red-blue.pokemon.magnemite.forms.magnemite.battle_only
@@ -886,5 +885,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/magnemite-default.png
             - ultra-sun-ultra-moon/shiny/magnemite-default.png
           art: *red-blue.pokemon.magnemite.forms.magnemite.art
-          footprint: *gold-silver.pokemon.magnemite.forms.magnemite.footprint
+          footprint: *ruby-sapphire.pokemon.magnemite.forms.magnemite.footprint
           cry: *x-y.pokemon.magnemite.forms.magnemite.cry

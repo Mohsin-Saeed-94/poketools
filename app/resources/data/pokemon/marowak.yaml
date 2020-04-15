@@ -29,8 +29,8 @@ red-blue:
           base_value: 50
           effort_change: 50
       growth_rate: &red-blue.pokemon.marowak.growth_rate medium
-      genus: 'BONEKEEPER Pokémon'
-      height: 9
+      genus: &red-blue.pokemon.marowak.genus 'BONEKEEPER Pokémon'
+      height: &red-blue.pokemon.marowak.height 9
       weight: 4490
       flavor_text:
         red: |
@@ -105,30 +105,19 @@ yellow:
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
           icon: *red-blue.pokemon.marowak.forms.marowak.icon
 gold-silver:
-  name: &gold-silver.name Marowak
-  position: &gold-silver.position 114
+  name: *red-blue.name
+  position: &gold-silver.position 104
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 204
+    original-johto: 203
+    original-johto-abc: 115
   pokemon:
     marowak:
-      genus: &gold-silver.pokemon.marowak.genus 'Bone Keeper Pokémon'
-      evolution_parent: *red-blue.pokemon.marowak.evolution_parent
-      female_rate: &gold-silver.pokemon.marowak.female_rate 50
-      capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: &gold-silver.pokemon.marowak.happiness 70
-      baby: &gold-silver.pokemon.marowak.baby false
-      hatch_steps: &gold-silver.pokemon.marowak.hatch_steps 20
-      growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: &gold-silver.pokemon.marowak.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.marowak.default
-      height: &gold-silver.pokemon.marowak.height 10
-      weight: &gold-silver.pokemon.marowak.weight 450
+      capture_rate: *red-blue.pokemon.marowak.capture_rate
       experience: *red-blue.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
-      egg_groups: &gold-silver.pokemon.marowak.egg_groups
-        - monster
       stats: &gold-silver.pokemon.marowak.stats
         hp:
           base_value: 60
@@ -148,14 +137,25 @@ gold-silver:
         special-defense:
           base_value: 80
           effort_change: 50
-      evolution_conditions: *red-blue.pokemon.marowak.evolution_conditions
+      growth_rate: *red-blue.pokemon.marowak.growth_rate
+      female_rate: &gold-silver.pokemon.marowak.female_rate 50
+      hatch_steps: &gold-silver.pokemon.marowak.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.marowak.egg_groups
+        - monster
+      wild_held_items:
+        gold: &gold-silver.pokemon.marowak.wild_held_items.gold
+          thick-club: 2
+        silver: *gold-silver.pokemon.marowak.wild_held_items.gold
+      genus: *red-blue.pokemon.marowak.genus
+      height: *red-blue.pokemon.marowak.height
+      weight: &gold-silver.pokemon.marowak.weight 449
       flavor_text:
         gold: |
           It has been seen
           pounding boulders
           with the bone it
           carries in order
-          to tap out mes­
+          to tap out mes-
           sages to others.
         silver: |
           It collects bones
@@ -164,89 +164,86 @@ gold-silver:
           graveyard exists
           somewhere in the
           world, rumors say.
+      evolution_parent: *red-blue.pokemon.marowak.evolution_parent
+      evolution_conditions: *red-blue.pokemon.marowak.evolution_conditions
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
           sprites:
+            - gold-silver/marowak-default.png
             - gold-silver/back/marowak-default.png
             - gold-silver/shiny/marowak-default.png
-            - gold-silver/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: &gold-silver.pokemon.marowak.forms.marowak.footprint marowak.png
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
           icon: &gold-silver.pokemon.marowak.forms.marowak.icon gen2/monster.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
-      evolution_parent: *red-blue.pokemon.marowak.evolution_parent
-      female_rate: *gold-silver.pokemon.marowak.female_rate
-      capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
-      hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
-      growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      capture_rate: *red-blue.pokemon.marowak.capture_rate
       experience: *red-blue.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
-      egg_groups: *gold-silver.pokemon.marowak.egg_groups
       stats: *gold-silver.pokemon.marowak.stats
-      evolution_conditions: *red-blue.pokemon.marowak.evolution_conditions
+      growth_rate: *red-blue.pokemon.marowak.growth_rate
+      female_rate: *gold-silver.pokemon.marowak.female_rate
+      hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
+      egg_groups: *gold-silver.pokemon.marowak.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.marowak.wild_held_items.gold
+      genus: *red-blue.pokemon.marowak.genus
+      height: *red-blue.pokemon.marowak.height
+      weight: *gold-silver.pokemon.marowak.weight
       flavor_text:
         crystal: |
           Somewhere in the
-          world is a ceme­
+          world is a ceme-
           tery just for
           MAROWAK. It gets
           its bones from
           those graves.
+      evolution_parent: *red-blue.pokemon.marowak.evolution_parent
+      evolution_conditions: *red-blue.pokemon.marowak.evolution_conditions
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
           sprites:
+            - crystal/marowak-default.png
             - crystal/back/marowak-default.png
             - crystal/shiny/marowak-default.png
-            - crystal/animated/shiny/marowak-default.webm
-            - crystal/animated/marowak-default.webm
-            - crystal/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
           icon: *gold-silver.pokemon.marowak.forms.marowak.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Marowak
+  position: &ruby-sapphire.position 114
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: &ruby-sapphire.pokemon.marowak.genus 'Bone Keeper Pokémon'
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: &ruby-sapphire.pokemon.marowak.color brown
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: &ruby-sapphire.pokemon.marowak.happiness 70
+      baby: &ruby-sapphire.pokemon.marowak.baby false
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.marowak.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: &ruby-sapphire.pokemon.marowak.height 10
+      weight: &ruby-sapphire.pokemon.marowak.weight 450
       experience: &ruby-sapphire.pokemon.marowak.experience 149
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -299,7 +296,7 @@ ruby-sapphire:
           spirit is not easily broken.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -309,28 +306,28 @@ ruby-sapphire:
             - ruby-sapphire/shiny/marowak-default.png
             - ruby-sapphire/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: &ruby-sapphire.pokemon.marowak.forms.marowak.footprint marowak.png
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -347,7 +344,7 @@ emerald:
           and hardened spirit is not easily broken.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -358,26 +355,26 @@ emerald:
             - emerald/animated/marowak-default.webm
             - emerald/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -386,35 +383,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.marowak.evolution_conditions
       forms: &colosseum.pokemon.marowak.forms
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
           icon: *ruby-sapphire.pokemon.marowak.forms.marowak.icon
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       habitat: mountain
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -435,7 +432,7 @@ firered-leafgreen:
           boomerang to KO targets.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -445,32 +442,32 @@ firered-leafgreen:
             - firered-leafgreen/shiny/marowak-default.png
             - firered-leafgreen/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       shape: &diamond-pearl.pokemon.marowak.shape upright
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
       pal_park: &diamond-pearl.pokemon.marowak.pal_park
         area: mountain
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -491,7 +488,7 @@ diamond-pearl:
           skilled in using them as weapons.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -502,29 +499,29 @@ diamond-pearl:
             - diamond-pearl/shiny/marowak-default.png
             - diamond-pearl/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
       pal_park: *diamond-pearl.pokemon.marowak.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -540,7 +537,7 @@ platinum:
           skilled in using them as weapons.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -551,31 +548,31 @@ platinum:
             - platinum/shiny/marowak-default.png
             - platinum/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 209
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
       pal_park: *diamond-pearl.pokemon.marowak.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -596,7 +593,7 @@ heartgold-soulsilver:
           exists somewhere in the world.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -623,29 +620,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/marowak-default.png
             - heartgold-soulsilver/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -666,7 +663,7 @@ black-white:
           skilled in using them as weapons.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -677,29 +674,29 @@ black-white:
             - black-white/shiny/marowak-default.png
             - black-white/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *red-blue.pokemon.marowak.forms.marowak.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -720,28 +717,28 @@ black-2-white-2:
           skilled in using them as weapons.
       forms: *colosseum.pokemon.marowak.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-coastal: 61
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -762,7 +759,7 @@ x-y:
           bone skillfully like a boomerang to KO targets.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -771,29 +768,29 @@ x-y:
             - x-y/shiny/marowak-default.png
             - x-y/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: &x-y.pokemon.marowak.forms.marowak.cry marowak-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -813,41 +810,41 @@ omega-ruby-alpha-sapphire:
           Pokémon’s tempered and hardened spirit is not easily broken.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
           icon: *x-y.pokemon.marowak.forms.marowak.icon
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *x-y.pokemon.marowak.forms.marowak.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/marowak-default.png
             - omega-ruby-alpha-sapphire/marowak-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 164
     original-akala: 91
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: &sun-moon.pokemon.marowak.default false
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -864,7 +861,7 @@ sun-moon:
           boomerangs to try to take it down.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -873,23 +870,23 @@ sun-moon:
             - sun-moon/shiny/marowak-default.png
             - sun-moon/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *x-y.pokemon.marowak.forms.marowak.cry
     marowak-alola:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
       name: &sun-moon.pokemon.marowak-alola.name 'Alolan Marowak'
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
+      height: *ruby-sapphire.pokemon.marowak.height
       weight: &sun-moon.pokemon.marowak-alola.weight 340
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: &sun-moon.pokemon.marowak-alola.types
@@ -919,20 +916,20 @@ sun-moon:
           sprites:
             - sun-moon/marowak-alola.png
             - sun-moon/shiny/marowak-alola.png
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *x-y.pokemon.marowak.forms.marowak.cry
     marowak-totem:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
       name: 'Totem Marowak'
       default: *sun-moon.pokemon.marowak.default
       height: &sun-moon.pokemon.marowak-totem.height 17
@@ -947,37 +944,37 @@ sun-moon:
       flavor_text: *sun-moon.pokemon.marowak.flavor_text
       forms:
         marowak-totem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
           icon: &sun-moon.pokemon.marowak-totem.forms.marowak-totem.icon marowak-totem.png
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *x-y.pokemon.marowak.forms.marowak.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 198
     updated-akala: 99
   pokemon:
     marowak:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: *sun-moon.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
-      weight: *gold-silver.pokemon.marowak.weight
+      height: *ruby-sapphire.pokemon.marowak.height
+      weight: *ruby-sapphire.pokemon.marowak.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *red-blue.pokemon.marowak.types
       egg_groups: *gold-silver.pokemon.marowak.egg_groups
@@ -994,7 +991,7 @@ ultra-sun-ultra-moon:
           its parent.
       forms:
         marowak:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -1003,23 +1000,23 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/marowak-default.png
             - ultra-sun-ultra-moon/marowak-default.png
           art: *red-blue.pokemon.marowak.forms.marowak.art
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *x-y.pokemon.marowak.forms.marowak.cry
     marowak-alola:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
       name: *sun-moon.pokemon.marowak-alola.name
       default: *red-blue.pokemon.marowak.default
-      height: *gold-silver.pokemon.marowak.height
+      height: *ruby-sapphire.pokemon.marowak.height
       weight: *sun-moon.pokemon.marowak-alola.weight
       experience: *ruby-sapphire.pokemon.marowak.experience
       types: *sun-moon.pokemon.marowak-alola.types
@@ -1040,21 +1037,21 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/marowak-alola.png
             - ultra-sun-ultra-moon/shiny/marowak-alola.png
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *x-y.pokemon.marowak.forms.marowak.cry
     marowak-totem:
-      genus: *gold-silver.pokemon.marowak.genus
+      genus: *ruby-sapphire.pokemon.marowak.genus
       evolution_parent: *red-blue.pokemon.marowak.evolution_parent
       color: *ruby-sapphire.pokemon.marowak.color
       shape: *diamond-pearl.pokemon.marowak.shape
       female_rate: *gold-silver.pokemon.marowak.female_rate
       capture_rate: *red-blue.pokemon.marowak.capture_rate
-      happiness: *gold-silver.pokemon.marowak.happiness
-      baby: *gold-silver.pokemon.marowak.baby
+      happiness: *ruby-sapphire.pokemon.marowak.happiness
+      baby: *ruby-sapphire.pokemon.marowak.baby
       hatch_steps: *gold-silver.pokemon.marowak.hatch_steps
       growth_rate: *red-blue.pokemon.marowak.growth_rate
-      forms_switchable: *gold-silver.pokemon.marowak.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.marowak.forms_switchable
+      name: *ruby-sapphire.name
       default: *sun-moon.pokemon.marowak.default
       height: *sun-moon.pokemon.marowak-totem.height
       weight: *sun-moon.pokemon.marowak-totem.weight
@@ -1069,7 +1066,7 @@ ultra-sun-ultra-moon:
       flavor_text: *ultra-sun-ultra-moon.pokemon.marowak.flavor_text
       forms:
         marowak-totem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.marowak.forms.marowak.form_name
           default: *red-blue.pokemon.marowak.default
           battle_only: *red-blue.pokemon.marowak.forms.marowak.battle_only
@@ -1077,5 +1074,5 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/marowak-totem.png
             - ultra-sun-ultra-moon/shiny/marowak-totem.png
-          footprint: *gold-silver.pokemon.marowak.forms.marowak.footprint
+          footprint: *ruby-sapphire.pokemon.marowak.forms.marowak.footprint
           cry: *x-y.pokemon.marowak.forms.marowak.cry

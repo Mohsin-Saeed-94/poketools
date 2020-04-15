@@ -30,8 +30,8 @@ red-blue:
           base_value: 85
           effort_change: 85
       growth_rate: &red-blue.pokemon.cloyster.growth_rate slow
-      genus: 'BIVALVE Pokémon'
-      height: 14
+      genus: &red-blue.pokemon.cloyster.genus 'BIVALVE Pokémon'
+      height: &red-blue.pokemon.cloyster.height 14
       weight: 13245
       flavor_text:
         red: |
@@ -106,30 +106,19 @@ yellow:
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
           icon: *red-blue.pokemon.cloyster.forms.cloyster.icon
 gold-silver:
-  name: &gold-silver.name Cloyster
-  position: &gold-silver.position 99
+  name: *red-blue.name
+  position: &gold-silver.position 90
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 170
+    original-johto: 169
+    original-johto-abc: 18
   pokemon:
     cloyster:
-      genus: &gold-silver.pokemon.cloyster.genus 'Bivalve Pokémon'
-      evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
-      female_rate: &gold-silver.pokemon.cloyster.female_rate 50
-      capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: &gold-silver.pokemon.cloyster.happiness 70
-      baby: &gold-silver.pokemon.cloyster.baby false
-      hatch_steps: &gold-silver.pokemon.cloyster.hatch_steps 20
-      growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: &gold-silver.pokemon.cloyster.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.cloyster.default
-      height: &gold-silver.pokemon.cloyster.height 15
-      weight: &gold-silver.pokemon.cloyster.weight 1325
+      capture_rate: *red-blue.pokemon.cloyster.capture_rate
       experience: *red-blue.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
-      egg_groups: &gold-silver.pokemon.cloyster.egg_groups
-        - water3
       stats: &gold-silver.pokemon.cloyster.stats
         hp:
           base_value: 50
@@ -149,14 +138,26 @@ gold-silver:
         special-defense:
           base_value: 45
           effort_change: 85
-      evolution_conditions: *red-blue.pokemon.cloyster.evolution_conditions
+      growth_rate: *red-blue.pokemon.cloyster.growth_rate
+      female_rate: &gold-silver.pokemon.cloyster.female_rate 50
+      hatch_steps: &gold-silver.pokemon.cloyster.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.cloyster.egg_groups
+        - water3
+      wild_held_items:
+        gold: &gold-silver.pokemon.cloyster.wild_held_items.gold
+          pearl: 23
+          big-pearl: 2
+        silver: *gold-silver.pokemon.cloyster.wild_held_items.gold
+      genus: *red-blue.pokemon.cloyster.genus
+      height: *red-blue.pokemon.cloyster.height
+      weight: &gold-silver.pokemon.cloyster.weight 1324
       flavor_text:
         gold: |
           Once it slams its
           shell shut, it is
           impossible to
           open, even by
-          those with superi­
+          those with superi-
           or strength.
         silver: |
           CLOYSTER that live
@@ -165,89 +166,86 @@ gold-silver:
           grow large, sharp
           spikes on their
           shells.
+      evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
+      evolution_conditions: *red-blue.pokemon.cloyster.evolution_conditions
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
           sprites:
-            - gold-silver/back/cloyster-default.png
             - gold-silver/cloyster-default.png
+            - gold-silver/back/cloyster-default.png
             - gold-silver/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: &gold-silver.pokemon.cloyster.forms.cloyster.footprint cloyster.png
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
           icon: &gold-silver.pokemon.cloyster.forms.cloyster.icon gen2/shell.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
-      evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
-      female_rate: *gold-silver.pokemon.cloyster.female_rate
-      capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
-      hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
-      growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      capture_rate: *red-blue.pokemon.cloyster.capture_rate
       experience: *red-blue.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
-      egg_groups: *gold-silver.pokemon.cloyster.egg_groups
       stats: *gold-silver.pokemon.cloyster.stats
-      evolution_conditions: *red-blue.pokemon.cloyster.evolution_conditions
+      growth_rate: *red-blue.pokemon.cloyster.growth_rate
+      female_rate: *gold-silver.pokemon.cloyster.female_rate
+      hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
+      egg_groups: *gold-silver.pokemon.cloyster.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.cloyster.wild_held_items.gold
+      genus: *red-blue.pokemon.cloyster.genus
+      height: *red-blue.pokemon.cloyster.height
+      weight: *gold-silver.pokemon.cloyster.weight
       flavor_text:
         crystal: |
           Even a missile
           can't break the
           spikes it uses to
           stab opponents.
-          They're even hard­
+          They're even hard-
           er than its shell.
+      evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
+      evolution_conditions: *red-blue.pokemon.cloyster.evolution_conditions
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
           sprites:
-            - crystal/back/cloyster-default.png
             - crystal/cloyster-default.png
+            - crystal/back/cloyster-default.png
             - crystal/shiny/cloyster-default.png
-            - crystal/animated/cloyster-default.webm
-            - crystal/animated/shiny/cloyster-default.webm
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
           icon: *gold-silver.pokemon.cloyster.forms.cloyster.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Cloyster
+  position: &ruby-sapphire.position 99
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: &ruby-sapphire.pokemon.cloyster.genus 'Bivalve Pokémon'
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       color: &ruby-sapphire.pokemon.cloyster.color purple
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: &ruby-sapphire.pokemon.cloyster.happiness 70
+      baby: &ruby-sapphire.pokemon.cloyster.baby false
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.cloyster.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: &ruby-sapphire.pokemon.cloyster.height 15
+      weight: &ruby-sapphire.pokemon.cloyster.weight 1325
       experience: &ruby-sapphire.pokemon.cloyster.experience 184
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -295,7 +293,7 @@ ruby-sapphire:
           shell using the same system.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -305,28 +303,28 @@ ruby-sapphire:
             - ruby-sapphire/cloyster-default.png
             - ruby-sapphire/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: &ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint cloyster.png
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       color: *ruby-sapphire.pokemon.cloyster.color
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -343,7 +341,7 @@ emerald:
           shell using the same system.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -354,26 +352,26 @@ emerald:
             - emerald/animated/cloyster-default.webm
             - emerald/animated/shiny/cloyster-default.webm
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -382,35 +380,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.cloyster.evolution_conditions
       forms: &colosseum.pokemon.cloyster.forms
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
           icon: *ruby-sapphire.pokemon.cloyster.forms.cloyster.icon
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       habitat: sea
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -431,7 +429,7 @@ firered-leafgreen:
           seen.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -441,32 +439,32 @@ firered-leafgreen:
             - firered-leafgreen/cloyster-default.png
             - firered-leafgreen/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       shape: &diamond-pearl.pokemon.cloyster.shape ball
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
       pal_park: &diamond-pearl.pokemon.cloyster.pal_park
         area: sea
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -491,7 +489,7 @@ diamond-pearl:
           by shooting spikes to repel foes.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -502,29 +500,29 @@ diamond-pearl:
             - diamond-pearl/cloyster-default.png
             - diamond-pearl/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       shape: *diamond-pearl.pokemon.cloyster.shape
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
       pal_park: *diamond-pearl.pokemon.cloyster.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -540,7 +538,7 @@ platinum:
           by shooting spikes to repel foes.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -551,31 +549,31 @@ platinum:
             - platinum/cloyster-default.png
             - platinum/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 172
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       shape: *diamond-pearl.pokemon.cloyster.shape
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
       pal_park: *diamond-pearl.pokemon.cloyster.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -596,7 +594,7 @@ heartgold-soulsilver:
           spikes on their shells.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -623,29 +621,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/cloyster-default.png
             - heartgold-soulsilver/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       color: *ruby-sapphire.pokemon.cloyster.color
       shape: *diamond-pearl.pokemon.cloyster.shape
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -671,7 +669,7 @@ black-white:
           by shooting spikes to repel foes.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -682,29 +680,29 @@ black-white:
             - black-white/cloyster-default.png
             - black-white/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *red-blue.pokemon.cloyster.forms.cloyster.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       color: *ruby-sapphire.pokemon.cloyster.color
       shape: *diamond-pearl.pokemon.cloyster.shape
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -725,28 +723,28 @@ black-2-white-2:
           by shooting spikes to repel foes.
       forms: *colosseum.pokemon.cloyster.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-coastal: 37
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       color: *ruby-sapphire.pokemon.cloyster.color
       shape: *diamond-pearl.pokemon.cloyster.shape
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -767,7 +765,7 @@ x-y:
           is attacking.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -776,29 +774,29 @@ x-y:
             - x-y/cloyster-default.png
             - x-y/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: &x-y.pokemon.cloyster.forms.cloyster.cry cloyster-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       color: *ruby-sapphire.pokemon.cloyster.color
       shape: *diamond-pearl.pokemon.cloyster.shape
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -818,41 +816,41 @@ omega-ruby-alpha-sapphire:
           Pokémon shoots spikes from its shell using the same system.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
           icon: *x-y.pokemon.cloyster.forms.cloyster.icon
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *x-y.pokemon.cloyster.forms.cloyster.cry
           sprites:
             - omega-ruby-alpha-sapphire/cloyster-default.png
             - omega-ruby-alpha-sapphire/shiny/cloyster-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 116
     original-melemele: 116
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       color: *ruby-sapphire.pokemon.cloyster.color
       shape: *diamond-pearl.pokemon.cloyster.shape
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -869,7 +867,7 @@ sun-moon:
           spikes that had fallen off this Pokémon’s shell.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -878,32 +876,32 @@ sun-moon:
             - sun-moon/cloyster-default.png
             - sun-moon/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *x-y.pokemon.cloyster.forms.cloyster.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 139
     updated-melemele: 139
   pokemon:
     cloyster:
-      genus: *gold-silver.pokemon.cloyster.genus
+      genus: *ruby-sapphire.pokemon.cloyster.genus
       evolution_parent: *red-blue.pokemon.cloyster.evolution_parent
       color: *ruby-sapphire.pokemon.cloyster.color
       shape: *diamond-pearl.pokemon.cloyster.shape
       female_rate: *gold-silver.pokemon.cloyster.female_rate
       capture_rate: *red-blue.pokemon.cloyster.capture_rate
-      happiness: *gold-silver.pokemon.cloyster.happiness
-      baby: *gold-silver.pokemon.cloyster.baby
+      happiness: *ruby-sapphire.pokemon.cloyster.happiness
+      baby: *ruby-sapphire.pokemon.cloyster.baby
       hatch_steps: *gold-silver.pokemon.cloyster.hatch_steps
       growth_rate: *red-blue.pokemon.cloyster.growth_rate
-      forms_switchable: *gold-silver.pokemon.cloyster.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.cloyster.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.cloyster.default
-      height: *gold-silver.pokemon.cloyster.height
-      weight: *gold-silver.pokemon.cloyster.weight
+      height: *ruby-sapphire.pokemon.cloyster.height
+      weight: *ruby-sapphire.pokemon.cloyster.weight
       experience: *ruby-sapphire.pokemon.cloyster.experience
       types: *red-blue.pokemon.cloyster.types
       egg_groups: *gold-silver.pokemon.cloyster.egg_groups
@@ -920,7 +918,7 @@ ultra-sun-ultra-moon:
           into large sharp spikes.
       forms:
         cloyster:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.cloyster.forms.cloyster.form_name
           default: *red-blue.pokemon.cloyster.default
           battle_only: *red-blue.pokemon.cloyster.forms.cloyster.battle_only
@@ -929,5 +927,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/cloyster-default.png
             - ultra-sun-ultra-moon/shiny/cloyster-default.png
           art: *red-blue.pokemon.cloyster.forms.cloyster.art
-          footprint: *gold-silver.pokemon.cloyster.forms.cloyster.footprint
+          footprint: *ruby-sapphire.pokemon.cloyster.forms.cloyster.footprint
           cry: *x-y.pokemon.cloyster.forms.cloyster.cry

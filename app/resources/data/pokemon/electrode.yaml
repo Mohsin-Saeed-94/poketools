@@ -29,8 +29,8 @@ red-blue:
           base_value: 80
           effort_change: 80
       growth_rate: &red-blue.pokemon.electrode.growth_rate medium
-      genus: 'BALL Pokémon'
-      height: 11
+      genus: &red-blue.pokemon.electrode.genus 'BALL Pokémon'
+      height: &red-blue.pokemon.electrode.height 11
       weight: 6667
       flavor_text:
         red: |
@@ -105,29 +105,19 @@ yellow:
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
           icon: *red-blue.pokemon.electrode.forms.electrode.icon
 gold-silver:
-  name: &gold-silver.name Electrode
-  position: &gold-silver.position 110
+  name: *red-blue.name
+  position: &gold-silver.position 100
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 121
+    original-johto: 120
+    original-johto-abc: 40
   pokemon:
     electrode:
-      genus: &gold-silver.pokemon.electrode.genus 'Ball Pokémon'
-      evolution_parent: *red-blue.pokemon.electrode.evolution_parent
-      capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: &gold-silver.pokemon.electrode.happiness 70
-      baby: &gold-silver.pokemon.electrode.baby false
-      hatch_steps: &gold-silver.pokemon.electrode.hatch_steps 20
-      growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: &gold-silver.pokemon.electrode.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.electrode.default
-      height: &gold-silver.pokemon.electrode.height 12
-      weight: &gold-silver.pokemon.electrode.weight 666
+      capture_rate: *red-blue.pokemon.electrode.capture_rate
       experience: *red-blue.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
-      egg_groups: &gold-silver.pokemon.electrode.egg_groups
-        - mineral
       stats: &gold-silver.pokemon.electrode.stats
         hp:
           base_value: 60
@@ -147,7 +137,14 @@ gold-silver:
         special-defense:
           base_value: 80
           effort_change: 80
-      evolution_conditions: *red-blue.pokemon.electrode.evolution_conditions
+      growth_rate: *red-blue.pokemon.electrode.growth_rate
+      female_rate: &gold-silver.pokemon.electrode.female_rate 100
+      hatch_steps: &gold-silver.pokemon.electrode.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.electrode.egg_groups
+        - mineral
+      genus: *red-blue.pokemon.electrode.genus
+      height: *red-blue.pokemon.electrode.height
+      weight: &gold-silver.pokemon.electrode.weight 666
       flavor_text:
         gold: |
           It is dangerous.
@@ -157,49 +154,46 @@ gold-silver:
           it amuses itself
           by exploding.
         silver: |
-          It stores an over­
+          It stores an over-
           flowing amount of
           electric energy
           inside its body.
           Even a small shock
           makes it explode.
+      evolution_parent: *red-blue.pokemon.electrode.evolution_parent
+      evolution_conditions: *red-blue.pokemon.electrode.evolution_conditions
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
           sprites:
-            - gold-silver/back/electrode-default.png
             - gold-silver/electrode-default.png
+            - gold-silver/back/electrode-default.png
             - gold-silver/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: &gold-silver.pokemon.electrode.forms.electrode.footprint electrode.png
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
           icon: &gold-silver.pokemon.electrode.forms.electrode.icon gen2/voltorb.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
-      evolution_parent: *red-blue.pokemon.electrode.evolution_parent
-      capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
-      hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
-      growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
-      weight: *gold-silver.pokemon.electrode.weight
+      capture_rate: *red-blue.pokemon.electrode.capture_rate
       experience: *red-blue.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
-      egg_groups: *gold-silver.pokemon.electrode.egg_groups
       stats: *gold-silver.pokemon.electrode.stats
-      evolution_conditions: *red-blue.pokemon.electrode.evolution_conditions
+      growth_rate: *red-blue.pokemon.electrode.growth_rate
+      female_rate: *gold-silver.pokemon.electrode.female_rate
+      hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
+      egg_groups: *gold-silver.pokemon.electrode.egg_groups
+      genus: *red-blue.pokemon.electrode.genus
+      height: *red-blue.pokemon.electrode.height
+      weight: *gold-silver.pokemon.electrode.weight
       flavor_text:
         crystal: |
           The more energy it
@@ -208,42 +202,41 @@ crystal:
           But this also
           makes it more
           likely to explode.
+      evolution_parent: *red-blue.pokemon.electrode.evolution_parent
+      evolution_conditions: *red-blue.pokemon.electrode.evolution_conditions
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
           sprites:
-            - crystal/back/electrode-default.png
             - crystal/electrode-default.png
+            - crystal/back/electrode-default.png
             - crystal/shiny/electrode-default.png
-            - crystal/animated/shiny/electrode-default.webm
-            - crystal/animated/electrode-default.webm
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
           icon: *gold-silver.pokemon.electrode.forms.electrode.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Electrode
+  position: &ruby-sapphire.position 110
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 85
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: &ruby-sapphire.pokemon.electrode.genus 'Ball Pokémon'
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       color: &ruby-sapphire.pokemon.electrode.color red
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: &ruby-sapphire.pokemon.electrode.happiness 70
+      baby: &ruby-sapphire.pokemon.electrode.baby false
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.electrode.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: &ruby-sapphire.pokemon.electrode.height 12
       weight: *gold-silver.pokemon.electrode.weight
       experience: &ruby-sapphire.pokemon.electrode.experience 172
       types: *red-blue.pokemon.electrode.types
@@ -291,7 +284,7 @@ ruby-sapphire:
           that has just been generated.
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -301,26 +294,26 @@ ruby-sapphire:
             - ruby-sapphire/electrode-default.png
             - ruby-sapphire/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: &ruby-sapphire.pokemon.electrode.forms.electrode.footprint electrode.png
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       color: *ruby-sapphire.pokemon.electrode.color
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -336,7 +329,7 @@ emerald:
           chaotic blackouts in nearby cities.
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -347,24 +340,24 @@ emerald:
             - emerald/animated/shiny/electrode-default.webm
             - emerald/animated/electrode-default.webm
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -374,33 +367,33 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.electrode.evolution_conditions
       forms: &colosseum.pokemon.electrode.forms
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
           icon: *ruby-sapphire.pokemon.electrode.forms.electrode.icon
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       habitat: urban
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -419,7 +412,7 @@ firered-leafgreen:
           no provocation.
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -429,31 +422,31 @@ firered-leafgreen:
             - firered-leafgreen/electrode-default.png
             - firered-leafgreen/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       shape: &diamond-pearl.pokemon.electrode.shape ball
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
       pal_park: &diamond-pearl.pokemon.electrode.pal_park
         area: field
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -477,7 +470,7 @@ diamond-pearl:
           electricity.
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -488,27 +481,27 @@ diamond-pearl:
             - diamond-pearl/electrode-default.png
             - diamond-pearl/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       shape: *diamond-pearl.pokemon.electrode.shape
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
       pal_park: *diamond-pearl.pokemon.electrode.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -523,7 +516,7 @@ platinum:
           electricity.
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -534,29 +527,29 @@ platinum:
             - platinum/electrode-default.png
             - platinum/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 122
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       shape: *diamond-pearl.pokemon.electrode.shape
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
       pal_park: *diamond-pearl.pokemon.electrode.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -575,7 +568,7 @@ heartgold-soulsilver:
           Even a small shock makes it explode.
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -602,27 +595,27 @@ heartgold-soulsilver:
             - heartgold-soulsilver/electrode-default.png
             - heartgold-soulsilver/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       color: *ruby-sapphire.pokemon.electrode.color
       shape: *diamond-pearl.pokemon.electrode.shape
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -641,7 +634,7 @@ black-white:
           electricity.
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -652,27 +645,27 @@ black-white:
             - black-white/electrode-default.png
             - black-white/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *red-blue.pokemon.electrode.forms.electrode.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       color: *ruby-sapphire.pokemon.electrode.color
       shape: *diamond-pearl.pokemon.electrode.shape
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -691,26 +684,26 @@ black-2-white-2:
           electricity.
       forms: *colosseum.pokemon.electrode.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 73
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       color: *ruby-sapphire.pokemon.electrode.color
       shape: *diamond-pearl.pokemon.electrode.shape
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -729,7 +722,7 @@ x-y:
           it explode.
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -738,29 +731,29 @@ x-y:
             - x-y/electrode-default.png
             - x-y/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: &x-y.pokemon.electrode.forms.electrode.cry electrode-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 88
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       color: *ruby-sapphire.pokemon.electrode.color
       shape: *diamond-pearl.pokemon.electrode.shape
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -781,36 +774,36 @@ omega-ruby-alpha-sapphire:
           been generated.
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
           icon: *x-y.pokemon.electrode.forms.electrode.icon
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *x-y.pokemon.electrode.forms.electrode.cry
           sprites:
             - omega-ruby-alpha-sapphire/electrode-default.png
             - omega-ruby-alpha-sapphire/shiny/electrode-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       color: *ruby-sapphire.pokemon.electrode.color
       shape: *diamond-pearl.pokemon.electrode.shape
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -821,7 +814,7 @@ sun-moon:
       evolution_conditions: *red-blue.pokemon.electrode.evolution_conditions
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -830,27 +823,27 @@ sun-moon:
             - sun-moon/electrode-default.png
             - sun-moon/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *x-y.pokemon.electrode.forms.electrode.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     electrode:
-      genus: *gold-silver.pokemon.electrode.genus
+      genus: *ruby-sapphire.pokemon.electrode.genus
       evolution_parent: *red-blue.pokemon.electrode.evolution_parent
       color: *ruby-sapphire.pokemon.electrode.color
       shape: *diamond-pearl.pokemon.electrode.shape
       capture_rate: *red-blue.pokemon.electrode.capture_rate
-      happiness: *gold-silver.pokemon.electrode.happiness
-      baby: *gold-silver.pokemon.electrode.baby
+      happiness: *ruby-sapphire.pokemon.electrode.happiness
+      baby: *ruby-sapphire.pokemon.electrode.baby
       hatch_steps: *gold-silver.pokemon.electrode.hatch_steps
       growth_rate: *red-blue.pokemon.electrode.growth_rate
-      forms_switchable: *gold-silver.pokemon.electrode.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.electrode.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.electrode.default
-      height: *gold-silver.pokemon.electrode.height
+      height: *ruby-sapphire.pokemon.electrode.height
       weight: *gold-silver.pokemon.electrode.weight
       experience: *ruby-sapphire.pokemon.electrode.experience
       types: *red-blue.pokemon.electrode.types
@@ -861,7 +854,7 @@ ultra-sun-ultra-moon:
       evolution_conditions: *red-blue.pokemon.electrode.evolution_conditions
       forms:
         electrode:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.electrode.forms.electrode.form_name
           default: *red-blue.pokemon.electrode.default
           battle_only: *red-blue.pokemon.electrode.forms.electrode.battle_only
@@ -870,5 +863,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/electrode-default.png
             - ultra-sun-ultra-moon/shiny/electrode-default.png
           art: *red-blue.pokemon.electrode.forms.electrode.art
-          footprint: *gold-silver.pokemon.electrode.forms.electrode.footprint
+          footprint: *ruby-sapphire.pokemon.electrode.forms.electrode.footprint
           cry: *x-y.pokemon.electrode.forms.electrode.cry

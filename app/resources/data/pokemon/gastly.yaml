@@ -30,8 +30,8 @@ red-blue:
           base_value: 100
           effort_change: 100
       growth_rate: &red-blue.pokemon.gastly.growth_rate medium-slow
-      genus: 'GAS Pokémon'
-      height: 12
+      genus: &red-blue.pokemon.gastly.genus 'GAS Pokémon'
+      height: &red-blue.pokemon.gastly.height 12
       weight: 9
       flavor_text:
         red: |
@@ -100,29 +100,19 @@ yellow:
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
           icon: *red-blue.pokemon.gastly.forms.gastly.icon
 gold-silver:
-  name: &gold-silver.name Gastly
-  position: &gold-silver.position 100
+  name: *red-blue.name
+  position: &gold-silver.position 91
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 58
+    original-johto: 57
+    original-johto-abc: 53
   pokemon:
     gastly:
-      genus: &gold-silver.pokemon.gastly.genus 'Gas Pokémon'
-      female_rate: &gold-silver.pokemon.gastly.female_rate 50
-      capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: &gold-silver.pokemon.gastly.happiness 70
-      baby: &gold-silver.pokemon.gastly.baby false
-      hatch_steps: &gold-silver.pokemon.gastly.hatch_steps 20
-      growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: &gold-silver.pokemon.gastly.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.gastly.default
-      height: &gold-silver.pokemon.gastly.height 13
-      weight: &gold-silver.pokemon.gastly.weight 1
+      capture_rate: *red-blue.pokemon.gastly.capture_rate
       experience: *red-blue.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
-      egg_groups: &gold-silver.pokemon.gastly.egg_groups
-        - indeterminate
       stats: &gold-silver.pokemon.gastly.stats
         hp:
           base_value: 30
@@ -142,6 +132,14 @@ gold-silver:
         special-defense:
           base_value: 35
           effort_change: 100
+      growth_rate: *red-blue.pokemon.gastly.growth_rate
+      female_rate: &gold-silver.pokemon.gastly.female_rate 50
+      hatch_steps: &gold-silver.pokemon.gastly.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.gastly.egg_groups
+        - indeterminate
+      genus: *red-blue.pokemon.gastly.genus
+      height: *red-blue.pokemon.gastly.height
+      weight: &gold-silver.pokemon.gastly.weight 1
       flavor_text:
         gold: |
           With its gas-like
@@ -159,43 +157,39 @@ gold-silver:
           suffocation.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
           sprites:
+            - gold-silver/gastly-default.png
             - gold-silver/back/gastly-default.png
             - gold-silver/shiny/gastly-default.png
-            - gold-silver/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: &gold-silver.pokemon.gastly.forms.gastly.footprint gastly.png
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
           icon: &gold-silver.pokemon.gastly.forms.gastly.icon gen2/ghost.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
-      female_rate: *gold-silver.pokemon.gastly.female_rate
-      capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
-      hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
-      growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
-      weight: *gold-silver.pokemon.gastly.weight
+      capture_rate: *red-blue.pokemon.gastly.capture_rate
       experience: *red-blue.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
-      egg_groups: *gold-silver.pokemon.gastly.egg_groups
       stats: *gold-silver.pokemon.gastly.stats
+      growth_rate: *red-blue.pokemon.gastly.growth_rate
+      female_rate: *gold-silver.pokemon.gastly.female_rate
+      hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
+      egg_groups: *gold-silver.pokemon.gastly.egg_groups
+      genus: *red-blue.pokemon.gastly.genus
+      height: *red-blue.pokemon.gastly.height
+      weight: *gold-silver.pokemon.gastly.weight
       flavor_text:
         crystal: |
-          It wraps its op­
+          It wraps its op-
           ponent in its gas-
           like body, slowly
           weakening its prey
@@ -203,39 +197,36 @@ crystal:
           through the skin.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
           sprites:
+            - crystal/gastly-default.png
             - crystal/back/gastly-default.png
             - crystal/shiny/gastly-default.png
-            - crystal/animated/shiny/gastly-default.webm
-            - crystal/animated/gastly-default.webm
-            - crystal/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
           icon: *gold-silver.pokemon.gastly.forms.gastly.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Gastly
+  position: &ruby-sapphire.position 100
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: &ruby-sapphire.pokemon.gastly.genus 'Gas Pokémon'
       color: &ruby-sapphire.pokemon.gastly.color purple
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: &ruby-sapphire.pokemon.gastly.happiness 70
+      baby: &ruby-sapphire.pokemon.gastly.baby false
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.gastly.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: &ruby-sapphire.pokemon.gastly.height 13
       weight: *gold-silver.pokemon.gastly.weight
       experience: &ruby-sapphire.pokemon.gastly.experience 62
       types: *red-blue.pokemon.gastly.types
@@ -280,7 +271,7 @@ ruby-sapphire:
           ravages of wind.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -290,26 +281,26 @@ ruby-sapphire:
             - ruby-sapphire/shiny/gastly-default.png
             - ruby-sapphire/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: &ruby-sapphire.pokemon.gastly.forms.gastly.footprint gastly.png
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       color: *ruby-sapphire.pokemon.gastly.color
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -324,7 +315,7 @@ emerald:
           to escape the ravages of wind.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -335,24 +326,24 @@ emerald:
             - emerald/animated/gastly-default.webm
             - emerald/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -361,33 +352,33 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.gastly.abilities
       forms: &colosseum.pokemon.gastly.forms
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
           icon: *ruby-sapphire.pokemon.gastly.forms.gastly.icon
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       habitat: cave
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -405,7 +396,7 @@ firered-leafgreen:
           without notice.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -415,32 +406,32 @@ firered-leafgreen:
             - firered-leafgreen/shiny/gastly-default.png
             - firered-leafgreen/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-sinnoh: 69
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       shape: &diamond-pearl.pokemon.gastly.shape ball
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
       pal_park: &diamond-pearl.pokemon.gastly.pal_park
         area: forest
         rate: 30
         score: 50
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -458,7 +449,7 @@ diamond-pearl:
           by enveloping them in gas.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -469,29 +460,29 @@ diamond-pearl:
             - diamond-pearl/shiny/gastly-default.png
             - diamond-pearl/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 69
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       shape: *diamond-pearl.pokemon.gastly.shape
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
       pal_park: *diamond-pearl.pokemon.gastly.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -505,7 +496,7 @@ platinum:
           body, which contains poison.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -516,29 +507,29 @@ platinum:
             - platinum/shiny/gastly-default.png
             - platinum/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 58
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       shape: *diamond-pearl.pokemon.gastly.shape
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
       pal_park: *diamond-pearl.pokemon.gastly.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -556,7 +547,7 @@ heartgold-soulsilver:
           of any size and cause suffocation.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -583,27 +574,27 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/gastly-default.png
             - heartgold-soulsilver/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       color: *ruby-sapphire.pokemon.gastly.color
       shape: *diamond-pearl.pokemon.gastly.shape
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -621,7 +612,7 @@ black-white:
           body, which contains poison.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -632,27 +623,27 @@ black-white:
             - black-white/shiny/gastly-default.png
             - black-white/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *red-blue.pokemon.gastly.forms.gastly.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       color: *ruby-sapphire.pokemon.gastly.color
       shape: *diamond-pearl.pokemon.gastly.shape
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -670,26 +661,26 @@ black-2-white-2:
           body, which contains poison.
       forms: *colosseum.pokemon.gastly.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 30
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       color: *ruby-sapphire.pokemon.gastly.color
       shape: *diamond-pearl.pokemon.gastly.shape
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -707,7 +698,7 @@ x-y:
           its gaseous body, which contains poison.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -716,27 +707,27 @@ x-y:
             - x-y/shiny/gastly-default.png
             - x-y/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: &x-y.pokemon.gastly.forms.gastly.cry gastly-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       color: *ruby-sapphire.pokemon.gastly.color
       shape: *diamond-pearl.pokemon.gastly.shape
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -757,20 +748,20 @@ omega-ruby-alpha-sapphire:
           escape the ravages of wind.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
           icon: *x-y.pokemon.gastly.forms.gastly.icon
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *x-y.pokemon.gastly.forms.gastly.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/gastly-default.png
             - omega-ruby-alpha-sapphire/gastly-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 61
@@ -779,19 +770,19 @@ sun-moon:
     original-ulaula: 32
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       color: *ruby-sapphire.pokemon.gastly.color
       shape: *diamond-pearl.pokemon.gastly.shape
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -805,7 +796,7 @@ sun-moon:
           a faint sweet smell lingers.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -814,11 +805,11 @@ sun-moon:
             - sun-moon/shiny/gastly-default.png
             - sun-moon/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *x-y.pokemon.gastly.forms.gastly.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 73
@@ -827,19 +818,19 @@ ultra-sun-ultra-moon:
     updated-ulaula: 32
   pokemon:
     gastly:
-      genus: *gold-silver.pokemon.gastly.genus
+      genus: *ruby-sapphire.pokemon.gastly.genus
       color: *ruby-sapphire.pokemon.gastly.color
       shape: *diamond-pearl.pokemon.gastly.shape
       female_rate: *gold-silver.pokemon.gastly.female_rate
       capture_rate: *red-blue.pokemon.gastly.capture_rate
-      happiness: *gold-silver.pokemon.gastly.happiness
-      baby: *gold-silver.pokemon.gastly.baby
+      happiness: *ruby-sapphire.pokemon.gastly.happiness
+      baby: *ruby-sapphire.pokemon.gastly.baby
       hatch_steps: *gold-silver.pokemon.gastly.hatch_steps
       growth_rate: *red-blue.pokemon.gastly.growth_rate
-      forms_switchable: *gold-silver.pokemon.gastly.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gastly.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gastly.default
-      height: *gold-silver.pokemon.gastly.height
+      height: *ruby-sapphire.pokemon.gastly.height
       weight: *gold-silver.pokemon.gastly.weight
       experience: *ruby-sapphire.pokemon.gastly.experience
       types: *red-blue.pokemon.gastly.types
@@ -854,7 +845,7 @@ ultra-sun-ultra-moon:
           deceased and thus became a Pokémon.
       forms:
         gastly:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gastly.forms.gastly.form_name
           default: *red-blue.pokemon.gastly.default
           battle_only: *red-blue.pokemon.gastly.forms.gastly.battle_only
@@ -863,5 +854,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/gastly-default.png
             - ultra-sun-ultra-moon/gastly-default.png
           art: *red-blue.pokemon.gastly.forms.gastly.art
-          footprint: *gold-silver.pokemon.gastly.forms.gastly.footprint
+          footprint: *ruby-sapphire.pokemon.gastly.forms.gastly.footprint
           cry: *x-y.pokemon.gastly.forms.gastly.cry

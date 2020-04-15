@@ -29,8 +29,8 @@ red-blue:
           base_value: 95
           effort_change: 95
       growth_rate: &red-blue.pokemon.seadra.growth_rate medium
-      genus: 'DRAGON Pokémon'
-      height: 11
+      genus: &red-blue.pokemon.seadra.genus 'DRAGON Pokémon'
+      height: &red-blue.pokemon.seadra.height 11
       weight: 2494
       flavor_text:
         red: |
@@ -105,31 +105,19 @@ yellow:
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
           icon: *red-blue.pokemon.seadra.forms.seadra.icon
 gold-silver:
-  name: &gold-silver.name Seadra
-  position: &gold-silver.position 133
+  name: *red-blue.name
+  position: &gold-silver.position 116
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 187
+    original-johto: 186
+    original-johto-abc: 178
   pokemon:
     seadra:
-      genus: &gold-silver.pokemon.seadra.genus 'Dragon Pokémon'
-      evolution_parent: *red-blue.pokemon.seadra.evolution_parent
-      female_rate: &gold-silver.pokemon.seadra.female_rate 50
-      capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: &gold-silver.pokemon.seadra.happiness 70
-      baby: &gold-silver.pokemon.seadra.baby false
-      hatch_steps: &gold-silver.pokemon.seadra.hatch_steps 20
-      growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: &gold-silver.pokemon.seadra.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.seadra.default
-      height: &gold-silver.pokemon.seadra.height 12
-      weight: &gold-silver.pokemon.seadra.weight 250
+      capture_rate: *red-blue.pokemon.seadra.capture_rate
       experience: *red-blue.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
-      egg_groups: &gold-silver.pokemon.seadra.egg_groups
-        - water1
-        - dragon
       stats: &gold-silver.pokemon.seadra.stats
         hp:
           base_value: 55
@@ -149,7 +137,19 @@ gold-silver:
         special-defense:
           base_value: 45
           effort_change: 95
-      evolution_conditions: *red-blue.pokemon.seadra.evolution_conditions
+      growth_rate: *red-blue.pokemon.seadra.growth_rate
+      female_rate: &gold-silver.pokemon.seadra.female_rate 50
+      hatch_steps: &gold-silver.pokemon.seadra.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.seadra.egg_groups
+        - water1
+        - dragon
+      wild_held_items:
+        gold: &gold-silver.pokemon.seadra.wild_held_items.gold
+          dragon-scale: 2
+        silver: *gold-silver.pokemon.seadra.wild_held_items.gold
+      genus: *red-blue.pokemon.seadra.genus
+      height: *red-blue.pokemon.seadra.height
+      weight: &gold-silver.pokemon.seadra.weight 249
       flavor_text:
         gold: |
           An examination of
@@ -165,44 +165,42 @@ gold-silver:
           highly valued as
           ingredients in
           herbal medicine.
+      evolution_parent: *red-blue.pokemon.seadra.evolution_parent
+      evolution_conditions: *red-blue.pokemon.seadra.evolution_conditions
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
           sprites:
+            - gold-silver/seadra-default.png
             - gold-silver/back/seadra-default.png
             - gold-silver/shiny/seadra-default.png
-            - gold-silver/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: &gold-silver.pokemon.seadra.forms.seadra.footprint seadra.png
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
           icon: &gold-silver.pokemon.seadra.forms.seadra.icon gen2/fish.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
-      evolution_parent: *red-blue.pokemon.seadra.evolution_parent
-      female_rate: *gold-silver.pokemon.seadra.female_rate
-      capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
-      hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
-      growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      capture_rate: *red-blue.pokemon.seadra.capture_rate
       experience: *red-blue.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
-      egg_groups: *gold-silver.pokemon.seadra.egg_groups
       stats: *gold-silver.pokemon.seadra.stats
-      evolution_conditions: *red-blue.pokemon.seadra.evolution_conditions
+      growth_rate: *red-blue.pokemon.seadra.growth_rate
+      female_rate: *gold-silver.pokemon.seadra.female_rate
+      hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
+      egg_groups: *gold-silver.pokemon.seadra.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.seadra.wild_held_items.gold
+      genus: *red-blue.pokemon.seadra.genus
+      height: *red-blue.pokemon.seadra.height
+      weight: *gold-silver.pokemon.seadra.weight
       flavor_text:
         crystal: |
           The male raises
@@ -211,44 +209,43 @@ crystal:
           uses its toxic
           spikes to fend off
           the intruder.
+      evolution_parent: *red-blue.pokemon.seadra.evolution_parent
+      evolution_conditions: *red-blue.pokemon.seadra.evolution_conditions
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
           sprites:
+            - crystal/seadra-default.png
             - crystal/back/seadra-default.png
             - crystal/shiny/seadra-default.png
-            - crystal/seadra-default.png
-            - crystal/animated/seadra-default.webm
-            - crystal/animated/shiny/seadra-default.webm
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
           icon: *gold-silver.pokemon.seadra.forms.seadra.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Seadra
+  position: &ruby-sapphire.position 133
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 185
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: &ruby-sapphire.pokemon.seadra.genus 'Dragon Pokémon'
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       color: &ruby-sapphire.pokemon.seadra.color blue
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: &ruby-sapphire.pokemon.seadra.happiness 70
+      baby: &ruby-sapphire.pokemon.seadra.baby false
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.seadra.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: &ruby-sapphire.pokemon.seadra.height 12
+      weight: &ruby-sapphire.pokemon.seadra.weight 250
       experience: &ruby-sapphire.pokemon.seadra.experience 154
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -298,7 +295,7 @@ ruby-sapphire:
           currents, then swallows it whole.
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -308,28 +305,28 @@ ruby-sapphire:
             - ruby-sapphire/shiny/seadra-default.png
             - ruby-sapphire/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: &ruby-sapphire.pokemon.seadra.forms.seadra.footprint seadra.png
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       color: *ruby-sapphire.pokemon.seadra.color
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -346,7 +343,7 @@ emerald:
           mercy to anything approaching its nest.
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -357,26 +354,26 @@ emerald:
             - emerald/animated/seadra-default.webm
             - emerald/animated/shiny/seadra-default.webm
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -385,35 +382,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.seadra.evolution_conditions
       forms: &colosseum.pokemon.seadra.forms
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
           icon: *ruby-sapphire.pokemon.seadra.forms.seadra.icon
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       habitat: sea
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -431,7 +428,7 @@ firered-leafgreen:
           and stout tail.
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -441,33 +438,33 @@ firered-leafgreen:
             - firered-leafgreen/shiny/seadra-default.png
             - firered-leafgreen/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       shape: &diamond-pearl.pokemon.seadra.shape blob
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
       pal_park: &diamond-pearl.pokemon.seadra.pal_park
         area: sea
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -493,7 +490,7 @@ diamond-pearl:
           traditional medicine ingredients.
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -504,29 +501,29 @@ diamond-pearl:
             - diamond-pearl/shiny/seadra-default.png
             - diamond-pearl/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       shape: *diamond-pearl.pokemon.seadra.shape
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
       pal_park: *diamond-pearl.pokemon.seadra.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -542,7 +539,7 @@ platinum:
           traditional medicine ingredients.
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -553,31 +550,31 @@ platinum:
             - platinum/shiny/seadra-default.png
             - platinum/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 191
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       shape: *diamond-pearl.pokemon.seadra.shape
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
       pal_park: *diamond-pearl.pokemon.seadra.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -598,7 +595,7 @@ heartgold-soulsilver:
           ingredients in herbal medicine.
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -625,29 +622,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/seadra-default.png
             - heartgold-soulsilver/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       color: *ruby-sapphire.pokemon.seadra.color
       shape: *diamond-pearl.pokemon.seadra.shape
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -668,7 +665,7 @@ black-white:
           traditional medicine ingredients.
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -679,29 +676,29 @@ black-white:
             - black-white/shiny/seadra-default.png
             - black-white/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *red-blue.pokemon.seadra.forms.seadra.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       color: *ruby-sapphire.pokemon.seadra.color
       shape: *diamond-pearl.pokemon.seadra.shape
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -722,28 +719,28 @@ black-2-white-2:
           traditional-medicine ingredients.
       forms: *colosseum.pokemon.seadra.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-coastal: 40
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       color: *ruby-sapphire.pokemon.seadra.color
       shape: *diamond-pearl.pokemon.seadra.shape
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -763,7 +760,7 @@ x-y:
           flapping its winglike pectoral fins and stout tail.
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -772,31 +769,31 @@ x-y:
             - x-y/shiny/seadra-default.png
             - x-y/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: &x-y.pokemon.seadra.forms.seadra.cry seadra-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 194
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       color: *ruby-sapphire.pokemon.seadra.color
       shape: *diamond-pearl.pokemon.seadra.shape
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -816,38 +813,38 @@ omega-ruby-alpha-sapphire:
           these currents, then swallows it whole.
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
           icon: *x-y.pokemon.seadra.forms.seadra.icon
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *x-y.pokemon.seadra.forms.seadra.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/seadra-default.png
             - omega-ruby-alpha-sapphire/seadra-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       color: *ruby-sapphire.pokemon.seadra.color
       shape: *diamond-pearl.pokemon.seadra.shape
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -859,7 +856,7 @@ sun-moon:
       evolution_conditions: *red-blue.pokemon.seadra.evolution_conditions
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -868,29 +865,29 @@ sun-moon:
             - sun-moon/shiny/seadra-default.png
             - sun-moon/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *x-y.pokemon.seadra.forms.seadra.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     seadra:
-      genus: *gold-silver.pokemon.seadra.genus
+      genus: *ruby-sapphire.pokemon.seadra.genus
       evolution_parent: *red-blue.pokemon.seadra.evolution_parent
       color: *ruby-sapphire.pokemon.seadra.color
       shape: *diamond-pearl.pokemon.seadra.shape
       female_rate: *gold-silver.pokemon.seadra.female_rate
       capture_rate: *red-blue.pokemon.seadra.capture_rate
-      happiness: *gold-silver.pokemon.seadra.happiness
-      baby: *gold-silver.pokemon.seadra.baby
+      happiness: *ruby-sapphire.pokemon.seadra.happiness
+      baby: *ruby-sapphire.pokemon.seadra.baby
       hatch_steps: *gold-silver.pokemon.seadra.hatch_steps
       growth_rate: *red-blue.pokemon.seadra.growth_rate
-      forms_switchable: *gold-silver.pokemon.seadra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.seadra.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.seadra.default
-      height: *gold-silver.pokemon.seadra.height
-      weight: *gold-silver.pokemon.seadra.weight
+      height: *ruby-sapphire.pokemon.seadra.height
+      weight: *ruby-sapphire.pokemon.seadra.weight
       experience: *ruby-sapphire.pokemon.seadra.experience
       types: *red-blue.pokemon.seadra.types
       egg_groups: *gold-silver.pokemon.seadra.egg_groups
@@ -902,7 +899,7 @@ ultra-sun-ultra-moon:
       evolution_conditions: *red-blue.pokemon.seadra.evolution_conditions
       forms:
         seadra:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.seadra.forms.seadra.form_name
           default: *red-blue.pokemon.seadra.default
           battle_only: *red-blue.pokemon.seadra.forms.seadra.battle_only
@@ -911,5 +908,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/seadra-default.png
             - ultra-sun-ultra-moon/seadra-default.png
           art: *red-blue.pokemon.seadra.forms.seadra.art
-          footprint: *gold-silver.pokemon.seadra.forms.seadra.footprint
+          footprint: *ruby-sapphire.pokemon.seadra.forms.seadra.footprint
           cry: *x-y.pokemon.seadra.forms.seadra.cry

@@ -30,7 +30,7 @@ red-blue:
           base_value: 31
           effort_change: 31
       growth_rate: &red-blue.pokemon.spearow.growth_rate medium
-      genus: 'TINY BIRD Pokémon'
+      genus: &red-blue.pokemon.spearow.genus 'TINY BIRD Pokémon'
       height: &red-blue.pokemon.spearow.height 3
       weight: 181
       flavor_text:
@@ -100,29 +100,19 @@ yellow:
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
           icon: *red-blue.pokemon.spearow.forms.spearow.icon
 gold-silver:
-  name: &gold-silver.name Spearow
-  position: *red-blue.position
+  name: *red-blue.name
+  position: &gold-silver.position 20
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 13
+    original-johto: 12
+    original-johto-abc: 195
   pokemon:
     spearow:
-      genus: &gold-silver.pokemon.spearow.genus 'Tiny Bird Pokémon'
-      female_rate: &gold-silver.pokemon.spearow.female_rate 50
-      capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: &gold-silver.pokemon.spearow.happiness 70
-      baby: &gold-silver.pokemon.spearow.baby false
-      hatch_steps: &gold-silver.pokemon.spearow.hatch_steps 15
-      growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: &gold-silver.pokemon.spearow.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.spearow.default
-      height: *red-blue.pokemon.spearow.height
-      weight: &gold-silver.pokemon.spearow.weight 20
+      capture_rate: *red-blue.pokemon.spearow.capture_rate
       experience: *red-blue.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
-      egg_groups: &gold-silver.pokemon.spearow.egg_groups
-        - flying
       stats: &gold-silver.pokemon.spearow.stats
         hp:
           base_value: 40
@@ -142,6 +132,14 @@ gold-silver:
         special-defense:
           base_value: 31
           effort_change: 31
+      growth_rate: *red-blue.pokemon.spearow.growth_rate
+      female_rate: &gold-silver.pokemon.spearow.female_rate 50
+      hatch_steps: &gold-silver.pokemon.spearow.hatch_steps 15
+      egg_groups: &gold-silver.pokemon.spearow.egg_groups
+        - flying
+      genus: *red-blue.pokemon.spearow.genus
+      height: *red-blue.pokemon.spearow.height
+      weight: &gold-silver.pokemon.spearow.weight 18
       flavor_text:
         gold: |
           It flaps its short
@@ -159,40 +157,36 @@ gold-silver:
           high speed.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
           sprites:
+            - gold-silver/spearow-default.png
             - gold-silver/back/spearow-default.png
             - gold-silver/shiny/spearow-default.png
-            - gold-silver/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: &gold-silver.pokemon.spearow.forms.spearow.footprint spearow.png
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
           icon: &gold-silver.pokemon.spearow.forms.spearow.icon gen2/bird.png
 crystal:
-  name: *gold-silver.name
-  position: *red-blue.position
+  name: *red-blue.name
+  position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
-      female_rate: *gold-silver.pokemon.spearow.female_rate
-      capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
-      hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
-      growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.spearow.default
-      height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      capture_rate: *red-blue.pokemon.spearow.capture_rate
       experience: *red-blue.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
-      egg_groups: *gold-silver.pokemon.spearow.egg_groups
       stats: *gold-silver.pokemon.spearow.stats
+      growth_rate: *red-blue.pokemon.spearow.growth_rate
+      female_rate: *gold-silver.pokemon.spearow.female_rate
+      hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
+      egg_groups: *gold-silver.pokemon.spearow.egg_groups
+      genus: *red-blue.pokemon.spearow.genus
+      height: *red-blue.pokemon.spearow.height
+      weight: *gold-silver.pokemon.spearow.weight
       flavor_text:
         crystal: |
           To protect its
@@ -203,40 +197,37 @@ crystal:
           pitched cries.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
           sprites:
+            - crystal/spearow-default.png
             - crystal/back/spearow-default.png
             - crystal/shiny/spearow-default.png
-            - crystal/spearow-default.png
-            - crystal/animated/shiny/spearow-default.webm
-            - crystal/animated/spearow-default.webm
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
           icon: *gold-silver.pokemon.spearow.forms.spearow.icon
 ruby-sapphire:
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Spearow
   position: *red-blue.position
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: &ruby-sapphire.pokemon.spearow.genus 'Tiny Bird Pokémon'
       color: &ruby-sapphire.pokemon.spearow.color brown
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: &ruby-sapphire.pokemon.spearow.happiness 70
+      baby: &ruby-sapphire.pokemon.spearow.baby false
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.spearow.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: &ruby-sapphire.pokemon.spearow.weight 20
       experience: &ruby-sapphire.pokemon.spearow.experience 52
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -278,7 +269,7 @@ ruby-sapphire:
           they are warning each other of danger.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -288,27 +279,27 @@ ruby-sapphire:
             - ruby-sapphire/shiny/spearow-default.png
             - ruby-sapphire/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: &ruby-sapphire.pokemon.spearow.forms.spearow.footprint spearow.png
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
 emerald:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       color: *ruby-sapphire.pokemon.spearow.color
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -322,7 +313,7 @@ emerald:
           are warning each other of danger.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -333,25 +324,25 @@ emerald:
             - emerald/animated/shiny/spearow-default.webm
             - emerald/animated/spearow-default.webm
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -359,34 +350,34 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.spearow.abilities
       forms: &colosseum.pokemon.spearow.forms
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
           icon: *ruby-sapphire.pokemon.spearow.forms.spearow.icon
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *red-blue.numbers
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       habitat: rough-terrain
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -403,7 +394,7 @@ firered-leafgreen:
           airborne.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -413,31 +404,31 @@ firered-leafgreen:
             - firered-leafgreen/shiny/spearow-default.png
             - firered-leafgreen/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
 diamond-pearl:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       shape: &diamond-pearl.pokemon.spearow.shape wings
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
       pal_park: &diamond-pearl.pokemon.spearow.pal_park
         area: field
         rate: 50
         score: 30
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -458,7 +449,7 @@ diamond-pearl:
           in grass for prey.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -469,28 +460,28 @@ diamond-pearl:
             - diamond-pearl/shiny/spearow-default.png
             - diamond-pearl/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
 platinum:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       shape: *diamond-pearl.pokemon.spearow.shape
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
       pal_park: *diamond-pearl.pokemon.spearow.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -503,7 +494,7 @@ platinum:
           in grass for prey.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -514,30 +505,30 @@ platinum:
             - platinum/shiny/spearow-default.png
             - platinum/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 13
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       shape: *diamond-pearl.pokemon.spearow.shape
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
       pal_park: *diamond-pearl.pokemon.spearow.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -554,7 +545,7 @@ heartgold-soulsilver:
           dart around at high speed.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -581,28 +572,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/spearow-default.png
             - heartgold-soulsilver/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
 black-white:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       color: *ruby-sapphire.pokemon.spearow.color
       shape: *diamond-pearl.pokemon.spearow.shape
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -619,7 +610,7 @@ black-white:
           in grass for prey.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -630,28 +621,28 @@ black-white:
             - black-white/shiny/spearow-default.png
             - black-white/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *red-blue.pokemon.spearow.forms.spearow.cry
 black-2-white-2:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       color: *ruby-sapphire.pokemon.spearow.color
       shape: *diamond-pearl.pokemon.spearow.shape
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -668,27 +659,27 @@ black-2-white-2:
           in grass for prey.
       forms: *colosseum.pokemon.spearow.forms
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 109
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       color: *ruby-sapphire.pokemon.spearow.color
       shape: *diamond-pearl.pokemon.spearow.shape
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -704,7 +695,7 @@ x-y:
           wings at high speed to stay airborne.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -713,28 +704,28 @@ x-y:
             - x-y/shiny/spearow-default.png
             - x-y/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: &x-y.pokemon.spearow.forms.spearow.cry spearow-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       color: *ruby-sapphire.pokemon.spearow.color
       shape: *diamond-pearl.pokemon.spearow.shape
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -752,19 +743,19 @@ omega-ruby-alpha-sapphire:
           around, it is a sign that they are warning each other of danger.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
           icon: *x-y.pokemon.spearow.forms.spearow.icon
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *x-y.pokemon.spearow.forms.spearow.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/spearow-default.png
             - omega-ruby-alpha-sapphire/spearow-default.png
 sun-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
@@ -774,20 +765,20 @@ sun-moon:
     original-poni: 24
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       color: *ruby-sapphire.pokemon.spearow.color
       shape: *diamond-pearl.pokemon.spearow.shape
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -804,7 +795,7 @@ sun-moon:
           appetite and look after it.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -813,10 +804,10 @@ sun-moon:
             - sun-moon/shiny/spearow-default.png
             - sun-moon/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *x-y.pokemon.spearow.forms.spearow.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
@@ -826,20 +817,20 @@ ultra-sun-ultra-moon:
     updated-poni: 33
   pokemon:
     spearow:
-      genus: *gold-silver.pokemon.spearow.genus
+      genus: *ruby-sapphire.pokemon.spearow.genus
       color: *ruby-sapphire.pokemon.spearow.color
       shape: *diamond-pearl.pokemon.spearow.shape
       female_rate: *gold-silver.pokemon.spearow.female_rate
       capture_rate: *red-blue.pokemon.spearow.capture_rate
-      happiness: *gold-silver.pokemon.spearow.happiness
-      baby: *gold-silver.pokemon.spearow.baby
+      happiness: *ruby-sapphire.pokemon.spearow.happiness
+      baby: *ruby-sapphire.pokemon.spearow.baby
       hatch_steps: *gold-silver.pokemon.spearow.hatch_steps
       growth_rate: *red-blue.pokemon.spearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.spearow.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.spearow.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.spearow.default
       height: *red-blue.pokemon.spearow.height
-      weight: *gold-silver.pokemon.spearow.weight
+      weight: *ruby-sapphire.pokemon.spearow.weight
       experience: *ruby-sapphire.pokemon.spearow.experience
       types: *red-blue.pokemon.spearow.types
       egg_groups: *gold-silver.pokemon.spearow.egg_groups
@@ -855,7 +846,7 @@ ultra-sun-ultra-moon:
           its territory.
       forms:
         spearow:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.spearow.forms.spearow.form_name
           default: *red-blue.pokemon.spearow.default
           battle_only: *red-blue.pokemon.spearow.forms.spearow.battle_only
@@ -864,5 +855,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/spearow-default.png
             - ultra-sun-ultra-moon/spearow-default.png
           art: *red-blue.pokemon.spearow.forms.spearow.art
-          footprint: *gold-silver.pokemon.spearow.forms.spearow.footprint
+          footprint: *ruby-sapphire.pokemon.spearow.forms.spearow.footprint
           cry: *x-y.pokemon.spearow.forms.spearow.cry

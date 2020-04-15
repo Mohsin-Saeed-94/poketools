@@ -29,7 +29,7 @@ red-blue:
           base_value: 50
           effort_change: 50
       growth_rate: &red-blue.pokemon.charmander.growth_rate medium-slow
-      genus: 'LIZARD Pokémon'
+      genus: &red-blue.pokemon.charmander.genus 'LIZARD Pokémon'
       height: &red-blue.pokemon.charmander.height 6
       weight: 861
       flavor_text:
@@ -99,30 +99,19 @@ yellow:
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
           icon: *red-blue.pokemon.charmander.forms.charmander.icon
 gold-silver:
-  name: &gold-silver.name Charmander
-  position: *red-blue.position
+  name: *red-blue.name
+  position: &gold-silver.position 3
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 229
+    original-johto: 228
+    original-johto-abc: 11
   pokemon:
     charmander:
-      genus: &gold-silver.pokemon.charmander.genus 'Lizard Pokémon'
-      female_rate: &gold-silver.pokemon.charmander.female_rate 12
-      capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: &gold-silver.pokemon.charmander.happiness 70
-      baby: &gold-silver.pokemon.charmander.baby false
-      hatch_steps: &gold-silver.pokemon.charmander.hatch_steps 20
-      growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: &gold-silver.pokemon.charmander.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.charmander.default
-      height: *red-blue.pokemon.charmander.height
-      weight: &gold-silver.pokemon.charmander.weight 85
+      capture_rate: *red-blue.pokemon.charmander.capture_rate
       experience: *red-blue.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
-      egg_groups: &gold-silver.pokemon.charmander.egg_groups
-        - monster
-        - dragon
       stats: &gold-silver.pokemon.charmander.stats
         hp:
           base_value: 39
@@ -142,6 +131,15 @@ gold-silver:
         special-defense:
           base_value: 50
           effort_change: 60
+      growth_rate: *red-blue.pokemon.charmander.growth_rate
+      female_rate: &gold-silver.pokemon.charmander.female_rate 12
+      hatch_steps: &gold-silver.pokemon.charmander.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.charmander.egg_groups
+        - monster
+        - dragon
+      genus: *red-blue.pokemon.charmander.genus
+      height: *red-blue.pokemon.charmander.height
+      weight: &gold-silver.pokemon.charmander.weight 86
       flavor_text:
         gold: |
           The flame on its
@@ -159,7 +157,7 @@ gold-silver:
           burns brightly.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -168,42 +166,38 @@ gold-silver:
             - gold-silver/back/charmander-default.png
             - gold-silver/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: &gold-silver.pokemon.charmander.forms.charmander.footprint charmander.png
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
           icon: &gold-silver.pokemon.charmander.forms.charmander.icon gen2/charmander.png
 crystal:
-  name: *gold-silver.name
-  position: *red-blue.position
+  name: *red-blue.name
+  position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
-      female_rate: *gold-silver.pokemon.charmander.female_rate
-      capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
-      hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
-      growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.charmander.default
-      height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      capture_rate: *red-blue.pokemon.charmander.capture_rate
       experience: *red-blue.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
-      egg_groups: *gold-silver.pokemon.charmander.egg_groups
       stats: *gold-silver.pokemon.charmander.stats
+      growth_rate: *red-blue.pokemon.charmander.growth_rate
+      female_rate: *gold-silver.pokemon.charmander.female_rate
+      hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
+      egg_groups: *gold-silver.pokemon.charmander.egg_groups
+      genus: *red-blue.pokemon.charmander.genus
+      height: *red-blue.pokemon.charmander.height
+      weight: *gold-silver.pokemon.charmander.weight
       flavor_text:
         crystal: |
           If it's healthy,
           the flame on the
           tip of its tail
-          will burn vigor­
+          will burn vigor-
           ously, even if it
           gets a bit wet.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -211,32 +205,29 @@ crystal:
             - crystal/charmander-default.png
             - crystal/back/charmander-default.png
             - crystal/shiny/charmander-default.png
-            - crystal/animated/shiny/charmander-default.webm
-            - crystal/animated/charmander-default.webm
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
           icon: *gold-silver.pokemon.charmander.forms.charmander.icon
 ruby-sapphire:
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Charmander
   position: *red-blue.position
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: &ruby-sapphire.pokemon.charmander.genus 'Lizard Pokémon'
       color: &ruby-sapphire.pokemon.charmander.color red
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: &ruby-sapphire.pokemon.charmander.happiness 70
+      baby: &ruby-sapphire.pokemon.charmander.baby false
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.charmander.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: &ruby-sapphire.pokemon.charmander.weight 85
       experience: &ruby-sapphire.pokemon.charmander.experience 62
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -278,7 +269,7 @@ ruby-sapphire:
           enraged, the flame burns fiercely.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -288,27 +279,27 @@ ruby-sapphire:
             - ruby-sapphire/back/charmander-default.png
             - ruby-sapphire/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: &ruby-sapphire.pokemon.charmander.forms.charmander.footprint charmander.png
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
 emerald:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       color: *ruby-sapphire.pokemon.charmander.color
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -322,7 +313,7 @@ emerald:
           happy, and blazes when it is enraged.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -333,25 +324,25 @@ emerald:
             - emerald/animated/shiny/charmander-default.webm
             - emerald/animated/charmander-default.webm
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -359,34 +350,34 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.charmander.abilities
       forms: &colosseum.pokemon.charmander.forms
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
           icon: *ruby-sapphire.pokemon.charmander.forms.charmander.icon
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *red-blue.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       habitat: mountain
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -403,7 +394,7 @@ firered-leafgreen:
           the tip of its tail.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -413,31 +404,31 @@ firered-leafgreen:
             - firered-leafgreen/back/charmander-default.png
             - firered-leafgreen/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
 diamond-pearl:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       shape: &diamond-pearl.pokemon.charmander.shape upright
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
       pal_park: &diamond-pearl.pokemon.charmander.pal_park
         area: field
         rate: 30
         score: 50
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -446,7 +437,7 @@ diamond-pearl:
         blaze: *ruby-sapphire.pokemon.charmander.abilities.blaze
         solar-power:
           hidden: true
-          position: 3
+          position: *gold-silver.position
       flavor_text:
         diamond: |
           The fire on the tip of its tail is a
@@ -458,7 +449,7 @@ diamond-pearl:
           its tail burns intensely.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -469,28 +460,28 @@ diamond-pearl:
             - diamond-pearl/back/shiny/charmander-default.png
             - diamond-pearl/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
 platinum:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       shape: *diamond-pearl.pokemon.charmander.shape
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
       pal_park: *diamond-pearl.pokemon.charmander.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -503,7 +494,7 @@ platinum:
           its tail burns intensely.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -514,30 +505,30 @@ platinum:
             - platinum/back/shiny/charmander-default.png
             - platinum/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 234
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       shape: *diamond-pearl.pokemon.charmander.shape
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
       pal_park: *diamond-pearl.pokemon.charmander.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -554,7 +545,7 @@ heartgold-soulsilver:
           healthy, the flame burns brightly.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -581,28 +572,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/charmander-default.png
             - heartgold-soulsilver/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
 black-white:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       color: *ruby-sapphire.pokemon.charmander.color
       shape: *diamond-pearl.pokemon.charmander.shape
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -619,7 +610,7 @@ black-white:
           its tail burns intensely.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -630,28 +621,28 @@ black-white:
             - black-white/back/shiny/charmander-default.png
             - black-white/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *red-blue.pokemon.charmander.forms.charmander.cry
 black-2-white-2:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       color: *ruby-sapphire.pokemon.charmander.color
       shape: *diamond-pearl.pokemon.charmander.shape
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -668,27 +659,27 @@ black-2-white-2:
           its tail burns intensely.
       forms: *colosseum.pokemon.charmander.forms
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     kalos-central: 83
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       color: *ruby-sapphire.pokemon.charmander.color
       shape: *diamond-pearl.pokemon.charmander.shape
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -705,7 +696,7 @@ x-y:
           go out.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -714,28 +705,28 @@ x-y:
             - x-y/charmander-default.png
             - x-y/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: &x-y.pokemon.charmander.forms.charmander.cry charmander-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       color: *ruby-sapphire.pokemon.charmander.color
       shape: *diamond-pearl.pokemon.charmander.shape
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -755,37 +746,37 @@ omega-ruby-alpha-sapphire:
           the flame burns fiercely.
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
           icon: *x-y.pokemon.charmander.forms.charmander.icon
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *x-y.pokemon.charmander.forms.charmander.cry
           sprites:
             - omega-ruby-alpha-sapphire/charmander-default.png
             - omega-ruby-alpha-sapphire/shiny/charmander-default.png
 sun-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       color: *ruby-sapphire.pokemon.charmander.color
       shape: *diamond-pearl.pokemon.charmander.shape
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -794,7 +785,7 @@ sun-moon:
       abilities: *diamond-pearl.pokemon.charmander.abilities
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -803,28 +794,28 @@ sun-moon:
             - sun-moon/charmander-default.png
             - sun-moon/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *x-y.pokemon.charmander.forms.charmander.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     charmander:
-      genus: *gold-silver.pokemon.charmander.genus
+      genus: *ruby-sapphire.pokemon.charmander.genus
       color: *ruby-sapphire.pokemon.charmander.color
       shape: *diamond-pearl.pokemon.charmander.shape
       female_rate: *gold-silver.pokemon.charmander.female_rate
       capture_rate: *red-blue.pokemon.charmander.capture_rate
-      happiness: *gold-silver.pokemon.charmander.happiness
-      baby: *gold-silver.pokemon.charmander.baby
+      happiness: *ruby-sapphire.pokemon.charmander.happiness
+      baby: *ruby-sapphire.pokemon.charmander.baby
       hatch_steps: *gold-silver.pokemon.charmander.hatch_steps
       growth_rate: *red-blue.pokemon.charmander.growth_rate
-      forms_switchable: *gold-silver.pokemon.charmander.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.charmander.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.charmander.default
       height: *red-blue.pokemon.charmander.height
-      weight: *gold-silver.pokemon.charmander.weight
+      weight: *ruby-sapphire.pokemon.charmander.weight
       experience: *ruby-sapphire.pokemon.charmander.experience
       types: *red-blue.pokemon.charmander.types
       egg_groups: *gold-silver.pokemon.charmander.egg_groups
@@ -833,7 +824,7 @@ ultra-sun-ultra-moon:
       abilities: *diamond-pearl.pokemon.charmander.abilities
       forms:
         charmander:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.charmander.forms.charmander.form_name
           default: *red-blue.pokemon.charmander.default
           battle_only: *red-blue.pokemon.charmander.forms.charmander.battle_only
@@ -842,5 +833,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/charmander-default.png
             - ultra-sun-ultra-moon/shiny/charmander-default.png
           art: *red-blue.pokemon.charmander.forms.charmander.art
-          footprint: *gold-silver.pokemon.charmander.forms.charmander.footprint
+          footprint: *ruby-sapphire.pokemon.charmander.forms.charmander.footprint
           cry: *x-y.pokemon.charmander.forms.charmander.cry

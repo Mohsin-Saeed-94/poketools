@@ -29,7 +29,7 @@ red-blue:
           base_value: 70
           effort_change: 70
       growth_rate: &red-blue.pokemon.horsea.growth_rate medium
-      genus: 'DRAGON Pokémon'
+      genus: &red-blue.pokemon.horsea.genus 'DRAGON Pokémon'
       height: &red-blue.pokemon.horsea.height 4
       weight: 816
       flavor_text:
@@ -99,30 +99,19 @@ yellow:
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
           icon: *red-blue.pokemon.horsea.forms.horsea.icon
 gold-silver:
-  name: &gold-silver.name Horsea
-  position: &gold-silver.position 132
+  name: *red-blue.name
+  position: &gold-silver.position 115
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 186
+    original-johto: 185
+    original-johto-abc: 76
   pokemon:
     horsea:
-      genus: &gold-silver.pokemon.horsea.genus 'Dragon Pokémon'
-      female_rate: &gold-silver.pokemon.horsea.female_rate 50
-      capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: &gold-silver.pokemon.horsea.happiness 70
-      baby: &gold-silver.pokemon.horsea.baby false
-      hatch_steps: &gold-silver.pokemon.horsea.hatch_steps 20
-      growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: &gold-silver.pokemon.horsea.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.horsea.default
-      height: *red-blue.pokemon.horsea.height
-      weight: &gold-silver.pokemon.horsea.weight 80
+      capture_rate: *red-blue.pokemon.horsea.capture_rate
       experience: *red-blue.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
-      egg_groups: &gold-silver.pokemon.horsea.egg_groups
-        - water1
-        - dragon
       stats: &gold-silver.pokemon.horsea.stats
         hp:
           base_value: 30
@@ -142,6 +131,19 @@ gold-silver:
         special-defense:
           base_value: 25
           effort_change: 70
+      growth_rate: *red-blue.pokemon.horsea.growth_rate
+      female_rate: &gold-silver.pokemon.horsea.female_rate 50
+      hatch_steps: &gold-silver.pokemon.horsea.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.horsea.egg_groups
+        - water1
+        - dragon
+      wild_held_items:
+        gold: &gold-silver.pokemon.horsea.wild_held_items.gold
+          dragon-scale: 2
+        silver: *gold-silver.pokemon.horsea.wild_held_items.gold
+      genus: *red-blue.pokemon.horsea.genus
+      height: *red-blue.pokemon.horsea.height
+      weight: &gold-silver.pokemon.horsea.weight 81
       flavor_text:
         gold: |
           If attacked by a
@@ -159,7 +161,7 @@ gold-silver:
           forward.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -168,31 +170,29 @@ gold-silver:
             - gold-silver/back/horsea-default.png
             - gold-silver/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: &gold-silver.pokemon.horsea.forms.horsea.footprint horsea.png
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
           icon: &gold-silver.pokemon.horsea.forms.horsea.icon gen2/fish.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
-      female_rate: *gold-silver.pokemon.horsea.female_rate
-      capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
-      hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
-      growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.horsea.default
-      height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      capture_rate: *red-blue.pokemon.horsea.capture_rate
       experience: *red-blue.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
-      egg_groups: *gold-silver.pokemon.horsea.egg_groups
       stats: *gold-silver.pokemon.horsea.stats
+      growth_rate: *red-blue.pokemon.horsea.growth_rate
+      female_rate: *gold-silver.pokemon.horsea.female_rate
+      hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
+      egg_groups: *gold-silver.pokemon.horsea.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.horsea.wild_held_items.gold
+      genus: *red-blue.pokemon.horsea.genus
+      height: *red-blue.pokemon.horsea.height
+      weight: *gold-silver.pokemon.horsea.weight
       flavor_text:
         crystal: |
           When they're in a
@@ -203,7 +203,7 @@ crystal:
           together.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -211,33 +211,30 @@ crystal:
             - crystal/horsea-default.png
             - crystal/back/horsea-default.png
             - crystal/shiny/horsea-default.png
-            - crystal/animated/shiny/horsea-default.webm
-            - crystal/animated/horsea-default.webm
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
           icon: *gold-silver.pokemon.horsea.forms.horsea.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Horsea
+  position: &ruby-sapphire.position 132
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 184
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: &ruby-sapphire.pokemon.horsea.genus 'Dragon Pokémon'
       color: &ruby-sapphire.pokemon.horsea.color blue
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: &ruby-sapphire.pokemon.horsea.happiness 70
+      baby: &ruby-sapphire.pokemon.horsea.baby false
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.horsea.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: &ruby-sapphire.pokemon.horsea.weight 80
       experience: &ruby-sapphire.pokemon.horsea.experience 59
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -286,7 +283,7 @@ ruby-sapphire:
           the fins on its back.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -296,27 +293,27 @@ ruby-sapphire:
             - ruby-sapphire/back/horsea-default.png
             - ruby-sapphire/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: &ruby-sapphire.pokemon.horsea.forms.horsea.footprint horsea.png
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       color: *ruby-sapphire.pokemon.horsea.color
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -332,7 +329,7 @@ emerald:
           escape if it senses danger.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -343,25 +340,25 @@ emerald:
             - emerald/animated/shiny/horsea-default.webm
             - emerald/animated/horsea-default.webm
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -369,34 +366,34 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.horsea.abilities
       forms: &colosseum.pokemon.horsea.forms
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
           icon: *ruby-sapphire.pokemon.horsea.forms.horsea.icon
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       habitat: sea
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -413,7 +410,7 @@ firered-leafgreen:
           of the water.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -423,32 +420,32 @@ firered-leafgreen:
             - firered-leafgreen/back/horsea-default.png
             - firered-leafgreen/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       shape: &diamond-pearl.pokemon.horsea.shape blob
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
       pal_park: &diamond-pearl.pokemon.horsea.pal_park
         area: sea
         rate: 30
         score: 50
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -473,7 +470,7 @@ diamond-pearl:
           spits murky ink and flees.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -484,28 +481,28 @@ diamond-pearl:
             - diamond-pearl/back/shiny/horsea-default.png
             - diamond-pearl/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       shape: *diamond-pearl.pokemon.horsea.shape
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
       pal_park: *diamond-pearl.pokemon.horsea.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -520,7 +517,7 @@ platinum:
           spits murky ink and flees.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -531,30 +528,30 @@ platinum:
             - platinum/back/shiny/horsea-default.png
             - platinum/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 190
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       shape: *diamond-pearl.pokemon.horsea.shape
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
       pal_park: *diamond-pearl.pokemon.horsea.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -574,7 +571,7 @@ heartgold-soulsilver:
           while still facing forward.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -601,28 +598,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/horsea-default.png
             - heartgold-soulsilver/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       color: *ruby-sapphire.pokemon.horsea.color
       shape: *diamond-pearl.pokemon.horsea.shape
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -642,7 +639,7 @@ black-white:
           spits murky ink and flees.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -653,28 +650,28 @@ black-white:
             - black-white/back/shiny/horsea-default.png
             - black-white/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *red-blue.pokemon.horsea.forms.horsea.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       color: *ruby-sapphire.pokemon.horsea.color
       shape: *diamond-pearl.pokemon.horsea.shape
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -694,27 +691,27 @@ black-2-white-2:
           spits murky ink and flees.
       forms: *colosseum.pokemon.horsea.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-coastal: 39
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       color: *ruby-sapphire.pokemon.horsea.color
       shape: *diamond-pearl.pokemon.horsea.shape
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -733,7 +730,7 @@ x-y:
           danger, it spits murky ink and flees.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -742,30 +739,30 @@ x-y:
             - x-y/horsea-default.png
             - x-y/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: &x-y.pokemon.horsea.forms.horsea.cry horsea-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 193
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       color: *ruby-sapphire.pokemon.horsea.color
       shape: *diamond-pearl.pokemon.horsea.shape
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -783,37 +780,37 @@ omega-ruby-alpha-sapphire:
           swims by cleverly flapping the fin on its back.
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
           icon: *x-y.pokemon.horsea.forms.horsea.icon
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *x-y.pokemon.horsea.forms.horsea.cry
           sprites:
             - omega-ruby-alpha-sapphire/horsea-default.png
             - omega-ruby-alpha-sapphire/shiny/horsea-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       color: *ruby-sapphire.pokemon.horsea.color
       shape: *diamond-pearl.pokemon.horsea.shape
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -824,7 +821,7 @@ sun-moon:
         moon: *ruby-sapphire.pokemon.horsea.wild_held_items.ruby
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -833,28 +830,28 @@ sun-moon:
             - sun-moon/horsea-default.png
             - sun-moon/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *x-y.pokemon.horsea.forms.horsea.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     horsea:
-      genus: *gold-silver.pokemon.horsea.genus
+      genus: *ruby-sapphire.pokemon.horsea.genus
       color: *ruby-sapphire.pokemon.horsea.color
       shape: *diamond-pearl.pokemon.horsea.shape
       female_rate: *gold-silver.pokemon.horsea.female_rate
       capture_rate: *red-blue.pokemon.horsea.capture_rate
-      happiness: *gold-silver.pokemon.horsea.happiness
-      baby: *gold-silver.pokemon.horsea.baby
+      happiness: *ruby-sapphire.pokemon.horsea.happiness
+      baby: *ruby-sapphire.pokemon.horsea.baby
       hatch_steps: *gold-silver.pokemon.horsea.hatch_steps
       growth_rate: *red-blue.pokemon.horsea.growth_rate
-      forms_switchable: *gold-silver.pokemon.horsea.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.horsea.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.horsea.default
       height: *red-blue.pokemon.horsea.height
-      weight: *gold-silver.pokemon.horsea.weight
+      weight: *ruby-sapphire.pokemon.horsea.weight
       experience: *ruby-sapphire.pokemon.horsea.experience
       types: *red-blue.pokemon.horsea.types
       egg_groups: *gold-silver.pokemon.horsea.egg_groups
@@ -865,7 +862,7 @@ ultra-sun-ultra-moon:
         ultra-sun: *ruby-sapphire.pokemon.horsea.wild_held_items.ruby
       forms:
         horsea:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.horsea.forms.horsea.form_name
           default: *red-blue.pokemon.horsea.default
           battle_only: *red-blue.pokemon.horsea.forms.horsea.battle_only
@@ -874,5 +871,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/horsea-default.png
             - ultra-sun-ultra-moon/shiny/horsea-default.png
           art: *red-blue.pokemon.horsea.forms.horsea.art
-          footprint: *gold-silver.pokemon.horsea.forms.horsea.footprint
+          footprint: *ruby-sapphire.pokemon.horsea.forms.horsea.footprint
           cry: *x-y.pokemon.horsea.forms.horsea.cry

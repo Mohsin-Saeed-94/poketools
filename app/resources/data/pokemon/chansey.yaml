@@ -29,7 +29,7 @@ red-blue:
           base_value: 105
           effort_change: 105
       growth_rate: &red-blue.pokemon.chansey.growth_rate fast
-      genus: 'EGG Pokémon'
+      genus: &red-blue.pokemon.chansey.genus 'EGG Pokémon'
       height: &red-blue.pokemon.chansey.height 10
       weight: 3447
       flavor_text:
@@ -99,29 +99,19 @@ yellow:
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
           icon: *red-blue.pokemon.chansey.forms.chansey.icon
 gold-silver:
-  name: &gold-silver.name Chansey
-  position: &gold-silver.position 127
+  name: *red-blue.name
+  position: &gold-silver.position 112
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 217
+    original-johto: 216
+    original-johto-abc: 9
   pokemon:
     chansey:
-      genus: &gold-silver.pokemon.chansey.genus 'Egg Pokémon'
-      female_rate: &gold-silver.pokemon.chansey.female_rate 100
-      capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: &gold-silver.pokemon.chansey.happiness 140
-      baby: &gold-silver.pokemon.chansey.baby false
-      hatch_steps: &gold-silver.pokemon.chansey.hatch_steps 40
-      growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: &gold-silver.pokemon.chansey.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.chansey.default
-      height: &gold-silver.pokemon.chansey.height 11
-      weight: &gold-silver.pokemon.chansey.weight 346
+      capture_rate: *red-blue.pokemon.chansey.capture_rate
       experience: *red-blue.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
-      egg_groups: &gold-silver.pokemon.chansey.egg_groups
-        - fairy
       stats: &gold-silver.pokemon.chansey.stats
         hp:
           base_value: 250
@@ -141,6 +131,18 @@ gold-silver:
         special-defense:
           base_value: 105
           effort_change: 35
+      growth_rate: *red-blue.pokemon.chansey.growth_rate
+      female_rate: &gold-silver.pokemon.chansey.female_rate 100
+      hatch_steps: &gold-silver.pokemon.chansey.hatch_steps 40
+      egg_groups: &gold-silver.pokemon.chansey.egg_groups
+        - fairy
+      wild_held_items:
+        gold: &gold-silver.pokemon.chansey.wild_held_items.gold
+          lucky-egg: 2
+        silver: *gold-silver.pokemon.chansey.wild_held_items.gold
+      genus: *red-blue.pokemon.chansey.genus
+      height: *red-blue.pokemon.chansey.height
+      weight: &gold-silver.pokemon.chansey.weight 344
       flavor_text:
         gold: |
           It walks carefully
@@ -151,14 +153,14 @@ gold-silver:
           running away.
         silver: |
           Few in number and
-          difficult to cap­
+          difficult to cap-
           ture, it is said
           to bring happiness
           to the trainer who
           catches it.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -167,31 +169,29 @@ gold-silver:
             - gold-silver/back/chansey-default.png
             - gold-silver/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: &gold-silver.pokemon.chansey.forms.chansey.footprint chansey.png
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
           icon: &gold-silver.pokemon.chansey.forms.chansey.icon gen2/clefairy.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
-      female_rate: *gold-silver.pokemon.chansey.female_rate
-      capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
-      hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
-      growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      capture_rate: *red-blue.pokemon.chansey.capture_rate
       experience: *red-blue.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
-      egg_groups: *gold-silver.pokemon.chansey.egg_groups
       stats: *gold-silver.pokemon.chansey.stats
+      growth_rate: *red-blue.pokemon.chansey.growth_rate
+      female_rate: *gold-silver.pokemon.chansey.female_rate
+      hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
+      egg_groups: *gold-silver.pokemon.chansey.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.chansey.wild_held_items.gold
+      genus: *red-blue.pokemon.chansey.genus
+      height: *red-blue.pokemon.chansey.height
+      weight: *gold-silver.pokemon.chansey.weight
       flavor_text:
         crystal: |
           People try to
@@ -202,7 +202,7 @@ crystal:
           be found.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -210,32 +210,29 @@ crystal:
             - crystal/chansey-default.png
             - crystal/back/chansey-default.png
             - crystal/shiny/chansey-default.png
-            - crystal/animated/chansey-default.webm
-            - crystal/animated/shiny/chansey-default.webm
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
           icon: *gold-silver.pokemon.chansey.forms.chansey.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Chansey
+  position: &ruby-sapphire.position 127
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: &ruby-sapphire.pokemon.chansey.genus 'Egg Pokémon'
       color: &ruby-sapphire.pokemon.chansey.color pink
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: &ruby-sapphire.pokemon.chansey.happiness 140
+      baby: &ruby-sapphire.pokemon.chansey.baby false
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.chansey.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: &ruby-sapphire.pokemon.chansey.height 11
+      weight: &ruby-sapphire.pokemon.chansey.weight 346
       experience: &ruby-sapphire.pokemon.chansey.experience 395
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -286,7 +283,7 @@ ruby-sapphire:
           appetite.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -296,27 +293,27 @@ ruby-sapphire:
             - ruby-sapphire/back/chansey-default.png
             - ruby-sapphire/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: &ruby-sapphire.pokemon.chansey.forms.chansey.footprint chansey.png
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       color: *ruby-sapphire.pokemon.chansey.color
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -332,7 +329,7 @@ emerald:
           who have lost their appetite.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -343,25 +340,25 @@ emerald:
             - emerald/animated/chansey-default.webm
             - emerald/animated/shiny/chansey-default.webm
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -369,34 +366,34 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.chansey.abilities
       forms: &colosseum.pokemon.chansey.forms
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
           icon: *ruby-sapphire.pokemon.chansey.forms.chansey.icon
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       habitat: urban
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -416,7 +413,7 @@ firered-leafgreen:
           catch one.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -426,34 +423,34 @@ firered-leafgreen:
             - firered-leafgreen/back/chansey-default.png
             - firered-leafgreen/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-sinnoh: 97
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       evolution_parent: &diamond-pearl.pokemon.chansey.evolution_parent happiny/happiny
       shape: &diamond-pearl.pokemon.chansey.shape upright
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
       pal_park: &diamond-pearl.pokemon.chansey.pal_park
         area: field
         rate: 3
         score: 90
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -480,7 +477,7 @@ diamond-pearl:
           who have evil in their hearts.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -491,31 +488,31 @@ diamond-pearl:
             - diamond-pearl/back/shiny/chansey-default.png
             - diamond-pearl/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 97
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       evolution_parent: *diamond-pearl.pokemon.chansey.evolution_parent
       shape: *diamond-pearl.pokemon.chansey.shape
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
       pal_park: *diamond-pearl.pokemon.chansey.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -531,7 +528,7 @@ platinum:
           with injured Pokémon or people.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -542,31 +539,31 @@ platinum:
             - platinum/back/shiny/chansey-default.png
             - platinum/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 222
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       evolution_parent: *diamond-pearl.pokemon.chansey.evolution_parent
       shape: *diamond-pearl.pokemon.chansey.shape
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
       pal_park: *diamond-pearl.pokemon.chansey.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -587,7 +584,7 @@ heartgold-soulsilver:
           to the Trainer who catches it.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -614,29 +611,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/chansey-default.png
             - heartgold-soulsilver/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       evolution_parent: *diamond-pearl.pokemon.chansey.evolution_parent
       color: *ruby-sapphire.pokemon.chansey.color
       shape: *diamond-pearl.pokemon.chansey.shape
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -664,7 +661,7 @@ black-white:
           with injured Pokémon or people.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -675,29 +672,29 @@ black-white:
             - black-white/back/shiny/chansey-default.png
             - black-white/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *red-blue.pokemon.chansey.forms.chansey.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       evolution_parent: *diamond-pearl.pokemon.chansey.evolution_parent
       color: *ruby-sapphire.pokemon.chansey.color
       shape: *diamond-pearl.pokemon.chansey.shape
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -718,26 +715,26 @@ black-2-white-2:
           with injured Pokémon or people.
       forms: *colosseum.pokemon.chansey.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       evolution_parent: *diamond-pearl.pokemon.chansey.evolution_parent
       color: *ruby-sapphire.pokemon.chansey.color
       shape: *diamond-pearl.pokemon.chansey.shape
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -758,7 +755,7 @@ x-y:
           rich in nutrients and extremely delicious.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -767,29 +764,29 @@ x-y:
             - x-y/chansey-default.png
             - x-y/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: &x-y.pokemon.chansey.forms.chansey.cry chansey-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       evolution_parent: *diamond-pearl.pokemon.chansey.evolution_parent
       color: *ruby-sapphire.pokemon.chansey.color
       shape: *diamond-pearl.pokemon.chansey.shape
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -808,20 +805,20 @@ omega-ruby-alpha-sapphire:
           devoured by even those people who have lost their appetite.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
           icon: *x-y.pokemon.chansey.forms.chansey.icon
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *x-y.pokemon.chansey.forms.chansey.cry
           sprites:
             - omega-ruby-alpha-sapphire/chansey-default.png
             - omega-ruby-alpha-sapphire/shiny/chansey-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 33
@@ -831,21 +828,21 @@ sun-moon:
     original-poni: 9
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       evolution_parent: *diamond-pearl.pokemon.chansey.evolution_parent
       color: *ruby-sapphire.pokemon.chansey.color
       shape: *diamond-pearl.pokemon.chansey.shape
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -863,7 +860,7 @@ sun-moon:
           one must be lucky indeed.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -872,11 +869,11 @@ sun-moon:
             - sun-moon/chansey-default.png
             - sun-moon/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *x-y.pokemon.chansey.forms.chansey.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 40
@@ -886,21 +883,21 @@ ultra-sun-ultra-moon:
     updated-poni: 16
   pokemon:
     chansey:
-      genus: *gold-silver.pokemon.chansey.genus
+      genus: *ruby-sapphire.pokemon.chansey.genus
       evolution_parent: *diamond-pearl.pokemon.chansey.evolution_parent
       color: *ruby-sapphire.pokemon.chansey.color
       shape: *diamond-pearl.pokemon.chansey.shape
       female_rate: *gold-silver.pokemon.chansey.female_rate
       capture_rate: *red-blue.pokemon.chansey.capture_rate
-      happiness: *gold-silver.pokemon.chansey.happiness
-      baby: *gold-silver.pokemon.chansey.baby
+      happiness: *ruby-sapphire.pokemon.chansey.happiness
+      baby: *ruby-sapphire.pokemon.chansey.baby
       hatch_steps: *gold-silver.pokemon.chansey.hatch_steps
       growth_rate: *red-blue.pokemon.chansey.growth_rate
-      forms_switchable: *gold-silver.pokemon.chansey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.chansey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.chansey.default
-      height: *gold-silver.pokemon.chansey.height
-      weight: *gold-silver.pokemon.chansey.weight
+      height: *ruby-sapphire.pokemon.chansey.height
+      weight: *ruby-sapphire.pokemon.chansey.weight
       experience: *ruby-sapphire.pokemon.chansey.experience
       types: *red-blue.pokemon.chansey.types
       egg_groups: *gold-silver.pokemon.chansey.egg_groups
@@ -917,7 +914,7 @@ ultra-sun-ultra-moon:
           Chansey to get faster at fleeing.
       forms:
         chansey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.chansey.forms.chansey.form_name
           default: *red-blue.pokemon.chansey.default
           battle_only: *red-blue.pokemon.chansey.forms.chansey.battle_only
@@ -926,5 +923,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/chansey-default.png
             - ultra-sun-ultra-moon/shiny/chansey-default.png
           art: *red-blue.pokemon.chansey.forms.chansey.art
-          footprint: *gold-silver.pokemon.chansey.forms.chansey.footprint
+          footprint: *ruby-sapphire.pokemon.chansey.forms.chansey.footprint
           cry: *x-y.pokemon.chansey.forms.chansey.cry

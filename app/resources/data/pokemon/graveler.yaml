@@ -30,8 +30,8 @@ red-blue:
           base_value: 45
           effort_change: 45
       growth_rate: &red-blue.pokemon.graveler.growth_rate medium-slow
-      genus: 'ROCK Pokémon'
-      height: 9
+      genus: &red-blue.pokemon.graveler.genus 'ROCK Pokémon'
+      height: &red-blue.pokemon.graveler.height 9
       weight: 10523
       flavor_text:
         red: |
@@ -106,30 +106,19 @@ yellow:
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
           icon: *red-blue.pokemon.graveler.forms.graveler.icon
 gold-silver:
-  name: &gold-silver.name Graveler
-  position: &gold-silver.position 81
+  name: *red-blue.name
+  position: &gold-silver.position 74
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 35
+    original-johto: 34
+    original-johto-abc: 64
   pokemon:
     graveler:
-      genus: &gold-silver.pokemon.graveler.genus 'Rock Pokémon'
-      evolution_parent: *red-blue.pokemon.graveler.evolution_parent
-      female_rate: &gold-silver.pokemon.graveler.female_rate 50
-      capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: &gold-silver.pokemon.graveler.happiness 70
-      baby: &gold-silver.pokemon.graveler.baby false
-      hatch_steps: &gold-silver.pokemon.graveler.hatch_steps 15
-      growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: &gold-silver.pokemon.graveler.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.graveler.default
-      height: &gold-silver.pokemon.graveler.height 10
-      weight: &gold-silver.pokemon.graveler.weight 1050
+      capture_rate: *red-blue.pokemon.graveler.capture_rate
       experience: *red-blue.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
-      egg_groups: &gold-silver.pokemon.graveler.egg_groups
-        - mineral
       stats: &gold-silver.pokemon.graveler.stats
         hp:
           base_value: 55
@@ -149,7 +138,18 @@ gold-silver:
         special-defense:
           base_value: 45
           effort_change: 45
-      evolution_conditions: *red-blue.pokemon.graveler.evolution_conditions
+      growth_rate: *red-blue.pokemon.graveler.growth_rate
+      female_rate: &gold-silver.pokemon.graveler.female_rate 50
+      hatch_steps: &gold-silver.pokemon.graveler.hatch_steps 15
+      egg_groups: &gold-silver.pokemon.graveler.egg_groups
+        - mineral
+      wild_held_items:
+        gold: &gold-silver.pokemon.graveler.wild_held_items.gold
+          everstone: 2
+        silver: *gold-silver.pokemon.graveler.wild_held_items.gold
+      genus: *red-blue.pokemon.graveler.genus
+      height: *red-blue.pokemon.graveler.height
+      weight: &gold-silver.pokemon.graveler.weight 1052
       flavor_text:
         gold: |
           With a free and
@@ -165,9 +165,11 @@ gold-silver:
           to any object that
           happens to be in
           its path.
+      evolution_parent: *red-blue.pokemon.graveler.evolution_parent
+      evolution_conditions: *red-blue.pokemon.graveler.evolution_conditions
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -176,44 +178,42 @@ gold-silver:
             - gold-silver/back/graveler-default.png
             - gold-silver/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: &gold-silver.pokemon.graveler.forms.graveler.footprint graveler.png
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
           icon: &gold-silver.pokemon.graveler.forms.graveler.icon gen2/geodude.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
-      evolution_parent: *red-blue.pokemon.graveler.evolution_parent
-      female_rate: *gold-silver.pokemon.graveler.female_rate
-      capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
-      hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
-      growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      capture_rate: *red-blue.pokemon.graveler.capture_rate
       experience: *red-blue.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
-      egg_groups: *gold-silver.pokemon.graveler.egg_groups
       stats: *gold-silver.pokemon.graveler.stats
-      evolution_conditions: *red-blue.pokemon.graveler.evolution_conditions
+      growth_rate: *red-blue.pokemon.graveler.growth_rate
+      female_rate: *gold-silver.pokemon.graveler.female_rate
+      hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
+      egg_groups: *gold-silver.pokemon.graveler.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.graveler.wild_held_items.gold
+      genus: *red-blue.pokemon.graveler.genus
+      height: *red-blue.pokemon.graveler.height
+      weight: *gold-silver.pokemon.graveler.weight
       flavor_text:
         crystal: |
-          It travels by rol­
+          It travels by rol-
           ling on mountain
           paths. If it gains
           too much speed, it
           stops by running
           into huge rocks.
+      evolution_parent: *red-blue.pokemon.graveler.evolution_parent
+      evolution_conditions: *red-blue.pokemon.graveler.evolution_conditions
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -221,34 +221,31 @@ crystal:
             - crystal/graveler-default.png
             - crystal/back/graveler-default.png
             - crystal/shiny/graveler-default.png
-            - crystal/animated/graveler-default.webm
-            - crystal/animated/shiny/graveler-default.webm
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
           icon: *gold-silver.pokemon.graveler.forms.graveler.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Graveler
+  position: &ruby-sapphire.position 81
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 58
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: &ruby-sapphire.pokemon.graveler.genus 'Rock Pokémon'
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: &ruby-sapphire.pokemon.graveler.color brown
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: &ruby-sapphire.pokemon.graveler.happiness 70
+      baby: &ruby-sapphire.pokemon.graveler.baby false
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.graveler.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: &ruby-sapphire.pokemon.graveler.height 10
+      weight: &ruby-sapphire.pokemon.graveler.weight 1050
       experience: &ruby-sapphire.pokemon.graveler.experience 137
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -302,7 +299,7 @@ ruby-sapphire:
           down to the bottom.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -312,28 +309,28 @@ ruby-sapphire:
             - ruby-sapphire/back/graveler-default.png
             - ruby-sapphire/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: &ruby-sapphire.pokemon.graveler.forms.graveler.footprint graveler.png
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: *ruby-sapphire.pokemon.graveler.color
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -350,7 +347,7 @@ emerald:
           massive boulders with thunderous tackles.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -361,26 +358,26 @@ emerald:
             - emerald/animated/graveler-default.webm
             - emerald/animated/shiny/graveler-default.webm
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -389,35 +386,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.graveler.evolution_conditions
       forms: &colosseum.pokemon.graveler.forms
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
           icon: *ruby-sapphire.pokemon.graveler.forms.graveler.icon
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       habitat: mountain
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -439,7 +436,7 @@ firered-leafgreen:
           its direction.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -449,34 +446,34 @@ firered-leafgreen:
             - firered-leafgreen/back/graveler-default.png
             - firered-leafgreen/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-sinnoh: 32
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       shape: &diamond-pearl.pokemon.graveler.shape humanoid
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
       pal_park: &diamond-pearl.pokemon.graveler.pal_park
         area: mountain
         rate: 30
         score: 50
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -497,7 +494,7 @@ diamond-pearl:
           It eats a ton of rocks daily.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -508,31 +505,31 @@ diamond-pearl:
             - diamond-pearl/back/shiny/graveler-default.png
             - diamond-pearl/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 32
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
       pal_park: *diamond-pearl.pokemon.graveler.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -548,7 +545,7 @@ platinum:
           can stop it without difficulty.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -559,31 +556,31 @@ platinum:
             - platinum/back/shiny/graveler-default.png
             - platinum/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 35
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
       pal_park: *diamond-pearl.pokemon.graveler.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -604,7 +601,7 @@ heartgold-soulsilver:
           happens to be in its path.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -631,30 +628,30 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/graveler-default.png
             - heartgold-soulsilver/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &black-white.numbers
     national: *red-blue.numbers.national
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: *ruby-sapphire.pokemon.graveler.color
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -675,7 +672,7 @@ black-white:
           can stop it without difficulty.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -686,29 +683,29 @@ black-white:
             - black-white/back/shiny/graveler-default.png
             - black-white/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *red-blue.pokemon.graveler.forms.graveler.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *black-white.numbers
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: *ruby-sapphire.pokemon.graveler.color
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -729,28 +726,28 @@ black-2-white-2:
           can stop it without difficulty.
       forms: *colosseum.pokemon.graveler.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 10
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: *ruby-sapphire.pokemon.graveler.color
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -770,7 +767,7 @@ x-y:
           obstacle without slowing or changing its direction.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -779,31 +776,31 @@ x-y:
             - x-y/graveler-default.png
             - x-y/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: &x-y.pokemon.graveler.forms.graveler.cry graveler-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 59
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: *ruby-sapphire.pokemon.graveler.color
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -823,41 +820,41 @@ omega-ruby-alpha-sapphire:
           to the bottom.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
           icon: *x-y.pokemon.graveler.forms.graveler.icon
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *x-y.pokemon.graveler.forms.graveler.cry
           sprites:
             - omega-ruby-alpha-sapphire/graveler-default.png
             - omega-ruby-alpha-sapphire/shiny/graveler-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 230
     original-ulaula: 102
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: *ruby-sapphire.pokemon.graveler.color
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
+      name: *ruby-sapphire.name
       default: &sun-moon.pokemon.graveler.default false
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -874,7 +871,7 @@ sun-moon:
           momentum, its speed can exceed 60 mph.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -883,23 +880,23 @@ sun-moon:
             - sun-moon/graveler-default.png
             - sun-moon/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *x-y.pokemon.graveler.forms.graveler.cry
     graveler-alola:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: *ruby-sapphire.pokemon.graveler.color
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
       name: &sun-moon.pokemon.graveler-alola.name 'Alolan Graveler'
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
+      height: *ruby-sapphire.pokemon.graveler.height
       weight: &sun-moon.pokemon.graveler-alola.weight 1100
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: &sun-moon.pokemon.graveler-alola.types
@@ -927,32 +924,32 @@ sun-moon:
           sprites:
             - sun-moon/graveler-alola.png
             - sun-moon/shiny/graveler-alola.png
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *x-y.pokemon.graveler.forms.graveler.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 299
     updated-ulaula: 120
   pokemon:
     graveler:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: *ruby-sapphire.pokemon.graveler.color
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
+      name: *ruby-sapphire.name
       default: *sun-moon.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
-      weight: *gold-silver.pokemon.graveler.weight
+      height: *ruby-sapphire.pokemon.graveler.height
+      weight: *ruby-sapphire.pokemon.graveler.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *red-blue.pokemon.graveler.types
       egg_groups: *gold-silver.pokemon.graveler.egg_groups
@@ -969,7 +966,7 @@ ultra-sun-ultra-moon:
           it rolls back down the way it came.
       forms:
         graveler:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.graveler.forms.graveler.form_name
           default: *red-blue.pokemon.graveler.default
           battle_only: *red-blue.pokemon.graveler.forms.graveler.battle_only
@@ -978,23 +975,23 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/graveler-default.png
             - ultra-sun-ultra-moon/shiny/graveler-default.png
           art: *red-blue.pokemon.graveler.forms.graveler.art
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *x-y.pokemon.graveler.forms.graveler.cry
     graveler-alola:
-      genus: *gold-silver.pokemon.graveler.genus
+      genus: *ruby-sapphire.pokemon.graveler.genus
       evolution_parent: *red-blue.pokemon.graveler.evolution_parent
       color: *ruby-sapphire.pokemon.graveler.color
       shape: *diamond-pearl.pokemon.graveler.shape
       female_rate: *gold-silver.pokemon.graveler.female_rate
       capture_rate: *red-blue.pokemon.graveler.capture_rate
-      happiness: *gold-silver.pokemon.graveler.happiness
-      baby: *gold-silver.pokemon.graveler.baby
+      happiness: *ruby-sapphire.pokemon.graveler.happiness
+      baby: *ruby-sapphire.pokemon.graveler.baby
       hatch_steps: *gold-silver.pokemon.graveler.hatch_steps
       growth_rate: *red-blue.pokemon.graveler.growth_rate
-      forms_switchable: *gold-silver.pokemon.graveler.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.graveler.forms_switchable
       name: *sun-moon.pokemon.graveler-alola.name
       default: *red-blue.pokemon.graveler.default
-      height: *gold-silver.pokemon.graveler.height
+      height: *ruby-sapphire.pokemon.graveler.height
       weight: *sun-moon.pokemon.graveler-alola.weight
       experience: *ruby-sapphire.pokemon.graveler.experience
       types: *sun-moon.pokemon.graveler-alola.types
@@ -1016,5 +1013,5 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/graveler-alola.png
             - ultra-sun-ultra-moon/shiny/graveler-alola.png
-          footprint: *gold-silver.pokemon.graveler.forms.graveler.footprint
+          footprint: *ruby-sapphire.pokemon.graveler.forms.graveler.footprint
           cry: *x-y.pokemon.graveler.forms.graveler.cry

@@ -29,7 +29,7 @@ red-blue:
           base_value: 80
           effort_change: 80
       growth_rate: &red-blue.pokemon.arcanine.growth_rate slow
-      genus: 'LEGENDARY Pokémon'
+      genus: &red-blue.pokemon.arcanine.genus 'LEGENDARY Pokémon'
       height: &red-blue.pokemon.arcanine.height 19
       weight: 15513
       flavor_text:
@@ -105,30 +105,18 @@ yellow:
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
           icon: *red-blue.pokemon.arcanine.forms.arcanine.icon
 gold-silver:
-  name: &gold-silver.name Arcanine
-  position: &gold-silver.position 64
+  name: *red-blue.name
+  position: &gold-silver.position 58
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 128
+    original-johto: 127
   pokemon:
     arcanine:
-      genus: &gold-silver.pokemon.arcanine.genus 'Legendary Pokémon'
-      evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
-      female_rate: &gold-silver.pokemon.arcanine.female_rate 25
-      capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: &gold-silver.pokemon.arcanine.happiness 70
-      baby: &gold-silver.pokemon.arcanine.baby false
-      hatch_steps: &gold-silver.pokemon.arcanine.hatch_steps 20
-      growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: &gold-silver.pokemon.arcanine.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.arcanine.default
-      height: *red-blue.pokemon.arcanine.height
-      weight: &gold-silver.pokemon.arcanine.weight 1550
+      capture_rate: *red-blue.pokemon.arcanine.capture_rate
       experience: *red-blue.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
-      egg_groups: &gold-silver.pokemon.arcanine.egg_groups
-        - ground
       stats: &gold-silver.pokemon.arcanine.stats
         hp:
           base_value: 90
@@ -148,12 +136,23 @@ gold-silver:
         special-defense:
           base_value: 80
           effort_change: 100
-      evolution_conditions: *red-blue.pokemon.arcanine.evolution_conditions
+      growth_rate: *red-blue.pokemon.arcanine.growth_rate
+      female_rate: &gold-silver.pokemon.arcanine.female_rate 25
+      hatch_steps: &gold-silver.pokemon.arcanine.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.arcanine.egg_groups
+        - ground
+      wild_held_items:
+        gold: &gold-silver.pokemon.arcanine.wild_held_items.gold
+          burnt-berry: 2
+        silver: *gold-silver.pokemon.arcanine.wild_held_items.gold
+      genus: *red-blue.pokemon.arcanine.genus
+      height: *red-blue.pokemon.arcanine.height
+      weight: &gold-silver.pokemon.arcanine.weight 1551
       flavor_text:
         gold: |
           This legendary
           Chinese POKEMON is
-          considered magnif­
+          considered magnif-
           icent. Many people
           are enchanted by
           its grand mane.
@@ -164,44 +163,42 @@ gold-silver:
           Anyone hearing it
           can't help but
           grovel before it.
+      evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
+      evolution_conditions: *red-blue.pokemon.arcanine.evolution_conditions
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
           sprites:
+            - gold-silver/arcanine-default.png
             - gold-silver/back/arcanine-default.png
             - gold-silver/shiny/arcanine-default.png
-            - gold-silver/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: &gold-silver.pokemon.arcanine.forms.arcanine.footprint arcanine.png
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
           icon: &gold-silver.pokemon.arcanine.forms.arcanine.icon gen2/fox.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
-      evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
-      female_rate: *gold-silver.pokemon.arcanine.female_rate
-      capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
-      hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
-      growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.arcanine.default
-      height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      capture_rate: *red-blue.pokemon.arcanine.capture_rate
       experience: *red-blue.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
-      egg_groups: *gold-silver.pokemon.arcanine.egg_groups
       stats: *gold-silver.pokemon.arcanine.stats
-      evolution_conditions: *red-blue.pokemon.arcanine.evolution_conditions
+      growth_rate: *red-blue.pokemon.arcanine.growth_rate
+      female_rate: *gold-silver.pokemon.arcanine.female_rate
+      hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
+      egg_groups: *gold-silver.pokemon.arcanine.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.arcanine.wild_held_items.gold
+      genus: *red-blue.pokemon.arcanine.genus
+      height: *red-blue.pokemon.arcanine.height
+      weight: *gold-silver.pokemon.arcanine.weight
       flavor_text:
         crystal: |
           An ancient picture
@@ -210,43 +207,42 @@ crystal:
           attracted to its
           movement as it ran
           through prairies.
+      evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
+      evolution_conditions: *red-blue.pokemon.arcanine.evolution_conditions
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
           sprites:
+            - crystal/arcanine-default.png
             - crystal/back/arcanine-default.png
             - crystal/shiny/arcanine-default.png
-            - crystal/animated/arcanine-default.webm
-            - crystal/animated/shiny/arcanine-default.webm
-            - crystal/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
           icon: *gold-silver.pokemon.arcanine.forms.arcanine.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Arcanine
+  position: &ruby-sapphire.position 64
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: &ruby-sapphire.pokemon.arcanine.genus 'Legendary Pokémon'
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       color: &ruby-sapphire.pokemon.arcanine.color brown
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: &ruby-sapphire.pokemon.arcanine.happiness 70
+      baby: &ruby-sapphire.pokemon.arcanine.baby false
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.arcanine.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: &ruby-sapphire.pokemon.arcanine.weight 1550
       experience: &ruby-sapphire.pokemon.arcanine.experience 194
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -296,7 +292,7 @@ ruby-sapphire:
           POKéMON’s body is its source of power.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -306,28 +302,28 @@ ruby-sapphire:
             - ruby-sapphire/shiny/arcanine-default.png
             - ruby-sapphire/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: &ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint arcanine.png
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       color: *ruby-sapphire.pokemon.arcanine.color
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -344,7 +340,7 @@ emerald:
           is its source of power.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -355,26 +351,26 @@ emerald:
             - emerald/animated/shiny/arcanine-default.webm
             - emerald/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -383,35 +379,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.arcanine.evolution_conditions
       forms: &colosseum.pokemon.arcanine.forms
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
           icon: *ruby-sapphire.pokemon.arcanine.forms.arcanine.icon
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       habitat: grassland
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -433,7 +429,7 @@ firered-leafgreen:
           on wings.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -443,32 +439,32 @@ firered-leafgreen:
             - firered-leafgreen/shiny/arcanine-default.png
             - firered-leafgreen/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       shape: &diamond-pearl.pokemon.arcanine.shape quadruped
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
       pal_park: &diamond-pearl.pokemon.arcanine.pal_park
         area: field
         rate: 10
         score: 80
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -489,7 +485,7 @@ diamond-pearl:
           people since long ago.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -500,29 +496,29 @@ diamond-pearl:
             - diamond-pearl/shiny/arcanine-default.png
             - diamond-pearl/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       shape: *diamond-pearl.pokemon.arcanine.shape
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
       pal_park: *diamond-pearl.pokemon.arcanine.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -538,7 +534,7 @@ platinum:
           people since long ago.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -549,31 +545,31 @@ platinum:
             - platinum/shiny/arcanine-default.png
             - platinum/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 130
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       shape: *diamond-pearl.pokemon.arcanine.shape
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
       pal_park: *diamond-pearl.pokemon.arcanine.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -594,7 +590,7 @@ heartgold-soulsilver:
           can’t help but grovel before it.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -621,29 +617,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/arcanine-default.png
             - heartgold-soulsilver/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       color: *ruby-sapphire.pokemon.arcanine.color
       shape: *diamond-pearl.pokemon.arcanine.shape
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -669,7 +665,7 @@ black-white:
           people since long ago.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -680,31 +676,31 @@ black-white:
             - black-white/shiny/arcanine-default.png
             - black-white/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *red-blue.pokemon.arcanine.forms.arcanine.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-unova: 52
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       color: *ruby-sapphire.pokemon.arcanine.color
       shape: *diamond-pearl.pokemon.arcanine.shape
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -725,26 +721,26 @@ black-2-white-2:
           many people.
       forms: *colosseum.pokemon.arcanine.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       color: *ruby-sapphire.pokemon.arcanine.color
       shape: *diamond-pearl.pokemon.arcanine.shape
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -761,7 +757,7 @@ x-y:
           Anyone hearing it can’t help but grovel before it.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -770,29 +766,29 @@ x-y:
             - x-y/shiny/arcanine-default.png
             - x-y/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: &x-y.pokemon.arcanine.forms.arcanine.cry arcanine-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       color: *ruby-sapphire.pokemon.arcanine.color
       shape: *diamond-pearl.pokemon.arcanine.shape
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -813,41 +809,41 @@ omega-ruby-alpha-sapphire:
           of power.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
           icon: *x-y.pokemon.arcanine.forms.arcanine.icon
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *x-y.pokemon.arcanine.forms.arcanine.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/arcanine-default.png
             - omega-ruby-alpha-sapphire/arcanine-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 53
     original-melemele: 53
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       color: *ruby-sapphire.pokemon.arcanine.color
       shape: *diamond-pearl.pokemon.arcanine.shape
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -862,7 +858,7 @@ sun-moon:
           It appears in many legends.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -871,32 +867,32 @@ sun-moon:
             - sun-moon/shiny/arcanine-default.png
             - sun-moon/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *x-y.pokemon.arcanine.forms.arcanine.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 65
     updated-melemele: 65
   pokemon:
     arcanine:
-      genus: *gold-silver.pokemon.arcanine.genus
+      genus: *ruby-sapphire.pokemon.arcanine.genus
       evolution_parent: *red-blue.pokemon.arcanine.evolution_parent
       color: *ruby-sapphire.pokemon.arcanine.color
       shape: *diamond-pearl.pokemon.arcanine.shape
       female_rate: *gold-silver.pokemon.arcanine.female_rate
       capture_rate: *red-blue.pokemon.arcanine.capture_rate
-      happiness: *gold-silver.pokemon.arcanine.happiness
-      baby: *gold-silver.pokemon.arcanine.baby
+      happiness: *ruby-sapphire.pokemon.arcanine.happiness
+      baby: *ruby-sapphire.pokemon.arcanine.baby
       hatch_steps: *gold-silver.pokemon.arcanine.hatch_steps
       growth_rate: *red-blue.pokemon.arcanine.growth_rate
-      forms_switchable: *gold-silver.pokemon.arcanine.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.arcanine.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.arcanine.default
       height: *red-blue.pokemon.arcanine.height
-      weight: *gold-silver.pokemon.arcanine.weight
+      weight: *ruby-sapphire.pokemon.arcanine.weight
       experience: *ruby-sapphire.pokemon.arcanine.experience
       types: *red-blue.pokemon.arcanine.types
       egg_groups: *gold-silver.pokemon.arcanine.egg_groups
@@ -910,7 +906,7 @@ ultra-sun-ultra-moon:
           and conquering a whole country.
       forms:
         arcanine:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.arcanine.forms.arcanine.form_name
           default: *red-blue.pokemon.arcanine.default
           battle_only: *red-blue.pokemon.arcanine.forms.arcanine.battle_only
@@ -919,5 +915,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/arcanine-default.png
             - ultra-sun-ultra-moon/arcanine-default.png
           art: *red-blue.pokemon.arcanine.forms.arcanine.art
-          footprint: *gold-silver.pokemon.arcanine.forms.arcanine.footprint
+          footprint: *ruby-sapphire.pokemon.arcanine.forms.arcanine.footprint
           cry: *x-y.pokemon.arcanine.forms.arcanine.cry

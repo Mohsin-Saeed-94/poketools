@@ -30,7 +30,7 @@ red-blue:
           base_value: 60
           effort_change: 60
       growth_rate: &red-blue.pokemon.dodrio.growth_rate medium
-      genus: 'TRIPLEBIRD Pokémon'
+      genus: &red-blue.pokemon.dodrio.genus 'TRIPLEBIRD Pokémon'
       height: &red-blue.pokemon.dodrio.height 18
       weight: 8527
       flavor_text:
@@ -106,30 +106,19 @@ yellow:
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
           icon: *red-blue.pokemon.dodrio.forms.dodrio.icon
 gold-silver:
-  name: &gold-silver.name Dodrio
-  position: &gold-silver.position 93
+  name: *red-blue.name
+  position: &gold-silver.position 84
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 200
+    original-johto: 199
+    original-johto-abc: 28
   pokemon:
     dodrio:
-      genus: &gold-silver.pokemon.dodrio.genus 'Triple Bird Pokémon'
-      evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
-      female_rate: &gold-silver.pokemon.dodrio.female_rate 50
-      capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: &gold-silver.pokemon.dodrio.happiness 70
-      baby: &gold-silver.pokemon.dodrio.baby false
-      hatch_steps: &gold-silver.pokemon.dodrio.hatch_steps 20
-      growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: &gold-silver.pokemon.dodrio.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.dodrio.default
-      height: *red-blue.pokemon.dodrio.height
-      weight: &gold-silver.pokemon.dodrio.weight 852
+      capture_rate: *red-blue.pokemon.dodrio.capture_rate
       experience: *red-blue.pokemon.dodrio.experience
       types: *red-blue.pokemon.dodrio.types
-      egg_groups: &gold-silver.pokemon.dodrio.egg_groups
-        - flying
       stats: &gold-silver.pokemon.dodrio.stats
         hp:
           base_value: 60
@@ -149,14 +138,25 @@ gold-silver:
         special-defense:
           base_value: 60
           effort_change: 60
-      evolution_conditions: *red-blue.pokemon.dodrio.evolution_conditions
+      growth_rate: *red-blue.pokemon.dodrio.growth_rate
+      female_rate: &gold-silver.pokemon.dodrio.female_rate 50
+      hatch_steps: &gold-silver.pokemon.dodrio.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.dodrio.egg_groups
+        - flying
+      wild_held_items:
+        gold: &gold-silver.pokemon.dodrio.wild_held_items.gold
+          sharp-beak: 2
+        silver: *gold-silver.pokemon.dodrio.wild_held_items.gold
+      genus: *red-blue.pokemon.dodrio.genus
+      height: *red-blue.pokemon.dodrio.height
+      weight: &gold-silver.pokemon.dodrio.weight 852
       flavor_text:
         gold: |
           It collects data 
           and plans three
           times as wisely,
           but it may think
-          too much and be­
+          too much and be-
           come immobilized.
         silver: |
           If one of the
@@ -165,44 +165,42 @@ gold-silver:
           satisfied, too,
           and they will stop
           squabbling.
+      evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
+      evolution_conditions: *red-blue.pokemon.dodrio.evolution_conditions
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
           sprites:
+            - gold-silver/dodrio-default.png
             - gold-silver/back/dodrio-default.png
             - gold-silver/shiny/dodrio-default.png
-            - gold-silver/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: &gold-silver.pokemon.dodrio.forms.dodrio.footprint dodrio.png
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
           icon: &gold-silver.pokemon.dodrio.forms.dodrio.icon gen2/bird.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
-      evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
-      female_rate: *gold-silver.pokemon.dodrio.female_rate
-      capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
-      hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
-      growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.dodrio.default
-      height: *red-blue.pokemon.dodrio.height
-      weight: *gold-silver.pokemon.dodrio.weight
+      capture_rate: *red-blue.pokemon.dodrio.capture_rate
       experience: *red-blue.pokemon.dodrio.experience
       types: *red-blue.pokemon.dodrio.types
-      egg_groups: *gold-silver.pokemon.dodrio.egg_groups
       stats: *gold-silver.pokemon.dodrio.stats
-      evolution_conditions: *red-blue.pokemon.dodrio.evolution_conditions
+      growth_rate: *red-blue.pokemon.dodrio.growth_rate
+      female_rate: *gold-silver.pokemon.dodrio.female_rate
+      hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
+      egg_groups: *gold-silver.pokemon.dodrio.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.dodrio.wild_held_items.gold
+      genus: *red-blue.pokemon.dodrio.genus
+      height: *red-blue.pokemon.dodrio.height
+      weight: *gold-silver.pokemon.dodrio.weight
       flavor_text:
         crystal: |
           An enemy that
@@ -211,41 +209,40 @@ crystal:
           heads--even for a
           second--will get
           pecked severely.
+      evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
+      evolution_conditions: *red-blue.pokemon.dodrio.evolution_conditions
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
           sprites:
+            - crystal/dodrio-default.png
             - crystal/back/dodrio-default.png
             - crystal/shiny/dodrio-default.png
-            - crystal/animated/shiny/dodrio-default.webm
-            - crystal/animated/dodrio-default.webm
-            - crystal/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
           icon: *gold-silver.pokemon.dodrio.forms.dodrio.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Dodrio
+  position: &ruby-sapphire.position 93
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 93
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: &ruby-sapphire.pokemon.dodrio.genus 'Triple Bird Pokémon'
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       color: &ruby-sapphire.pokemon.dodrio.color brown
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: &ruby-sapphire.pokemon.dodrio.happiness 70
+      baby: &ruby-sapphire.pokemon.dodrio.baby false
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.dodrio.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -299,7 +296,7 @@ ruby-sapphire:
           distances without rest.
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -309,25 +306,25 @@ ruby-sapphire:
             - ruby-sapphire/shiny/dodrio-default.png
             - ruby-sapphire/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: &ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint dodrio.png
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       color: *ruby-sapphire.pokemon.dodrio.color
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -347,7 +344,7 @@ emerald:
           rainfall.
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -358,23 +355,23 @@ emerald:
             - emerald/animated/dodrio-default.webm
             - emerald/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -386,32 +383,32 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.dodrio.evolution_conditions
       forms: &colosseum.pokemon.dodrio.forms
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
           icon: *ruby-sapphire.pokemon.dodrio.forms.dodrio.icon
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       habitat: grassland
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -435,7 +432,7 @@ firered-leafgreen:
           said to stay awake.
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -445,30 +442,30 @@ firered-leafgreen:
             - firered-leafgreen/shiny/dodrio-default.png
             - firered-leafgreen/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       shape: &diamond-pearl.pokemon.dodrio.shape legs
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
       pal_park: &diamond-pearl.pokemon.dodrio.pal_park
         area: field
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -497,7 +494,7 @@ diamond-pearl:
           two. It runs at nearly 40 mph.
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -511,26 +508,26 @@ diamond-pearl:
             - diamond-pearl/shiny/dodrio-default.png
             - diamond-pearl/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       shape: *diamond-pearl.pokemon.dodrio.shape
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
       pal_park: *diamond-pearl.pokemon.dodrio.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -549,7 +546,7 @@ platinum:
           two. It runs at nearly 40 mph.
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -563,28 +560,28 @@ platinum:
             - platinum/shiny/dodrio-default.png
             - platinum/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 205
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       shape: *diamond-pearl.pokemon.dodrio.shape
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
       pal_park: *diamond-pearl.pokemon.dodrio.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -608,7 +605,7 @@ heartgold-soulsilver:
           and they will stop squabbling.
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -638,26 +635,26 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/dodrio-default.png
             - heartgold-soulsilver/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       color: *ruby-sapphire.pokemon.dodrio.color
       shape: *diamond-pearl.pokemon.dodrio.shape
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -681,7 +678,7 @@ black-white:
           two. It runs at nearly 40 mph.
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -695,26 +692,26 @@ black-white:
             - black-white/shiny/dodrio-default.png
             - black-white/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *red-blue.pokemon.dodrio.forms.dodrio.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       color: *ruby-sapphire.pokemon.dodrio.color
       shape: *diamond-pearl.pokemon.dodrio.shape
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -738,25 +735,25 @@ black-2-white-2:
           two. It runs at nearly 40 mph.
       forms: *colosseum.pokemon.dodrio.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-central: 95
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       color: *ruby-sapphire.pokemon.dodrio.color
       shape: *diamond-pearl.pokemon.dodrio.shape
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -781,7 +778,7 @@ x-y:
           and anger.
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -792,28 +789,28 @@ x-y:
             - x-y/shiny/dodrio-default.png
             - x-y/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: &x-y.pokemon.dodrio.forms.dodrio.cry dodrio-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 96
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       color: *ruby-sapphire.pokemon.dodrio.color
       shape: *diamond-pearl.pokemon.dodrio.shape
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -835,13 +832,13 @@ omega-ruby-alpha-sapphire:
           well, so it is capable of running long distances without rest.
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
           icon: *x-y.pokemon.dodrio.forms.dodrio.icon
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *x-y.pokemon.dodrio.forms.dodrio.cry
           sprites:
             - omega-ruby-alpha-sapphire/female/dodrio-default.png
@@ -849,23 +846,23 @@ omega-ruby-alpha-sapphire:
             - omega-ruby-alpha-sapphire/shiny/dodrio-default.png
             - omega-ruby-alpha-sapphire/dodrio-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       color: *ruby-sapphire.pokemon.dodrio.color
       shape: *diamond-pearl.pokemon.dodrio.shape
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -880,7 +877,7 @@ sun-moon:
       evolution_conditions: *red-blue.pokemon.dodrio.evolution_conditions
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -891,26 +888,26 @@ sun-moon:
             - sun-moon/shiny/dodrio-default.png
             - sun-moon/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *x-y.pokemon.dodrio.forms.dodrio.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     dodrio:
-      genus: *gold-silver.pokemon.dodrio.genus
+      genus: *ruby-sapphire.pokemon.dodrio.genus
       evolution_parent: *red-blue.pokemon.dodrio.evolution_parent
       color: *ruby-sapphire.pokemon.dodrio.color
       shape: *diamond-pearl.pokemon.dodrio.shape
       female_rate: *gold-silver.pokemon.dodrio.female_rate
       capture_rate: *red-blue.pokemon.dodrio.capture_rate
-      happiness: *gold-silver.pokemon.dodrio.happiness
-      baby: *gold-silver.pokemon.dodrio.baby
+      happiness: *ruby-sapphire.pokemon.dodrio.happiness
+      baby: *ruby-sapphire.pokemon.dodrio.baby
       hatch_steps: *gold-silver.pokemon.dodrio.hatch_steps
       growth_rate: *red-blue.pokemon.dodrio.growth_rate
-      forms_switchable: *gold-silver.pokemon.dodrio.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dodrio.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dodrio.default
       height: *red-blue.pokemon.dodrio.height
       weight: *gold-silver.pokemon.dodrio.weight
@@ -925,7 +922,7 @@ ultra-sun-ultra-moon:
       evolution_conditions: *red-blue.pokemon.dodrio.evolution_conditions
       forms:
         dodrio:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dodrio.forms.dodrio.form_name
           default: *red-blue.pokemon.dodrio.default
           battle_only: *red-blue.pokemon.dodrio.forms.dodrio.battle_only
@@ -936,5 +933,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/dodrio-default.png
             - ultra-sun-ultra-moon/dodrio-default.png
           art: *red-blue.pokemon.dodrio.forms.dodrio.art
-          footprint: *gold-silver.pokemon.dodrio.forms.dodrio.footprint
+          footprint: *ruby-sapphire.pokemon.dodrio.forms.dodrio.footprint
           cry: *x-y.pokemon.dodrio.forms.dodrio.cry

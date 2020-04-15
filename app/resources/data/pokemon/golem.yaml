@@ -30,8 +30,8 @@ red-blue:
           base_value: 55
           effort_change: 55
       growth_rate: &red-blue.pokemon.golem.growth_rate medium-slow
-      genus: 'MEGATON Pokémon'
-      height: 13
+      genus: &red-blue.pokemon.golem.genus 'MEGATON Pokémon'
+      height: &red-blue.pokemon.golem.height 13
       weight: 30028
       flavor_text:
         red: |
@@ -105,30 +105,19 @@ yellow:
           cry: *red-blue.pokemon.golem.forms.golem.cry
           icon: *red-blue.pokemon.golem.forms.golem.icon
 gold-silver:
-  name: &gold-silver.name Golem
-  position: &gold-silver.position 82
+  name: *red-blue.name
+  position: &gold-silver.position 75
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 36
+    original-johto: 35
+    original-johto-abc: 62
   pokemon:
     golem:
-      genus: &gold-silver.pokemon.golem.genus 'Megaton Pokémon'
-      evolution_parent: *red-blue.pokemon.golem.evolution_parent
-      female_rate: &gold-silver.pokemon.golem.female_rate 50
-      capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: &gold-silver.pokemon.golem.happiness 70
-      baby: &gold-silver.pokemon.golem.baby false
-      hatch_steps: &gold-silver.pokemon.golem.hatch_steps 15
-      growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: &gold-silver.pokemon.golem.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.golem.default
-      height: &gold-silver.pokemon.golem.height 14
-      weight: &gold-silver.pokemon.golem.weight 3000
+      capture_rate: *red-blue.pokemon.golem.capture_rate
       experience: *red-blue.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
-      egg_groups: &gold-silver.pokemon.golem.egg_groups
-        - mineral
       stats: &gold-silver.pokemon.golem.stats
         hp:
           base_value: 80
@@ -148,13 +137,24 @@ gold-silver:
         special-defense:
           base_value: 65
           effort_change: 55
-      evolution_conditions: *red-blue.pokemon.golem.evolution_conditions
+      growth_rate: *red-blue.pokemon.golem.growth_rate
+      female_rate: &gold-silver.pokemon.golem.female_rate 50
+      hatch_steps: &gold-silver.pokemon.golem.hatch_steps 15
+      egg_groups: &gold-silver.pokemon.golem.egg_groups
+        - mineral
+      wild_held_items:
+        gold: &gold-silver.pokemon.golem.wild_held_items.gold
+          everstone: 2
+        silver: *gold-silver.pokemon.golem.wild_held_items.gold
+      genus: *red-blue.pokemon.golem.genus
+      height: *red-blue.pokemon.golem.height
+      weight: &gold-silver.pokemon.golem.weight 3002
       flavor_text:
         gold: |
           It sheds its skin
           once a year. The
           discarded shell
-          immediately hard­
+          immediately hard-
           ens and crumbles
           away.
         silver: |
@@ -164,44 +164,42 @@ gold-silver:
           explosive force to
           jump from mountain
           to mountain.
+      evolution_parent: *red-blue.pokemon.golem.evolution_parent
+      evolution_conditions: *red-blue.pokemon.golem.evolution_conditions
       forms:
         golem:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
           sprites:
+            - gold-silver/golem-default.png
             - gold-silver/back/golem-default.png
             - gold-silver/shiny/golem-default.png
-            - gold-silver/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: &gold-silver.pokemon.golem.forms.golem.footprint golem.png
           cry: *red-blue.pokemon.golem.forms.golem.cry
           icon: &gold-silver.pokemon.golem.forms.golem.icon gen2/geodude.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
-      evolution_parent: *red-blue.pokemon.golem.evolution_parent
-      female_rate: *gold-silver.pokemon.golem.female_rate
-      capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
-      hatch_steps: *gold-silver.pokemon.golem.hatch_steps
-      growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      capture_rate: *red-blue.pokemon.golem.capture_rate
       experience: *red-blue.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
-      egg_groups: *gold-silver.pokemon.golem.egg_groups
       stats: *gold-silver.pokemon.golem.stats
-      evolution_conditions: *red-blue.pokemon.golem.evolution_conditions
+      growth_rate: *red-blue.pokemon.golem.growth_rate
+      female_rate: *gold-silver.pokemon.golem.female_rate
+      hatch_steps: *gold-silver.pokemon.golem.hatch_steps
+      egg_groups: *gold-silver.pokemon.golem.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.golem.wild_held_items.gold
+      genus: *red-blue.pokemon.golem.genus
+      height: *red-blue.pokemon.golem.height
+      weight: *gold-silver.pokemon.golem.weight
       flavor_text:
         crystal: |
           Its rock-like body
@@ -210,44 +208,43 @@ crystal:
           dynamite blasts
           fail to scratch
           its rugged hide.
+      evolution_parent: *red-blue.pokemon.golem.evolution_parent
+      evolution_conditions: *red-blue.pokemon.golem.evolution_conditions
       forms:
         golem:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
           sprites:
+            - crystal/golem-default.png
             - crystal/back/golem-default.png
             - crystal/shiny/golem-default.png
-            - crystal/golem-default.png
-            - crystal/animated/golem-default.webm
-            - crystal/animated/shiny/golem-default.webm
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
           cry: *red-blue.pokemon.golem.forms.golem.cry
           icon: *gold-silver.pokemon.golem.forms.golem.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Golem
+  position: &ruby-sapphire.position 82
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 59
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: &ruby-sapphire.pokemon.golem.genus 'Megaton Pokémon'
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: &ruby-sapphire.pokemon.golem.color brown
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: &ruby-sapphire.pokemon.golem.happiness 70
+      baby: &ruby-sapphire.pokemon.golem.baby false
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.golem.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: &ruby-sapphire.pokemon.golem.height 14
+      weight: &ruby-sapphire.pokemon.golem.weight 3000
       experience: &ruby-sapphire.pokemon.golem.experience 223
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -301,7 +298,7 @@ ruby-sapphire:
           diverting this POKéMON’s course.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -311,28 +308,28 @@ ruby-sapphire:
             - ruby-sapphire/shiny/golem-default.png
             - ruby-sapphire/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: &ruby-sapphire.pokemon.golem.forms.golem.footprint golem.png
           cry: *red-blue.pokemon.golem.forms.golem.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: *ruby-sapphire.pokemon.golem.color
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -349,7 +346,7 @@ emerald:
           crumbles and returns to the soil.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -360,26 +357,26 @@ emerald:
             - emerald/animated/golem-default.webm
             - emerald/animated/shiny/golem-default.webm
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *red-blue.pokemon.golem.forms.golem.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -388,35 +385,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.golem.evolution_conditions
       forms: &colosseum.pokemon.golem.forms
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
           icon: *ruby-sapphire.pokemon.golem.forms.golem.icon
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *red-blue.pokemon.golem.forms.golem.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       habitat: mountain
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -438,7 +435,7 @@ firered-leafgreen:
           without taking damage.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -448,34 +445,34 @@ firered-leafgreen:
             - firered-leafgreen/shiny/golem-default.png
             - firered-leafgreen/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *red-blue.pokemon.golem.forms.golem.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-sinnoh: 33
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       shape: &diamond-pearl.pokemon.golem.shape humanoid
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
       pal_park: &diamond-pearl.pokemon.golem.pal_park
         area: mountain
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -496,7 +493,7 @@ diamond-pearl:
           Stay clear of these grooves.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -507,31 +504,31 @@ diamond-pearl:
             - diamond-pearl/shiny/golem-default.png
             - diamond-pearl/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *red-blue.pokemon.golem.forms.golem.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 33
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
       pal_park: *diamond-pearl.pokemon.golem.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -547,7 +544,7 @@ platinum:
           just once a year.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -558,31 +555,31 @@ platinum:
             - platinum/shiny/golem-default.png
             - platinum/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *red-blue.pokemon.golem.forms.golem.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 36
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
       pal_park: *diamond-pearl.pokemon.golem.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -603,7 +600,7 @@ heartgold-soulsilver:
           jump from mountain to mountain.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -630,30 +627,30 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/golem-default.png
             - heartgold-soulsilver/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *red-blue.pokemon.golem.forms.golem.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &black-white.numbers
     national: *red-blue.numbers.national
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: *ruby-sapphire.pokemon.golem.color
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -674,7 +671,7 @@ black-white:
           just once a year.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -685,29 +682,29 @@ black-white:
             - black-white/shiny/golem-default.png
             - black-white/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *red-blue.pokemon.golem.forms.golem.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *black-white.numbers
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: *ruby-sapphire.pokemon.golem.color
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -728,28 +725,28 @@ black-2-white-2:
           just once a year.
       forms: *colosseum.pokemon.golem.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 11
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: *ruby-sapphire.pokemon.golem.color
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -769,7 +766,7 @@ x-y:
           body. It sheds its hide just once a year.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -778,31 +775,31 @@ x-y:
             - x-y/shiny/golem-default.png
             - x-y/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: &x-y.pokemon.golem.forms.golem.cry golem-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 60
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: *ruby-sapphire.pokemon.golem.color
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -822,41 +819,41 @@ omega-ruby-alpha-sapphire:
           guideways for diverting this Pokémon’s course.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
           icon: *x-y.pokemon.golem.forms.golem.icon
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *x-y.pokemon.golem.forms.golem.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/golem-default.png
             - omega-ruby-alpha-sapphire/golem-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 231
     original-ulaula: 103
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: *ruby-sapphire.pokemon.golem.color
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
+      name: *ruby-sapphire.name
       default: &sun-moon.pokemon.golem.default false
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -873,7 +870,7 @@ sun-moon:
           enriched soil, so farmers collect the shells.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -882,20 +879,20 @@ sun-moon:
             - sun-moon/shiny/golem-default.png
             - sun-moon/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *x-y.pokemon.golem.forms.golem.cry
     golem-alola:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: *ruby-sapphire.pokemon.golem.color
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
       name: &sun-moon.pokemon.golem-alola.name 'Alolan Golem'
       default: *red-blue.pokemon.golem.default
       height: &sun-moon.pokemon.golem-alola.height 17
@@ -926,32 +923,32 @@ sun-moon:
           sprites:
             - sun-moon/golem-alola.png
             - sun-moon/shiny/golem-alola.png
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *x-y.pokemon.golem.forms.golem.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 300
     updated-ulaula: 121
   pokemon:
     golem:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: *ruby-sapphire.pokemon.golem.color
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
+      name: *ruby-sapphire.name
       default: *sun-moon.pokemon.golem.default
-      height: *gold-silver.pokemon.golem.height
-      weight: *gold-silver.pokemon.golem.weight
+      height: *ruby-sapphire.pokemon.golem.height
+      weight: *ruby-sapphire.pokemon.golem.weight
       experience: *ruby-sapphire.pokemon.golem.experience
       types: *red-blue.pokemon.golem.types
       egg_groups: *gold-silver.pokemon.golem.egg_groups
@@ -968,7 +965,7 @@ ultra-sun-ultra-moon:
           have shells green with moss.
       forms:
         golem:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.golem.forms.golem.form_name
           default: *red-blue.pokemon.golem.default
           battle_only: *red-blue.pokemon.golem.forms.golem.battle_only
@@ -977,20 +974,20 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/golem-default.png
             - ultra-sun-ultra-moon/golem-default.png
           art: *red-blue.pokemon.golem.forms.golem.art
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *x-y.pokemon.golem.forms.golem.cry
     golem-alola:
-      genus: *gold-silver.pokemon.golem.genus
+      genus: *ruby-sapphire.pokemon.golem.genus
       evolution_parent: *red-blue.pokemon.golem.evolution_parent
       color: *ruby-sapphire.pokemon.golem.color
       shape: *diamond-pearl.pokemon.golem.shape
       female_rate: *gold-silver.pokemon.golem.female_rate
       capture_rate: *red-blue.pokemon.golem.capture_rate
-      happiness: *gold-silver.pokemon.golem.happiness
-      baby: *gold-silver.pokemon.golem.baby
+      happiness: *ruby-sapphire.pokemon.golem.happiness
+      baby: *ruby-sapphire.pokemon.golem.baby
       hatch_steps: *gold-silver.pokemon.golem.hatch_steps
       growth_rate: *red-blue.pokemon.golem.growth_rate
-      forms_switchable: *gold-silver.pokemon.golem.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.golem.forms_switchable
       name: *sun-moon.pokemon.golem-alola.name
       default: *red-blue.pokemon.golem.default
       height: *sun-moon.pokemon.golem-alola.height
@@ -1015,5 +1012,5 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/golem-alola.png
             - ultra-sun-ultra-moon/shiny/golem-alola.png
-          footprint: *gold-silver.pokemon.golem.forms.golem.footprint
+          footprint: *ruby-sapphire.pokemon.golem.forms.golem.footprint
           cry: *x-y.pokemon.golem.forms.golem.cry

@@ -30,8 +30,8 @@ red-blue:
           base_value: 80
           effort_change: 80
       growth_rate: &red-blue.pokemon.parasect.growth_rate medium
-      genus: 'MUSHROOM Pokémon'
-      height: 9
+      genus: &red-blue.pokemon.parasect.genus 'MUSHROOM Pokémon'
+      height: &red-blue.pokemon.parasect.height 9
       weight: 2948
       flavor_text:
         red: |
@@ -106,31 +106,19 @@ yellow:
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
           icon: *red-blue.pokemon.parasect.forms.parasect.icon
 gold-silver:
-  name: &gold-silver.name Parasect
-  position: &gold-silver.position 52
+  name: *red-blue.name
+  position: &gold-silver.position 46
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 71
+    original-johto: 70
+    original-johto-abc: 142
   pokemon:
     parasect:
-      genus: &gold-silver.pokemon.parasect.genus 'Mushroom Pokémon'
-      evolution_parent: *red-blue.pokemon.parasect.evolution_parent
-      female_rate: &gold-silver.pokemon.parasect.female_rate 50
-      capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: &gold-silver.pokemon.parasect.happiness 70
-      baby: &gold-silver.pokemon.parasect.baby false
-      hatch_steps: &gold-silver.pokemon.parasect.hatch_steps 20
-      growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: &gold-silver.pokemon.parasect.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.parasect.default
-      height: &gold-silver.pokemon.parasect.height 10
-      weight: &gold-silver.pokemon.parasect.weight 295
+      capture_rate: *red-blue.pokemon.parasect.capture_rate
       experience: *red-blue.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
-      egg_groups: &gold-silver.pokemon.parasect.egg_groups
-        - bug
-        - plant
       stats: &gold-silver.pokemon.parasect.stats
         hp:
           base_value: 60
@@ -150,60 +138,71 @@ gold-silver:
         special-defense:
           base_value: 80
           effort_change: 60
-      evolution_conditions: *red-blue.pokemon.parasect.evolution_conditions
+      growth_rate: *red-blue.pokemon.parasect.growth_rate
+      female_rate: &gold-silver.pokemon.parasect.female_rate 50
+      hatch_steps: &gold-silver.pokemon.parasect.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.parasect.egg_groups
+        - bug
+        - plant
+      wild_held_items:
+        gold: &gold-silver.pokemon.parasect.wild_held_items.gold
+          tinymushroom: 23
+          big-mushroom: 2
+        silver: *gold-silver.pokemon.parasect.wild_held_items.gold
+      genus: *red-blue.pokemon.parasect.genus
+      height: *red-blue.pokemon.parasect.height
+      weight: &gold-silver.pokemon.parasect.weight 294
       flavor_text:
         gold: |
           It stays mostly in
           dark, damp places,
           the preference not
           of the bug, but
-          of the big mush­
+          of the big mush-
           rooms on its back.
         silver: |
           The larger the
           mushroom on its
           back grows, the
-          stronger the mush­
+          stronger the mush-
           room spores it
           scatters.
+      evolution_parent: *red-blue.pokemon.parasect.evolution_parent
+      evolution_conditions: *red-blue.pokemon.parasect.evolution_conditions
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
           sprites:
-            - gold-silver/back/parasect-default.png
             - gold-silver/parasect-default.png
+            - gold-silver/back/parasect-default.png
             - gold-silver/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: &gold-silver.pokemon.parasect.forms.parasect.footprint parasect.png
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
           icon: &gold-silver.pokemon.parasect.forms.parasect.icon gen2/bug.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
-      evolution_parent: *red-blue.pokemon.parasect.evolution_parent
-      female_rate: *gold-silver.pokemon.parasect.female_rate
-      capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
-      hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
-      growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      capture_rate: *red-blue.pokemon.parasect.capture_rate
       experience: *red-blue.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
-      egg_groups: *gold-silver.pokemon.parasect.egg_groups
       stats: *gold-silver.pokemon.parasect.stats
-      evolution_conditions: *red-blue.pokemon.parasect.evolution_conditions
+      growth_rate: *red-blue.pokemon.parasect.growth_rate
+      female_rate: *gold-silver.pokemon.parasect.female_rate
+      hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
+      egg_groups: *gold-silver.pokemon.parasect.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.parasect.wild_held_items.gold
+      genus: *red-blue.pokemon.parasect.genus
+      height: *red-blue.pokemon.parasect.height
+      weight: *gold-silver.pokemon.parasect.weight
       flavor_text:
         crystal: |
           When nothing's
@@ -212,43 +211,42 @@ crystal:
           mushrooms on its
           back leave spores
           on the bug's egg.
+      evolution_parent: *red-blue.pokemon.parasect.evolution_parent
+      evolution_conditions: *red-blue.pokemon.parasect.evolution_conditions
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
           sprites:
-            - crystal/back/parasect-default.png
             - crystal/parasect-default.png
+            - crystal/back/parasect-default.png
             - crystal/shiny/parasect-default.png
-            - crystal/animated/parasect-default.webm
-            - crystal/animated/shiny/parasect-default.webm
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
           icon: *gold-silver.pokemon.parasect.forms.parasect.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Parasect
+  position: &ruby-sapphire.position 52
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: &ruby-sapphire.pokemon.parasect.genus 'Mushroom Pokémon'
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       color: &ruby-sapphire.pokemon.parasect.color red
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: &ruby-sapphire.pokemon.parasect.happiness 70
+      baby: &ruby-sapphire.pokemon.parasect.baby false
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.parasect.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: &ruby-sapphire.pokemon.parasect.height 10
+      weight: &ruby-sapphire.pokemon.parasect.weight 295
       experience: &ruby-sapphire.pokemon.parasect.experience 142
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -299,7 +297,7 @@ ruby-sapphire:
           onto another tree all at once.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -309,28 +307,28 @@ ruby-sapphire:
             - ruby-sapphire/parasect-default.png
             - ruby-sapphire/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: &ruby-sapphire.pokemon.parasect.forms.parasect.footprint parasect.png
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       color: *ruby-sapphire.pokemon.parasect.color
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -347,7 +345,7 @@ emerald:
           onto another tree all at once.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -358,26 +356,26 @@ emerald:
             - emerald/animated/parasect-default.webm
             - emerald/animated/shiny/parasect-default.webm
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -386,35 +384,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.parasect.evolution_conditions
       forms: &colosseum.pokemon.parasect.forms
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
           icon: *ruby-sapphire.pokemon.parasect.forms.parasect.icon
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       habitat: forest
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -435,7 +433,7 @@ firered-leafgreen:
           Prefers damp places.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -445,32 +443,32 @@ firered-leafgreen:
             - firered-leafgreen/parasect-default.png
             - firered-leafgreen/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       shape: &diamond-pearl.pokemon.parasect.shape armor
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
       pal_park: &diamond-pearl.pokemon.parasect.pal_park
         area: forest
         rate: 30
         score: 50
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -496,7 +494,7 @@ diamond-pearl:
           It is said to prefer damp places.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -507,29 +505,29 @@ diamond-pearl:
             - diamond-pearl/parasect-default.png
             - diamond-pearl/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       shape: *diamond-pearl.pokemon.parasect.shape
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
       pal_park: *diamond-pearl.pokemon.parasect.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -545,7 +543,7 @@ platinum:
           It scatters poisonous spores.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -556,31 +554,31 @@ platinum:
             - platinum/parasect-default.png
             - platinum/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 71
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       shape: *diamond-pearl.pokemon.parasect.shape
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
       pal_park: *diamond-pearl.pokemon.parasect.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -601,7 +599,7 @@ heartgold-soulsilver:
           mushroom spores it scatters.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -628,29 +626,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/parasect-default.png
             - heartgold-soulsilver/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       color: *ruby-sapphire.pokemon.parasect.color
       shape: *diamond-pearl.pokemon.parasect.shape
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -674,7 +672,7 @@ black-white:
           It scatters poisonous spores.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -685,29 +683,29 @@ black-white:
             - black-white/parasect-default.png
             - black-white/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *red-blue.pokemon.parasect.forms.parasect.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       color: *ruby-sapphire.pokemon.parasect.color
       shape: *diamond-pearl.pokemon.parasect.shape
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -728,26 +726,26 @@ black-2-white-2:
           It scatters poisonous spores.
       forms: *colosseum.pokemon.parasect.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       color: *ruby-sapphire.pokemon.parasect.color
       shape: *diamond-pearl.pokemon.parasect.shape
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -767,7 +765,7 @@ x-y:
           the stronger the mushroom spores it scatters.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -776,29 +774,29 @@ x-y:
             - x-y/parasect-default.png
             - x-y/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: &x-y.pokemon.parasect.forms.parasect.cry parasect-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       color: *ruby-sapphire.pokemon.parasect.color
       shape: *diamond-pearl.pokemon.parasect.shape
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -817,20 +815,20 @@ omega-ruby-alpha-sapphire:
           tree dies, they move onto another tree all at once.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
           icon: *x-y.pokemon.parasect.forms.parasect.icon
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *x-y.pokemon.parasect.forms.parasect.cry
           sprites:
             - omega-ruby-alpha-sapphire/parasect-default.png
             - omega-ruby-alpha-sapphire/shiny/parasect-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 148
@@ -838,21 +836,21 @@ sun-moon:
     original-ulaula: 67
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       color: *ruby-sapphire.pokemon.parasect.color
       shape: *diamond-pearl.pokemon.parasect.shape
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -869,7 +867,7 @@ sun-moon:
           and boiled down to prepare herbal medicines.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -878,11 +876,11 @@ sun-moon:
             - sun-moon/parasect-default.png
             - sun-moon/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *x-y.pokemon.parasect.forms.parasect.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 181
@@ -890,21 +888,21 @@ ultra-sun-ultra-moon:
     updated-ulaula: 73
   pokemon:
     parasect:
-      genus: *gold-silver.pokemon.parasect.genus
+      genus: *ruby-sapphire.pokemon.parasect.genus
       evolution_parent: *red-blue.pokemon.parasect.evolution_parent
       color: *ruby-sapphire.pokemon.parasect.color
       shape: *diamond-pearl.pokemon.parasect.shape
       female_rate: *gold-silver.pokemon.parasect.female_rate
       capture_rate: *red-blue.pokemon.parasect.capture_rate
-      happiness: *gold-silver.pokemon.parasect.happiness
-      baby: *gold-silver.pokemon.parasect.baby
+      happiness: *ruby-sapphire.pokemon.parasect.happiness
+      baby: *ruby-sapphire.pokemon.parasect.baby
       hatch_steps: *gold-silver.pokemon.parasect.hatch_steps
       growth_rate: *red-blue.pokemon.parasect.growth_rate
-      forms_switchable: *gold-silver.pokemon.parasect.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.parasect.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.parasect.default
-      height: *gold-silver.pokemon.parasect.height
-      weight: *gold-silver.pokemon.parasect.weight
+      height: *ruby-sapphire.pokemon.parasect.height
+      weight: *ruby-sapphire.pokemon.parasect.weight
       experience: *ruby-sapphire.pokemon.parasect.experience
       types: *red-blue.pokemon.parasect.types
       egg_groups: *gold-silver.pokemon.parasect.egg_groups
@@ -921,7 +919,7 @@ ultra-sun-ultra-moon:
           mushroom comes off, the bug stops moving.
       forms:
         parasect:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.parasect.forms.parasect.form_name
           default: *red-blue.pokemon.parasect.default
           battle_only: *red-blue.pokemon.parasect.forms.parasect.battle_only
@@ -930,5 +928,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/parasect-default.png
             - ultra-sun-ultra-moon/shiny/parasect-default.png
           art: *red-blue.pokemon.parasect.forms.parasect.art
-          footprint: *gold-silver.pokemon.parasect.forms.parasect.footprint
+          footprint: *ruby-sapphire.pokemon.parasect.forms.parasect.footprint
           cry: *x-y.pokemon.parasect.forms.parasect.cry

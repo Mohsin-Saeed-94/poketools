@@ -29,8 +29,8 @@ red-blue:
           base_value: 100
           effort_change: 100
       growth_rate: &red-blue.pokemon.ninetales.growth_rate medium
-      genus: 'FOX Pokémon'
-      height: 10
+      genus: &red-blue.pokemon.ninetales.genus 'FOX Pokémon'
+      height: &red-blue.pokemon.ninetales.height 10
       weight: 1995
       flavor_text:
         red: |
@@ -105,30 +105,19 @@ yellow:
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
           icon: *red-blue.pokemon.ninetales.forms.ninetales.icon
 gold-silver:
-  name: &gold-silver.name Ninetales
-  position: &gold-silver.position 40
+  name: *red-blue.name
+  position: &gold-silver.position 37
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 126
+    original-johto: 125
+    original-johto-abc: 134
   pokemon:
     ninetales:
-      genus: &gold-silver.pokemon.ninetales.genus 'Fox Pokémon'
-      evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
-      female_rate: &gold-silver.pokemon.ninetales.female_rate 75
-      capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: &gold-silver.pokemon.ninetales.happiness 70
-      baby: &gold-silver.pokemon.ninetales.baby false
-      hatch_steps: &gold-silver.pokemon.ninetales.hatch_steps 20
-      growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: &gold-silver.pokemon.ninetales.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.ninetales.default
-      height: &gold-silver.pokemon.ninetales.height 11
-      weight: &gold-silver.pokemon.ninetales.weight 199
+      capture_rate: *red-blue.pokemon.ninetales.capture_rate
       experience: *red-blue.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
-      egg_groups: &gold-silver.pokemon.ninetales.egg_groups
-        - ground
       stats: &gold-silver.pokemon.ninetales.stats
         hp:
           base_value: 73
@@ -148,7 +137,18 @@ gold-silver:
         special-defense:
           base_value: 100
           effort_change: 81
-      evolution_conditions: *red-blue.pokemon.ninetales.evolution_conditions
+      growth_rate: *red-blue.pokemon.ninetales.growth_rate
+      female_rate: &gold-silver.pokemon.ninetales.female_rate 75
+      hatch_steps: &gold-silver.pokemon.ninetales.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.ninetales.egg_groups
+        - ground
+      wild_held_items:
+        gold: &gold-silver.pokemon.ninetales.wild_held_items.gold
+          burnt-berry: 2
+        silver: *gold-silver.pokemon.ninetales.wild_held_items.gold
+      genus: *red-blue.pokemon.ninetales.genus
+      height: *red-blue.pokemon.ninetales.height
+      weight: &gold-silver.pokemon.ninetales.weight 199
       flavor_text:
         gold: |
           Some legends claim
@@ -164,44 +164,42 @@ gold-silver:
           energy that could
           keep it alive for
           1,000 years.
+      evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
+      evolution_conditions: *red-blue.pokemon.ninetales.evolution_conditions
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
           sprites:
+            - gold-silver/ninetales-default.png
             - gold-silver/back/ninetales-default.png
             - gold-silver/shiny/ninetales-default.png
-            - gold-silver/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: &gold-silver.pokemon.ninetales.forms.ninetales.footprint ninetales.png
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
           icon: &gold-silver.pokemon.ninetales.forms.ninetales.icon gen2/fox.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
-      evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
-      female_rate: *gold-silver.pokemon.ninetales.female_rate
-      capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
-      hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
-      growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
-      weight: *gold-silver.pokemon.ninetales.weight
+      capture_rate: *red-blue.pokemon.ninetales.capture_rate
       experience: *red-blue.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
-      egg_groups: *gold-silver.pokemon.ninetales.egg_groups
       stats: *gold-silver.pokemon.ninetales.stats
-      evolution_conditions: *red-blue.pokemon.ninetales.evolution_conditions
+      growth_rate: *red-blue.pokemon.ninetales.growth_rate
+      female_rate: *gold-silver.pokemon.ninetales.female_rate
+      hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
+      egg_groups: *gold-silver.pokemon.ninetales.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.ninetales.wild_held_items.gold
+      genus: *red-blue.pokemon.ninetales.genus
+      height: *red-blue.pokemon.ninetales.height
+      weight: *gold-silver.pokemon.ninetales.weight
       flavor_text:
         crystal: |
           It is said to live
@@ -210,43 +208,42 @@ crystal:
           tails is loaded
           with supernatural
           powers.
+      evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
+      evolution_conditions: *red-blue.pokemon.ninetales.evolution_conditions
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
           sprites:
+            - crystal/ninetales-default.png
             - crystal/back/ninetales-default.png
             - crystal/shiny/ninetales-default.png
-            - crystal/animated/ninetales-default.webm
-            - crystal/animated/shiny/ninetales-default.webm
-            - crystal/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
           icon: *gold-silver.pokemon.ninetales.forms.ninetales.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Ninetales
+  position: &ruby-sapphire.position 40
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 154
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: &ruby-sapphire.pokemon.ninetales.genus 'Fox Pokémon'
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: &ruby-sapphire.pokemon.ninetales.color yellow
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: &ruby-sapphire.pokemon.ninetales.happiness 70
+      baby: &ruby-sapphire.pokemon.ninetales.baby false
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.ninetales.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: &ruby-sapphire.pokemon.ninetales.height 11
       weight: *gold-silver.pokemon.ninetales.weight
       experience: &ruby-sapphire.pokemon.ninetales.experience 177
       types: *red-blue.pokemon.ninetales.types
@@ -297,7 +294,7 @@ ruby-sapphire:
           can understand human speech.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -307,27 +304,27 @@ ruby-sapphire:
             - ruby-sapphire/shiny/ninetales-default.png
             - ruby-sapphire/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: &ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint ninetales.png
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: *ruby-sapphire.pokemon.ninetales.color
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -345,7 +342,7 @@ emerald:
           shines like gold.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -356,25 +353,25 @@ emerald:
             - emerald/animated/shiny/ninetales-default.webm
             - emerald/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -384,34 +381,34 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.ninetales.evolution_conditions
       forms: &colosseum.pokemon.ninetales.forms
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
           icon: *ruby-sapphire.pokemon.ninetales.forms.ninetales.icon
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       habitat: grassland
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -434,7 +431,7 @@ firered-leafgreen:
           1,000-year curse.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -444,32 +441,32 @@ firered-leafgreen:
             - firered-leafgreen/shiny/ninetales-default.png
             - firered-leafgreen/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       shape: &diamond-pearl.pokemon.ninetales.shape quadruped
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
       pal_park: &diamond-pearl.pokemon.ninetales.pal_park
         area: field
         rate: 10
         score: 80
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -491,7 +488,7 @@ diamond-pearl:
           It can live for a thousand years.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -502,28 +499,28 @@ diamond-pearl:
             - diamond-pearl/shiny/ninetales-default.png
             - diamond-pearl/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
       pal_park: *diamond-pearl.pokemon.ninetales.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -540,7 +537,7 @@ platinum:
           It can live for a thousand years.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -551,30 +548,30 @@ platinum:
             - platinum/shiny/ninetales-default.png
             - platinum/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 128
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
       pal_park: *diamond-pearl.pokemon.ninetales.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -596,7 +593,7 @@ heartgold-soulsilver:
           keep it alive for 1,000 years.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -623,28 +620,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/ninetales-default.png
             - heartgold-soulsilver/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: *ruby-sapphire.pokemon.ninetales.color
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -666,7 +663,7 @@ black-white:
           It can live for a thousand years.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -677,30 +674,30 @@ black-white:
             - black-white/shiny/ninetales-default.png
             - black-white/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *red-blue.pokemon.ninetales.forms.ninetales.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-unova: 249
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: *ruby-sapphire.pokemon.ninetales.color
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -722,25 +719,25 @@ black-2-white-2:
           can live for a thousand years.
       forms: *colosseum.pokemon.ninetales.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: *ruby-sapphire.pokemon.ninetales.color
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -758,7 +755,7 @@ x-y:
           many tails could result in a 1,000-year curse.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -767,30 +764,30 @@ x-y:
             - x-y/shiny/ninetales-default.png
             - x-y/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: &x-y.pokemon.ninetales.forms.ninetales.cry ninetales-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 161
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: *ruby-sapphire.pokemon.ninetales.color
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -811,40 +808,40 @@ omega-ruby-alpha-sapphire:
           human speech.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
           icon: *x-y.pokemon.ninetales.forms.ninetales.icon
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *x-y.pokemon.ninetales.forms.ninetales.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/ninetales-default.png
             - omega-ruby-alpha-sapphire/ninetales-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 254
     original-ulaula: 126
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: *ruby-sapphire.pokemon.ninetales.color
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
+      name: *ruby-sapphire.name
       default: &sun-moon.pokemon.ninetales.default false
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -863,7 +860,7 @@ sun-moon:
           It can burn its prey to a crisp as it pleases.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -872,23 +869,23 @@ sun-moon:
             - sun-moon/shiny/ninetales-default.png
             - sun-moon/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *x-y.pokemon.ninetales.forms.ninetales.cry
     ninetales-alola:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: *ruby-sapphire.pokemon.ninetales.color
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
       name: &sun-moon.pokemon.ninetales-alola.name 'Alolan Ninetales'
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: &sun-moon.pokemon.ninetales-alola.types
@@ -933,31 +930,31 @@ sun-moon:
           sprites:
             - sun-moon/shiny/ninetales-alola.png
             - sun-moon/ninetales-alola.png
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *x-y.pokemon.ninetales.forms.ninetales.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 331
     updated-ulaula: 152
   pokemon:
     ninetales:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: *ruby-sapphire.pokemon.ninetales.color
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
+      name: *ruby-sapphire.name
       default: *sun-moon.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *red-blue.pokemon.ninetales.types
@@ -975,7 +972,7 @@ ultra-sun-ultra-moon:
           a thousand years, along with their descendants.
       forms:
         ninetales:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ninetales.forms.ninetales.form_name
           default: *red-blue.pokemon.ninetales.default
           battle_only: *red-blue.pokemon.ninetales.forms.ninetales.battle_only
@@ -984,23 +981,23 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/ninetales-default.png
             - ultra-sun-ultra-moon/ninetales-default.png
           art: *red-blue.pokemon.ninetales.forms.ninetales.art
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *x-y.pokemon.ninetales.forms.ninetales.cry
     ninetales-alola:
-      genus: *gold-silver.pokemon.ninetales.genus
+      genus: *ruby-sapphire.pokemon.ninetales.genus
       evolution_parent: *red-blue.pokemon.ninetales.evolution_parent
       color: *ruby-sapphire.pokemon.ninetales.color
       shape: *diamond-pearl.pokemon.ninetales.shape
       female_rate: *gold-silver.pokemon.ninetales.female_rate
       capture_rate: *red-blue.pokemon.ninetales.capture_rate
-      happiness: *gold-silver.pokemon.ninetales.happiness
-      baby: *gold-silver.pokemon.ninetales.baby
+      happiness: *ruby-sapphire.pokemon.ninetales.happiness
+      baby: *ruby-sapphire.pokemon.ninetales.baby
       hatch_steps: *gold-silver.pokemon.ninetales.hatch_steps
       growth_rate: *red-blue.pokemon.ninetales.growth_rate
-      forms_switchable: *gold-silver.pokemon.ninetales.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ninetales.forms_switchable
       name: *sun-moon.pokemon.ninetales-alola.name
       default: *red-blue.pokemon.ninetales.default
-      height: *gold-silver.pokemon.ninetales.height
+      height: *ruby-sapphire.pokemon.ninetales.height
       weight: *gold-silver.pokemon.ninetales.weight
       experience: *ruby-sapphire.pokemon.ninetales.experience
       types: *sun-moon.pokemon.ninetales-alola.types
@@ -1022,5 +1019,5 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/shiny/ninetales-alola.png
             - ultra-sun-ultra-moon/ninetales-alola.png
-          footprint: *gold-silver.pokemon.ninetales.forms.ninetales.footprint
+          footprint: *ruby-sapphire.pokemon.ninetales.forms.ninetales.footprint
           cry: *x-y.pokemon.ninetales.forms.ninetales.cry

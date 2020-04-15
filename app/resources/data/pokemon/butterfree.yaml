@@ -30,8 +30,8 @@ red-blue:
           base_value: 80
           effort_change: 80
       growth_rate: &red-blue.pokemon.butterfree.growth_rate medium
-      genus: 'BUTTERFLY Pokémon'
-      height: 10
+      genus: &red-blue.pokemon.butterfree.genus 'BUTTERFLY Pokémon'
+      height: &red-blue.pokemon.butterfree.height 10
       weight: 3220
       flavor_text:
         red: |
@@ -106,30 +106,19 @@ yellow:
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
           icon: *red-blue.pokemon.butterfree.forms.butterfree.icon
 gold-silver:
-  name: &gold-silver.name Butterfree
-  position: *red-blue.position
+  name: *red-blue.name
+  position: &gold-silver.position 11
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 26
+    original-johto: 25
+    original-johto-abc: 6
   pokemon:
     butterfree:
-      genus: &gold-silver.pokemon.butterfree.genus 'Butterfly Pokémon'
-      evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
-      female_rate: &gold-silver.pokemon.butterfree.female_rate 50
-      capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: &gold-silver.pokemon.butterfree.happiness 70
-      baby: &gold-silver.pokemon.butterfree.baby false
-      hatch_steps: &gold-silver.pokemon.butterfree.hatch_steps 15
-      growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: &gold-silver.pokemon.butterfree.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.butterfree.default
-      height: &gold-silver.pokemon.butterfree.height 11
-      weight: &gold-silver.pokemon.butterfree.weight 320
+      capture_rate: *red-blue.pokemon.butterfree.capture_rate
       experience: *red-blue.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
-      egg_groups: &gold-silver.pokemon.butterfree.egg_groups
-        - bug
       stats: &gold-silver.pokemon.butterfree.stats
         hp:
           base_value: 60
@@ -149,7 +138,18 @@ gold-silver:
         special-defense:
           base_value: 80
           effort_change: 80
-      evolution_conditions: *red-blue.pokemon.butterfree.evolution_conditions
+      growth_rate: *red-blue.pokemon.butterfree.growth_rate
+      female_rate: &gold-silver.pokemon.butterfree.female_rate 50
+      hatch_steps: &gold-silver.pokemon.butterfree.hatch_steps 15
+      egg_groups: &gold-silver.pokemon.butterfree.egg_groups
+        - bug
+      wild_held_items:
+        gold: &gold-silver.pokemon.butterfree.wild_held_items.gold
+          silverpowder: 2
+        silver: *gold-silver.pokemon.butterfree.wild_held_items.gold
+      genus: *red-blue.pokemon.butterfree.genus
+      height: *red-blue.pokemon.butterfree.height
+      weight: &gold-silver.pokemon.butterfree.weight 322
       flavor_text:
         gold: |
           It collects honey
@@ -163,46 +163,44 @@ gold-silver:
           powder on its
           wings enables it
           to collect honey,
-          even in the heav­
+          even in the heav-
           iest of rains.
+      evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
+      evolution_conditions: *red-blue.pokemon.butterfree.evolution_conditions
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
           sprites:
-            - gold-silver/back/butterfree-default.png
             - gold-silver/butterfree-default.png
+            - gold-silver/back/butterfree-default.png
             - gold-silver/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: &gold-silver.pokemon.butterfree.forms.butterfree.footprint butterfree.png
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
           icon: &gold-silver.pokemon.butterfree.forms.butterfree.icon gen2/moth.png
 crystal:
-  name: *gold-silver.name
-  position: *red-blue.position
+  name: *red-blue.name
+  position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
-      evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
-      female_rate: *gold-silver.pokemon.butterfree.female_rate
-      capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
-      hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
-      growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      capture_rate: *red-blue.pokemon.butterfree.capture_rate
       experience: *red-blue.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
-      egg_groups: *gold-silver.pokemon.butterfree.egg_groups
       stats: *gold-silver.pokemon.butterfree.stats
-      evolution_conditions: *red-blue.pokemon.butterfree.evolution_conditions
+      growth_rate: *red-blue.pokemon.butterfree.growth_rate
+      female_rate: *gold-silver.pokemon.butterfree.female_rate
+      hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
+      egg_groups: *gold-silver.pokemon.butterfree.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.butterfree.wild_held_items.gold
+      genus: *red-blue.pokemon.butterfree.genus
+      height: *red-blue.pokemon.butterfree.height
+      weight: *gold-silver.pokemon.butterfree.weight
       flavor_text:
         crystal: |
           It flits from
@@ -211,43 +209,42 @@ crystal:
           It can even
           identify distant
           flowers in bloom.
+      evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
+      evolution_conditions: *red-blue.pokemon.butterfree.evolution_conditions
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
           sprites:
-            - crystal/back/butterfree-default.png
             - crystal/butterfree-default.png
+            - crystal/back/butterfree-default.png
             - crystal/shiny/butterfree-default.png
-            - crystal/animated/butterfree-default.webm
-            - crystal/animated/shiny/butterfree-default.webm
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
           icon: *gold-silver.pokemon.butterfree.forms.butterfree.icon
 ruby-sapphire:
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Butterfree
   position: *red-blue.position
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: &ruby-sapphire.pokemon.butterfree.genus 'Butterfly Pokémon'
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       color: &ruby-sapphire.pokemon.butterfree.color white
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: &ruby-sapphire.pokemon.butterfree.happiness 70
+      baby: &ruby-sapphire.pokemon.butterfree.baby false
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.butterfree.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: &ruby-sapphire.pokemon.butterfree.height 11
+      weight: &ruby-sapphire.pokemon.butterfree.weight 320
       experience: &ruby-sapphire.pokemon.butterfree.experience 178
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -296,7 +293,7 @@ ruby-sapphire:
           blooming over six miles from its nest.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -306,28 +303,28 @@ ruby-sapphire:
             - ruby-sapphire/butterfree-default.png
             - ruby-sapphire/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: &ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint butterfree.png
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
 emerald:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       color: *ruby-sapphire.pokemon.butterfree.color
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -344,7 +341,7 @@ emerald:
           blooming over six miles away.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -355,26 +352,26 @@ emerald:
             - emerald/animated/butterfree-default.webm
             - emerald/animated/shiny/butterfree-default.webm
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -383,35 +380,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.butterfree.evolution_conditions
       forms: &colosseum.pokemon.butterfree.forms
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
           icon: *ruby-sapphire.pokemon.butterfree.forms.butterfree.icon
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *red-blue.numbers
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       habitat: forest
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -432,7 +429,7 @@ firered-leafgreen:
           the air.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -442,32 +439,32 @@ firered-leafgreen:
             - firered-leafgreen/butterfree-default.png
             - firered-leafgreen/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
 diamond-pearl:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       shape: &diamond-pearl.pokemon.butterfree.shape bug-wings
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
       pal_park: &diamond-pearl.pokemon.butterfree.pal_park
         area: forest
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -492,7 +489,7 @@ diamond-pearl:
           have even tiny amounts of pollen.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -506,29 +503,29 @@ diamond-pearl:
             - diamond-pearl/shiny/female/butterfree-default.png
             - diamond-pearl/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
 platinum:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       shape: *diamond-pearl.pokemon.butterfree.shape
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
       pal_park: *diamond-pearl.pokemon.butterfree.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -544,7 +541,7 @@ platinum:
           have even tiny amounts of pollen.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -558,31 +555,31 @@ platinum:
             - platinum/shiny/female/butterfree-default.png
             - platinum/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 26
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       shape: *diamond-pearl.pokemon.butterfree.shape
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
       pal_park: *diamond-pearl.pokemon.butterfree.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -603,7 +600,7 @@ heartgold-soulsilver:
           even in the heaviest of rains.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -633,29 +630,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/female/butterfree-default.png
             - heartgold-soulsilver/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
 black-white:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       color: *ruby-sapphire.pokemon.butterfree.color
       shape: *diamond-pearl.pokemon.butterfree.shape
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -676,7 +673,7 @@ black-white:
           have even tiny amounts of pollen.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -690,29 +687,29 @@ black-white:
             - black-white/shiny/female/butterfree-default.png
             - black-white/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *red-blue.pokemon.butterfree.forms.butterfree.cry
 black-2-white-2:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       color: *ruby-sapphire.pokemon.butterfree.color
       shape: *diamond-pearl.pokemon.butterfree.shape
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -733,28 +730,28 @@ black-2-white-2:
           have even tiny amounts of pollen.
       forms: *colosseum.pokemon.butterfree.forms
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     kalos-central: 25
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       color: *ruby-sapphire.pokemon.butterfree.color
       shape: *diamond-pearl.pokemon.butterfree.shape
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -776,7 +773,7 @@ x-y:
           in rain.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -787,29 +784,29 @@ x-y:
             - x-y/shiny/female/butterfree-default.png
             - x-y/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: &x-y.pokemon.butterfree.forms.butterfree.cry butterfree-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       color: *ruby-sapphire.pokemon.butterfree.color
       shape: *diamond-pearl.pokemon.butterfree.shape
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -828,13 +825,13 @@ omega-ruby-alpha-sapphire:
           from flowers that are blooming over six miles from its nest.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
           icon: *x-y.pokemon.butterfree.forms.butterfree.icon
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *x-y.pokemon.butterfree.forms.butterfree.cry
           sprites:
             - omega-ruby-alpha-sapphire/female/butterfree-default.png
@@ -842,7 +839,7 @@ omega-ruby-alpha-sapphire:
             - omega-ruby-alpha-sapphire/shiny/female/butterfree-default.png
             - omega-ruby-alpha-sapphire/shiny/butterfree-default.png
 sun-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
@@ -851,21 +848,21 @@ sun-moon:
     original-akala: 10
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       color: *ruby-sapphire.pokemon.butterfree.color
       shape: *diamond-pearl.pokemon.butterfree.shape
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -882,7 +879,7 @@ sun-moon:
           fluttering its wings.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -893,10 +890,10 @@ sun-moon:
             - sun-moon/shiny/female/butterfree-default.png
             - sun-moon/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *x-y.pokemon.butterfree.forms.butterfree.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
@@ -905,21 +902,21 @@ ultra-sun-ultra-moon:
     updated-akala: 10
   pokemon:
     butterfree:
-      genus: *gold-silver.pokemon.butterfree.genus
+      genus: *ruby-sapphire.pokemon.butterfree.genus
       evolution_parent: *red-blue.pokemon.butterfree.evolution_parent
       color: *ruby-sapphire.pokemon.butterfree.color
       shape: *diamond-pearl.pokemon.butterfree.shape
       female_rate: *gold-silver.pokemon.butterfree.female_rate
       capture_rate: *red-blue.pokemon.butterfree.capture_rate
-      happiness: *gold-silver.pokemon.butterfree.happiness
-      baby: *gold-silver.pokemon.butterfree.baby
+      happiness: *ruby-sapphire.pokemon.butterfree.happiness
+      baby: *ruby-sapphire.pokemon.butterfree.baby
       hatch_steps: *gold-silver.pokemon.butterfree.hatch_steps
       growth_rate: *red-blue.pokemon.butterfree.growth_rate
-      forms_switchable: *gold-silver.pokemon.butterfree.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.butterfree.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.butterfree.default
-      height: *gold-silver.pokemon.butterfree.height
-      weight: *gold-silver.pokemon.butterfree.weight
+      height: *ruby-sapphire.pokemon.butterfree.height
+      weight: *ruby-sapphire.pokemon.butterfree.weight
       experience: *ruby-sapphire.pokemon.butterfree.experience
       types: *red-blue.pokemon.butterfree.types
       egg_groups: *gold-silver.pokemon.butterfree.egg_groups
@@ -936,7 +933,7 @@ ultra-sun-ultra-moon:
           sprinkles its scales on them to drive them off.
       forms:
         butterfree:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.butterfree.forms.butterfree.form_name
           default: *red-blue.pokemon.butterfree.default
           battle_only: *red-blue.pokemon.butterfree.forms.butterfree.battle_only
@@ -947,5 +944,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/female/butterfree-default.png
             - ultra-sun-ultra-moon/shiny/butterfree-default.png
           art: *red-blue.pokemon.butterfree.forms.butterfree.art
-          footprint: *gold-silver.pokemon.butterfree.forms.butterfree.footprint
+          footprint: *ruby-sapphire.pokemon.butterfree.forms.butterfree.footprint
           cry: *x-y.pokemon.butterfree.forms.butterfree.cry

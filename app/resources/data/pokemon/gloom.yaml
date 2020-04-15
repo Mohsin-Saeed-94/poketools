@@ -30,8 +30,8 @@ red-blue:
           base_value: 85
           effort_change: 85
       growth_rate: &red-blue.pokemon.gloom.growth_rate medium-slow
-      genus: 'WEED Pokémon'
-      height: 7
+      genus: &red-blue.pokemon.gloom.genus 'WEED Pokémon'
+      height: &red-blue.pokemon.gloom.height 7
       weight: 861
       flavor_text:
         red: |
@@ -106,30 +106,19 @@ yellow:
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
           icon: *red-blue.pokemon.gloom.forms.gloom.icon
 gold-silver:
-  name: &gold-silver.name Gloom
-  position: &gold-silver.position 48
+  name: *red-blue.name
+  position: &gold-silver.position 43
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 84
+    original-johto: 83
+    original-johto-abc: 58
   pokemon:
     gloom:
-      genus: &gold-silver.pokemon.gloom.genus 'Weed Pokémon'
-      evolution_parent: *red-blue.pokemon.gloom.evolution_parent
-      female_rate: &gold-silver.pokemon.gloom.female_rate 50
-      capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: &gold-silver.pokemon.gloom.happiness 70
-      baby: &gold-silver.pokemon.gloom.baby false
-      hatch_steps: &gold-silver.pokemon.gloom.hatch_steps 20
-      growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: &gold-silver.pokemon.gloom.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.gloom.default
-      height: &gold-silver.pokemon.gloom.height 8
-      weight: &gold-silver.pokemon.gloom.weight 86
+      capture_rate: *red-blue.pokemon.gloom.capture_rate
       experience: *red-blue.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
-      egg_groups: &gold-silver.pokemon.gloom.egg_groups
-        - plant
       stats: &gold-silver.pokemon.gloom.stats
         hp:
           base_value: 60
@@ -149,7 +138,14 @@ gold-silver:
         special-defense:
           base_value: 75
           effort_change: 85
-      evolution_conditions: *red-blue.pokemon.gloom.evolution_conditions
+      growth_rate: *red-blue.pokemon.gloom.growth_rate
+      female_rate: &gold-silver.pokemon.gloom.female_rate 50
+      hatch_steps: &gold-silver.pokemon.gloom.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.gloom.egg_groups
+        - plant
+      genus: *red-blue.pokemon.gloom.genus
+      height: *red-blue.pokemon.gloom.height
+      weight: &gold-silver.pokemon.gloom.weight 86
       flavor_text:
         gold: |
           What appears to be
@@ -165,9 +161,11 @@ gold-silver:
           sweet, it smells
           too repulsive to
           get very close.
+      evolution_parent: *red-blue.pokemon.gloom.evolution_parent
+      evolution_conditions: *red-blue.pokemon.gloom.evolution_conditions
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -176,33 +174,27 @@ gold-silver:
             - gold-silver/back/gloom-default.png
             - gold-silver/shiny/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: &gold-silver.pokemon.gloom.forms.gloom.footprint gloom.png
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
           icon: &gold-silver.pokemon.gloom.forms.gloom.icon gen2/oddish.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
-      evolution_parent: *red-blue.pokemon.gloom.evolution_parent
-      female_rate: *gold-silver.pokemon.gloom.female_rate
-      capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
-      hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
-      growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
-      weight: *gold-silver.pokemon.gloom.weight
+      capture_rate: *red-blue.pokemon.gloom.capture_rate
       experience: *red-blue.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
-      egg_groups: *gold-silver.pokemon.gloom.egg_groups
       stats: *gold-silver.pokemon.gloom.stats
-      evolution_conditions: *red-blue.pokemon.gloom.evolution_conditions
+      growth_rate: *red-blue.pokemon.gloom.growth_rate
+      female_rate: *gold-silver.pokemon.gloom.female_rate
+      hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
+      egg_groups: *gold-silver.pokemon.gloom.egg_groups
+      genus: *red-blue.pokemon.gloom.genus
+      height: *red-blue.pokemon.gloom.height
+      weight: *gold-silver.pokemon.gloom.weight
       flavor_text:
         crystal: |
           The smell from its
@@ -211,9 +203,11 @@ crystal:
           its petals is so
           bad, it may make
           opponents faint.
+      evolution_parent: *red-blue.pokemon.gloom.evolution_parent
+      evolution_conditions: *red-blue.pokemon.gloom.evolution_conditions
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -221,33 +215,30 @@ crystal:
             - crystal/gloom-default.png
             - crystal/back/gloom-default.png
             - crystal/shiny/gloom-default.png
-            - crystal/animated/shiny/gloom-default.webm
-            - crystal/animated/gloom-default.webm
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
           icon: *gold-silver.pokemon.gloom.forms.gloom.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Gloom
+  position: &ruby-sapphire.position 48
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 89
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: &ruby-sapphire.pokemon.gloom.genus 'Weed Pokémon'
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       color: &ruby-sapphire.pokemon.gloom.color blue
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: &ruby-sapphire.pokemon.gloom.happiness 70
+      baby: &ruby-sapphire.pokemon.gloom.baby false
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.gloom.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: &ruby-sapphire.pokemon.gloom.height 8
       weight: *gold-silver.pokemon.gloom.weight
       experience: &ruby-sapphire.pokemon.gloom.experience 138
       types: *red-blue.pokemon.gloom.types
@@ -295,7 +286,7 @@ ruby-sapphire:
           drools even more of its honey.
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -305,27 +296,27 @@ ruby-sapphire:
             - ruby-sapphire/back/gloom-default.png
             - ruby-sapphire/shiny/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: &ruby-sapphire.pokemon.gloom.forms.gloom.footprint gloom.png
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       color: *ruby-sapphire.pokemon.gloom.color
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -341,7 +332,7 @@ emerald:
           enjoy this overwhelming stink, however.
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -352,25 +343,25 @@ emerald:
             - emerald/animated/shiny/gloom-default.webm
             - emerald/animated/gloom-default.webm
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -380,34 +371,34 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.gloom.evolution_conditions
       forms: &colosseum.pokemon.gloom.forms
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
           icon: *ruby-sapphire.pokemon.gloom.forms.gloom.icon
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       habitat: grassland
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -426,7 +417,7 @@ firered-leafgreen:
           attract prey.
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -436,32 +427,32 @@ firered-leafgreen:
             - firered-leafgreen/back/gloom-default.png
             - firered-leafgreen/shiny/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       shape: &diamond-pearl.pokemon.gloom.shape humanoid
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
       pal_park: &diamond-pearl.pokemon.gloom.pal_park
         area: forest
         rate: 30
         score: 50
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -480,7 +471,7 @@ diamond-pearl:
           noses more than a mile away.
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -494,28 +485,28 @@ diamond-pearl:
             - diamond-pearl/shiny/gloom-default.png
             - diamond-pearl/shiny/female/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       shape: *diamond-pearl.pokemon.gloom.shape
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
       pal_park: *diamond-pearl.pokemon.gloom.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -530,7 +521,7 @@ platinum:
           noses more than a mile away.
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -544,30 +535,30 @@ platinum:
             - platinum/shiny/gloom-default.png
             - platinum/shiny/female/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 84
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       shape: *diamond-pearl.pokemon.gloom.shape
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
       pal_park: *diamond-pearl.pokemon.gloom.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -586,7 +577,7 @@ heartgold-soulsilver:
           too repulsive to get very close.
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -616,28 +607,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/gloom-default.png
             - heartgold-soulsilver/shiny/female/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       color: *ruby-sapphire.pokemon.gloom.color
       shape: *diamond-pearl.pokemon.gloom.shape
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -656,7 +647,7 @@ black-white:
           noses more than a mile away.
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -670,28 +661,28 @@ black-white:
             - black-white/shiny/gloom-default.png
             - black-white/shiny/female/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *red-blue.pokemon.gloom.forms.gloom.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       color: *ruby-sapphire.pokemon.gloom.color
       shape: *diamond-pearl.pokemon.gloom.shape
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -710,27 +701,27 @@ black-2-white-2:
           noses more than a mile away.
       forms: *colosseum.pokemon.gloom.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-central: 106
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       color: *ruby-sapphire.pokemon.gloom.color
       shape: *diamond-pearl.pokemon.gloom.shape
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -749,7 +740,7 @@ x-y:
           atrocious, it can curl noses more than a mile away.
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -760,30 +751,30 @@ x-y:
             - x-y/shiny/gloom-default.png
             - x-y/shiny/female/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: &x-y.pokemon.gloom.forms.gloom.cry gloom-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 92
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       color: *ruby-sapphire.pokemon.gloom.color
       shape: *diamond-pearl.pokemon.gloom.shape
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -804,13 +795,13 @@ omega-ruby-alpha-sapphire:
           noxious fumes and then drools even more of its honey.
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
           icon: *x-y.pokemon.gloom.forms.gloom.icon
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *x-y.pokemon.gloom.forms.gloom.cry
           sprites:
             - omega-ruby-alpha-sapphire/gloom-default.png
@@ -818,25 +809,25 @@ omega-ruby-alpha-sapphire:
             - omega-ruby-alpha-sapphire/shiny/gloom-default.png
             - omega-ruby-alpha-sapphire/shiny/female/gloom-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       color: *ruby-sapphire.pokemon.gloom.color
       shape: *diamond-pearl.pokemon.gloom.shape
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -850,7 +841,7 @@ sun-moon:
       evolution_conditions: *red-blue.pokemon.gloom.evolution_conditions
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -861,28 +852,28 @@ sun-moon:
             - sun-moon/shiny/gloom-default.png
             - sun-moon/shiny/female/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *x-y.pokemon.gloom.forms.gloom.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     gloom:
-      genus: *gold-silver.pokemon.gloom.genus
+      genus: *ruby-sapphire.pokemon.gloom.genus
       evolution_parent: *red-blue.pokemon.gloom.evolution_parent
       color: *ruby-sapphire.pokemon.gloom.color
       shape: *diamond-pearl.pokemon.gloom.shape
       female_rate: *gold-silver.pokemon.gloom.female_rate
       capture_rate: *red-blue.pokemon.gloom.capture_rate
-      happiness: *gold-silver.pokemon.gloom.happiness
-      baby: *gold-silver.pokemon.gloom.baby
+      happiness: *ruby-sapphire.pokemon.gloom.happiness
+      baby: *ruby-sapphire.pokemon.gloom.baby
       hatch_steps: *gold-silver.pokemon.gloom.hatch_steps
       growth_rate: *red-blue.pokemon.gloom.growth_rate
-      forms_switchable: *gold-silver.pokemon.gloom.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.gloom.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.gloom.default
-      height: *gold-silver.pokemon.gloom.height
+      height: *ruby-sapphire.pokemon.gloom.height
       weight: *gold-silver.pokemon.gloom.weight
       experience: *ruby-sapphire.pokemon.gloom.experience
       types: *red-blue.pokemon.gloom.types
@@ -895,7 +886,7 @@ ultra-sun-ultra-moon:
       evolution_conditions: *red-blue.pokemon.gloom.evolution_conditions
       forms:
         gloom:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.gloom.forms.gloom.form_name
           default: *red-blue.pokemon.gloom.default
           battle_only: *red-blue.pokemon.gloom.forms.gloom.battle_only
@@ -906,5 +897,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/gloom-default.png
             - ultra-sun-ultra-moon/shiny/female/gloom-default.png
           art: *red-blue.pokemon.gloom.forms.gloom.art
-          footprint: *gold-silver.pokemon.gloom.forms.gloom.footprint
+          footprint: *ruby-sapphire.pokemon.gloom.forms.gloom.footprint
           cry: *x-y.pokemon.gloom.forms.gloom.cry

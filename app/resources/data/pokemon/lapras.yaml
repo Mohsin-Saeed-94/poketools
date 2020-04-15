@@ -30,8 +30,8 @@ red-blue:
           base_value: 95
           effort_change: 95
       growth_rate: &red-blue.pokemon.lapras.growth_rate slow
-      genus: 'TRANSPORT Pokémon'
-      height: 24
+      genus: &red-blue.pokemon.lapras.genus 'TRANSPORT Pokémon'
+      height: &red-blue.pokemon.lapras.height 24
       weight: 21999
       flavor_text:
         red: |
@@ -100,30 +100,19 @@ yellow:
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
           icon: *red-blue.pokemon.lapras.forms.lapras.icon
 gold-silver:
-  name: &gold-silver.name Lapras
-  position: &gold-silver.position 155
+  name: *red-blue.name
+  position: &gold-silver.position 130
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 219
+    original-johto: 218
+    original-johto-abc: 96
   pokemon:
     lapras:
-      genus: &gold-silver.pokemon.lapras.genus 'Transport Pokémon'
-      female_rate: &gold-silver.pokemon.lapras.female_rate 50
-      capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: &gold-silver.pokemon.lapras.happiness 70
-      baby: &gold-silver.pokemon.lapras.baby false
-      hatch_steps: &gold-silver.pokemon.lapras.hatch_steps 40
-      growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: &gold-silver.pokemon.lapras.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.lapras.default
-      height: &gold-silver.pokemon.lapras.height 25
-      weight: &gold-silver.pokemon.lapras.weight 2200
+      capture_rate: *red-blue.pokemon.lapras.capture_rate
       experience: *red-blue.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
-      egg_groups: &gold-silver.pokemon.lapras.egg_groups
-        - monster
-        - water1
       stats: &gold-silver.pokemon.lapras.stats
         hp:
           base_value: 130
@@ -143,13 +132,22 @@ gold-silver:
         special-defense:
           base_value: 95
           effort_change: 85
+      growth_rate: *red-blue.pokemon.lapras.growth_rate
+      female_rate: &gold-silver.pokemon.lapras.female_rate 50
+      hatch_steps: &gold-silver.pokemon.lapras.hatch_steps 40
+      egg_groups: &gold-silver.pokemon.lapras.egg_groups
+        - monster
+        - water1
+      genus: *red-blue.pokemon.lapras.genus
+      height: *red-blue.pokemon.lapras.height
+      weight: &gold-silver.pokemon.lapras.weight 2199
       flavor_text:
         gold: |
           They have gentle
           hearts. Because
           they rarely fight,
           many have been
-          caught. Their num­
+          caught. Their num-
           ber has dwindled.
         silver: |
           It ferries people
@@ -160,7 +158,7 @@ gold-silver:
           good mood.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -169,42 +167,38 @@ gold-silver:
             - gold-silver/back/lapras-default.png
             - gold-silver/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: &gold-silver.pokemon.lapras.forms.lapras.footprint lapras.png
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
           icon: &gold-silver.pokemon.lapras.forms.lapras.icon gen2/lapras.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
-      female_rate: *gold-silver.pokemon.lapras.female_rate
-      capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
-      hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
-      growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      capture_rate: *red-blue.pokemon.lapras.capture_rate
       experience: *red-blue.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
-      egg_groups: *gold-silver.pokemon.lapras.egg_groups
       stats: *gold-silver.pokemon.lapras.stats
+      growth_rate: *red-blue.pokemon.lapras.growth_rate
+      female_rate: *gold-silver.pokemon.lapras.female_rate
+      hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
+      egg_groups: *gold-silver.pokemon.lapras.egg_groups
+      genus: *red-blue.pokemon.lapras.genus
+      height: *red-blue.pokemon.lapras.height
+      weight: *gold-silver.pokemon.lapras.weight
       flavor_text:
         crystal: |
           This gentle
-          POKéMON loves to
+          #MON loves to
           give people rides
-          and provides a ve­
+          and provides a ve-
           ry comfortable way
           to get around.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -212,32 +206,29 @@ crystal:
             - crystal/lapras-default.png
             - crystal/back/lapras-default.png
             - crystal/shiny/lapras-default.png
-            - crystal/animated/lapras-default.webm
-            - crystal/animated/shiny/lapras-default.webm
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
           icon: *gold-silver.pokemon.lapras.forms.lapras.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Lapras
+  position: &ruby-sapphire.position 155
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: &ruby-sapphire.pokemon.lapras.genus 'Transport Pokémon'
       color: &ruby-sapphire.pokemon.lapras.color blue
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: &ruby-sapphire.pokemon.lapras.happiness 70
+      baby: &ruby-sapphire.pokemon.lapras.baby false
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.lapras.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: &ruby-sapphire.pokemon.lapras.height 25
+      weight: &ruby-sapphire.pokemon.lapras.weight 2200
       experience: &ruby-sapphire.pokemon.lapras.experience 187
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -282,7 +273,7 @@ ruby-sapphire:
           still remain.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -292,27 +283,27 @@ ruby-sapphire:
             - ruby-sapphire/back/lapras-default.png
             - ruby-sapphire/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: &ruby-sapphire.pokemon.lapras.forms.lapras.footprint lapras.png
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       color: *ruby-sapphire.pokemon.lapras.color
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -326,7 +317,7 @@ emerald:
           what few others of its kind still remain.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -337,25 +328,25 @@ emerald:
             - emerald/animated/lapras-default.webm
             - emerald/animated/shiny/lapras-default.webm
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -363,34 +354,34 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.lapras.abilities
       forms: &colosseum.pokemon.lapras.forms
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
           icon: *ruby-sapphire.pokemon.lapras.forms.lapras.icon
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       habitat: sea
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -407,7 +398,7 @@ firered-leafgreen:
           on its back.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -417,31 +408,31 @@ firered-leafgreen:
             - firered-leafgreen/back/lapras-default.png
             - firered-leafgreen/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       shape: &diamond-pearl.pokemon.lapras.shape fish
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
       pal_park: &diamond-pearl.pokemon.lapras.pal_park
         area: sea
         rate: 3
         score: 90
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -463,7 +454,7 @@ diamond-pearl:
           It understands human speech.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -474,28 +465,28 @@ diamond-pearl:
             - diamond-pearl/back/shiny/lapras-default.png
             - diamond-pearl/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       shape: *diamond-pearl.pokemon.lapras.shape
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
       pal_park: *diamond-pearl.pokemon.lapras.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -508,7 +499,7 @@ platinum:
           It understands human speech.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -519,30 +510,30 @@ platinum:
             - platinum/back/shiny/lapras-default.png
             - platinum/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 224
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       shape: *diamond-pearl.pokemon.lapras.shape
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
       pal_park: *diamond-pearl.pokemon.lapras.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -559,7 +550,7 @@ heartgold-soulsilver:
           cry if it is in a good mood.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -586,28 +577,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/lapras-default.png
             - heartgold-soulsilver/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       color: *ruby-sapphire.pokemon.lapras.color
       shape: *diamond-pearl.pokemon.lapras.shape
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -624,7 +615,7 @@ black-white:
           It understands human speech.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -635,30 +626,30 @@ black-white:
             - black-white/back/shiny/lapras-default.png
             - black-white/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *red-blue.pokemon.lapras.forms.lapras.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-unova: 242
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       color: *ruby-sapphire.pokemon.lapras.color
       shape: *diamond-pearl.pokemon.lapras.shape
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -675,27 +666,27 @@ black-2-white-2:
           in the sea with people on its back.
       forms: *colosseum.pokemon.lapras.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-coastal: 150
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       color: *ruby-sapphire.pokemon.lapras.color
       shape: *diamond-pearl.pokemon.lapras.shape
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -716,7 +707,7 @@ x-y:
           speech. It likes to ferry people on its back.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -725,28 +716,28 @@ x-y:
             - x-y/lapras-default.png
             - x-y/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: &x-y.pokemon.lapras.forms.lapras.cry lapras-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       color: *ruby-sapphire.pokemon.lapras.color
       shape: *diamond-pearl.pokemon.lapras.shape
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -764,40 +755,40 @@ omega-ruby-alpha-sapphire:
           it seeks what few others of its kind still remain.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
           icon: *x-y.pokemon.lapras.forms.lapras.icon
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *x-y.pokemon.lapras.forms.lapras.cry
           sprites:
             - omega-ruby-alpha-sapphire/lapras-default.png
             - omega-ruby-alpha-sapphire/shiny/lapras-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 268
     original-poni: 83
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       color: *ruby-sapphire.pokemon.lapras.color
       shape: *diamond-pearl.pokemon.lapras.shape
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -814,7 +805,7 @@ sun-moon:
           there is now an overabundance of them.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -823,31 +814,31 @@ sun-moon:
             - sun-moon/lapras-default.png
             - sun-moon/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *x-y.pokemon.lapras.forms.lapras.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 353
     updated-poni: 100
   pokemon:
     lapras:
-      genus: *gold-silver.pokemon.lapras.genus
+      genus: *ruby-sapphire.pokemon.lapras.genus
       color: *ruby-sapphire.pokemon.lapras.color
       shape: *diamond-pearl.pokemon.lapras.shape
       female_rate: *gold-silver.pokemon.lapras.female_rate
       capture_rate: *red-blue.pokemon.lapras.capture_rate
-      happiness: *gold-silver.pokemon.lapras.happiness
-      baby: *gold-silver.pokemon.lapras.baby
+      happiness: *ruby-sapphire.pokemon.lapras.happiness
+      baby: *ruby-sapphire.pokemon.lapras.baby
       hatch_steps: *gold-silver.pokemon.lapras.hatch_steps
       growth_rate: *red-blue.pokemon.lapras.growth_rate
-      forms_switchable: *gold-silver.pokemon.lapras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.lapras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.lapras.default
-      height: *gold-silver.pokemon.lapras.height
-      weight: *gold-silver.pokemon.lapras.weight
+      height: *ruby-sapphire.pokemon.lapras.height
+      weight: *ruby-sapphire.pokemon.lapras.weight
       experience: *ruby-sapphire.pokemon.lapras.experience
       types: *red-blue.pokemon.lapras.types
       egg_groups: *gold-silver.pokemon.lapras.egg_groups
@@ -863,7 +854,7 @@ ultra-sun-ultra-moon:
           of transportation over water.
       forms:
         lapras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.lapras.forms.lapras.form_name
           default: *red-blue.pokemon.lapras.default
           battle_only: *red-blue.pokemon.lapras.forms.lapras.battle_only
@@ -872,5 +863,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/lapras-default.png
             - ultra-sun-ultra-moon/shiny/lapras-default.png
           art: *red-blue.pokemon.lapras.forms.lapras.art
-          footprint: *gold-silver.pokemon.lapras.forms.lapras.footprint
+          footprint: *ruby-sapphire.pokemon.lapras.forms.lapras.footprint
           cry: *x-y.pokemon.lapras.forms.lapras.cry

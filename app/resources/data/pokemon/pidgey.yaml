@@ -30,7 +30,7 @@ red-blue:
           base_value: 35
           effort_change: 35
       growth_rate: &red-blue.pokemon.pidgey.growth_rate medium-slow
-      genus: 'TINY BIRD Pokémon'
+      genus: &red-blue.pokemon.pidgey.genus 'TINY BIRD Pokémon'
       height: &red-blue.pokemon.pidgey.height 3
       weight: 181
       flavor_text:
@@ -100,29 +100,19 @@ yellow:
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
           icon: *red-blue.pokemon.pidgey.forms.pidgey.icon
 gold-silver:
-  name: &gold-silver.name Pidgey
-  position: *red-blue.position
+  name: *red-blue.name
+  position: &gold-silver.position 15
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 10
+    original-johto: 9
+    original-johto-abc: 249
   pokemon:
     pidgey:
-      genus: &gold-silver.pokemon.pidgey.genus 'Tiny Bird Pokémon'
-      female_rate: &gold-silver.pokemon.pidgey.female_rate 50
-      capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: &gold-silver.pokemon.pidgey.happiness 70
-      baby: &gold-silver.pokemon.pidgey.baby false
-      hatch_steps: &gold-silver.pokemon.pidgey.hatch_steps 15
-      growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: &gold-silver.pokemon.pidgey.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.pidgey.default
-      height: *red-blue.pokemon.pidgey.height
-      weight: &gold-silver.pokemon.pidgey.weight 18
+      capture_rate: *red-blue.pokemon.pidgey.capture_rate
       experience: *red-blue.pokemon.pidgey.experience
       types: *red-blue.pokemon.pidgey.types
-      egg_groups: &gold-silver.pokemon.pidgey.egg_groups
-        - flying
       stats: &gold-silver.pokemon.pidgey.stats
         hp:
           base_value: 40
@@ -142,12 +132,20 @@ gold-silver:
         special-defense:
           base_value: 35
           effort_change: 35
+      growth_rate: *red-blue.pokemon.pidgey.growth_rate
+      female_rate: &gold-silver.pokemon.pidgey.female_rate 50
+      hatch_steps: &gold-silver.pokemon.pidgey.hatch_steps 15
+      egg_groups: &gold-silver.pokemon.pidgey.egg_groups
+        - flying
+      genus: *red-blue.pokemon.pidgey.genus
+      height: *red-blue.pokemon.pidgey.height
+      weight: &gold-silver.pokemon.pidgey.weight 18
       flavor_text:
         gold: |
           It usually hides
-          in tall grass. Be­
+          in tall grass. Be-
           cause it dislikes
-          fighting, it pro­
+          fighting, it pro-
           tects itself by
           kicking up sand.
         silver: |
@@ -155,44 +153,40 @@ gold-silver:
           areas and forests,
           it is very docile
           and will chase off
-          enemies by flap­
+          enemies by flap-
           ping up sand.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
           sprites:
-            - gold-silver/back/pidgey-default.png
             - gold-silver/pidgey-default.png
+            - gold-silver/back/pidgey-default.png
             - gold-silver/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: &gold-silver.pokemon.pidgey.forms.pidgey.footprint pidgey.png
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
           icon: &gold-silver.pokemon.pidgey.forms.pidgey.icon gen2/bird.png
 crystal:
-  name: *gold-silver.name
-  position: *red-blue.position
+  name: *red-blue.name
+  position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
-      female_rate: *gold-silver.pokemon.pidgey.female_rate
-      capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
-      hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
-      growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.pidgey.default
-      height: *red-blue.pokemon.pidgey.height
-      weight: *gold-silver.pokemon.pidgey.weight
+      capture_rate: *red-blue.pokemon.pidgey.capture_rate
       experience: *red-blue.pokemon.pidgey.experience
       types: *red-blue.pokemon.pidgey.types
-      egg_groups: *gold-silver.pokemon.pidgey.egg_groups
       stats: *gold-silver.pokemon.pidgey.stats
+      growth_rate: *red-blue.pokemon.pidgey.growth_rate
+      female_rate: *gold-silver.pokemon.pidgey.female_rate
+      hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
+      egg_groups: *gold-silver.pokemon.pidgey.egg_groups
+      genus: *red-blue.pokemon.pidgey.genus
+      height: *red-blue.pokemon.pidgey.height
+      weight: *gold-silver.pokemon.pidgey.weight
       flavor_text:
         crystal: |
           It rapidly flaps
@@ -203,37 +197,34 @@ crystal:
           out into the open.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
           sprites:
-            - crystal/back/pidgey-default.png
             - crystal/pidgey-default.png
+            - crystal/back/pidgey-default.png
             - crystal/shiny/pidgey-default.png
-            - crystal/animated/pidgey-default.webm
-            - crystal/animated/shiny/pidgey-default.webm
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
           icon: *gold-silver.pokemon.pidgey.forms.pidgey.icon
 ruby-sapphire:
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Pidgey
   position: *red-blue.position
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: &ruby-sapphire.pokemon.pidgey.genus 'Tiny Bird Pokémon'
       color: &ruby-sapphire.pokemon.pidgey.color brown
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: &ruby-sapphire.pokemon.pidgey.happiness 70
+      baby: &ruby-sapphire.pokemon.pidgey.baby false
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.pidgey.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -278,7 +269,7 @@ ruby-sapphire:
           removed from its familiar surroundings.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -288,24 +279,24 @@ ruby-sapphire:
             - ruby-sapphire/pidgey-default.png
             - ruby-sapphire/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: &ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint pidgey.png
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
 emerald:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       color: *ruby-sapphire.pokemon.pidgey.color
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -322,7 +313,7 @@ emerald:
           from its familiar surroundings.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -333,22 +324,22 @@ emerald:
             - emerald/animated/pidgey-default.webm
             - emerald/animated/shiny/pidgey-default.webm
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -359,31 +350,31 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.pidgey.abilities
       forms: &colosseum.pokemon.pidgey.forms
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
           icon: *ruby-sapphire.pokemon.pidgey.forms.pidgey.icon
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *red-blue.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       habitat: forest
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -403,7 +394,7 @@ firered-leafgreen:
           up blinding sand.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -413,28 +404,28 @@ firered-leafgreen:
             - firered-leafgreen/pidgey-default.png
             - firered-leafgreen/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
 diamond-pearl:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       shape: &diamond-pearl.pokemon.pidgey.shape wings
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
       pal_park: &diamond-pearl.pokemon.pidgey.pal_park
         area: field
         rate: 50
         score: 30
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -458,7 +449,7 @@ diamond-pearl:
           it can ferociously strike back.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -469,25 +460,25 @@ diamond-pearl:
             - diamond-pearl/pidgey-default.png
             - diamond-pearl/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
 platinum:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       shape: *diamond-pearl.pokemon.pidgey.shape
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
       pal_park: *diamond-pearl.pokemon.pidgey.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -503,7 +494,7 @@ platinum:
           it can ferociously strike back.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -514,27 +505,27 @@ platinum:
             - platinum/pidgey-default.png
             - platinum/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 10
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       shape: *diamond-pearl.pokemon.pidgey.shape
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
       pal_park: *diamond-pearl.pokemon.pidgey.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -554,7 +545,7 @@ heartgold-soulsilver:
           enemies by flapping up sand.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -581,25 +572,25 @@ heartgold-soulsilver:
             - heartgold-soulsilver/pidgey-default.png
             - heartgold-soulsilver/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
 black-white:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       color: *ruby-sapphire.pokemon.pidgey.color
       shape: *diamond-pearl.pokemon.pidgey.shape
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -624,7 +615,7 @@ black-white:
           it can ferociously strike back.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -635,25 +626,25 @@ black-white:
             - black-white/pidgey-default.png
             - black-white/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *red-blue.pokemon.pidgey.forms.pidgey.cry
 black-2-white-2:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       color: *ruby-sapphire.pokemon.pidgey.color
       shape: *diamond-pearl.pokemon.pidgey.shape
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -673,24 +664,24 @@ black-2-white-2:
           it can ferociously strike back.
       forms: *colosseum.pokemon.pidgey.forms
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     kalos-central: 17
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       color: *ruby-sapphire.pokemon.pidgey.color
       shape: *diamond-pearl.pokemon.pidgey.shape
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -709,7 +700,7 @@ x-y:
           If disturbed, however, it can ferociously strike back.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -718,25 +709,25 @@ x-y:
             - x-y/pidgey-default.png
             - x-y/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: &x-y.pokemon.pidgey.forms.pidgey.cry pidgey-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       color: *ruby-sapphire.pokemon.pidgey.color
       shape: *diamond-pearl.pokemon.pidgey.shape
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -757,34 +748,34 @@ omega-ruby-alpha-sapphire:
           however far it may be removed from its familiar surroundings.
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
           icon: *x-y.pokemon.pidgey.forms.pidgey.icon
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *x-y.pokemon.pidgey.forms.pidgey.cry
           sprites:
             - omega-ruby-alpha-sapphire/pidgey-default.png
             - omega-ruby-alpha-sapphire/shiny/pidgey-default.png
 sun-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       color: *ruby-sapphire.pokemon.pidgey.color
       shape: *diamond-pearl.pokemon.pidgey.shape
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -796,7 +787,7 @@ sun-moon:
       abilities: *black-white.pokemon.pidgey.abilities
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -805,25 +796,25 @@ sun-moon:
             - sun-moon/pidgey-default.png
             - sun-moon/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *x-y.pokemon.pidgey.forms.pidgey.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     pidgey:
-      genus: *gold-silver.pokemon.pidgey.genus
+      genus: *ruby-sapphire.pokemon.pidgey.genus
       color: *ruby-sapphire.pokemon.pidgey.color
       shape: *diamond-pearl.pokemon.pidgey.shape
       female_rate: *gold-silver.pokemon.pidgey.female_rate
       capture_rate: *red-blue.pokemon.pidgey.capture_rate
-      happiness: *gold-silver.pokemon.pidgey.happiness
-      baby: *gold-silver.pokemon.pidgey.baby
+      happiness: *ruby-sapphire.pokemon.pidgey.happiness
+      baby: *ruby-sapphire.pokemon.pidgey.baby
       hatch_steps: *gold-silver.pokemon.pidgey.hatch_steps
       growth_rate: *red-blue.pokemon.pidgey.growth_rate
-      forms_switchable: *gold-silver.pokemon.pidgey.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pidgey.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pidgey.default
       height: *red-blue.pokemon.pidgey.height
       weight: *gold-silver.pokemon.pidgey.weight
@@ -835,7 +826,7 @@ ultra-sun-ultra-moon:
       abilities: *black-white.pokemon.pidgey.abilities
       forms:
         pidgey:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pidgey.forms.pidgey.form_name
           default: *red-blue.pokemon.pidgey.default
           battle_only: *red-blue.pokemon.pidgey.forms.pidgey.battle_only
@@ -844,5 +835,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/pidgey-default.png
             - ultra-sun-ultra-moon/shiny/pidgey-default.png
           art: *red-blue.pokemon.pidgey.forms.pidgey.art
-          footprint: *gold-silver.pokemon.pidgey.forms.pidgey.footprint
+          footprint: *ruby-sapphire.pokemon.pidgey.forms.pidgey.footprint
           cry: *x-y.pokemon.pidgey.forms.pidgey.cry

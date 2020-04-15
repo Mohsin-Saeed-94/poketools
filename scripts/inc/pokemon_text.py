@@ -355,6 +355,9 @@ class Gen2Text(codecs.Codec):
         0xFE: "8",
         0xFF: "9",
     }
+    replacements = {
+        '#MON': 'POKéMON'
+    }
 
     def decode(self, binary: bytes, errors='ignore'):
         out = []
@@ -365,6 +368,8 @@ class Gen2Text(codecs.Codec):
                 out.append(self._decode_table.get(byte, ' '))
 
         text = ''.join(out)
+        for find, replacement in self.replacements.items():
+            text.replace(find, replacement)
 
         return text, len(binary)
 
@@ -377,6 +382,11 @@ class Gen2Text(codecs.Codec):
         while len(text) > 0:
             check = text
             while len(check) > 0:
+                if check == ' ':
+                    # Spaces are always this value
+                    out.append(0x7F)
+                    break
+
                 val = _findval(self._decode_table, check)
                 if val:
                     out.append(val)

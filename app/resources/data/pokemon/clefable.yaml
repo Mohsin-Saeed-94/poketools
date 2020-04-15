@@ -29,8 +29,8 @@ red-blue:
           base_value: 85
           effort_change: 85
       growth_rate: &red-blue.pokemon.clefable.growth_rate fast
-      genus: 'FAIRY Pokémon'
-      height: 12
+      genus: &red-blue.pokemon.clefable.genus 'FAIRY Pokémon'
+      height: &red-blue.pokemon.clefable.height 12
       weight: 3991
       flavor_text:
         red: |
@@ -105,30 +105,19 @@ yellow:
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
           icon: *red-blue.pokemon.clefable.forms.clefable.icon
 gold-silver:
-  name: &gold-silver.name Clefable
-  position: &gold-silver.position 38
+  name: *red-blue.name
+  position: &gold-silver.position 35
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 42
+    original-johto: 41
+    original-johto-abc: 15
   pokemon:
     clefable:
-      genus: &gold-silver.pokemon.clefable.genus 'Fairy Pokémon'
-      evolution_parent: *red-blue.pokemon.clefable.evolution_parent
-      female_rate: &gold-silver.pokemon.clefable.female_rate 75
-      capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: &gold-silver.pokemon.clefable.happiness 140
-      baby: &gold-silver.pokemon.clefable.baby false
-      hatch_steps: &gold-silver.pokemon.clefable.hatch_steps 10
-      growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: &gold-silver.pokemon.clefable.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.clefable.default
-      height: &gold-silver.pokemon.clefable.height 13
-      weight: &gold-silver.pokemon.clefable.weight 400
+      capture_rate: *red-blue.pokemon.clefable.capture_rate
       experience: *red-blue.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
-      egg_groups: &gold-silver.pokemon.clefable.egg_groups
-        - fairy
       stats: &gold-silver.pokemon.clefable.stats
         hp:
           base_value: 95
@@ -148,7 +137,19 @@ gold-silver:
         special-defense:
           base_value: 90
           effort_change: 85
-      evolution_conditions: *red-blue.pokemon.clefable.evolution_conditions
+      growth_rate: *red-blue.pokemon.clefable.growth_rate
+      female_rate: &gold-silver.pokemon.clefable.female_rate 75
+      hatch_steps: &gold-silver.pokemon.clefable.hatch_steps 10
+      egg_groups: &gold-silver.pokemon.clefable.egg_groups
+        - fairy
+      wild_held_items:
+        gold: &gold-silver.pokemon.clefable.wild_held_items.gold
+          mysteryberry: 23
+          moon-stone: 2
+        silver: *gold-silver.pokemon.clefable.wild_held_items.gold
+      genus: *red-blue.pokemon.clefable.genus
+      height: *red-blue.pokemon.clefable.height
+      weight: &gold-silver.pokemon.clefable.weight 399
       flavor_text:
         gold: |
           With its acute
@@ -159,49 +160,47 @@ gold-silver:
           quiet places.
         silver: |
           Its very sensitive
-          ears lets it dis­
+          ears lets it dis-
           tinguish distant
-          sounds. As a re­
+          sounds. As a re-
           sult, it prefers
           quiet places.
+      evolution_parent: *red-blue.pokemon.clefable.evolution_parent
+      evolution_conditions: *red-blue.pokemon.clefable.evolution_conditions
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
           sprites:
+            - gold-silver/clefable-default.png
             - gold-silver/back/clefable-default.png
             - gold-silver/shiny/clefable-default.png
-            - gold-silver/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: &gold-silver.pokemon.clefable.forms.clefable.footprint clefable.png
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
           icon: &gold-silver.pokemon.clefable.forms.clefable.icon gen2/clefairy.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
-      evolution_parent: *red-blue.pokemon.clefable.evolution_parent
-      female_rate: *gold-silver.pokemon.clefable.female_rate
-      capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
-      hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
-      growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      capture_rate: *red-blue.pokemon.clefable.capture_rate
       experience: *red-blue.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
-      egg_groups: *gold-silver.pokemon.clefable.egg_groups
       stats: *gold-silver.pokemon.clefable.stats
-      evolution_conditions: *red-blue.pokemon.clefable.evolution_conditions
+      growth_rate: *red-blue.pokemon.clefable.growth_rate
+      female_rate: *gold-silver.pokemon.clefable.female_rate
+      hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
+      egg_groups: *gold-silver.pokemon.clefable.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.clefable.wild_held_items.gold
+      genus: *red-blue.pokemon.clefable.genus
+      height: *red-blue.pokemon.clefable.height
+      weight: *gold-silver.pokemon.clefable.weight
       flavor_text:
         crystal: |
           Said to live in
@@ -210,43 +209,42 @@ crystal:
           type of fairy has
           a strong aversion
           to being seen.
+      evolution_parent: *red-blue.pokemon.clefable.evolution_parent
+      evolution_conditions: *red-blue.pokemon.clefable.evolution_conditions
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
           sprites:
+            - crystal/clefable-default.png
             - crystal/back/clefable-default.png
             - crystal/shiny/clefable-default.png
-            - crystal/animated/clefable-default.webm
-            - crystal/animated/shiny/clefable-default.webm
-            - crystal/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
           icon: *gold-silver.pokemon.clefable.forms.clefable.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Clefable
+  position: &ruby-sapphire.position 38
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: &ruby-sapphire.pokemon.clefable.genus 'Fairy Pokémon'
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       color: &ruby-sapphire.pokemon.clefable.color pink
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: &ruby-sapphire.pokemon.clefable.happiness 140
+      baby: &ruby-sapphire.pokemon.clefable.baby false
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.clefable.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: &ruby-sapphire.pokemon.clefable.height 13
+      weight: &ruby-sapphire.pokemon.clefable.weight 400
       experience: &ruby-sapphire.pokemon.clefable.experience 217
       types: *red-blue.pokemon.clefable.types
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -294,7 +292,7 @@ ruby-sapphire:
           quiet, moonlit nights.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -304,28 +302,28 @@ ruby-sapphire:
             - ruby-sapphire/shiny/clefable-default.png
             - ruby-sapphire/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: &ruby-sapphire.pokemon.clefable.forms.clefable.footprint clefable.png
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       color: *ruby-sapphire.pokemon.clefable.color
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -342,7 +340,7 @@ emerald:
           moonlit nights, it strolls on lakes.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -353,26 +351,26 @@ emerald:
             - emerald/animated/shiny/clefable-default.webm
             - emerald/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -381,35 +379,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.clefable.evolution_conditions
       forms: &colosseum.pokemon.clefable.forms
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
           icon: *ruby-sapphire.pokemon.clefable.forms.clefable.icon
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       habitat: mountain
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -431,7 +429,7 @@ firered-leafgreen:
           people.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -441,34 +439,34 @@ firered-leafgreen:
             - firered-leafgreen/shiny/clefable-default.png
             - firered-leafgreen/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-sinnoh: 101
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       shape: &diamond-pearl.pokemon.clefable.shape upright
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
       pal_park: &diamond-pearl.pokemon.clefable.pal_park
         area: mountain
         rate: 3
         score: 90
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -496,7 +494,7 @@ diamond-pearl:
           away. It lives on quiet mountains.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -507,31 +505,31 @@ diamond-pearl:
             - diamond-pearl/shiny/clefable-default.png
             - diamond-pearl/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 101
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       shape: *diamond-pearl.pokemon.clefable.shape
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
       pal_park: *diamond-pearl.pokemon.clefable.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -547,7 +545,7 @@ platinum:
           a pin drop over half a mile away.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -558,31 +556,31 @@ platinum:
             - platinum/shiny/clefable-default.png
             - platinum/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 42
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       shape: *diamond-pearl.pokemon.clefable.shape
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
       pal_park: *diamond-pearl.pokemon.clefable.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -603,7 +601,7 @@ heartgold-soulsilver:
           result, it prefers quiet places.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -630,29 +628,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/clefable-default.png
             - heartgold-soulsilver/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       color: *ruby-sapphire.pokemon.clefable.color
       shape: *diamond-pearl.pokemon.clefable.shape
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -676,7 +674,7 @@ black-white:
           a pin drop over half a mile away.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -687,31 +685,31 @@ black-white:
             - black-white/shiny/clefable-default.png
             - black-white/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *red-blue.pokemon.clefable.forms.clefable.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-unova: 90
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       color: *ruby-sapphire.pokemon.clefable.color
       shape: *diamond-pearl.pokemon.clefable.shape
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *red-blue.pokemon.clefable.types
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -732,26 +730,26 @@ black-2-white-2:
           so they’re usually found in quiet places.
       forms: *colosseum.pokemon.clefable.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       color: *ruby-sapphire.pokemon.clefable.color
       shape: *diamond-pearl.pokemon.clefable.shape
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *gold-silver.pokemon.clefable.egg_groups
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -771,7 +769,7 @@ x-y:
           and hide the moment it senses people.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -780,29 +778,29 @@ x-y:
             - x-y/shiny/clefable-default.png
             - x-y/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: &x-y.pokemon.clefable.forms.clefable.cry clefable-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       color: *ruby-sapphire.pokemon.clefable.color
       shape: *diamond-pearl.pokemon.clefable.shape
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *gold-silver.pokemon.clefable.egg_groups
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -821,41 +819,41 @@ omega-ruby-alpha-sapphire:
           It is known to take strolls on lakes on quiet, moonlit nights.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
           icon: *x-y.pokemon.clefable.forms.clefable.icon
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *x-y.pokemon.clefable.forms.clefable.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/clefable-default.png
             - omega-ruby-alpha-sapphire/clefable-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 212
     original-ulaula: 84
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       color: *ruby-sapphire.pokemon.clefable.color
       shape: *diamond-pearl.pokemon.clefable.shape
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *gold-silver.pokemon.clefable.egg_groups
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -872,7 +870,7 @@ sun-moon:
           happy marriage.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -881,32 +879,32 @@ sun-moon:
             - sun-moon/shiny/clefable-default.png
             - sun-moon/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *x-y.pokemon.clefable.forms.clefable.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 274
     updated-ulaula: 95
   pokemon:
     clefable:
-      genus: *gold-silver.pokemon.clefable.genus
+      genus: *ruby-sapphire.pokemon.clefable.genus
       evolution_parent: *red-blue.pokemon.clefable.evolution_parent
       color: *ruby-sapphire.pokemon.clefable.color
       shape: *diamond-pearl.pokemon.clefable.shape
       female_rate: *gold-silver.pokemon.clefable.female_rate
       capture_rate: *red-blue.pokemon.clefable.capture_rate
-      happiness: *gold-silver.pokemon.clefable.happiness
-      baby: *gold-silver.pokemon.clefable.baby
+      happiness: *ruby-sapphire.pokemon.clefable.happiness
+      baby: *ruby-sapphire.pokemon.clefable.baby
       hatch_steps: *gold-silver.pokemon.clefable.hatch_steps
       growth_rate: *red-blue.pokemon.clefable.growth_rate
-      forms_switchable: *gold-silver.pokemon.clefable.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.clefable.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.clefable.default
-      height: *gold-silver.pokemon.clefable.height
-      weight: *gold-silver.pokemon.clefable.weight
+      height: *ruby-sapphire.pokemon.clefable.height
+      weight: *ruby-sapphire.pokemon.clefable.weight
       experience: *ruby-sapphire.pokemon.clefable.experience
       types: *gold-silver.pokemon.clefable.egg_groups
       egg_groups: *gold-silver.pokemon.clefable.egg_groups
@@ -923,7 +921,7 @@ ultra-sun-ultra-moon:
           where there aren’t many people or Pokémon.
       forms:
         clefable:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.clefable.forms.clefable.form_name
           default: *red-blue.pokemon.clefable.default
           battle_only: *red-blue.pokemon.clefable.forms.clefable.battle_only
@@ -932,5 +930,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/clefable-default.png
             - ultra-sun-ultra-moon/clefable-default.png
           art: *red-blue.pokemon.clefable.forms.clefable.art
-          footprint: *gold-silver.pokemon.clefable.forms.clefable.footprint
+          footprint: *ruby-sapphire.pokemon.clefable.forms.clefable.footprint
           cry: *x-y.pokemon.clefable.forms.clefable.cry

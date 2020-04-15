@@ -29,8 +29,8 @@ red-blue:
           base_value: 65
           effort_change: 65
       growth_rate: &red-blue.pokemon.persian.growth_rate medium
-      genus: 'CLASSY CAT Pokémon'
-      height: 9
+      genus: &red-blue.pokemon.persian.genus 'CLASSY CAT Pokémon'
+      height: &red-blue.pokemon.persian.height 9
       weight: 3220
       flavor_text:
         red: |
@@ -105,30 +105,19 @@ yellow:
           cry: *red-blue.pokemon.persian.forms.persian.cry
           icon: *red-blue.pokemon.persian.forms.persian.icon
 gold-silver:
-  name: &gold-silver.name Persian
-  position: &gold-silver.position 58
+  name: *red-blue.name
+  position: &gold-silver.position 52
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 137
+    original-johto: 136
+    original-johto-abc: 143
   pokemon:
     persian:
-      genus: &gold-silver.pokemon.persian.genus 'Classy Cat Pokémon'
-      evolution_parent: *red-blue.pokemon.persian.evolution_parent
-      female_rate: &gold-silver.pokemon.persian.female_rate 50
-      capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: &gold-silver.pokemon.persian.happiness 70
-      baby: &gold-silver.pokemon.persian.baby false
-      hatch_steps: &gold-silver.pokemon.persian.hatch_steps 20
-      growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: &gold-silver.pokemon.persian.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.persian.default
-      height: &gold-silver.pokemon.persian.height 10
-      weight: &gold-silver.pokemon.persian.weight 320
+      capture_rate: *red-blue.pokemon.persian.capture_rate
       experience: *red-blue.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
-      egg_groups: &gold-silver.pokemon.persian.egg_groups
-        - ground
       stats: &gold-silver.pokemon.persian.stats
         hp:
           base_value: 65
@@ -148,7 +137,14 @@ gold-silver:
         special-defense:
           base_value: 65
           effort_change: 65
-      evolution_conditions: *red-blue.pokemon.persian.evolution_conditions
+      growth_rate: *red-blue.pokemon.persian.growth_rate
+      female_rate: &gold-silver.pokemon.persian.female_rate 50
+      hatch_steps: &gold-silver.pokemon.persian.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.persian.egg_groups
+        - ground
+      genus: *red-blue.pokemon.persian.genus
+      height: *red-blue.pokemon.persian.height
+      weight: &gold-silver.pokemon.persian.weight 322
       flavor_text:
         gold: |
           Many adore it for
@@ -164,9 +160,11 @@ gold-silver:
           a sound. It
           attacks in an
           instant.
+      evolution_parent: *red-blue.pokemon.persian.evolution_parent
+      evolution_conditions: *red-blue.pokemon.persian.evolution_conditions
       forms:
         persian:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -175,33 +173,27 @@ gold-silver:
             - gold-silver/back/persian-default.png
             - gold-silver/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: &gold-silver.pokemon.persian.forms.persian.footprint persian.png
           cry: *red-blue.pokemon.persian.forms.persian.cry
           icon: &gold-silver.pokemon.persian.forms.persian.icon gen2/fox.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
-      evolution_parent: *red-blue.pokemon.persian.evolution_parent
-      female_rate: *gold-silver.pokemon.persian.female_rate
-      capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
-      hatch_steps: *gold-silver.pokemon.persian.hatch_steps
-      growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      capture_rate: *red-blue.pokemon.persian.capture_rate
       experience: *red-blue.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
-      egg_groups: *gold-silver.pokemon.persian.egg_groups
       stats: *gold-silver.pokemon.persian.stats
-      evolution_conditions: *red-blue.pokemon.persian.evolution_conditions
+      growth_rate: *red-blue.pokemon.persian.growth_rate
+      female_rate: *gold-silver.pokemon.persian.female_rate
+      hatch_steps: *gold-silver.pokemon.persian.hatch_steps
+      egg_groups: *gold-silver.pokemon.persian.egg_groups
+      genus: *red-blue.pokemon.persian.genus
+      height: *red-blue.pokemon.persian.height
+      weight: *gold-silver.pokemon.persian.weight
       flavor_text:
         crystal: |
           Behind its lithe,
@@ -210,9 +202,11 @@ crystal:
           side. It will tear
           apart its prey on
           a mere whim.
+      evolution_parent: *red-blue.pokemon.persian.evolution_parent
+      evolution_conditions: *red-blue.pokemon.persian.evolution_conditions
       forms:
         persian:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -220,33 +214,30 @@ crystal:
             - crystal/persian-default.png
             - crystal/back/persian-default.png
             - crystal/shiny/persian-default.png
-            - crystal/animated/shiny/persian-default.webm
-            - crystal/animated/persian-default.webm
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
           cry: *red-blue.pokemon.persian.forms.persian.cry
           icon: *gold-silver.pokemon.persian.forms.persian.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Persian
+  position: &ruby-sapphire.position 58
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: &ruby-sapphire.pokemon.persian.genus 'Classy Cat Pokémon'
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: &ruby-sapphire.pokemon.persian.color yellow
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: &ruby-sapphire.pokemon.persian.happiness 70
+      baby: &ruby-sapphire.pokemon.persian.baby false
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.persian.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: &ruby-sapphire.pokemon.persian.height 10
+      weight: &ruby-sapphire.pokemon.persian.weight 320
       experience: &ruby-sapphire.pokemon.persian.experience 154
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -291,7 +282,7 @@ ruby-sapphire:
           by the whiskers.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -301,28 +292,28 @@ ruby-sapphire:
             - ruby-sapphire/back/persian-default.png
             - ruby-sapphire/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: &ruby-sapphire.pokemon.persian.forms.persian.footprint persian.png
           cry: *red-blue.pokemon.persian.forms.persian.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: *ruby-sapphire.pokemon.persian.color
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -337,7 +328,7 @@ emerald:
           by the whiskers.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -348,26 +339,26 @@ emerald:
             - emerald/animated/shiny/persian-default.webm
             - emerald/animated/persian-default.webm
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *red-blue.pokemon.persian.forms.persian.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -376,35 +367,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.persian.evolution_conditions
       forms: &colosseum.pokemon.persian.forms
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
           icon: *ruby-sapphire.pokemon.persian.forms.persian.icon
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *red-blue.pokemon.persian.forms.persian.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       habitat: urban
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -422,7 +413,7 @@ firered-leafgreen:
           fickle meanness.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -432,32 +423,32 @@ firered-leafgreen:
             - firered-leafgreen/back/persian-default.png
             - firered-leafgreen/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *red-blue.pokemon.persian.forms.persian.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       shape: &diamond-pearl.pokemon.persian.shape quadruped
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
       pal_park: &diamond-pearl.pokemon.persian.pal_park
         area: field
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -483,7 +474,7 @@ diamond-pearl:
           forehead is a topic of much talk.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -494,29 +485,29 @@ diamond-pearl:
             - diamond-pearl/back/shiny/persian-default.png
             - diamond-pearl/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *red-blue.pokemon.persian.forms.persian.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
       pal_park: *diamond-pearl.pokemon.persian.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -532,7 +523,7 @@ platinum:
           forehead is a topic of much talk.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -543,31 +534,31 @@ platinum:
             - platinum/back/shiny/persian-default.png
             - platinum/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *red-blue.pokemon.persian.forms.persian.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 139
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
       pal_park: *diamond-pearl.pokemon.persian.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -588,7 +579,7 @@ heartgold-soulsilver:
           attacks in an instant.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -615,29 +606,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/persian-default.png
             - heartgold-soulsilver/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *red-blue.pokemon.persian.forms.persian.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: *ruby-sapphire.pokemon.persian.color
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -663,7 +654,7 @@ black-white:
           forehead is a topic of much talk.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -674,29 +665,29 @@ black-white:
             - black-white/back/shiny/persian-default.png
             - black-white/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *red-blue.pokemon.persian.forms.persian.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: *ruby-sapphire.pokemon.persian.color
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -717,26 +708,26 @@ black-2-white-2:
           forehead is a topic of much talk.
       forms: *colosseum.pokemon.persian.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: *ruby-sapphire.pokemon.persian.color
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -756,7 +747,7 @@ x-y:
           sound. It attacks in an instant.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -765,29 +756,29 @@ x-y:
             - x-y/persian-default.png
             - x-y/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: &x-y.pokemon.persian.forms.persian.cry persian-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: *ruby-sapphire.pokemon.persian.color
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -808,20 +799,20 @@ omega-ruby-alpha-sapphire:
           by the whiskers.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
           icon: *x-y.pokemon.persian.forms.persian.icon
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *x-y.pokemon.persian.forms.persian.cry
           sprites:
             - omega-ruby-alpha-sapphire/persian-default.png
             - omega-ruby-alpha-sapphire/shiny/persian-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 46
@@ -829,21 +820,21 @@ sun-moon:
     original-ulaula: 24
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: *ruby-sapphire.pokemon.persian.color
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
+      name: *ruby-sapphire.name
       default: &sun-moon.pokemon.persian.default false
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -860,7 +851,7 @@ sun-moon:
           difficult to make friends with this Pokémon.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -869,20 +860,20 @@ sun-moon:
             - sun-moon/persian-default.png
             - sun-moon/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *x-y.pokemon.persian.forms.persian.cry
     persian-alola:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: *ruby-sapphire.pokemon.persian.color
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
       name: &sun-moon.pokemon.persian-alola.name 'Alolan Persian'
       default: *red-blue.pokemon.persian.default
       height: &sun-moon.pokemon.persian-alola.height 11
@@ -928,11 +919,11 @@ sun-moon:
           sprites:
             - sun-moon/persian-alola.png
             - sun-moon/shiny/persian-alola.png
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *x-y.pokemon.persian.forms.persian.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 53
@@ -940,21 +931,21 @@ ultra-sun-ultra-moon:
     updated-ulaula: 24
   pokemon:
     persian:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: *ruby-sapphire.pokemon.persian.color
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
+      name: *ruby-sapphire.name
       default: *sun-moon.pokemon.persian.default
-      height: *gold-silver.pokemon.persian.height
-      weight: *gold-silver.pokemon.persian.weight
+      height: *ruby-sapphire.pokemon.persian.height
+      weight: *ruby-sapphire.pokemon.persian.weight
       experience: *ruby-sapphire.pokemon.persian.experience
       types: *red-blue.pokemon.persian.types
       egg_groups: *gold-silver.pokemon.persian.egg_groups
@@ -971,7 +962,7 @@ ultra-sun-ultra-moon:
           Persian, it’s mostly made of the same material.
       forms:
         persian:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.persian.forms.persian.form_name
           default: *red-blue.pokemon.persian.default
           battle_only: *red-blue.pokemon.persian.forms.persian.battle_only
@@ -980,20 +971,20 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/persian-default.png
             - ultra-sun-ultra-moon/shiny/persian-default.png
           art: *red-blue.pokemon.persian.forms.persian.art
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *x-y.pokemon.persian.forms.persian.cry
     persian-alola:
-      genus: *gold-silver.pokemon.persian.genus
+      genus: *ruby-sapphire.pokemon.persian.genus
       evolution_parent: *red-blue.pokemon.persian.evolution_parent
       color: *ruby-sapphire.pokemon.persian.color
       shape: *diamond-pearl.pokemon.persian.shape
       female_rate: *gold-silver.pokemon.persian.female_rate
       capture_rate: *red-blue.pokemon.persian.capture_rate
-      happiness: *gold-silver.pokemon.persian.happiness
-      baby: *gold-silver.pokemon.persian.baby
+      happiness: *ruby-sapphire.pokemon.persian.happiness
+      baby: *ruby-sapphire.pokemon.persian.baby
       hatch_steps: *gold-silver.pokemon.persian.hatch_steps
       growth_rate: *red-blue.pokemon.persian.growth_rate
-      forms_switchable: *gold-silver.pokemon.persian.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.persian.forms_switchable
       name: *sun-moon.pokemon.persian-alola.name
       default: *red-blue.pokemon.persian.default
       height: *sun-moon.pokemon.persian-alola.height
@@ -1017,5 +1008,5 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/persian-alola.png
             - ultra-sun-ultra-moon/shiny/persian-alola.png
-          footprint: *gold-silver.pokemon.persian.forms.persian.footprint
+          footprint: *ruby-sapphire.pokemon.persian.forms.persian.footprint
           cry: *x-y.pokemon.persian.forms.persian.cry

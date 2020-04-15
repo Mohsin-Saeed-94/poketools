@@ -29,7 +29,7 @@ red-blue:
           base_value: 40
           effort_change: 40
       growth_rate: &red-blue.pokemon.ekans.growth_rate medium
-      genus: 'SNAKE Pokémon'
+      genus: &red-blue.pokemon.ekans.genus 'SNAKE Pokémon'
       height: &red-blue.pokemon.ekans.height 20
       weight: 680
       flavor_text:
@@ -99,30 +99,19 @@ yellow:
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
           icon: *red-blue.pokemon.ekans.forms.ekans.icon
 gold-silver:
-  name: &gold-silver.name Ekans
-  position: *red-blue.position
+  name: *red-blue.name
+  position: &gold-silver.position 22
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 50
+    original-johto: 49
+    original-johto-abc: 38
   pokemon:
     ekans:
-      genus: &gold-silver.pokemon.ekans.genus 'Snake Pokémon'
-      female_rate: &gold-silver.pokemon.ekans.female_rate 50
-      capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: &gold-silver.pokemon.ekans.happiness 70
-      baby: &gold-silver.pokemon.ekans.baby false
-      hatch_steps: &gold-silver.pokemon.ekans.hatch_steps 20
-      growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: &gold-silver.pokemon.ekans.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.ekans.default
-      height: *red-blue.pokemon.ekans.height
-      weight: &gold-silver.pokemon.ekans.weight 69
+      capture_rate: *red-blue.pokemon.ekans.capture_rate
       experience: *red-blue.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
-      egg_groups: &gold-silver.pokemon.ekans.egg_groups
-        - ground
-        - dragon
       stats: &gold-silver.pokemon.ekans.stats
         hp:
           base_value: 35
@@ -142,12 +131,21 @@ gold-silver:
         special-defense:
           base_value: 54
           effort_change: 40
+      growth_rate: *red-blue.pokemon.ekans.growth_rate
+      female_rate: &gold-silver.pokemon.ekans.female_rate 50
+      hatch_steps: &gold-silver.pokemon.ekans.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.ekans.egg_groups
+        - ground
+        - dragon
+      genus: *red-blue.pokemon.ekans.genus
+      height: *red-blue.pokemon.ekans.height
+      weight: &gold-silver.pokemon.ekans.weight 68
       flavor_text:
         gold: |
-          It can freely de­
+          It can freely de-
           tach its jaw to
           swallow large prey
-          whole. It can be­
+          whole. It can be-
           come too heavy to
           move, however.
         silver: |
@@ -159,7 +157,7 @@ gold-silver:
           but harmless.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -168,31 +166,27 @@ gold-silver:
             - gold-silver/back/ekans-default.png
             - gold-silver/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: &gold-silver.pokemon.ekans.forms.ekans.footprint ekans.png
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
           icon: &gold-silver.pokemon.ekans.forms.ekans.icon gen2/serpent.png
 crystal:
-  name: *gold-silver.name
-  position: *red-blue.position
+  name: *red-blue.name
+  position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
-      female_rate: *gold-silver.pokemon.ekans.female_rate
-      capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
-      hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
-      growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.ekans.default
-      height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      capture_rate: *red-blue.pokemon.ekans.capture_rate
       experience: *red-blue.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
-      egg_groups: *gold-silver.pokemon.ekans.egg_groups
       stats: *gold-silver.pokemon.ekans.stats
+      growth_rate: *red-blue.pokemon.ekans.growth_rate
+      female_rate: *gold-silver.pokemon.ekans.female_rate
+      hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
+      egg_groups: *gold-silver.pokemon.ekans.egg_groups
+      genus: *red-blue.pokemon.ekans.genus
+      height: *red-blue.pokemon.ekans.height
+      weight: *gold-silver.pokemon.ekans.weight
       flavor_text:
         crystal: |
           It flutters the
@@ -203,7 +197,7 @@ crystal:
           prey whole.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -211,32 +205,29 @@ crystal:
             - crystal/ekans-default.png
             - crystal/back/ekans-default.png
             - crystal/shiny/ekans-default.png
-            - crystal/animated/shiny/ekans-default.webm
-            - crystal/animated/ekans-default.webm
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
           icon: *gold-silver.pokemon.ekans.forms.ekans.icon
 ruby-sapphire:
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Ekans
   position: *red-blue.position
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: &ruby-sapphire.pokemon.ekans.genus 'Snake Pokémon'
       color: &ruby-sapphire.pokemon.ekans.color purple
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: &ruby-sapphire.pokemon.ekans.happiness 70
+      baby: &ruby-sapphire.pokemon.ekans.baby false
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.ekans.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: &ruby-sapphire.pokemon.ekans.weight 69
       experience: &ruby-sapphire.pokemon.ekans.experience 58
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -283,7 +274,7 @@ ruby-sapphire:
           head.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -293,27 +284,27 @@ ruby-sapphire:
             - ruby-sapphire/back/ekans-default.png
             - ruby-sapphire/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: &ruby-sapphire.pokemon.ekans.forms.ekans.footprint ekans.png
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
 emerald:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       color: *ruby-sapphire.pokemon.ekans.color
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -327,7 +318,7 @@ emerald:
           with a threat from its upraised head.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -338,25 +329,25 @@ emerald:
             - emerald/animated/shiny/ekans-default.webm
             - emerald/animated/ekans-default.webm
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -364,34 +355,34 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.ekans.abilities
       forms: &colosseum.pokemon.ekans.forms
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
           icon: *ruby-sapphire.pokemon.ekans.forms.ekans.icon
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *red-blue.numbers
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       habitat: grassland
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -408,7 +399,7 @@ firered-leafgreen:
           and SPEAROW, whole.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -418,31 +409,31 @@ firered-leafgreen:
             - firered-leafgreen/back/ekans-default.png
             - firered-leafgreen/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
 diamond-pearl:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       shape: &diamond-pearl.pokemon.ekans.shape squiggle
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
       pal_park: &diamond-pearl.pokemon.ekans.pal_park
         area: forest
         rate: 50
         score: 30
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -459,7 +450,7 @@ diamond-pearl:
           unsuspecting prey from behind.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -470,28 +461,28 @@ diamond-pearl:
             - diamond-pearl/back/shiny/ekans-default.png
             - diamond-pearl/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
 platinum:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       shape: *diamond-pearl.pokemon.ekans.shape
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
       pal_park: *diamond-pearl.pokemon.ekans.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -504,7 +495,7 @@ platinum:
           unsuspecting prey from behind.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -515,30 +506,30 @@ platinum:
             - platinum/back/shiny/ekans-default.png
             - platinum/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 50
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       shape: *diamond-pearl.pokemon.ekans.shape
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
       pal_park: *diamond-pearl.pokemon.ekans.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -555,7 +546,7 @@ heartgold-soulsilver:
           bite is painful, but harmless.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -582,28 +573,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/ekans-default.png
             - heartgold-soulsilver/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
 black-white:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       color: *ruby-sapphire.pokemon.ekans.color
       shape: *diamond-pearl.pokemon.ekans.shape
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -625,7 +616,7 @@ black-white:
           unsuspecting prey from behind.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -636,28 +627,28 @@ black-white:
             - black-white/back/shiny/ekans-default.png
             - black-white/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *red-blue.pokemon.ekans.forms.ekans.cry
 black-2-white-2:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       color: *ruby-sapphire.pokemon.ekans.color
       shape: *diamond-pearl.pokemon.ekans.shape
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -674,27 +665,27 @@ black-2-white-2:
           unsuspecting prey from behind.
       forms: *colosseum.pokemon.ekans.forms
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 37
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       color: *ruby-sapphire.pokemon.ekans.color
       shape: *diamond-pearl.pokemon.ekans.shape
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -711,7 +702,7 @@ x-y:
           birds, such as Pidgey and Spearow, whole.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -720,28 +711,28 @@ x-y:
             - x-y/ekans-default.png
             - x-y/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: &x-y.pokemon.ekans.forms.ekans.cry ekans-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       color: *ruby-sapphire.pokemon.ekans.color
       shape: *diamond-pearl.pokemon.ekans.shape
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -759,37 +750,37 @@ omega-ruby-alpha-sapphire:
           direction with a glare from its upraised head.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
           icon: *x-y.pokemon.ekans.forms.ekans.icon
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *x-y.pokemon.ekans.forms.ekans.cry
           sprites:
             - omega-ruby-alpha-sapphire/ekans-default.png
             - omega-ruby-alpha-sapphire/shiny/ekans-default.png
 sun-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       color: *ruby-sapphire.pokemon.ekans.color
       shape: *diamond-pearl.pokemon.ekans.shape
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -798,7 +789,7 @@ sun-moon:
       abilities: *black-white.pokemon.ekans.abilities
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -807,10 +798,10 @@ sun-moon:
             - sun-moon/ekans-default.png
             - sun-moon/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *x-y.pokemon.ekans.forms.ekans.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
@@ -818,20 +809,20 @@ ultra-sun-ultra-moon:
     updated-melemele: 61
   pokemon:
     ekans:
-      genus: *gold-silver.pokemon.ekans.genus
+      genus: *ruby-sapphire.pokemon.ekans.genus
       color: *ruby-sapphire.pokemon.ekans.color
       shape: *diamond-pearl.pokemon.ekans.shape
       female_rate: *gold-silver.pokemon.ekans.female_rate
       capture_rate: *red-blue.pokemon.ekans.capture_rate
-      happiness: *gold-silver.pokemon.ekans.happiness
-      baby: *gold-silver.pokemon.ekans.baby
+      happiness: *ruby-sapphire.pokemon.ekans.happiness
+      baby: *ruby-sapphire.pokemon.ekans.baby
       hatch_steps: *gold-silver.pokemon.ekans.hatch_steps
       growth_rate: *red-blue.pokemon.ekans.growth_rate
-      forms_switchable: *gold-silver.pokemon.ekans.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ekans.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ekans.default
       height: *red-blue.pokemon.ekans.height
-      weight: *gold-silver.pokemon.ekans.weight
+      weight: *ruby-sapphire.pokemon.ekans.weight
       experience: *ruby-sapphire.pokemon.ekans.experience
       types: *red-blue.pokemon.ekans.types
       egg_groups: *gold-silver.pokemon.ekans.egg_groups
@@ -844,7 +835,7 @@ ultra-sun-ultra-moon:
           than itself. After a meal, it curls up and rests.
       forms:
         ekans:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ekans.forms.ekans.form_name
           default: *red-blue.pokemon.ekans.default
           battle_only: *red-blue.pokemon.ekans.forms.ekans.battle_only
@@ -853,5 +844,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/ekans-default.png
             - ultra-sun-ultra-moon/shiny/ekans-default.png
           art: *red-blue.pokemon.ekans.forms.ekans.art
-          footprint: *gold-silver.pokemon.ekans.forms.ekans.footprint
+          footprint: *ruby-sapphire.pokemon.ekans.forms.ekans.footprint
           cry: *x-y.pokemon.ekans.forms.ekans.cry

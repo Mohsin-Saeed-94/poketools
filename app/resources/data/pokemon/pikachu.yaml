@@ -29,7 +29,7 @@ red-blue:
           base_value: 50
           effort_change: 50
       growth_rate: &red-blue.pokemon.pikachu.growth_rate medium
-      genus: 'MOUSE Pokémon'
+      genus: &red-blue.pokemon.pikachu.genus 'MOUSE Pokémon'
       height: &red-blue.pokemon.pikachu.height 4
       weight: 589
       flavor_text:
@@ -99,31 +99,19 @@ yellow:
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
           icon: gen1/pikachu_family.png
 gold-silver:
-  name: &gold-silver.name Pikachu
-  position: &gold-silver.position 26
+  name: *red-blue.name
+  position: &gold-silver.position 24
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 22
+    original-johto: 21
+    original-johto-abc: 149
   pokemon:
     pikachu:
-      genus: &gold-silver.pokemon.pikachu.genus 'Mouse Pokémon'
-      evolution_parent: &gold-silver.pokemon.pikachu.evolution_parent pichu/pichu
-      female_rate: &gold-silver.pokemon.pikachu.female_rate 50
-      capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: &gold-silver.pokemon.pikachu.happiness 70
-      baby: &gold-silver.pokemon.pikachu.baby false
-      hatch_steps: &gold-silver.pokemon.pikachu.hatch_steps 10
-      growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: &gold-silver.pokemon.pikachu.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.pikachu.default
-      height: *red-blue.pokemon.pikachu.height
-      weight: &gold-silver.pokemon.pikachu.weight 60
+      capture_rate: *red-blue.pokemon.pikachu.capture_rate
       experience: *red-blue.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
-      egg_groups: &gold-silver.pokemon.pikachu.egg_groups
-        - ground
-        - fairy
       stats: &gold-silver.pokemon.pikachu.stats
         hp:
           base_value: 35
@@ -143,27 +131,41 @@ gold-silver:
         special-defense:
           base_value: 40
           effort_change: 50
-      evolution_conditions: &gold-silver.pokemon.pikachu.evolution_conditions
-        level-up:
-          minimum_happiness: 220
+      growth_rate: *red-blue.pokemon.pikachu.growth_rate
+      female_rate: &gold-silver.pokemon.pikachu.female_rate 50
+      hatch_steps: &gold-silver.pokemon.pikachu.hatch_steps 10
+      egg_groups: &gold-silver.pokemon.pikachu.egg_groups
+        - ground
+        - fairy
+      wild_held_items:
+        gold: &gold-silver.pokemon.pikachu.wild_held_items.gold
+          berry: 2
+        silver: *gold-silver.pokemon.pikachu.wild_held_items.gold
+      genus: *red-blue.pokemon.pikachu.genus
+      height: *red-blue.pokemon.pikachu.height
+      weight: &gold-silver.pokemon.pikachu.weight 58
       flavor_text:
         gold: |
           This intelligent
-          POKéMON roasts
+          #MON roasts
           hard BERRIES with
           electricity to
           make them tender
           enough to eat.
         silver: |
           It raises its tail
-          to check its sur­
+          to check its sur-
           roundings. The
           tail is sometimes
-          struck by light­
+          struck by light-
           ning in this pose.
+      evolution_parent: &gold-silver.pokemon.pikachu.evolution_parent pichu/pichu
+      evolution_conditions: &gold-silver.pokemon.pikachu.evolution_conditions
+        level-up:
+          minimum_happiness: 220
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -172,44 +174,42 @@ gold-silver:
             - gold-silver/back/pikachu-default.png
             - gold-silver/shiny/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: &gold-silver.pokemon.pikachu.forms.pikachu.footprint pikachu.png
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
           icon: &gold-silver.pokemon.pikachu.forms.pikachu.icon gen2/pikachu.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
-      evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
-      female_rate: *gold-silver.pokemon.pikachu.female_rate
-      capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
-      hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
-      growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.pikachu.default
-      height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      capture_rate: *red-blue.pokemon.pikachu.capture_rate
       experience: *red-blue.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
-      egg_groups: *gold-silver.pokemon.pikachu.egg_groups
       stats: *gold-silver.pokemon.pikachu.stats
-      evolution_conditions: *gold-silver.pokemon.pikachu.evolution_conditions
+      growth_rate: *red-blue.pokemon.pikachu.growth_rate
+      female_rate: *gold-silver.pokemon.pikachu.female_rate
+      hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
+      egg_groups: *gold-silver.pokemon.pikachu.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.pikachu.wild_held_items.gold
+      genus: *red-blue.pokemon.pikachu.genus
+      height: *red-blue.pokemon.pikachu.height
+      weight: *gold-silver.pokemon.pikachu.weight
       flavor_text:
         crystal: |
-          When it is anger­
+          When it is anger-
           ed, it immediately
           discharges the
           energy stored in
           the pouches in its
           cheeks.
+      evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.pikachu.evolution_conditions
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -217,34 +217,31 @@ crystal:
             - crystal/pikachu-default.png
             - crystal/back/pikachu-default.png
             - crystal/shiny/pikachu-default.png
-            - crystal/animated/shiny/pikachu-default.webm
-            - crystal/animated/pikachu-default.webm
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
           icon: *gold-silver.pokemon.pikachu.forms.pikachu.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Pikachu
+  position: &ruby-sapphire.position 26
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 156
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: &ruby-sapphire.pokemon.pikachu.genus 'Mouse Pokémon'
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: &ruby-sapphire.pokemon.pikachu.color yellow
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: &ruby-sapphire.pokemon.pikachu.happiness 70
+      baby: &ruby-sapphire.pokemon.pikachu.baby false
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.pikachu.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: &ruby-sapphire.pokemon.pikachu.weight 60
       experience: &ruby-sapphire.pokemon.pikachu.experience 112
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -297,7 +294,7 @@ ruby-sapphire:
           when it is dozy after waking up.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -307,28 +304,28 @@ ruby-sapphire:
             - ruby-sapphire/back/pikachu-default.png
             - ruby-sapphire/shiny/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: &ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint pikachu.png
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -345,7 +342,7 @@ emerald:
           equal to a lightning bolt.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -356,26 +353,26 @@ emerald:
             - emerald/animated/shiny/pikachu-default.webm
             - emerald/animated/pikachu-default.webm
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -384,35 +381,35 @@ colosseum: &colosseum
       evolution_conditions: *gold-silver.pokemon.pikachu.evolution_conditions
       forms: &colosseum.pokemon.pikachu.forms
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
           icon: *ruby-sapphire.pokemon.pikachu.forms.pikachu.icon
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       habitat: forest
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -430,7 +427,7 @@ firered-leafgreen:
           lightning storms.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -440,34 +437,34 @@ firered-leafgreen:
             - firered-leafgreen/back/pikachu-default.png
             - firered-leafgreen/shiny/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-sinnoh: 104
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       shape: &diamond-pearl.pokemon.pikachu.shape quadruped
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       pal_park: &diamond-pearl.pokemon.pikachu.pal_park
         area: forest
         rate: 10
         score: 80
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -488,7 +485,7 @@ diamond-pearl:
           cheeks, it is being wary.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -502,31 +499,31 @@ diamond-pearl:
             - diamond-pearl/shiny/pikachu-default.png
             - diamond-pearl/shiny/female/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 104
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       pal_park: *diamond-pearl.pokemon.pikachu.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -542,7 +539,7 @@ platinum:
           that is in a weakened state.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -556,31 +553,31 @@ platinum:
             - platinum/shiny/pikachu-default.png
             - platinum/shiny/female/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 22
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       pal_park: *diamond-pearl.pokemon.pikachu.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -601,7 +598,7 @@ heartgold-soulsilver:
           struck by lightning in this pose.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -631,30 +628,30 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/pikachu-default.png
             - heartgold-soulsilver/shiny/female/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &black-white.numbers
     national: *red-blue.numbers.national
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -677,7 +674,7 @@ black-white:
           that is in a weakened state.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -691,29 +688,29 @@ black-white:
             - black-white/shiny/pikachu-default.png
             - black-white/shiny/female/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *red-blue.pokemon.pikachu.forms.pikachu.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *black-white.numbers
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -735,28 +732,28 @@ black-2-white-2:
           that is in a weakened state.
       forms: *colosseum.pokemon.pikachu.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-central: 36
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -778,7 +775,7 @@ x-y:
           the sacs.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -789,31 +786,31 @@ x-y:
             - x-y/shiny/pikachu-default.png
             - x-y/shiny/female/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: &x-y.pokemon.pikachu.forms.pikachu.cry pikachu-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 163
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -834,13 +831,13 @@ omega-ruby-alpha-sapphire:
           when it is dozy after waking up.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
           icon: *x-y.pokemon.pikachu.forms.pikachu.icon
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
           sprites:
             - omega-ruby-alpha-sapphire/pikachu-default.png
@@ -848,14 +845,14 @@ omega-ruby-alpha-sapphire:
             - omega-ruby-alpha-sapphire/shiny/pikachu-default.png
             - omega-ruby-alpha-sapphire/shiny/female/pikachu-default.png
     pikachu-cosplay:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
       forms_switchable: &omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.forms_switchable true
@@ -871,7 +868,7 @@ omega-ruby-alpha-sapphire:
       name: &omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.name 'Cosplay Pikachu'
       default: &omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default false
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -887,17 +884,17 @@ omega-ruby-alpha-sapphire:
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
           icon: pikachu-cosplay.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-rock-star:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.forms_switchable
@@ -905,7 +902,7 @@ omega-ruby-alpha-sapphire:
       name: &omega-ruby-alpha-sapphire.pokemon.pikachu-rock-star.name 'Pikachu Rock Star'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -923,17 +920,17 @@ omega-ruby-alpha-sapphire:
           icon: pikachu-rock-star.png
           art:
             - pikachu-rock-star.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-belle:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.forms_switchable
@@ -941,7 +938,7 @@ omega-ruby-alpha-sapphire:
       name: &omega-ruby-alpha-sapphire.pokemon.pikachu-belle.name 'Pikachu Belle'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -959,17 +956,17 @@ omega-ruby-alpha-sapphire:
           icon: pikachu-belle.png
           art:
             - pikachu-belle.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-pop-star:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.forms_switchable
@@ -977,7 +974,7 @@ omega-ruby-alpha-sapphire:
       name: &omega-ruby-alpha-sapphire.pokemon.pikachu-pop-star.name 'Pikachu Pop Star'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -995,17 +992,17 @@ omega-ruby-alpha-sapphire:
           icon: pikachu-pop-star.png
           art:
             - pikachu-pop-star.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-phd:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.forms_switchable
@@ -1013,7 +1010,7 @@ omega-ruby-alpha-sapphire:
       name: &omega-ruby-alpha-sapphire.pokemon.pikachu-phd.name 'Pikachu Ph.D.'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1031,17 +1028,17 @@ omega-ruby-alpha-sapphire:
           icon: pikachu-phd.png
           art:
             - pikachu-phd.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-libre:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.forms_switchable
@@ -1049,7 +1046,7 @@ omega-ruby-alpha-sapphire:
       name: &omega-ruby-alpha-sapphire.pokemon.pikachu-libre.name 'Pikachu Libre'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1067,32 +1064,32 @@ omega-ruby-alpha-sapphire:
           icon: pikachu-libre.png
           art:
             - pikachu-libre.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 25
     original-melemele: 25
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1109,7 +1106,7 @@ sun-moon:
           discharge the electricity.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -1120,27 +1117,27 @@ sun-moon:
             - sun-moon/shiny/pikachu-default.png
             - sun-moon/shiny/female/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-original-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: &sun-moon.pokemon.pikachu-original-cap.forms_note |
         The Cap Pikachu are event-exclusive Pokémon.  They are always male and cannot breed or evolve.  They can hold
         a []{item:pikashunium-z-held} and use its Z-Move.
       name: &sun-moon.pokemon.pikachu-original-cap.name 'Original Cap Pikachu'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1160,25 +1157,25 @@ sun-moon:
           sprites:
             - sun-moon/pikachu-original-cap.png
             - sun-moon/shiny/pikachu-original-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-hoenn-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: &sun-moon.pokemon.pikachu-hoenn-cap.name 'Hoenn Cap Pikachu'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1198,25 +1195,25 @@ sun-moon:
           sprites:
             - sun-moon/pikachu-hoenn-cap.png
             - sun-moon/shiny/pikachu-hoenn-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-sinnoh-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: &sun-moon.pokemon.pikachu-sinnoh-cap.name 'Sinnoh Cap Pikachu'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1236,25 +1233,25 @@ sun-moon:
           sprites:
             - sun-moon/pikachu-sinnoh-cap.png
             - sun-moon/shiny/pikachu-sinnoh-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-unova-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: &sun-moon.pokemon.pikachu-unova-cap.name 'Unova Cap Pikachu'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1274,25 +1271,25 @@ sun-moon:
           sprites:
             - sun-moon/pikachu-unova-cap.png
             - sun-moon/shiny/pikachu-unova-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-kalos-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: &sun-moon.pokemon.pikachu-kalos-cap.name 'Kalos Cap Pikachu'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1312,25 +1309,25 @@ sun-moon:
           sprites:
             - sun-moon/pikachu-kalos-cap.png
             - sun-moon/shiny/pikachu-kalos-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-alola-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: &sun-moon.pokemon.pikachu-alola-cap.name 'Alola Cap Pikachu'
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1350,32 +1347,32 @@ sun-moon:
           sprites:
             - sun-moon/shiny/pikachu-alola-cap.png
             - sun-moon/pikachu-alola-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 32
     updated-melemele: 32
   pokemon:
     pikachu:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.pikachu.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1392,7 +1389,7 @@ ultra-sun-ultra-moon:
           since the trees are so often struck by lightning.
       forms:
         pikachu:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.pikachu.forms.pikachu.form_name
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -1403,25 +1400,25 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/pikachu-default.png
             - ultra-sun-ultra-moon/shiny/female/pikachu-default.png
           art: *red-blue.pokemon.pikachu.forms.pikachu.art
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-original-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: *sun-moon.pokemon.pikachu-original-cap.name
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1441,25 +1438,25 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/pikachu-original-cap.png
             - ultra-sun-ultra-moon/shiny/pikachu-original-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-hoenn-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: *sun-moon.pokemon.pikachu-hoenn-cap.name
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1479,25 +1476,25 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/pikachu-hoenn-cap.png
             - ultra-sun-ultra-moon/shiny/pikachu-hoenn-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-sinnoh-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: *sun-moon.pokemon.pikachu-sinnoh-cap.name
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1517,25 +1514,25 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/pikachu-sinnoh-cap.png
             - ultra-sun-ultra-moon/shiny/pikachu-sinnoh-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-unova-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: *sun-moon.pokemon.pikachu-unova-cap.name
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1555,25 +1552,25 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/pikachu-unova-cap.png
             - ultra-sun-ultra-moon/shiny/pikachu-unova-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-kalos-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: *sun-moon.pokemon.pikachu-kalos-cap.name
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1593,25 +1590,25 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/pikachu-kalos-cap.png
             - ultra-sun-ultra-moon/shiny/pikachu-kalos-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-alola-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
       name: *sun-moon.pokemon.pikachu-alola-cap.name
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1631,25 +1628,25 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/shiny/pikachu-alola-cap.png
             - ultra-sun-ultra-moon/pikachu-alola-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry
     pikachu-partner-cap:
-      genus: *gold-silver.pokemon.pikachu.genus
+      genus: *ruby-sapphire.pokemon.pikachu.genus
       evolution_parent: *gold-silver.pokemon.pikachu.evolution_parent
       color: *ruby-sapphire.pokemon.pikachu.color
       shape: *diamond-pearl.pokemon.pikachu.shape
       female_rate: *gold-silver.pokemon.pikachu.female_rate
       capture_rate: *red-blue.pokemon.pikachu.capture_rate
-      happiness: *gold-silver.pokemon.pikachu.happiness
-      baby: *gold-silver.pokemon.pikachu.baby
+      happiness: *ruby-sapphire.pokemon.pikachu.happiness
+      baby: *ruby-sapphire.pokemon.pikachu.baby
       hatch_steps: *gold-silver.pokemon.pikachu.hatch_steps
       growth_rate: *red-blue.pokemon.pikachu.growth_rate
-      forms_switchable: *gold-silver.pokemon.pikachu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.pikachu.forms_switchable
       forms_note: *sun-moon.pokemon.pikachu-original-cap.forms_note
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *omega-ruby-alpha-sapphire.pokemon.pikachu-cosplay.default
       height: *red-blue.pokemon.pikachu.height
-      weight: *gold-silver.pokemon.pikachu.weight
+      weight: *ruby-sapphire.pokemon.pikachu.weight
       experience: *ruby-sapphire.pokemon.pikachu.experience
       types: *red-blue.pokemon.pikachu.types
       egg_groups: *gold-silver.pokemon.pikachu.egg_groups
@@ -1661,7 +1658,7 @@ ultra-sun-ultra-moon:
       flavor_text: *ultra-sun-ultra-moon.pokemon.pikachu.flavor_text
       forms:
         pikachu-partner-cap:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: 'Partner Cap'
           default: *red-blue.pokemon.pikachu.default
           battle_only: *red-blue.pokemon.pikachu.forms.pikachu.battle_only
@@ -1669,5 +1666,5 @@ ultra-sun-ultra-moon:
           sprites:
             - ultra-sun-ultra-moon/pikachu-partner-cap.png
             - ultra-sun-ultra-moon/shiny/pikachu-partner-cap.png
-          footprint: *gold-silver.pokemon.pikachu.forms.pikachu.footprint
+          footprint: *ruby-sapphire.pokemon.pikachu.forms.pikachu.footprint
           cry: *x-y.pokemon.pikachu.forms.pikachu.cry

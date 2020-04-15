@@ -29,8 +29,8 @@ red-blue:
           base_value: 120
           effort_change: 120
       growth_rate: &red-blue.pokemon.magneton.growth_rate medium
-      genus: 'MAGNET Pokémon'
-      height: 9
+      genus: &red-blue.pokemon.magneton.genus 'MAGNET Pokémon'
+      height: &red-blue.pokemon.magneton.height 9
       weight: 5987
       flavor_text:
         red: |
@@ -105,31 +105,21 @@ yellow:
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
           icon: *red-blue.pokemon.magneton.forms.magneton.icon
 gold-silver:
-  name: &gold-silver.name Magneton
-  position: &gold-silver.position 89
+  name: *red-blue.name
+  position: &gold-silver.position 81
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 119
+    original-johto: 118
+    original-johto-abc: 110
   pokemon:
     magneton:
-      genus: &gold-silver.pokemon.magneton.genus 'Magnet Pokémon'
-      evolution_parent: *red-blue.pokemon.magneton.evolution_parent
-      capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: &gold-silver.pokemon.magneton.happiness 70
-      baby: &gold-silver.pokemon.magneton.baby false
-      hatch_steps: &gold-silver.pokemon.magneton.hatch_steps 20
-      growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: &gold-silver.pokemon.magneton.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.magneton.default
-      height: &gold-silver.pokemon.magneton.height 10
-      weight: &gold-silver.pokemon.magneton.weight 600
+      capture_rate: *red-blue.pokemon.magneton.capture_rate
       experience: *red-blue.pokemon.magneton.experience
       types: &gold-silver.pokemon.magneton.types
         - electric
         - steel
-      egg_groups: &gold-silver.pokemon.magneton.egg_groups
-        - mineral
       stats: &gold-silver.pokemon.magneton.stats
         hp:
           base_value: 50
@@ -149,7 +139,18 @@ gold-silver:
         special-defense:
           base_value: 70
           effort_change: 120
-      evolution_conditions: *red-blue.pokemon.magneton.evolution_conditions
+      growth_rate: *red-blue.pokemon.magneton.growth_rate
+      female_rate: &gold-silver.pokemon.magneton.female_rate 100
+      hatch_steps: &gold-silver.pokemon.magneton.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.magneton.egg_groups
+        - mineral
+      wild_held_items:
+        gold: &gold-silver.pokemon.magneton.wild_held_items.gold
+          metal-coat: 2
+        silver: *gold-silver.pokemon.magneton.wild_held_items.gold
+      genus: *red-blue.pokemon.magneton.genus
+      height: *red-blue.pokemon.magneton.height
+      weight: &gold-silver.pokemon.magneton.weight 598
       flavor_text:
         gold: |
           Three MAGNEMITE
@@ -160,14 +161,16 @@ gold-silver:
           get too close.
         silver: |
           The MAGNEMITE are
-          united by a mag­
-          netism so power­
+          united by a mag-
+          netism so power-
           ful, it dries all
           moisture in its
           vicinities.
+      evolution_parent: *red-blue.pokemon.magneton.evolution_parent
+      evolution_conditions: *red-blue.pokemon.magneton.evolution_conditions
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -176,32 +179,29 @@ gold-silver:
             - gold-silver/back/magneton-default.png
             - gold-silver/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: &gold-silver.pokemon.magneton.forms.magneton.footprint magneton.png
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
           icon: &gold-silver.pokemon.magneton.forms.magneton.icon gen2/voltorb.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
-      evolution_parent: *red-blue.pokemon.magneton.evolution_parent
-      capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
-      hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
-      growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      capture_rate: *red-blue.pokemon.magneton.capture_rate
       experience: *red-blue.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
-      egg_groups: *gold-silver.pokemon.magneton.egg_groups
       stats: *gold-silver.pokemon.magneton.stats
-      evolution_conditions: *red-blue.pokemon.magneton.evolution_conditions
+      growth_rate: *red-blue.pokemon.magneton.growth_rate
+      female_rate: *gold-silver.pokemon.magneton.female_rate
+      hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
+      egg_groups: *gold-silver.pokemon.magneton.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.magneton.wild_held_items.gold
+      genus: *red-blue.pokemon.magneton.genus
+      height: *red-blue.pokemon.magneton.height
+      weight: *gold-silver.pokemon.magneton.weight
       flavor_text:
         crystal: |
           When many
@@ -210,9 +210,11 @@ crystal:
           resulting magnetic
           storm disrupts
           radio waves.
+      evolution_parent: *red-blue.pokemon.magneton.evolution_parent
+      evolution_conditions: *red-blue.pokemon.magneton.evolution_conditions
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -220,33 +222,30 @@ crystal:
             - crystal/magneton-default.png
             - crystal/back/magneton-default.png
             - crystal/shiny/magneton-default.png
-            - crystal/animated/magneton-default.webm
-            - crystal/animated/shiny/magneton-default.webm
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
           icon: *gold-silver.pokemon.magneton.forms.magneton.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Magneton
+  position: &ruby-sapphire.position 89
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 83
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: &ruby-sapphire.pokemon.magneton.genus 'Magnet Pokémon'
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       color: &ruby-sapphire.pokemon.magneton.color gray
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: &ruby-sapphire.pokemon.magneton.happiness 70
+      baby: &ruby-sapphire.pokemon.magneton.baby false
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.magneton.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: &ruby-sapphire.pokemon.magneton.height 10
+      weight: &ruby-sapphire.pokemon.magneton.weight 600
       experience: &ruby-sapphire.pokemon.magneton.experience 163
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -297,7 +296,7 @@ ruby-sapphire:
           a POKé BALL.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -307,27 +306,27 @@ ruby-sapphire:
             - ruby-sapphire/back/magneton-default.png
             - ruby-sapphire/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: &ruby-sapphire.pokemon.magneton.forms.magneton.footprint magneton.png
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       color: *ruby-sapphire.pokemon.magneton.color
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -344,7 +343,7 @@ emerald:
           degrees F within a 3,300-foot radius.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -355,25 +354,25 @@ emerald:
             - emerald/animated/magneton-default.webm
             - emerald/animated/shiny/magneton-default.webm
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -382,34 +381,34 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.magneton.evolution_conditions
       forms: &colosseum.pokemon.magneton.forms
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
           icon: *ruby-sapphire.pokemon.magneton.forms.magneton.icon
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       habitat: rough-terrain
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -431,7 +430,7 @@ firered-leafgreen:
           sunspots flare up.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -441,32 +440,32 @@ firered-leafgreen:
             - firered-leafgreen/back/magneton-default.png
             - firered-leafgreen/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       shape: &diamond-pearl.pokemon.magneton.shape heads
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
       pal_park: &diamond-pearl.pokemon.magneton.pal_park
         area: mountain
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -487,7 +486,7 @@ diamond-pearl:
           set off a magnetic storm.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -498,30 +497,30 @@ diamond-pearl:
             - diamond-pearl/back/shiny/magneton-default.png
             - diamond-pearl/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 179
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       shape: *diamond-pearl.pokemon.magneton.shape
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
       pal_park: *diamond-pearl.pokemon.magneton.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -537,7 +536,7 @@ platinum:
           TV sets from displaying properly.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -548,30 +547,30 @@ platinum:
             - platinum/back/shiny/magneton-default.png
             - platinum/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 120
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       shape: *diamond-pearl.pokemon.magneton.shape
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
       pal_park: *diamond-pearl.pokemon.magneton.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -592,7 +591,7 @@ heartgold-soulsilver:
           moisture in its vicinity.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -619,28 +618,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/magneton-default.png
             - heartgold-soulsilver/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       color: *ruby-sapphire.pokemon.magneton.color
       shape: *diamond-pearl.pokemon.magneton.shape
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -666,7 +665,7 @@ black-white:
           TV sets from displaying properly.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -677,30 +676,30 @@ black-white:
             - black-white/back/shiny/magneton-default.png
             - black-white/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *red-blue.pokemon.magneton.forms.magneton.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-unova: 49
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       color: *ruby-sapphire.pokemon.magneton.color
       shape: *diamond-pearl.pokemon.magneton.shape
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -721,27 +720,27 @@ black-2-white-2:
           enough to dry out surrounding moisture.
       forms: *colosseum.pokemon.magneton.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 70
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       color: *ruby-sapphire.pokemon.magneton.color
       shape: *diamond-pearl.pokemon.magneton.shape
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -763,7 +762,7 @@ x-y:
           3,300 feet.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -772,30 +771,30 @@ x-y:
             - x-y/magneton-default.png
             - x-y/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: &x-y.pokemon.magneton.forms.magneton.cry magneton-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 85
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       color: *ruby-sapphire.pokemon.magneton.color
       shape: *diamond-pearl.pokemon.magneton.shape
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -815,20 +814,20 @@ omega-ruby-alpha-sapphire:
           inside a Poké Ball.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
           icon: *x-y.pokemon.magneton.forms.magneton.icon
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *x-y.pokemon.magneton.forms.magneton.cry
           sprites:
             - omega-ruby-alpha-sapphire/magneton-default.png
             - omega-ruby-alpha-sapphire/shiny/magneton-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 48
@@ -836,20 +835,20 @@ sun-moon:
     original-ulaula: 26
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       color: *ruby-sapphire.pokemon.magneton.color
       shape: *diamond-pearl.pokemon.magneton.shape
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -866,7 +865,7 @@ sun-moon:
           Pokémon happen when lots of sunspots appear.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -875,11 +874,11 @@ sun-moon:
             - sun-moon/magneton-default.png
             - sun-moon/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *x-y.pokemon.magneton.forms.magneton.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 55
@@ -887,20 +886,20 @@ ultra-sun-ultra-moon:
     updated-ulaula: 26
   pokemon:
     magneton:
-      genus: *gold-silver.pokemon.magneton.genus
+      genus: *ruby-sapphire.pokemon.magneton.genus
       evolution_parent: *red-blue.pokemon.magneton.evolution_parent
       color: *ruby-sapphire.pokemon.magneton.color
       shape: *diamond-pearl.pokemon.magneton.shape
       capture_rate: *red-blue.pokemon.magneton.capture_rate
-      happiness: *gold-silver.pokemon.magneton.happiness
-      baby: *gold-silver.pokemon.magneton.baby
+      happiness: *ruby-sapphire.pokemon.magneton.happiness
+      baby: *ruby-sapphire.pokemon.magneton.baby
       hatch_steps: *gold-silver.pokemon.magneton.hatch_steps
       growth_rate: *red-blue.pokemon.magneton.growth_rate
-      forms_switchable: *gold-silver.pokemon.magneton.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magneton.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.magneton.default
-      height: *gold-silver.pokemon.magneton.height
-      weight: *gold-silver.pokemon.magneton.weight
+      height: *ruby-sapphire.pokemon.magneton.height
+      weight: *ruby-sapphire.pokemon.magneton.weight
       experience: *ruby-sapphire.pokemon.magneton.experience
       types: *gold-silver.pokemon.magneton.types
       egg_groups: *gold-silver.pokemon.magneton.egg_groups
@@ -917,7 +916,7 @@ ultra-sun-ultra-moon:
           mysterious electrical signals.
       forms:
         magneton:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.magneton.forms.magneton.form_name
           default: *red-blue.pokemon.magneton.default
           battle_only: *red-blue.pokemon.magneton.forms.magneton.battle_only
@@ -926,5 +925,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/magneton-default.png
             - ultra-sun-ultra-moon/shiny/magneton-default.png
           art: *red-blue.pokemon.magneton.forms.magneton.art
-          footprint: *gold-silver.pokemon.magneton.forms.magneton.footprint
+          footprint: *ruby-sapphire.pokemon.magneton.forms.magneton.footprint
           cry: *x-y.pokemon.magneton.forms.magneton.cry

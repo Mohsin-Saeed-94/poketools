@@ -29,8 +29,8 @@ red-blue:
           base_value: 65
           effort_change: 65
       growth_rate: &red-blue.pokemon.ponyta.growth_rate medium
-      genus: 'FIRE HORSE Pokémon'
-      height: 9
+      genus: &red-blue.pokemon.ponyta.genus 'FIRE HORSE Pokémon'
+      height: &red-blue.pokemon.ponyta.height 9
       weight: 2993
       flavor_text:
         red: |
@@ -99,29 +99,19 @@ yellow:
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
           icon: *red-blue.pokemon.ponyta.forms.ponyta.icon
 gold-silver:
-  name: &gold-silver.name Ponyta
-  position: &gold-silver.position 83
+  name: *red-blue.name
+  position: &gold-silver.position 76
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 201
+    original-johto: 200
+    original-johto-abc: 157
   pokemon:
     ponyta:
-      genus: &gold-silver.pokemon.ponyta.genus 'Fire Horse Pokémon'
-      female_rate: &gold-silver.pokemon.ponyta.female_rate 50
-      capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: &gold-silver.pokemon.ponyta.happiness 70
-      baby: &gold-silver.pokemon.ponyta.baby false
-      hatch_steps: &gold-silver.pokemon.ponyta.hatch_steps 20
-      growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: &gold-silver.pokemon.ponyta.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.ponyta.default
-      height: &gold-silver.pokemon.ponyta.height 10
-      weight: &gold-silver.pokemon.ponyta.weight 300
+      capture_rate: *red-blue.pokemon.ponyta.capture_rate
       experience: *red-blue.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
-      egg_groups: &gold-silver.pokemon.ponyta.egg_groups
-        - ground
       stats: &gold-silver.pokemon.ponyta.stats
         hp:
           base_value: 50
@@ -141,9 +131,17 @@ gold-silver:
         special-defense:
           base_value: 65
           effort_change: 65
+      growth_rate: *red-blue.pokemon.ponyta.growth_rate
+      female_rate: &gold-silver.pokemon.ponyta.female_rate 50
+      hatch_steps: &gold-silver.pokemon.ponyta.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.ponyta.egg_groups
+        - ground
+      genus: *red-blue.pokemon.ponyta.genus
+      height: *red-blue.pokemon.ponyta.height
+      weight: &gold-silver.pokemon.ponyta.weight 299
       flavor_text:
         gold: |
-          It is a weak run­
+          It is a weak run-
           ner immediately
           after birth. It
           gradually becomes
@@ -151,47 +149,43 @@ gold-silver:
           after its parents.
         silver: |
           Its hind legs,
-          which have hard­
+          which have hard-
           er-than-diamond
           hooves, kick back
           at any presence it
           senses behind it.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
           sprites:
-            - gold-silver/back/ponyta-default.png
             - gold-silver/ponyta-default.png
+            - gold-silver/back/ponyta-default.png
             - gold-silver/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: &gold-silver.pokemon.ponyta.forms.ponyta.footprint ponyta.png
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
           icon: &gold-silver.pokemon.ponyta.forms.ponyta.icon gen2/equine.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
-      female_rate: *gold-silver.pokemon.ponyta.female_rate
-      capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
-      hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
-      growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      capture_rate: *red-blue.pokemon.ponyta.capture_rate
       experience: *red-blue.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
-      egg_groups: *gold-silver.pokemon.ponyta.egg_groups
       stats: *gold-silver.pokemon.ponyta.stats
+      growth_rate: *red-blue.pokemon.ponyta.growth_rate
+      female_rate: *gold-silver.pokemon.ponyta.female_rate
+      hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
+      egg_groups: *gold-silver.pokemon.ponyta.egg_groups
+      genus: *red-blue.pokemon.ponyta.genus
+      height: *red-blue.pokemon.ponyta.height
+      weight: *gold-silver.pokemon.ponyta.weight
       flavor_text:
         crystal: |
           Training by
@@ -202,40 +196,37 @@ crystal:
           jumper.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
           sprites:
-            - crystal/back/ponyta-default.png
             - crystal/ponyta-default.png
+            - crystal/back/ponyta-default.png
             - crystal/shiny/ponyta-default.png
-            - crystal/animated/ponyta-default.webm
-            - crystal/animated/shiny/ponyta-default.webm
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
           icon: *gold-silver.pokemon.ponyta.forms.ponyta.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Ponyta
+  position: &ruby-sapphire.position 83
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: &ruby-sapphire.pokemon.ponyta.genus 'Fire Horse Pokémon'
       color: &ruby-sapphire.pokemon.ponyta.color yellow
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: &ruby-sapphire.pokemon.ponyta.happiness 70
+      baby: &ruby-sapphire.pokemon.ponyta.baby false
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.ponyta.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: &ruby-sapphire.pokemon.ponyta.height 10
+      weight: &ruby-sapphire.pokemon.ponyta.weight 300
       experience: &ruby-sapphire.pokemon.ponyta.experience 82
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -283,7 +274,7 @@ ruby-sapphire:
           its parent.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -293,27 +284,27 @@ ruby-sapphire:
             - ruby-sapphire/ponyta-default.png
             - ruby-sapphire/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: &ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint ponyta.png
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       color: *ruby-sapphire.pokemon.ponyta.color
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -327,7 +318,7 @@ emerald:
           keep up with its parent.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -338,25 +329,25 @@ emerald:
             - emerald/animated/ponyta-default.webm
             - emerald/animated/shiny/ponyta-default.webm
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -364,34 +355,34 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.ponyta.abilities
       forms: &colosseum.pokemon.ponyta.forms
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
           icon: *ruby-sapphire.pokemon.ponyta.forms.ponyta.icon
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       habitat: grassland
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -408,7 +399,7 @@ firered-leafgreen:
           completely flat in little time.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -418,33 +409,33 @@ firered-leafgreen:
             - firered-leafgreen/ponyta-default.png
             - firered-leafgreen/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-sinnoh: 90
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       shape: &diamond-pearl.pokemon.ponyta.shape quadruped
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
       pal_park: &diamond-pearl.pokemon.ponyta.pal_park
         area: field
         rate: 30
         score: 50
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -465,7 +456,7 @@ diamond-pearl:
           in fields and mountains all day.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -476,30 +467,30 @@ diamond-pearl:
             - diamond-pearl/ponyta-default.png
             - diamond-pearl/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     extended-sinnoh: 90
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       shape: *diamond-pearl.pokemon.ponyta.shape
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
       pal_park: *diamond-pearl.pokemon.ponyta.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -514,7 +505,7 @@ platinum:
           legs are made tougher and faster.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -525,30 +516,30 @@ platinum:
             - platinum/ponyta-default.png
             - platinum/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 206
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       shape: *diamond-pearl.pokemon.ponyta.shape
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
       pal_park: *diamond-pearl.pokemon.ponyta.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -568,7 +559,7 @@ heartgold-soulsilver:
           at any presence it senses behind it.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -595,28 +586,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/ponyta-default.png
             - heartgold-soulsilver/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       color: *ruby-sapphire.pokemon.ponyta.color
       shape: *diamond-pearl.pokemon.ponyta.shape
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -636,7 +627,7 @@ black-white:
           legs are made tougher and faster.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -647,28 +638,28 @@ black-white:
             - black-white/ponyta-default.png
             - black-white/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *red-blue.pokemon.ponyta.forms.ponyta.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       color: *ruby-sapphire.pokemon.ponyta.color
       shape: *diamond-pearl.pokemon.ponyta.shape
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -688,25 +679,25 @@ black-2-white-2:
           legs are made tougher and faster.
       forms: *colosseum.pokemon.ponyta.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       color: *ruby-sapphire.pokemon.ponyta.color
       shape: *diamond-pearl.pokemon.ponyta.shape
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -723,7 +714,7 @@ x-y:
           It runs in fields and mountains all day.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -732,28 +723,28 @@ x-y:
             - x-y/ponyta-default.png
             - x-y/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: &x-y.pokemon.ponyta.forms.ponyta.cry ponyta-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       color: *ruby-sapphire.pokemon.ponyta.color
       shape: *diamond-pearl.pokemon.ponyta.shape
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -771,37 +762,37 @@ omega-ruby-alpha-sapphire:
           falling to keep up with its parent.
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
           icon: *x-y.pokemon.ponyta.forms.ponyta.icon
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *x-y.pokemon.ponyta.forms.ponyta.cry
           sprites:
             - omega-ruby-alpha-sapphire/ponyta-default.png
             - omega-ruby-alpha-sapphire/shiny/ponyta-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       color: *ruby-sapphire.pokemon.ponyta.color
       shape: *diamond-pearl.pokemon.ponyta.shape
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -810,7 +801,7 @@ sun-moon:
       abilities: *ruby-sapphire.pokemon.ponyta.abilities
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -819,28 +810,28 @@ sun-moon:
             - sun-moon/ponyta-default.png
             - sun-moon/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *x-y.pokemon.ponyta.forms.ponyta.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ponyta:
-      genus: *gold-silver.pokemon.ponyta.genus
+      genus: *ruby-sapphire.pokemon.ponyta.genus
       color: *ruby-sapphire.pokemon.ponyta.color
       shape: *diamond-pearl.pokemon.ponyta.shape
       female_rate: *gold-silver.pokemon.ponyta.female_rate
       capture_rate: *red-blue.pokemon.ponyta.capture_rate
-      happiness: *gold-silver.pokemon.ponyta.happiness
-      baby: *gold-silver.pokemon.ponyta.baby
+      happiness: *ruby-sapphire.pokemon.ponyta.happiness
+      baby: *ruby-sapphire.pokemon.ponyta.baby
       hatch_steps: *gold-silver.pokemon.ponyta.hatch_steps
       growth_rate: *red-blue.pokemon.ponyta.growth_rate
-      forms_switchable: *gold-silver.pokemon.ponyta.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ponyta.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ponyta.default
-      height: *gold-silver.pokemon.ponyta.height
-      weight: *gold-silver.pokemon.ponyta.weight
+      height: *ruby-sapphire.pokemon.ponyta.height
+      weight: *ruby-sapphire.pokemon.ponyta.weight
       experience: *ruby-sapphire.pokemon.ponyta.experience
       types: *red-blue.pokemon.ponyta.types
       egg_groups: *gold-silver.pokemon.ponyta.egg_groups
@@ -849,7 +840,7 @@ ultra-sun-ultra-moon:
       abilities: *ruby-sapphire.pokemon.ponyta.abilities
       forms:
         ponyta:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ponyta.forms.ponyta.form_name
           default: *red-blue.pokemon.ponyta.default
           battle_only: *red-blue.pokemon.ponyta.forms.ponyta.battle_only
@@ -858,5 +849,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/ponyta-default.png
             - ultra-sun-ultra-moon/shiny/ponyta-default.png
           art: *red-blue.pokemon.ponyta.forms.ponyta.art
-          footprint: *gold-silver.pokemon.ponyta.forms.ponyta.footprint
+          footprint: *ruby-sapphire.pokemon.ponyta.forms.ponyta.footprint
           cry: *x-y.pokemon.ponyta.forms.ponyta.cry

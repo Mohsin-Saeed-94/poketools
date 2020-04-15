@@ -30,8 +30,8 @@ red-blue:
           base_value: 80
           effort_change: 80
       growth_rate: &red-blue.pokemon.ivysaur.growth_rate medium-slow
-      genus: 'SEED Pokémon'
-      height: 9
+      genus: &red-blue.pokemon.ivysaur.genus 'SEED Pokémon'
+      height: &red-blue.pokemon.ivysaur.height 9
       weight: 1315
       flavor_text:
         red: |
@@ -106,31 +106,19 @@ yellow:
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
           icon: *red-blue.pokemon.ivysaur.forms.ivysaur.icon
 gold-silver:
-  name: &gold-silver.name Ivysaur
-  position: *red-blue.position
+  name: *red-blue.name
+  position: &gold-silver.position 1
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 227
+    original-johto: 226
+    original-johto-abc: 81
   pokemon:
     ivysaur:
-      genus: &gold-silver.pokemon.ivysaur.genus 'Seed Pokémon'
-      evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
-      female_rate: &gold-silver.pokemon.ivysaur.female_rate 12
-      capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: &gold-silver.pokemon.ivysaur.happiness 70
-      baby: &gold-silver.pokemon.ivysaur.baby false
-      hatch_steps: &gold-silver.pokemon.ivysaur.hatch_steps 20
-      growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: &gold-silver.pokemon.ivysaur.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.ivysaur.default
-      height: &gold-silver.pokemon.ivysaur.height 10
-      weight: &gold-silver.pokemon.ivysaur.weight 130
+      capture_rate: *red-blue.pokemon.ivysaur.capture_rate
       experience: *red-blue.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
-      egg_groups: &gold-silver.pokemon.ivysaur.egg_groups
-        - monster
-        - plant
       stats: &gold-silver.pokemon.ivysaur.stats
         hp:
           base_value: 60
@@ -150,10 +138,18 @@ gold-silver:
         special-defense:
           base_value: 80
           effort_change: 80
-      evolution_conditions: *red-blue.pokemon.ivysaur.evolution_conditions
+      growth_rate: *red-blue.pokemon.ivysaur.growth_rate
+      female_rate: &gold-silver.pokemon.ivysaur.female_rate 12
+      hatch_steps: &gold-silver.pokemon.ivysaur.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.ivysaur.egg_groups
+        - monster
+        - plant
+      genus: *red-blue.pokemon.ivysaur.genus
+      height: *red-blue.pokemon.ivysaur.height
+      weight: &gold-silver.pokemon.ivysaur.weight 131
       flavor_text:
         gold: |
-          Exposure to sun­
+          Exposure to sun-
           light adds to its
           strength. Sunlight
           also makes the bud
@@ -166,44 +162,40 @@ gold-silver:
           is evidence that
           the large flower
           will soon bloom.
+      evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
+      evolution_conditions: *red-blue.pokemon.ivysaur.evolution_conditions
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
           sprites:
+            - gold-silver/ivysaur-default.png
             - gold-silver/back/ivysaur-default.png
             - gold-silver/shiny/ivysaur-default.png
-            - gold-silver/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: &gold-silver.pokemon.ivysaur.forms.ivysaur.footprint ivysaur.png
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
           icon: &gold-silver.pokemon.ivysaur.forms.ivysaur.icon gen2/bulbasaur.png
 crystal:
-  name: *gold-silver.name
-  position: *red-blue.position
+  name: *red-blue.name
+  position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
-      evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
-      female_rate: *gold-silver.pokemon.ivysaur.female_rate
-      capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
-      hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
-      growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      capture_rate: *red-blue.pokemon.ivysaur.capture_rate
       experience: *red-blue.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
-      egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
       stats: *gold-silver.pokemon.ivysaur.stats
-      evolution_conditions: *red-blue.pokemon.ivysaur.evolution_conditions
+      growth_rate: *red-blue.pokemon.ivysaur.growth_rate
+      female_rate: *gold-silver.pokemon.ivysaur.female_rate
+      hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
+      egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
+      genus: *red-blue.pokemon.ivysaur.genus
+      height: *red-blue.pokemon.ivysaur.height
+      weight: *gold-silver.pokemon.ivysaur.weight
       flavor_text:
         crystal: |
           The bulb on its
@@ -212,43 +204,42 @@ crystal:
           The bulb gives off
           a pleasant aroma
           when it blooms.
+      evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
+      evolution_conditions: *red-blue.pokemon.ivysaur.evolution_conditions
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
           sprites:
+            - crystal/ivysaur-default.png
             - crystal/back/ivysaur-default.png
             - crystal/shiny/ivysaur-default.png
-            - crystal/animated/shiny/ivysaur-default.webm
-            - crystal/animated/ivysaur-default.webm
-            - crystal/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
           icon: *gold-silver.pokemon.ivysaur.forms.ivysaur.icon
 ruby-sapphire:
-  name: *gold-silver.name
+  name: &ruby-sapphire.name Ivysaur
   position: *red-blue.position
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: &ruby-sapphire.pokemon.ivysaur.genus 'Seed Pokémon'
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       color: &ruby-sapphire.pokemon.ivysaur.color green
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: &ruby-sapphire.pokemon.ivysaur.happiness 70
+      baby: &ruby-sapphire.pokemon.ivysaur.baby false
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.ivysaur.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: &ruby-sapphire.pokemon.ivysaur.height 10
+      weight: &ruby-sapphire.pokemon.ivysaur.weight 130
       experience: &ruby-sapphire.pokemon.ivysaur.experience 142
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -274,7 +265,7 @@ ruby-sapphire:
       abilities: &ruby-sapphire.pokemon.ivysaur.abilities
         overgrow:
           hidden: false
-          position: 1
+          position: *gold-silver.position
         chlorophyll:
           hidden: true
           position: 3
@@ -296,7 +287,7 @@ ruby-sapphire:
           bud will bloom into a large flower soon.
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -306,28 +297,28 @@ ruby-sapphire:
             - ruby-sapphire/shiny/ivysaur-default.png
             - ruby-sapphire/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: &ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint ivysaur.png
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
 emerald:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       color: *ruby-sapphire.pokemon.ivysaur.color
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -342,7 +333,7 @@ emerald:
           a large flower.
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -353,26 +344,26 @@ emerald:
             - emerald/animated/ivysaur-default.webm
             - emerald/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
 colosseum: &colosseum
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -381,35 +372,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.ivysaur.evolution_conditions
       forms: &colosseum.pokemon.ivysaur.forms
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
           icon: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.icon
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *red-blue.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       habitat: grassland
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -427,7 +418,7 @@ firered-leafgreen:
           its hind legs.
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -437,32 +428,32 @@ firered-leafgreen:
             - firered-leafgreen/shiny/ivysaur-default.png
             - firered-leafgreen/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
 diamond-pearl:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       shape: &diamond-pearl.pokemon.ivysaur.shape quadruped
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
       pal_park: &diamond-pearl.pokemon.ivysaur.pal_park
         area: field
         rate: 10
         score: 80
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -480,7 +471,7 @@ diamond-pearl:
           indicate the flower’s coming bloom.
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -491,29 +482,29 @@ diamond-pearl:
             - diamond-pearl/shiny/ivysaur-default.png
             - diamond-pearl/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
 platinum:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       shape: *diamond-pearl.pokemon.ivysaur.shape
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
       pal_park: *diamond-pearl.pokemon.ivysaur.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -527,7 +518,7 @@ platinum:
           indicate the flower’s coming bloom.
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -538,31 +529,31 @@ platinum:
             - platinum/shiny/ivysaur-default.png
             - platinum/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 232
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       shape: *diamond-pearl.pokemon.ivysaur.shape
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
       pal_park: *diamond-pearl.pokemon.ivysaur.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -580,7 +571,7 @@ heartgold-soulsilver:
           the large flower will soon bloom.
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -607,29 +598,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/ivysaur-default.png
             - heartgold-soulsilver/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
 black-white:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       color: *ruby-sapphire.pokemon.ivysaur.color
       shape: *diamond-pearl.pokemon.ivysaur.shape
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -647,7 +638,7 @@ black-white:
           indicate the flower’s coming bloom.
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -658,29 +649,29 @@ black-white:
             - black-white/shiny/ivysaur-default.png
             - black-white/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *red-blue.pokemon.ivysaur.forms.ivysaur.cry
 black-2-white-2:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       color: *ruby-sapphire.pokemon.ivysaur.color
       shape: *diamond-pearl.pokemon.ivysaur.shape
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -698,28 +689,28 @@ black-2-white-2:
           indicate the flower’s coming bloom.
       forms: *colosseum.pokemon.ivysaur.forms
 x-y:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     kalos-central: 81
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       color: *ruby-sapphire.pokemon.ivysaur.color
       shape: *diamond-pearl.pokemon.ivysaur.shape
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -737,7 +728,7 @@ x-y:
           aroma wafts to indicate the flower’s coming bloom.
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -746,29 +737,29 @@ x-y:
             - x-y/shiny/ivysaur-default.png
             - x-y/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: &x-y.pokemon.ivysaur.forms.ivysaur.cry ivysaur-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       color: *ruby-sapphire.pokemon.ivysaur.color
       shape: *diamond-pearl.pokemon.ivysaur.shape
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -789,38 +780,38 @@ omega-ruby-alpha-sapphire:
           it’s a sign that the bud will bloom into a large flower soon.
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
           icon: *x-y.pokemon.ivysaur.forms.ivysaur.icon
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *x-y.pokemon.ivysaur.forms.ivysaur.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/ivysaur-default.png
             - omega-ruby-alpha-sapphire/ivysaur-default.png
 sun-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       color: *ruby-sapphire.pokemon.ivysaur.color
       shape: *diamond-pearl.pokemon.ivysaur.shape
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -830,7 +821,7 @@ sun-moon:
       evolution_conditions: *red-blue.pokemon.ivysaur.evolution_conditions
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -839,29 +830,29 @@ sun-moon:
             - sun-moon/shiny/ivysaur-default.png
             - sun-moon/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *x-y.pokemon.ivysaur.forms.ivysaur.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
+  name: *ruby-sapphire.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     ivysaur:
-      genus: *gold-silver.pokemon.ivysaur.genus
+      genus: *ruby-sapphire.pokemon.ivysaur.genus
       evolution_parent: *red-blue.pokemon.ivysaur.evolution_parent
       color: *ruby-sapphire.pokemon.ivysaur.color
       shape: *diamond-pearl.pokemon.ivysaur.shape
       female_rate: *gold-silver.pokemon.ivysaur.female_rate
       capture_rate: *red-blue.pokemon.ivysaur.capture_rate
-      happiness: *gold-silver.pokemon.ivysaur.happiness
-      baby: *gold-silver.pokemon.ivysaur.baby
+      happiness: *ruby-sapphire.pokemon.ivysaur.happiness
+      baby: *ruby-sapphire.pokemon.ivysaur.baby
       hatch_steps: *gold-silver.pokemon.ivysaur.hatch_steps
       growth_rate: *red-blue.pokemon.ivysaur.growth_rate
-      forms_switchable: *gold-silver.pokemon.ivysaur.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.ivysaur.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.ivysaur.default
-      height: *gold-silver.pokemon.ivysaur.height
-      weight: *gold-silver.pokemon.ivysaur.weight
+      height: *ruby-sapphire.pokemon.ivysaur.height
+      weight: *ruby-sapphire.pokemon.ivysaur.weight
       experience: *ruby-sapphire.pokemon.ivysaur.experience
       types: *red-blue.pokemon.ivysaur.types
       egg_groups: *gold-silver.pokemon.ivysaur.egg_groups
@@ -871,7 +862,7 @@ ultra-sun-ultra-moon:
       evolution_conditions: *red-blue.pokemon.ivysaur.evolution_conditions
       forms:
         ivysaur:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.ivysaur.forms.ivysaur.form_name
           default: *red-blue.pokemon.ivysaur.default
           battle_only: *red-blue.pokemon.ivysaur.forms.ivysaur.battle_only
@@ -880,5 +871,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/ivysaur-default.png
             - ultra-sun-ultra-moon/ivysaur-default.png
           art: *red-blue.pokemon.ivysaur.forms.ivysaur.art
-          footprint: *gold-silver.pokemon.ivysaur.forms.ivysaur.footprint
+          footprint: *ruby-sapphire.pokemon.ivysaur.forms.ivysaur.footprint
           cry: *x-y.pokemon.ivysaur.forms.ivysaur.cry

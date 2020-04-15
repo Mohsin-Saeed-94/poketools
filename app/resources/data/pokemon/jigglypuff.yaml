@@ -29,7 +29,7 @@ red-blue:
           base_value: 25
           effort_change: 25
       growth_rate: &red-blue.pokemon.jigglypuff.growth_rate fast
-      genus: 'BALLOON Pokémon'
+      genus: &red-blue.pokemon.jigglypuff.genus 'BALLOON Pokémon'
       height: &red-blue.pokemon.jigglypuff.height 5
       weight: 544
       flavor_text:
@@ -99,30 +99,19 @@ yellow:
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
           icon: *red-blue.pokemon.jigglypuff.forms.jigglypuff.icon
 gold-silver:
-  name: &gold-silver.name Jigglypuff
-  position: &gold-silver.position 42
+  name: *red-blue.name
+  position: &gold-silver.position 38
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 44
+    original-johto: 43
+    original-johto-abc: 82
   pokemon:
     jigglypuff:
-      genus: &gold-silver.pokemon.jigglypuff.genus 'Balloon Pokémon'
-      evolution_parent: &gold-silver.pokemon.jigglypuff.evolution_parent igglybuff/igglybuff
-      female_rate: &gold-silver.pokemon.jigglypuff.female_rate 75
-      capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: &gold-silver.pokemon.jigglypuff.happiness 70
-      baby: &gold-silver.pokemon.jigglypuff.baby false
-      hatch_steps: &gold-silver.pokemon.jigglypuff.hatch_steps 10
-      growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: &gold-silver.pokemon.jigglypuff.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.jigglypuff.default
-      height: *red-blue.pokemon.jigglypuff.height
-      weight: &gold-silver.pokemon.jigglypuff.weight 55
+      capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
       experience: *red-blue.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
-      egg_groups: &gold-silver.pokemon.jigglypuff.egg_groups
-        - fairy
       stats: &gold-silver.pokemon.jigglypuff.stats
         hp:
           base_value: 115
@@ -142,9 +131,14 @@ gold-silver:
         special-defense:
           base_value: 25
           effort_change: 45
-      evolution_conditions: &gold-silver.pokemon.jigglypuff.evolution_conditions
-        level-up:
-          minimum_happiness: 220
+      growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
+      female_rate: &gold-silver.pokemon.jigglypuff.female_rate 75
+      hatch_steps: &gold-silver.pokemon.jigglypuff.hatch_steps 10
+      egg_groups: &gold-silver.pokemon.jigglypuff.egg_groups
+        - fairy
+      genus: *red-blue.pokemon.jigglypuff.genus
+      height: *red-blue.pokemon.jigglypuff.height
+      weight: &gold-silver.pokemon.jigglypuff.weight 54
       flavor_text:
         gold: |
           If it inflates to
@@ -160,9 +154,13 @@ gold-silver:
           a relaxing melody,
           inducing its
           enemies to sleep.
+      evolution_parent: &gold-silver.pokemon.jigglypuff.evolution_parent igglybuff/igglybuff
+      evolution_conditions: &gold-silver.pokemon.jigglypuff.evolution_conditions
+        level-up:
+          minimum_happiness: 220
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -171,33 +169,27 @@ gold-silver:
             - gold-silver/back/jigglypuff-default.png
             - gold-silver/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: &gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint jigglypuff.png
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
           icon: &gold-silver.pokemon.jigglypuff.forms.jigglypuff.icon gen2/jigglypuff.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
-      evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
-      female_rate: *gold-silver.pokemon.jigglypuff.female_rate
-      capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
-      hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
-      growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.jigglypuff.default
-      height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
       experience: *red-blue.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
-      egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
       stats: *gold-silver.pokemon.jigglypuff.stats
-      evolution_conditions: *gold-silver.pokemon.jigglypuff.evolution_conditions
+      growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
+      female_rate: *gold-silver.pokemon.jigglypuff.female_rate
+      hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
+      egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
+      genus: *red-blue.pokemon.jigglypuff.genus
+      height: *red-blue.pokemon.jigglypuff.height
+      weight: *gold-silver.pokemon.jigglypuff.weight
       flavor_text:
         crystal: |
           It rolls its cute
@@ -206,9 +198,11 @@ crystal:
           Its gentle song
           puts anyone who
           hears it to sleep.
+      evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.jigglypuff.evolution_conditions
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -216,34 +210,31 @@ crystal:
             - crystal/jigglypuff-default.png
             - crystal/back/jigglypuff-default.png
             - crystal/shiny/jigglypuff-default.png
-            - crystal/animated/jigglypuff-default.webm
-            - crystal/animated/shiny/jigglypuff-default.webm
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
           icon: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Jigglypuff
+  position: &ruby-sapphire.position 42
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
     hoenn: 138
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: &ruby-sapphire.pokemon.jigglypuff.genus 'Balloon Pokémon'
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       color: &ruby-sapphire.pokemon.jigglypuff.color pink
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: &ruby-sapphire.pokemon.jigglypuff.happiness 70
+      baby: &ruby-sapphire.pokemon.jigglypuff.baby false
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.jigglypuff.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: &ruby-sapphire.pokemon.jigglypuff.weight 55
       experience: &ruby-sapphire.pokemon.jigglypuff.experience 95
       types: *red-blue.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -286,7 +277,7 @@ ruby-sapphire:
           breathe, endangering its life.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -296,28 +287,28 @@ ruby-sapphire:
             - ruby-sapphire/back/jigglypuff-default.png
             - ruby-sapphire/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: &ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint jigglypuff.png
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       color: *ruby-sapphire.pokemon.jigglypuff.color
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -332,7 +323,7 @@ emerald:
           someone in a deep sleep.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -343,26 +334,26 @@ emerald:
             - emerald/animated/jigglypuff-default.webm
             - emerald/animated/shiny/jigglypuff-default.webm
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -371,35 +362,35 @@ colosseum: &colosseum
       evolution_conditions: *gold-silver.pokemon.jigglypuff.evolution_conditions
       forms: &colosseum.pokemon.jigglypuff.forms
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
           icon: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.icon
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       habitat: grassland
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -421,7 +412,7 @@ firered-leafgreen:
           its enemies to sleep.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -431,33 +422,33 @@ firered-leafgreen:
             - firered-leafgreen/back/jigglypuff-default.png
             - firered-leafgreen/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       shape: &diamond-pearl.pokemon.jigglypuff.shape humanoid
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
       pal_park: &diamond-pearl.pokemon.jigglypuff.pal_park
         area: field
         rate: 10
         score: 80
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -475,7 +466,7 @@ diamond-pearl:
           that makes everyone drowsy.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -486,29 +477,29 @@ diamond-pearl:
             - diamond-pearl/back/shiny/jigglypuff-default.png
             - diamond-pearl/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       shape: *diamond-pearl.pokemon.jigglypuff.shape
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
       pal_park: *diamond-pearl.pokemon.jigglypuff.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -522,7 +513,7 @@ platinum:
           that makes everyone drowsy.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -533,31 +524,31 @@ platinum:
             - platinum/back/shiny/jigglypuff-default.png
             - platinum/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 44
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       shape: *diamond-pearl.pokemon.jigglypuff.shape
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
       pal_park: *diamond-pearl.pokemon.jigglypuff.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -575,7 +566,7 @@ heartgold-soulsilver:
           inducing its enemies to sleep.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -602,29 +593,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/jigglypuff-default.png
             - heartgold-soulsilver/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *diamond-pearl.numbers
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       color: *ruby-sapphire.pokemon.jigglypuff.color
       shape: *diamond-pearl.pokemon.jigglypuff.shape
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -646,7 +637,7 @@ black-white:
           that makes everyone drowsy.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -657,31 +648,31 @@ black-white:
             - black-white/back/shiny/jigglypuff-default.png
             - black-white/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *red-blue.pokemon.jigglypuff.forms.jigglypuff.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-unova: 282
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       color: *ruby-sapphire.pokemon.jigglypuff.color
       shape: *diamond-pearl.pokemon.jigglypuff.shape
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *red-blue.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -699,28 +690,28 @@ black-2-white-2:
           listeners can’t help but fall asleep.
       forms: *colosseum.pokemon.jigglypuff.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 120
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       color: *ruby-sapphire.pokemon.jigglypuff.color
       shape: *diamond-pearl.pokemon.jigglypuff.shape
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: &x-y.pokemon.jigglypuff.types
         - normal
@@ -745,7 +736,7 @@ x-y:
           and cause sure drowsiness in its audience.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -754,31 +745,31 @@ x-y:
             - x-y/jigglypuff-default.png
             - x-y/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: &x-y.pokemon.jigglypuff.forms.jigglypuff.cry jigglypuff-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 143
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       color: *ruby-sapphire.pokemon.jigglypuff.color
       shape: *diamond-pearl.pokemon.jigglypuff.shape
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *x-y.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -797,41 +788,41 @@ omega-ruby-alpha-sapphire:
           fall asleep, Jigglypuff cannot breathe, endangering its life.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
           icon: *x-y.pokemon.jigglypuff.forms.jigglypuff.icon
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *x-y.pokemon.jigglypuff.forms.jigglypuff.cry
           sprites:
             - omega-ruby-alpha-sapphire/jigglypuff-default.png
             - omega-ruby-alpha-sapphire/shiny/jigglypuff-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 135
     original-akala: 62
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       color: *ruby-sapphire.pokemon.jigglypuff.color
       shape: *diamond-pearl.pokemon.jigglypuff.shape
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *x-y.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -849,7 +840,7 @@ sun-moon:
           depends on its own effort.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -858,32 +849,32 @@ sun-moon:
             - sun-moon/jigglypuff-default.png
             - sun-moon/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *x-y.pokemon.jigglypuff.forms.jigglypuff.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 168
     updated-akala: 69
   pokemon:
     jigglypuff:
-      genus: *gold-silver.pokemon.jigglypuff.genus
+      genus: *ruby-sapphire.pokemon.jigglypuff.genus
       evolution_parent: *gold-silver.pokemon.jigglypuff.evolution_parent
       color: *ruby-sapphire.pokemon.jigglypuff.color
       shape: *diamond-pearl.pokemon.jigglypuff.shape
       female_rate: *gold-silver.pokemon.jigglypuff.female_rate
       capture_rate: *red-blue.pokemon.jigglypuff.capture_rate
-      happiness: *gold-silver.pokemon.jigglypuff.happiness
-      baby: *gold-silver.pokemon.jigglypuff.baby
+      happiness: *ruby-sapphire.pokemon.jigglypuff.happiness
+      baby: *ruby-sapphire.pokemon.jigglypuff.baby
       hatch_steps: *gold-silver.pokemon.jigglypuff.hatch_steps
       growth_rate: *red-blue.pokemon.jigglypuff.growth_rate
-      forms_switchable: *gold-silver.pokemon.jigglypuff.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.jigglypuff.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.jigglypuff.default
       height: *red-blue.pokemon.jigglypuff.height
-      weight: *gold-silver.pokemon.jigglypuff.weight
+      weight: *ruby-sapphire.pokemon.jigglypuff.weight
       experience: *ruby-sapphire.pokemon.jigglypuff.experience
       types: *x-y.pokemon.jigglypuff.types
       egg_groups: *gold-silver.pokemon.jigglypuff.egg_groups
@@ -900,7 +891,7 @@ ultra-sun-ultra-moon:
           CDs can be found near the bedding area.
       forms:
         jigglypuff:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.jigglypuff.forms.jigglypuff.form_name
           default: *red-blue.pokemon.jigglypuff.default
           battle_only: *red-blue.pokemon.jigglypuff.forms.jigglypuff.battle_only
@@ -909,5 +900,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/jigglypuff-default.png
             - ultra-sun-ultra-moon/shiny/jigglypuff-default.png
           art: *red-blue.pokemon.jigglypuff.forms.jigglypuff.art
-          footprint: *gold-silver.pokemon.jigglypuff.forms.jigglypuff.footprint
+          footprint: *ruby-sapphire.pokemon.jigglypuff.forms.jigglypuff.footprint
           cry: *x-y.pokemon.jigglypuff.forms.jigglypuff.cry

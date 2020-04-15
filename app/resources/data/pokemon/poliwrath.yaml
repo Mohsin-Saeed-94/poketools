@@ -30,8 +30,8 @@ red-blue:
           base_value: 70
           effort_change: 70
       growth_rate: &red-blue.pokemon.poliwrath.growth_rate medium-slow
-      genus: 'TADPOLE Pokémon'
-      height: 12
+      genus: &red-blue.pokemon.poliwrath.genus 'TADPOLE Pokémon'
+      height: &red-blue.pokemon.poliwrath.height 12
       weight: 5397
       flavor_text:
         red: |
@@ -106,30 +106,19 @@ yellow:
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
           icon: *red-blue.pokemon.poliwrath.forms.poliwrath.icon
 gold-silver:
-  name: &gold-silver.name Poliwrath
-  position: &gold-silver.position 67
+  name: *red-blue.name
+  position: &gold-silver.position 61
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 74
+    original-johto: 73
+    original-johto-abc: 156
   pokemon:
     poliwrath:
-      genus: &gold-silver.pokemon.poliwrath.genus 'Tadpole Pokémon'
-      evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
-      female_rate: &gold-silver.pokemon.poliwrath.female_rate 50
-      capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: &gold-silver.pokemon.poliwrath.happiness 70
-      baby: &gold-silver.pokemon.poliwrath.baby false
-      hatch_steps: &gold-silver.pokemon.poliwrath.hatch_steps 20
-      growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: &gold-silver.pokemon.poliwrath.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.poliwrath.default
-      height: &gold-silver.pokemon.poliwrath.height 13
-      weight: &gold-silver.pokemon.poliwrath.weight 540
+      capture_rate: *red-blue.pokemon.poliwrath.capture_rate
       experience: *red-blue.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
-      egg_groups: &gold-silver.pokemon.poliwrath.egg_groups
-        - water1
       stats: &gold-silver.pokemon.poliwrath.stats
         hp:
           base_value: 90
@@ -149,7 +138,18 @@ gold-silver:
         special-defense:
           base_value: 90
           effort_change: 70
-      evolution_conditions: *red-blue.pokemon.poliwrath.evolution_conditions
+      growth_rate: *red-blue.pokemon.poliwrath.growth_rate
+      female_rate: &gold-silver.pokemon.poliwrath.female_rate 50
+      hatch_steps: &gold-silver.pokemon.poliwrath.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.poliwrath.egg_groups
+        - water1
+      wild_held_items:
+        gold: &gold-silver.pokemon.poliwrath.wild_held_items.gold
+          kings-rock: 2
+        silver: *gold-silver.pokemon.poliwrath.wild_held_items.gold
+      genus: *red-blue.pokemon.poliwrath.genus
+      height: *red-blue.pokemon.poliwrath.height
+      weight: &gold-silver.pokemon.poliwrath.weight 539
       flavor_text:
         gold: |
           This strong and
@@ -159,15 +159,17 @@ gold-silver:
           Pacific Ocean just
           by kicking.
         silver: |
-          Although an ener­
+          Although an ener-
           getic, skilled
           swimmer that uses
-          all of its mus­
+          all of its mus-
           cles, it lives on
           dry land.
+      evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
+      evolution_conditions: *red-blue.pokemon.poliwrath.evolution_conditions
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -176,33 +178,29 @@ gold-silver:
             - gold-silver/back/poliwrath-default.png
             - gold-silver/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: &gold-silver.pokemon.poliwrath.forms.poliwrath.footprint poliwrath.png
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
           icon: &gold-silver.pokemon.poliwrath.forms.poliwrath.icon gen2/poliwag.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
-      evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
-      female_rate: *gold-silver.pokemon.poliwrath.female_rate
-      capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
-      hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
-      growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      capture_rate: *red-blue.pokemon.poliwrath.capture_rate
       experience: *red-blue.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
-      egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
       stats: *gold-silver.pokemon.poliwrath.stats
-      evolution_conditions: *red-blue.pokemon.poliwrath.evolution_conditions
+      growth_rate: *red-blue.pokemon.poliwrath.growth_rate
+      female_rate: *gold-silver.pokemon.poliwrath.female_rate
+      hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
+      egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.poliwrath.wild_held_items.gold
+      genus: *red-blue.pokemon.poliwrath.genus
+      height: *red-blue.pokemon.poliwrath.height
+      weight: *gold-silver.pokemon.poliwrath.weight
       flavor_text:
         crystal: |
           It can use its
@@ -211,9 +209,11 @@ crystal:
           run on the surface
           of the water for a
           split second.
+      evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
+      evolution_conditions: *red-blue.pokemon.poliwrath.evolution_conditions
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -221,33 +221,30 @@ crystal:
             - crystal/poliwrath-default.png
             - crystal/back/poliwrath-default.png
             - crystal/shiny/poliwrath-default.png
-            - crystal/animated/shiny/poliwrath-default.webm
-            - crystal/animated/poliwrath-default.webm
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
           icon: *gold-silver.pokemon.poliwrath.forms.poliwrath.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Poliwrath
+  position: &ruby-sapphire.position 67
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: &ruby-sapphire.pokemon.poliwrath.genus 'Tadpole Pokémon'
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       color: &ruby-sapphire.pokemon.poliwrath.color blue
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: &ruby-sapphire.pokemon.poliwrath.happiness 70
+      baby: &ruby-sapphire.pokemon.poliwrath.baby false
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.poliwrath.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: &ruby-sapphire.pokemon.poliwrath.height 13
+      weight: &ruby-sapphire.pokemon.poliwrath.weight 540
       experience: &ruby-sapphire.pokemon.poliwrath.experience 230
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -302,7 +299,7 @@ ruby-sapphire:
           Pacific Ocean without effort.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -312,28 +309,28 @@ ruby-sapphire:
             - ruby-sapphire/back/poliwrath-default.png
             - ruby-sapphire/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: &ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint poliwrath.png
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       color: *ruby-sapphire.pokemon.poliwrath.color
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -350,7 +347,7 @@ emerald:
           across the Pacific Ocean without effort.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -361,26 +358,26 @@ emerald:
             - emerald/animated/shiny/poliwrath-default.webm
             - emerald/animated/poliwrath-default.webm
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -389,35 +386,35 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.poliwrath.evolution_conditions
       forms: &colosseum.pokemon.poliwrath.forms
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
           icon: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.icon
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       habitat: waters-edge
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -435,7 +432,7 @@ firered-leafgreen:
           best human swimmers.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -445,32 +442,32 @@ firered-leafgreen:
             - firered-leafgreen/back/poliwrath-default.png
             - firered-leafgreen/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       shape: &diamond-pearl.pokemon.poliwrath.shape humanoid
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
       pal_park: &diamond-pearl.pokemon.poliwrath.pal_park
         area: pond
         rate: 3
         score: 90
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -491,7 +488,7 @@ diamond-pearl:
           Ocean without resting.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -502,29 +499,29 @@ diamond-pearl:
             - diamond-pearl/back/shiny/poliwrath-default.png
             - diamond-pearl/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       shape: *diamond-pearl.pokemon.poliwrath.shape
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
       pal_park: *diamond-pearl.pokemon.poliwrath.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -540,7 +537,7 @@ platinum:
           Ocean without resting.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -551,31 +548,31 @@ platinum:
             - platinum/back/shiny/poliwrath-default.png
             - platinum/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 74
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       shape: *diamond-pearl.pokemon.poliwrath.shape
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
       pal_park: *diamond-pearl.pokemon.poliwrath.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -596,7 +593,7 @@ heartgold-soulsilver:
           it lives on dry land.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -623,29 +620,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/poliwrath-default.png
             - heartgold-soulsilver/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       color: *ruby-sapphire.pokemon.poliwrath.color
       shape: *diamond-pearl.pokemon.poliwrath.shape
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -666,7 +663,7 @@ black-white:
           Ocean without resting.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -677,29 +674,29 @@ black-white:
             - black-white/back/shiny/poliwrath-default.png
             - black-white/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *red-blue.pokemon.poliwrath.forms.poliwrath.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       color: *ruby-sapphire.pokemon.poliwrath.color
       shape: *diamond-pearl.pokemon.poliwrath.shape
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -720,28 +717,28 @@ black-2-white-2:
           Ocean without resting.
       forms: *colosseum.pokemon.poliwrath.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 35
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       color: *ruby-sapphire.pokemon.poliwrath.color
       shape: *diamond-pearl.pokemon.poliwrath.shape
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -762,7 +759,7 @@ x-y:
           human swimmers.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -771,29 +768,29 @@ x-y:
             - x-y/poliwrath-default.png
             - x-y/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: &x-y.pokemon.poliwrath.forms.poliwrath.cry poliwrath-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       color: *ruby-sapphire.pokemon.poliwrath.color
       shape: *diamond-pearl.pokemon.poliwrath.shape
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -814,20 +811,20 @@ omega-ruby-alpha-sapphire:
           without effort.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
           icon: *x-y.pokemon.poliwrath.forms.poliwrath.icon
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *x-y.pokemon.poliwrath.forms.poliwrath.cry
           sprites:
             - omega-ruby-alpha-sapphire/poliwrath-default.png
             - omega-ruby-alpha-sapphire/shiny/poliwrath-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 151
@@ -835,21 +832,21 @@ sun-moon:
     original-ulaula: 70
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       color: *ruby-sapphire.pokemon.poliwrath.color
       shape: *diamond-pearl.pokemon.poliwrath.shape
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -866,7 +863,7 @@ sun-moon:
           and forces its swimming prowess to develop.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -875,11 +872,11 @@ sun-moon:
             - sun-moon/poliwrath-default.png
             - sun-moon/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *x-y.pokemon.poliwrath.forms.poliwrath.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 184
@@ -887,21 +884,21 @@ ultra-sun-ultra-moon:
     updated-ulaula: 76
   pokemon:
     poliwrath:
-      genus: *gold-silver.pokemon.poliwrath.genus
+      genus: *ruby-sapphire.pokemon.poliwrath.genus
       evolution_parent: *red-blue.pokemon.poliwrath.evolution_parent
       color: *ruby-sapphire.pokemon.poliwrath.color
       shape: *diamond-pearl.pokemon.poliwrath.shape
       female_rate: *gold-silver.pokemon.poliwrath.female_rate
       capture_rate: *red-blue.pokemon.poliwrath.capture_rate
-      happiness: *gold-silver.pokemon.poliwrath.happiness
-      baby: *gold-silver.pokemon.poliwrath.baby
+      happiness: *ruby-sapphire.pokemon.poliwrath.happiness
+      baby: *ruby-sapphire.pokemon.poliwrath.baby
       hatch_steps: *gold-silver.pokemon.poliwrath.hatch_steps
       growth_rate: *red-blue.pokemon.poliwrath.growth_rate
-      forms_switchable: *gold-silver.pokemon.poliwrath.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.poliwrath.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.poliwrath.default
-      height: *gold-silver.pokemon.poliwrath.height
-      weight: *gold-silver.pokemon.poliwrath.weight
+      height: *ruby-sapphire.pokemon.poliwrath.height
+      weight: *ruby-sapphire.pokemon.poliwrath.weight
       experience: *ruby-sapphire.pokemon.poliwrath.experience
       types: *red-blue.pokemon.poliwrath.types
       egg_groups: *gold-silver.pokemon.poliwrath.egg_groups
@@ -918,7 +915,7 @@ ultra-sun-ultra-moon:
           time on land.
       forms:
         poliwrath:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.poliwrath.forms.poliwrath.form_name
           default: *red-blue.pokemon.poliwrath.default
           battle_only: *red-blue.pokemon.poliwrath.forms.poliwrath.battle_only
@@ -927,5 +924,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/poliwrath-default.png
             - ultra-sun-ultra-moon/shiny/poliwrath-default.png
           art: *red-blue.pokemon.poliwrath.forms.poliwrath.art
-          footprint: *gold-silver.pokemon.poliwrath.forms.poliwrath.footprint
+          footprint: *ruby-sapphire.pokemon.poliwrath.forms.poliwrath.footprint
           cry: *x-y.pokemon.poliwrath.forms.poliwrath.cry

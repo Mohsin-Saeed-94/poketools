@@ -30,8 +30,8 @@ red-blue:
           base_value: 40
           effort_change: 40
       growth_rate: &red-blue.pokemon.slowpoke.growth_rate medium
-      genus: 'DOPEY Pokémon'
-      height: 11
+      genus: &red-blue.pokemon.slowpoke.genus 'DOPEY Pokémon'
+      height: &red-blue.pokemon.slowpoke.height 11
       weight: 3583
       flavor_text:
         red: |
@@ -100,30 +100,19 @@ yellow:
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
           icon: *red-blue.pokemon.slowpoke.forms.slowpoke.icon
 gold-silver:
-  name: &gold-silver.name Slowpoke
-  position: &gold-silver.position 85
+  name: *red-blue.name
+  position: &gold-silver.position 78
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 80
+    original-johto: 79
+    original-johto-abc: 188
   pokemon:
     slowpoke:
-      genus: &gold-silver.pokemon.slowpoke.genus 'Dopey Pokémon'
-      female_rate: &gold-silver.pokemon.slowpoke.female_rate 50
-      capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: &gold-silver.pokemon.slowpoke.happiness 70
-      baby: &gold-silver.pokemon.slowpoke.baby false
-      hatch_steps: &gold-silver.pokemon.slowpoke.hatch_steps 20
-      growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: &gold-silver.pokemon.slowpoke.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.slowpoke.default
-      height: &gold-silver.pokemon.slowpoke.height 12
-      weight: &gold-silver.pokemon.slowpoke.weight 360
+      capture_rate: *red-blue.pokemon.slowpoke.capture_rate
       experience: *red-blue.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
-      egg_groups: &gold-silver.pokemon.slowpoke.egg_groups
-        - monster
-        - water1
       stats: &gold-silver.pokemon.slowpoke.stats
         hp:
           base_value: 90
@@ -143,6 +132,19 @@ gold-silver:
         special-defense:
           base_value: 40
           effort_change: 40
+      growth_rate: *red-blue.pokemon.slowpoke.growth_rate
+      female_rate: &gold-silver.pokemon.slowpoke.female_rate 50
+      hatch_steps: &gold-silver.pokemon.slowpoke.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.slowpoke.egg_groups
+        - monster
+        - water1
+      wild_held_items:
+        gold: &gold-silver.pokemon.slowpoke.wild_held_items.gold
+          kings-rock: 2
+        silver: *gold-silver.pokemon.slowpoke.wild_held_items.gold
+      genus: *red-blue.pokemon.slowpoke.genus
+      height: *red-blue.pokemon.slowpoke.height
+      weight: &gold-silver.pokemon.slowpoke.weight 358
       flavor_text:
         gold: |
           It lazes vacantly
@@ -160,7 +162,7 @@ gold-silver:
           to chew on.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -169,31 +171,29 @@ gold-silver:
             - gold-silver/back/slowpoke-default.png
             - gold-silver/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: &gold-silver.pokemon.slowpoke.forms.slowpoke.footprint slowpoke.png
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
           icon: &gold-silver.pokemon.slowpoke.forms.slowpoke.icon gen2/slowpoke.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
-      female_rate: *gold-silver.pokemon.slowpoke.female_rate
-      capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
-      hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
-      growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      capture_rate: *red-blue.pokemon.slowpoke.capture_rate
       experience: *red-blue.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
-      egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
       stats: *gold-silver.pokemon.slowpoke.stats
+      growth_rate: *red-blue.pokemon.slowpoke.growth_rate
+      female_rate: *gold-silver.pokemon.slowpoke.female_rate
+      hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
+      egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.slowpoke.wild_held_items.gold
+      genus: *red-blue.pokemon.slowpoke.genus
+      height: *red-blue.pokemon.slowpoke.height
+      weight: *gold-silver.pokemon.slowpoke.weight
       flavor_text:
         crystal: |
           It is always so
@@ -204,7 +204,7 @@ crystal:
           bitten.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -212,32 +212,29 @@ crystal:
             - crystal/slowpoke-default.png
             - crystal/back/slowpoke-default.png
             - crystal/shiny/slowpoke-default.png
-            - crystal/animated/shiny/slowpoke-default.webm
-            - crystal/animated/slowpoke-default.webm
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
           icon: *gold-silver.pokemon.slowpoke.forms.slowpoke.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Slowpoke
+  position: &ruby-sapphire.position 85
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: &ruby-sapphire.pokemon.slowpoke.genus 'Dopey Pokémon'
       color: &ruby-sapphire.pokemon.slowpoke.color pink
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: &ruby-sapphire.pokemon.slowpoke.happiness 70
+      baby: &ruby-sapphire.pokemon.slowpoke.baby false
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.slowpoke.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: &ruby-sapphire.pokemon.slowpoke.height 12
+      weight: &ruby-sapphire.pokemon.slowpoke.weight 360
       experience: &ruby-sapphire.pokemon.slowpoke.experience 63
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -288,7 +285,7 @@ ruby-sapphire:
           days just loafing at water’s edge.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -298,27 +295,27 @@ ruby-sapphire:
             - ruby-sapphire/back/slowpoke-default.png
             - ruby-sapphire/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: &ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint slowpoke.png
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       color: *ruby-sapphire.pokemon.slowpoke.color
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -334,7 +331,7 @@ emerald:
           days just loafing at water’s edge.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -345,25 +342,25 @@ emerald:
             - emerald/animated/shiny/slowpoke-default.webm
             - emerald/animated/slowpoke-default.webm
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -371,34 +368,34 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.slowpoke.abilities
       forms: &colosseum.pokemon.slowpoke.forms
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
           icon: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.icon
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       habitat: waters-edge
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -415,7 +412,7 @@ firered-leafgreen:
           attack.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -425,31 +422,31 @@ firered-leafgreen:
             - firered-leafgreen/back/slowpoke-default.png
             - firered-leafgreen/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       shape: &diamond-pearl.pokemon.slowpoke.shape quadruped
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
       pal_park: &diamond-pearl.pokemon.slowpoke.pal_park
         area: pond
         rate: 30
         score: 50
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -470,7 +467,7 @@ diamond-pearl:
           feel pain if its tail is bitten.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -481,28 +478,28 @@ diamond-pearl:
             - diamond-pearl/back/shiny/slowpoke-default.png
             - diamond-pearl/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       shape: *diamond-pearl.pokemon.slowpoke.shape
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
       pal_park: *diamond-pearl.pokemon.slowpoke.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -517,7 +514,7 @@ platinum:
           feel pain if its tail is bitten.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -528,30 +525,30 @@ platinum:
             - platinum/back/shiny/slowpoke-default.png
             - platinum/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 80
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       shape: *diamond-pearl.pokemon.slowpoke.shape
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
       pal_park: *diamond-pearl.pokemon.slowpoke.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -571,7 +568,7 @@ heartgold-soulsilver:
           tail is pleasant to chew on.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -598,28 +595,28 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/slowpoke-default.png
             - heartgold-soulsilver/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       color: *ruby-sapphire.pokemon.slowpoke.color
       shape: *diamond-pearl.pokemon.slowpoke.shape
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -644,7 +641,7 @@ black-white:
           feel pain if its tail is bitten.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -655,28 +652,28 @@ black-white:
             - black-white/back/shiny/slowpoke-default.png
             - black-white/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *red-blue.pokemon.slowpoke.forms.slowpoke.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       color: *ruby-sapphire.pokemon.slowpoke.color
       shape: *diamond-pearl.pokemon.slowpoke.shape
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -696,27 +693,27 @@ black-2-white-2:
           feel pain if its tail is bitten.
       forms: *colosseum.pokemon.slowpoke.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-coastal: 133
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       color: *ruby-sapphire.pokemon.slowpoke.color
       shape: *diamond-pearl.pokemon.slowpoke.shape
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -736,7 +733,7 @@ x-y:
           tail, it won’t even notice for a whole day.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -745,28 +742,28 @@ x-y:
             - x-y/slowpoke-default.png
             - x-y/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: &x-y.pokemon.slowpoke.forms.slowpoke.cry slowpoke-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       color: *ruby-sapphire.pokemon.slowpoke.color
       shape: *diamond-pearl.pokemon.slowpoke.shape
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -786,20 +783,20 @@ omega-ruby-alpha-sapphire:
           at water’s edge.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
           icon: *x-y.pokemon.slowpoke.forms.slowpoke.icon
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *x-y.pokemon.slowpoke.forms.slowpoke.cry
           sprites:
             - omega-ruby-alpha-sapphire/slowpoke-default.png
             - omega-ruby-alpha-sapphire/shiny/slowpoke-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 37
@@ -807,20 +804,20 @@ sun-moon:
     original-ulaula: 18
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       color: *ruby-sapphire.pokemon.slowpoke.color
       shape: *diamond-pearl.pokemon.slowpoke.shape
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -835,7 +832,7 @@ sun-moon:
           tails and then simmering them into a salty stew.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -844,11 +841,11 @@ sun-moon:
             - sun-moon/slowpoke-default.png
             - sun-moon/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *x-y.pokemon.slowpoke.forms.slowpoke.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 44
@@ -856,20 +853,20 @@ ultra-sun-ultra-moon:
     updated-ulaula: 18
   pokemon:
     slowpoke:
-      genus: *gold-silver.pokemon.slowpoke.genus
+      genus: *ruby-sapphire.pokemon.slowpoke.genus
       color: *ruby-sapphire.pokemon.slowpoke.color
       shape: *diamond-pearl.pokemon.slowpoke.shape
       female_rate: *gold-silver.pokemon.slowpoke.female_rate
       capture_rate: *red-blue.pokemon.slowpoke.capture_rate
-      happiness: *gold-silver.pokemon.slowpoke.happiness
-      baby: *gold-silver.pokemon.slowpoke.baby
+      happiness: *ruby-sapphire.pokemon.slowpoke.happiness
+      baby: *ruby-sapphire.pokemon.slowpoke.baby
       hatch_steps: *gold-silver.pokemon.slowpoke.hatch_steps
       growth_rate: *red-blue.pokemon.slowpoke.growth_rate
-      forms_switchable: *gold-silver.pokemon.slowpoke.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.slowpoke.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.slowpoke.default
-      height: *gold-silver.pokemon.slowpoke.height
-      weight: *gold-silver.pokemon.slowpoke.weight
+      height: *ruby-sapphire.pokemon.slowpoke.height
+      weight: *ruby-sapphire.pokemon.slowpoke.weight
       experience: *ruby-sapphire.pokemon.slowpoke.experience
       types: *red-blue.pokemon.slowpoke.types
       egg_groups: *gold-silver.pokemon.slowpoke.egg_groups
@@ -885,7 +882,7 @@ ultra-sun-ultra-moon:
           that whenever Slowpoke yawns, it rains.
       forms:
         slowpoke:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.slowpoke.forms.slowpoke.form_name
           default: *red-blue.pokemon.slowpoke.default
           battle_only: *red-blue.pokemon.slowpoke.forms.slowpoke.battle_only
@@ -894,5 +891,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/slowpoke-default.png
             - ultra-sun-ultra-moon/shiny/slowpoke-default.png
           art: *red-blue.pokemon.slowpoke.forms.slowpoke.art
-          footprint: *gold-silver.pokemon.slowpoke.forms.slowpoke.footprint
+          footprint: *ruby-sapphire.pokemon.slowpoke.forms.slowpoke.footprint
           cry: *x-y.pokemon.slowpoke.forms.slowpoke.cry

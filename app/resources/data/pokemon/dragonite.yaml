@@ -30,7 +30,7 @@ red-blue:
           base_value: 100
           effort_change: 100
       growth_rate: &red-blue.pokemon.dragonite.growth_rate slow
-      genus: 'DRAGON Pokémon'
+      genus: &red-blue.pokemon.dragonite.genus 'DRAGON Pokémon'
       height: &red-blue.pokemon.dragonite.height 22
       weight: 21001
       flavor_text:
@@ -106,31 +106,19 @@ yellow:
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
           icon: *red-blue.pokemon.dragonite.forms.dragonite.icon
 gold-silver:
-  name: &gold-silver.name Dragonite
-  position: &gold-silver.position 181
+  name: *red-blue.name
+  position: &gold-silver.position 148
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 243
+    original-johto: 242
+    original-johto-abc: 32
   pokemon:
     dragonite:
-      genus: &gold-silver.pokemon.dragonite.genus 'Dragon Pokémon'
-      evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
-      female_rate: &gold-silver.pokemon.dragonite.female_rate 50
-      capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: &gold-silver.pokemon.dragonite.happiness 35
-      baby: &gold-silver.pokemon.dragonite.baby false
-      hatch_steps: &gold-silver.pokemon.dragonite.hatch_steps 40
-      growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: &gold-silver.pokemon.dragonite.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.dragonite.default
-      height: *red-blue.pokemon.dragonite.height
-      weight: &gold-silver.pokemon.dragonite.weight 2100
+      capture_rate: *red-blue.pokemon.dragonite.capture_rate
       experience: *red-blue.pokemon.dragonite.experience
       types: *red-blue.pokemon.dragonite.types
-      egg_groups: &gold-silver.pokemon.dragonite.egg_groups
-        - water1
-        - dragon
       stats: &gold-silver.pokemon.dragonite.stats
         hp:
           base_value: 91
@@ -150,25 +138,39 @@ gold-silver:
         special-defense:
           base_value: 100
           effort_change: 100
-      evolution_conditions: *red-blue.pokemon.dragonite.evolution_conditions
+      growth_rate: *red-blue.pokemon.dragonite.growth_rate
+      female_rate: &gold-silver.pokemon.dragonite.female_rate 50
+      hatch_steps: &gold-silver.pokemon.dragonite.hatch_steps 40
+      egg_groups: &gold-silver.pokemon.dragonite.egg_groups
+        - water1
+        - dragon
+      wild_held_items:
+        gold: &gold-silver.pokemon.dragonite.wild_held_items.gold
+          dragon-scale: 2
+        silver: *gold-silver.pokemon.dragonite.wild_held_items.gold
+      genus: *red-blue.pokemon.dragonite.genus
+      height: *red-blue.pokemon.dragonite.height
+      weight: &gold-silver.pokemon.dragonite.weight 2100
       flavor_text:
         gold: |
           It is said that
-          this POKéMON con­
+          this #MON con-
           stantly flies over
           the immense seas
-          and rescues drown­
+          and rescues drown-
           ing people.
         silver: |
-          This marine POKé­
-          MON has an impres­
+          This marine #-
+          MON has an impres-
           sive build that
           lets it freely fly
           over raging seas
           without trouble.
+      evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
+      evolution_conditions: *red-blue.pokemon.dragonite.evolution_conditions
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -177,33 +179,29 @@ gold-silver:
             - gold-silver/back/dragonite-default.png
             - gold-silver/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: &gold-silver.pokemon.dragonite.forms.dragonite.footprint dragonite.png
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
           icon: &gold-silver.pokemon.dragonite.forms.dragonite.icon gen2/bigmon.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
-      evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
-      female_rate: *gold-silver.pokemon.dragonite.female_rate
-      capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
-      hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
-      growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.dragonite.default
-      height: *red-blue.pokemon.dragonite.height
-      weight: *gold-silver.pokemon.dragonite.weight
+      capture_rate: *red-blue.pokemon.dragonite.capture_rate
       experience: *red-blue.pokemon.dragonite.experience
       types: *red-blue.pokemon.dragonite.types
-      egg_groups: *gold-silver.pokemon.dragonite.egg_groups
       stats: *gold-silver.pokemon.dragonite.stats
-      evolution_conditions: *red-blue.pokemon.dragonite.evolution_conditions
+      growth_rate: *red-blue.pokemon.dragonite.growth_rate
+      female_rate: *gold-silver.pokemon.dragonite.female_rate
+      hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
+      egg_groups: *gold-silver.pokemon.dragonite.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.dragonite.wild_held_items.gold
+      genus: *red-blue.pokemon.dragonite.genus
+      height: *red-blue.pokemon.dragonite.height
+      weight: *gold-silver.pokemon.dragonite.weight
       flavor_text:
         crystal: |
           It is said that
@@ -212,9 +210,11 @@ crystal:
           island where these
           gather. Only they
           live there.
+      evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
+      evolution_conditions: *red-blue.pokemon.dragonite.evolution_conditions
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -222,30 +222,27 @@ crystal:
             - crystal/dragonite-default.png
             - crystal/back/dragonite-default.png
             - crystal/shiny/dragonite-default.png
-            - crystal/animated/shiny/dragonite-default.webm
-            - crystal/animated/dragonite-default.webm
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
           icon: *gold-silver.pokemon.dragonite.forms.dragonite.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Dragonite
+  position: &ruby-sapphire.position 181
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: &ruby-sapphire.pokemon.dragonite.genus 'Dragon Pokémon'
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       color: &ruby-sapphire.pokemon.dragonite.color brown
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: &ruby-sapphire.pokemon.dragonite.happiness 35
+      baby: &ruby-sapphire.pokemon.dragonite.baby false
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.dragonite.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -295,7 +292,7 @@ ruby-sapphire:
           the safety of land.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -305,25 +302,25 @@ ruby-sapphire:
             - ruby-sapphire/back/dragonite-default.png
             - ruby-sapphire/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: &ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint dragonite.png
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       color: *ruby-sapphire.pokemon.dragonite.color
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -343,7 +340,7 @@ emerald:
           to the safety of land.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -354,23 +351,23 @@ emerald:
             - emerald/animated/shiny/dragonite-default.webm
             - emerald/animated/dragonite-default.webm
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -382,32 +379,32 @@ colosseum: &colosseum
       evolution_conditions: *red-blue.pokemon.dragonite.evolution_conditions
       forms: &colosseum.pokemon.dragonite.forms
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
           icon: *ruby-sapphire.pokemon.dragonite.forms.dragonite.icon
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       habitat: waters-edge
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -432,7 +429,7 @@ firered-leafgreen:
           match that of humans.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -442,29 +439,29 @@ firered-leafgreen:
             - firered-leafgreen/back/dragonite-default.png
             - firered-leafgreen/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       shape: &diamond-pearl.pokemon.dragonite.shape upright
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
       pal_park: &diamond-pearl.pokemon.dragonite.pal_park
         area: mountain
         rate: 3
         score: 90
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -488,7 +485,7 @@ diamond-pearl:
           crews of shipwrecks to shore.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -499,26 +496,26 @@ diamond-pearl:
             - diamond-pearl/back/shiny/dragonite-default.png
             - diamond-pearl/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       shape: *diamond-pearl.pokemon.dragonite.shape
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
       pal_park: *diamond-pearl.pokemon.dragonite.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -537,7 +534,7 @@ platinum:
           crews of shipwrecks to shore.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -548,28 +545,28 @@ platinum:
             - platinum/back/shiny/dragonite-default.png
             - platinum/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 248
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       shape: *diamond-pearl.pokemon.dragonite.shape
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
       pal_park: *diamond-pearl.pokemon.dragonite.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -593,7 +590,7 @@ heartgold-soulsilver:
           over raging seas without trouble.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -620,26 +617,26 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/dragonite-default.png
             - heartgold-soulsilver/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       color: *ruby-sapphire.pokemon.dragonite.color
       shape: *diamond-pearl.pokemon.dragonite.shape
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -667,7 +664,7 @@ black-white:
           crews of shipwrecks to shore.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -678,26 +675,26 @@ black-white:
             - black-white/back/shiny/dragonite-default.png
             - black-white/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *red-blue.pokemon.dragonite.forms.dragonite.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       color: *ruby-sapphire.pokemon.dragonite.color
       shape: *diamond-pearl.pokemon.dragonite.shape
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -721,25 +718,25 @@ black-2-white-2:
           crews of shipwrecks to shore.
       forms: *colosseum.pokemon.dragonite.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 147
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       color: *ruby-sapphire.pokemon.dragonite.color
       shape: *diamond-pearl.pokemon.dragonite.shape
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -762,7 +759,7 @@ x-y:
           It guides crews of shipwrecks to shore.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -771,26 +768,26 @@ x-y:
             - x-y/dragonite-default.png
             - x-y/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: &x-y.pokemon.dragonite.forms.dragonite.cry dragonite-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       color: *ruby-sapphire.pokemon.dragonite.color
       shape: *diamond-pearl.pokemon.dragonite.shape
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -812,38 +809,38 @@ omega-ruby-alpha-sapphire:
           ships in a storm to the safety of land.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
           icon: *x-y.pokemon.dragonite.forms.dragonite.icon
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *x-y.pokemon.dragonite.forms.dragonite.cry
           sprites:
             - omega-ruby-alpha-sapphire/dragonite-default.png
             - omega-ruby-alpha-sapphire/shiny/dragonite-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 283
     original-poni: 98
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       color: *ruby-sapphire.pokemon.dragonite.color
       shape: *diamond-pearl.pokemon.dragonite.shape
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -863,7 +860,7 @@ sun-moon:
           to smithereens before it’s satisfied.
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -872,29 +869,29 @@ sun-moon:
             - sun-moon/dragonite-default.png
             - sun-moon/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *x-y.pokemon.dragonite.forms.dragonite.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 381
     updated-poni: 128
   pokemon:
     dragonite:
-      genus: *gold-silver.pokemon.dragonite.genus
+      genus: *ruby-sapphire.pokemon.dragonite.genus
       evolution_parent: *red-blue.pokemon.dragonite.evolution_parent
       color: *ruby-sapphire.pokemon.dragonite.color
       shape: *diamond-pearl.pokemon.dragonite.shape
       female_rate: *gold-silver.pokemon.dragonite.female_rate
       capture_rate: *red-blue.pokemon.dragonite.capture_rate
-      happiness: *gold-silver.pokemon.dragonite.happiness
-      baby: *gold-silver.pokemon.dragonite.baby
+      happiness: *ruby-sapphire.pokemon.dragonite.happiness
+      baby: *ruby-sapphire.pokemon.dragonite.baby
       hatch_steps: *gold-silver.pokemon.dragonite.hatch_steps
       growth_rate: *red-blue.pokemon.dragonite.growth_rate
-      forms_switchable: *gold-silver.pokemon.dragonite.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.dragonite.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.dragonite.default
       height: *red-blue.pokemon.dragonite.height
       weight: *gold-silver.pokemon.dragonite.weight
@@ -914,7 +911,7 @@ ultra-sun-ultra-moon:
           Pokémon “the sea incarnate.”
       forms:
         dragonite:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.dragonite.forms.dragonite.form_name
           default: *red-blue.pokemon.dragonite.default
           battle_only: *red-blue.pokemon.dragonite.forms.dragonite.battle_only
@@ -923,5 +920,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/dragonite-default.png
             - ultra-sun-ultra-moon/shiny/dragonite-default.png
           art: *red-blue.pokemon.dragonite.forms.dragonite.art
-          footprint: *gold-silver.pokemon.dragonite.forms.dragonite.footprint
+          footprint: *ruby-sapphire.pokemon.dragonite.forms.dragonite.footprint
           cry: *x-y.pokemon.dragonite.forms.dragonite.cry

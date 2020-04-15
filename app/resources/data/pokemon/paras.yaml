@@ -30,7 +30,7 @@ red-blue:
           base_value: 55
           effort_change: 55
       growth_rate: &red-blue.pokemon.paras.growth_rate medium
-      genus: 'MUSHROOM Pokémon'
+      genus: &red-blue.pokemon.paras.genus 'MUSHROOM Pokémon'
       height: &red-blue.pokemon.paras.height 3
       weight: 544
       flavor_text:
@@ -100,30 +100,19 @@ yellow:
           cry: *red-blue.pokemon.paras.forms.paras.cry
           icon: *red-blue.pokemon.paras.forms.paras.icon
 gold-silver:
-  name: &gold-silver.name Paras
-  position: &gold-silver.position 51
+  name: *red-blue.name
+  position: &gold-silver.position 45
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 70
+    original-johto: 69
+    original-johto-abc: 141
   pokemon:
     paras:
-      genus: &gold-silver.pokemon.paras.genus 'Mushroom Pokémon'
-      female_rate: &gold-silver.pokemon.paras.female_rate 50
-      capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: &gold-silver.pokemon.paras.happiness 70
-      baby: &gold-silver.pokemon.paras.baby false
-      hatch_steps: &gold-silver.pokemon.paras.hatch_steps 20
-      growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: &gold-silver.pokemon.paras.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.paras.default
-      height: *red-blue.pokemon.paras.height
-      weight: &gold-silver.pokemon.paras.weight 54
+      capture_rate: *red-blue.pokemon.paras.capture_rate
       experience: *red-blue.pokemon.paras.experience
       types: *red-blue.pokemon.paras.types
-      egg_groups: &gold-silver.pokemon.paras.egg_groups
-        - bug
-        - plant
       stats: &gold-silver.pokemon.paras.stats
         hp:
           base_value: 35
@@ -143,6 +132,20 @@ gold-silver:
         special-defense:
           base_value: 55
           effort_change: 45
+      growth_rate: *red-blue.pokemon.paras.growth_rate
+      female_rate: &gold-silver.pokemon.paras.female_rate 50
+      hatch_steps: &gold-silver.pokemon.paras.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.paras.egg_groups
+        - bug
+        - plant
+      wild_held_items:
+        gold: &gold-silver.pokemon.paras.wild_held_items.gold
+          tinymushroom: 23
+          big-mushroom: 2
+        silver: *gold-silver.pokemon.paras.wild_held_items.gold
+      genus: *red-blue.pokemon.paras.genus
+      height: *red-blue.pokemon.paras.height
+      weight: &gold-silver.pokemon.paras.weight 54
       flavor_text:
         gold: |
           It is doused with
@@ -160,7 +163,7 @@ gold-silver:
           its back.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -169,42 +172,40 @@ gold-silver:
             - gold-silver/back/paras-default.png
             - gold-silver/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: &gold-silver.pokemon.paras.forms.paras.footprint paras.png
           cry: *red-blue.pokemon.paras.forms.paras.cry
           icon: &gold-silver.pokemon.paras.forms.paras.icon gen2/bug.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
-      female_rate: *gold-silver.pokemon.paras.female_rate
-      capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
-      hatch_steps: *gold-silver.pokemon.paras.hatch_steps
-      growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.paras.default
-      height: *red-blue.pokemon.paras.height
-      weight: *gold-silver.pokemon.paras.weight
+      capture_rate: *red-blue.pokemon.paras.capture_rate
       experience: *red-blue.pokemon.paras.experience
       types: *red-blue.pokemon.paras.types
-      egg_groups: *gold-silver.pokemon.paras.egg_groups
       stats: *gold-silver.pokemon.paras.stats
+      growth_rate: *red-blue.pokemon.paras.growth_rate
+      female_rate: *gold-silver.pokemon.paras.female_rate
+      hatch_steps: *gold-silver.pokemon.paras.hatch_steps
+      egg_groups: *gold-silver.pokemon.paras.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.paras.wild_held_items.gold
+      genus: *red-blue.pokemon.paras.genus
+      height: *red-blue.pokemon.paras.height
+      weight: *gold-silver.pokemon.paras.weight
       flavor_text:
         crystal: |
           The tochukaso
           growing on this
-          POKéMON's back
+          #MON's back
           orders it to
           extract juice from
           tree trunks.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -212,29 +213,26 @@ crystal:
             - crystal/paras-default.png
             - crystal/back/paras-default.png
             - crystal/shiny/paras-default.png
-            - crystal/animated/paras-default.webm
-            - crystal/animated/shiny/paras-default.webm
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
           cry: *red-blue.pokemon.paras.forms.paras.cry
           icon: *gold-silver.pokemon.paras.forms.paras.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Paras
+  position: &ruby-sapphire.position 51
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: &ruby-sapphire.pokemon.paras.genus 'Mushroom Pokémon'
       color: &ruby-sapphire.pokemon.paras.color red
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: &ruby-sapphire.pokemon.paras.happiness 70
+      baby: &ruby-sapphire.pokemon.paras.baby false
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.paras.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -287,7 +285,7 @@ ruby-sapphire:
           valued as a medicine for extending life.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -297,24 +295,24 @@ ruby-sapphire:
             - ruby-sapphire/back/paras-default.png
             - ruby-sapphire/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: &ruby-sapphire.pokemon.paras.forms.paras.footprint paras.png
           cry: *red-blue.pokemon.paras.forms.paras.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       color: *ruby-sapphire.pokemon.paras.color
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -333,7 +331,7 @@ emerald:
           are valued as a medicine for long life.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -344,22 +342,22 @@ emerald:
             - emerald/animated/paras-default.webm
             - emerald/animated/shiny/paras-default.webm
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *red-blue.pokemon.paras.forms.paras.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -370,31 +368,31 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.paras.abilities
       forms: &colosseum.pokemon.paras.forms
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
           icon: *ruby-sapphire.pokemon.paras.forms.paras.icon
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *red-blue.pokemon.paras.forms.paras.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       habitat: forest
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -417,7 +415,7 @@ firered-leafgreen:
           the bug host.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -427,28 +425,28 @@ firered-leafgreen:
             - firered-leafgreen/back/paras-default.png
             - firered-leafgreen/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *red-blue.pokemon.paras.forms.paras.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       shape: &diamond-pearl.pokemon.paras.shape armor
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
       pal_park: &diamond-pearl.pokemon.paras.pal_park
         area: forest
         rate: 50
         score: 30
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -476,7 +474,7 @@ diamond-pearl:
           with the host PARAS.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -487,25 +485,25 @@ diamond-pearl:
             - diamond-pearl/back/shiny/paras-default.png
             - diamond-pearl/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *red-blue.pokemon.paras.forms.paras.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       shape: *diamond-pearl.pokemon.paras.shape
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
       pal_park: *diamond-pearl.pokemon.paras.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -523,7 +521,7 @@ platinum:
           with the host PARAS.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -534,27 +532,27 @@ platinum:
             - platinum/back/shiny/paras-default.png
             - platinum/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *red-blue.pokemon.paras.forms.paras.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 70
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       shape: *diamond-pearl.pokemon.paras.shape
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
       pal_park: *diamond-pearl.pokemon.paras.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -577,7 +575,7 @@ heartgold-soulsilver:
           out of its back.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -604,25 +602,25 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/paras-default.png
             - heartgold-soulsilver/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *red-blue.pokemon.paras.forms.paras.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       color: *ruby-sapphire.pokemon.paras.color
       shape: *diamond-pearl.pokemon.paras.shape
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -648,7 +646,7 @@ black-white:
           with the host Paras.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -659,25 +657,25 @@ black-white:
             - black-white/back/shiny/paras-default.png
             - black-white/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *red-blue.pokemon.paras.forms.paras.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       color: *ruby-sapphire.pokemon.paras.color
       shape: *diamond-pearl.pokemon.paras.shape
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -700,22 +698,22 @@ black-2-white-2:
           with the host Paras.
       forms: *colosseum.pokemon.paras.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       color: *ruby-sapphire.pokemon.paras.color
       shape: *diamond-pearl.pokemon.paras.shape
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -739,7 +737,7 @@ x-y:
           the nutrition.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -748,25 +746,25 @@ x-y:
             - x-y/paras-default.png
             - x-y/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: &x-y.pokemon.paras.forms.paras.cry paras-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       color: *ruby-sapphire.pokemon.paras.color
       shape: *diamond-pearl.pokemon.paras.shape
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -789,20 +787,20 @@ omega-ruby-alpha-sapphire:
           for extending life.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
           icon: *x-y.pokemon.paras.forms.paras.icon
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *x-y.pokemon.paras.forms.paras.cry
           sprites:
             - omega-ruby-alpha-sapphire/paras-default.png
             - omega-ruby-alpha-sapphire/shiny/paras-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 147
@@ -810,17 +808,17 @@ sun-moon:
     original-ulaula: 66
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       color: *ruby-sapphire.pokemon.paras.color
       shape: *diamond-pearl.pokemon.paras.shape
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -839,7 +837,7 @@ sun-moon:
           a medicine used to extend life.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -848,11 +846,11 @@ sun-moon:
             - sun-moon/paras-default.png
             - sun-moon/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *x-y.pokemon.paras.forms.paras.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 180
@@ -860,17 +858,17 @@ ultra-sun-ultra-moon:
     updated-ulaula: 72
   pokemon:
     paras:
-      genus: *gold-silver.pokemon.paras.genus
+      genus: *ruby-sapphire.pokemon.paras.genus
       color: *ruby-sapphire.pokemon.paras.color
       shape: *diamond-pearl.pokemon.paras.shape
       female_rate: *gold-silver.pokemon.paras.female_rate
       capture_rate: *red-blue.pokemon.paras.capture_rate
-      happiness: *gold-silver.pokemon.paras.happiness
-      baby: *gold-silver.pokemon.paras.baby
+      happiness: *ruby-sapphire.pokemon.paras.happiness
+      baby: *ruby-sapphire.pokemon.paras.baby
       hatch_steps: *gold-silver.pokemon.paras.hatch_steps
       growth_rate: *red-blue.pokemon.paras.growth_rate
-      forms_switchable: *gold-silver.pokemon.paras.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.paras.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.paras.default
       height: *red-blue.pokemon.paras.height
       weight: *gold-silver.pokemon.paras.weight
@@ -889,7 +887,7 @@ ultra-sun-ultra-moon:
           don’t grow up quite right.
       forms:
         paras:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.paras.forms.paras.form_name
           default: *red-blue.pokemon.paras.default
           battle_only: *red-blue.pokemon.paras.forms.paras.battle_only
@@ -898,5 +896,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/paras-default.png
             - ultra-sun-ultra-moon/shiny/paras-default.png
           art: *red-blue.pokemon.paras.forms.paras.art
-          footprint: *gold-silver.pokemon.paras.forms.paras.footprint
+          footprint: *ruby-sapphire.pokemon.paras.forms.paras.footprint
           cry: *x-y.pokemon.paras.forms.paras.cry

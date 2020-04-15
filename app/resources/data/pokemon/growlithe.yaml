@@ -29,7 +29,7 @@ red-blue:
           base_value: 50
           effort_change: 50
       growth_rate: &red-blue.pokemon.growlithe.growth_rate slow
-      genus: 'PUPPY Pokémon'
+      genus: &red-blue.pokemon.growlithe.genus 'PUPPY Pokémon'
       height: &red-blue.pokemon.growlithe.height 7
       weight: 1905
       flavor_text:
@@ -99,29 +99,19 @@ yellow:
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
           icon: *red-blue.pokemon.growlithe.forms.growlithe.icon
 gold-silver:
-  name: &gold-silver.name Growlithe
-  position: &gold-silver.position 63
+  name: *red-blue.name
+  position: &gold-silver.position 57
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 127
+    original-johto: 126
+    original-johto-abc: 66
   pokemon:
     growlithe:
-      genus: &gold-silver.pokemon.growlithe.genus 'Puppy Pokémon'
-      female_rate: &gold-silver.pokemon.growlithe.female_rate 25
-      capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: &gold-silver.pokemon.growlithe.happiness 70
-      baby: &gold-silver.pokemon.growlithe.baby false
-      hatch_steps: &gold-silver.pokemon.growlithe.hatch_steps 20
-      growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: &gold-silver.pokemon.growlithe.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.growlithe.default
-      height: *red-blue.pokemon.growlithe.height
-      weight: &gold-silver.pokemon.growlithe.weight 190
+      capture_rate: *red-blue.pokemon.growlithe.capture_rate
       experience: *red-blue.pokemon.growlithe.experience
       types: *red-blue.pokemon.growlithe.types
-      egg_groups: &gold-silver.pokemon.growlithe.egg_groups
-        - ground
       stats: &gold-silver.pokemon.growlithe.stats
         hp:
           base_value: 55
@@ -141,24 +131,36 @@ gold-silver:
         special-defense:
           base_value: 50
           effort_change: 70
+      growth_rate: *red-blue.pokemon.growlithe.growth_rate
+      female_rate: &gold-silver.pokemon.growlithe.female_rate 25
+      hatch_steps: &gold-silver.pokemon.growlithe.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.growlithe.egg_groups
+        - ground
+      wild_held_items:
+        gold: &gold-silver.pokemon.growlithe.wild_held_items.gold
+          burnt-berry: 2
+        silver: *gold-silver.pokemon.growlithe.wild_held_items.gold
+      genus: *red-blue.pokemon.growlithe.genus
+      height: *red-blue.pokemon.growlithe.height
+      weight: &gold-silver.pokemon.growlithe.weight 190
       flavor_text:
         gold: |
           It has a brave and
-          trustworthy na­
-          ture. It fear­
+          trustworthy na-
+          ture. It fear-
           lessly stands up
           to bigger and
           stronger foes.
         silver: |
           Extremely loyal,
           it will fearlessly
-          bark at any oppo­
+          bark at any oppo-
           nent to protect
           its own trainer
           from harm.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -167,31 +169,29 @@ gold-silver:
             - gold-silver/back/growlithe-default.png
             - gold-silver/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: &gold-silver.pokemon.growlithe.forms.growlithe.footprint growlithe.png
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
           icon: &gold-silver.pokemon.growlithe.forms.growlithe.icon gen2/fox.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
-      female_rate: *gold-silver.pokemon.growlithe.female_rate
-      capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
-      hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
-      growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.growlithe.default
-      height: *red-blue.pokemon.growlithe.height
-      weight: *gold-silver.pokemon.growlithe.weight
+      capture_rate: *red-blue.pokemon.growlithe.capture_rate
       experience: *red-blue.pokemon.growlithe.experience
       types: *red-blue.pokemon.growlithe.types
-      egg_groups: *gold-silver.pokemon.growlithe.egg_groups
       stats: *gold-silver.pokemon.growlithe.stats
+      growth_rate: *red-blue.pokemon.growlithe.growth_rate
+      female_rate: *gold-silver.pokemon.growlithe.female_rate
+      hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
+      egg_groups: *gold-silver.pokemon.growlithe.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.growlithe.wild_held_items.gold
+      genus: *red-blue.pokemon.growlithe.genus
+      height: *red-blue.pokemon.growlithe.height
+      weight: *gold-silver.pokemon.growlithe.weight
       flavor_text:
         crystal: |
           It controls a big
@@ -202,7 +202,7 @@ crystal:
           out the intruder.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -210,29 +210,26 @@ crystal:
             - crystal/growlithe-default.png
             - crystal/back/growlithe-default.png
             - crystal/shiny/growlithe-default.png
-            - crystal/animated/shiny/growlithe-default.webm
-            - crystal/animated/growlithe-default.webm
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
           icon: *gold-silver.pokemon.growlithe.forms.growlithe.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Growlithe
+  position: &ruby-sapphire.position 63
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: &ruby-sapphire.pokemon.growlithe.genus 'Puppy Pokémon'
       color: &ruby-sapphire.pokemon.growlithe.color brown
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: &ruby-sapphire.pokemon.growlithe.happiness 70
+      baby: &ruby-sapphire.pokemon.growlithe.baby false
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.growlithe.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -286,7 +283,7 @@ ruby-sapphire:
           living things.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -296,24 +293,24 @@ ruby-sapphire:
             - ruby-sapphire/back/growlithe-default.png
             - ruby-sapphire/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: &ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint growlithe.png
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       color: *ruby-sapphire.pokemon.growlithe.color
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -332,7 +329,7 @@ emerald:
           to detect the emotions of others.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -343,22 +340,22 @@ emerald:
             - emerald/animated/shiny/growlithe-default.webm
             - emerald/animated/growlithe-default.webm
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -369,31 +366,31 @@ colosseum: &colosseum
       abilities: *ruby-sapphire.pokemon.growlithe.abilities
       forms: &colosseum.pokemon.growlithe.forms
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
           icon: *ruby-sapphire.pokemon.growlithe.forms.growlithe.icon
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       habitat: grassland
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -417,7 +414,7 @@ firered-leafgreen:
           from its space.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -427,28 +424,28 @@ firered-leafgreen:
             - firered-leafgreen/back/growlithe-default.png
             - firered-leafgreen/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       shape: &diamond-pearl.pokemon.growlithe.shape quadruped
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
       pal_park: &diamond-pearl.pokemon.growlithe.pal_park
         area: field
         rate: 20
         score: 70
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -471,7 +468,7 @@ diamond-pearl:
           given an order by its Trainer.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -482,25 +479,25 @@ diamond-pearl:
             - diamond-pearl/back/shiny/growlithe-default.png
             - diamond-pearl/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       shape: *diamond-pearl.pokemon.growlithe.shape
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
       pal_park: *diamond-pearl.pokemon.growlithe.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -518,7 +515,7 @@ platinum:
           given an order by its Trainer.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -529,27 +526,27 @@ platinum:
             - platinum/back/shiny/growlithe-default.png
             - platinum/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 129
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       shape: *diamond-pearl.pokemon.growlithe.shape
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
       pal_park: *diamond-pearl.pokemon.growlithe.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -572,7 +569,7 @@ heartgold-soulsilver:
           its own Trainer from harm.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -599,25 +596,25 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/growlithe-default.png
             - heartgold-soulsilver/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       color: *ruby-sapphire.pokemon.growlithe.color
       shape: *diamond-pearl.pokemon.growlithe.shape
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -645,7 +642,7 @@ black-white:
           given an order by its Trainer.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -656,27 +653,27 @@ black-white:
             - black-white/back/shiny/growlithe-default.png
             - black-white/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *red-blue.pokemon.growlithe.forms.growlithe.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-unova: 51
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       color: *ruby-sapphire.pokemon.growlithe.color
       shape: *diamond-pearl.pokemon.growlithe.shape
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -699,22 +696,22 @@ black-2-white-2:
           unexpectedly and run them out of town.
       forms: *colosseum.pokemon.growlithe.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       color: *ruby-sapphire.pokemon.growlithe.color
       shape: *diamond-pearl.pokemon.growlithe.shape
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -733,7 +730,7 @@ x-y:
           stands up to bigger and stronger foes.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -742,25 +739,25 @@ x-y:
             - x-y/growlithe-default.png
             - x-y/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: &x-y.pokemon.growlithe.forms.growlithe.cry growlithe-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       color: *ruby-sapphire.pokemon.growlithe.color
       shape: *diamond-pearl.pokemon.growlithe.shape
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -783,37 +780,37 @@ omega-ruby-alpha-sapphire:
           other living things.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
           icon: *x-y.pokemon.growlithe.forms.growlithe.icon
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *x-y.pokemon.growlithe.forms.growlithe.cry
           sprites:
             - omega-ruby-alpha-sapphire/growlithe-default.png
             - omega-ruby-alpha-sapphire/shiny/growlithe-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 52
     original-melemele: 52
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       color: *ruby-sapphire.pokemon.growlithe.color
       shape: *diamond-pearl.pokemon.growlithe.shape
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -829,7 +826,7 @@ sun-moon:
           Trainer’s Growlithe, it will bark at you and bite.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -838,28 +835,28 @@ sun-moon:
             - sun-moon/growlithe-default.png
             - sun-moon/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *x-y.pokemon.growlithe.forms.growlithe.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 64
     updated-melemele: 64
   pokemon:
     growlithe:
-      genus: *gold-silver.pokemon.growlithe.genus
+      genus: *ruby-sapphire.pokemon.growlithe.genus
       color: *ruby-sapphire.pokemon.growlithe.color
       shape: *diamond-pearl.pokemon.growlithe.shape
       female_rate: *gold-silver.pokemon.growlithe.female_rate
       capture_rate: *red-blue.pokemon.growlithe.capture_rate
-      happiness: *gold-silver.pokemon.growlithe.happiness
-      baby: *gold-silver.pokemon.growlithe.baby
+      happiness: *ruby-sapphire.pokemon.growlithe.happiness
+      baby: *ruby-sapphire.pokemon.growlithe.baby
       hatch_steps: *gold-silver.pokemon.growlithe.hatch_steps
       growth_rate: *red-blue.pokemon.growlithe.growth_rate
-      forms_switchable: *gold-silver.pokemon.growlithe.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.growlithe.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.growlithe.default
       height: *red-blue.pokemon.growlithe.height
       weight: *gold-silver.pokemon.growlithe.weight
@@ -876,7 +873,7 @@ ultra-sun-ultra-moon:
           fierce to defend its territory from Rockruff.
       forms:
         growlithe:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.growlithe.forms.growlithe.form_name
           default: *red-blue.pokemon.growlithe.default
           battle_only: *red-blue.pokemon.growlithe.forms.growlithe.battle_only
@@ -885,5 +882,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/growlithe-default.png
             - ultra-sun-ultra-moon/shiny/growlithe-default.png
           art: *red-blue.pokemon.growlithe.forms.growlithe.art
-          footprint: *gold-silver.pokemon.growlithe.forms.growlithe.footprint
+          footprint: *ruby-sapphire.pokemon.growlithe.forms.growlithe.footprint
           cry: *x-y.pokemon.growlithe.forms.growlithe.cry

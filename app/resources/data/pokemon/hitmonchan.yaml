@@ -29,8 +29,8 @@ red-blue:
           base_value: 35
           effort_change: 35
       growth_rate: &red-blue.pokemon.hitmonchan.growth_rate medium
-      genus: 'PUNCHING Pokémon'
-      height: 13
+      genus: &red-blue.pokemon.hitmonchan.genus 'PUNCHING Pokémon'
+      height: &red-blue.pokemon.hitmonchan.height 13
       weight: 5034
       flavor_text:
         red: |
@@ -99,30 +99,19 @@ yellow:
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
           icon: *red-blue.pokemon.hitmonchan.forms.hitmonchan.icon
 gold-silver:
-  name: &gold-silver.name Hitmonchan
-  position: &gold-silver.position 117
+  name: *red-blue.name
+  position: &gold-silver.position 106
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 145
+    original-johto: 144
+    original-johto-abc: 70
   pokemon:
     hitmonchan:
-      genus: &gold-silver.pokemon.hitmonchan.genus 'Punching Pokémon'
-      evolution_parent: &gold-silver.pokemon.hitmonchan.evolution_parent tyrogue/tyrogue
-      female_rate: &gold-silver.pokemon.hitmonchan.female_rate 0
-      capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: &gold-silver.pokemon.hitmonchan.happiness 70
-      baby: &gold-silver.pokemon.hitmonchan.baby false
-      hatch_steps: &gold-silver.pokemon.hitmonchan.hatch_steps 25
-      growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: &gold-silver.pokemon.hitmonchan.forms_switchable false
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: &gold-silver.pokemon.hitmonchan.height 14
-      weight: &gold-silver.pokemon.hitmonchan.weight 502
+      capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
       experience: *red-blue.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
-      egg_groups: &gold-silver.pokemon.hitmonchan.egg_groups
-        - humanshape
       stats: &gold-silver.pokemon.hitmonchan.stats
         hp:
           base_value: 50
@@ -142,10 +131,14 @@ gold-silver:
         special-defense:
           base_value: 110
           effort_change: 35
-      evolution_conditions: &gold-silver.pokemon.hitmonchan.evolution_conditions
-        level-up:
-          minimum_level: 20
-          physical_stats_difference: -1
+      growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
+      female_rate: &gold-silver.pokemon.hitmonchan.female_rate 0
+      hatch_steps: &gold-silver.pokemon.hitmonchan.hatch_steps 25
+      egg_groups: &gold-silver.pokemon.hitmonchan.egg_groups
+        - humanshape
+      genus: *red-blue.pokemon.hitmonchan.genus
+      height: *red-blue.pokemon.hitmonchan.height
+      weight: &gold-silver.pokemon.hitmonchan.weight 503
       flavor_text:
         gold: |
           Its punches slice
@@ -161,44 +154,43 @@ gold-silver:
           high speed, even a
           slight graze could
           cause a burn.
+      evolution_parent: &gold-silver.pokemon.hitmonchan.evolution_parent tyrogue/tyrogue
+      evolution_conditions: &gold-silver.pokemon.hitmonchan.evolution_conditions
+        level-up:
+          minimum_level: 20
+          physical_stats_difference: -1
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
           sprites:
+            - gold-silver/hitmonchan-default.png
             - gold-silver/back/hitmonchan-default.png
             - gold-silver/shiny/hitmonchan-default.png
-            - gold-silver/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: &gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint hitmonchan.png
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
           icon: &gold-silver.pokemon.hitmonchan.forms.hitmonchan.icon gen2/fighter.png
 crystal:
-  name: *gold-silver.name
+  name: *red-blue.name
   position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
-      evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
-      female_rate: *gold-silver.pokemon.hitmonchan.female_rate
-      capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
-      hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
-      growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      name: *red-blue.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
       experience: *red-blue.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
-      egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
       stats: *gold-silver.pokemon.hitmonchan.stats
-      evolution_conditions: *gold-silver.pokemon.hitmonchan.evolution_conditions
+      growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
+      female_rate: *gold-silver.pokemon.hitmonchan.female_rate
+      hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
+      egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
+      genus: *red-blue.pokemon.hitmonchan.genus
+      height: *red-blue.pokemon.hitmonchan.height
+      weight: *gold-silver.pokemon.hitmonchan.weight
       flavor_text:
         crystal: |
           To increase the
@@ -207,43 +199,42 @@ crystal:
           it spins its arms
           just before making
           contact.
+      evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.hitmonchan.evolution_conditions
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *red-blue.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
           sprites:
+            - crystal/hitmonchan-default.png
             - crystal/back/hitmonchan-default.png
             - crystal/shiny/hitmonchan-default.png
-            - crystal/animated/hitmonchan-default.webm
-            - crystal/animated/shiny/hitmonchan-default.webm
-            - crystal/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
           icon: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.icon
 ruby-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: &ruby-sapphire.name Hitmonchan
+  position: &ruby-sapphire.position 117
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: &ruby-sapphire.pokemon.hitmonchan.genus 'Punching Pokémon'
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       color: &ruby-sapphire.pokemon.hitmonchan.color brown
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: &ruby-sapphire.pokemon.hitmonchan.happiness 70
+      baby: &ruby-sapphire.pokemon.hitmonchan.baby false
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: &ruby-sapphire.pokemon.hitmonchan.forms_switchable false
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: &ruby-sapphire.pokemon.hitmonchan.height 14
+      weight: &ruby-sapphire.pokemon.hitmonchan.weight 502
       experience: &ruby-sapphire.pokemon.hitmonchan.experience 159
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -291,7 +282,7 @@ ruby-sapphire:
           adversity.
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -301,28 +292,28 @@ ruby-sapphire:
             - ruby-sapphire/shiny/hitmonchan-default.png
             - ruby-sapphire/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: &ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint hitmonchan.png
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
 emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       color: *ruby-sapphire.pokemon.hitmonchan.color
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -337,7 +328,7 @@ emerald:
           spirit means that it will never give up.
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -348,26 +339,26 @@ emerald:
             - emerald/animated/shiny/hitmonchan-default.webm
             - emerald/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
 colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -376,35 +367,35 @@ colosseum: &colosseum
       evolution_conditions: *gold-silver.pokemon.hitmonchan.evolution_conditions
       forms: &colosseum.pokemon.hitmonchan.forms
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
           icon: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.icon
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
 xd: *colosseum
 firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *red-blue.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       habitat: urban
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -422,7 +413,7 @@ firered-leafgreen:
           impossible to see.
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -432,32 +423,32 @@ firered-leafgreen:
             - firered-leafgreen/shiny/hitmonchan-default.png
             - firered-leafgreen/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
 diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       shape: &diamond-pearl.pokemon.hitmonchan.shape humanoid
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
       pal_park: &diamond-pearl.pokemon.hitmonchan.pal_park
         area: mountain
         rate: 10
         score: 80
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -480,7 +471,7 @@ diamond-pearl:
           after three minutes of fighting.
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -491,29 +482,29 @@ diamond-pearl:
             - diamond-pearl/shiny/hitmonchan-default.png
             - diamond-pearl/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       shape: *diamond-pearl.pokemon.hitmonchan.shape
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
       pal_park: *diamond-pearl.pokemon.hitmonchan.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -527,7 +518,7 @@ platinum:
           after three minutes of fighting.
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -538,31 +529,31 @@ platinum:
             - platinum/shiny/hitmonchan-default.png
             - platinum/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 147
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       shape: *diamond-pearl.pokemon.hitmonchan.shape
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
       pal_park: *diamond-pearl.pokemon.hitmonchan.pal_park
-      name: *gold-silver.name
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -580,7 +571,7 @@ heartgold-soulsilver:
           slight graze could cause a burn.
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -607,29 +598,29 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/hitmonchan-default.png
             - heartgold-soulsilver/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       color: *ruby-sapphire.pokemon.hitmonchan.color
       shape: *diamond-pearl.pokemon.hitmonchan.shape
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -647,7 +638,7 @@ black-white:
           after three minutes of fighting.
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -658,29 +649,29 @@ black-white:
             - black-white/shiny/hitmonchan-default.png
             - black-white/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *red-blue.pokemon.hitmonchan.forms.hitmonchan.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       color: *ruby-sapphire.pokemon.hitmonchan.color
       shape: *diamond-pearl.pokemon.hitmonchan.shape
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -698,26 +689,26 @@ black-2-white-2:
           after three minutes of fighting.
       forms: *colosseum.pokemon.hitmonchan.forms
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       color: *ruby-sapphire.pokemon.hitmonchan.color
       shape: *diamond-pearl.pokemon.hitmonchan.shape
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -734,7 +725,7 @@ x-y:
           It throws punches that are faster than a bullet train.
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -743,29 +734,29 @@ x-y:
             - x-y/shiny/hitmonchan-default.png
             - x-y/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: &x-y.pokemon.hitmonchan.forms.hitmonchan.cry hitmonchan-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       color: *ruby-sapphire.pokemon.hitmonchan.color
       shape: *diamond-pearl.pokemon.hitmonchan.shape
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -786,38 +777,38 @@ omega-ruby-alpha-sapphire:
           of adversity.
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
           icon: *x-y.pokemon.hitmonchan.forms.hitmonchan.icon
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *x-y.pokemon.hitmonchan.forms.hitmonchan.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/hitmonchan-default.png
             - omega-ruby-alpha-sapphire/hitmonchan-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       color: *ruby-sapphire.pokemon.hitmonchan.color
       shape: *diamond-pearl.pokemon.hitmonchan.shape
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -827,7 +818,7 @@ sun-moon:
       evolution_conditions: *gold-silver.pokemon.hitmonchan.evolution_conditions
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -836,29 +827,29 @@ sun-moon:
             - sun-moon/shiny/hitmonchan-default.png
             - sun-moon/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *x-y.pokemon.hitmonchan.forms.hitmonchan.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *ruby-sapphire.name
+  position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     hitmonchan:
-      genus: *gold-silver.pokemon.hitmonchan.genus
+      genus: *ruby-sapphire.pokemon.hitmonchan.genus
       evolution_parent: *gold-silver.pokemon.hitmonchan.evolution_parent
       color: *ruby-sapphire.pokemon.hitmonchan.color
       shape: *diamond-pearl.pokemon.hitmonchan.shape
       female_rate: *gold-silver.pokemon.hitmonchan.female_rate
       capture_rate: *red-blue.pokemon.hitmonchan.capture_rate
-      happiness: *gold-silver.pokemon.hitmonchan.happiness
-      baby: *gold-silver.pokemon.hitmonchan.baby
+      happiness: *ruby-sapphire.pokemon.hitmonchan.happiness
+      baby: *ruby-sapphire.pokemon.hitmonchan.baby
       hatch_steps: *gold-silver.pokemon.hitmonchan.hatch_steps
       growth_rate: *red-blue.pokemon.hitmonchan.growth_rate
-      forms_switchable: *gold-silver.pokemon.hitmonchan.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.hitmonchan.forms_switchable
+      name: *ruby-sapphire.name
       default: *red-blue.pokemon.hitmonchan.default
-      height: *gold-silver.pokemon.hitmonchan.height
-      weight: *gold-silver.pokemon.hitmonchan.weight
+      height: *ruby-sapphire.pokemon.hitmonchan.height
+      weight: *ruby-sapphire.pokemon.hitmonchan.weight
       experience: *ruby-sapphire.pokemon.hitmonchan.experience
       types: *red-blue.pokemon.hitmonchan.types
       egg_groups: *gold-silver.pokemon.hitmonchan.egg_groups
@@ -868,7 +859,7 @@ ultra-sun-ultra-moon:
       evolution_conditions: *gold-silver.pokemon.hitmonchan.evolution_conditions
       forms:
         hitmonchan:
-          name: *gold-silver.name
+          name: *ruby-sapphire.name
           form_name: *red-blue.pokemon.hitmonchan.forms.hitmonchan.form_name
           default: *red-blue.pokemon.hitmonchan.default
           battle_only: *red-blue.pokemon.hitmonchan.forms.hitmonchan.battle_only
@@ -877,5 +868,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/hitmonchan-default.png
             - ultra-sun-ultra-moon/hitmonchan-default.png
           art: *red-blue.pokemon.hitmonchan.forms.hitmonchan.art
-          footprint: *gold-silver.pokemon.hitmonchan.forms.hitmonchan.footprint
+          footprint: *ruby-sapphire.pokemon.hitmonchan.forms.hitmonchan.footprint
           cry: *x-y.pokemon.hitmonchan.forms.hitmonchan.cry
