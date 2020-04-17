@@ -5,10 +5,12 @@ import csv
 import math
 import os
 import re
+from typing import List
 
 import progressbar
 import slugify
 
+from data import gen2_maps
 from inc import gb, pokemon_text
 from inc.yaml import yaml
 
@@ -943,6 +945,355 @@ def get_pokemon():
 
 out_pokemon, out_pokemon_moves = get_pokemon()
 
+
+def get_encounters():
+    print('Dumping encounters')
+    out = []
+    map_slugs = gen2_maps.get_maps(version_group)
+
+    # These percent chances are rounded off a tiny bit
+    grass_slot_chances = [30, 30, 20, 10, 5, 4, 1]
+    water_slot_chances = [60, 30, 10]
+    # The tables are stacked as johto-grass, johto-water, kanto-grass, kanto-water
+    # Each table ends with 0xFF.
+    if version_group == 'gold-silver':
+        grass_encounters_offsets = [0x02AB35, 0x02B7C0]
+        water_encounters_offsets = [0x02B669, 0x02BD43]
+        swarm_grass_encounters_offsets = [0x02BE1C]
+        swarm_water_encounters_offsets = [0x02BED9]
+    else:
+        grass_encounters_offsets = [0x02A5E9, 0x02B274]
+        water_encounters_offsets = [0x02B11D, 0x02B7F7]
+        swarm_grass_encounters_offsets = [0x02B8D0]
+        swarm_water_encounters_offsets = [0x02B92F]
+
+    swarm_maps = []
+
+    def _extract_encounters(offsets: list, method: str, chances: list, is_swarm: bool):
+        for offset in offsets:
+            cursor = offset
+            while rom[cursor] != 0xFF:
+                map_group = rom[cursor]
+                cursor += 1
+                map_id = rom[cursor]
+                cursor += 1
+                if is_swarm:
+                    swarm_maps.append((map_group, map_id))
+                    always_conditions = ['swarm/swarm-yes']
+                else:
+                    # Only add the "not a swarm" condition if the map is affected by swarms
+                    if (map_group, map_id) in swarm_maps:
+                        always_conditions = ['swarm/swarm-no']
+                    else:
+                        always_conditions = []
+                location = map_slugs[map_group][map_id]['location']
+                areas = map_slugs[map_group][map_id]['area']
+                if not isinstance(areas, list):
+                    areas = [areas]
+                # Map encounter rates are ignored
+                conditions = []
+                if method == 'surf':
+                    # Surf doesn't care about time of day, so only one encounter rate
+                    cursor += 1
+                    if len(always_conditions) > 0:
+                        conditions = [','.join(always_conditions)]
+                else:
+                    cursor += 3
+                    # Create a conditions string where always_conditions and a time are true
+                    for time_condition in ['time/time-morning', 'time/time-day', 'time/time-night']:
+                        this_conditions = [time_condition]
+                        if len(always_conditions) > 0:
+                            this_conditions.extend(always_conditions)
+                        conditions.append(','.join(this_conditions))
+                if len(conditions) == 0:
+                    conditions = [None]
+                for condition in conditions:
+                    for chance in chances:
+                        level = rom[cursor]
+                        cursor += 1
+                        species_id = rom[cursor]
+                        cursor += 1
+                        for area in areas:
+                            out.append({
+                                'version': version,
+                                'location': location,
+                                'area': area,
+                                'method': method,
+                                'species': pokemon_slugs[species_id],
+                                'pokemon': pokemon_slugs[species_id],
+                                'level': level,
+                                'chance': chance,
+                                'conditions': condition,
+                                'note': None
+                            })
+
+    _extract_encounters(swarm_grass_encounters_offsets, 'walk', grass_slot_chances, True)
+    _extract_encounters(swarm_water_encounters_offsets, 'surf', water_slot_chances, True)
+    _extract_encounters(grass_encounters_offsets, 'walk', grass_slot_chances, False)
+    _extract_encounters(water_encounters_offsets, 'surf', water_slot_chances, False)
+
+    # Every single map has a fishing group programmed, likely as a failsafe.  This means we need to
+    # search the map for fishable tiles before getting the data.
+    if version_group == 'gold-silver':
+        map_header_pointers_offset = 0x0940ED
+        map_headers_bank = 0x25
+        tileset_pointers_offset = 0x156BE
+        tileset_count = 29
+        collision_perms_table_offset = 0x0FB4BE
+        fish_groups_pointers_offset = 0x0929F7
+        timed_fish_groups_offset = 0x092BDE
+        fish_groups_bank = 0x24
+    else:
+        tileset_count = 37
+        map_header_pointers_offset = 0x094000
+        map_headers_bank = 0x25
+        tileset_pointers_offset = 0x04D596  # Guess
+        collision_perms_table_offset = 0x04CE1F
+        fish_groups_pointers_offset = 0x092488
+        timed_fish_groups_offset = 0x09266F
+        fish_groups_bank = 0x24
+    map_header_length = 9
+    block_count = 128
+    fish_group_count = 13
+    timed_fish_group_count = 22
+    collision_perms_map = rom[collision_perms_table_offset:collision_perms_table_offset + 256]
+
+    # Get tileset info to find the blocks that can be fished on in each tileset
+    tileset_water_blocks = {}
+    for tileset_id in range(0, tileset_count):
+        cursor = tileset_pointers_offset + (tileset_id * 15)
+        # Skip over pointers to graphics and block definitions, we just want block collision info
+        cursor += 6
+        collision_bank = rom[cursor]
+        cursor += 1
+        collision_pointer = rom[cursor:cursor + 2]
+        collision_start = gb.address_from_pointer(collision_pointer, collision_bank)
+        water_blocks = []
+        # The collision map splits each block into quadrants.
+        for block_id in range(0, block_count):
+            has_water = False
+            collision_cursor = collision_start + (block_id * 4)
+            block_collision = rom[collision_cursor:collision_cursor + 4]
+            for collision in block_collision:
+                perm = collision_perms_map[collision]
+                if (perm >> 4) & 0x0F == 1:
+                    has_water = True
+                    break
+            if has_water:
+                water_blocks.append(block_id)
+        tileset_water_blocks[tileset_id] = water_blocks
+
+    # Using this just-gathered info, lookup each map block to see if it is fishable.
+    map_fish_groups = {}
+    for map_group, maps in map_slugs.items():
+        group_start = map_header_pointers_offset + ((map_group - 1) * 2)
+        pointer = rom[group_start:group_start + 2]
+        start = gb.address_from_pointer(pointer, map_headers_bank)
+        for map_id, map_info in maps.items():
+            cursor = start + ((map_id - 1) * map_header_length)
+            attrs_bank = rom[cursor]
+            cursor += 1
+            tileset = rom[cursor]
+            cursor += 1
+            environment = rom[cursor]
+            cursor += 1
+            attrs_pointer = rom[cursor:cursor + 2]
+            cursor += 5
+            fish_group = rom[cursor]
+            attrs_cursor = gb.address_from_pointer(attrs_pointer, attrs_bank)
+            # Border block, height, width, blocks bank, blocks pointer, scripts/events bank, scripts pointer,
+            # events pointer, connections
+            attrs_cursor += 1
+            map_height = rom[attrs_cursor]
+            attrs_cursor += 1
+            map_width = rom[attrs_cursor]
+            attrs_cursor += 1
+            blocks_bank = rom[attrs_cursor]
+            attrs_cursor += 1
+            blocks_pointer = rom[attrs_cursor:attrs_cursor + 2]
+            blocks_cursor = gb.address_from_pointer(blocks_pointer, blocks_bank)
+            blocks = rom[blocks_cursor:blocks_cursor + (map_width * map_height)]
+            for block in blocks:
+                if block in tileset_water_blocks[tileset]:
+                    # Fishing is allowed on this map
+                    if map_group not in map_fish_groups:
+                        map_fish_groups[map_group] = {}
+                    map_fish_groups[map_group][map_id] = fish_group
+                    break
+
+    # Get fish group info
+    # Start with the timed fish groups that are sub'd in to the main fish groups
+    timed_fish_groups = {}
+    cursor = timed_fish_groups_offset
+    for timed_group_id in range(0, timed_fish_group_count):
+        timed_fish_groups[timed_group_id] = []
+        species_id = rom[cursor]
+        cursor += 1
+        level = rom[cursor]
+        cursor += 1
+        for condition in ['time/time-morning', 'time/time-day']:
+            timed_fish_groups[timed_group_id].append({
+                'species': pokemon_slugs[species_id],
+                'pokemon': pokemon_slugs[species_id],
+                'level': level,
+                'conditions': condition,
+            })
+        species_id = rom[cursor]
+        cursor += 1
+        level = rom[cursor]
+        cursor += 1
+        timed_fish_groups[timed_group_id].append({
+            'species': pokemon_slugs[species_id],
+            'pokemon': pokemon_slugs[species_id],
+            'level': level,
+            'conditions': 'time/time-night',
+        })
+
+    fish_groups = {}
+
+    def _read_fish_group(fish_group_id: int, method: str, pointer: bytearray, bank: int):
+        if fish_group_id not in fish_groups:
+            fish_groups[fish_group_id] = []
+        cursor = gb.address_from_pointer(pointer, bank)
+        last_row = False
+        last_chance_byte = 0
+        while not last_row:
+            last_row = False
+            if rom[cursor] == 0xFF:
+                last_row = True
+            chance = round((rom[cursor] - last_chance_byte) / 255 * 100)
+            last_chance_byte = rom[cursor]
+            cursor += 1
+            species_id = rom[cursor]
+            cursor += 1
+            level = rom[cursor]
+            cursor += 1
+            row = {
+                'version': version,
+                'method': method,
+                'chance': chance,
+                'conditions': None,
+                'note': None
+            }
+            if species_id == 0:
+                # This is a timed group, the level byte refers to the timed group id
+                for timed_group_encounter in timed_fish_groups[level]:
+                    encounter_row = row.copy()
+                    encounter_row.update(timed_group_encounter)
+                    fish_groups[fish_group_id].append(encounter_row)
+            else:
+                encounter_row = row.copy()
+                encounter_row.update({
+                    'species': pokemon_slugs[species_id],
+                    'pokemon': pokemon_slugs[species_id],
+                    'level': level,
+                    'conditions': None,
+                })
+                fish_groups[fish_group_id].append(encounter_row)
+
+    cursor = fish_groups_pointers_offset
+    for fish_group_id in range(1, fish_group_count + 1):
+        # Skip fish group encounter rate
+        cursor += 1
+        _read_fish_group(fish_group_id, 'old-rod', rom[cursor:cursor + 2], fish_groups_bank)
+        cursor += 2
+        _read_fish_group(fish_group_id, 'good-rod', rom[cursor:cursor + 2], fish_groups_bank)
+        cursor += 2
+        _read_fish_group(fish_group_id, 'super-rod', rom[cursor:cursor + 2], fish_groups_bank)
+        cursor += 2
+
+    # Finally (!!) use the compiled fish groups to add fishing encounters to locations where the player
+    # can fish.
+    for map_group_id, fish_data in map_fish_groups.items():
+        for map_id, fish_group_id in fish_data.items():
+            if fish_group_id == 0:
+                # No fishing for you
+                continue
+            location = map_slugs[map_group_id][map_id]['location']
+            areas = map_slugs[map_group_id][map_id]['area']
+            if not isinstance(areas, list):
+                areas = [areas]
+            for fish_encounter in fish_groups[fish_group_id]:
+                for area in areas:
+                    map_fish_encounter = fish_encounter.copy()
+                    map_fish_encounter.update({'location': location, 'area': area})
+                    out.append(map_fish_encounter)
+
+    # Headbutt encounters are stored in groups
+    if version_group == 'gold-silver':
+        headbutt_group_pointers_offset = 0x0BA470
+        headbutt_groups_bank = 0x2E
+        headbutt_group_count = 6
+        map_headbutt_table_offset = 0x0BA3E6
+    else:
+        headbutt_group_pointers_offset = 0x0B82E8
+        headbutt_groups_bank = 0x2E
+        headbutt_group_count = 9
+        map_headbutt_table_offset = 0x0B825E
+
+    # Build the pointer table.  The maps will use the index of the table to get the pointer to the
+    # proper encounters
+    headbutt_group_pointers = {}
+    for headbutt_group_id in range(0, headbutt_group_count):
+        start = headbutt_group_pointers_offset + (headbutt_group_id * 2)
+        headbutt_group_pointers[headbutt_group_id] = rom[start:start + 2]
+
+    # Not very efficient, but mimics the way the game looks up the encounters
+    def _parse_headbutt_group(location: str, areas: List[str], methods: List[str], cursor: int):
+        headbutt_group_encounters = []
+        for method in methods:
+            while rom[cursor] != 0xFF:
+                chance = rom[cursor]
+                cursor += 1
+                species_id = rom[cursor]
+                cursor += 1
+                level = rom[cursor]
+                cursor += 1
+
+                for area in areas:
+                    headbutt_group_encounters.append({
+                        'version': version,
+                        'location': location,
+                        'area': area,
+                        'method': method,
+                        'chance': chance,
+                        'species': pokemon_slugs[species_id],
+                        'pokemon': pokemon_slugs[species_id],
+                        'level': level,
+                        'conditions': None,
+                        'note': None
+                    })
+            cursor += 1
+        return headbutt_group_encounters
+
+    # Map locations to headbutt/rock smash groups
+    def _get_map_headbutt_encounters(cursor, methods: List[str]):
+        while rom[cursor] != 0xFF:
+            map_group_id = rom[cursor]
+            cursor += 1
+            map_id = rom[cursor]
+            cursor += 1
+            headbutt_group_id = rom[cursor]
+            cursor += 1
+            location = map_slugs[map_group_id][map_id]['location']
+            areas = map_slugs[map_group_id][map_id]['area']
+            if not isinstance(areas, list):
+                areas = [areas]
+
+            headbutt_group_pointer = headbutt_group_pointers[headbutt_group_id]
+            out.extend(_parse_headbutt_group(location, areas, methods,
+                                             gb.address_from_pointer(headbutt_group_pointer, headbutt_groups_bank)))
+        return cursor
+
+    cursor = map_headbutt_table_offset
+    cursor = _get_map_headbutt_encounters(cursor, ['headbutt', 'headbutt-rare'])
+    cursor = _get_map_headbutt_encounters(cursor, ['rock-smash'])
+
+    return out
+
+
+out_encounters = get_encounters()
+
 if args.write_moves:
     print('Writing Moves')
     for move_slug, move_data in progressbar.progressbar(out_moves.items()):
@@ -1044,6 +1395,38 @@ if args.write_pokemon_moves:
     data.extend(out_pokemon_moves)
     with open(args.out_pokemon_moves, 'w') as pokemon_moves_csv:
         writer = csv.DictWriter(pokemon_moves_csv, fieldnames=data[0].keys())
+        writer.writeheader()
+        for row in progressbar.progressbar(data):
+            writer.writerow(row)
+
+if args.write_encounters:
+    print('Writing encounters')
+    delete_encounter_methods = [
+        'walk',
+        'surf',
+        'old-rod',
+        'good-rod',
+        'super-rod',
+        'headbutt',
+        'headbutt-rare',
+        'rock-smash',
+    ]
+    data = []
+    highest_id = 0
+    with open(args.out_encounters, 'r') as encounters_csv:
+        for row in progressbar.progressbar(csv.DictReader(encounters_csv)):
+            if row['version'] != version or row['method'] not in delete_encounter_methods:
+                data.append(row)
+                highest_id = max(highest_id, int(row['id']))
+
+    # Need to generate ids for our data; start with the highest id number in the existing data
+    last_id = highest_id
+    for encounter in out_encounters:
+        encounter['id'] = last_id + 5
+        last_id = encounter['id']
+        data.append(encounter)
+    with open(args.out_encounters, 'w') as encounters_csv:
+        writer = csv.DictWriter(encounters_csv, fieldnames=data[0].keys())
         writer.writeheader()
         for row in progressbar.progressbar(data):
             writer.writerow(row)

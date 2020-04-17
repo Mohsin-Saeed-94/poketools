@@ -89,6 +89,7 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
         $location = $this->referenceStore->get(Location::class, ['identifier' => $sourceData['location']]);
         $location = $location->findChildByGrouping($versionGroup);
         $locationArea = null;
+        // TODO: This can only find top-level areas
         foreach ($location->getAreas() as $checkLocationArea) {
             if ($checkLocationArea->getSlug() === $sourceData['area']) {
                 $locationArea = $checkLocationArea;

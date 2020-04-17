@@ -4,7 +4,7 @@ red-blue: &red-blue
   areas: &red-blue.areas
     whole-area:
       name: 'Whole area'
-      default: true
+      default: &red-blue.areas.whole-area.default true
   map:
     map: &red-blue.map.map kanto
     overlay: '<rect width="8" height="24" x="128" y="16" />'
@@ -12,7 +12,12 @@ yellow: *red-blue
 gold-silver: &gold-silver
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas:
+    cerulean-city:
+      name: 'Cerulean City side'
+      default: *red-blue.areas.whole-area.default
+    lavender-town:
+      name: 'Lavender Town side'
   map:
     map: *red-blue.map.map
     overlay: '<rect width="8" height="16" x="120" y="32" />'

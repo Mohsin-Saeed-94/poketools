@@ -1,10 +1,21 @@
 gold-silver: &gold-silver
-  region: johto
-  name: 'Team Rocket HQ'
+  region: &gold-silver.region johto
+  name: &gold-silver.name 'Team Rocket HQ'
+  areas:
+    b1f:
+      name: B1F
+      default: &gold-silver.areas.b1f.default true
+    b2f:
+      name: B2F
+    b3f:
+      name: B3F
+  super: &gold-silver.super mahogany-town
+crystal: *gold-silver
+heartgold-soulsilver:
+  region: *gold-silver.region
+  name: *gold-silver.name
   areas:
     whole-area:
       name: 'Whole area'
-      default: true
-  super: mahogany-town
-crystal: *gold-silver
-heartgold-soulsilver: *gold-silver
+      default: *gold-silver.areas.b1f.default
+  super: *gold-silver.super

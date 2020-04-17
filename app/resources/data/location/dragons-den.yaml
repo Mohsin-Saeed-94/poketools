@@ -1,20 +1,34 @@
-gold-silver: &gold-silver
+gold-silver:
   region: &gold-silver.region johto
   name: &gold-silver.name 'Dragon''s Den'
-  areas: &gold-silver.areas
-    whole-area:
-      name: 'Whole area'
-      default: true
+  areas:
+    entrance: &gold-silver.areas.entrance
+      name: Entrance
+      default: &gold-silver.areas.entrance.default true
+    cavern: &gold-silver.areas.cavern
+      name: Cavern
   super: &gold-silver.super blackthorn-city
-  map:
+  map: &gold-silver.map
     map: &gold-silver.map.map johto
     z: &gold-silver.map.z 10
     overlay: '<circle cx="124" cy="20" r="4" />'
-crystal: *gold-silver
+crystal:
+  region: *gold-silver.region
+  name: *gold-silver.name
+  areas:
+    entrance: *gold-silver.areas.entrance
+    cavern: *gold-silver.areas.cavern
+    shrine:
+      name: 'Dragon Shrine'
+  super: *gold-silver.super
+  map: *gold-silver.map
 heartgold-soulsilver:
   region: *gold-silver.region
   name: *gold-silver.name
-  areas: *gold-silver.areas
+  areas:
+    whole-area:
+      name: 'Whole area'
+      default: *gold-silver.areas.entrance.default
   super: *gold-silver.super
   map:
     map: *gold-silver.map.map
