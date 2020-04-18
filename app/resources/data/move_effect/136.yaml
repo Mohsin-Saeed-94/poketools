@@ -1,4 +1,45 @@
 gold-silver: &gold-silver
+  short_description: 'Power and type depend upon user''s IVs.  Power can range from 31 to 70.'
+  description: |
+    Inflicts [regular damage]{mechanic:regular-damage}.  Power and type are determined by the user's [IV]{mechanic:iv}s
+    using this formula:
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>a</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>atk</mi> </msub> <mo>&ge;</mo> <mn>8</mn> </mtd> <mtd> <mn>8</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>atk</mi> </msub> <mo>&lt;</mo> <mn>8</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>d</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>def</mi> </msub> <mo>&ge;</mo> <mn>8</mn> </mtd> <mtd> <mn>4</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>def</mi> </msub> <mo>&lt;</mo> <mn>8</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>s</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>spd</mi> </msub> <mo>&ge;</mo> <mn>8</mn> </mtd> <mtd> <mn>2</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>spd</mi> </msub> <mo>&lt;</mo> <mn>8</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>p</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>spe</mi> </msub> <mo>&ge;</mo> <mn>8</mn> </mtd> <mtd> <mn>1</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>spe</mi> </msub> <mo>&lt;</mo> <mn>8</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>Power</mi> <mo>=</mo> <mfrac> <mrow> <mfenced open="(" close=")" separators=""> <mi>a</mi> <mo>+</mo> <mi>d</mi> <mo>+</mo> <mi>s</mi> <mo>+</mo> <mi>p</mi> </mfenced> <mo>&times;</mo> <mn>5</mn> <mo>+</mo> <mfenced open="(" close=")" separators=""> <msub> <mi>IV</mi> <mi>spe</mi> </msub> <mo>mod</mo> <mn>4</mn> </mfenced> </mrow> <mrow> <mn>2</mn> </mrow> </mfrac> <mo>+</mo> <mn>31</mn> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>Type</mi> <mo>=</mo> <mfenced open="(" close=")" separators=""> <msub> <mi>IV</mi> <mi>def</mi> </msub> <mo>mod</mo> <mn>4</mn> </mfenced> <mo>OR</mo> <msup> <mfenced open="(" close=")" separators=""> <msub> <mi>IV</mi> <mi>atk</mi> </msub> <mo>mod</mo> <mn>4</mn> </mfenced> <mn>2</mn> </msup> </mrow> </math>
+    
+    Look up the resulting type in the table below.  Note that this move cannot be []{type:normal}.
+    
+    Value | Type
+    ----: | --------
+    0     | []{type:fighting}
+    1     | []{type:flying}
+    2     | []{type:poison}
+    3     | []{type:ground}
+    4     | []{type:rock}
+    5     | []{type:bug}
+    6     | []{type:ghost}
+    7     | []{type:steel}
+    8     | []{type:fire}
+    9     | []{type:water}
+    10    | []{type:grass}
+    11    | []{type:electric}
+    12    | []{type:psychic}
+    13    | []{type:ice}
+    14    | []{type:dragon}
+    15    | []{type:dark}
+
+    This formula is simplified from the [game's script](https://github.com/pret/pokecrystal/blob/3eacab563d0e1ab5557c2443556a7a5e58d14cad/engine/battle/hidden_power.asm).
+crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
   short_description: 'Power and type depend upon user''s IVs.  Power can range from 30 to 70.'
   description: |
     Inflicts [regular damage]{mechanic:regular-damage}.  Power and type are determined by the user's [IV]{mechanic:iv}s.
@@ -29,18 +70,16 @@ gold-silver: &gold-silver
     15    | []{type:dark}
     
     This move thus cannot be []{type:normal}.  Most other types have an equal 1/16 chance to be selected, given random [IV]{mechanic:iv}s.  However, due to the flooring used here, []{type:bug}, []{type:fighting}, and []{type:grass} appear 5/64 of the time, and []{type:dark} only 1/64 of the time.
-crystal: *gold-silver
-ruby-sapphire: *gold-silver
-emerald: *gold-silver
-colosseum: *gold-silver
-xd: *gold-silver
-firered-leafgreen: *gold-silver
-diamond-pearl: *gold-silver
-platinum: *gold-silver
-heartgold-soulsilver: *gold-silver
-black-white: *gold-silver
-black-2-white-2: *gold-silver
-x-y: *gold-silver
-omega-ruby-alpha-sapphire: *gold-silver
-sun-moon: *gold-silver
-ultra-sun-ultra-moon: *gold-silver
+emerald: *ruby-sapphire
+colosseum: *ruby-sapphire
+xd: *ruby-sapphire
+firered-leafgreen: *ruby-sapphire
+diamond-pearl: *ruby-sapphire
+platinum: *ruby-sapphire
+heartgold-soulsilver: *ruby-sapphire
+black-white: *ruby-sapphire
+black-2-white-2: *ruby-sapphire
+x-y: *ruby-sapphire
+omega-ruby-alpha-sapphire: *ruby-sapphire
+sun-moon: *ruby-sapphire
+ultra-sun-ultra-moon: *ruby-sapphire
