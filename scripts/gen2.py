@@ -968,6 +968,7 @@ def get_encounters():
         swarm_water_encounters_offsets = [0x02B92F]
 
     swarm_maps = []
+    surf_maps = []
 
     def _extract_encounters(offsets: list, method: str, chances: list, is_swarm: bool):
         for offset in offsets:
@@ -977,6 +978,9 @@ def get_encounters():
                 cursor += 1
                 map_id = rom[cursor]
                 cursor += 1
+                if method == 'surf':
+                    # Store maps with surf encounters for later fishing encounters
+                    surf_maps.append((map_group, map_id))
                 if is_swarm:
                     swarm_maps.append((map_group, map_id))
                     always_conditions = ['swarm/swarm-yes']
@@ -1120,6 +1124,11 @@ def get_encounters():
                         map_fish_groups[map_group] = {}
                     map_fish_groups[map_group][map_id] = fish_group
                     break
+            # Also consider a map fishable if it has surf encounters defined
+            if (map_group, map_id) in surf_maps:
+                if map_group not in map_fish_groups:
+                    map_fish_groups[map_group] = {}
+                map_fish_groups[map_group][map_id] = fish_group
 
     # Get fish group info
     # Start with the timed fish groups that are sub'd in to the main fish groups
