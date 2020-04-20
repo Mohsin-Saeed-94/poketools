@@ -35,37 +35,23 @@ gold-silver: &gold-silver
     ATK rating.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Growth
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *gold-silver.stat_changes
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 317
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 32
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - vine-whip
-    - absorb
-    - mega-drain
-    - razor-leaf
-    - solar-beam
-    - petal-dance
-    - giga-drain
-    - bullet-seed
-    - frenzy-plant
-    - magical-leaf
   flavor_text: |
     Forces the body to grow
     and heightens SP. ATK.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Growth
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -75,29 +61,28 @@ colosseum: &colosseum
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
+  damage_class: physical
+  effect: &colosseum.effect 317
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *gold-silver.stat_changes
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
-    The user’s body is
+    The user's body is
     forced to grow,
     raising the SP.
     ATK stat.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -108,8 +93,8 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
-  effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  effect: *colosseum.effect
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 11
   super_contest_use_before:
     - magical-leaf
@@ -120,7 +105,7 @@ diamond-pearl: &diamond-pearl
     Sp. Atk stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -131,10 +116,10 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
+  effect: *colosseum.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -145,13 +130,13 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
+  effect: *colosseum.effect
   flavor_text: &black-white.flavor_text |
     The user’s body grows all at once,
     raising the Attack and Sp. Atk stats.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -162,10 +147,10 @@ x-y:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
+  effect: *colosseum.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -176,13 +161,23 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  effect: *colosseum.effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 32
+  contest_use_before:
+    - vine-whip
+    - absorb
+    - mega-drain
+    - razor-leaf
+    - solar-beam
+    - petal-dance
+    - giga-drain
+    - bullet-seed
+    - frenzy-plant
+    - magical-leaf
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -193,7 +188,7 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
+  effect: *colosseum.effect
   flavor_text: |
     The user’s body grows all at once, raising the
     Attack and Sp. Atk stats.

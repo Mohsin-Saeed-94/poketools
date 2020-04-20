@@ -1,38 +1,38 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Volt Tackle'
-  ailment: &ruby-sapphire.ailment paralysis
-  recoil: &ruby-sapphire.recoil 33
-  ailment_chance: &ruby-sapphire.ailment_chance 10
+  name: &ruby-sapphire.name 'VOLT TACKLE'
+  power: &ruby-sapphire.power 120
+  type: &ruby-sapphire.type electric
+  accuracy: &ruby-sapphire.accuracy 100
+  pp: &ruby-sapphire.pp 15
+  effect: &ruby-sapphire.effect 199
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
     - contact
     - protect
     - mirror
+    - kings-rock
+  ailment: &ruby-sapphire.ailment paralysis
+  ailment_chance: &ruby-sapphire.ailment_chance 10
+  recoil: &ruby-sapphire.recoil 33
   categories: &ruby-sapphire.categories
     - damage
     - ailment
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 1
-  type: &ruby-sapphire.type electric
-  power: &ruby-sapphire.power 120
-  pp: &ruby-sapphire.pp 15
-  accuracy: &ruby-sapphire.accuracy 100
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 263
-  effect_chance: &ruby-sapphire.effect_chance 10
-  contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 3
   flavor_text: |
     A life-risking tackle that
     slightly hurts the user.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Volt Tackle'
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: &colosseum.flags
+    - contact
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -42,39 +42,37 @@ colosseum: &colosseum
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  damage_class: special
+  effect: &colosseum.effect 263
+  effect_chance: &colosseum.effect_chance 10
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
-  ailment: *ruby-sapphire.ailment
-  recoil: *ruby-sapphire.recoil
-  ailment_chance: *ruby-sapphire.ailment_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
+  ailment: *ruby-sapphire.ailment
+  ailment_chance: *ruby-sapphire.ailment_chance
+  recoil: *ruby-sapphire.recoil
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     The user throws an
     electrified tackle.
     It hurts the user
     a little.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -85,9 +83,9 @@ diamond-pearl: &diamond-pearl
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class physical
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  effect: *colosseum.effect
+  effect_chance: *colosseum.effect_chance
+  contest_type: &diamond-pearl.contest_type cool
   super_contest_effect: 22
   flavor_text: &diamond-pearl.flavor_text |
     The user electrifies
@@ -97,11 +95,11 @@ diamond-pearl: &diamond-pearl
     to the user as well.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -112,15 +110,15 @@ heartgold-soulsilver:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect: *colosseum.effect
+  effect_chance: *colosseum.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -131,18 +129,18 @@ black-white:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect: *colosseum.effect
+  effect_chance: *colosseum.effect_chance
   flavor_text: |
     The user electrifies itself, then charges. 
     It causes considerable damage to the user
     and may leave the target with paralysis.
 black-2-white-2:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -153,18 +151,18 @@ black-2-white-2:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect: *colosseum.effect
+  effect_chance: *colosseum.effect_chance
   flavor_text: |
     The user electrifies itself, then charges.
     It causes considerable damage to the user
     and may leave the target with paralysis.
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -175,18 +173,18 @@ x-y:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect: *colosseum.effect
+  effect_chance: *colosseum.effect_chance
   flavor_text: &x-y.flavor_text |
     The user electrifies itself, then charges.
     This also damages the user quite a lot.
     This may leave the target with paralysis.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -197,17 +195,17 @@ omega-ruby-alpha-sapphire:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  effect: *colosseum.effect
+  effect_chance: *colosseum.effect_chance
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 3
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -218,8 +216,8 @@ sun-moon: &sun-moon
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect: *colosseum.effect
+  effect_chance: *colosseum.effect_chance
   flavor_text: |
     The user electrifies itself and charges the target.
     This also damages the user quite a lot. This attack

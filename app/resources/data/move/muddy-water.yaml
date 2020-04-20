@@ -1,10 +1,17 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Muddy Water'
-  stat_change_chance: &ruby-sapphire.stat_change_chance 30
+  name: &ruby-sapphire.name 'MUDDY WATER'
+  power: &ruby-sapphire.power 95
+  type: &ruby-sapphire.type water
+  accuracy: &ruby-sapphire.accuracy 85
+  pp: &ruby-sapphire.pp 10
+  effect: &ruby-sapphire.effect 74
+  target: &ruby-sapphire.target all-opponents
+  priority: &ruby-sapphire.priority 0
+  effect_chance: &ruby-sapphire.effect_chance 30
   flags: &ruby-sapphire.flags
     - protect
     - mirror
-    - non-sky-battle
+    - kings-rock
   categories: &ruby-sapphire.categories
     - damage
     - lower
@@ -12,25 +19,18 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   stat_changes: &ruby-sapphire.stat_changes
     accuracy: -1
-  type: &ruby-sapphire.type water
-  power: &ruby-sapphire.power 95
-  pp: &ruby-sapphire.pp 10
-  accuracy: &ruby-sapphire.accuracy 85
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target all-opponents
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 74
-  effect_chance: &ruby-sapphire.effect_chance 30
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 10
+  stat_change_chance: &ruby-sapphire.stat_change_chance 30
   flavor_text: |
     Attacks with muddy water.
     May lower accuracy.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Muddy Water'
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: &colosseum.flags
+    - protect
+    - mirror
+    - non-sky-battle
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -41,36 +41,35 @@ colosseum: &colosseum
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class special
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
-  stat_change_chance: *ruby-sapphire.stat_change_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  effect_chance: *ruby-sapphire.effect_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  stat_change_chance: *ruby-sapphire.stat_change_chance
   flavor_text: |
     The user attacks
     with muddy water.
     It may also lower
-    the foe’s accuracy.
+    the foe's  accuracy.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -81,10 +80,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type tough
   super_contest_effect: 18
   flavor_text: &diamond-pearl.flavor_text |
     The user attacks by
@@ -94,9 +93,9 @@ diamond-pearl: &diamond-pearl
     foe’s accuracy.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -107,14 +106,14 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -125,7 +124,7 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
@@ -134,9 +133,9 @@ black-white: &black-white
     It may also lower the targets’ accuracy.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -147,7 +146,7 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -155,9 +154,9 @@ x-y:
     at the opposing Pokémon.
     This may also lower their accuracy.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -168,16 +167,16 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 10
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -188,7 +187,7 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |

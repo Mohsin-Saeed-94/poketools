@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'PERISH SONG'
+  name: &gold-silver.name 'PERISH SONG'
   type: &gold-silver.type normal
   accuracy: 100
   pp: &gold-silver.pp 5
@@ -20,26 +20,22 @@ gold-silver: &gold-silver
     faint in 3 turns.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Perish Song'
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: &ruby-sapphire.target user
+  priority: *gold-silver.priority
   ailment: *gold-silver.ailment
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 14
   flavor_text: |
     Any POKéMON hearing this
     song faints in 3 turns.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Perish Song'
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -49,29 +45,27 @@ colosseum: &colosseum
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *ruby-sapphire.target
+  priority: *gold-silver.priority
   ailment: *gold-silver.ailment
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     Any battler that
     hears this faints
     in three turns
     unless it switches.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -83,7 +77,7 @@ diamond-pearl: &diamond-pearl
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 10
   flavor_text: |
     Any Pokémon that
@@ -93,7 +87,7 @@ diamond-pearl: &diamond-pearl
     out of battle.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -112,7 +106,7 @@ heartgold-soulsilver:
     unless it switches
     out of battle.
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -130,7 +124,7 @@ black-white: &black-white
     out of battle.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -144,7 +138,7 @@ x-y:
   effect: *gold-silver.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -156,11 +150,11 @@ omega-ruby-alpha-sapphire:
   target: *x-y.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 14
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories

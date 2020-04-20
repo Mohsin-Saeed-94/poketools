@@ -32,28 +32,23 @@ gold-silver: &gold-silver
     to fully recover.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Rest
-  flags: *red-blue.flags
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: &ruby-sapphire.effect 38
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - snatch
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 38
-  contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 16
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - snore
-    - sleep-talk
   flavor_text: |
     The user sleeps for 2 turns,
     restoring HP and status.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Rest
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -62,28 +57,27 @@ colosseum: &colosseum
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: special
   effect: *ruby-sapphire.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  flags: *red-blue.flags
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *ruby-sapphire.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     The user sleeps for
     two turns to fully
     restore HP and heal
-    any status problem.
+    any  status problem.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -94,7 +88,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cute
   super_contest_effect: 8
   flavor_text: &diamond-pearl.flavor_text |
     The user goes to
@@ -104,7 +98,7 @@ diamond-pearl: &diamond-pearl
     any status problem.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -117,7 +111,7 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -134,7 +128,7 @@ black-white: &black-white
     any status problem.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -150,7 +144,7 @@ x-y:
     This fully restores the user’s HP and
     heals any status conditions.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -161,12 +155,14 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 16
+  contest_use_before:
+    - snore
+    - sleep-talk
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

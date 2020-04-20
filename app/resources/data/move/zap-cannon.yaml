@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'ZAP CANNON'
+  name: &gold-silver.name 'ZAP CANNON'
   power: &gold-silver.power 100
   type: &gold-silver.type electric
   accuracy: &gold-silver.accuracy 50
@@ -23,30 +23,26 @@ gold-silver: &gold-silver
     always paralyzes.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Zap Cannon'
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: *gold-silver.flags
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 1
   flavor_text: |
     Powerful and sure to cause
     paralysis, but inaccurate.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Zap Cannon'
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -59,34 +55,32 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class special
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: *gold-silver.flags
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     An electric blast is
     fired like a cannon
     to inflict damage
-    and paralyze.
+    and  paralyze.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -99,10 +93,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cool
   super_contest_effect: 4
   flavor_text: &diamond-pearl.flavor_text |
     The user fires an
@@ -112,7 +106,7 @@ diamond-pearl: &diamond-pearl
     paralysis.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -125,12 +119,12 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -143,7 +137,7 @@ black-white: &black-white
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &black-white.flavor_text |
@@ -153,7 +147,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -166,14 +160,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 1
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -186,7 +180,7 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

@@ -36,28 +36,29 @@ gold-silver: &gold-silver
     cal hit ratio.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Crabhammer
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: &ruby-sapphire.effect 44
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
   crit_rate_bonus: *red-blue.crit_rate_bonus
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: &ruby-sapphire.accuracy 90
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 44
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 2
   flavor_text: |
     Hammers with a pincer. Has a
     high critical-hit ratio.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Crabhammer
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -66,34 +67,33 @@ colosseum: &colosseum
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *ruby-sapphire.accuracy
+  accuracy: &colosseum.accuracy 90
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: special
   effect: *ruby-sapphire.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *ruby-sapphire.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
   crit_rate_bonus: *red-blue.crit_rate_bonus
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     A large pincer is
     used to hammer the
     foe. It has a high
-    critical-hit ratio.
+    critical-hit  ratio.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -102,12 +102,12 @@ diamond-pearl: &diamond-pearl
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *ruby-sapphire.accuracy
+  accuracy: *colosseum.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class physical
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type tough
   super_contest_effect: 18
   flavor_text: &diamond-pearl.flavor_text |
     The foe is hammered
@@ -116,7 +116,7 @@ diamond-pearl: &diamond-pearl
     critical-hit ratio.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -125,14 +125,14 @@ heartgold-soulsilver:
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *ruby-sapphire.accuracy
+  accuracy: *colosseum.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -141,7 +141,7 @@ black-white: &black-white
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
-  accuracy: *ruby-sapphire.accuracy
+  accuracy: *colosseum.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
@@ -151,7 +151,7 @@ black-white: &black-white
     Critical hits land more easily.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -160,14 +160,14 @@ x-y:
   type: *red-blue.type
   power: &x-y.power 100
   pp: *red-blue.pp
-  accuracy: *ruby-sapphire.accuracy
+  accuracy: *colosseum.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -176,16 +176,16 @@ omega-ruby-alpha-sapphire:
   type: *red-blue.type
   power: *x-y.power
   pp: *red-blue.pp
-  accuracy: *ruby-sapphire.accuracy
+  accuracy: *colosseum.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 2
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -194,7 +194,7 @@ sun-moon: &sun-moon
   type: *red-blue.type
   power: *x-y.power
   pp: *red-blue.pp
-  accuracy: *ruby-sapphire.accuracy
+  accuracy: *colosseum.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class

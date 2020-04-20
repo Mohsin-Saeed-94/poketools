@@ -1,9 +1,9 @@
 gold-silver: &gold-silver
-  name: MOONLIGHT
+  name: &gold-silver.name MOONLIGHT
   type: &gold-silver.type normal
   accuracy: 100
   pp: &gold-silver.pp 5
-  effect: 135
+  effect: &gold-silver.effect 135
   healing: &gold-silver.healing 50
   flags: &gold-silver.flags
     - snatch
@@ -19,26 +19,24 @@ gold-silver: &gold-silver
     (varies by time).
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Moonlight
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: &ruby-sapphire.flags
+    - snatch
   healing: *gold-silver.healing
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 133
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 25
   flavor_text: |
     Restores HP. The amount
     varies with the weather.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Moonlight
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -48,29 +46,28 @@ colosseum: &colosseum
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
+  damage_class: physical
+  effect: &colosseum.effect 133
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: *ruby-sapphire.flags
   healing: *gold-silver.healing
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
-    Restores the user’s
+    Restores the user's
     HP. The amount of
     HP regained varies
-    with the weather.
+    with the  weather.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -81,8 +78,8 @@ diamond-pearl: &diamond-pearl
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
-  effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  effect: *colosseum.effect
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 8
   flavor_text: &diamond-pearl.flavor_text |
     The user restores its
@@ -92,7 +89,7 @@ diamond-pearl: &diamond-pearl
     the weather.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -103,10 +100,10 @@ heartgold-soulsilver:
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
+  effect: *colosseum.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -117,14 +114,14 @@ black-white: &black-white
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
+  effect: *colosseum.effect
   flavor_text: &black-white.flavor_text |
     The user restores its own HP.
     The amount of HP regained varies
     with the weather.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -135,10 +132,10 @@ x-y:
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
+  effect: *colosseum.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -149,12 +146,12 @@ omega-ruby-alpha-sapphire:
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  effect: *colosseum.effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 25
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   healing: *gold-silver.healing
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -165,7 +162,7 @@ sun-moon: &sun-moon
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *ruby-sapphire.effect
+  effect: *colosseum.effect
   flavor_text: |
     The user restores its own HP. The amount of HP
     regained varies with the weather.

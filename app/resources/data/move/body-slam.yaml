@@ -41,30 +41,30 @@ gold-silver: &gold-silver
     cause paralysis.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Body Slam'
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 4
   flavor_text: |
     A full-body slam that may
     cause paralysis.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Body Slam'
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -77,34 +77,33 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class physical
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *ruby-sapphire.flags
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user drops its
     full body on the
     foe. It may leave
     the foe paralyzed.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -117,10 +116,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type tough
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
     The user drops onto
@@ -130,7 +129,7 @@ diamond-pearl: &diamond-pearl
     paralyzed.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -143,12 +142,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -161,7 +160,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -170,7 +169,7 @@ black-white: &black-white
     leave the target with paralysis.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -183,7 +182,7 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -191,7 +190,7 @@ x-y:
     with its full body weight. This may also
     leave the target with paralysis.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -204,14 +203,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 4
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -224,7 +223,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

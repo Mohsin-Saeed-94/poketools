@@ -31,25 +31,23 @@ gold-silver: &gold-silver
     1/4 user's max HP.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Substitute
-  flags: *red-blue.flags
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - snatch
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *red-blue.effect
-  contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 16
   flavor_text: |
     Creates a decoy using 1/4
-    of the user’s maximum HP.
+    of the user's maximum HP.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Substitute
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -58,28 +56,27 @@ colosseum: &colosseum
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  flags: *red-blue.flags
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *red-blue.effect
   flavor_text: |
     The user creates a
     decoy using one-
     quarter of its full
     HP.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -90,7 +87,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
   effect: *red-blue.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type smart
   super_contest_effect: 23
   flavor_text: &diamond-pearl.flavor_text |
     The user makes a
@@ -100,7 +97,7 @@ diamond-pearl: &diamond-pearl
     the user’s decoy.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -113,7 +110,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -131,7 +128,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -142,11 +139,11 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 16
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

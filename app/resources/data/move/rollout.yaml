@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: ROLLOUT
+  name: &gold-silver.name ROLLOUT
   power: &gold-silver.power 30
   type: &gold-silver.type rock
   accuracy: &gold-silver.accuracy 90
@@ -20,27 +20,28 @@ gold-silver: &gold-silver
     with rising power.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Rollout
-  flags: *gold-silver.flags
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 24
   flavor_text: |
     An attack lasting 5 turns
     with rising intensity.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Rollout
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -51,30 +52,29 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  flags: *gold-silver.flags
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     A 5-turn rolling
     attack that becomes
     stronger each time
     it hits.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -85,9 +85,9 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type tough
   super_contest_effect: 7
   flavor_text: &diamond-pearl.flavor_text |
     The user continually
@@ -97,7 +97,7 @@ diamond-pearl: &diamond-pearl
     each time it hits.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -108,11 +108,11 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -123,7 +123,7 @@ black-white: &black-white
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     The user continually rolls into the target
@@ -131,7 +131,7 @@ black-white: &black-white
     each time it hits.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -142,14 +142,14 @@ x-y:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   flavor_text: &x-y.flavor_text |
     The user continually rolls into the target
     over five turns. It becomes more powerful
     each time it hits.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -160,13 +160,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 24
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -177,7 +177,7 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     The user continually rolls into the target over five

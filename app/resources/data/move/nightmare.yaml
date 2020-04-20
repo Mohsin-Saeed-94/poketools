@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: NIGHTMARE
+  name: &gold-silver.name NIGHTMARE
   type: &gold-silver.type ghost
   accuracy: &gold-silver.accuracy 100
   pp: &gold-silver.pp 15
@@ -19,27 +19,24 @@ gold-silver: &gold-silver
     1/4 HP every turn.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Nightmare
-  ailment: *gold-silver.ailment
+  name: *gold-silver.name
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
+  ailment: *gold-silver.ailment
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 5
   flavor_text: |
     Inflicts 1/4 damage on a
     sleeping foe every turn.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Nightmare
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -50,30 +47,29 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  ailment: *gold-silver.ailment
+  name: *gold-silver.name
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
+  ailment: *gold-silver.ailment
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  flavor_text: &firered-leafgreen.flavor_text |
+  flavor_text: |
     A sleeping foe is
     shown a nightmare
     that inflicts some
-    damage every turn.
+    damage every  turn.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -86,12 +82,16 @@ diamond-pearl: &diamond-pearl
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type smart
   super_contest_effect: 19
-  flavor_text: *firered-leafgreen.flavor_text
+  flavor_text: &diamond-pearl.flavor_text |
+    A sleeping foe is
+    shown a nightmare
+    that inflicts some
+    damage every turn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -104,9 +104,9 @@ heartgold-soulsilver:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  flavor_text: *firered-leafgreen.flavor_text
+  flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -125,7 +125,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -138,11 +138,11 @@ omega-ruby-alpha-sapphire:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 5
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   flags: *gold-silver.flags
   categories: *gold-silver.categories

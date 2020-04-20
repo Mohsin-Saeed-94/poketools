@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: PROTECT
+  name: &gold-silver.name PROTECT
   type: &gold-silver.type normal
   accuracy: 100
   pp: &gold-silver.pp 10
@@ -15,24 +15,21 @@ gold-silver: &gold-silver
     turn. It may fail.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Protect
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: &ruby-sapphire.priority 3
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 15
   flavor_text: |
     Evades attack, but may fail
     if used in succession.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Protect
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -40,27 +37,26 @@ colosseum: &colosseum
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *ruby-sapphire.priority
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     Enables the user to
     evade all attacks.
     It may fail if used
     in succession.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -70,7 +66,7 @@ diamond-pearl: &diamond-pearl
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cute
   super_contest_effect: 16
   flavor_text: &diamond-pearl.flavor_text |
     It enables the user
@@ -80,7 +76,7 @@ diamond-pearl: &diamond-pearl
     succession.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -92,7 +88,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -108,7 +104,7 @@ black-white: &black-white
     succession.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -123,7 +119,7 @@ x-y:
     Its chance of failing rises if it is used
     in succession.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -133,11 +129,11 @@ omega-ruby-alpha-sapphire:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 15
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns

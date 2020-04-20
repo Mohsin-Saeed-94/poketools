@@ -41,33 +41,30 @@ gold-silver: &gold-silver
     cause a burn.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Fire Punch'
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 1
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - ice-punch
-    - thunder-punch
   flavor_text: |
     A fiery punch that may burn
     the foe.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Fire Punch'
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -80,34 +77,33 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: special
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *ruby-sapphire.flags
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The foe is punched
     with a fiery fist.
     It may leave the
-    foe with a burn.
+    foe with  a burn.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -123,7 +119,7 @@ diamond-pearl: &diamond-pearl
   damage_class: &diamond-pearl.damage_class physical
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 17
   flavor_text: &diamond-pearl.flavor_text |
     The foe is punched
@@ -132,7 +128,7 @@ diamond-pearl: &diamond-pearl
     target with a burn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -150,7 +146,7 @@ heartgold-soulsilver:
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -171,7 +167,7 @@ black-white: &black-white
     It may also leave the target with a burn.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -191,7 +187,7 @@ x-y:
     The target is punched with a fiery fist.
     This may also leave the target with a burn.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -207,12 +203,14 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 1
+  contest_use_before:
+    - ice-punch
+    - thunder-punch
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags

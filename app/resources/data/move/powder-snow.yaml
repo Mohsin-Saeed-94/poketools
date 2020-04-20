@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'POWDER SNOW'
+  name: &gold-silver.name 'POWDER SNOW'
   power: &gold-silver.power 40
   type: &gold-silver.type ice
   accuracy: &gold-silver.accuracy 100
@@ -23,32 +23,27 @@ gold-silver: &gold-silver
     cause freezing.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Powder Snow'
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *gold-silver.flags
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 1
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - blizzard
   flavor_text: |
     Blasts the foe with a snowy
     gust. May cause freezing.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Powder Snow'
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -61,34 +56,33 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class special
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *gold-silver.flags
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     Blasts the foe with
     a snowy gust.
     It may cause
     freezing.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -101,10 +95,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
     The user attacks with
@@ -114,7 +108,7 @@ diamond-pearl: &diamond-pearl
     the target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -127,12 +121,12 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -145,7 +139,7 @@ black-white: &black-white
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -154,7 +148,7 @@ black-white: &black-white
     It may also freeze the targets.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -167,7 +161,7 @@ x-y:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -175,7 +169,7 @@ x-y:
     of powdery snow.
     This may also freeze the opposing Pokémon.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -188,15 +182,16 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 1
+  contest_use_before:
+    - blizzard
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -209,7 +204,7 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

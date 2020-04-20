@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'SHADOW BALL'
+  name: &gold-silver.name 'SHADOW BALL'
   power: &gold-silver.power 80
   type: &gold-silver.type ghost
   accuracy: &gold-silver.accuracy 100
@@ -25,30 +25,29 @@ gold-silver: &gold-silver
     lower SPCL.DEF.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Shadow Ball'
-  stat_change_chance: *gold-silver.stat_change_chance
-  flags: *gold-silver.flags
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 22
+  stat_change_chance: *gold-silver.stat_change_chance
   flavor_text: |
     Hurls a black blob that may
-    lower the foe’s SP. DEF.
+    lower the foe's SP. DEF.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Shadow Ball'
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -61,34 +60,33 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  stat_change_chance: *gold-silver.stat_change_chance
-  flags: *gold-silver.flags
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flavor_text: |
     A shadowy blob is
     hurled at the foe.
     May also lower the
-    foe’s SP. DEF.
+    foe's SP.  DEF.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -104,7 +102,7 @@ diamond-pearl: &diamond-pearl
   damage_class: &diamond-pearl.damage_class special
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type smart
   super_contest_effect: 17
   flavor_text: &diamond-pearl.flavor_text |
     The user hurls a
@@ -114,7 +112,7 @@ diamond-pearl: &diamond-pearl
     Sp. Def stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -132,7 +130,7 @@ heartgold-soulsilver:
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -154,7 +152,7 @@ black-white: &black-white
     Sp. Def stat.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -175,7 +173,7 @@ x-y:
     target. This may also lower the target’s
     Sp. Def stat.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -191,11 +189,11 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 22
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories

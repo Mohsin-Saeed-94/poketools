@@ -35,27 +35,28 @@ gold-silver: &gold-silver
     2-5 times.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Comet Punch'
-  flags: *red-blue.flags
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *red-blue.effect
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 12
   flavor_text: |
     Repeatedly punches the foe
     2 to 5 times.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Comet Punch'
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -66,30 +67,29 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class physical
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  flags: *red-blue.flags
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *red-blue.effect
   flavor_text: |
     The foe is hit with
     a flurry of punches
     that strike two to
-    five times.
+    five  times.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -100,9 +100,9 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type tough
   super_contest_effect: 7
   flavor_text: &diamond-pearl.flavor_text |
     The foe is hit with
@@ -111,7 +111,7 @@ diamond-pearl: &diamond-pearl
     five times in a row.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -122,11 +122,11 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -137,7 +137,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
   flavor_text: &black-white.flavor_text |
     The target is hit with a flurry of punches
@@ -145,7 +145,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -156,13 +156,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 12
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -173,7 +173,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The target is hit with a flurry of punches that strike

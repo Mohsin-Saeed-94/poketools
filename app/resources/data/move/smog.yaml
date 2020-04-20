@@ -39,32 +39,27 @@ gold-silver: &gold-silver
     poison the foe.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Smog
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *red-blue.flags
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 5
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - smokescreen
   flavor_text: |
     An exhaust-gas attack
     that may also poison.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Smog
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -77,34 +72,33 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *red-blue.flags
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The foe is attacked
     with exhaust gases.
     It may also poison
-    the foe.
+    the  foe.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -120,7 +114,7 @@ diamond-pearl: &diamond-pearl
   damage_class: &diamond-pearl.damage_class special
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type tough
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
     The foe is attacked
@@ -130,7 +124,7 @@ diamond-pearl: &diamond-pearl
     the target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -148,7 +142,7 @@ heartgold-soulsilver:
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -170,7 +164,7 @@ black-white: &black-white
     It may also poison the target.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -191,7 +185,7 @@ x-y:
     discharge of filthy gases.
     This may also poison the target.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -207,12 +201,13 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 5
+  contest_use_before:
+    - smokescreen
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags

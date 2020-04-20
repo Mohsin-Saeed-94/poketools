@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: SAFEGUARD
+  name: &gold-silver.name SAFEGUARD
   type: &gold-silver.type normal
   accuracy: 100
   pp: &gold-silver.pp 25
@@ -17,25 +17,22 @@ gold-silver: &gold-silver
     status problems.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Safeguard
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: &ruby-sapphire.target user
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 15
   flavor_text: |
     A mystical force prevents
     all status problems.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Safeguard
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -44,28 +41,27 @@ colosseum: &colosseum
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *ruby-sapphire.target
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     It protects the
-    user’s party from
+    user's party from
     all status problems
-    for five turns.
+    for five  turns.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -76,7 +72,7 @@ diamond-pearl: &diamond-pearl
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 13
   flavor_text: &diamond-pearl.flavor_text |
     The user creates a
@@ -86,7 +82,7 @@ diamond-pearl: &diamond-pearl
     turns.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -99,7 +95,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -115,7 +111,7 @@ black-white: &black-white
     prevents status problems for five turns.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -131,7 +127,7 @@ x-y:
     that prevents status conditions
     for five turns.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -142,11 +138,11 @@ omega-ruby-alpha-sapphire:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 15
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits

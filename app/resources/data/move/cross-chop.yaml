@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'CROSS CHOP'
+  name: &gold-silver.name 'CROSS CHOP'
   power: &gold-silver.power 100
   type: &gold-silver.type fighting
   accuracy: &gold-silver.accuracy 80
@@ -21,28 +21,29 @@ gold-silver: &gold-silver
     cal hit ratio.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Cross Chop'
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: &ruby-sapphire.effect 44
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
   crit_rate_bonus: *gold-silver.crit_rate_bonus
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 44
-  contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 2
   flavor_text: |
     A double-chopping attack.
     High critical-hit ratio.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Cross Chop'
   crit_rate_bonus: *gold-silver.crit_rate_bonus
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -54,31 +55,30 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class physical
   effect: *ruby-sapphire.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *ruby-sapphire.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: *ruby-sapphire.flags
   crit_rate_bonus: *gold-silver.crit_rate_bonus
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     The foe is hit with
     double chops.
     It has a high
     critical-hit ratio.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *gold-silver.crit_rate_bonus
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -90,9 +90,9 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cool
   super_contest_effect: 18
   flavor_text: &diamond-pearl.flavor_text |
     The user delivers a
@@ -102,7 +102,7 @@ diamond-pearl: &diamond-pearl
     critical-hit ratio.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *gold-silver.crit_rate_bonus
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -114,11 +114,11 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *gold-silver.crit_rate_bonus
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -130,7 +130,7 @@ black-white: &black-white
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &black-white.flavor_text |
     The user delivers a double chop with its
@@ -139,7 +139,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *gold-silver.crit_rate_bonus
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -151,13 +151,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 2
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *gold-silver.crit_rate_bonus
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -169,7 +169,7 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     The user delivers a double chop with its forearms

@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: SNORE
+  name: &gold-silver.name SNORE
   power: &gold-silver.power 40
   type: &gold-silver.type normal
   accuracy: &gold-silver.accuracy 100
@@ -23,29 +23,29 @@ gold-silver: &gold-silver
     only while asleep.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Snore
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
+    - kings-rock
   flinch_chance: *gold-silver.flinch_chance
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 1
   flavor_text: |
     A loud attack that can be
     used only while asleep.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Snore
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -57,33 +57,32 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *ruby-sapphire.flags
   flinch_chance: *gold-silver.flinch_chance
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     An attack that can
     be used only while
     asleep. It may
     cause flinching.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -98,7 +97,7 @@ diamond-pearl: &diamond-pearl
   damage_class: &diamond-pearl.damage_class special
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cute
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
     An attack that can
@@ -108,7 +107,7 @@ diamond-pearl: &diamond-pearl
     make the foe flinch.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -125,7 +124,7 @@ heartgold-soulsilver:
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -146,7 +145,7 @@ black-white: &black-white
     make the target flinch.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -163,7 +162,7 @@ x-y:
   effect_chance: *gold-silver.effect_chance
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -178,11 +177,11 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 1
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories

@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: TWISTER
+  name: &gold-silver.name TWISTER
   power: &gold-silver.power 40
   type: &gold-silver.type dragon
   accuracy: &gold-silver.accuracy 100
@@ -21,29 +21,29 @@ gold-silver: &gold-silver
     to attack.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Twister
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
+    - kings-rock
   flinch_chance: *gold-silver.flinch_chance
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 21
   flavor_text: |
     Whips up a vicious twister
     to tear at the foe.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Twister
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -55,33 +55,32 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class special
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *ruby-sapphire.flags
   flinch_chance: *gold-silver.flinch_chance
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     A vicious twister
     attacks the foe.
     It may make the
     foe flinch.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -93,10 +92,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cool
   super_contest_effect: 5
   flavor_text: |
     The user whips up a
@@ -106,7 +105,7 @@ diamond-pearl: &diamond-pearl
     foe flinch.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -118,7 +117,7 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -128,7 +127,7 @@ heartgold-soulsilver:
     It may also make the
     foe flinch.
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -140,7 +139,7 @@ black-white: &black-white
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -149,7 +148,7 @@ black-white: &black-white
     It may also make targets flinch.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -161,7 +160,7 @@ x-y:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -169,7 +168,7 @@ x-y:
     to tear at the opposing Pokémon.
     This may also make them flinch.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -181,14 +180,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 21
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -200,7 +199,7 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

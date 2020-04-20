@@ -36,30 +36,27 @@ gold-silver: &gold-silver
     to fall asleep.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Sing
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - protect
+    - reflectable
+    - mirror
   ailment: *red-blue.ailment
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 18
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - perish-song
-    - refresh
   flavor_text: |
     A soothing song lulls the
     foe into a deep slumber.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Sing
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -70,30 +67,29 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
   ailment: *red-blue.ailment
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     A soothing song
     in a calming voice
     lulls the foe into
     a deep slumber.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -106,7 +102,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cute
   super_contest_effect: 19
   flavor_text: &diamond-pearl.flavor_text |
     A soothing lullaby is
@@ -116,7 +112,7 @@ diamond-pearl: &diamond-pearl
     slumber.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -131,7 +127,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -150,7 +146,7 @@ black-white: &black-white
     slumber.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -168,7 +164,7 @@ x-y:
     voice that puts the target into a
     deep slumber.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -181,12 +177,14 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 18
+  contest_use_before:
+    - perish-song
+    - refresh
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories

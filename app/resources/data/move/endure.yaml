@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: ENDURE
+  name: &gold-silver.name ENDURE
   type: &gold-silver.type normal
   accuracy: 100
   pp: &gold-silver.pp 10
@@ -15,31 +15,21 @@ gold-silver: &gold-silver
     least 1HP.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Endure
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: &ruby-sapphire.priority 3
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 16
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - flail
-    - reversal
-    - destiny-bond
-    - pain-split
-    - endeavor
-    - eruption
   flavor_text: |
     Endures any attack for
     1 turn, leaving at least 1HP.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Endure
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -47,27 +37,26 @@ colosseum: &colosseum
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *ruby-sapphire.priority
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     The user endures
     any hit with 1 HP
     left. It may fail if
-    used in succession.
+    used in  succession.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -77,7 +66,7 @@ diamond-pearl: &diamond-pearl
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type tough
   super_contest_effect: 13
   flavor_text: |
     The user endures any
@@ -87,7 +76,7 @@ diamond-pearl: &diamond-pearl
     succession.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -104,7 +93,7 @@ heartgold-soulsilver:
     failing rises if it is
     used in succession.
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -121,7 +110,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -131,12 +120,18 @@ omega-ruby-alpha-sapphire:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 16
+  contest_use_before:
+    - flail
+    - reversal
+    - destiny-bond
+    - pain-split
+    - endeavor
+    - eruption
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns

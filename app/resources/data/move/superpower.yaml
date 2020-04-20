@@ -1,6 +1,12 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Superpower
-  stat_change_chance: &ruby-sapphire.stat_change_chance 100
+  name: &ruby-sapphire.name SUPERPOWER
+  power: &ruby-sapphire.power 120
+  type: &ruby-sapphire.type fighting
+  accuracy: &ruby-sapphire.accuracy 100
+  pp: &ruby-sapphire.pp 5
+  effect: &ruby-sapphire.effect 183
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
     - contact
     - protect
@@ -13,23 +19,13 @@ ruby-sapphire: &ruby-sapphire
   stat_changes: &ruby-sapphire.stat_changes
     attack: -1
     defense: -1
-  type: &ruby-sapphire.type fighting
-  power: &ruby-sapphire.power 120
-  pp: &ruby-sapphire.pp 5
-  accuracy: &ruby-sapphire.accuracy 100
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 183
-  effect_chance: &ruby-sapphire.effect_chance 100
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 3
+  stat_change_chance: &ruby-sapphire.stat_change_chance 100
   flavor_text: |
     Boosts strength sharply,
     but lowers abilities.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Superpower
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -42,34 +38,32 @@ colosseum: &colosseum
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class physical
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: &colosseum.effect_chance 100
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
-  stat_change_chance: *ruby-sapphire.stat_change_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  stat_change_chance: *ruby-sapphire.stat_change_chance
   flavor_text: |
     A powerful attack,
     but it also lowers
-    the user’s ATTACK
-    and DEFENSE stats.
+    the user's ATTACK
+    and DEFENSE  stats.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -82,10 +76,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  effect_chance: *colosseum.effect_chance
+  contest_type: &diamond-pearl.contest_type tough
   super_contest_effect: 18
   flavor_text: &diamond-pearl.flavor_text |
     The user attacks the
@@ -95,7 +89,7 @@ diamond-pearl: &diamond-pearl
     Attack and Defense.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -108,12 +102,12 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -126,16 +120,16 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: |
     The user attacks the target with great
     power. However, it also lowers the
     user’s Attack and Defense.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -148,15 +142,15 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: &x-y.flavor_text |
     The user attacks the target with great
     power. However, this also lowers the
     user’s Attack and Defense stats.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -169,14 +163,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  effect_chance: *colosseum.effect_chance
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 3
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -189,9 +183,9 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: |
     The user attacks the target with great power.
     However, this also lowers the user’s Attack and

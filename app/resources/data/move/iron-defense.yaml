@@ -1,5 +1,10 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Iron Defense'
+  name: &ruby-sapphire.name 'IRON DEFENSE'
+  type: &ruby-sapphire.type steel
+  pp: &ruby-sapphire.pp 15
+  effect: &ruby-sapphire.effect 52
+  target: &ruby-sapphire.target user
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
     - snatch
   categories: &ruby-sapphire.categories
@@ -8,20 +13,12 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   stat_changes: &ruby-sapphire.stat_changes
     defense: 2
-  type: &ruby-sapphire.type steel
-  pp: &ruby-sapphire.pp 15
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target user
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 52
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 15
   flavor_text: |
-    Hardens the body’s surface
+    Hardens the body's surface
     to sharply raise DEFENSE.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Iron Defense'
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -31,29 +28,28 @@ colosseum: &colosseum
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *ruby-sapphire.effect
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
-  pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     The user hardens
-    its body’s surface
+    its body's surface
     to sharply raise its
-    DEFENSE stat.
+    DEFENSE  stat.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -65,7 +61,7 @@ diamond-pearl: &diamond-pearl
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type tough
   super_contest_effect: 13
   flavor_text: &diamond-pearl.flavor_text |
     The user hardens
@@ -75,7 +71,7 @@ diamond-pearl: &diamond-pearl
     stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -89,7 +85,7 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -108,7 +104,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -120,11 +116,11 @@ omega-ruby-alpha-sapphire:
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 15
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits

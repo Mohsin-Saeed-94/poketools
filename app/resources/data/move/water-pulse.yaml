@@ -1,58 +1,55 @@
 ruby-sapphire:
-  name: &ruby-sapphire.name 'Water Pulse'
-  ailment: &ruby-sapphire.ailment confusion
-  ailment_chance: &ruby-sapphire.ailment_chance 20
+  name: &ruby-sapphire.name 'WATER PULSE'
+  power: &ruby-sapphire.power 60
+  type: &ruby-sapphire.type water
+  accuracy: &ruby-sapphire.accuracy 100
+  pp: &ruby-sapphire.pp 20
+  effect: &ruby-sapphire.effect 77
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
+  effect_chance: &ruby-sapphire.effect_chance 20
   flags: &ruby-sapphire.flags
     - protect
     - mirror
-    - distance
-    - pulse
+    - kings-rock
+  ailment: &ruby-sapphire.ailment confusion
+  ailment_chance: &ruby-sapphire.ailment_chance 20
   categories: &ruby-sapphire.categories
     - damage
     - ailment
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 2-5
-  type: &ruby-sapphire.type water
-  power: &ruby-sapphire.power 60
-  pp: &ruby-sapphire.pp 20
-  accuracy: &ruby-sapphire.accuracy 100
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 77
-  effect_chance: &ruby-sapphire.effect_chance 20
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 21
   flavor_text: |
     Attacks with ultrasonic
     waves. May confuse the foe
 emerald:
   name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  effect_chance: *ruby-sapphire.effect_chance
+  flags: *ruby-sapphire.flags
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
   flavor_text: |
     Attacks with ultrasonic
     waves. May confuse the foe.
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Water Pulse'
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: &colosseum.flags
+    - protect
+    - mirror
+    - distance
+    - pulse
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -62,37 +59,36 @@ colosseum: &colosseum
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class special
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  effect_chance: *ruby-sapphire.effect_chance
+  flags: *ruby-sapphire.flags
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     An attack with a
     pulsing blast of
     water. It may also
-    confuse the foe.
+    confuse the  foe.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -102,10 +98,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 17
   flavor_text: &diamond-pearl.flavor_text |
     The user attacks the
@@ -115,10 +111,10 @@ diamond-pearl: &diamond-pearl
     the foe.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -128,15 +124,15 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -146,7 +142,7 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
@@ -155,10 +151,10 @@ black-white: &black-white
     It may also confuse the target.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -168,7 +164,7 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -176,10 +172,10 @@ x-y:
     a pulsing blast of water.
     This may also confuse the target.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -189,17 +185,17 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 21
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -209,7 +205,7 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |

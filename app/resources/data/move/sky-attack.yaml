@@ -38,30 +38,30 @@ gold-silver: &gold-silver
     2nd turn: Attack
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Sky Attack'
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: &ruby-sapphire.effect_chance 30
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
+    - kings-rock
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *gold-silver.flinch_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  effect_chance: &ruby-sapphire.effect_chance 30
-  contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 2
   flavor_text: |
     Searches out weak spots,
     then strikes the next turn.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Sky Attack'
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
@@ -74,34 +74,33 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class physical
   effect: *gold-silver.effect
   effect_chance: *ruby-sapphire.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *ruby-sapphire.effect_chance
+  flags: *ruby-sapphire.flags
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *gold-silver.flinch_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     A 2nd-turn attack
     move with a high
     critical-hit ratio.
-    The foe may flinch.
+    The foe  may flinch.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
@@ -114,10 +113,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cool
   super_contest_effect: 6
   flavor_text: &diamond-pearl.flavor_text |
     A second-turn attack
@@ -127,7 +126,7 @@ diamond-pearl: &diamond-pearl
     target flinch.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
@@ -140,12 +139,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
@@ -158,7 +157,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
@@ -167,7 +166,7 @@ black-white: &black-white
     It may also make the target flinch.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
@@ -180,7 +179,7 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -188,7 +187,7 @@ x-y:
     critical hits land more easily.
     This may also make the target flinch.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
@@ -201,14 +200,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 2
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
@@ -221,7 +220,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |

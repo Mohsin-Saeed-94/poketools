@@ -36,29 +36,24 @@ gold-silver: &gold-silver
     by throwing sand.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Sand Attack'
+  name: *red-blue.name
+  type: *gold-silver.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 10
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - mud-slap
   flavor_text: |
-    Reduces the foe’s accuracy
+    Reduces the foe's accuracy
     by hurling sand in its face.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Sand Attack'
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -69,30 +64,29 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  type: *gold-silver.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     A lot of sand is
-    hurled in the foe’s
+    hurled in the foe's
     face, reducing its
     accuracy.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -105,7 +99,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cute
   super_contest_effect: 19
   flavor_text: &diamond-pearl.flavor_text |
     Sand is hurled in the
@@ -113,7 +107,7 @@ diamond-pearl: &diamond-pearl
     its accuracy.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -128,7 +122,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -146,7 +140,7 @@ black-white: &black-white
     reducing its accuracy.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -163,7 +157,7 @@ x-y:
     Sand is hurled in the target’s face,
     reducing the target’s accuracy.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -176,12 +170,13 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 10
+  contest_use_before:
+    - mud-slap
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

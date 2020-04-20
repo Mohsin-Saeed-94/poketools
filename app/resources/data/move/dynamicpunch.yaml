@@ -1,26 +1,68 @@
 gold-silver: &gold-silver
-  name: DYNAMICPUNCH
-  power: 100
-  type: fighting
-  accuracy: 50
-  pp: 5
-  effect: 77
+  name: &gold-silver.name DYNAMICPUNCH
+  power: &gold-silver.power 100
+  type: &gold-silver.type fighting
+  accuracy: &gold-silver.accuracy 50
+  pp: &gold-silver.pp 5
+  effect: &gold-silver.effect 77
   effect_chance: 100
-  ailment: confusion
-  ailment_chance: 100
+  ailment: &gold-silver.ailment confusion
+  ailment_chance: &gold-silver.ailment_chance 100
   flags:
     - contact
     - protect
     - mirror
     - punch
-  categories:
+  categories: &gold-silver.categories
     - damage
     - ailment
-  hits: 1
-  turns: 2-5
-  priority: 0
-  target: selected-pokemon
+  hits: &gold-silver.hits 1
+  turns: &gold-silver.turns 2-5
+  priority: &gold-silver.priority 0
+  target: &gold-silver.target selected-pokemon
   flavor_text: |
     An attack that
     always confuses.
 crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+  ailment: *gold-silver.ailment
+  ailment_chance: *gold-silver.ailment_chance
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  flavor_text: |
+    Powerful and sure to cause
+    confusion, but inaccurate.
+emerald: *ruby-sapphire
+firered-leafgreen:
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: *ruby-sapphire.flags
+  ailment: *gold-silver.ailment
+  ailment_chance: *gold-silver.ailment_chance
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  flavor_text: |
+    The foe is punched
+    with the user's full
+    power. It confuses
+    the  foe if it hits.

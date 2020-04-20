@@ -1,66 +1,62 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Helping Hand'
-  flags: &ruby-sapphire.flags
-    - authentic
+  name: &ruby-sapphire.name 'HELPING HAND'
+  type: &ruby-sapphire.type normal
+  accuracy: &ruby-sapphire.accuracy 100
+  pp: &ruby-sapphire.pp 20
+  effect: &ruby-sapphire.effect 177
+  target: &ruby-sapphire.target user
+  priority: &ruby-sapphire.priority 5
   categories: &ruby-sapphire.categories
     - unique
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 1
-  type: &ruby-sapphire.type normal
-  pp: &ruby-sapphire.pp 20
-  priority: &ruby-sapphire.priority 5
-  target: &ruby-sapphire.target ally
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 177
-  contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 18
   flavor_text: |
     Boosts the power of the
-    recipient’s moves.
+    recipient's moves.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: &colosseum.name 'Helping Hand'
+  flags: &colosseum.flags
+    - authentic
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  target: &colosseum.target ally
+  damage_class: physical
   effect: *ruby-sapphire.effect
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     A move that boosts
     the power of the
-    ally’s attack in a
+    ally's attack in a
     battle.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *colosseum.target
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type smart
   super_contest_effect: 20
   flavor_text: &diamond-pearl.flavor_text |
     A move that boosts
@@ -69,28 +65,28 @@ diamond-pearl: &diamond-pearl
     Double Battle.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
@@ -98,45 +94,45 @@ black-white: &black-white
     the power of its attack.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &x-y.flavor_text |
     The user assists an ally by boosting
     the power of that ally’s attack.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 18
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |

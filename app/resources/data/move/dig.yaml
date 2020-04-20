@@ -24,7 +24,7 @@ gold-silver: &gold-silver
   type: *red-blue.type
   accuracy: *red-blue.accuracy
   pp: *red-blue.pp
-  effect: 156
+  effect: &gold-silver.effect 156
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -36,27 +36,28 @@ gold-silver: &gold-silver
     2nd turn: Attack
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Dig
-  flags: *red-blue.flags
+  name: *red-blue.name
+  power: *gold-silver.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  power: *gold-silver.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 257
-  contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 15
   flavor_text: |
     Digs underground the first
     turn and strikes next turn.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Dig
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -67,30 +68,29 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
+  damage_class: &colosseum.damage_class physical
+  effect: &colosseum.effect 257
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  flags: *red-blue.flags
+  name: *red-blue.name
+  power: *gold-silver.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  power: *gold-silver.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     An attack that hits
     on the 2nd turn.
     Can also be used
     to exit dungeons.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -101,9 +101,9 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  damage_class: *colosseum.damage_class
+  effect: *colosseum.effect
+  contest_type: &diamond-pearl.contest_type smart
   super_contest_effect: 6
   flavor_text: &diamond-pearl.flavor_text |
     The user burrows,
@@ -113,7 +113,7 @@ diamond-pearl: &diamond-pearl
     to exit dungeons.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -124,11 +124,11 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
+  damage_class: *colosseum.damage_class
+  effect: *colosseum.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -139,15 +139,15 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
+  damage_class: *colosseum.damage_class
+  effect: *colosseum.effect
   flavor_text: |
     The user burrows, then attacks
     on the second turn.
     It can also be used to exit dungeons.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -158,14 +158,14 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
+  damage_class: *colosseum.damage_class
+  effect: *colosseum.effect
   flavor_text: &x-y.flavor_text |
     The user burrows, then attacks
     on the next turn.
     It can also be used to exit dungeons.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -176,13 +176,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  damage_class: *colosseum.damage_class
+  effect: *colosseum.effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 15
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -193,7 +193,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
+  damage_class: *colosseum.damage_class
+  effect: *colosseum.effect
   flavor_text: 'The user burrows, then attacks on the next turn.'
 ultra-sun-ultra-moon: *sun-moon

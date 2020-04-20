@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'SWEET SCENT'
+  name: &gold-silver.name 'SWEET SCENT'
   type: &gold-silver.type normal
   accuracy: &gold-silver.accuracy 100
   pp: &gold-silver.pp 20
@@ -21,31 +21,24 @@ gold-silver: &gold-silver
     evasiveness.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Sweet Scent'
+  name: *gold-silver.name
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 5
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - poison-powder
-    - stun-spore
-    - sleep-powder
   flavor_text: |
     Allures the foe to reduce
     evasiveness.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Sweet Scent'
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -56,30 +49,29 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     Allures the foe to
     reduce evasiveness.
     It also attracts
     wild POKéMON.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -92,7 +84,7 @@ diamond-pearl: &diamond-pearl
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cute
   super_contest_effect: 19
   flavor_text: &diamond-pearl.flavor_text |
     A sweet scent that
@@ -102,7 +94,7 @@ diamond-pearl: &diamond-pearl
     if used in grass, etc.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -117,7 +109,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -136,7 +128,7 @@ black-white: &black-white
     Pokémon if used in grass, etc.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -154,7 +146,7 @@ x-y:
     Pokémon’s evasiveness. This also lures wild
     Pokémon if used in places such as tall grass.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -167,12 +159,15 @@ omega-ruby-alpha-sapphire:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 5
+  contest_use_before:
+    - poison-powder
+    - stun-spore
+    - sleep-powder
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits

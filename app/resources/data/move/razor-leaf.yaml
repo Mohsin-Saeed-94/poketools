@@ -35,28 +35,28 @@ gold-silver: &gold-silver
     cal hit ratio.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Razor Leaf'
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: &ruby-sapphire.effect 44
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
+    - kings-rock
   crit_rate_bonus: *red-blue.crit_rate_bonus
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 44
-  contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 2
   flavor_text: |
     Cuts the enemy with leaves.
     High critical-hit ratio.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Razor Leaf'
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -68,31 +68,30 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: special
   effect: *ruby-sapphire.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *ruby-sapphire.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
   crit_rate_bonus: *red-blue.crit_rate_bonus
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     The foe is hit with
     a cutting leaf.
     It has a high
-    critical-hit ratio.
+    critical-hit  ratio.
 diamond-pearl:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -106,7 +105,7 @@ diamond-pearl:
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class physical
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cool
   super_contest_effect: &diamond-pearl.super_contest_effect 5
   flavor_text: |
     A sharp-edged leaf is
@@ -115,7 +114,7 @@ diamond-pearl:
     high critical-hit
     ratio.
 platinum:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -129,7 +128,7 @@ platinum:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: *diamond-pearl.contest_type
   super_contest_effect: *diamond-pearl.super_contest_effect
   flavor_text: &platinum.flavor_text |
     Sharp-edged leaves
@@ -138,7 +137,7 @@ platinum:
     high critical-hit
     ratio.
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -154,7 +153,7 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *platinum.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -174,7 +173,7 @@ black-white: &black-white
     Critical hits land more easily.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -193,7 +192,7 @@ x-y:
     to slash at the opposing Pokémon.
     Critical hits land more easily.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -207,11 +206,11 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 2
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories

@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'RAIN DANCE'
+  name: &gold-silver.name 'RAIN DANCE'
   type: &gold-silver.type water
   accuracy: 90
   pp: &gold-silver.pp 5
@@ -15,7 +15,21 @@ gold-silver: &gold-silver
     moves for 5 turns.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Rain Dance'
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: &ruby-sapphire.target user
+  priority: *gold-silver.priority
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  flavor_text: |
+    Boosts the power of WATER-
+    type moves for 5 turns.
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Rain Dance'
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -23,11 +37,87 @@ ruby-sapphire: &ruby-sapphire
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class special
+  damage_class: special
   effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 11
-  contest_use_before: &ruby-sapphire.contest_use_before
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *ruby-sapphire.target
+  priority: *gold-silver.priority
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  flavor_text: |
+    A heavy rain falls
+    for five turns,
+    powering up WATER-
+    type moves.
+diamond-pearl: &diamond-pearl
+  name: *colosseum.name
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  priority: *gold-silver.priority
+  target: *gold-silver.target
+  damage_class: &diamond-pearl.damage_class status
+  effect: *gold-silver.effect
+  contest_type: &diamond-pearl.contest_type tough
+  super_contest_effect: 13
+  flavor_text: &diamond-pearl.flavor_text |
+    The user summons a
+    heavy rain that falls
+    for five turns,
+    powering up Water-
+    type moves.
+platinum: *diamond-pearl
+heartgold-soulsilver:
+  name: *colosseum.name
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  priority: *gold-silver.priority
+  target: *gold-silver.target
+  damage_class: *diamond-pearl.damage_class
+  effect: *gold-silver.effect
+  flavor_text: *diamond-pearl.flavor_text
+black-white: &black-white
+  name: *colosseum.name
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  priority: *gold-silver.priority
+  target: *gold-silver.target
+  damage_class: *diamond-pearl.damage_class
+  effect: *gold-silver.effect
+  flavor_text: &black-white.flavor_text |
+    The user summons a heavy rain
+    that falls for five turns,
+    powering up Water-type moves.
+black-2-white-2: *black-white
+x-y: *black-white
+omega-ruby-alpha-sapphire:
+  name: *colosseum.name
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  priority: *gold-silver.priority
+  target: *gold-silver.target
+  damage_class: *diamond-pearl.damage_class
+  effect: *gold-silver.effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 11
+  contest_use_before:
     - water-gun
     - hydro-pump
     - surf
@@ -47,104 +137,9 @@ ruby-sapphire: &ruby-sapphire
     - muddy-water
     - water-sport
     - water-pulse
-  flavor_text: |
-    Boosts the power of WATER-
-    type moves for 5 turns.
-emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: *ruby-sapphire.name
-  categories: *gold-silver.categories
-  hits: *gold-silver.hits
-  turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-xd: *colosseum
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  categories: *gold-silver.categories
-  hits: *gold-silver.hits
-  turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  flavor_text: |
-    A heavy rain falls
-    for five turns,
-    powering up WATER-
-    type moves.
-diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
-  categories: *gold-silver.categories
-  hits: *gold-silver.hits
-  turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &diamond-pearl.damage_class status
-  effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  super_contest_effect: 13
-  flavor_text: &diamond-pearl.flavor_text |
-    The user summons a
-    heavy rain that falls
-    for five turns,
-    powering up Water-
-    type moves.
-platinum: *diamond-pearl
-heartgold-soulsilver:
-  name: *ruby-sapphire.name
-  categories: *gold-silver.categories
-  hits: *gold-silver.hits
-  turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *diamond-pearl.damage_class
-  effect: *gold-silver.effect
-  flavor_text: *diamond-pearl.flavor_text
-black-white: &black-white
-  name: *ruby-sapphire.name
-  categories: *gold-silver.categories
-  hits: *gold-silver.hits
-  turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *diamond-pearl.damage_class
-  effect: *gold-silver.effect
-  flavor_text: &black-white.flavor_text |
-    The user summons a heavy rain
-    that falls for five turns,
-    powering up Water-type moves.
-black-2-white-2: *black-white
-x-y: *black-white
-omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
-  categories: *gold-silver.categories
-  hits: *gold-silver.hits
-  turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *diamond-pearl.damage_class
-  effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns

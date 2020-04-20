@@ -1,9 +1,17 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Overheat
-  stat_change_chance: &ruby-sapphire.stat_change_chance 100
+  name: &ruby-sapphire.name OVERHEAT
+  power: &ruby-sapphire.power 140
+  type: &ruby-sapphire.type fire
+  accuracy: &ruby-sapphire.accuracy 90
+  pp: &ruby-sapphire.pp 5
+  effect: &ruby-sapphire.effect 205
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
+    - contact
     - protect
     - mirror
+    - kings-rock
   categories: &ruby-sapphire.categories
     - damage
     - raise
@@ -11,25 +19,17 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   stat_changes: &ruby-sapphire.stat_changes
     special-attack: -2
-  type: &ruby-sapphire.type fire
-  power: &ruby-sapphire.power 140
-  pp: &ruby-sapphire.pp 5
-  accuracy: &ruby-sapphire.accuracy 90
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 205
-  effect_chance: &ruby-sapphire.effect_chance 100
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 3
+  stat_change_chance: &ruby-sapphire.stat_change_chance 100
   flavor_text: |
     Allows a full-power attack,
     but sharply lowers SP. ATK.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Overheat
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: &colosseum.flags
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -40,36 +40,34 @@ colosseum: &colosseum
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class special
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: &colosseum.effect_chance 100
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
-  stat_change_chance: *ruby-sapphire.stat_change_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  stat_change_chance: *ruby-sapphire.stat_change_chance
   flavor_text: |
     An intense attack
     that also sharply
-    reduces the user’s
-    SP. ATK stat.
+    reduces the user's
+    SP. ATK  stat.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -80,10 +78,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  effect_chance: *colosseum.effect_chance
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 22
   flavor_text: &diamond-pearl.flavor_text |
     The user attacks the
@@ -93,9 +91,9 @@ diamond-pearl: &diamond-pearl
     user’s Sp. Atk stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -106,14 +104,14 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -124,18 +122,18 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: |
     The user attacks the target at full power.
     The attack’s recoil harshly reduces the
     user’s Sp. Atk stat.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -146,17 +144,17 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: &x-y.flavor_text |
     The user attacks the target at full power.
     The attack’s recoil harshly lowers the
     user’s Sp. Atk stat.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -167,16 +165,16 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  effect_chance: *colosseum.effect_chance
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 3
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -187,9 +185,9 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: |
     The user attacks the target at full power. The
     attack’s recoil harshly lowers the user’s Sp. Atk stat.

@@ -1,9 +1,9 @@
 gold-silver: &gold-silver
-  name: 'GIGA DRAIN'
+  name: &gold-silver.name 'GIGA DRAIN'
   power: &gold-silver.power 60
   type: &gold-silver.type grass
   accuracy: &gold-silver.accuracy 100
-  pp: 5
+  pp: &gold-silver.pp 5
   effect: &gold-silver.effect 4
   drain: &gold-silver.drain 50
   flags: &gold-silver.flags
@@ -22,28 +22,27 @@ gold-silver: &gold-silver
     damage inflicted.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Giga Drain'
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
   drain: *gold-silver.drain
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: &ruby-sapphire.pp 10
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 10
   flavor_text: |
     An attack that steals half
     the damage inflicted.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Giga Drain'
   drain: *gold-silver.drain
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -51,35 +50,34 @@ colosseum: &colosseum
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
-  pp: *ruby-sapphire.pp
+  pp: &colosseum.pp 10
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class special
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: *ruby-sapphire.flags
   drain: *gold-silver.drain
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *ruby-sapphire.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     A harsh attack that
     absorbs half the
     damage it inflicted
-    to restore HP.
+    to restore  HP.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   drain: *gold-silver.drain
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -87,13 +85,13 @@ diamond-pearl: &diamond-pearl
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
-  pp: *ruby-sapphire.pp
+  pp: *colosseum.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type smart
   super_contest_effect: 20
   flavor_text: &diamond-pearl.flavor_text |
     A nutrient-draining
@@ -103,7 +101,7 @@ diamond-pearl: &diamond-pearl
     by the target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   drain: *gold-silver.drain
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -111,15 +109,15 @@ heartgold-soulsilver:
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: *gold-silver.power
-  pp: *ruby-sapphire.pp
+  pp: *colosseum.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   drain: *gold-silver.drain
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -127,11 +125,11 @@ black-white: &black-white
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: &black-white.power 75
-  pp: *ruby-sapphire.pp
+  pp: *colosseum.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   flavor_text: &black-white.flavor_text |
     A nutrient-draining attack. The user’s
@@ -140,7 +138,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   drain: *gold-silver.drain
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -148,17 +146,17 @@ omega-ruby-alpha-sapphire:
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: *black-white.power
-  pp: *ruby-sapphire.pp
+  pp: *colosseum.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 10
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   drain: *gold-silver.drain
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -166,11 +164,11 @@ sun-moon: &sun-moon
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: *black-white.power
-  pp: *ruby-sapphire.pp
+  pp: *colosseum.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     A nutrient-draining attack. The user’s HP is restored

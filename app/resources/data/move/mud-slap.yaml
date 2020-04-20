@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: MUD-SLAP
+  name: &gold-silver.name MUD-SLAP
   power: &gold-silver.power 20
   type: &gold-silver.type ground
   accuracy: &gold-silver.accuracy 100
@@ -24,33 +24,26 @@ gold-silver: &gold-silver
     accuracy.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Mud-Slap
-  stat_change_chance: *gold-silver.stat_change_chance
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 10
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - sand-attack
-    - mud-sport
+  stat_change_chance: *gold-silver.stat_change_chance
   flavor_text: |
-    Hurls mud in the foe’s face
+    Hurls mud in the foe's face
     to reduce its accuracy.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Mud-Slap
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -63,34 +56,32 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  stat_change_chance: *gold-silver.stat_change_chance
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flavor_text: |
     Mud is hurled in
-    the foe’s face to
+    the foe's face to
     inflict damage and
-    lower its accuracy.
+    lower its  accuracy.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -106,7 +97,7 @@ diamond-pearl: &diamond-pearl
   damage_class: &diamond-pearl.damage_class special
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cute
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
     The user hurls mud in
@@ -115,7 +106,7 @@ diamond-pearl: &diamond-pearl
     lower its accuracy.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -133,7 +124,7 @@ heartgold-soulsilver:
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -155,7 +146,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -171,12 +162,14 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 10
+  contest_use_before:
+    - sand-attack
+    - mud-sport
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories

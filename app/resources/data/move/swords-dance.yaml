@@ -34,33 +34,24 @@ gold-silver: &gold-silver
     creases ATTACK.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Swords Dance'
-  flags: *red-blue.flags
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - snatch
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *red-blue.stat_changes
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *red-blue.effect
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 32
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - cut
-    - crabhammer
-    - slash
-    - false-swipe
-    - fury-cutter
-    - crush-claw
   flavor_text: |
     A fighting dance that
     sharply raises ATTACK.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Swords Dance'
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -70,29 +61,28 @@ colosseum: &colosseum
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *red-blue.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  flags: *red-blue.flags
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *red-blue.stat_changes
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *red-blue.effect
   flavor_text: |
     A frenetic dance of
     fighting. It sharply
     raises the ATTACK
     stat.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -104,7 +94,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
   effect: *red-blue.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 11
   flavor_text: &diamond-pearl.flavor_text |
     A frenetic dance to
@@ -114,7 +104,7 @@ diamond-pearl: &diamond-pearl
     Attack stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -128,7 +118,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -146,7 +136,7 @@ black-white: &black-white
     Attack stat.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -163,7 +153,7 @@ x-y:
     spirit. This sharply raises the user’s
     Attack stat.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -175,12 +165,18 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 32
+  contest_use_before:
+    - cut
+    - crabhammer
+    - slash
+    - false-swipe
+    - fury-cutter
+    - crush-claw
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

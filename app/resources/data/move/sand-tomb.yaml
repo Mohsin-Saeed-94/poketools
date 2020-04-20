@@ -1,35 +1,34 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Sand Tomb'
-  ailment: &ruby-sapphire.ailment trap
-  ailment_chance: &ruby-sapphire.ailment_chance 100
+  name: &ruby-sapphire.name 'SAND TOMB'
+  power: &ruby-sapphire.power 15
+  type: &ruby-sapphire.type ground
+  accuracy: &ruby-sapphire.accuracy 70
+  pp: &ruby-sapphire.pp 15
+  effect: &ruby-sapphire.effect 43
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
     - protect
     - mirror
+    - kings-rock
+  ailment: &ruby-sapphire.ailment trap
+  ailment_chance: &ruby-sapphire.ailment_chance 100
   categories: &ruby-sapphire.categories
     - damage
     - ailment
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 5-6
-  type: &ruby-sapphire.type ground
-  power: &ruby-sapphire.power 15
-  pp: &ruby-sapphire.pp 15
-  accuracy: &ruby-sapphire.accuracy 70
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 43
-  effect_chance: &ruby-sapphire.effect_chance 100
-  contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 24
   flavor_text: |
     Traps and hurts the foe in
     quicksand for 2 to 5 turns.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Sand Tomb'
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: &colosseum.flags
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -39,37 +38,35 @@ colosseum: &colosseum
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class physical
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: &colosseum.effect_chance 100
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flags: *ruby-sapphire.flags
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     The foe is trapped
     inside a painful
     sandstorm for two
     to five turns.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -79,10 +76,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  effect_chance: *colosseum.effect_chance
+  contest_type: &diamond-pearl.contest_type smart
   super_contest_effect: 21
   flavor_text: &diamond-pearl.flavor_text |
     The user traps the
@@ -91,10 +88,10 @@ diamond-pearl: &diamond-pearl
     two to five turns.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -104,15 +101,15 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -122,19 +119,19 @@ black-white: &black-white
   accuracy: &black-white.accuracy 85
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: &black-white.flavor_text |
     The user traps the target inside a harshly
     raging sandstorm for four to five turns.
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -144,17 +141,17 @@ omega-ruby-alpha-sapphire:
   accuracy: *black-white.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  effect_chance: *colosseum.effect_chance
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 24
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -164,9 +161,9 @@ sun-moon: &sun-moon
   accuracy: *black-white.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: |
     The user traps the target inside a harshly raging
     sandstorm for four to five turns.

@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'STEEL WING'
+  name: &gold-silver.name 'STEEL WING'
   power: &gold-silver.power 70
   type: &gold-silver.type steel
   accuracy: &gold-silver.accuracy 90
@@ -25,30 +25,31 @@ gold-silver: &gold-silver
     the foe.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Steel Wing'
-  stat_change_chance: *gold-silver.stat_change_chance
-  flags: *gold-silver.flags
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
-  contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 12
+  stat_change_chance: *gold-silver.stat_change_chance
   flavor_text: |
     Strikes the foe with hard
     wings spread wide.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Steel Wing'
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -61,34 +62,33 @@ colosseum: &colosseum
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class physical
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  stat_change_chance: *gold-silver.stat_change_chance
-  flags: *gold-silver.flags
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flavor_text: |
     The foe is hit with
     wings of steel.
     It may also raise
-    the user’s DEFENSE.
+    the user's  DEFENSE.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -101,10 +101,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cool
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
     The foe is hit with
@@ -113,7 +113,7 @@ diamond-pearl: &diamond-pearl
     user’s Defense stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -126,12 +126,12 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -144,7 +144,7 @@ black-white: &black-white
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -152,7 +152,7 @@ black-white: &black-white
     It may also raise the user’s Defense stat.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -165,14 +165,14 @@ x-y:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is hit with wings of steel.
     This may also raise the user’s Defense stat.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -185,14 +185,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 12
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -205,7 +205,7 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

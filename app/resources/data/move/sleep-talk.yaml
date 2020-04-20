@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'SLEEP TALK'
+  name: &gold-silver.name 'SLEEP TALK'
   type: &gold-silver.type normal
   accuracy: 100
   pp: &gold-silver.pp 10
@@ -15,39 +15,33 @@ gold-silver: &gold-silver
     while asleep.
 crystal: *gold-silver
 ruby-sapphire:
-  name: &ruby-sapphire.name 'Sleep Talk'
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: &ruby-sapphire.target specific-move
+  priority: *gold-silver.priority
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 17
   flavor_text: |
     Uses an own move randomly
     while asleep.
 emerald:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *ruby-sapphire.target
+  priority: *gold-silver.priority
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
   flavor_text: |
     Uses an available move
     randomly while asleep.
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Sleep Talk'
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -55,27 +49,26 @@ colosseum: &colosseum
   pp: *gold-silver.pp
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: physical
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *ruby-sapphire.target
+  priority: *gold-silver.priority
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     While asleep, the
     user randomly uses
     one of the moves it
     knows.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -85,7 +78,7 @@ diamond-pearl: &diamond-pearl
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cute
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
     While it is asleep, the
@@ -94,7 +87,7 @@ diamond-pearl: &diamond-pearl
     knows.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -106,7 +99,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -122,7 +115,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -132,11 +125,11 @@ omega-ruby-alpha-sapphire:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 17
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns

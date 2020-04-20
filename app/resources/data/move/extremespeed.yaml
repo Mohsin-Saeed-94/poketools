@@ -1,21 +1,60 @@
 gold-silver: &gold-silver
-  name: EXTREMESPEED
-  power: 80
-  type: normal
-  accuracy: 100
-  pp: 5
-  effect: 104
+  name: &gold-silver.name EXTREMESPEED
+  power: &gold-silver.power 80
+  type: &gold-silver.type normal
+  accuracy: &gold-silver.accuracy 100
+  pp: &gold-silver.pp 5
+  effect: &gold-silver.effect 104
   flags:
     - contact
     - protect
     - mirror
-  categories:
+  categories: &gold-silver.categories
     - damage
-  hits: 1
-  turns: 1
+  hits: &gold-silver.hits 1
+  turns: &gold-silver.turns 1
   priority: 2
-  target: selected-pokemon
+  target: &gold-silver.target selected-pokemon
   flavor_text: |
     A powerful first-
     strike move.
 crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: &ruby-sapphire.priority 1
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  flavor_text: |
+    An extremely fast and
+    powerful attack.
+emerald: *ruby-sapphire
+firered-leafgreen:
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *ruby-sapphire.priority
+  flags: *ruby-sapphire.flags
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  flavor_text: |
+    A blindingly speedy
+    charge attack that
+    always goes before
+    any other.

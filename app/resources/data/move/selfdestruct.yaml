@@ -17,7 +17,7 @@ red-blue: &red-blue
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
-  power: 200
+  power: &gold-silver.power 200
   type: *red-blue.type
   accuracy: *red-blue.accuracy
   pp: *red-blue.pp
@@ -32,3 +32,41 @@ gold-silver: &gold-silver
     Powerful but makes
     the user faint.
 crystal: *gold-silver
+ruby-sapphire: &ruby-sapphire
+  name: *red-blue.name
+  power: *gold-silver.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
+    - kings-rock
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  flavor_text: |
+    Inflicts severe damage but
+    makes the user faint.
+emerald: *ruby-sapphire
+firered-leafgreen:
+  name: *red-blue.name
+  power: *gold-silver.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  flavor_text: |
+    The user blows up
+    to inflict severe
+    damage, even
+    making itself  faint.

@@ -1,5 +1,10 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Calm Mind'
+  name: &ruby-sapphire.name 'CALM MIND'
+  type: &ruby-sapphire.type psychic
+  pp: &ruby-sapphire.pp 20
+  effect: &ruby-sapphire.effect 212
+  target: &ruby-sapphire.target user
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
     - snatch
   categories: &ruby-sapphire.categories
@@ -9,33 +14,12 @@ ruby-sapphire: &ruby-sapphire
   stat_changes: &ruby-sapphire.stat_changes
     special-attack: 1
     special-defense: 1
-  type: &ruby-sapphire.type psychic
-  pp: &ruby-sapphire.pp 20
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target user
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 212
-  contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 16
-  contest_use_before: &ruby-sapphire.contest_use_before
-    - psybeam
-    - confusion
-    - psychic
-    - meditate
-    - light-screen
-    - reflect
-    - dream-eater
-    - psywave
-    - future-sight
-    - luster-purge
-    - mist-ball
-    - psycho-boost
   flavor_text: |
     Raises SP. ATK and SP. DEF
     by focusing the mind.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Calm Mind'
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -45,29 +29,28 @@ colosseum: &colosseum
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: special
   effect: *ruby-sapphire.effect
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
-  pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     The user focuses
     its mind to raise
     the SP. ATK and
     SP. DEF stats.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -79,7 +62,7 @@ diamond-pearl: &diamond-pearl
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type smart
   super_contest_effect: 11
   flavor_text: &diamond-pearl.flavor_text |
     The user quietly
@@ -89,7 +72,7 @@ diamond-pearl: &diamond-pearl
     Sp. Def stats.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -103,7 +86,7 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -122,7 +105,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -134,12 +117,24 @@ omega-ruby-alpha-sapphire:
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 16
+  contest_use_before:
+    - psybeam
+    - confusion
+    - psychic
+    - meditate
+    - light-screen
+    - reflect
+    - dream-eater
+    - psywave
+    - future-sight
+    - luster-purge
+    - mist-ball
+    - psycho-boost
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits

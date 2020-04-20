@@ -1,6 +1,6 @@
 gold-silver: &gold-silver
-  name: OUTRAGE
-  power: 90
+  name: &gold-silver.name OUTRAGE
+  power: &gold-silver.power 90
   type: &gold-silver.type dragon
   accuracy: &gold-silver.accuracy 100
   pp: &gold-silver.pp 15
@@ -20,74 +20,74 @@ gold-silver: &gold-silver
     and confuses user.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Outrage
-  flags: *gold-silver.flags
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: &ruby-sapphire.power 120
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: *gold-silver.effect
-  contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 6
   flavor_text: |
     A rampage of 2 to 3 turns
     that confuses the user.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name Outrage
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *ruby-sapphire.power
+  power: &colosseum.power 120
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: special
   effect: *gold-silver.effect
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
-  flags: *gold-silver.flags
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *ruby-sapphire.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     The user thrashes
     about for two to
     three turns, then
     becomes confused.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *ruby-sapphire.power
+  power: *colosseum.power
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class physical
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cool
   super_contest_effect: 7
   flavor_text: &diamond-pearl.flavor_text |
     The user rampages
@@ -97,13 +97,13 @@ diamond-pearl: &diamond-pearl
     becomes confused.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *ruby-sapphire.power
+  power: *colosseum.power
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
@@ -112,13 +112,13 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *ruby-sapphire.power
+  power: *colosseum.power
   pp: &black-white.pp 10
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
@@ -131,13 +131,13 @@ black-white: &black-white
     It then becomes confused, however.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *ruby-sapphire.power
+  power: *colosseum.power
   pp: *black-white.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
@@ -149,30 +149,30 @@ x-y:
     to three turns.
     The user then becomes confused.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *ruby-sapphire.power
+  power: *colosseum.power
   pp: *black-white.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 6
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *ruby-sapphire.power
+  power: *colosseum.power
   pp: *black-white.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority

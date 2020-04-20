@@ -37,30 +37,29 @@ gold-silver: &gold-silver
     for 2-5 turns.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Fire Spin'
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
+    - kings-rock
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &ruby-sapphire.damage_class special
-  effect: *red-blue.effect
-  effect_chance: &ruby-sapphire.effect_chance 100
-  contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 24
   flavor_text: |
     Traps the foe in a ring of
     fire for 2 to 5 turns.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Fire Spin'
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -73,34 +72,32 @@ colosseum: &colosseum
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class special
   effect: *red-blue.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: &colosseum.effect_chance 100
 xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *red-blue.effect
-  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     The foe is trapped
     in an intense spiral
     of fire that rages
-    two to five turns.
+    two  to five turns.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -113,10 +110,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  effect_chance: *colosseum.effect_chance
+  contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 21
   flavor_text: &diamond-pearl.flavor_text |
     The foe becomes
@@ -126,7 +123,7 @@ diamond-pearl: &diamond-pearl
     to five turns.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -139,12 +136,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -157,9 +154,9 @@ black-white: &black-white
   accuracy: &black-white.accuracy 85
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: &black-white.flavor_text |
     The target becomes trapped within a
     fierce vortex of fire that rages for four
@@ -167,7 +164,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -180,14 +177,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *black-white.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
-  effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  effect_chance: *colosseum.effect_chance
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 24
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -200,9 +197,9 @@ sun-moon: &sun-moon
   accuracy: *black-white.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *red-blue.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *colosseum.effect_chance
   flavor_text: |
     The target becomes trapped within a fierce vortex
     of fire that rages for four to five turns.

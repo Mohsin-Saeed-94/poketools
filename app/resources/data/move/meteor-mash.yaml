@@ -1,11 +1,18 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Meteor Mash'
-  stat_change_chance: &ruby-sapphire.stat_change_chance 20
+  name: &ruby-sapphire.name 'METEOR MASH'
+  power: &ruby-sapphire.power 100
+  type: &ruby-sapphire.type steel
+  accuracy: &ruby-sapphire.accuracy 85
+  pp: &ruby-sapphire.pp 10
+  effect: &ruby-sapphire.effect 140
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
+  effect_chance: &ruby-sapphire.effect_chance 20
   flags: &ruby-sapphire.flags
     - contact
     - protect
     - mirror
-    - punch
+    - kings-rock
   categories: &ruby-sapphire.categories
     - damage
     - raise
@@ -13,25 +20,19 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   stat_changes: &ruby-sapphire.stat_changes
     attack: 1
-  type: &ruby-sapphire.type steel
-  power: &ruby-sapphire.power 100
-  pp: &ruby-sapphire.pp 10
-  accuracy: &ruby-sapphire.accuracy 85
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 140
-  effect_chance: &ruby-sapphire.effect_chance 20
-  contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 12
+  stat_change_chance: &ruby-sapphire.stat_change_chance 20
   flavor_text: |
     Fires a meteor-like punch.
     May raise ATTACK.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: *ruby-sapphire.name
+  name: &colosseum.name 'Meteor Mash'
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: &colosseum.flags
+    - contact
+    - protect
+    - mirror
+    - punch
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -42,36 +43,35 @@ colosseum: &colosseum
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class physical
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
-  stat_change_chance: *ruby-sapphire.stat_change_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  effect_chance: *ruby-sapphire.effect_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  stat_change_chance: *ruby-sapphire.stat_change_chance
   flavor_text: |
     The foe is hit with
     a hard, fast punch.
     It may also raise
-    the user’s ATTACK.
+    the user's  ATTACK.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -82,10 +82,10 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
+  contest_type: &diamond-pearl.contest_type cool
   super_contest_effect: 18
   flavor_text: &diamond-pearl.flavor_text |
     The foe is hit with a
@@ -95,9 +95,9 @@ diamond-pearl: &diamond-pearl
     the user’s Attack.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -108,14 +108,14 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -126,7 +126,7 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
@@ -135,9 +135,9 @@ black-white: &black-white
     the user’s Attack.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -148,7 +148,7 @@ x-y:
   accuracy: &x-y.accuracy 90
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -156,9 +156,9 @@ x-y:
     like a meteor. This may also raise
     the user’s Attack stat.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -169,16 +169,16 @@ omega-ruby-alpha-sapphire:
   accuracy: *x-y.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
-  contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_type: *diamond-pearl.contest_type
+  contest_effect: 12
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -189,7 +189,7 @@ sun-moon: &sun-moon
   accuracy: *x-y.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
