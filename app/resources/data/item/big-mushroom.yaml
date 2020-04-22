@@ -1,5 +1,5 @@
 gold-silver: &gold-silver
-  name: 'BIG MUSHROOM'
+  name: &gold-silver.name 'BIG MUSHROOM'
   pocket: &gold-silver.pocket misc
   buy: &gold-silver.buy 5000
   sell: &gold-silver.sell 2500
@@ -11,36 +11,48 @@ gold-silver: &gold-silver
   description: &gold-silver.description 'No effect.  Sell to shops.'
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Big Mushroom'
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon big-mushroom.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
+    A rare mushroom
+    that would sell at a
+    high price.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Big Mushroom'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   short_description: *gold-silver.short_description
   description: *gold-silver.description
-  flavor_text: |
-    A rare mushroom
-    that would sell at a
-    high price.
-  icon: &ruby-sapphire.icon big-mushroom.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
 firered-leafgreen:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *gold-silver.buy
   sell: *gold-silver.sell
-  short_description: 'Trade to the Move Reminder for moves.'
-  description: 'Trade one to the Move Reminder on []{location:two-island-town} to have a Pokémon recall one of its previous moves.'
   flavor_text: |
     A large and rare mushroom.
     It is very popular among certain
     people.
-  icon: *ruby-sapphire.icon
+  short_description: 'Trade to the Move Reminder for moves.'
+  description: 'Trade one to the Move Reminder on []{location:two-island-town} to have a Pokémon recall one of its previous moves.'
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   buy: *gold-silver.buy
@@ -57,7 +69,7 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   buy: *gold-silver.buy
@@ -72,7 +84,7 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   buy: *gold-silver.buy
@@ -88,7 +100,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   buy: *gold-silver.buy

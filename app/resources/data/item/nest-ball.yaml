@@ -1,29 +1,27 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Nest Ball'
+  name: &ruby-sapphire.name 'NEST BALL'
   category: &ruby-sapphire.category special-balls
   pocket: &ruby-sapphire.pocket pokeballs
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
   flags: &ruby-sapphire.flags
     - countable
     - consumable
     - usable-in-battle
     - holdable
+  icon: &ruby-sapphire.icon nest-ball.png
+  buy: &ruby-sapphire.buy 1000
+  sell: &ruby-sapphire.sell 500
+  flavor_text: &ruby-sapphire.flavor_text |
+    A BALL that works
+    better on weaker
+    POKéMON.
   short_description: &ruby-sapphire.short_description 'Tries to [catch]{mechanic:catch} a wild Pokémon.  Success rate is 3.9× for level 1 Pokémon, and drops steadily to 1× at level 30.'
   description: &ruby-sapphire.description |
     Used in battle
     :   Attempts to [catch]{mechanic:catch} a wild Pokémon.  The catch rate formula is <math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mn>40</mn> <mo>&minus;</mo> <mi>n</mi> </mrow> <mrow> <mn>10</mn> </mrow> </mfrac> </math>,
     to a maximum of 3.9× for level 1 Pokémon.  If the wild Pokémon's level is higher than 30, this ball has a catch rate of 1×.  If used in a trainer battle, nothing happens and the ball is lost.
-  flavor_text: |
-    A BALL that works
-    better on weaker
-    POKéMON.
-  icon: &ruby-sapphire.icon nest-ball.png
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: &colosseum.name 'Nest Ball'
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -31,13 +29,25 @@ firered-leafgreen:
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
   flavor_text: |
     A somewhat different BALL that
     works especially well on weaker
-    POKéMON.
-  icon: *ruby-sapphire.icon
+     POKéMON.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -53,7 +63,7 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -68,7 +78,7 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -86,7 +96,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy

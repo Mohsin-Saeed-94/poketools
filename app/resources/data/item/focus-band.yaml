@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'FOCUS BAND'
+  name: &gold-silver.name 'FOCUS BAND'
   pocket: &gold-silver.pocket misc
-  buy: 200
-  sell: 100
+  buy: &gold-silver.buy 200
+  sell: &gold-silver.sell 100
   flavor_text: |
     May prevent faint-
     ing. (HOLD)
@@ -11,45 +11,55 @@ gold-silver: &gold-silver
     - holdable
     - holdable-active
   short_description: &gold-silver.short_description 'Held: Holder has 10% chance to survive attacks or self-inflicted damage at 1 HP.'
-  description: &gold-silver.description 'Held: If the holder is attacked for regular  damage that would faint  it, this item has a 10% chance to prevent the holder''s  HP from lowering below  1.'
+  description: &gold-silver.description 'Held: If the holder is attacked for regular  damage that would faint   it, this item has a 10% chance to prevent the holder''s  HP from lowering below   1.'
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Focus Band'
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 4000
-  sell: &ruby-sapphire.sell 2000
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon focus-band.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A hold item that
     occasionally
     prevents fainting.
-  icon: &ruby-sapphire.icon focus-band.png
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: &colosseum.name 'Focus Band'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &colosseum.buy 4000
+  sell: &colosseum.sell 2000
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     An item to be held by a POKéMON.
     The holding POKéMON may endure an
-    attack, leaving just 1 HP.
-  icon: *ruby-sapphire.icon
+     attack, leaving just 1 HP.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 10
   flags: *gold-silver.flags
@@ -65,11 +75,11 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 10
   flags: *gold-silver.flags
@@ -82,11 +92,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 10
   flags: *gold-silver.flags

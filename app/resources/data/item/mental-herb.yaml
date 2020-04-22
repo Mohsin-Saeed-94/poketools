@@ -1,44 +1,54 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Mental Herb'
+  name: &ruby-sapphire.name 'MENTAL HERB'
   category: &ruby-sapphire.category held-items
   pocket: &ruby-sapphire.pocket misc
-  buy: &ruby-sapphire.buy 4000
-  sell: &ruby-sapphire.sell 2000
   flags: &ruby-sapphire.flags
     - holdable
     - holdable-active
+  icon: &ruby-sapphire.icon mental-herb.png
+  buy: &ruby-sapphire.buy 100
+  sell: &ruby-sapphire.sell 50
+  flavor_text: &ruby-sapphire.flavor_text |
+    A hold item that
+    snaps POKéMON out
+    of infatuation.
   short_description: &ruby-sapphire.short_description 'Held: When the holder is [attracted]{move:attract}, consumed to cure [infatuation]{mechanic:infatuation}.'
   description: &ruby-sapphire.description |
     Held in battle
     :   When the holder is [attracted]{move:attract}, it consumes this item to cure the [infatuation]{mechanic:infatuation}.
-  flavor_text: |
-    A hold item that
-    snaps POKéMON out
-    of infatuation.
-  icon: &ruby-sapphire.icon mental-herb.png
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Mental Herb'
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: &colosseum.buy 4000
+  sell: &colosseum.sell 2000
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
   flavor_text: |
     An item to be held by a POKéMON.
     It snaps the holder out of
-    infatuation. It can be used once.
-  icon: *ruby-sapphire.icon
+    infatuation.  It can be used once.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: herb-effect
   fling_power: 10
   flags: *ruby-sapphire.flags
@@ -52,11 +62,11 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: herb-effect
   fling_power: 10
   flags: *ruby-sapphire.flags
@@ -68,11 +78,11 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: herb-effect
   fling_power: 10
   flags: *ruby-sapphire.flags
@@ -85,11 +95,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: herb-effect
   fling_power: 10
   flags: *ruby-sapphire.flags

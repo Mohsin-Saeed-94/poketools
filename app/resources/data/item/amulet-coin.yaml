@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'AMULET COIN'
+  name: &gold-silver.name 'AMULET COIN'
   pocket: &gold-silver.pocket misc
-  buy: 100
-  sell: 50
+  buy: &gold-silver.buy 100
+  sell: &gold-silver.sell 50
   flavor_text: |
     Doubles monetary
     earnings. (HOLD)
@@ -16,56 +16,66 @@ gold-silver: &gold-silver
     :   If the holder participated in a trainer battle, the trainer earns twice the usual prize money.  This effect applies even if the holder [fainted]{mechanic:fainted}.
         This effect does not stack with any other similar effect.
 crystal: *gold-silver
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Amulet Coin'
+ruby-sapphire:
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 10000
-  sell: &ruby-sapphire.sell 5000
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon amulet-coin.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     Doubles money in
     battle if the holder
     takes part.
-  icon: &ruby-sapphire.icon amulet-coin.png
-emerald:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
-  pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+emerald:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     Doubles money in
     battle if the
     holder takes part.
-  icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+colosseum: &colosseum
+  name: &colosseum.name 'Amulet Coin'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &colosseum.buy 10000
+  sell: &colosseum.sell 5000
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     An item to be held by a POKéMON.
     It doubles the battle money if the
-    holding POKéMON takes part.
-  icon: *ruby-sapphire.icon
+     holding POKéMON takes part.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -84,11 +94,11 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -101,11 +111,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags

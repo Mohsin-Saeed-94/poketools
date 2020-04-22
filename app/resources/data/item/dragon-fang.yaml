@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'DRAGON FANG'
+  name: &gold-silver.name 'DRAGON FANG'
   pocket: &gold-silver.pocket misc
-  buy: 100
-  sell: 50
+  buy: &gold-silver.buy 100
+  sell: &gold-silver.sell 50
   flavor_text: |
     Powers up dragon-
     type moves. (HOLD)
@@ -16,42 +16,52 @@ gold-silver: &gold-silver
     this item does nothing.  The []{item:dragon-scale} provides the desired effect when it is held.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Dragon Fang'
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
   flags: *gold-silver.flags
-  short_description: &ruby-sapphire.short_description 'Held: []{type:dragon} moves from holder do 20% more damage.'
-  description: &ruby-sapphire.description 'Held: Increases the power of the holder''s []{type:dragon} moves by  20%.'
-  flavor_text: |
+  icon: &ruby-sapphire.icon dragon-fang.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A hold item that
     raises the power of
     DRAGON-type moves.
-  icon: &ruby-sapphire.icon dragon-fang.png
+  short_description: &ruby-sapphire.short_description 'Held: []{type:dragon} moves from holder do 20% more damage.'
+  description: &ruby-sapphire.description 'Held: Increases the power of the holder''s []{type:dragon} moves by   20%.'
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: &colosseum.name 'Dragon Fang'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &colosseum.buy 1000
+  sell: &colosseum.sell 500
   flags: *gold-silver.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     An item to be held by a POKéMON.
     A hard and sharp fang that boosts
-    the power of DRAGON-type moves.
-  icon: *ruby-sapphire.icon
+     the power of DRAGON-type moves.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 70
   flags: *gold-silver.flags
@@ -67,11 +77,11 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 70
   flags: *gold-silver.flags
@@ -84,11 +94,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 70
   flags: *gold-silver.flags

@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'HEAL POWDER'
-  pocket: misc
-  buy: 450
-  sell: 225
+  name: &gold-silver.name 'HEAL POWDER'
+  pocket: &gold-silver.pocket misc
+  buy: &gold-silver.buy 450
+  sell: &gold-silver.sell 225
   flavor_text: |
     Cures all status
     problems. Bitter.
@@ -19,42 +19,52 @@ gold-silver: &gold-silver
     :   Cures any [status ailment]{mechanic:status-ailment}.  Decreases [happiness]{mechanic:happiness} by 5/5/10.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Heal Powder'
+  name: *gold-silver.name
   category: *gold-silver.category
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 300
-  sell: &ruby-sapphire.sell 150
+  pocket: *gold-silver.pocket
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon heal-powder.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A bitter powder
     that heals all
     status problems.
-  icon: &ruby-sapphire.icon heal-powder.png
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: &colosseum.name 'Heal Powder'
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: &colosseum.pocket medicine
+  buy: &colosseum.buy 300
+  sell: &colosseum.sell 150
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A very bitter medicine powder.
     It heals all the status problems of
-    one POKéMON.
-  icon: *ruby-sapphire.icon
+     one POKéMON.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: *colosseum.pocket
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -70,11 +80,11 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: *colosseum.pocket
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -87,11 +97,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: *colosseum.pocket
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags

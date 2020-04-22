@@ -1,11 +1,16 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Oran Berry'
+  name: &ruby-sapphire.name 'ORAN BERRY'
   category: &ruby-sapphire.category medicine
   pocket: &ruby-sapphire.pocket berries
-  buy: &ruby-sapphire.buy 20
-  sell: &ruby-sapphire.sell 10
   flags: &ruby-sapphire.flags
     - holdable-active
+  icon: &ruby-sapphire.icon oran-berry.png
+  buy: &ruby-sapphire.buy 20
+  sell: &ruby-sapphire.sell 10
+  flavor_text: &ruby-sapphire.flavor_text |
+    A hold item that
+    restores 10 HP in
+    battle.
   short_description: &ruby-sapphire.short_description 'Held: Consumed at 1/2 max [HP]{mechanic:hp} to recover 10 HP.'
   description: &ruby-sapphire.description |
     Held in battle
@@ -13,7 +18,33 @@ ruby-sapphire: &ruby-sapphire
     
     Used on a party Pokémon
     :   Restores 10 [HP]{mechanic:hp}.
-  berry: &ruby-sapphire.berry
+  berry:
+    number: 7
+    firmness: super-hard
+    size: 35
+    growth_time: 3
+    smoothness: 20
+    flavors:
+      spicy: 10
+      dry: 10
+      sweet: 10
+      bitter: 10
+      sour: 10
+    harvest: 2-3
+    flavor_text: |
+      A peculiar BERRY with a mix of flavors.
+      BERRIES grow in half a  day.
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Oran Berry'
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: &colosseum.berry
     firmness: super-hard
     natural_gift_type: poison
     natural_gift_power: 60
@@ -28,30 +59,37 @@ ruby-sapphire: &ruby-sapphire
       bitter: 10
       sour: 10
     harvest: 1-5
-  flavor_text: |
-    A hold item that
-    restores 10 HP in
-    battle.
-  icon: &ruby-sapphire.icon oran-berry.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
   flavor_text: |
     When held by a POKéMON, it will be
     used in battle to restore 10 HP.
-  icon: *ruby-sapphire.icon
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry:
+    number: 7
+    firmness: super-hard
+    size: 35
+    growth_time: 3
+    smoothness: 20
+    flavors:
+      spicy: 10
+      dry: 10
+      sweet: 10
+      bitter: 10
+      sour: 10
+    harvest: 2-3
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -61,7 +99,7 @@ diamond-pearl: &diamond-pearl
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     A Poffin ingredient. It may be used
     or held by a Pokémon to heal the
@@ -69,7 +107,7 @@ diamond-pearl: &diamond-pearl
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -79,13 +117,13 @@ heartgold-soulsilver:
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     It may be used or held by a Pokémon to
     heal the user by just 10 HP.
   icon: *ruby-sapphire.icon
 black-white:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -95,13 +133,13 @@ black-white:
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     If held by a Pokémon, 
     it heals the user by just 10 HP.
   icon: *ruby-sapphire.icon
 black-2-white-2:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -111,13 +149,13 @@ black-2-white-2:
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     If held by a Pokémon,
     it heals the user by just 10 HP.
   icon: *ruby-sapphire.icon
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -127,7 +165,7 @@ x-y: &x-y
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     A Berry to be consumed by Pokémon.
     If a Pokémon holds one, it can restore its
@@ -135,7 +173,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy

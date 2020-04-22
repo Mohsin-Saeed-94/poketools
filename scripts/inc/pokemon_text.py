@@ -4,17 +4,6 @@ from typing import Optional
 version: Optional[str] = None
 
 
-def search(encoding: str):
-    if encoding == 'pokemon_gen1':
-        return codecs.CodecInfo(Gen1Text().encode, Gen1Text().decode, name=encoding)
-    if encoding == 'pokemon_gen2':
-        return codecs.CodecInfo(Gen2Text().encode, Gen2Text().decode, name=encoding)
-    if encoding == 'pokemon_gen3':
-        return codecs.CodecInfo(Gen3Text().encode, Gen3Text().decode, name=encoding)
-
-    return None
-
-
 def _findval(table: dict, search: str):
     for value, char in table.items():
         if char == search:
@@ -565,6 +554,11 @@ class Gen3Text(codecs.Codec):
         0xFE: '\n',
         0xFF: '\n',
     }
+    _ligatures = {
+        bytes.fromhex('53 54'): 'PkMn',
+        bytes.fromhex('55 56 57 58 59'): 'POKéBLOCK',
+        bytes.fromhex('55 56'): 'POKé',
+    }
     # Control characters are in two groups, FC## and FD##
     # FD## contains many version-specific values that are filled in the constructor
     _control = {
@@ -639,6 +633,17 @@ class Gen3Text(codecs.Codec):
                     # Move past additional control bytes
                     cursor += self._control_length[value]
             else:
+                # Search the ligatures
+                found = False
+                for val, ligature in self._ligatures.items():
+                    check = binary[cursor:cursor + len(val)]
+                    if check == val:
+                        out.extend(ligature)
+                        found = True
+                        break
+                if found:
+                    break
+
                 self._decode_error(errors, binary, cursor, cursor)
 
             cursor += 1
@@ -653,7 +658,7 @@ class Gen3Text(codecs.Codec):
             return '',
         else:
             raise UnicodeDecodeError('pokemon_gen3', binary, start, end,
-                                     'The byte 0x{byte} is not a valid character.'.format(byte=hex(error_bytes)))
+                                     'The byte 0x{byte} is not a valid character.'.format(byte=error_bytes.hex()))
 
     def encode(self, text: str, errors='strict'):
         # Because the text table includes single values for multiple characters, this is more complicated than it
@@ -677,6 +682,17 @@ class Gen3Text(codecs.Codec):
                 if val is not None:
                     out.extend([0xFD, val])
                     break
+
+                # Search the ligatures
+                found = False
+                for val, ligature in self._ligatures.items():
+                    if check == ligature:
+                        out.extend(val)
+                        found = True
+                        break
+                if found:
+                    break
+
                 val = _findval(self._decode_table, check)
                 if val is not None:
                     out.append(val)
@@ -699,6 +715,23 @@ class Gen3Text(codecs.Codec):
             text = text[start:]
 
         return bytes(out), textlen
+
+
+_gen1 = Gen1Text()
+_gen2 = Gen2Text()
+_gen3 = Gen3Text()
+
+
+def search(encoding: str):
+    codec_map = {
+        'pokemon_gen1': _gen1,
+        'pokemon_gen2': _gen2,
+        'pokemon_gen3': _gen3,
+    }
+    if encoding not in codec_map:
+        return None
+
+    return codecs.CodecInfo(codec_map[encoding].encode, codec_map[encoding].decode, name=encoding)
 
 
 def register(use_version: str = None):

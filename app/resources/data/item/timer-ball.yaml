@@ -1,42 +1,40 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Timer Ball'
+ruby-sapphire:
+  name: &ruby-sapphire.name 'TIMER BALL'
   category: &ruby-sapphire.category special-balls
   pocket: &ruby-sapphire.pocket pokeballs
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
   flags: &ruby-sapphire.flags
     - countable
     - consumable
     - usable-in-battle
     - holdable
+  icon: &ruby-sapphire.icon timer-ball.png
+  buy: &ruby-sapphire.buy 1000
+  sell: &ruby-sapphire.sell 500
+  flavor_text: &ruby-sapphire.flavor_text |
+    More effective as
+    more turns are
+    taken in battle.
   short_description: &ruby-sapphire.short_description 'Tries to [catch]{mechanic:catch} a wild Pokémon. Success rate increases by 0.1× every turn, to a max of 4×.'
   description: &ruby-sapphire.description |
     Used in battle
     :   Attempts to [catch]{mechanic:catch} a wild Pokémon using the formula <math xmlns="http://www.w3.org/1998/Math/MathML"> <mfenced open="min("> <mrow> <mn>1.0</mn> <mo>&plus;</mo> <mfenced> <mrow> <mi>t</mi> <mo>&times;</mo> <mn>0.1</mn> </mrow> </mfenced> </mrow> <mrow> <mn>4.0</mn> </mrow> </mfenced> </math>.
     If used in a trainer battle, nothing happens and the ball is lost.
-  flavor_text: |
-    More effective as
-    more turns are
-    taken in battle.
-  icon: &ruby-sapphire.icon timer-ball.png
 emerald:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
   flavor_text: |
     A BALL that gains
     power in battles
     taking many turns.
-  icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+colosseum: &colosseum
+  name: &colosseum.name 'Timer Ball'
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -44,13 +42,25 @@ firered-leafgreen:
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
   flavor_text: |
     A somewhat different BALL that
     becomes progressively better the
-    more turns there are in a battle.
-  icon: *ruby-sapphire.icon
+     more turns there are in a battle.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -66,7 +76,7 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -81,7 +91,7 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -96,7 +106,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy

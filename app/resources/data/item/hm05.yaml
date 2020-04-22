@@ -21,20 +21,46 @@ ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  machine:
-    type: &ruby-sapphire.machine.type HM
-    number: &ruby-sapphire.machine.number 5
-    move: flash
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon hm05.png
+  flavor_text: |
+    Looses a powerful
+    blast of light that
+    reduces accuracy.
   short_description: *red-blue.short_description
-  description: |
+  description: &ruby-sapphire.description |
     Teaches []{move:flash} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "hm05"})}}
-  icon: hm-normal.png
+  machine: &ruby-sapphire.machine
+    type: &ruby-sapphire.machine.type HM
+    number: &ruby-sapphire.machine.number 5
+    move: flash
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  machine: *ruby-sapphire.machine
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  icon: hm-normal.png
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  flavor_text: |
+    A blast of light
+    that cuts the foe's
+    accuracy. It also
+    illuminates  caves.
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
 diamond-pearl: &diamond-pearl
   name: *red-blue.name
   category: *red-blue.category

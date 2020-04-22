@@ -1,30 +1,61 @@
+ruby-sapphire: &ruby-sapphire
+  name: &ruby-sapphire.name 'CONVERSION 2'
+  type: &ruby-sapphire.type normal
+  accuracy: &ruby-sapphire.accuracy 100
+  pp: &ruby-sapphire.pp 30
+  effect: &ruby-sapphire.effect 94
+  target: &ruby-sapphire.target user
+  priority: &ruby-sapphire.priority 0
+  categories: &ruby-sapphire.categories
+    - unique
+  hits: &ruby-sapphire.hits 1
+  turns: &ruby-sapphire.turns 1
+  flavor_text: |
+    Makes the user resistant
+    to the last attack's type.
+emerald: *ruby-sapphire
 colosseum: &colosseum
   name: &colosseum.name 'Conversion 2'
   flags: &colosseum.flags
     - authentic
-  categories: &colosseum.categories
-    - unique
-  hits: &colosseum.hits 1
-  turns: &colosseum.turns 1
-  type: &colosseum.type normal
-  pp: &colosseum.pp 30
-  priority: &colosseum.priority 0
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  priority: *ruby-sapphire.priority
   target: &colosseum.target selected-pokemon
   damage_class: physical
-  effect: &colosseum.effect 94
+  effect: *ruby-sapphire.effect
 xd: *colosseum
+firered-leafgreen:
+  name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  flavor_text: |
+    The user changes
+    type to make itself
+    resistant to the
+    last attack  it took.
 diamond-pearl: &diamond-pearl
   name: *colosseum.name
   flags: *colosseum.flags
-  categories: *colosseum.categories
-  hits: *colosseum.hits
-  turns: *colosseum.turns
-  type: *colosseum.type
-  pp: *colosseum.pp
-  priority: *colosseum.priority
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  priority: *ruby-sapphire.priority
   target: *colosseum.target
   damage_class: &diamond-pearl.damage_class status
-  effect: *colosseum.effect
+  effect: *ruby-sapphire.effect
   contest_type: &diamond-pearl.contest_type beauty
   super_contest_effect: 23
   flavor_text: &diamond-pearl.flavor_text |
@@ -37,28 +68,28 @@ platinum: *diamond-pearl
 heartgold-soulsilver:
   name: *colosseum.name
   flags: *colosseum.flags
-  categories: *colosseum.categories
-  hits: *colosseum.hits
-  turns: *colosseum.turns
-  type: *colosseum.type
-  pp: *colosseum.pp
-  priority: *colosseum.priority
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  priority: *ruby-sapphire.priority
   target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
   name: *colosseum.name
   flags: *colosseum.flags
-  categories: *colosseum.categories
-  hits: *colosseum.hits
-  turns: *colosseum.turns
-  type: *colosseum.type
-  pp: *colosseum.pp
-  priority: *colosseum.priority
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  priority: *ruby-sapphire.priority
   target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *ruby-sapphire.effect
   flavor_text: &black-white.flavor_text |
     The user changes its type to make itself
     resistant to the type of the attack the
@@ -68,30 +99,30 @@ x-y: *black-white
 omega-ruby-alpha-sapphire:
   name: *colosseum.name
   flags: *colosseum.flags
-  categories: *colosseum.categories
-  hits: *colosseum.hits
-  turns: *colosseum.turns
-  type: *colosseum.type
-  pp: *colosseum.pp
-  priority: *colosseum.priority
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  priority: *ruby-sapphire.priority
   target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *ruby-sapphire.effect
   contest_type: *diamond-pearl.contest_type
   contest_effect: 12
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
   name: *colosseum.name
   flags: *colosseum.flags
-  categories: *colosseum.categories
-  hits: *colosseum.hits
-  turns: *colosseum.turns
-  type: *colosseum.type
-  pp: *colosseum.pp
-  priority: *colosseum.priority
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  priority: *ruby-sapphire.priority
   target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *ruby-sapphire.effect
   flavor_text: |
     The user changes its type to make itself resistant to
     the type of the attack the opponent used last.

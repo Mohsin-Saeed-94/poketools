@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: EVERSTONE
+  name: &gold-silver.name EVERSTONE
   pocket: &gold-silver.pocket misc
-  buy: 200
-  sell: 100
+  buy: &gold-silver.buy 200
+  sell: &gold-silver.sell 100
   flavor_text: |
     Stops evolution.
     (HOLD)
@@ -13,56 +13,66 @@ gold-silver: &gold-silver
   short_description: &gold-silver.short_description 'Held: Prevents level-based evolution from occurring.'
   description: &gold-silver.description 'Held: Prevents the holder from evolving naturally.  Evolution initiated by the trainer (Stones, etc) will still work.'
 crystal: *gold-silver
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Everstone
+ruby-sapphire:
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 3000
-  sell: &ruby-sapphire.sell 1500
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon everstone.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A wondrous stone
     & a hold item that
     prevents evolution.
-  icon: &ruby-sapphire.icon everstone.png
-emerald:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
-  pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+emerald:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A wondrous hold
     item that prevents
     evolution.
-  icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+colosseum: &colosseum
+  name: &colosseum.name Everstone
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &colosseum.buy 3000
+  sell: &colosseum.sell 1500
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     An item to be held by a POKéMON.
     The holding POKéMON is prevented
-    from evolving.
-  icon: *ruby-sapphire.icon
+     from evolving.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags:
@@ -78,11 +88,11 @@ diamond-pearl: &diamond-pearl
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: &heartgold-soulsilver
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -93,11 +103,11 @@ heartgold-soulsilver: &heartgold-soulsilver
 black-white: *heartgold-soulsilver
 black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -110,11 +120,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags

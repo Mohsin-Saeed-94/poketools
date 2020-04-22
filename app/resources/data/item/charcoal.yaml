@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: CHARCOAL
+  name: &gold-silver.name CHARCOAL
   pocket: &gold-silver.pocket misc
-  buy: 9800
-  sell: 4900
+  buy: &gold-silver.buy 9800
+  sell: &gold-silver.sell 4900
   flavor_text: |
     Powers up fire-
     type moves. (HOLD)
@@ -14,42 +14,52 @@ gold-silver: &gold-silver
   description: &gold-silver.description 'Held: Increases the power of the holder''s []{type:fire} moves by 20%.'
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Charcoal
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon charcoal.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A hold item that
     raises the power of
     FIRE-type moves.
-  icon: &ruby-sapphire.icon charcoal.png
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: &colosseum.name Charcoal
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &colosseum.buy 1000
+  sell: &colosseum.sell 500
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     An item to be held by a POKéMON.
     A combustible fuel that boosts the
-    power of FIRE-type moves.
-  icon: *ruby-sapphire.icon
+     power of FIRE-type moves.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -67,11 +77,11 @@ black-2-white-2: *diamond-pearl
 x-y: *diamond-pearl
 omega-ruby-alpha-sapphire: *diamond-pearl
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags

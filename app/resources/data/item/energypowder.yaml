@@ -1,6 +1,6 @@
 gold-silver: &gold-silver
-  name: ENERGYPOWDER
-  pocket: misc
+  name: &gold-silver.name ENERGYPOWDER
+  pocket: &gold-silver.pocket misc
   buy: &gold-silver.buy 500
   sell: &gold-silver.sell 250
   flavor_text: |
@@ -19,40 +19,50 @@ gold-silver: &gold-silver
     :   Restores 50 [HP]{mechanic:hp}.  Decreases [happiness]{mechanic:happiness} by 5/5/10.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name EnergyPowder
+  name: *gold-silver.name
   category: *gold-silver.category
-  pocket: &ruby-sapphire.pocket medicine
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: &ruby-sapphire.icon energypowder.png
   buy: *gold-silver.buy
   sell: *gold-silver.sell
-  flags: *gold-silver.flags
-  short_description: &ruby-sapphire.short_description 'Restores 50 [HP]{mechanic:hp}, but lowers [happiness]{mechanic:happiness}.'
-  description: *gold-silver.description
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     A bitter powder
     that restores HP
     by 50 points.
-  icon: &ruby-sapphire.icon energy-powder.png
+  short_description: &ruby-sapphire.short_description 'Restores 50 [HP]{mechanic:hp}, but lowers [happiness]{mechanic:happiness}.'
+  description: *gold-silver.description
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: &colosseum.name EnergyPowder
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
+  pocket: &colosseum.pocket medicine
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   flags: *gold-silver.flags
   short_description: *ruby-sapphire.short_description
   description: *gold-silver.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: &colosseum.icon energy-powder.png
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A very bitter medicine powder.
     It restores the HP of one POKéMON
-    by 50 points.
-  icon: *ruby-sapphire.icon
+     by 50 points.
+  short_description: *ruby-sapphire.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
+  pocket: *colosseum.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   fling_effect: damage
@@ -64,7 +74,7 @@ diamond-pearl: &diamond-pearl
     A very bitter medicine powder.
     It restores the HP of one Pokémon by
     50 points.
-  icon: *ruby-sapphire.icon
+  icon: *colosseum.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl

@@ -1,16 +1,47 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Aguav Berry'
+  name: &ruby-sapphire.name 'AGUAV BERRY'
   category: &ruby-sapphire.category picky-healing
   pocket: &ruby-sapphire.pocket berries
-  buy: &ruby-sapphire.buy 20
-  sell: &ruby-sapphire.sell 10
   flags: &ruby-sapphire.flags
     - holdable-active
+  icon: &ruby-sapphire.icon aguav-berry.png
+  buy: &ruby-sapphire.buy 20
+  sell: &ruby-sapphire.sell 10
+  flavor_text: &ruby-sapphire.flavor_text |
+    A hold item that
+    restores HP but
+    may confuse.
   short_description: &ruby-sapphire.short_description 'Held: Consumed at 1/2 max HP to restore 1/8 max HP. Confuses Pokémon that dislike bitter flavor.'
   description: &ruby-sapphire.description |
     Held in battle
     :   When the holder has 1/2 its max [HP]{mechanic:hp} remaining or less, it consumes this item to restore 1/8 its max HP.  If the holder dislikes bitter flavors (i.e., has a nature that lowers [Special Defense]{mechanic:special-defense}, see [Natures]{nature:}, it will also become [confused]{mechanic:confusion}.
-  berry: &ruby-sapphire.berry
+  berry:
+    number: 14
+    firmness: super-hard
+    size: 64
+    growth_time: 6
+    smoothness: 25
+    flavors:
+      spicy: 0
+      dry: 0
+      sweet: 0
+      bitter: 10
+      sour: 0
+    harvest: 2-3
+    flavor_text: |
+      The flower is dainty. It is rare in its
+      ability to grow without  light.
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Aguav Berry'
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: &colosseum.berry
     firmness: super-hard
     natural_gift_type: dragon
     natural_gift_power: 60
@@ -25,30 +56,37 @@ ruby-sapphire: &ruby-sapphire
       bitter: 15
       sour: 0
     harvest: 1-5
-  flavor_text: |
-    A hold item that
-    restores HP but
-    may confuse.
-  icon: &ruby-sapphire.icon aguav-berry.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
   flavor_text: |
     A hold item that restores HP but
     may cause confusion when used.
-  icon: *ruby-sapphire.icon
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry:
+    number: 14
+    firmness: super-hard
+    size: 64
+    growth_time: 6
+    smoothness: 25
+    flavors:
+      spicy: 0
+      dry: 0
+      sweet: 0
+      bitter: 10
+      sour: 0
+    harvest: 2-3
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -58,7 +96,7 @@ diamond-pearl: &diamond-pearl
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     A Poffin ingredient. If held by a
     Pokémon, it restores the user’s HP in
@@ -66,7 +104,7 @@ diamond-pearl: &diamond-pearl
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -76,14 +114,14 @@ heartgold-soulsilver:
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     If held by a Pokémon, it restores the
     user’s HP in a pinch, but will cause
     confusion if it hates bitter food.
   icon: *ruby-sapphire.icon
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -93,7 +131,7 @@ black-white: &black-white
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     If held by a Pokémon, it restores the
     user’s HP in a pinch, but will cause
@@ -101,7 +139,7 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -111,7 +149,7 @@ x-y: &x-y
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     If held by a Pokémon, it restores the
     user’s HP in a pinch, but it will cause
@@ -119,7 +157,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy

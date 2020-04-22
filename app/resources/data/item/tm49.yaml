@@ -13,8 +13,8 @@ yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
   pocket: &gold-silver.pocket machines
-  buy: 3000
-  sell: 1500
+  buy: &gold-silver.buy 3000
+  sell: &gold-silver.sell 1500
   short_description: 'Teaches []{move:fury-cutter} to a compatible Pokémon.'
   description: |
     Teaches []{move:fury-cutter} to a compatible Pokémon.
@@ -26,31 +26,61 @@ ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 10000
-  sell: &ruby-sapphire.sell 5000
-  machine:
-    type: &ruby-sapphire.machine.type TM
-    number: &ruby-sapphire.machine.number 49
-    move: snatch
-  short_description: 'Teaches []{move:snatch} to a compatible Pokémon.'
-  description: |
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm49.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    Steals the effects
+    of the move the foe
+    is trying to use.
+  short_description: &ruby-sapphire.short_description 'Teaches []{move:snatch} to a compatible Pokémon.'
+  description: &ruby-sapphire.description |
     Teaches []{move:snatch} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm49"})}}
-  icon: tm-dark.png
+  machine: &ruby-sapphire.machine
+    type: &ruby-sapphire.machine.type TM
+    number: &ruby-sapphire.machine.number 49
+    move: snatch
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  buy: &colosseum.buy 10000
+  sell: &colosseum.sell 5000
+  machine: *ruby-sapphire.machine
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  icon: tm-dark.png
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    Steals the effects
+    of the foe's
+    healing or status-
+    changing move.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: *colosseum
+platinum: *colosseum
+heartgold-soulsilver: *colosseum
 black-white: &black-white
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   machine:
     type: *ruby-sapphire.machine.type
     number: *ruby-sapphire.machine.number

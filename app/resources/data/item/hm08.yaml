@@ -2,19 +2,46 @@ ruby-sapphire: &ruby-sapphire
   name: &ruby-sapphire.name HM08
   category: &ruby-sapphire.category hm
   pocket: &ruby-sapphire.pocket machines
-  machine:
-    type: &ruby-sapphire.machine.type HM
-    number: &ruby-sapphire.machine.number 8
-    move: dive
-  short_description: 'Teaches []{move:dive} to a compatible Pokémon.'
-  description: |
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon hm08.png
+  flavor_text: |
+    Dives underwater
+    the 1st turn, then
+    attacks next turn.
+  short_description: &ruby-sapphire.short_description 'Teaches []{move:dive} to a compatible Pokémon.'
+  description: &ruby-sapphire.description |
     Teaches []{move:dive} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "hm08"})}}
-  icon: hm-water.png
+  machine: &ruby-sapphire.machine
+    type: &ruby-sapphire.machine.type HM
+    number: &ruby-sapphire.machine.number 8
+    move: dive
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  machine: *ruby-sapphire.machine
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  icon: hm-water.png
+xd: *colosseum
+firered-leafgreen:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  flavor_text: |
+    The user dives
+    underwater on the
+    first turn and
+    strikes next turn.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
 diamond-pearl: &diamond-pearl
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category

@@ -1,11 +1,16 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Aspear Berry'
+  name: &ruby-sapphire.name 'ASPEAR BERRY'
   category: &ruby-sapphire.category medicine
   pocket: &ruby-sapphire.pocket berries
-  buy: &ruby-sapphire.buy 20
-  sell: &ruby-sapphire.sell 10
   flags: &ruby-sapphire.flags
     - holdable-active
+  icon: &ruby-sapphire.icon aspear-berry.png
+  buy: &ruby-sapphire.buy 20
+  sell: &ruby-sapphire.sell 10
+  flavor_text: &ruby-sapphire.flavor_text |
+    A hold item that
+    defrosts POKéMON
+    in battle.
   short_description: &ruby-sapphire.short_description 'Held: Consumed when [frozen]{mechanic:freezing} to thaw the user.'
   description: &ruby-sapphire.description |
     Held in battle
@@ -13,7 +18,33 @@ ruby-sapphire: &ruby-sapphire
     
     Used on a party Pokémon
     :   Cures [freezing]{mechanic:freezing}.
-  berry: &ruby-sapphire.berry
+  berry:
+    number: 5
+    firmness: super-hard
+    size: 50
+    growth_time: 3
+    smoothness: 25
+    flavors:
+      spicy: 0
+      dry: 0
+      sweet: 0
+      bitter: 0
+      sour: 10
+    harvest: 2-3
+    flavor_text: |
+      The hard BERRY is dense with a rich
+      juice. It is quite sour.
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Aspear Berry'
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: &colosseum.berry
     firmness: super-hard
     natural_gift_type: ice
     natural_gift_power: 60
@@ -28,30 +59,37 @@ ruby-sapphire: &ruby-sapphire
       bitter: 0
       sour: 10
     harvest: 1-5
-  flavor_text: |
-    A hold item that
-    defrosts POKéMON
-    in battle.
-  icon: &ruby-sapphire.icon aspear-berry.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
   flavor_text: |
     When held by a POKéMON, it will be
     used in battle for defrosting.
-  icon: *ruby-sapphire.icon
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry:
+    number: 5
+    firmness: super-hard
+    size: 50
+    growth_time: 3
+    smoothness: 25
+    flavors:
+      spicy: 0
+      dry: 0
+      sweet: 0
+      bitter: 0
+      sour: 10
+    harvest: 2-3
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -61,14 +99,14 @@ diamond-pearl: &diamond-pearl
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     A Poffin ingredient. It may be used
     or held by a Pokémon to defrost it.
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -78,13 +116,13 @@ heartgold-soulsilver:
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     It may be used or held by a Pokémon to
     defrost it.
   icon: *ruby-sapphire.icon
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -94,14 +132,14 @@ black-white: &black-white
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     If held by a Pokémon,
     it defrosts it.
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -111,7 +149,7 @@ x-y: &x-y
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     A Berry to be consumed by Pokémon.
     If a Pokémon holds one, it can recover
@@ -119,7 +157,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy

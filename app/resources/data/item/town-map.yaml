@@ -1,25 +1,36 @@
 red-blue: &red-blue
-  name: 'TOWN MAP'
+  name: &red-blue.name 'TOWN MAP'
   pocket: misc
   category: &red-blue.category gameplay
   short_description: &red-blue.short_description 'Use to see the overworld map.'
   description: &red-blue.description 'Displays a map of the region including the trainer''s position, location names, visited towns, gym locations, and where the trainer has been walking recently.'
 yellow: *red-blue
-firered-leafgreen: &firered-leafgreen
-  name: &firered-leafgreen.name 'Town Map'
+firered-leafgreen:
+  name: *red-blue.name
   category: *red-blue.category
   pocket: &firered-leafgreen.pocket key
+  flags: {  }
+  icon: &firered-leafgreen.icon town-map.png
+  flavor_text: |
+    A very convenient map that can be
+    viewed anytime. It even shows your  
+    present location.
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+diamond-pearl: &diamond-pearl
+  name: &diamond-pearl.name 'Town Map'
+  category: *red-blue.category
+  pocket: *firered-leafgreen.pocket
   short_description: *red-blue.short_description
   description: *red-blue.description
   flavor_text: |
     A very convenient map that can be
     viewed anytime. It even shows your 
     present location.
-  icon: &firered-leafgreen.icon town-map.png
-diamond-pearl: *firered-leafgreen
-platinum: *firered-leafgreen
+  icon: *firered-leafgreen.icon
+platinum: *diamond-pearl
 black-white: &black-white
-  name: *firered-leafgreen.name
+  name: *diamond-pearl.name
   category: *red-blue.category
   pocket: *firered-leafgreen.pocket
   short_description: *red-blue.short_description
@@ -31,7 +42,7 @@ black-white: &black-white
   icon: *firered-leafgreen.icon
 black-2-white-2: *black-white
 x-y:
-  name: *firered-leafgreen.name
+  name: *diamond-pearl.name
   category: *red-blue.category
   pocket: *firered-leafgreen.pocket
   short_description: *red-blue.short_description

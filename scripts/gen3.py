@@ -9,7 +9,7 @@ from flags import Flags
 import progressbar
 from slugify import slugify
 
-from inc import group_by_version_group, pokemon_text
+from inc import gba, group_by_version_group, pokemon_text
 from inc.yaml import yaml
 
 pokemon_text.register()
@@ -90,7 +90,6 @@ move_name_changes = {
     'ancientpower': 'ancient-power',
     'bubblebeam': 'bubble-beam',
     'doubleslap': 'double-slap',
-    'conversion2': 'conversion-2',
     'dragonbreath': 'dragon-breath',
     'dynamicpunch': 'dynamic-punch',
     'extremespeed': 'extreme-speed',
@@ -110,6 +109,7 @@ move_name_changes = {
 }
 
 
+# TODO: Contest types
 def get_moves(rom: BufferedReader, version_group: VersionGroup, version: Version):
     num_moves = 355
     out = {}
@@ -305,7 +305,360 @@ def write_moves(out):
                 yaml.dump(data, move_yaml)
 
 
+item_name_changes = {
+    'blackglasses': 'black-glasses',
+    'nevermeltice': 'never-melt-ice',
+    'parlyz-heal': 'paralyze-heal',
+    'silverpowder': 'silver-powder',
+    'x-defend': 'x-defense',
+    'x-special': 'x-sp-atk',
+    'thunderstone': 'thunder-stone',
+    'tinymushroom': 'tiny-mushroom',
+    'twistedspoon': 'twisted-spoon',
+}
+
+
+def get_items(rom: BufferedReader, version_group: VersionGroup, version: Version):
+    num_items = {
+        VersionGroup.RUBY_SAPPHIRE: 349,
+        VersionGroup.EMERALD: 377,
+        VersionGroup.FIRERED_LEAFGREEN: 375,
+    }
+    num_items = num_items[version_group]
+
+    out = {}
+    item_slugs = {}
+
+    print('Dumping items')
+
+    def _get_item_data():
+        slug_overrides = {
+            'king-s-rock': 'kings-rock',
+            'oak-s-parcel': 'oaks-parcel',
+            's-s-ticket': 'ss-ticket',
+        }
+        # This is the start of every game having every key item from the games before it, so lots of exclusions.
+        skip_items = {
+            VersionGroup.RUBY_SAPPHIRE: ['pokeblock'],
+            VersionGroup.EMERALD: [
+                'pokeblock',
+                'contest-pass',
+                'oaks-parcel',
+                'poke-flute',
+                'secret-key',
+                'bike-voucher',
+                'gold-teeth',
+                'old-amber',
+                'card-key',
+                'lift-key',
+                'helix-fossil',
+                'dome-fossil',
+                'silph-scope',
+                'bicycle',
+                'town-map',
+                'vs-seeker',
+                'fame-checker',
+                'tm-case',
+                'berry-pouch',
+                'teachy-tv',
+                'tri-pass',
+                'rainbow-pass',
+                'tea',
+                'powder-jar',
+                'ruby',
+                'sapphire',
+            ],
+            VersionGroup.FIRERED_LEAFGREEN: [
+                'pokeblock',
+                'shoal-salt',
+                'shoal-shell',
+                'red-scarf',
+                'blue-scarf',
+                'pink-scarf',
+                'green-scarf',
+                'yellow-scarf',
+                'mach-bike',
+                'contest-pass',
+                'wailmer-pail',
+                'devon-goods',
+                'soot-sack',
+                'basement-key',
+                'acro-bike',
+                'pokeblock-case',
+                'letter',
+                'eon-ticket',
+                'red-orb',
+                'blue-orb',
+                'scanner',
+                'go-goggles',
+                'meteorite',
+                'rm-1-key',
+                'rm-2-key',
+                'rm-4-key',
+                'rm-6-key',
+                'storage-key',
+                'root-fossil',
+                'claw-fossil',
+                'devon-scope',
+                'magma-emblem',
+                'old-sea-map',
+            ],
+        }
+        data_offset = {
+            Version.RUBY: 0x3C5580,
+            Version.SAPPHIRE: 0x3C55DC,
+            Version.EMERALD: 0x5839A0,
+            Version.FIRERED: 0x3DB028,
+            Version.LEAFGREEN: 0x3DAE64,
+        }
+        data_offset = data_offset[version]
+        data_length = 38
+        data_length_aligned = 44
+        if version_group == VersionGroup.FIRERED_LEAFGREEN:
+            pocket_map = {
+                0x01: 'misc',
+                0x02: 'key',
+                0x03: 'pokeballs',
+                0x04: 'machines',
+                0x05: 'berries',
+            }
+        else:
+            pocket_map = {
+                0x01: 'misc',
+                0x02: 'pokeballs',
+                0x03: 'machines',
+                0x04: 'berries',
+                0x05: 'key',
+            }
+
+        class ItemData:
+            def __init__(self, data: bytes):
+                data = struct.unpack('<14sHHBB4sB?BB4sB4sB', data)
+                self.name = data[0].decode('pokemon_gen3').strip()
+                self.itemId = data[1]
+                self.price = data[2]
+                self.holdEffect = data[3]
+                self.holdEffectParam = data[4]
+                self.descriptionPointer = data[5]
+                self.importance = data[6]
+                self.exitsBagOnUse = data[7]
+                self.pocket = pocket_map[data[8]]
+                self.type = data[9]
+                self.battleUsage = data[11]
+                self.secondaryId = data[13]
+
+        for item_id in range(0, num_items):
+            rom.seek(data_offset + (item_id * data_length_aligned))
+            data = rom.read(data_length)
+            item_stats = ItemData(data)
+            if item_stats.itemId == 0:
+                # Dummy item
+                continue
+            slug = slugify(item_stats.name)
+            if slug in slug_overrides:
+                slug = slug_overrides[slug]
+            if slug in skip_items[version_group]:
+                continue
+            item_slugs[item_id] = slug
+            out[slug] = {
+                'name': item_stats.name,
+                'category': None,
+                'pocket': item_stats.pocket,
+                'flags': [],
+                'icon': '{slug}.png'.format(slug=slug)
+            }
+            if item_stats.price > 0:
+                out[slug].update({
+                    'buy': item_stats.price,
+                    'sell': item_stats.price // 2,
+                })
+            rom.seek(gba.address_from_pointer(item_stats.descriptionPointer))
+            description = bytearray()
+            while rom.peek(1)[0] != 0xFF:
+                description.append(rom.read(1)[0])
+            description = description.decode('pokemon_gen3')
+            out[slug]['flavor_text'] = description
+
+    def _pullup_data():
+        pullup_keys = [
+            'category',
+            'flags',
+            'short_description',
+            'description',
+        ]
+        print('Using existing data')
+        for item_slug in progressbar.progressbar(item_slugs.values()):
+            if item_slug in item_name_changes:
+                yaml_path = os.path.join(args.out_items, '{item}.yaml'.format(item=item_name_changes[item_slug]))
+            else:
+                yaml_path = os.path.join(args.out_items, '{item}.yaml'.format(item=item_slug))
+            with open(yaml_path, 'r') as item_yaml:
+                old_item_data = yaml.load(item_yaml.read())
+                if version_group.value not in old_item_data:
+                    # If the name has changed, try the original name, as it may have been moved already.
+                    if item_slug in item_name_changes:
+                        yaml_path = os.path.join(args.out_items, '{item}.yaml'.format(item=item_slug))
+                        with open(yaml_path, 'r') as item_yaml:
+                            old_item_data = yaml.load(item_yaml.read())
+                    else:
+                        raise Exception(
+                            'Item {item} has no data for version group {version_group}.'.format(
+                                item=item_slug,
+                                version_group=version_group.value))
+                for key in pullup_keys:
+                    if key in old_item_data[version_group.value]:
+                        out[item_slug][key] = old_item_data[version_group.value][key]
+
+    _get_item_data()
+    _pullup_data()
+
+    return out, item_slugs
+
+
+def update_machines(rom: BufferedReader, version: Version, items: dict, move_slugs: dict):
+    machine_count = {
+        'TM': 50,
+        'HM': 8,
+    }
+    machine_table_offset = {
+        Version.RUBY: 0x37651C,
+        Version.SAPPHIRE: 0x3764AC,
+        Version.EMERALD: 0x615B94,
+        Version.FIRERED: 0x45A5A4,
+        Version.LEAFGREEN: 0x459FC4,
+    }
+    machine_table_offset = machine_table_offset[version]
+
+    print('Dumping TM/HM data')
+
+    def _update_machine_item(type: str, number: int, move_id: int):
+        item_slug = '{type}{number:02}'.format(type=type.lower(), number=number)
+        move_slug = move_slugs[move_id]
+        items[item_slug]['machine'] = {
+            'type': type.upper(),
+            'number': number,
+            'move': move_slug,
+        }
+
+    rom.seek(machine_table_offset)
+    for machine_type, num_machines in machine_count.items():
+        for machine_number in range(1, num_machines + 1):
+            move_id = int.from_bytes(rom.read(2), byteorder='little')
+            _update_machine_item(machine_type, machine_number, move_id)
+
+    return items
+
+
+def update_berries(rom: BufferedReader, version_group, version: Version, items: dict):
+    num_berries = 42
+    data_offset = {
+        Version.RUBY: 0x3CD2E8,
+        Version.SAPPHIRE: 0x3CD344,
+        Version.EMERALD: 0x58A670,
+        Version.FIRERED: 0x3DF7E8,
+        Version.LEAFGREEN: 0x3DF624,
+    }
+    data_offset = data_offset[version]
+    data_length = 27
+    data_length_aligned = 28
+
+    firmness_map = {
+        0x01: 'very-soft',
+        0x02: 'soft',
+        0x03: 'hard',
+        0x04: 'very-hard',
+        0x05: 'super-hard',
+    }
+
+    print('Dumping Berry data')
+
+    class BerryData:
+        def __init__(self, data: bytes):
+            data = struct.unpack('<7sBHBB4s4sBBBBBBB', data)
+            self.name = data[0].decode('pokemon_gen3')
+            self.firmness = firmness_map[data[1]]
+            self.size = data[2]
+            self.harvestMax = data[3]
+            self.harvestMin = data[4]
+            self.descriptionPointers = [data[5], data[6]]
+            self.growthTime = data[7]
+            self.flavors = {
+                'spicy': data[8],
+                'dry': data[9],
+                'sweet': data[10],
+                'bitter': data[11],
+                'sour': data[12],
+            }
+            self.smoothness = data[13]
+
+    for berry_number in range(1, num_berries + 1):
+        rom.seek(data_offset + ((berry_number - 1) * data_length_aligned))
+        data = rom.read(data_length)
+        berry = BerryData(data)
+        slug = slugify(berry.name)
+        item_slug = '{slug}-berry'.format(slug=slug)
+        if berry.harvestMin == berry.harvestMax:
+            harvest = str(berry.harvestMin)
+        else:
+            harvest = '{min}-{max}'.format(min=berry.harvestMin, max=berry.harvestMax)
+        items[item_slug]['berry'] = {
+            'number': berry_number,
+            'firmness': berry.firmness,
+            'size': berry.size,
+            'growth_time': berry.growthTime,
+            'smoothness': berry.smoothness,
+            'flavors': berry.flavors,
+            'harvest': harvest,
+        }
+        if version_group != VersionGroup.FIRERED_LEAFGREEN:
+            description = []
+            for desc_pointer in berry.descriptionPointers:
+                line = bytearray()
+                rom.seek(gba.address_from_pointer(desc_pointer))
+                while rom.peek(1)[0] != 0xFF:
+                    line.append(rom.read(1)[0])
+                line = line.decode('pokemon_gen3')
+                description.append(line)
+            items[item_slug]['berry']['flavor_text'] = '\n'.join(description)
+
+    return items
+
+
+def write_items(out):
+    print('Writing Items')
+    used_version_groups = set()
+    for item_slug, item_data in progressbar.progressbar(out.items()):
+        yaml_path = os.path.join(args.out_items, '{slug}.yaml'.format(slug=item_slug))
+        try:
+            with open(yaml_path, 'r') as item_yaml:
+                data = yaml.load(item_yaml.read())
+        except IOError:
+            data = {}
+        data.update(item_data)
+        used_version_groups.update(item_data.keys())
+        with open(yaml_path, 'w') as item_yaml:
+            yaml.dump(data, item_yaml)
+
+    # Remove this version group's data from the new name file
+    for old_name, new_name in item_name_changes.items():
+        yaml_path = os.path.join(args.out_items, '{slug}.yaml'.format(slug=new_name))
+        with open(yaml_path, 'r') as item_yaml:
+            data = yaml.load(item_yaml.read())
+        changed = False
+        for check_version_group in used_version_groups:
+            try:
+                del data[check_version_group]
+                changed = True
+            except KeyError:
+                # No need to re-write this file
+                continue
+        if changed:
+            with open(yaml_path, 'w') as item_yaml:
+                yaml.dump(data, item_yaml)
+
+
 out_moves = {}
+out_items = {}
 dumped_versions = []
 dump_rom: BufferedReader
 for dump_rom in args.rom:
@@ -322,6 +675,10 @@ for dump_rom in args.rom:
 
     vg_moves, vg_move_slugs = get_moves(dump_rom, dump_version_group, dump_version)
     out_moves = group_by_version_group(dump_version_group.value, vg_moves, out_moves)
+    vg_items, vg_item_slugs = get_items(dump_rom, dump_version_group, dump_version)
+    vg_items = update_machines(dump_rom, dump_version, vg_items, vg_move_slugs)
+    vg_items = update_berries(dump_rom, dump_version_group, dump_version, vg_items)
+    out_items = group_by_version_group(dump_version_group.value, vg_items, out_items)
 
     dumped_versions.append(dump_version.value)
 
@@ -336,3 +693,5 @@ if len(dumped_versions) < len(args.version):
 else:
     if args.write_moves:
         write_moves(out_moves)
+    if args.write_items:
+        write_items(out_items)

@@ -6,7 +6,6 @@ use App\Entity\Embeddable\Range;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use PhpUnitsOfMeasure\PhysicalQuantity\Length;
 use PhpUnitsOfMeasure\PhysicalQuantity\Time;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,8 +15,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity(repositoryClass="App\Repository\BerryRepository")
  */
-class Berry extends AbstractDexEntity
+class Berry extends AbstractDexEntity implements EntityHasFlavorTextInterface
 {
+    use EntityHasFlavorTextTrait;
 
     /**
      * @var ItemInVersionGroup
@@ -25,6 +25,15 @@ class Berry extends AbstractDexEntity
      * @ORM\OneToOne(targetEntity="App\Entity\ItemInVersionGroup", mappedBy="berry")
      */
     protected $item;
+
+    /**
+     * Game's berry number
+     *
+     * @var int|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $number;
 
     /**
      * @var BerryFirmness
@@ -160,6 +169,25 @@ class Berry extends AbstractDexEntity
     {
         $this->item = $item;
         $item->setBerry($this);
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param int|null $number
+     * @return Berry
+     */
+    public function setNumber(?int $number): Berry
+    {
+        $this->number = $number;
 
         return $this;
     }

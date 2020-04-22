@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'LIGHT BALL'
+  name: &gold-silver.name 'LIGHT BALL'
   pocket: &gold-silver.pocket misc
-  buy: 100
-  sell: 50
+  buy: &gold-silver.buy 100
+  sell: &gold-silver.sell 50
   flavor_text: |
     An odd, electrical
     orb. (HOLD)
@@ -15,26 +15,28 @@ gold-silver: &gold-silver
     :   Doubles the holder's [Special Attack]{mechanic:special-attack}.
 crystal: *gold-silver
 ruby-sapphire:
-  name: &ruby-sapphire.name 'Light Ball'
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
+  icon: &ruby-sapphire.icon light-ball.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: &ruby-sapphire.flavor_text |
     A hold item that
     raises the SP. ATK
     of PIKACHU.
-  icon: &ruby-sapphire.icon light-ball.png
-emerald: &emerald
-  name: *ruby-sapphire.name
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+emerald:
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
   flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
   short_description: &emerald.short_description 'Doubles [Pikachu''s]{pokemon:pikachu} [Special Attack]{mechanic:special-attack}.  Also affects offspring []{pokemon:pichu}'
   description: &emerald.description |
     Held by []{pokemon:pikachu}
@@ -42,30 +44,38 @@ emerald: &emerald
     
     If held by a []{pokemon:pikachu} or []{pokemon:raichu} who produce an egg, that []{pokemon:pichu} will know
     the move []{move:volt-tackle}.
-  flavor_text: *ruby-sapphire.flavor_text
-  icon: *ruby-sapphire.icon
-colosseum: *emerald
-xd: *emerald
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: &colosseum.name 'Light Ball'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &colosseum.buy 1000
+  sell: &colosseum.sell 500
   flags: *gold-silver.flags
   short_description: *emerald.short_description
   description: *emerald.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     An orb to be held by a PIKACHU
     that raises the SP. ATK stat.
-    Touching it may cause a shock.
-  icon: *ruby-sapphire.icon
+    Touching  it may cause a shock.
+  short_description: *emerald.short_description
+  description: *emerald.description
 diamond-pearl:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags
@@ -82,11 +92,11 @@ diamond-pearl:
     Sp. Atk stat.
   icon: *ruby-sapphire.icon
 platinum: &platinum
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags
@@ -99,11 +109,11 @@ platinum: &platinum
   icon: *ruby-sapphire.icon
 heartgold-soulsilver: *platinum
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags
@@ -116,11 +126,11 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags
@@ -133,11 +143,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: paralyze
   fling_power: 30
   flags: *gold-silver.flags

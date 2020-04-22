@@ -21,24 +21,50 @@ ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  machine:
-    type: HM
-    number: 4
-    move: strength
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon hm04.png
+  flavor_text: |
+    Builds enormous
+    power, then slams
+    the foe.
   short_description: *red-blue.short_description
-  description: |
+  description: &ruby-sapphire.description |
     Teaches []{move:strength} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "hm04"})}}
-  icon: hm-normal.png
+  machine: &ruby-sapphire.machine
+    type: HM
+    number: 4
+    move: strength
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
-black-white: *ruby-sapphire
-black-2-white-2: *ruby-sapphire
-x-y: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  machine: *ruby-sapphire.machine
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  icon: hm-normal.png
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  flavor_text: |
+    The foe is slugged
+    at maximum power.
+    Can also be used
+    to move boulders.
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: *colosseum
+platinum: *colosseum
+heartgold-soulsilver: *colosseum
+black-white: *colosseum
+black-2-white-2: *colosseum
+x-y: *colosseum
+omega-ruby-alpha-sapphire: *colosseum

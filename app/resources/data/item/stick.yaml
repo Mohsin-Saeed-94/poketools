@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: STICK
+  name: &gold-silver.name STICK
   pocket: &gold-silver.pocket misc
-  buy: 200
-  sell: 100
+  buy: &gold-silver.buy 200
+  sell: &gold-silver.sell 100
   flavor_text: |
     An ordinary stick.
     Sell low.
@@ -10,58 +10,68 @@ gold-silver: &gold-silver
   flags: &gold-silver.flags
     - holdable
   short_description: &gold-silver.short_description 'Raises [Farfetch''d''s]{pokemon:farfetchd} critical hit ratio by two stages.'
-  description: &gold-silver.description 'Held by []{pokemon:farfetchd}: Raises the holder''s critical hit ratio  by two stages.'
+  description: &gold-silver.description 'Held by []{pokemon:farfetchd}: Raises the holder''s critical hit ratio   by two stages.'
 crystal: *gold-silver
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Stick
+ruby-sapphire:
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon stick.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A stick of leek.
     It can be sold
     cheaply.
-  icon: &ruby-sapphire.icon stick.png
-emerald:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
-  pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+emerald:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A hold item that
-    raises FARFETCH’D’s
+    raises FARFETCH'D's
     critical-hit ratio.
-  icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+colosseum: &colosseum
+  name: &colosseum.name Stick
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &colosseum.buy 1000
+  sell: &colosseum.sell 500
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
-  flavor_text: |
-    A stick of leek to be held by a
-    FARFETCH’D. It raises FARFETCH’D’s
-    critical-hit ratio.
+  flavor_text: *ruby-sapphire.flavor_text
   icon: *ruby-sapphire.icon
-diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    A stick of leek to be held by a
+    FARFETCH'D. It raises FARFETCH'D's
+     critical-hit ratio.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+diamond-pearl: &diamond-pearl
+  name: *colosseum.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 60
   flags: *gold-silver.flags
@@ -75,11 +85,11 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 60
   flags: *gold-silver.flags
@@ -92,11 +102,11 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 60
   flags: *gold-silver.flags
@@ -109,11 +119,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 60
   flags: *gold-silver.flags

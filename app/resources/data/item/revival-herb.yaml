@@ -1,6 +1,6 @@
 gold-silver: &gold-silver
-  name: 'REVIVAL HERB'
-  pocket: misc
+  name: &gold-silver.name 'REVIVAL HERB'
+  pocket: &gold-silver.pocket misc
   buy: &gold-silver.buy 2800
   sell: &gold-silver.sell 1400
   flavor_text: |
@@ -19,40 +19,50 @@ gold-silver: &gold-silver
     :   Revives a [fainted]{mechanic:faint} Pokémon and restores its [HP]{mechanic:hp} to full.  Decreases [happiness]{mechanic:happiness} by 10/10/15.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Revival Herb'
+  name: *gold-silver.name
   category: *gold-silver.category
-  pocket: &ruby-sapphire.pocket medicine
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: &ruby-sapphire.icon revival-herb.png
   buy: *gold-silver.buy
   sell: *gold-silver.sell
-  flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     A very bitter herb
     that revives a
     fainted POKéMON.
-  icon: &ruby-sapphire.icon revival-herb.png
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: &colosseum.name 'Revival Herb'
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
+  pocket: &colosseum.pocket medicine
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A very bitter medicinal herb.
     It revives a fainted POKéMON,
-    restoring HP fully.
-  icon: *ruby-sapphire.icon
+    restoring  HP fully.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
+  pocket: *colosseum.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   fling_effect: damage
@@ -70,9 +80,9 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
+  pocket: *colosseum.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   fling_effect: damage
@@ -87,9 +97,9 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
+  pocket: *colosseum.pocket
   buy: *gold-silver.buy
   sell: *gold-silver.sell
   fling_effect: damage

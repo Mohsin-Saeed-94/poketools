@@ -13,8 +13,8 @@ yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
   pocket: &gold-silver.pocket machines
-  buy: 2000
-  sell: 1000
+  buy: &gold-silver.buy 2000
+  sell: &gold-silver.sell 1000
   short_description: *red-blue.short_description
   description: *red-blue.description
   category: *red-blue.category
@@ -23,35 +23,65 @@ ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 30000
-  sell: &ruby-sapphire.sell 15000
-  machine:
-    type: &ruby-sapphire.machine.type TM
-    number: &ruby-sapphire.machine.number 28
-    move: dig
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm28.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    Digs underground
+    the 1st turn, then
+    strikes next turn.
   short_description: *red-blue.short_description
-  description: |
+  description: &ruby-sapphire.description |
     Teaches []{move:dig} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm28"})}}
-  icon: tm-ground.png
+  machine: &ruby-sapphire.machine
+    type: &ruby-sapphire.machine.type TM
+    number: &ruby-sapphire.machine.number 28
+    move: dig
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
-black-white: *ruby-sapphire
-black-2-white-2: *ruby-sapphire
-x-y: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  buy: &colosseum.buy 30000
+  sell: &colosseum.sell 15000
+  machine: *ruby-sapphire.machine
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  icon: tm-ground.png
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    An attack that hits
+    on the 2nd turn.
+    Can also be used
+    to exit dungeons.
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: *colosseum
+platinum: *colosseum
+heartgold-soulsilver: *colosseum
+black-white: *colosseum
+black-2-white-2: *colosseum
+x-y: *colosseum
+omega-ruby-alpha-sapphire: *colosseum
 sun-moon: &sun-moon
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   machine:
     type: *ruby-sapphire.machine.type
     number: *ruby-sapphire.machine.number

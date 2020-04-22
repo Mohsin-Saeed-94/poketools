@@ -89,6 +89,12 @@ Berry data; omit if this item is not a berry.
 
 :type: mapping
 
+### number
+Berry number, used for flavor.
+
+:type: integer
+:minimum: 1
+
 ### firmness
 [Berry Firmness](berry_firmness.md) identifier.
 {{ include:types/identifier }}
@@ -144,6 +150,11 @@ The number of berries that can grow on one tree.
 
 {{ include:types/range }}
 :minimum: 1
+
+### flavor_text
+The game displays this on the "tag".
+
+{{ include:types/flavor_text }}
 
 ## short_description
 {{ include:types/short_description }}

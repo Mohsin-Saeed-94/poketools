@@ -19,32 +19,76 @@ gold-silver: &gold-silver
   description: *red-blue.description
   category: *red-blue.category
 crystal: *gold-silver
-ruby-sapphire: &ruby-sapphire
+ruby-sapphire:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm14.png
+  buy: &ruby-sapphire.buy 5500
+  sell: &ruby-sapphire.sell 2750
+  flavor_text: |
+    A vicious snow-and-
+    wind attack that
+    may freeze the foe.
+  short_description: *red-blue.short_description
+  description: &ruby-sapphire.description |
+    Teaches []{move:blizzard} to a compatible Pokémon.
+    
+    {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm14"})}}
+  machine: &ruby-sapphire.machine
+    type: TM
+    number: 14
+    move: blizzard
+emerald:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    A brutal snow-and-
+    wind attack that
+    may freeze the foe.
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+colosseum: &colosseum
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
   buy: 30000
   sell: 15000
-  machine:
-    type: TM
-    number: 14
-    move: blizzard
+  machine: *ruby-sapphire.machine
   short_description: *red-blue.short_description
-  description: |
-    Teaches []{move:blizzard} to a compatible Pokémon.
-    
-    {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm14"})}}
+  description: *ruby-sapphire.description
   icon: tm-ice.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
-black-white: *ruby-sapphire
-black-2-white-2: *ruby-sapphire
-x-y: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
-sun-moon: *ruby-sapphire
-ultra-sun-ultra-moon: *ruby-sapphire
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    The foe is blasted
+    with a blizzard.
+    It may freeze the
+    foe solid.
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: *colosseum
+platinum: *colosseum
+heartgold-soulsilver: *colosseum
+black-white: *colosseum
+black-2-white-2: *colosseum
+x-y: *colosseum
+omega-ruby-alpha-sapphire: *colosseum
+sun-moon: *colosseum
+ultra-sun-ultra-moon: *colosseum

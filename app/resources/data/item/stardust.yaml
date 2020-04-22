@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: STARDUST
+  name: &gold-silver.name STARDUST
   pocket: &gold-silver.pocket misc
-  buy: 2000
-  sell: 1000
+  buy: &gold-silver.buy 2000
+  sell: &gold-silver.sell 1000
   flavor_text: |
     Pretty, red sand.
     Sell high.
@@ -11,40 +11,52 @@ gold-silver: &gold-silver
   description: &gold-silver.description 'No effect.  Sell to shops.'
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Stardust
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 3000
-  sell: &ruby-sapphire.sell 1500
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon stardust.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     Beautiful red sand.
     Can be sold at a
     high price.
-  icon: &ruby-sapphire.icon stardust.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
-  pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name Stardust
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  buy: &colosseum.buy 3000
+  sell: &colosseum.sell 1500
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A pretty red sand with a loose,
     silky feel.
-    It can be sold at a high price.
-  icon: *ruby-sapphire.icon
+    It can be sold at a  high price.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   short_description: *gold-silver.short_description
@@ -57,11 +69,11 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   short_description: 'No effect.  Sell to shops for $1000 or to the Ore Maniac for $2000.'
@@ -70,11 +82,11 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   short_description: *gold-silver.short_description
@@ -86,11 +98,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   short_description: *gold-silver.short_description

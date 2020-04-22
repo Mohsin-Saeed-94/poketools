@@ -23,28 +23,58 @@ ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: 30000
-  sell: 15000
-  machine:
-    type: TM
-    number: 38
-    move: fire-blast
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm38.png
+  buy: &ruby-sapphire.buy 5500
+  sell: &ruby-sapphire.sell 2750
+  flavor_text: |
+    A powerful fire
+    attack that may
+    burn the foe.
   short_description: *red-blue.short_description
-  description: |
+  description: &ruby-sapphire.description |
     Teaches []{move:fire-blast} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm38"})}}
-  icon: tm-fire.png
+  machine: &ruby-sapphire.machine
+    type: TM
+    number: 38
+    move: fire-blast
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
-black-white: *ruby-sapphire
-black-2-white-2: *ruby-sapphire
-x-y: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
-sun-moon: *ruby-sapphire
-ultra-sun-ultra-moon: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  buy: 30000
+  sell: 15000
+  machine: *ruby-sapphire.machine
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  icon: tm-fire.png
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    The foe is hit with
+    an intense flame.
+    It may leave the
+    target with  a burn.
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: *colosseum
+platinum: *colosseum
+heartgold-soulsilver: *colosseum
+black-white: *colosseum
+black-2-white-2: *colosseum
+x-y: *colosseum
+omega-ruby-alpha-sapphire: *colosseum
+sun-moon: *colosseum
+ultra-sun-ultra-moon: *colosseum

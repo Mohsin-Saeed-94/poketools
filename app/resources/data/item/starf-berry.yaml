@@ -1,16 +1,47 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Starf Berry'
+  name: &ruby-sapphire.name 'STARF BERRY'
   category: &ruby-sapphire.category in-a-pinch
   pocket: &ruby-sapphire.pocket berries
-  buy: &ruby-sapphire.buy 20
-  sell: &ruby-sapphire.sell 10
   flags: &ruby-sapphire.flags
     - holdable-active
+  icon: &ruby-sapphire.icon starf-berry.png
+  buy: &ruby-sapphire.buy 20
+  sell: &ruby-sapphire.sell 10
+  flavor_text: &ruby-sapphire.flavor_text |
+    A hold item that
+    sharply boosts a
+    stat in a pinch.
   short_description: &ruby-sapphire.short_description 'Held: Consumed at 1/4 max [HP]{mechanic:hp} to boost a random stat by two stages.'
   description: &ruby-sapphire.description |
     Held in battle
     :   When the holder has 1/4 its max [HP]{mechanic:hp} remaining or less, it consumes this item to [raise]{mechanic:raise} a random stat by two stages.
-  berry: &ruby-sapphire.berry
+  berry:
+    number: 42
+    firmness: super-hard
+    size: 153
+    growth_time: 24
+    smoothness: 30
+    flavors:
+      spicy: 10
+      dry: 10
+      sweet: 10
+      bitter: 10
+      sour: 10
+    harvest: 1-2
+    flavor_text: |
+      So strong, it was abandoned at the
+      world's edge. Considered a mirage.
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Starf Berry'
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: &colosseum.berry
     firmness: super-hard
     natural_gift_type: psychic
     natural_gift_power: 80
@@ -25,30 +56,37 @@ ruby-sapphire: &ruby-sapphire
       bitter: 10
       sour: 30
     harvest: 1-5
-  flavor_text: |
-    A hold item that
-    sharply boosts a
-    stat in a pinch.
-  icon: &ruby-sapphire.icon starf-berry.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
   flavor_text: |
     When held by a POKéMON, it sharply
     raises one stat in a pinch.
-  icon: *ruby-sapphire.icon
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry:
+    number: 42
+    firmness: super-hard
+    size: 153
+    growth_time: 24
+    smoothness: 30
+    flavors:
+      spicy: 10
+      dry: 10
+      sweet: 10
+      bitter: 10
+      sour: 10
+    harvest: 1-2
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -58,7 +96,7 @@ diamond-pearl: &diamond-pearl
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     A Poffin ingredient.
     If held by a Pokémon, it sharply raises
@@ -66,7 +104,7 @@ diamond-pearl: &diamond-pearl
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: &heartgold-soulsilver
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -76,7 +114,7 @@ heartgold-soulsilver: &heartgold-soulsilver
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     If held by a Pokémon, it sharply raises
     one of its stats in a pinch.
@@ -84,7 +122,7 @@ heartgold-soulsilver: &heartgold-soulsilver
 black-white: *heartgold-soulsilver
 black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -94,7 +132,7 @@ x-y: &x-y
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *colosseum.berry
   flavor_text: |
     A Berry to be consumed by Pokémon.
     If a Pokémon holds one, one of its stats
@@ -102,7 +140,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy

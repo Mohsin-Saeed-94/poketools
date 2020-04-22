@@ -1,47 +1,57 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Lava Cookie'
+  name: &ruby-sapphire.name 'LAVA COOKIE'
   category: &ruby-sapphire.category status-cures
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 350
-  sell: &ruby-sapphire.sell 175
+  pocket: &ruby-sapphire.pocket misc
   flags: &ruby-sapphire.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
+  icon: &ruby-sapphire.icon lava-cookie.png
+  buy: &ruby-sapphire.buy 200
+  sell: &ruby-sapphire.sell 100
+  flavor_text: &ruby-sapphire.flavor_text |
+    A local specialty
+    that heals all
+    status problems.
   short_description: &ruby-sapphire.short_description 'Cures any status ailment and confusion.'
   description: &ruby-sapphire.description |
     Used on a party Pokémon
     :   Cures any [status ailment]{mechanic:status-ailment} and [confusion]{mechanic:confusion}.
-  flavor_text: |
-    A local specialty
-    that heals all
-    status problems.
-  icon: &ruby-sapphire.icon lava-cookie.png
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Lava Cookie'
+  category: *ruby-sapphire.category
+  pocket: &colosseum.pocket medicine
+  buy: &colosseum.buy 350
+  sell: &colosseum.sell 175
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
+  flavor_text: |
+    LAVARIDGE TOWN's local specialty.
+    It heals all the status problems  of
+    one POKéMON.
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  flavor_text: |
-    LAVARIDGE TOWN’s local specialty.
-    It heals all the status problems of
-    one POKéMON.
-  icon: *ruby-sapphire.icon
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: *colosseum.pocket
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *ruby-sapphire.flags
@@ -57,11 +67,11 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: *colosseum.pocket
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *ruby-sapphire.flags
@@ -74,11 +84,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: *colosseum.pocket
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   flags: *ruby-sapphire.flags

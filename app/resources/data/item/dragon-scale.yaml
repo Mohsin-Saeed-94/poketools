@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'DRAGON SCALE'
+  name: &gold-silver.name 'DRAGON SCALE'
   pocket: &gold-silver.pocket misc
-  buy: 2100
-  sell: 1050
+  buy: &gold-silver.buy 2100
+  sell: &gold-silver.sell 1050
   flavor_text: |
     A rare dragon-type
     item.
@@ -18,44 +18,56 @@ gold-silver: &gold-silver
     {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "dragon-scale"})}}
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Dragon Scale'
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 2000
-  sell: &ruby-sapphire.sell 1000
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon dragon-scale.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
+    A strange scale
+    held by DRAGON-
+    type POKéMON.
   short_description: &ruby-sapphire.short_description 'When some Pokémon are traded holding this item, they will evolve.'
   description: &ruby-sapphire.description |
     When some Pokémon are traded holding this item, they will evolve.  Below is a list
     of compatible Pokémon.
     
     {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "dragon-scale"})}}
-  flavor_text: |
-    A strange scale
-    held by DRAGON-
-    type POKéMON.
-  icon: &ruby-sapphire.icon dragon-scale.png
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: &colosseum.name 'Dragon Scale'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &colosseum.buy 2000
+  sell: &colosseum.sell 1000
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+  icon: *ruby-sapphire.icon
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A thick and tough scale.
     A DRAGON-type POKéMON may be
     holding it.
-  icon: *ruby-sapphire.icon
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   short_description: *ruby-sapphire.short_description
@@ -70,11 +82,11 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   short_description: *ruby-sapphire.short_description
@@ -86,11 +98,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *colosseum.buy
+  sell: *colosseum.sell
   fling_effect: damage
   fling_power: 30
   short_description: *ruby-sapphire.short_description
