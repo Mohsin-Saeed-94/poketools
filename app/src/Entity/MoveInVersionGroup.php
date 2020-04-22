@@ -141,9 +141,9 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     /**
      * The move’s Contest effect, if applicable in this version group.
      *
-     * @var ContestEffect|null
+     * @var ContestEffectInVersionGroup|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ContestEffect", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="ContestEffectInVersionGroup", fetch="EAGER")
      */
     protected $contestEffect;
 
@@ -550,19 +550,19 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     }
 
     /**
-     * @return ContestEffect|null
+     * @return ContestEffectInVersionGroup|null
      */
-    public function getContestEffect(): ?ContestEffect
+    public function getContestEffect(): ?ContestEffectInVersionGroup
     {
         return $this->contestEffect;
     }
 
     /**
-     * @param ContestEffect|null $contestEffect
+     * @param ContestEffectInVersionGroup|null $contestEffect
      *
      * @return self
      */
-    public function setContestEffect(?ContestEffect $contestEffect): self
+    public function setContestEffect(?ContestEffectInVersionGroup $contestEffect): self
     {
         $this->contestEffect = $contestEffect;
 

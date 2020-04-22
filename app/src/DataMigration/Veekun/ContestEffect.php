@@ -6,6 +6,8 @@ use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\AbstractDataMigration;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
+use DragoonBoots\A2B\Drivers\Destination\YamlDestinationDriver;
+use DragoonBoots\A2B\Drivers\DestinationDriverInterface;
 use DragoonBoots\A2B\Drivers\Source\DbalSourceDriver;
 use DragoonBoots\A2B\Drivers\SourceDriverInterface;
 
@@ -17,8 +19,8 @@ use DragoonBoots\A2B\Drivers\SourceDriverInterface;
  *     group="Veekun",
  *     source="veekun",
  *     sourceIds={@IdField(name="id")},
- *     destination="/%kernel.project_dir%/resources/data/contest_effect.csv",
- *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\CsvDestinationDriver",
+ *     destination="/%kernel.project_dir%/resources/data/contest_effect",
+ *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\YamlDestinationDriver",
  *     destinationIds={@IdField(name="id")}
  * )
  */
@@ -58,8 +60,30 @@ SQL
      */
     public function transform($sourceData, $destinationData)
     {
-        $destinationData = array_merge($sourceData, $destinationData);
+        $destinationData['id'] = $sourceData['id'];
+        unset($sourceData['id']);
+
+        $intFields = [
+            'appeal',
+            'jam',
+        ];
+        $sourceData = $this->convertToInts($sourceData, $intFields);
+
+        # Use the same info for all version groups with classic contests.
+        $contestVersionGroups = ['ruby-sapphire', 'emerald', 'omega-ruby-alpha-sapphire'];
+        foreach ($contestVersionGroups as $versionGroup) {
+            $destinationData[$versionGroup] = array_merge($sourceData, $destinationData[$versionGroup] ?? []);
+        }
 
         return $destinationData;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @param YamlDestinationDriver $destinationDriver
+     */
+    public function configureDestination(DestinationDriverInterface $destinationDriver)
+    {
+        $destinationDriver->setOption('refs', true);
     }
 }

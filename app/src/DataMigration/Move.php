@@ -100,10 +100,12 @@ class Move extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             );
         }
         if (isset($sourceData['contest_effect'])) {
-            $sourceData['contest_effect'] = $this->referenceStore->get(
+            /** @var \App\Entity\ContestEffect $contestEffect */
+            $contestEffect = $this->referenceStore->get(
                 ContestEffect::class,
                 ['id' => $sourceData['contest_effect']]
             );
+            $sourceData['contest_effect'] = $contestEffect->findChildByGrouping($sourceData['version_group']);
         }
         unset($sourceData['contest_use_before']);
         if (isset($sourceData['super_contest_effect'])) {
