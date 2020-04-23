@@ -1,4 +1,5 @@
 import argparse
+from dataclasses import dataclass
 from enum import Enum
 import io
 from io import BufferedReader
@@ -31,12 +32,14 @@ argparser.add_argument('--version', action='append', type=str, choices=[version.
 argparser.add_argument('--out-pokemon', type=str, required=True, help='Pokemon YAML file dir')
 argparser.add_argument('--out-pokemon_moves', type=str, required=True, help='Pokemon Move CSV file')
 argparser.add_argument('--out-moves', type=str, required=True, help='Move YAML file dir')
+argparser.add_argument('--out-contest_effects', type=str, required=True, help='Contest Effect YAML file dir')
 argparser.add_argument('--out-items', type=str, required=True, help='Item YAML file dir')
 argparser.add_argument('--out-shops', type=str, required=True, help='Shop Data CSV file')
 argparser.add_argument('--out-encounters', type=str, required=True, help='Encounter CSV file')
 argparser.add_argument('--write-pokemon', action='store_true', help='Write Pokemon data')
 argparser.add_argument('--write-pokemon_moves', action='store_true', help='Write Pokemon move data')
 argparser.add_argument('--write-moves', action='store_true', help='Write Move data')
+argparser.add_argument('--write-contest_effects', action='store_true', help='Write Contest Effect data')
 argparser.add_argument('--write-items', action='store_true', help='Write Item data')
 argparser.add_argument('--write-shops', action='store_true', help='Write Shop data')
 argparser.add_argument('--write-encounters', action='store_true', help='Write Shop data')
@@ -109,10 +112,11 @@ move_name_changes = {
 }
 
 
-# TODO: Contest types
 def get_moves(rom: BufferedReader, version_group: VersionGroup, version: Version):
     num_moves = 355
-    out = {}
+    num_contest_effects = 48
+    out_moves = {}
+    out_contest_effects = {}
     move_slugs = {}
 
     print('Dumping moves')
@@ -137,7 +141,7 @@ def get_moves(rom: BufferedReader, version_group: VersionGroup, version: Version
             name = name.decode('pokemon_gen3')
             slug = slugify(name)
             move_slugs[move_id] = slug
-            out[slug] = {
+            out_moves[slug] = {
                 'name': name,
             }
 
@@ -171,6 +175,7 @@ def get_moves(rom: BufferedReader, version_group: VersionGroup, version: Version
         }
         data_offset = data_offset[version]
 
+        @dataclass()
         class MoveStats:
             def __init__(self, data: bytes):
                 data = struct.unpack('<BBBBBBBbB', data)
@@ -190,7 +195,7 @@ def get_moves(rom: BufferedReader, version_group: VersionGroup, version: Version
             rom.seek(data_offset + (move_id * data_length_aligned))
             data = rom.read(data_length)
             move_stats = MoveStats(data)
-            out[move_slug].update({
+            out_moves[move_slug].update({
                 'power': move_stats.power,
                 'type': move_stats.type,
                 'accuracy': move_stats.accuracy,
@@ -200,13 +205,13 @@ def get_moves(rom: BufferedReader, version_group: VersionGroup, version: Version
                 'priority': move_stats.priority,
             })
             if 0 < move_stats.effectChance < 100:
-                out[move_slug]['effect_chance'] = move_stats.effectChance
-            if out[move_slug]['power'] == 0:
-                del out[move_slug]['power']
-            if out[move_slug]['accuracy'] == 0:
-                del out[move_slug]['accuracy']
+                out_moves[move_slug]['effect_chance'] = move_stats.effectChance
+            if out_moves[move_slug]['power'] == 0:
+                del out_moves[move_slug]['power']
+            if out_moves[move_slug]['accuracy'] == 0:
+                del out_moves[move_slug]['accuracy']
             if len(move_stats.flags) > 0:
-                out[move_slug]['flags'] = move_stats.flags
+                out_moves[move_slug]['flags'] = move_stats.flags
 
     def _pullup_data():
         pullup_keys = [
@@ -244,7 +249,135 @@ def get_moves(rom: BufferedReader, version_group: VersionGroup, version: Version
                                 version_group=version_group.value))
                 for key in pullup_keys:
                     if key in old_move_data[version_group.value]:
-                        out[move_slug][key] = old_move_data[version_group.value][key]
+                        out_moves[move_slug][key] = old_move_data[version_group.value][key]
+
+    def _get_contest_move_data():
+        contest_type_map = {
+            0x00: 'cool',
+            0x01: 'beauty',
+            0x02: 'cute',
+            0x03: 'smart',
+            0x04: 'tough',
+        }
+        data_offset = {
+            Version.RUBY: 0x3CF5B0,
+            Version.SAPPHIRE: 0x3CF60C,
+            Version.EMERALD: 0x58C2B4,
+        }
+        if version not in data_offset:
+            # Skip versions without contests
+            return
+        data_offset = data_offset[version]
+        data_length = 7
+        data_length_aligned = 8
+
+        @dataclass
+        class ContestMove:
+            def __init__(self, data: bytes):
+                data = struct.unpack('<BBB4B', data)
+                self.effectId = data[0] + 1
+                self.contestType = contest_type_map[data[1] & 0x07]
+                self.comboStarterId = data[2]
+                if self.comboStarterId == 0:
+                    self.comboStarterId = None
+                self.comboMoves = []
+                for combo_move in data[3:7]:
+                    if combo_move != 0:
+                        self.comboMoves.append(combo_move)
+
+        # First pass - contest base data
+        move_combo_starters = {}
+        move_combo_members = {}
+        contest_data = {}
+        for move_id, move_slug in move_slugs.items():
+            rom.seek(data_offset + (move_id * data_length_aligned))
+            data = rom.read(data_length)
+            contest_move = ContestMove(data)
+            contest_data[move_slug] = contest_move
+
+            out_moves[move_slug].update({
+                'contest_type': contest_move.contestType,
+                'contest_effect': contest_move.effectId,
+            })
+            if contest_move.comboStarterId:
+                move_combo_starters[contest_move.comboStarterId] = move_slug
+            for combo_move in contest_move.comboMoves:
+                if combo_move not in move_combo_members:
+                    move_combo_members[combo_move] = []
+                move_combo_members[combo_move].append(move_slug)
+
+        # Second pass - assemble the combos
+        for move_slug, contest_move in contest_data.items():
+            if contest_move.comboStarterId:
+                # This is the "before move"
+                if 'contest_use_before' not in out_moves[move_slug]:
+                    out_moves[move_slug]['contest_use_before'] = []
+                out_moves[move_slug]['contest_use_before'].extend(move_combo_members[contest_move.comboStarterId])
+            for combo_move in contest_move.comboMoves:
+                # This is an "after move"
+                if 'contest_use_after' not in out_moves[move_slug]:
+                    out_moves[move_slug]['contest_use_after'] = []
+                out_moves[move_slug]['contest_use_after'].append(move_combo_starters[combo_move])
+
+    def _get_contest_effect_data():
+        effect_type_map = {
+            0x00: 'constant-appeal',
+            0x01: 'prevent-startle',
+            0x02: 'startles-last-appealer',
+            0x03: 'startles-previous-appealers',
+            0x04: 'affects-other-appealers',
+            0x05: 'special',
+            0x06: 'change-order',
+        }
+        data_offset = {
+            Version.RUBY: 0x3D00C8,
+            Version.SAPPHIRE: 0x3D0124,
+            Version.EMERALD: 0x58CDCC,
+        }
+        if version not in data_offset:
+            # Skip versions without contests
+            return
+        data_offset = data_offset[version]
+        data_length = 3
+        data_length_aligned = 4
+
+        @dataclass()
+        class ContestEffect:
+            def __init__(self, data: bytes):
+                data = struct.unpack('<BBB', data)
+                self.effectType = effect_type_map[data[0]]
+                self.appeal = data[1] // 10
+                self.jam = data[2] // 10
+
+        for effect_id in range(1, num_contest_effects + 1):
+            rom.seek(data_offset + ((effect_id - 1) * data_length_aligned))
+            data = rom.read(data_length)
+            contest_effect = ContestEffect(data)
+            out_contest_effects[effect_id] = {
+                'category': contest_effect.effectType,
+                'appeal': contest_effect.appeal,
+                'jam': contest_effect.jam,
+            }
+
+    def _get_contest_flavor():
+        flavor_offset = {
+            Version.RUBY: 0x3CA508,
+            Version.SAPPHIRE: 0x3CA564,
+            Version.EMERALD: 0x27CB82,
+        }
+        if version not in flavor_offset:
+            # Skip versions without contests
+            return
+        data_offset = flavor_offset[version]
+
+        rom.seek(data_offset)
+        for effect_id in range(1, num_contest_effects + 1):
+            flavor_text = bytearray()
+            while rom.peek(1)[0] != 0xFF:
+                flavor_text.append(rom.read(1)[0])
+            rom.seek(1, io.SEEK_CUR)
+            flavor_text = flavor_text.decode('pokemon_gen3')
+            out_contest_effects[effect_id]['flavor_text'] = flavor_text
 
     def _get_flavor():
         flavor_offset = {
@@ -261,15 +394,18 @@ def get_moves(rom: BufferedReader, version_group: VersionGroup, version: Version
             while rom.peek(1)[0] != 0xFF:
                 flavor_text.append(rom.read(1)[0])
             flavor_text = flavor_text.decode('pokemon_gen3')
-            out[move_slug]['flavor_text'] = flavor_text
+            out_moves[move_slug]['flavor_text'] = flavor_text
             rom.seek(1, io.SEEK_CUR)
 
     _get_move_names()
     _get_move_data()
     _pullup_data()
+    _get_contest_move_data()
+    _get_contest_effect_data()
+    _get_contest_flavor()
     _get_flavor()
 
-    return out, move_slugs
+    return out_moves, out_contest_effects, move_slugs
 
 
 def write_moves(out):
@@ -303,6 +439,20 @@ def write_moves(out):
         if changed:
             with open(yaml_path, 'w') as move_yaml:
                 yaml.dump(data, move_yaml)
+
+
+def write_contest_effects(out):
+    print('Writing Contest Effects')
+    for effect_id, effect_data in progressbar.progressbar(out.items()):
+        yaml_path = os.path.join(args.out_contest_effects, '{slug}.yaml'.format(slug=effect_id))
+        try:
+            with open(yaml_path, 'r') as effect_yaml:
+                data = yaml.load(effect_yaml.read())
+        except IOError:
+            data = {}
+        data.update(effect_data)
+        with open(yaml_path, 'w') as effect_yaml:
+            yaml.dump(data, effect_yaml)
 
 
 item_name_changes = {
@@ -431,6 +581,7 @@ def get_items(rom: BufferedReader, version_group: VersionGroup, version: Version
                 0x05: 'key',
             }
 
+        @dataclass()
         class ItemData:
             def __init__(self, data: bytes):
                 data = struct.unpack('<14sHHBB4sB?BB4sB4sB', data)
@@ -572,6 +723,7 @@ def update_berries(rom: BufferedReader, version_group, version: Version, items: 
 
     print('Dumping Berry data')
 
+    @dataclass()
     class BerryData:
         def __init__(self, data: bytes):
             data = struct.unpack('<7sBHBB4s4sBBBBBBB', data)
@@ -658,6 +810,7 @@ def write_items(out):
 
 
 out_moves = {}
+out_contest_effects = {}
 out_items = {}
 dumped_versions = []
 dump_rom: BufferedReader
@@ -673,8 +826,9 @@ for dump_rom in args.rom:
     print('Using version group {version_group}'.format(version_group=dump_version_group.value))
     print('Using version {version}'.format(version=dump_version.value))
 
-    vg_moves, vg_move_slugs = get_moves(dump_rom, dump_version_group, dump_version)
+    vg_moves, vg_contest_effects, vg_move_slugs = get_moves(dump_rom, dump_version_group, dump_version)
     out_moves = group_by_version_group(dump_version_group.value, vg_moves, out_moves)
+    out_contest_effects = group_by_version_group(dump_version_group.value, vg_contest_effects, out_contest_effects)
     vg_items, vg_item_slugs = get_items(dump_rom, dump_version_group, dump_version)
     vg_items = update_machines(dump_rom, dump_version, vg_items, vg_move_slugs)
     vg_items = update_berries(dump_rom, dump_version_group, dump_version, vg_items)
@@ -693,5 +847,7 @@ if len(dumped_versions) < len(args.version):
 else:
     if args.write_moves:
         write_moves(out_moves)
+    if args.write_contest_effects:
+        write_contest_effects(out_contest_effects)
     if args.write_items:
         write_items(out_items)

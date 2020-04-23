@@ -16,6 +16,10 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   stat_changes: &ruby-sapphire.stat_changes
     special-defense: -2
+  contest_type: &ruby-sapphire.contest_type smart
+  contest_effect: 14
+  contest_use_before: &ruby-sapphire.contest_use_before
+    - metal-claw
   flavor_text: |
     Emits a horrible screech
     that sharply lowers SP. DEF.
@@ -72,7 +76,7 @@ diamond-pearl: &diamond-pearl
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
-  contest_type: &diamond-pearl.contest_type smart
+  contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 10
   flavor_text: &diamond-pearl.flavor_text |
     A horrible sound like
@@ -147,10 +151,9 @@ omega-ruby-alpha-sapphire:
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *diamond-pearl.contest_type
+  contest_type: *ruby-sapphire.contest_type
   contest_effect: 5
-  contest_use_before:
-    - metal-claw
+  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
   name: *colosseum.name

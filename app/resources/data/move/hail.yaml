@@ -11,6 +11,12 @@ ruby-sapphire: &ruby-sapphire
     - whole-field-effect
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 1
+  contest_type: &ruby-sapphire.contest_type beauty
+  contest_effect: 14
+  contest_use_before: &ruby-sapphire.contest_use_before
+    - blizzard
+    - powder-snow
+    - weather-ball
   flavor_text: |
     Summons a hailstorm that
     strikes every turn.
@@ -54,7 +60,7 @@ diamond-pearl: &diamond-pearl
   target: *colosseum.target
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
-  contest_type: &diamond-pearl.contest_type beauty
+  contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 13
   flavor_text: &diamond-pearl.flavor_text |
     The user summons a
@@ -103,12 +109,9 @@ omega-ruby-alpha-sapphire:
   target: *colosseum.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *diamond-pearl.contest_type
+  contest_type: *ruby-sapphire.contest_type
   contest_effect: 5
-  contest_use_before:
-    - blizzard
-    - powder-snow
-    - weather-ball
+  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
   name: *colosseum.name

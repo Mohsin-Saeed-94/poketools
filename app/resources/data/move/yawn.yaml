@@ -15,6 +15,11 @@ ruby-sapphire: &ruby-sapphire
     - ailment
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 2
+  contest_type: &ruby-sapphire.contest_type cute
+  contest_effect: 27
+  contest_use_before: &ruby-sapphire.contest_use_before
+    - rest
+    - slack-off
   flavor_text: |
     Lulls the foe into yawning,
     then sleeping next turn.
@@ -64,7 +69,7 @@ diamond-pearl: &diamond-pearl
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
-  contest_type: &diamond-pearl.contest_type cute
+  contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 19
   flavor_text: &diamond-pearl.flavor_text |
     The user lets loose a
@@ -119,11 +124,9 @@ omega-ruby-alpha-sapphire:
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *diamond-pearl.contest_type
+  contest_type: *ruby-sapphire.contest_type
   contest_effect: 18
-  contest_use_before:
-    - rest
-    - slack-off
+  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
   name: *colosseum.name

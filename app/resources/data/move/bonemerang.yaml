@@ -48,6 +48,12 @@ ruby-sapphire: &ruby-sapphire
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+  contest_type: &ruby-sapphire.contest_type tough
+  contest_effect: &ruby-sapphire.contest_effect 1
+  contest_use_before: &ruby-sapphire.contest_use_before
+    - bone-club
+    - bone-rush
+  contest_use_after: *ruby-sapphire.contest_use_before
   flavor_text: |
     Throws a bone boomerang
     that strikes twice.
@@ -99,7 +105,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: *colosseum.damage_class
   effect: *red-blue.effect
-  contest_type: &diamond-pearl.contest_type tough
+  contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 7
   flavor_text: &diamond-pearl.flavor_text |
     The user throws the
@@ -157,11 +163,9 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *colosseum.damage_class
   effect: *red-blue.effect
-  contest_type: *diamond-pearl.contest_type
-  contest_effect: 1
-  contest_use_before:
-    - bone-club
-    - bone-rush
+  contest_type: *ruby-sapphire.contest_type
+  contest_effect: *ruby-sapphire.contest_effect
+  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
   name: *colosseum.name

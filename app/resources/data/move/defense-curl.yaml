@@ -44,6 +44,11 @@ ruby-sapphire: &ruby-sapphire
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *red-blue.stat_changes
+  contest_type: &ruby-sapphire.contest_type cute
+  contest_effect: 5
+  contest_use_before: &ruby-sapphire.contest_use_before
+    - tackle
+    - rollout
   flavor_text: |
     Curls up to conceal weak
     spots and raise DEFENSE.
@@ -92,7 +97,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: &diamond-pearl.contest_type cute
+  contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 13
   super_contest_use_before:
     - rollout
@@ -147,11 +152,9 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *diamond-pearl.contest_type
+  contest_type: *ruby-sapphire.contest_type
   contest_effect: 16
-  contest_use_before:
-    - tackle
-    - rollout
+  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
   name: *colosseum.name

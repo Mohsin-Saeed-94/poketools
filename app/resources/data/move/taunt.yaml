@@ -12,6 +12,12 @@ ruby-sapphire: &ruby-sapphire
     - unique
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 1
+  contest_type: &ruby-sapphire.contest_type smart
+  contest_effect: 27
+  contest_use_before: &ruby-sapphire.contest_use_before
+    - counter
+    - detect
+    - mirror-coat
   flavor_text: |
     Taunts the foe into only
     using attack moves.
@@ -65,7 +71,7 @@ diamond-pearl: &diamond-pearl
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
-  contest_type: &diamond-pearl.contest_type smart
+  contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 16
   flavor_text: &diamond-pearl.flavor_text |
     The foe is taunted
@@ -120,12 +126,9 @@ omega-ruby-alpha-sapphire:
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  contest_type: *diamond-pearl.contest_type
+  contest_type: *ruby-sapphire.contest_type
   contest_effect: 18
-  contest_use_before:
-    - counter
-    - detect
-    - mirror-coat
+  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
   name: *colosseum.name

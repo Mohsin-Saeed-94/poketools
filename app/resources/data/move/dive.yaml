@@ -16,6 +16,13 @@ ruby-sapphire: &ruby-sapphire
     - damage
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 1
+  contest_type: &ruby-sapphire.contest_type beauty
+  contest_effect: 5
+  contest_use_before: &ruby-sapphire.contest_use_before
+    - surf
+  contest_use_after:
+    - rain-dance
+    - surf
   flavor_text: |
     Dives underwater the first
     turn and strikes next turn.
@@ -72,7 +79,7 @@ diamond-pearl: &diamond-pearl
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class physical
   effect: *colosseum.effect
-  contest_type: &diamond-pearl.contest_type beauty
+  contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 6
   flavor_text: &diamond-pearl.flavor_text |
     A two-turn attack.
@@ -146,10 +153,9 @@ omega-ruby-alpha-sapphire:
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *colosseum.effect
-  contest_type: *diamond-pearl.contest_type
+  contest_type: *ruby-sapphire.contest_type
   contest_effect: 16
-  contest_use_before:
-    - surf
+  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: |
     Diving on the first turn, the user floats up
     and attacks on the next turn.

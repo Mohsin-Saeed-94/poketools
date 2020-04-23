@@ -33,6 +33,16 @@ ruby-sapphire: &ruby-sapphire
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
+  contest_type: &ruby-sapphire.contest_type tough
+  contest_effect: 18
+  contest_use_before: &ruby-sapphire.contest_use_before
+    - leer
+    - bite
+    - super-fang
+    - crunch
+  contest_use_after:
+    - rage
+    - leer
   flavor_text: |
     Frightens with a scary face
     to sharply reduce SPEED.
@@ -84,7 +94,7 @@ diamond-pearl: &diamond-pearl
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: &diamond-pearl.contest_type tough
+  contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 2
   flavor_text: &diamond-pearl.flavor_text |
     The user frightens
@@ -157,13 +167,9 @@ omega-ruby-alpha-sapphire:
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *diamond-pearl.contest_type
+  contest_type: *ruby-sapphire.contest_type
   contest_effect: 10
-  contest_use_before:
-    - leer
-    - bite
-    - super-fang
-    - crunch
+  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
   name: *colosseum.name

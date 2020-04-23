@@ -50,6 +50,16 @@ ruby-sapphire: &ruby-sapphire
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *gold-silver.stat_changes
+  contest_type: &ruby-sapphire.contest_type smart
+  contest_effect: 48
+  contest_use_before: &ruby-sapphire.contest_use_before
+    - confusion
+    - psychic
+    - teleport
+    - future-sight
+  contest_use_after:
+    - psychic
+    - confusion
   flavor_text: |
     Distracts the foe.
     May lower accuracy.
@@ -101,7 +111,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
   effect: *gold-silver.effect
-  contest_type: &diamond-pearl.contest_type smart
+  contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 11
   flavor_text: &diamond-pearl.flavor_text |
     The user distracts
@@ -176,13 +186,9 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
-  contest_type: *diamond-pearl.contest_type
+  contest_type: *ruby-sapphire.contest_type
   contest_effect: 24
-  contest_use_before:
-    - confusion
-    - psychic
-    - teleport
-    - future-sight
+  contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
   name: *colosseum.name
