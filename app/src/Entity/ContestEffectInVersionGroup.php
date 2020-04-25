@@ -26,6 +26,13 @@ class ContestEffectInVersionGroup extends AbstractDexEntity implements EntityHas
     protected $parent;
 
     /**
+     * @var \App\Entity\ContestEffectCategory|null
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\ContestEffectCategory")
+     */
+    protected $category;
+
+    /**
      * The base number of hearts the user of this move gets
      *
      * @var int
@@ -46,6 +53,25 @@ class ContestEffectInVersionGroup extends AbstractDexEntity implements EntityHas
      * @Assert\GreaterThanOrEqual(0)
      */
     protected $jam;
+
+    /**
+     * @return \App\Entity\ContestEffectCategory|null
+     */
+    public function getCategory(): ?ContestEffectCategory
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param \App\Entity\ContestEffectCategory|null $category
+     * @return ContestEffectInVersionGroup
+     */
+    public function setCategory(?ContestEffectCategory $category): ContestEffectInVersionGroup
+    {
+        $this->category = $category;
+
+        return $this;
+    }
 
     /**
      * @return int

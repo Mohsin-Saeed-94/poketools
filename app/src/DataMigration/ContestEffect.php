@@ -17,7 +17,8 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  *     sourceIds={@IdField(name="id")},
  *     destination="\App\Entity\ContestEffect",
  *     destinationDriver="DragoonBoots\A2B\Drivers\Destination\DoctrineDestinationDriver",
- *     destinationIds={@IdField(name="id")}
+ *     destinationIds={@IdField(name="id")},
+ *     depends={"App\DataMigration\ContestEffectCategory",}
  * )
  */
 class ContestEffect extends AbstractDoctrineDataMigration implements DataMigrationInterface
@@ -52,6 +53,12 @@ class ContestEffect extends AbstractDoctrineDataMigration implements DataMigrati
      */
     protected function transformVersionGroup($sourceData, $destinationData)
     {
+        if (isset($sourceData['category'])) {
+            $sourceData['category'] = $this->referenceStore->get(
+                ContestEffectCategory::class,
+                ['identifier' => $sourceData['category']]
+            );
+        }
         /** @var ContestEffectInVersionGroup $destinationData */
         $destinationData = $this->mergeProperties($sourceData, $destinationData);
 

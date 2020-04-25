@@ -108,6 +108,7 @@ class Move extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             $sourceData['contest_effect'] = $contestEffect->findChildByGrouping($sourceData['version_group']);
         }
         unset($sourceData['contest_use_before']);
+        unset($sourceData['contest_use_after']);
         if (isset($sourceData['super_contest_effect'])) {
             $sourceData['super_contest_effect'] = $this->referenceStore->get(
                 SuperContestEffect::class,
@@ -115,6 +116,7 @@ class Move extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             );
         }
         unset($sourceData['super_contest_use_before']);
+        unset($sourceData['super_contest_use_after']);
         if (isset($sourceData['stat_changes'])) {
             foreach ($sourceData['stat_changes'] as $statIdentifier => &$change) {
                 $statChange = null;
