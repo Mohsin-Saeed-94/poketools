@@ -958,14 +958,8 @@ def get_shops(rom: BufferedReader, version_group: VersionGroup, version: Version
         # Store the shop's inventory.  The shop name will need manual tuning.
         old_position = command_rom.tell()
         command_rom.seek(gba.address_from_pointer(pointer))
-        while command_rom.peek(1)[0].to_bytes(1, 'little') != ScriptCommand.END.value:
-            # Some scripts embed this for some reason
-            if command_rom.peek(1)[0].to_bytes(1, 'little') == ScriptCommand.RELEASE.value:
-                command_rom.seek(1, io.SEEK_CUR)
-                continue
+        while command_rom.peek(1)[0] != 0:
             item_id = int.from_bytes(command_rom.read(2), 'little')
-            if item_id == 0:
-                continue
             shop_items.append({
                 'version_group': version_group.value,
                 'location': current_location,
