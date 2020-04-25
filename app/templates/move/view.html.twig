@@ -169,131 +169,132 @@
                 <p>No special flags apply to this move.</p>
             {% endif %}
         </div>
-        {% if version.versionGroup.featureString('contests') %}
-            <div class="col-lg">
-                <h2>Contest</h2>
-                <table class="pkt-move-view-contest pkt-infolist">
-                    <tr>
-                        <th>Type</th>
-                        <td>{{ move.contestType|type_emblem }}</td>
-                    </tr>
-                    <tr>
-                        <th>Appeal</th>
-                        <td>
-                            <span aria-label="{{ move.contestEffect.appeal }}">
-                            {% for i in range(1, move.contestEffect.appeal) %}<i class="far fa-heart"></i>{% endfor %}
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Jam</th>
-                        <td>
-                            <span aria-label="{{ move.contestEffect.jam }}">
-                            {% for i in range(1, move.contestEffect.jam) %}<i class="fas fa-heart"></i>{% endfor %}
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Game Desc</th>
-                        <td>{{ move.contestEffect.flavorText }}</td>
-                    </tr>
-                    {% if move.contestUseBefore is not empty %}
-                        <tr>
-                            <th>Use before</th>
-                            <td>
-                                <ul class="list-unstyled">
-                                    {% for useBeforeMove in move.contestUseBefore %}
-                                        <li>
-                                            <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useBeforeMove.slug}) }}">
-                                                {{ useBeforeMove }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endif %}
-                    {% if move.contestUseAfter is not empty %}
-                        <tr>
-                            <th>Use after</th>
-                            <td>
-                                <ul class="list-unstyled">
-                                    {% for useAfterMove in move.contestUseAfter %}
-                                        <li>
-                                            <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useAfterMove.slug}) }}">
-                                                {{ useAfterMove }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endif %}
-                </table>
-            </div>
-        {% endif %}
-        {% if version.versionGroup.featureString('super-contests') %}
-            <div class="col-lg">
-                <h2>Super Contest</h2>
-                <table class="pkt-move-view-supercontest pkt-infolist">
-                    <tr>
-                        <th>Type</th>
-                        <td>{{ move.contestType|type_emblem }}</td>
-                    </tr>
-                    <tr>
-                        <th>Appeal</th>
-                        <td>
-                            <span aria-label="{{ move.superContestEffect.appeal }}">
-                            {% for i in range(1, move.superContestEffect.appeal) %}<i
-                                    class="far fa-heart"></i>{% endfor %}
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Game Desc</th>
-                        <td>{{ move.superContestEffect.flavorText }}</td>
-                    </tr>
-                    {% if move.superContestUseBefore is not empty %}
-                        <tr>
-                            <th>Use before</th>
-                            <td>
-                                <ul class="list-unstyled">
-                                    {% for useBeforeMove in move.contestUseBefore %}
-                                        <li>
-                                            <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useBeforeMove.slug}) }}">
-                                                {{ useBeforeMove }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endif %}
-                    {% if move.superContestUseAfter is not empty %}
-                        <tr>
-                            <th>Use after</th>
-                            <td>
-                                <ul class="list-unstyled">
-                                    {% for useAfterMove in move.contestUseAfter %}
-                                        <li>
-                                            <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useAfterMove.slug}) }}">
-                                                {{ useAfterMove }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endif %}
-                </table>
-            </div>
-        {% endif %}
     </div>
 
     <h2>Description</h2>
     <div class="pkt-move-view-description pkt-text">
         {{ (move.description|default(move.effect.description))|replace({'$effect_chance': move.effectChance})|markdown }}
     </div>
+
+    {% if version.versionGroup.featureString('contests') %}
+        <h2>Contest</h2>
+        <table class="pkt-move-view-contest pkt-infolist">
+            <tr>
+                <th>Type</th>
+                <td>{{ move.contestType|type_emblem }}</td>
+            </tr>
+            <tr>
+                <th>Appeal</th>
+                <td>
+                            <span aria-label="{{ move.contestEffect.appeal }}">
+                            {% for i in range(1, move.contestEffect.appeal) %}<i class="far fa-heart"></i>{% endfor %}
+                            </span>
+                </td>
+            </tr>
+            <tr>
+                <th>Jam</th>
+                <td>
+                            <span aria-label="{{ move.contestEffect.jam }}">
+                            {% for i in range(1, move.contestEffect.jam) %}<i class="fas fa-heart"></i>{% endfor %}
+                            </span>
+                </td>
+            </tr>
+            <tr>
+                <th>Game Desc</th>
+                <td>{{ move.contestEffect.flavorText }}</td>
+            </tr>
+            {% if move.contestUseBefore is not empty %}
+                <tr>
+                    <th>Use before</th>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for useBeforeMove in move.contestUseBefore %}
+                                <li>
+                                    <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useBeforeMove.slug}) }}">
+                                        {{ useBeforeMove }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if move.contestUseAfter is not empty %}
+                <tr>
+                    <th>Use after</th>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for useAfterMove in move.contestUseAfter %}
+                                <li>
+                                    <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useAfterMove.slug}) }}">
+                                        {{ useAfterMove }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr>
+                <th>Effect</th>
+                <td>{{ move.contestEffect.description|markdown }}</td>
+            </tr>
+        </table>
+    {% endif %}
+    {% if version.versionGroup.featureString('super-contests') %}
+        <h2>Super Contest</h2>
+        <table class="pkt-move-view-supercontest pkt-infolist">
+            <tr>
+                <th>Type</th>
+                <td>{{ move.contestType|type_emblem }}</td>
+            </tr>
+            <tr>
+                <th>Appeal</th>
+                <td>
+                            <span aria-label="{{ move.superContestEffect.appeal }}">
+                            {% for i in range(1, move.superContestEffect.appeal) %}<i
+                                    class="far fa-heart"></i>{% endfor %}
+                            </span>
+                </td>
+            </tr>
+            <tr>
+                <th>Game Desc</th>
+                <td>{{ move.superContestEffect.flavorText }}</td>
+            </tr>
+            {% if move.superContestUseBefore is not empty %}
+                <tr>
+                    <th>Use before</th>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for useBeforeMove in move.contestUseBefore %}
+                                <li>
+                                    <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useBeforeMove.slug}) }}">
+                                        {{ useBeforeMove }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if move.superContestUseAfter is not empty %}
+                <tr>
+                    <th>Use after</th>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for useAfterMove in move.contestUseAfter %}
+                                <li>
+                                    <a href="{{ path('move_view', {'versionSlug': version.slug, 'moveSlug': useAfterMove.slug}) }}">
+                                        {{ useAfterMove }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endif %}
+        </table>
+    {% endif %}
 
     <h2>Similar moves</h2>
     <p>These moves have the same effect, but their stats and effect chances may differ.</p>
