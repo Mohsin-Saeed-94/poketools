@@ -495,7 +495,6 @@ def get_items(rom: BufferedReader, version_group: VersionGroup, version: Version
                 'blue-orb',
                 'scanner',
                 'go-goggles',
-                'meteorite',
                 'rm-1-key',
                 'rm-2-key',
                 'rm-4-key',
@@ -961,10 +960,15 @@ def get_shops(rom: BufferedReader, version_group: VersionGroup, version: Version
         else:
             shop_id_counter[counter_id] += 1
         shop_id = shop_id_counter[counter_id]
-        shop_identifier = 'event-{event}-shop-{shop}'.format(event=current_event.eventId, shop=shop_id)
+        if current_area == 'mart':
+            shop_identifier = 'mart'
+            shop_name = 'Poké Mart'
+        else:
+            shop_identifier = 'event-{event}-shop-{shop}'.format(event=current_event.eventId, shop=shop_id)
+            shop_name = 'Event {event}, Shop {shop}'.format(event=current_event.eventId, shop=shop_id)
 
         shops[current_location][current_area][shop_identifier] = {
-            'name': shop_identifier,
+            'name': shop_name,
         }
         if len(shops[current_location][current_area]) == 1:
             shops[current_location][current_area][shop_identifier]['default'] = True
@@ -1018,7 +1022,11 @@ def write_shops(out: Dict[str, Dict[str, Dict[str, dict]]]):
             if 'children' not in area_data:
                 area_data['children'] = {}
             if leaf_slug not in area_data['children']:
-                area_data['children'][leaf_slug] = {'name': leaf_slug.replace('-', ' ').title()}
+                if leaf_slug == 'mart':
+                    name = 'Poké Mart'
+                else:
+                    name = leaf_slug.replace('-', ' ').title()
+                area_data['children'][leaf_slug] = {'name': name}
             area_data['children'][leaf_slug] = _write_data(child_slugs, area_data['children'][leaf_slug], shop_data)
         return area_data
 
@@ -1036,7 +1044,11 @@ def write_shops(out: Dict[str, Dict[str, Dict[str, dict]]]):
                 area_slugs = area_slugs.split('/')
                 root_area = area_slugs.pop(0)
                 if root_area not in data[vg_slug]['areas']:
-                    data[vg_slug]['areas'][root_area] = {'name': root_area.replace('-', ' ').title()}
+                    if root_area == 'mart':
+                        name = 'Poké Mart'
+                    else:
+                        name = root_area.replace('-', ' ').title()
+                    data[vg_slug]['areas'][root_area] = {'name': name}
                 data[vg_slug]['areas'][root_area] = _write_data(area_slugs, data[vg_slug]['areas'][root_area],
                                                                 shop_data)
 

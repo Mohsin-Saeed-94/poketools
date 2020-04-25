@@ -5,9 +5,9 @@ red-blue: &red-blue
     whole-area: &red-blue.areas.whole-area
       name: &red-blue.areas.whole-area.name 'Whole area'
       default: true
-      shops:
+      shops: &red-blue.areas.whole-area.shops
         mart:
-          name: 'Poké Mart'
+          name: &red-blue.areas.whole-area.shops.mart.name 'Poké Mart'
           default: true
     fighting-dojo: &red-blue.areas.fighting-dojo
       name: 'Fighting Dojo'
@@ -39,11 +39,8 @@ firered-leafgreen:
     fighting-dojo: *red-blue.areas.fighting-dojo
     silph-co-7f: *red-blue.areas.silph-co-7f
     mart:
-      name: Mart
-      shops:
-        event-1-shop-0:
-          name: event-1-shop-0
-          default: true
+      name: *red-blue.areas.whole-area.shops.mart.name
+      shops: *red-blue.areas.whole-area.shops
   map:
     map: *red-blue.map.map
     z: *red-blue.map.z

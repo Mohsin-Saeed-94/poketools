@@ -22,9 +22,9 @@ red-blue: &red-blue
         3f: &red-blue.areas.department-store.children.3f
           name: '3F (TV Game Shop)'
         4f: &red-blue.areas.department-store.children.4f
-          name: &red-blue.areas.department-store.children.4f.name '4F (Wiseman Gifts)'
+          name: '4F (Wiseman Gifts)'
           shops:
-            wiseman-gifts:
+            wiseman-gifts: &red-blue.areas.department-store.children.4f.shops.wiseman-gifts
               name: 'Wiseman Gifts'
               default: true
         5f: &red-blue.areas.department-store.children.5f
@@ -35,7 +35,7 @@ red-blue: &red-blue
               default: true
             drugstore-right:
               name: 'Drugstore (right counter)'
-        rooftop-square: &red-blue.areas.department-store.children.rooftop-square
+        rooftop-square:
           name: &red-blue.areas.department-store.children.rooftop-square.name 'Rooftop Square (Vending Machines)'
           shops:
             vending-machines:
@@ -72,7 +72,7 @@ gold-silver: &gold-silver
               default: true
         4f: *red-blue.areas.department-store.children.4f
         5f: *red-blue.areas.department-store.children.5f
-        rooftop-square:
+        rooftop-square: &gold-silver.areas.department-store.children.rooftop-square
           name: *red-blue.areas.department-store.children.rooftop-square.name
     celadon-mansion: *red-blue.areas.celadon-mansion
   map:
@@ -85,31 +85,26 @@ firered-leafgreen:
   areas:
     whole-area: *red-blue.areas.whole-area
     department-store:
-      name: *red-blue.areas.department-store.name
+      name: 'Department Store'
       children:
         1f: *red-blue.areas.department-store.children.1f
         2f:
           name: *red-blue.areas.department-store.children.2f.name
-          shops:
-            event-2-shop-0:
-              name: event-2-shop-0
+          shops: &firered-leafgreen.areas.department-store.children.2f.shops
+            upper-clerk:
+              name: 'Upper Clerk'
               default: true
-            event-3-shop-0:
-              name: &firered-leafgreen.areas.department-store.children.2f.shops.event-3-shop-0.name event-3-shop-0
+            lower-clerk:
+              name: 'Lower Clerk'
         3f: *red-blue.areas.department-store.children.3f
         4f:
-          name: *red-blue.areas.department-store.children.4f.name
+          name: '4F (Wise Man Gifts)'
           shops:
-            event-3-shop-0: &firered-leafgreen.areas.department-store.children.4f.shops.event-3-shop-0
-              name: *firered-leafgreen.areas.department-store.children.2f.shops.event-3-shop-0.name
-              default: true
+            clerk: *red-blue.areas.department-store.children.4f.shops.wiseman-gifts
         5f:
           name: *red-blue.areas.department-store.children.5f.name
-          shops:
-            event-3-shop-0: *firered-leafgreen.areas.department-store.children.4f.shops.event-3-shop-0
-            event-4-shop-0:
-              name: event-4-shop-0
-        rooftop-square: *red-blue.areas.department-store.children.rooftop-square
+          shops: *firered-leafgreen.areas.department-store.children.2f.shops
+        rooftop-square: *gold-silver.areas.department-store.children.rooftop-square
     celadon-mansion: *red-blue.areas.celadon-mansion
   map:
     map: *red-blue.map.map

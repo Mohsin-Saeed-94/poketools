@@ -5,9 +5,9 @@ red-blue: &red-blue
     whole-area:
       name: &red-blue.areas.whole-area.name 'Whole area'
       default: true
-      shops:
+      shops: &red-blue.areas.whole-area.shops
         mart:
-          name: 'Poké Mart'
+          name: &red-blue.areas.whole-area.shops.mart.name 'Poké Mart'
           default: true
   map:
     map: &red-blue.map.map kanto
@@ -29,11 +29,8 @@ firered-leafgreen:
       name: *red-blue.areas.whole-area.name
       default: true
     mart:
-      name: Mart
-      shops:
-        event-1-shop-0:
-          name: event-1-shop-0
-          default: true
+      name: *red-blue.areas.whole-area.shops.mart.name
+      shops: *red-blue.areas.whole-area.shops
   map:
     map: *red-blue.map.map
     overlay: '<rect width="8" height="8" x="40" y="80" />'
