@@ -1,12 +1,18 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Mossdeep City'
-  areas: &ruby-sapphire.areas
-    whole-area:
+  areas:
+    whole-area: &ruby-sapphire.areas.whole-area
       name: 'Whole area'
       default: true
-    stevens-house:
+    stevens-house: &ruby-sapphire.areas.stevens-house
       name: 'Steven''s house'
+    mart:
+      name: Mart
+      shops:
+        event-1-shop-0:
+          name: event-1-shop-0
+          default: true
   map:
     map: &ruby-sapphire.map.map hoenn
     overlay: '<rect width="16" height="8" x="200" y="56" />'
@@ -14,7 +20,9 @@ emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    whole-area: *ruby-sapphire.areas.whole-area
+    stevens-house: *ruby-sapphire.areas.stevens-house
   map:
     map: *ruby-sapphire.map.map
     overlay: '<rect width="24" height="12" x="267" y="69" />'

@@ -1,20 +1,51 @@
-ruby-sapphire: &ruby-sapphire
+ruby-sapphire:
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Slateport City'
-  areas: &ruby-sapphire.areas
+  areas:
     whole-area:
-      name: 'Whole area'
+      name: &ruby-sapphire.areas.whole-area.name 'Whole area'
       default: true
-    contest-hall:
+      shops:
+        event-25-shop-0:
+          name: &ruby-sapphire.areas.whole-area.shops.event-25-shop-0.name event-25-shop-0
+          default: true
+        event-26-shop-0:
+          name: event-26-shop-0
+    contest-hall: &ruby-sapphire.areas.contest-hall
       name: 'Contest hall'
-  map:
+    mart: &ruby-sapphire.areas.mart
+      name: Mart
+      shops:
+        event-1-shop-0:
+          name: event-1-shop-0
+          default: true
+  map: &ruby-sapphire.map
     map: &ruby-sapphire.map.map hoenn
     overlay: '<rect width="8" height="16" x="72" y="96" />'
-emerald: *ruby-sapphire
+emerald:
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
+  areas:
+    whole-area:
+      name: *ruby-sapphire.areas.whole-area.name
+      default: true
+      shops:
+        event-24-shop-0:
+          name: event-24-shop-0
+          default: true
+        event-25-shop-0:
+          name: *ruby-sapphire.areas.whole-area.shops.event-25-shop-0.name
+    contest-hall: *ruby-sapphire.areas.contest-hall
+    mart: *ruby-sapphire.areas.mart
+  map: *ruby-sapphire.map
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    whole-area:
+      name: *ruby-sapphire.areas.whole-area.name
+      default: true
+    contest-hall: *ruby-sapphire.areas.contest-hall
   map:
     map: *ruby-sapphire.map.map
     overlay: '<rect width="13" height="24" x="91" y="139" />'

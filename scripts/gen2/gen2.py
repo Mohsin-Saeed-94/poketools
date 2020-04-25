@@ -10,7 +10,7 @@ from typing import List
 import progressbar
 import slugify
 
-from data import gen2_maps
+from gen2 import gen2_maps
 from inc import gb, pokemon_text
 from inc.yaml import yaml
 

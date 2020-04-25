@@ -1,46 +1,46 @@
 red-blue: &red-blue
   region: &red-blue.region kanto
   name: &red-blue.name 'Celadon City'
-  areas: &red-blue.areas
+  areas:
     whole-area: &red-blue.areas.whole-area
       name: 'Whole area'
-      default: &red-blue.areas.whole-area.default true
+      default: true
     department-store:
       name: &red-blue.areas.department-store.name 'Department store'
       children:
         1f: &red-blue.areas.department-store.children.1f
           name: '1F (Service Counter)'
-          default: *red-blue.areas.whole-area.default
+          default: true
         2f:
           name: &red-blue.areas.department-store.children.2f.name '2F (Trainers'' Market)'
           shops:
             trainers-market-left:
               name: 'Trainer''s Market (left counter)'
-              default: *red-blue.areas.whole-area.default
+              default: true
             trainers-market-right:
               name: 'Trainer''s Market (right counter)'
-        3f:
+        3f: &red-blue.areas.department-store.children.3f
           name: '3F (TV Game Shop)'
         4f: &red-blue.areas.department-store.children.4f
-          name: '4F (Wiseman Gifts)'
+          name: &red-blue.areas.department-store.children.4f.name '4F (Wiseman Gifts)'
           shops:
             wiseman-gifts:
               name: 'Wiseman Gifts'
-              default: *red-blue.areas.whole-area.default
+              default: true
         5f: &red-blue.areas.department-store.children.5f
-          name: '5F (Drugstore)'
+          name: &red-blue.areas.department-store.children.5f.name '5F (Drugstore)'
           shops:
             drugstore-left:
               name: 'Drugstore (left counter)'
-              default: *red-blue.areas.whole-area.default
+              default: true
             drugstore-right:
               name: 'Drugstore (right counter)'
-        rooftop-square:
+        rooftop-square: &red-blue.areas.department-store.children.rooftop-square
           name: &red-blue.areas.department-store.children.rooftop-square.name 'Rooftop Square (Vending Machines)'
           shops:
             vending-machines:
               name: 'Vending machines'
-              default: *red-blue.areas.whole-area.default
+              default: true
     celadon-mansion: &red-blue.areas.celadon-mansion
       name: 'Celadon Mansion'
   map:
@@ -61,7 +61,7 @@ gold-silver: &gold-silver
           shops:
             trainers-market-upper:
               name: 'Trainer''s Market (upper counter)'
-              default: *red-blue.areas.whole-area.default
+              default: true
             trainers-market-lower:
               name: 'Trainer''s Market (lower counter)'
         3f:
@@ -69,7 +69,7 @@ gold-silver: &gold-silver
           shops:
             tm-shop:
               name: 'TM Shop'
-              default: *red-blue.areas.whole-area.default
+              default: true
         4f: *red-blue.areas.department-store.children.4f
         5f: *red-blue.areas.department-store.children.5f
         rooftop-square:
@@ -82,7 +82,35 @@ crystal: *gold-silver
 firered-leafgreen:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas:
+    whole-area: *red-blue.areas.whole-area
+    department-store:
+      name: *red-blue.areas.department-store.name
+      children:
+        1f: *red-blue.areas.department-store.children.1f
+        2f:
+          name: *red-blue.areas.department-store.children.2f.name
+          shops:
+            event-2-shop-0:
+              name: event-2-shop-0
+              default: true
+            event-3-shop-0:
+              name: &firered-leafgreen.areas.department-store.children.2f.shops.event-3-shop-0.name event-3-shop-0
+        3f: *red-blue.areas.department-store.children.3f
+        4f:
+          name: *red-blue.areas.department-store.children.4f.name
+          shops:
+            event-3-shop-0: &firered-leafgreen.areas.department-store.children.4f.shops.event-3-shop-0
+              name: *firered-leafgreen.areas.department-store.children.2f.shops.event-3-shop-0.name
+              default: true
+        5f:
+          name: *red-blue.areas.department-store.children.5f.name
+          shops:
+            event-3-shop-0: *firered-leafgreen.areas.department-store.children.4f.shops.event-3-shop-0
+            event-4-shop-0:
+              name: event-4-shop-0
+        rooftop-square: *red-blue.areas.department-store.children.rooftop-square
+    celadon-mansion: *red-blue.areas.celadon-mansion
   map:
     map: *red-blue.map.map
     overlay: '<rect width="8" height="8" x="96" y="64" />'

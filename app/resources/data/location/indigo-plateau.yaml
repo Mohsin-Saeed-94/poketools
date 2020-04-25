@@ -2,13 +2,13 @@ red-blue: &red-blue
   region: &red-blue.region kanto
   name: &red-blue.name 'Indigo Plateau'
   areas: &red-blue.areas
-    whole-area:
+    whole-area: &red-blue.areas.whole-area
       name: 'Whole area'
-      default: &red-blue.areas.whole-area.default true
+      default: true
       shops:
         mart:
           name: 'Poké Mart'
-          default: *red-blue.areas.whole-area.default
+          default: true
   map:
     map: &red-blue.map.map kanto
     overlay: '<rect height="8" width="8" y="16" x="16" />'
@@ -24,7 +24,18 @@ crystal: *gold-silver
 firered-leafgreen:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas:
+    whole-area: *red-blue.areas.whole-area
+    pokemon-center:
+      name: 'Pokemon Center'
+      children:
+        1f:
+          name: 1F
+          default: true
+          shops:
+            event-1-shop-0:
+              name: event-1-shop-0
+              default: true
   map:
     map: *red-blue.map.map
     overlay: '<rect y="40" x="24" height="8" width="8" />'

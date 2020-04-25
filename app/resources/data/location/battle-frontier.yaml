@@ -1,10 +1,16 @@
 emerald:
   region: hoenn
   name: &emerald.name 'Battle Frontier'
-  areas: &emerald.areas
-    whole-area:
+  areas:
+    whole-area: &emerald.areas.whole-area
       name: 'Whole area'
       default: true
+    mart:
+      name: Mart
+      shops:
+        event-1-shop-0:
+          name: event-1-shop-0
+          default: true
   map:
     map: hoenn
     z: &emerald.map.z 10
@@ -12,7 +18,8 @@ emerald:
 platinum:
   region: sinnoh
   name: *emerald.name
-  areas: *emerald.areas
+  areas: &platinum.areas
+    whole-area: *emerald.areas.whole-area
   super: fight-area
   map:
     map: sinnoh
@@ -21,7 +28,7 @@ platinum:
 heartgold-soulsilver:
   region: johto
   name: *emerald.name
-  areas: *emerald.areas
+  areas: *platinum.areas
   map:
     map: johto
     overlay: '<rect x="44" y="60" width="10" height="10" rx="3" ry="3" />'

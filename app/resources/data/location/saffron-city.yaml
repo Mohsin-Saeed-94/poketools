@@ -4,14 +4,14 @@ red-blue: &red-blue
   areas: &red-blue.areas
     whole-area: &red-blue.areas.whole-area
       name: 'Whole area'
-      default: &red-blue.areas.whole-area.default true
+      default: true
       shops:
         mart:
           name: 'Poké Mart'
-          default: *red-blue.areas.whole-area.default
+          default: true
     fighting-dojo: &red-blue.areas.fighting-dojo
       name: 'Fighting Dojo'
-    silph-co-7f:
+    silph-co-7f: &red-blue.areas.silph-co-7f
       name: 'Silph Co. (7F)'
   map:
     map: &red-blue.map.map kanto
@@ -32,7 +32,16 @@ crystal: *gold-silver
 firered-leafgreen:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas:
+    whole-area: *red-blue.areas.whole-area
+    fighting-dojo: *red-blue.areas.fighting-dojo
+    silph-co-7f: *red-blue.areas.silph-co-7f
+    mart:
+      name: Mart
+      shops:
+        event-1-shop-0:
+          name: event-1-shop-0
+          default: true
   map:
     map: *red-blue.map.map
     z: *red-blue.map.z

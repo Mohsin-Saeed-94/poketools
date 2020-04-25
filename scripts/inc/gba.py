@@ -5,8 +5,13 @@ def address_from_pointer(pointer: bytes, byteorder='little') -> int:
     :param byteorder:
     :return:
     """
-    pointer = int.from_bytes(pointer, byteorder=byteorder)
-    return pointer - 0x08000000
+    pointer = int.from_bytes(pointer, byteorder=byteorder, signed=False)
+    address = pointer - 0x08000000
+
+    if address < 0:
+        raise Exception('Invalid pointer (ROM underflow)')
+
+    return address
 
 
 def pointer_from_address(address: int, byteorder='little') -> bytes:

@@ -156,6 +156,6 @@ SQL
      */
     public function configureDestination(DestinationDriverInterface $destinationDriver)
     {
-        $destinationDriver->setOption('refs', true);
+        $destinationDriver->setOption('refs', ['exclude' => ['`.+default$`']]);
     }
 }

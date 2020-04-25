@@ -1,17 +1,17 @@
 red-blue: &red-blue
   region: &red-blue.region kanto
   name: &red-blue.name 'Cerulean City'
-  areas: &red-blue.areas
-    whole-area:
+  areas:
+    whole-area: &red-blue.areas.whole-area
       name: &red-blue.areas.whole-area.name 'Whole area'
-      default: &red-blue.areas.whole-area.default true
+      default: true
       shops:
         mart: &red-blue.areas.whole-area.shops.mart
           name: 'Poké Mart'
-          default: *red-blue.areas.whole-area.default
+          default: true
         bike-shop:
           name: 'Miracle Cycle'
-    gym:
+    gym: &red-blue.areas.gym
       name: Gym
   map:
     map: &red-blue.map.map kanto
@@ -23,7 +23,7 @@ gold-silver: &gold-silver
   areas: &gold-silver.areas
     whole-area:
       name: *red-blue.areas.whole-area.name
-      default: *red-blue.areas.whole-area.default
+      default: true
       shops:
         mart: *red-blue.areas.whole-area.shops.mart
   map:
@@ -33,7 +33,15 @@ crystal: *gold-silver
 firered-leafgreen:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas:
+    whole-area: *red-blue.areas.whole-area
+    gym: *red-blue.areas.gym
+    mart:
+      name: Mart
+      shops:
+        event-1-shop-0:
+          name: event-1-shop-0
+          default: true
   map:
     map: *red-blue.map.map
     overlay: '<rect width="8" height="8" x="120" y="40" />'

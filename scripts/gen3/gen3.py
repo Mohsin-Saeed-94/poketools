@@ -1,72 +1,22 @@
 import argparse
+import csv
 from dataclasses import dataclass
-from enum import Enum
 import io
 from io import BufferedReader
 import os
 import struct
+from typing import Any, Dict, List
 
 from flags import Flags
 import progressbar
 from slugify import slugify
 
+from gen3 import script
+from gen3.enums import Version, VersionGroup
 from inc import gba, group_by_version_group, pokemon_text
 from inc.yaml import yaml
 
 pokemon_text.register()
-
-
-class Version(Enum):
-    RUBY = 'ruby'
-    SAPPHIRE = 'sapphire'
-    EMERALD = 'emerald'
-    FIRERED = 'firered'
-    LEAFGREEN = 'leafgreen'
-
-
-# Get config
-argparser = argparse.ArgumentParser(description='Load Gen 3 data.  (R/S uses Rev 1.2 ROMs)')
-argparser.add_argument('--rom', action='append', type=argparse.FileType('rb'), required=True, help='ROM File path')
-argparser.add_argument('--version', action='append', type=str, choices=[version.value for version in Version],
-                       help='Version slug to dump')
-argparser.add_argument('--out-pokemon', type=str, required=True, help='Pokemon YAML file dir')
-argparser.add_argument('--out-pokemon_moves', type=str, required=True, help='Pokemon Move CSV file')
-argparser.add_argument('--out-moves', type=str, required=True, help='Move YAML file dir')
-argparser.add_argument('--out-contest_effects', type=str, required=True, help='Contest Effect YAML file dir')
-argparser.add_argument('--out-items', type=str, required=True, help='Item YAML file dir')
-argparser.add_argument('--out-shops', type=str, required=True, help='Shop Data CSV file')
-argparser.add_argument('--out-encounters', type=str, required=True, help='Encounter CSV file')
-argparser.add_argument('--write-pokemon', action='store_true', help='Write Pokemon data')
-argparser.add_argument('--write-pokemon_moves', action='store_true', help='Write Pokemon move data')
-argparser.add_argument('--write-moves', action='store_true', help='Write Move data')
-argparser.add_argument('--write-contest_effects', action='store_true', help='Write Contest Effect data')
-argparser.add_argument('--write-items', action='store_true', help='Write Item data')
-argparser.add_argument('--write-shops', action='store_true', help='Write Shop data')
-argparser.add_argument('--write-encounters', action='store_true', help='Write Shop data')
-args = argparser.parse_args()
-
-
-class VersionGroup(Enum):
-    RUBY_SAPPHIRE = 'ruby-sapphire'
-    EMERALD = 'emerald'
-    FIRERED_LEAFGREEN = 'firered-leafgreen'
-
-
-# What version is this?
-versionmap = {
-    'AXVE': Version.RUBY,
-    'AXPE': Version.SAPPHIRE,
-    'BPEE': Version.EMERALD,
-    'BPRE': Version.FIRERED,
-    'BPGE': Version.LEAFGREEN,
-}
-versiongroupmap = {
-    Version.RUBY: VersionGroup.RUBY_SAPPHIRE,
-    Version.SAPPHIRE: VersionGroup.RUBY_SAPPHIRE,
-    Version.EMERALD: VersionGroup.EMERALD,
-    Version.FIRERED: VersionGroup.FIRERED_LEAFGREEN,
-    Version.LEAFGREEN: VersionGroup.FIRERED_LEAFGREEN,
-}
 
 type_map = {
     0x00: 'normal',
@@ -809,45 +759,392 @@ def write_items(out):
                 yaml.dump(data, item_yaml)
 
 
-out_moves = {}
-out_contest_effects = {}
-out_items = {}
-dumped_versions = []
-dump_rom: BufferedReader
-for dump_rom in args.rom:
-    dump_rom.seek(0xAC)
-    dump_version = dump_rom.read(4)
-    dump_version = dump_version.decode('ascii')
-    dump_version = versionmap[dump_version]
-    if len(args.version) > 0 and dump_version.value not in args.version:
-        # Skip this version
-        continue
-    dump_version_group = versiongroupmap[dump_version]
-    print('Using version group {version_group}'.format(version_group=dump_version_group.value))
-    print('Using version {version}'.format(version=dump_version.value))
+def _has_pointer(pointer: bytes):
+    if int.from_bytes(pointer, byteorder='big') > 0:
+        return pointer
+    else:
+        return None
 
-    vg_moves, vg_contest_effects, vg_move_slugs = get_moves(dump_rom, dump_version_group, dump_version)
-    out_moves = group_by_version_group(dump_version_group.value, vg_moves, out_moves)
-    out_contest_effects = group_by_version_group(dump_version_group.value, vg_contest_effects, out_contest_effects)
-    vg_items, vg_item_slugs = get_items(dump_rom, dump_version_group, dump_version)
-    vg_items = update_machines(dump_rom, dump_version, vg_items, vg_move_slugs)
-    vg_items = update_berries(dump_rom, dump_version_group, dump_version, vg_items)
-    out_items = group_by_version_group(dump_version_group.value, vg_items, out_items)
 
-    dumped_versions.append(dump_version.value)
+@dataclass()
+class MapLayout:
+    length = 24
 
-if len(dumped_versions) < len(args.version):
-    # Didn't dump all requested versions
-    missing_versions = []
-    for requested_version in args.version:
-        if requested_version not in dumped_versions:
-            missing_versions.append(requested_version)
-    print('Could not dump these versions because the ROMs were not available: {roms}'.format(
-        roms=', '.join(missing_versions)))
-else:
-    if args.write_moves:
-        write_moves(out_moves)
-    if args.write_contest_effects:
-        write_contest_effects(out_contest_effects)
-    if args.write_items:
-        write_items(out_items)
+    def __init__(self, data: bytes):
+        data = struct.unpack('<ii4s4s4s4s', data)
+        self.width = data[0]
+        self.height = data[1]
+        self.borderPointer = _has_pointer(data[2])
+        self.blocksPointer = _has_pointer(data[3])
+        self.mapBlocks = None
+        self.primaryTilesetPointer = _has_pointer(data[4])
+        self.primaryTileset = None
+        self.secondaryTilesetPointer = _has_pointer(data[5])
+        self.secondaryTileset = None
+
+
+@dataclass()
+class Tileset:
+    length = 24
+
+    def __init__(self, data: bytes):
+        data = struct.unpack('<??2x4s4s4s4s4s', data)
+        self.compressed = data[0]
+        self.secondary = data[1]
+        self.tilesPointer = _has_pointer(data[2])
+        self.tilePalettesPointer = _has_pointer(data[3])
+        self.metatilesPointer = _has_pointer(data[4])
+        self.metatileAttributesPointer = _has_pointer(data[5])
+        self.callbackPointer = _has_pointer(data[6])
+
+
+@dataclass()
+class MapEventsHeader:
+    length = 20
+
+    def __init__(self, data: bytes):
+        data = struct.unpack('<BBBB4s4s4s4s', data)
+        self.numObjectEvents = data[0]
+        self.numWarps = data[1]
+        self.numCoordEvents = data[2]
+        self.numBgEvents = data[3]
+        self.objectEventsPointer = _has_pointer(data[4])
+        self.objectEvents: Dict[int, ObjectEvent] = {}
+        self.warpsPointer = _has_pointer(data[5])
+        self.coordEventsPointer = _has_pointer(data[6])
+        self.bgEventsPointer = _has_pointer(data[7])
+
+
+@dataclass()
+class ObjectEvent:
+    length = 24
+
+    def __init__(self, data: bytes):
+        data = struct.unpack('<BBBxhhBBBxHH4sH2x', data)
+        self.eventId = data[0]
+        self.spriteId = data[1]
+        self.replacementId = data[2]
+        self.x = data[3]
+        self.y = data[4]
+        self.elevation = data[5]
+        self.movementType = data[6]
+        self.movementRangeX = data[7] & 0x0F
+        self.movementRangeY = (data[7] & 0xF0) >> 4
+        self.trainerType = data[8]
+        # Trainer sight range and berry tree ID are stored in the same place
+        self.sightRange = data[9]
+        self.berryTreeId = data[9]
+        self.scriptPointer = _has_pointer(data[10])
+        self.eventFlagId = data[11]
+
+
+@dataclass()
+class MapHeader:
+    length = 28
+
+    def __init__(self, data: bytes):
+        data = struct.unpack('<4s4s4s4sHHB?BBx?BB', data)
+        self.layoutPointer = _has_pointer(data[0])
+        self.layout = None
+        self.eventsPointer = _has_pointer(data[1])
+        self.events = None
+        self.scriptsPointer = _has_pointer(data[2])
+        self.scripts = None
+        self.connectionsPointer = _has_pointer(data[3])
+        self.connections = None
+        self.musicId = data[4]
+        self.layoutId = data[5]
+        self.mapSectionId = data[6]
+        self.flashRequired = data[7]
+        self.weatherId = data[8]
+        self.mapTypeId = data[9]
+        self.escapeRope = data[10]
+        self.flags = data[11]
+        self.battleType = data[12]
+
+
+def _get_map(rom: BufferedReader, version_group: VersionGroup, version, group_id: int, map_id: int):
+    group_pointer_offset = {
+        Version.RUBY: 0x3085A0,
+        Version.SAPPHIRE: 0x307F08,
+        Version.EMERALD: 0x486578,
+        Version.FIRERED: 0x3526A8,
+        Version.LEAFGREEN: 0x352688,
+    }
+    group_pointer_offset = group_pointer_offset[version]
+
+    # Follow the pointers to the header
+    old_position = rom.tell()
+    rom.seek(group_pointer_offset + (group_id * 4))
+    map_group_pointer = rom.read(4)
+    map_group_offset = gba.address_from_pointer(map_group_pointer)
+    rom.seek(map_group_offset + (map_id * 4))
+    map_header_pointer = rom.read(4)
+    rom.seek(gba.address_from_pointer(map_header_pointer))
+
+    game_map = MapHeader(rom.read(MapHeader.length))
+
+    if game_map.layoutPointer:
+        rom.seek(gba.address_from_pointer(game_map.layoutPointer))
+        game_map.layout = MapLayout(rom.read(MapLayout.length))
+
+        if game_map.layout.primaryTilesetPointer:
+            rom.seek(gba.address_from_pointer(game_map.layout.primaryTilesetPointer))
+            game_map.layout.primaryTileset = Tileset(rom.read(Tileset.length))
+        if game_map.layout.secondaryTilesetPointer:
+            rom.seek(gba.address_from_pointer(game_map.layout.secondaryTilesetPointer))
+            game_map.layout.secondaryTileset = Tileset(rom.read(Tileset.length))
+
+    if game_map.eventsPointer:
+        rom.seek(gba.address_from_pointer(game_map.eventsPointer))
+        game_map.events = MapEventsHeader(rom.read(MapEventsHeader.length))
+        if game_map.events.objectEventsPointer:
+            rom.seek(gba.address_from_pointer(game_map.events.objectEventsPointer))
+            for i in range(game_map.events.numObjectEvents):
+                object_event = ObjectEvent(rom.read(ObjectEvent.length))
+                game_map.events.objectEvents[object_event.eventId] = object_event
+
+    rom.seek(old_position)
+
+    return game_map
+
+
+def get_shops(rom: BufferedReader, version_group: VersionGroup, version: Version, item_slugs: dict, items: dict):
+    if version_group == VersionGroup.RUBY_SAPPHIRE:
+        from .rs_maps import map_slugs
+        from .script.rs_commands import ScriptCommand
+    elif version_group == VersionGroup.EMERALD:
+        from .e_maps import map_slugs
+        from .script.e_commands import ScriptCommand
+    else:
+        from .frlg_maps import map_slugs
+        from .script.frlg_commands import ScriptCommand
+
+    # location -> area -> shop identifier -> shop data
+    shops: Dict[str, Dict[str, Dict[str, dict]]] = {}
+    shop_items: List[Dict[str, Any]] = []
+
+    print('Searching map scripts for shops')
+
+    # State variables used when a Pokemart script has been triggered.
+    current_location = None
+    current_area = None
+    current_event = None
+    shop_id_counter = {}
+
+    def _parse_pokemart(pointer: bytes, command_rom: BufferedReader):
+        # Store the shop info
+        if current_location not in shops:
+            shops[current_location] = {}
+        if current_area not in shops[current_location]:
+            shops[current_location][current_area] = {}
+
+        # Differentiate between several pokemart commands in the same event
+        counter_id = '{location}_{area}_{event}'.format(location=current_location, area=current_area,
+                                                        event=current_event.eventId)
+        if counter_id not in shop_id_counter:
+            shop_id_counter[counter_id] = 0
+        else:
+            shop_id_counter[counter_id] += 1
+        shop_id = shop_id_counter[counter_id]
+        shop_identifier = 'event-{event}-shop-{shop}'.format(event=current_event.eventId, shop=shop_id)
+
+        shops[current_location][current_area][shop_identifier] = {
+            'name': shop_identifier,
+        }
+        if len(shops[current_location][current_area]) == 1:
+            shops[current_location][current_area][shop_identifier]['default'] = True
+
+        # Store the shop's inventory.  The shop name will need manual tuning.
+        old_position = command_rom.tell()
+        command_rom.seek(gba.address_from_pointer(pointer))
+        while command_rom.peek(1)[0].to_bytes(1, 'little') != ScriptCommand.END.value:
+            # Some scripts embed this for some reason
+            if command_rom.peek(1)[0].to_bytes(1, 'little') == ScriptCommand.RELEASE.value:
+                command_rom.seek(1, io.SEEK_CUR)
+                continue
+            item_id = int.from_bytes(command_rom.read(2), 'little')
+            if item_id == 0:
+                continue
+            shop_items.append({
+                'version_group': version_group.value,
+                'location': current_location,
+                'area': current_area,
+                'shop': shop_identifier,
+                'item': item_slugs[item_id],
+                'buy': items[item_slugs[item_id]]['buy']
+            })
+        command_rom.seek(old_position)
+
+    # Parse all map scripts, handling pokemart calls
+    progress = progressbar.ProgressBar(max_value=sum([len(maps) for maps in map_slugs.values()]))
+    i = 0
+    for map_group_id, maps in map_slugs.items():
+        for map_id, map_info in maps.items():
+            current_location = map_info['location']
+            current_area = map_info['area']
+            game_map = _get_map(rom, version_group, version, map_group_id, map_id)
+            event: ObjectEvent
+            for event in game_map.events.objectEvents.values():
+                current_event = event
+                if event.scriptPointer:
+                    rom.seek(gba.address_from_pointer(event.scriptPointer))
+                    script.do_script(version_group, rom, {ScriptCommand.POKEMART: _parse_pokemart})
+            i += 1
+            progress.update(i)
+    progress.finish()
+
+    return shops, shop_items
+
+
+def write_shops(out: Dict[str, Dict[str, Dict[str, dict]]]):
+    print('Writing Shops to Locations')
+
+    def _write_data(child_slugs, area_data, shop_data):
+        if len(child_slugs) == 0:
+            # Leaf node
+            area_data['shops'] = shop_data
+        else:
+            # Branch node
+            leaf_slug = child_slugs.pop(0)
+            if 'children' not in area_data:
+                area_data['children'] = {}
+            if leaf_slug not in area_data['children']:
+                area_data['children'][leaf_slug] = {'name': leaf_slug.replace('-', ' ').title()}
+            area_data['children'][leaf_slug] = _write_data(child_slugs, area_data['children'][leaf_slug], shop_data)
+        return area_data
+
+    for location_slug, vg_data in progressbar.progressbar(out.items()):
+        yaml_path = os.path.join(args.out_locations, '{slug}.yaml'.format(slug=location_slug))
+        try:
+            with open(yaml_path, 'r') as location_yaml:
+                data = yaml.load(location_yaml.read())
+        except IOError:
+            data = {}
+
+        for vg_slug, location_info in vg_data.items():
+            # Write shop data, adding area if necessary
+            for area_slugs, shop_data in location_info.items():
+                area_slugs = area_slugs.split('/')
+                root_area = area_slugs.pop(0)
+                if root_area not in data[vg_slug]['areas']:
+                    data[vg_slug]['areas'][root_area] = {'name': root_area.replace('-', ' ').title()}
+                data[vg_slug]['areas'][root_area] = _write_data(area_slugs, data[vg_slug]['areas'][root_area],
+                                                                shop_data)
+
+        with open(yaml_path, 'w') as location_yaml:
+            yaml.dump(data, location_yaml)
+
+
+def write_shop_items(used_version_groups, out: List[Dict[str, Any]]):
+    print('Writing shop items')
+
+    data = []
+    with open(args.out_shop_items, 'r') as shop_items_csv:
+        for row in csv.DictReader(shop_items_csv):
+            if row['version_group'] not in used_version_groups:
+                data.append(row)
+    data.extend(out)
+
+    with open(args.out_shop_items, 'w') as shop_items_csv:
+        writer = csv.DictWriter(shop_items_csv, data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+
+
+if __name__ == '__main__':
+    # Get config
+    argparser = argparse.ArgumentParser(description='Load Gen 3 data.  (R/S uses Rev 1.2 ROMs)')
+    argparser.add_argument('--rom', action='append', type=argparse.FileType('rb'), required=True, help='ROM File path')
+    argparser.add_argument('--version', action='append', type=str, choices=[version.value for version in Version],
+                           help='Version slug to dump')
+    argparser.add_argument('--out-pokemon', type=str, required=True, help='Pokemon YAML file dir')
+    argparser.add_argument('--out-pokemon_moves', type=str, required=True, help='Pokemon Move CSV file')
+    argparser.add_argument('--out-moves', type=str, required=True, help='Move YAML file dir')
+    argparser.add_argument('--out-contest_effects', type=str, required=True, help='Contest Effect YAML file dir')
+    argparser.add_argument('--out-items', type=str, required=True, help='Item YAML file dir')
+    argparser.add_argument('--out-shop_items', type=str, required=True, help='Shop Data CSV file')
+    argparser.add_argument('--out-locations', type=str, required=True, help='Location YAML file dir')
+    argparser.add_argument('--out-encounters', type=str, required=True, help='Encounter CSV file')
+    argparser.add_argument('--write-pokemon', action='store_true', help='Write Pokemon data')
+    argparser.add_argument('--write-pokemon_moves', action='store_true', help='Write Pokemon move data')
+    argparser.add_argument('--write-moves', action='store_true', help='Write Move data')
+    argparser.add_argument('--write-contest_effects', action='store_true', help='Write Contest Effect data')
+    argparser.add_argument('--write-items', action='store_true', help='Write Item data')
+    argparser.add_argument('--write-shops', action='store_true', help='Write Shop data')
+    argparser.add_argument('--write-shop_items', action='store_true', help='Write Shop items')
+    argparser.add_argument('--write-encounters', action='store_true', help='Write Shop data')
+    global args
+    args = argparser.parse_args()
+
+    # What version is this?
+    versionmap = {
+        'AXVE': Version.RUBY,
+        'AXPE': Version.SAPPHIRE,
+        'BPEE': Version.EMERALD,
+        'BPRE': Version.FIRERED,
+        'BPGE': Version.LEAFGREEN,
+    }
+    versiongroupmap = {
+        Version.RUBY: VersionGroup.RUBY_SAPPHIRE,
+        Version.SAPPHIRE: VersionGroup.RUBY_SAPPHIRE,
+        Version.EMERALD: VersionGroup.EMERALD,
+        Version.FIRERED: VersionGroup.FIRERED_LEAFGREEN,
+        Version.LEAFGREEN: VersionGroup.FIRERED_LEAFGREEN,
+    }
+
+    out_moves = {}
+    out_contest_effects = {}
+    out_items = {}
+    out_shops = {}
+    out_shop_items = []
+    dumped_versions = set()
+    dumped_version_groups = set()
+    dump_rom: BufferedReader
+    for dump_rom in args.rom:
+        dump_rom.seek(0xAC)
+        dump_version = dump_rom.read(4)
+        dump_version = dump_version.decode('ascii')
+        dump_version = versionmap[dump_version]
+        if len(args.version) > 0 and dump_version.value not in args.version:
+            # Skip this version
+            continue
+        dump_version_group = versiongroupmap[dump_version]
+        print('Using version group {version_group}'.format(version_group=dump_version_group.value))
+        print('Using version {version}'.format(version=dump_version.value))
+
+        vg_moves, vg_contest_effects, vg_move_slugs = get_moves(dump_rom, dump_version_group, dump_version)
+        out_moves = group_by_version_group(dump_version_group.value, vg_moves, out_moves)
+        out_contest_effects = group_by_version_group(dump_version_group.value, vg_contest_effects, out_contest_effects)
+        vg_items, vg_item_slugs = get_items(dump_rom, dump_version_group, dump_version)
+        vg_items = update_machines(dump_rom, dump_version, vg_items, vg_move_slugs)
+        vg_items = update_berries(dump_rom, dump_version_group, dump_version, vg_items)
+        out_items = group_by_version_group(dump_version_group.value, vg_items, out_items)
+        vg_shops, vg_shop_items = get_shops(dump_rom, dump_version_group, dump_version, vg_item_slugs, vg_items)
+        out_shops = group_by_version_group(dump_version_group.value, vg_shops, out_shops)
+        out_shop_items.extend(vg_shop_items)
+
+        dumped_versions.add(dump_version.value)
+        dumped_version_groups.add(dump_version_group.value)
+
+    if len(dumped_versions) < len(args.version):
+        # Didn't dump all requested versions
+        missing_versions = []
+        for requested_version in args.version:
+            if requested_version not in dumped_versions:
+                missing_versions.append(requested_version)
+        print('Could not dump these versions because the ROMs were not available: {roms}'.format(
+            roms=', '.join(missing_versions)))
+        exit(1)
+    else:
+        if args.write_moves:
+            write_moves(out_moves)
+        if args.write_contest_effects:
+            write_contest_effects(out_contest_effects)
+        if args.write_items:
+            write_items(out_items)
+        if args.write_shops:
+            write_shops(out_shops)
+        if args.write_shop_items:
+            write_shop_items(dumped_version_groups, out_shop_items)
+        exit(0)

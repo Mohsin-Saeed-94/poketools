@@ -1,10 +1,19 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Lavaridge Town'
-  areas: &ruby-sapphire.areas
-    whole-area:
+  areas:
+    whole-area: &ruby-sapphire.areas.whole-area
       name: 'Whole area'
       default: true
+    herb-shop:
+      name: 'Herb Shop'
+      shops: &ruby-sapphire.areas.herb-shop.shops
+        event-1-shop-0:
+          name: event-1-shop-0
+          default: true
+    mart:
+      name: Mart
+      shops: *ruby-sapphire.areas.herb-shop.shops
   map:
     map: &ruby-sapphire.map.map hoenn
     overlay: '<rect width="8" height="8" x="48" y="40" />'
@@ -12,7 +21,8 @@ emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    whole-area: *ruby-sapphire.areas.whole-area
   map:
     map: *ruby-sapphire.map.map
     overlay: '<rect width="13" height="13" x="59" y="62" />'

@@ -1,12 +1,32 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Lilycove City'
-  areas: &ruby-sapphire.areas
-    whole-area:
+  areas:
+    whole-area: &ruby-sapphire.areas.whole-area
       name: 'Whole area'
       default: true
-    contest-hall:
+    contest-hall: &ruby-sapphire.areas.contest-hall
       name: 'Contest hall'
+    department-store:
+      name: 'Department Store'
+      children:
+        1f:
+          name: 1F
+          default: true
+        2f:
+          name: 2F
+          shops: &ruby-sapphire.areas.department-store.children.2f.shops
+            event-4-shop-0:
+              name: event-4-shop-0
+              default: true
+            event-5-shop-0:
+              name: event-5-shop-0
+        3f:
+          name: 3F
+          shops: *ruby-sapphire.areas.department-store.children.2f.shops
+        4f:
+          name: 4F
+          shops: *ruby-sapphire.areas.department-store.children.2f.shops
   map:
     map: &ruby-sapphire.map.map hoenn
     overlay: '<rect width="16" height="8" x="152" y="40" />'
@@ -14,7 +34,9 @@ emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    whole-area: *ruby-sapphire.areas.whole-area
+    contest-hall: *ruby-sapphire.areas.contest-hall
   map:
     map: *ruby-sapphire.map.map
     overlay: '<rect width="24" height="13" x="212" y="51" />'

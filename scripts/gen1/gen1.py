@@ -9,7 +9,7 @@ import re
 import progressbar
 import slugify
 
-from data import gen1_maps
+from gen1 import gen1_maps
 from inc import gb, pokemon_text
 from inc.yaml import yaml
 
