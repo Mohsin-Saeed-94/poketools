@@ -407,6 +407,10 @@ def write_contest_effects(out):
 
 item_name_changes = {
     'blackglasses': 'black-glasses',
+    'brightpowder': 'bright-powder',
+    'deepseatooth': 'deep-sea-tooth',
+    'deepseascale': 'deep-sea-scale',
+    'energypowder': 'energy-powder',
     'nevermeltice': 'never-melt-ice',
     'parlyz-heal': 'paralyze-heal',
     'silverpowder': 'silver-powder',
@@ -558,15 +562,20 @@ def get_items(rom: BufferedReader, version_group: VersionGroup, version: Version
             slug = slugify(item_stats.name)
             if slug in slug_overrides:
                 slug = slug_overrides[slug]
+            # Use the new name for the icon, if applicable
+            icon = '{slug}.png'.format(slug=slug)
+            if slug in item_name_changes:
+                icon = '{slug}.png'.format(slug=item_name_changes[slug])
             if slug in skip_items[version_group]:
                 continue
             item_slugs[item_id] = slug
+
             out[slug] = {
                 'name': item_stats.name,
                 'category': None,
                 'pocket': item_stats.pocket,
                 'flags': [],
-                'icon': '{slug}.png'.format(slug=slug)
+                'icon': icon,
             }
             if item_stats.price > 0:
                 out[slug].update({
@@ -616,7 +625,7 @@ def get_items(rom: BufferedReader, version_group: VersionGroup, version: Version
     return out, item_slugs
 
 
-def update_machines(rom: BufferedReader, version: Version, items: dict, move_slugs: dict):
+def update_machines(rom: BufferedReader, version: Version, items: dict, move_slugs: dict, moves: dict):
     machine_count = {
         'TM': 50,
         'HM': 8,
@@ -635,11 +644,16 @@ def update_machines(rom: BufferedReader, version: Version, items: dict, move_slu
     def _update_machine_item(type: str, number: int, move_id: int):
         item_slug = '{type}{number:02}'.format(type=type.lower(), number=number)
         move_slug = move_slugs[move_id]
-        items[item_slug]['machine'] = {
-            'type': type.upper(),
-            'number': number,
-            'move': move_slug,
-        }
+        move_type = moves[move_slug]['type']
+        items[item_slug].update({
+            'machine': {
+                'type': type.upper(),
+                'number': number,
+                'move': move_slug,
+            },
+            # Machine icons are by type, not item
+            'icon': '{type}-{move_type}.png'.format(type=type.lower(), move_type=move_type)
+        })
 
     rom.seek(machine_table_offset)
     for machine_type, num_machines in machine_count.items():
@@ -1111,7 +1125,7 @@ if __name__ == '__main__':
         out_moves = group_by_version_group(dump_version_group.value, vg_moves, out_moves)
         out_contest_effects = group_by_version_group(dump_version_group.value, vg_contest_effects, out_contest_effects)
         vg_items, vg_item_slugs = get_items(dump_rom, dump_version_group, dump_version)
-        vg_items = update_machines(dump_rom, dump_version, vg_items, vg_move_slugs)
+        vg_items = update_machines(dump_rom, dump_version, vg_items, vg_move_slugs, vg_moves)
         vg_items = update_berries(dump_rom, dump_version_group, dump_version, vg_items)
         out_items = group_by_version_group(dump_version_group.value, vg_items, out_items)
         vg_shops, vg_shop_items = get_shops(dump_rom, dump_version_group, dump_version, vg_item_slugs, vg_items)
