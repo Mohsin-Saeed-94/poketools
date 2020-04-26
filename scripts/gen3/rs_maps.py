@@ -202,8 +202,8 @@ map_slugs[0x0D] = {
     0x13: {'location': 'lilycove-city', 'area': 'department-store/3f'},
     0x14: {'location': 'lilycove-city', 'area': 'department-store/4f'},
     0x15: {'location': 'lilycove-city', 'area': 'department-store/5f'},
-    0x16: {'location': 'lilycove-city', 'area': 'department-store-rooftop'},
-    0x17: {'location': 'lilycove-city', 'area': 'department-store-elevator'},
+    0x16: {'location': 'lilycove-city', 'area': 'department-store/roof'},
+    0x17: {'location': 'lilycove-city', 'area': 'department-store/elevator'},
 }
 map_slugs[0x0E] = {
     0x00: {'location': 'mossdeep-city', 'area': 'gym'},
