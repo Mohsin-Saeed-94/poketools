@@ -739,6 +739,103 @@ def update_berries(rom: BufferedReader, version_group, version: Version, items: 
     return items
 
 
+def get_decorations(rom: BufferedReader, version_group: VersionGroup, version: Version):
+    num_decorations = 121
+    decor_offset = {
+        Version.RUBY: 0x3EB6E0,
+        Version.SAPPHIRE: 0x3EB73C,
+        Version.EMERALD: 0x5A5C08,
+    }
+    decor_offset = decor_offset[version]
+    decor_length = 32
+
+    # width, height
+    shape_map = {
+        0x00: (1, 1),
+        0x01: (2, 1),
+        0x02: (3, 1),
+        0x03: (4, 2),
+        0x04: (2, 2),
+        0x05: (1, 2),
+        0x06: (1, 3),
+        0x07: (2, 4),
+        0x08: (3, 3),
+        0x09: (3, 2),
+    }
+    category_map = {
+        0x00: 'desks',
+        0x01: 'chairs',
+        0x02: 'plants',
+        0x03: 'ornaments',
+        0x04: 'mats',
+        0x05: 'posters',
+        0x06: 'dolls',
+        0x07: 'cushions',
+    }
+
+    @dataclass()
+    class Decoration:
+        def __init__(self, data: bytes):
+            data = struct.unpack('<B16sBBBH2x4s4s', data)
+            self.id = data[0]
+            self.name = data[1].decode('pokemon_gen3').strip()
+            self.permission = data[2]
+            self.width = shape_map[data[3]][0]
+            self.height = shape_map[data[3]][1]
+            self.category = category_map[data[4]]
+            self.price = data[5]
+            self.descPointer = data[6]
+            self.tilesPointer = data[7]
+
+    print('Dumping Decorations')
+    out = {}
+    decor_slugs = {}
+
+    # Skip dummy decoration
+    for decor_id in range(1, num_decorations):
+        rom.seek(decor_offset + (decor_id * decor_length))
+        decor = Decoration(rom.read(decor_length))
+        slug = slugify(decor.name)
+        decor_slugs[decor_id] = slug
+
+        out[slug] = {
+            'name': decor.name,
+            'category': decor.category,
+            'pocket': 'decorations',
+            'flags': [],
+            'icon': '{slug}.png'.format(slug=slug),
+            'buy': None,
+            'decoration': {
+                'width': decor.width,
+                'height': decor.height,
+            },
+        }
+        if decor.category in ['dolls', 'cushions']:
+            out[slug].update({
+                'short_description': 'A decoration for your room or Secret Base.',
+                'description': 'A decoration for your room or Secret Base.',
+            })
+        else:
+            out[slug].update({
+                'short_description': 'A decoration for your Secret Base.',
+                'description': 'A decoration for your Secret Base.',
+            })
+        if decor.price > 0:
+            out[slug].update({
+                'buy': decor.price,
+            })
+        else:
+            del out[slug]['buy']
+        rom.seek(gba.address_from_pointer(decor.descPointer))
+        description = bytearray()
+        while rom.peek(1)[0] != 0xFF:
+            description.append(rom.read(1)[0])
+        description = description.decode('pokemon_gen3')
+        out[slug]['flavor_text'] = description
+
+    return out, decor_slugs
+
+
 def write_items(out):
     print('Writing Items')
     used_version_groups = set()
@@ -922,7 +1019,8 @@ def _get_map(rom: BufferedReader, version_group: VersionGroup, version, group_id
     return game_map
 
 
-def get_shops(rom: BufferedReader, version_group: VersionGroup, version: Version, item_slugs: dict, items: dict):
+def get_shops(rom: BufferedReader, version_group: VersionGroup, version: Version, item_slugs: dict, decor_slugs: dict,
+              items: dict):
     if version_group == VersionGroup.RUBY_SAPPHIRE:
         from .rs_maps import map_slugs
         from .script.rs_commands import ScriptCommand
@@ -945,7 +1043,7 @@ def get_shops(rom: BufferedReader, version_group: VersionGroup, version: Version
     current_event = None
     shop_id_counter = {}
 
-    def _parse_pokemart(pointer: bytes, command_rom: BufferedReader):
+    def _parse_shop(pointer: bytes, command_rom: BufferedReader, shop_type: str):
         # Store the shop info
         if current_location not in shops:
             shops[current_location] = {}
@@ -978,15 +1076,25 @@ def get_shops(rom: BufferedReader, version_group: VersionGroup, version: Version
         command_rom.seek(gba.address_from_pointer(pointer))
         while command_rom.peek(1)[0] != 0:
             item_id = int.from_bytes(command_rom.read(2), 'little')
+            if shop_type == 'pokemart':
+                item_slug = item_slugs[item_id]
+            else:
+                item_slug = decor_slugs[item_id]
             shop_items.append({
                 'version_group': version_group.value,
                 'location': current_location,
                 'area': current_area,
                 'shop': shop_identifier,
-                'item': item_slugs[item_id],
+                'item': item_slug,
                 'buy': items[item_slugs[item_id]]['buy']
             })
         command_rom.seek(old_position)
+
+    def _parse_pokemart(pointer: bytes, command_rom: BufferedReader):
+        _parse_shop(pointer, command_rom, 'pokemart')
+
+    def _parse_decormart(pointer: bytes, command_rom: BufferedReader):
+        _parse_shop(pointer, command_rom, 'decormart')
 
     # Parse all map scripts, handling pokemart calls
     progress = progressbar.ProgressBar(max_value=sum([len(maps) for maps in map_slugs.values()]))
@@ -1001,7 +1109,14 @@ def get_shops(rom: BufferedReader, version_group: VersionGroup, version: Version
                 current_event = event
                 if event.scriptPointer:
                     rom.seek(gba.address_from_pointer(event.scriptPointer))
-                    script.do_script(version_group, rom, {ScriptCommand.POKEMART: _parse_pokemart})
+                    callbacks = {
+                        ScriptCommand.POKEMART: _parse_pokemart,
+                        ScriptCommand.POKEMARTBP: _parse_pokemart,
+                        ScriptCommand.POKEMARTDECOR: _parse_decormart,
+                        ScriptCommand.POKEMARTDECORATION: _parse_decormart,
+                        ScriptCommand.POKEMARTDECORATION2: _parse_decormart,
+                    }
+                    script.do_script(version_group, rom, callbacks)
             i += 1
             progress.update(i)
     progress.finish()
@@ -1139,8 +1254,10 @@ if __name__ == '__main__':
         vg_items, vg_item_slugs = get_items(dump_rom, dump_version_group, dump_version)
         vg_items = update_machines(dump_rom, dump_version, vg_items, vg_move_slugs, vg_moves)
         vg_items = update_berries(dump_rom, dump_version_group, dump_version, vg_items)
+        vg_decor, vg_decor_slugs = get_decorations(dump_rom, dump_version_group, dump_version)
+        vg_items.update(vg_decor)
         out_items = group_by_version_group(dump_version_group.value, vg_items, out_items)
-        vg_shops, vg_shop_items = get_shops(dump_rom, dump_version_group, dump_version, vg_item_slugs, vg_items)
+        vg_shops, vg_shop_items = get_shops(dump_rom, dump_version_group, dump_version, vg_item_slugs, None, vg_items)
         out_shops = group_by_version_group(dump_version_group.value, vg_shops, out_shops)
         out_shop_items.extend(vg_shop_items)
 

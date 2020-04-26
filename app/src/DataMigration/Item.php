@@ -4,6 +4,7 @@ namespace App\DataMigration;
 
 use App\Entity\Berry;
 use App\Entity\BerryFlavorLevel;
+use App\Entity\Decoration;
 use App\Entity\Embeddable\Range;
 use App\Entity\ItemInVersionGroup;
 use App\Entity\Machine;
@@ -51,7 +52,10 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
         unset($sourceData['identifier']);
         foreach ($sourceData as $versionGroup => $versionGroupSourceData) {
             /** @var VersionGroup $versionGroup */
-            $versionGroup = $this->referenceStore->get(\App\DataMigration\VersionGroup::class, ['identifier' => $versionGroup]);
+            $versionGroup = $this->referenceStore->get(
+                \App\DataMigration\VersionGroup::class,
+                ['identifier' => $versionGroup]
+            );
             $versionGroupDestinationData = $destinationData->findChildByGrouping($versionGroup);
             if (!$versionGroupDestinationData) {
                 $versionGroupDestinationData = new ItemInVersionGroup();
@@ -59,13 +63,22 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             }
 
             $versionGroupSourceData['slug'] = $identifier;
-            $versionGroupSourceData['category'] = $this->referenceStore->get(ItemCategory::class, ['identifier' => $versionGroupSourceData['category']]);
+            $versionGroupSourceData['category'] = $this->referenceStore->get(
+                ItemCategory::class,
+                ['identifier' => $versionGroupSourceData['category']]
+            );
             /** @var \App\Entity\ItemPocket $itemPocket */
-            $itemPocket = $this->referenceStore->get(ItemPocket::class, ['identifier' => $versionGroupSourceData['pocket']]);
+            $itemPocket = $this->referenceStore->get(
+                ItemPocket::class,
+                ['identifier' => $versionGroupSourceData['pocket']]
+            );
             $versionGroupSourceData['pocket'] = $itemPocket->findChildByGrouping($versionGroup);
 
             if (isset($versionGroupSourceData['fling_effect'])) {
-                $versionGroupSourceData['fling_effect'] = $this->referenceStore->get(ItemFlingEffect::class, ['identifier' => $versionGroupSourceData['fling_effect']]);
+                $versionGroupSourceData['fling_effect'] = $this->referenceStore->get(
+                    ItemFlingEffect::class,
+                    ['identifier' => $versionGroupSourceData['fling_effect']]
+                );
             }
 
             if (isset($versionGroupSourceData['flags'])) {
@@ -75,14 +88,30 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             }
 
             if (isset($versionGroupSourceData['berry'])) {
-                $versionGroupSourceData['berry'] = $this->transformBerry($versionGroupSourceData['berry'], $versionGroupDestinationData->getBerry());
+                $versionGroupSourceData['berry'] = $this->transformBerry(
+                    $versionGroupSourceData['berry'],
+                    $versionGroupDestinationData->getBerry()
+                );
             }
             if (isset($versionGroupSourceData['machine'])) {
-                $versionGroupSourceData['machine'] = $this->transformMachine($versionGroupSourceData['machine'], $versionGroupDestinationData->getMachine(), $versionGroup);
+                $versionGroupSourceData['machine'] = $this->transformMachine(
+                    $versionGroupSourceData['machine'],
+                    $versionGroupDestinationData->getMachine(),
+                    $versionGroup
+                );
+            }
+            if (isset($versionGroupSourceData['decoration'])) {
+                $versionGroupSourceData['decoration'] = $this->transformDecoration(
+                    $versionGroupSourceData['decoration'],
+                    $versionGroupDestinationData->getDecoration(),
+                );
             }
 
             /** @var ItemInVersionGroup $versionGroupDestinationData */
-            $versionGroupDestinationData = $this->mergeProperties($versionGroupSourceData, $versionGroupDestinationData);
+            $versionGroupDestinationData = $this->mergeProperties(
+                $versionGroupSourceData,
+                $versionGroupDestinationData
+            );
             $destinationData->addChild($versionGroupDestinationData);
         }
 
@@ -90,7 +119,7 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
     }
 
     /**
-     * @param array      $berrySourceData
+     * @param array $berrySourceData
      * @param Berry|null $berryDestinationData
      *
      * @return Berry
@@ -104,9 +133,15 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
             $berryDestinationData = new Berry();
         }
 
-        $berrySourceData['firmness'] = $this->referenceStore->get(BerryFirmness::class, ['identifier' => $berrySourceData['firmness']]);
+        $berrySourceData['firmness'] = $this->referenceStore->get(
+            BerryFirmness::class,
+            ['identifier' => $berrySourceData['firmness']]
+        );
         if (isset($berrySourceData['natural_gift_type'])) {
-            $berrySourceData['natural_gift_type'] = $this->referenceStore->get(Type::class, ['identifier' => $berrySourceData['natural_gift_type']]);
+            $berrySourceData['natural_gift_type'] = $this->referenceStore->get(
+                Type::class,
+                ['identifier' => $berrySourceData['natural_gift_type']]
+            );
         }
 
         $berryFlavors = $berryDestinationData->getFlavors();
@@ -140,7 +175,7 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
     }
 
     /**
-     * @param array        $machineSourceData
+     * @param array $machineSourceData
      * @param Machine|null $machineDestinationData
      * @param VersionGroup $versionGroup
      *
@@ -149,8 +184,11 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
      * @throws \DragoonBoots\A2B\Exception\NonexistentDriverException
      * @throws \DragoonBoots\A2B\Exception\NonexistentMigrationException
      */
-    protected function transformMachine(array $machineSourceData, ?Machine $machineDestinationData, VersionGroup $versionGroup): Machine
-    {
+    protected function transformMachine(
+        array $machineSourceData,
+        ?Machine $machineDestinationData,
+        VersionGroup $versionGroup
+    ): Machine {
         if (!$machineDestinationData) {
             $machineDestinationData = new Machine();
         }
@@ -163,6 +201,23 @@ class Item extends AbstractDoctrineDataMigration implements DataMigrationInterfa
         $machineDestinationData = $this->mergeProperties($machineSourceData, $machineDestinationData);
 
         return $machineDestinationData;
+    }
+
+    /**
+     * @param array $decorSourceData
+     * @param \App\Entity\Decoration|null $decorDestData
+     * @return \App\Entity\Decoration
+     */
+    protected function transformDecoration(array $decorSourceData, ?Decoration $decorDestData): Decoration
+    {
+        if (!$decorDestData) {
+            $decorDestData = new Decoration();
+        }
+
+        /** @var Decoration $decorDestData */
+        $decorDestData = $this->mergeProperties($decorSourceData, $decorDestData);
+
+        return $decorDestData;
     }
 
     /**

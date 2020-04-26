@@ -156,6 +156,21 @@ The game displays this on the "tag".
 
 {{ include:types/flavor_text }}
 
+## decoration
+Decoration data; omit if this item is not a decoration
+
+### width
+How many tiles wide this decoration is.
+
+:type: integer
+:minimum: 1
+
+### height
+How many tiles high this decoration is.
+
+:type: integer
+:minimum: 1
+
 ## short_description
 {{ include:types/short_description }}
 
