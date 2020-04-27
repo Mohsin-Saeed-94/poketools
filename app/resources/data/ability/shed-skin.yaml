@@ -1,14 +1,18 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Shed Skin'
+  name: 'SHED SKIN'
+  flavor_text: &ruby-sapphire.flavor_text 'Heals the body by shedding.'
   short_description: &ruby-sapphire.short_description 'Chance of taking effect is 30%.'
   description: &ruby-sapphire.description 'Chance of taking effect is 30%.'
-  flavor_text: 'Heals the body by shedding.'
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Shed Skin'
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+xd: *colosseum
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
   flavor_text: &diamond-pearl.flavor_text |
@@ -17,13 +21,13 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: &black-white.short_description 'Has a 33% chance of curing any [major status ailment]{mechanic:major-status-ailment} after each turn.'
   description: &black-white.description 'After each turn, this Pokémon has a 33% of being cured of any [major status ailment]{mechanic:major-status-ailment}.'
   flavor_text: *diamond-pearl.flavor_text
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *black-white.short_description
   description: *black-white.description
   flavor_text: |
@@ -31,7 +35,7 @@ x-y: &x-y
     own status conditions.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *black-white.short_description
   description: *black-white.description
   flavor_text: |

@@ -978,7 +978,7 @@ class MapHeader:
 def _get_map(rom: BufferedReader, version_group: VersionGroup, version, group_id: int, map_id: int):
     group_pointer_offset = {
         Version.RUBY: 0x3085A0,
-        Version.SAPPHIRE: 0x307F08,
+        Version.SAPPHIRE: 0x308530,
         Version.EMERALD: 0x486578,
         Version.FIRERED: 0x3526A8,
         Version.LEAFGREEN: 0x352688,
@@ -1194,6 +1194,286 @@ def write_shop_items(used_version_groups, out: List[Dict[str, Any]]):
         writer.writerows(data)
 
 
+ability_name_changes = {
+    'lightningrod': 'lightning-rod',
+    'compoundeyes': 'compound-eyes',
+}
+
+
+def get_abilities(rom: BufferedReader, version_group: VersionGroup, version: Version):
+    out = {}
+    ability_slugs = {}
+    num_abilities = 78
+
+    print('Dumping Abilities')
+
+    def _get_names():
+        name_offset = {
+            Version.RUBY: 0x1FA260,
+            Version.SAPPHIRE: 0x1FA1F0,
+            Version.EMERALD: 0x31B6DB,
+            Version.FIRERED: 0x24FC40,
+            Version.LEAFGREEN: 0x24FC1C,
+        }
+        name_offset = name_offset[version]
+        name_length = 13
+        # Skip over "None" ability
+        for ability_id in range(1, num_abilities):
+            rom.seek(name_offset + (ability_id * name_length))
+            name = bytearray()
+            while rom.peek(1)[0] != 0xFF:
+                name.append(rom.read(1)[0])
+
+            name = name.decode('pokemon_gen3')
+            slug = slugify(name)
+            if slug == 'cacophony':
+                # Unused ability
+                continue
+            ability_slugs[ability_id] = slug
+            out[slug] = {
+                'name': name
+            }
+
+    def _get_flavor_text():
+        flavor_offset = {
+            Version.RUBY: 0x1F99F8,
+            Version.SAPPHIRE: 0x1F9988,
+            Version.EMERALD: 0x31AFAC,
+            Version.FIRERED: 0x24F3D8,
+            Version.LEAFGREEN: 0x24F3B4,
+        }
+        flavor_offset = flavor_offset[version]
+
+        rom.seek(flavor_offset)
+        last_id = 0
+        for ability_id, ability_slug in ability_slugs.items():
+            # Because we skip some descriptions inside the list but flavor text is stored sequentially,
+            # need special handling.
+            skip = ability_id - last_id - 1
+            while skip >= 0:
+                flavor = bytearray()
+                while rom.peek(1)[0] != 0xFF:
+                    flavor.append(rom.read(1)[0])
+                rom.seek(1, io.SEEK_CUR)
+                skip -= 1
+            flavor = flavor.decode('pokemon_gen3')
+            out[ability_slug]['flavor_text'] = flavor
+            last_id = ability_id
+
+    def _pullup_data():
+        pullup_keys = [
+            'short_description',
+            'description',
+        ]
+        print('Using existing data')
+        for ability_slug in progressbar.progressbar(ability_slugs.values()):
+            if ability_slug in ability_name_changes:
+                yaml_path = os.path.join(args.out_abilities,
+                                         '{ability}.yaml'.format(ability=ability_name_changes[ability_slug]))
+            else:
+                yaml_path = os.path.join(args.out_abilities, '{ability}.yaml'.format(ability=ability_slug))
+            with open(yaml_path, 'r') as ability_yaml:
+                old_ability_data = yaml.load(ability_yaml.read())
+                if version_group.value not in old_ability_data:
+                    # If the name has changed, try the original name, as it may have been moved already.
+                    if ability_slug in ability_name_changes:
+                        yaml_path = os.path.join(args.out_abilities, '{ability}.yaml'.format(ability=ability_slug))
+                        with open(yaml_path, 'r') as ability_yaml:
+                            old_ability_data = yaml.load(ability_yaml.read())
+                    else:
+                        raise Exception(
+                            'Ability {ability} has no data for version group {version_group}.'.format(
+                                ability=ability_slug,
+                                version_group=version_group.value))
+                for key in pullup_keys:
+                    if key in old_ability_data[version_group.value]:
+                        out[ability_slug][key] = old_ability_data[version_group.value][key]
+
+    _get_names()
+    _get_flavor_text()
+    _pullup_data()
+
+    return out, ability_slugs
+
+
+def write_abilities(out):
+    print('Writing Abilities')
+    used_version_groups = set()
+    for ability_slug, ability_data in progressbar.progressbar(out.items()):
+        yaml_path = os.path.join(args.out_abilities, '{slug}.yaml'.format(slug=ability_slug))
+        try:
+            with open(yaml_path, 'r') as ability_yaml:
+                data = yaml.load(ability_yaml.read())
+        except IOError:
+            data = {}
+        data.update(ability_data)
+        used_version_groups.update(ability_data.keys())
+        with open(yaml_path, 'w') as ability_yaml:
+            yaml.dump(data, ability_yaml)
+
+    # Remove this version group's data from the new name file
+    for old_name, new_name in ability_name_changes.items():
+        yaml_path = os.path.join(args.out_abilities, '{slug}.yaml'.format(slug=new_name))
+        with open(yaml_path, 'r') as ability_yaml:
+            data = yaml.load(ability_yaml.read())
+        changed = False
+        for check_version_group in used_version_groups:
+            try:
+                del data[check_version_group]
+                changed = True
+            except KeyError:
+                # No need to re-write this file
+                continue
+        if changed:
+            with open(yaml_path, 'w') as ability_yaml:
+                yaml.dump(data, ability_yaml)
+
+
+def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Version, item_slugs: dict, ability_slugs):
+    num_pokemon = 412  # This includes some dummy mons in the middle
+    pokemon_slugs = {}
+    out = {}
+
+    def _get_names():
+        names_offset = {
+            Version.RUBY: 0x1F7184,
+            Version.SAPPHIRE: 0x1F7114,
+            Version.EMERALD: 0x3185C8,
+            Version.FIRERED: 0x245EE0,
+            Version.LEAFGREEN: 0x245EBC,
+        }
+        names_offset = names_offset[version]
+        name_length = 11
+
+        print('Dumping Pokemon names')
+        slug_overrides = {
+            'farfetch-d': 'farfetchd',
+        }
+        # Skip dummy mon at the beginning
+        for species_id in range(1, num_pokemon):
+            rom.seek(names_offset + (species_id * name_length))
+            name = bytearray()
+            while rom.peek(1)[0] != 0xFF:
+                name.append(rom.read(1)[0])
+            name = name.decode('pokemon_gen3')
+            if name == '?':
+                # Dummy mon
+                continue
+
+            slug = slugify(name.replace('♀', '-f').replace('♂', '-m'))
+            if slug in slug_overrides:
+                slug = slug_overrides[slug]
+            pokemon_slugs[species_id] = slug
+            out[slug] = {
+                'name': name
+            }
+
+    def _get_stats():
+        stats_offset = {
+            Version.RUBY: 0x1FEC30,
+            Version.SAPPHIRE: 0x1FEBC0,
+            Version.EMERALD: 0x3203CC,
+            Version.FIRERED: 0x254784,
+            Version.LEAFGREEN: 0x254760,
+        }
+        stats_offset = stats_offset[version]
+        stats_length = 26
+        stats_length_aligned = 28
+
+        growth_rate_map = {
+            0x00: 'medium',
+            0x01: 'slow-then-very-fast',
+            0x02: 'fast-then-very-slow',
+            0x03: 'medium-slow',
+            0x04: 'fast',
+            0x05: 'slow',
+        }
+
+        egg_group_map = {
+            0x01: 'monster',
+            0x02: 'water1',
+            0x03: 'bug',
+            0x04: 'flying',
+            0x05: 'ground',
+            0x06: 'fairy',
+            0x07: 'plant',
+            0x08: 'humanshape',
+            0x09: 'water3',
+            0x0A: 'mineral',
+            0x0B: 'indeterminate',
+            0x0C: 'water2',
+            0x0D: 'ditto',
+            0x0E: 'dragon',
+            0x0F: 'no-eggs',
+        }
+
+        color_map = {
+            0x00: 'red',
+            0x01: 'blue',
+            0x02: 'yellow',
+            0x03: 'green',
+            0x04: 'black',
+            0x05: 'brown',
+            0x06: 'purple',
+            0x07: 'gray',
+            0x08: 'white',
+            0x09: 'pink',
+        }
+
+        @dataclass()
+        class BaseStats:
+            def __init__(self, data: bytes):
+                data = struct.unpack('<BBBBBBBBBBHHHBBBBBBBBBB', data)
+                self.hp = data[0]
+                self.attack = data[1]
+                self.defense = data[2]
+                self.speed = data[3]
+                self.specialAttack = data[4]
+                self.specialDefense = data[5]
+                self.type1 = type_map[data[6]]
+                self.type2 = type_map[data[7]]
+                self.captureRate = data[8]
+                self.experience = data[9]
+                self.evHp = (data[10] & 0b0000000000000011) >> 0
+                self.evAttack = (data[10] & 0b0000000000001100) >> 2
+                self.evDefense = (data[10] & 0b0000000000110000) >> 4
+                self.evSpeed = (data[10] & 0b0000000011000000) >> 6
+                self.evSpecialAttack = (data[10] & 0b0000001100000000) >> 8
+                self.evSpecialDefense = (data[10] & 0b0000110000000000) >> 10
+                if data[11] > 0:
+                    self.item1 = item_slugs[data[11]]
+                else:
+                    self.item1 = None
+                if data[12] > 0:
+                    self.item2 = item_slugs[data[12]]
+                else:
+                    self.item2 = None
+                self.femaleRate = data[13]
+                self.hatchSteps = data[14]
+                self.happiness = data[15]
+                self.growthRate = growth_rate_map[data[16]]
+                self.eggGroups = []
+                for egg_group_id in data[17:19]:
+                    if egg_group_id > 0:
+                        self.eggGroups.append(egg_group_map[egg_group_id])
+                self.abilities = []
+                for abilityId in data[19:21]:
+                    if abilityId > 0:
+                        self.abilities.append(ability_slugs[abilityId])
+                self.safariZoneFleeRate = data[21]
+                self.color = data[22] & 0b01111111
+
+        for species_id, species_slug in pokemon_slugs.items():
+            rom.seek(stats_offset + (species_id * stats_length_aligned))
+            stats = BaseStats(rom.read(stats_length))
+
+    _get_names()
+    _get_stats()
+    pass
+
+    return out, pokemon_slugs
+
+
 if __name__ == '__main__':
     # Get config
     argparser = argparse.ArgumentParser(description='Load Gen 3 data.  (R/S uses Rev 1.2 ROMs)')
@@ -1208,6 +1488,7 @@ if __name__ == '__main__':
     argparser.add_argument('--out-shop_items', type=str, required=True, help='Shop Data CSV file')
     argparser.add_argument('--out-locations', type=str, required=True, help='Location YAML file dir')
     argparser.add_argument('--out-encounters', type=str, required=True, help='Encounter CSV file')
+    argparser.add_argument('--out-abilities', type=str, required=True, help='Ability YAML file dir')
     argparser.add_argument('--write-pokemon', action='store_true', help='Write Pokemon data')
     argparser.add_argument('--write-pokemon_moves', action='store_true', help='Write Pokemon move data')
     argparser.add_argument('--write-moves', action='store_true', help='Write Move data')
@@ -1215,7 +1496,8 @@ if __name__ == '__main__':
     argparser.add_argument('--write-items', action='store_true', help='Write Item data')
     argparser.add_argument('--write-shops', action='store_true', help='Write Shop data')
     argparser.add_argument('--write-shop_items', action='store_true', help='Write Shop items')
-    argparser.add_argument('--write-encounters', action='store_true', help='Write Shop data')
+    argparser.add_argument('--write-encounters', action='store_true', help='Write Encounter data')
+    argparser.add_argument('--write-abilities', action='store_true', help='Write Ability data')
     global args
     args = argparser.parse_args()
 
@@ -1240,6 +1522,8 @@ if __name__ == '__main__':
     out_items = {}
     out_shops = {}
     out_shop_items = []
+    out_abilities = {}
+    out_pokemon = {}
     dumped_versions = set()
     dumped_version_groups = set()
     dump_rom: BufferedReader
@@ -1268,6 +1552,10 @@ if __name__ == '__main__':
                                             vg_items)
         out_shops = group_by_version_group(dump_version_group.value, vg_shops, out_shops)
         out_shop_items.extend(vg_shop_items)
+        vg_abilities, vg_ability_slugs = get_abilities(dump_rom, dump_version_group, dump_version)
+        out_abilities = group_by_version_group(dump_version_group.value, vg_abilities, out_abilities)
+        vg_pokemon, vg_pokemon_slugs = get_pokemon(dump_rom, dump_version_group, dump_version, vg_item_slugs,
+                                                   vg_ability_slugs)
 
         dumped_versions.add(dump_version.value)
         dumped_version_groups.add(dump_version_group.value)
@@ -1292,4 +1580,6 @@ if __name__ == '__main__':
             write_shops(out_shops)
         if args.write_shop_items:
             write_shop_items(dumped_version_groups, out_shop_items)
+        if args.write_abilities:
+            write_abilities(out_abilities)
         exit(0)

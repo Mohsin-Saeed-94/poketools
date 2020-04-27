@@ -3,7 +3,7 @@ Group Pointers
 Version   | Offset     | Group Count
 --------- | ---------- | -----------
 Ruby      | `0x3085A0` | 34
-Sapphire  | `0x307F08` | 34
+Sapphire  | `0x308530` | 34
 Emerald   | `0x486578` | 34
 FireRed   | `0x3526A8` | 43
 LeafGreen | `0x352688` | 43
@@ -14,7 +14,7 @@ Header Pointers
 Version   | Offset     | First Group
 --------- | ---------- | -----------
 Ruby      | `0x307F78` | 0
-Sapphire  | `0x307f0B` | 0
+Sapphire  | `0x307F08` | 0
 Emerald   | `0x485D60` | 0
 FireRed   | `0x352004` | 0
 LeafGreen | `0x351FE4` | 0

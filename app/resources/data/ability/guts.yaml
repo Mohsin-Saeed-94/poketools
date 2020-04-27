@@ -1,14 +1,18 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Guts
-  short_description: 'Does not take effect during [sleep]{mechanic:sleep}.'
-  description: 'Does not take effect during [sleep]{mechanic:sleep}.'
-  flavor_text: 'Ups ATTACK if suffering.'
+  name: GUTS
+  flavor_text: &ruby-sapphire.flavor_text 'Ups ATTACK if suffering.'
+  short_description: &ruby-sapphire.short_description 'Does not take effect during [sleep]{mechanic:sleep}.'
+  description: &ruby-sapphire.description 'Does not take effect during [sleep]{mechanic:sleep}.'
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name Guts
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+xd: *colosseum
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: &diamond-pearl.short_description 'Increases [Attack]{mechanic:attack} to 1.5× with a [major status ailment]{mechanic:major-status-ailment}.'
   description: &diamond-pearl.description |
     Whenever this Pokémon is [asleep]{mechanic:sleep}, [burned]{mechanic:burn}, [paralyzed]{mechanic:paralysis}, or [poisoned]{mechanic:poison}, it has 1.5× its [Attack]{mechanic:attack}.  This Pokémon is not affected by the usual Attack cut from a burn.
@@ -22,7 +26,7 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
@@ -30,7 +34,7 @@ x-y: &x-y
     Pokémon has a status condition.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |

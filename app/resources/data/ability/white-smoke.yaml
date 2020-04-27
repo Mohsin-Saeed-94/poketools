@@ -1,5 +1,6 @@
 ruby-sapphire:
-  name: &ruby-sapphire.name 'White Smoke'
+  name: &ruby-sapphire.name 'WHITE SMOKE'
+  flavor_text: &ruby-sapphire.flavor_text 'Prevents ability reduction.'
   short_description: &ruby-sapphire.short_description 'Prevents stats from being [lowered]{mechanic:stat-modifier} by other Pokémon.'
   description: |
     This Pokémon cannot have its stats [lowered]{mechanic:stat-modifier} by other Pokémon.
@@ -7,11 +8,11 @@ ruby-sapphire:
     This ability does not prevent any stat losses other than [stat modifiers]{mechanic:stat-modifiers}, such as the [Speed]{mechanic:speed} cut from [paralysis]{mechanic:paralysis}; nor self-inflicted stat drops, such as the [Special Attack]{mechanic:special-attack} drop from []{move:overheat}; nor opponent-triggered stat boosts, such as the [Attack]{mechanic:attack} boost from []{move:swagger}.
     
     This ability functions identically to []{ability:clear-body} in battle.
-  flavor_text: &ruby-sapphire.flavor_text 'Prevents ability reduction.'
 emerald: &emerald
   name: *ruby-sapphire.name
+  flavor_text: *ruby-sapphire.flavor_text
   short_description: *ruby-sapphire.short_description
-  description: |
+  description: &emerald.description |
     This Pokémon cannot have its stats [lowered]{mechanic:stat-modifier} by other Pokémon.
     
     This ability does not prevent any stat losses other than [stat modifiers]{mechanic:stat-modifiers}, such as the [Speed]{mechanic:speed} cut from [paralysis]{mechanic:paralysis}; nor self-inflicted stat drops, such as the [Special Attack]{mechanic:special-attack} drop from []{move:overheat}; nor opponent-triggered stat boosts, such as the [Attack]{mechanic:attack} boost from []{move:swagger}.
@@ -19,12 +20,15 @@ emerald: &emerald
     This ability functions identically to []{ability:clear-body} in battle.
     
     Overworld: If the lead Pokémon has this ability, the wild encounter rate is halved.
+colosseum: &colosseum
+  name: &colosseum.name 'White Smoke'
+  short_description: *ruby-sapphire.short_description
+  description: *emerald.description
   flavor_text: *ruby-sapphire.flavor_text
-colosseum: *emerald
-xd: *emerald
+xd: *colosseum
 firered-leafgreen: *emerald
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *ruby-sapphire.short_description
   description: &diamond-pearl.description |
     This Pokémon cannot have its stats [lowered]{mechanic:stat-modifier} by other Pokémon.
@@ -39,14 +43,14 @@ diamond-pearl: &diamond-pearl
     stats from being lowered.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *ruby-sapphire.short_description
   description: *diamond-pearl.description
   flavor_text: |
     Prevents its stats from
     being lowered.
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *ruby-sapphire.short_description
   description: *diamond-pearl.description
   flavor_text: |
@@ -56,7 +60,7 @@ black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire: *black-white
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *ruby-sapphire.short_description
   description: *diamond-pearl.description
   flavor_text: |

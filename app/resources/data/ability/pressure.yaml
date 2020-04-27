@@ -1,14 +1,18 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Pressure
-  short_description: 'Does not affect friendly Pokémon''s moves that target all other Pokémon.'
-  description: 'Does not affect friendly Pokémon''s moves that target all other Pokémon.  This ability''s presence is not announced upon entering battle.'
-  flavor_text: 'Raises foe’s PP usage.'
+  name: PRESSURE
+  flavor_text: 'Raises foe''s PP usage.'
+  short_description: &ruby-sapphire.short_description 'Does not affect friendly Pokémon''s moves that target all other Pokémon.'
+  description: &ruby-sapphire.description 'Does not affect friendly Pokémon''s moves that target all other Pokémon.  This ability''s presence is not announced upon entering battle.'
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name Pressure
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  flavor_text: 'Raises foe’s PP usage.'
+xd: *colosseum
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: &diamond-pearl.short_description 'Increases the [PP]{mechanic:pp} cost of moves targetting the Pokémon by one.'
   description: &diamond-pearl.description |
     Moves targetting this Pokémon use one extra [PP]{mechanic:pp}.
@@ -26,7 +30,7 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |
@@ -34,7 +38,7 @@ x-y: &x-y
     Pokémon’s PP usage.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *diamond-pearl.short_description
   description: *diamond-pearl.description
   flavor_text: |

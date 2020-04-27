@@ -1,19 +1,23 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Sticky Hold'
+  name: 'STICKY HOLD'
+  flavor_text: &ruby-sapphire.flavor_text 'Prevents item theft.'
   short_description: &ruby-sapphire.short_description 'Prevents a held item from being removed by other Pokémon.'
-  description: |
+  description: &ruby-sapphire.description |
     This Pokémon's hold item cannot be removed by other Pokémon.
     
     Damaging moves that would remove this Pokémon's item can still inflict damage against this Pokémon, e.g. []{move:knock-off}.  This Pokémon can still use moves that involve the loss of its own item, e.g. []{move:trick}.
     
     Overworld: If the lead Pokémon has this ability, the encounter rate while fishing is increased.
-  flavor_text: 'Prevents item theft.'
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Sticky Hold'
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+xd: *colosseum
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *ruby-sapphire.short_description
   description: &diamond-pearl.description |
     This Pokémon's hold item cannot be removed by other Pokémon.
@@ -31,7 +35,7 @@ black-2-white-2: *diamond-pearl
 x-y: *diamond-pearl
 omega-ruby-alpha-sapphire: *diamond-pearl
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *ruby-sapphire.short_description
   description: *diamond-pearl.description
   flavor_text: |

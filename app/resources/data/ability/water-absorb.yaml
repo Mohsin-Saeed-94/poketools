@@ -1,17 +1,21 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Water Absorb'
+  name: 'WATER ABSORB'
+  flavor_text: &ruby-sapphire.flavor_text 'Changes water into HP.'
   short_description: &ruby-sapphire.short_description 'Absorbs []{type:water} moves, healing for 1/4 max [HP]{mechanic:hp}.'
   description: &ruby-sapphire.description |
     Whenever a []{type:water}-type move hits this Pokémon, it heals for 1/4 of its maximum [HP]{mechanic:hp}, negating any other effect on it.
     
     Water moves will ignore this Pokémon's []{move:substitute}.
-  flavor_text: 'Changes water into HP.'
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: &colosseum.name 'Water Absorb'
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  flavor_text: *ruby-sapphire.flavor_text
+xd: *colosseum
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
   flavor_text: |
@@ -24,7 +28,7 @@ black-2-white-2: *diamond-pearl
 x-y: *diamond-pearl
 omega-ruby-alpha-sapphire: *diamond-pearl
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *colosseum.name
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
   flavor_text: |
