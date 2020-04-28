@@ -5,6 +5,7 @@ import io
 from io import BufferedReader
 import os
 import struct
+import sys
 from typing import Any, Dict, List
 
 from flags import Flags
@@ -13,7 +14,7 @@ from slugify import slugify
 
 from gen3 import script
 from gen3.enums import Version, VersionGroup
-from inc import gba, group_by_version_group, pokemon_text
+from inc import gba, group_by_version_group, group_pokemon, pokemon_text
 from inc.yaml import yaml
 
 pokemon_text.register()
@@ -1331,8 +1332,15 @@ def write_abilities(out):
 
 def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Version, item_slugs: dict, ability_slugs):
     num_pokemon = 412  # This includes some dummy mons in the middle
+    species_slugs = {}
+    # Keyed by species slug; the first item is always the default Pokemon
     pokemon_slugs = {}
     out = {}
+
+    form_default_map = {
+        'castform': 'castform-default',
+        'deoxys': 'deoxys-normal',
+    }
 
     def _get_names():
         names_offset = {
@@ -1345,10 +1353,10 @@ def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Versi
         names_offset = names_offset[version]
         name_length = 11
 
-        print('Dumping Pokemon names')
         slug_overrides = {
             'farfetch-d': 'farfetchd',
         }
+
         # Skip dummy mon at the beginning
         for species_id in range(1, num_pokemon):
             rom.seek(names_offset + (species_id * name_length))
@@ -1363,10 +1371,60 @@ def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Versi
             slug = slugify(name.replace('♀', '-f').replace('♂', '-m'))
             if slug in slug_overrides:
                 slug = slug_overrides[slug]
-            pokemon_slugs[species_id] = slug
+            species_slugs[species_id] = slug
+            if slug in form_default_map:
+                pokemon_slug = form_default_map[slug]
+            else:
+                pokemon_slug = slug
+            pokemon_slugs[slug] = [pokemon_slug]
+
             out[slug] = {
-                'name': name
+                'name': name,
+                'position': 0,
+                'numbers': {},
+                'pokemon': {
+                    pokemon_slug: {
+                        'name': name,
+                    }
+                }
             }
+
+    def _get_numbers():
+        hoenn_dex_offset = {
+            Version.RUBY: 0x1FC1F8,
+            Version.SAPPHIRE: 0x1FC188,
+            Version.EMERALD: 0x31D94C,
+        }
+        national_dex_offset = {
+            Version.RUBY: 0x1FC52E,
+            Version.SAPPHIRE: 0x1FC4BE,
+            Version.EMERALD: 0x31DC82,
+            Version.FIRERED: 0x251FEE,
+            Version.LEAFGREEN: 0x251FCA,
+        }
+        national_dex_offset = national_dex_offset[version]
+        if version in hoenn_dex_offset:
+            # R/S/E
+            hoenn_dex_offset = hoenn_dex_offset[version]
+
+            for species_id, species_slug in species_slugs.items():
+                rom.seek(national_dex_offset + ((species_id - 1) * 2))
+                out[species_slug]['numbers']['national'] = int.from_bytes(rom.read(2), byteorder='little')
+                out[species_slug]['position'] = out[species_slug]['numbers']['national']
+            for species_id, species_slug in species_slugs.items():
+                rom.seek(hoenn_dex_offset + ((species_id - 1) * 2))
+                out[species_slug]['numbers']['hoenn'] = int.from_bytes(rom.read(2), byteorder='little')
+        else:
+            # FR/LG
+            hoenn_dex_offset = None
+
+            for species_id, species_slug in species_slugs.items():
+                rom.seek(national_dex_offset + ((species_id - 1) * 2))
+                out[species_slug]['numbers']['national'] = int.from_bytes(rom.read(2), byteorder='little')
+                if out[species_slug]['numbers']['national'] <= 151:
+                    # This is actually the game's logic.  This order is not stored anywhere.  (But Hoenn is!!!)
+                    out[species_slug]['numbers']['kanto'] = out[species_slug]['numbers']['national']
+                out[species_slug]['position'] = out[species_slug]['numbers']['national']
 
     def _get_stats():
         stats_offset = {
@@ -1430,8 +1488,10 @@ def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Versi
                 self.speed = data[3]
                 self.specialAttack = data[4]
                 self.specialDefense = data[5]
-                self.type1 = type_map[data[6]]
-                self.type2 = type_map[data[7]]
+                if data[6] == data[7]:
+                    self.types = [type_map[data[6]]]
+                else:
+                    self.types = [type_map[data[6]], type_map[data[7]]]
                 self.captureRate = data[8]
                 self.experience = data[9]
                 self.evHp = (data[10] & 0b0000000000000011) >> 0
@@ -1454,24 +1514,551 @@ def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Versi
                 self.growthRate = growth_rate_map[data[16]]
                 self.eggGroups = []
                 for egg_group_id in data[17:19]:
-                    if egg_group_id > 0:
+                    if egg_group_id > 0 and egg_group_map[egg_group_id] not in self.eggGroups:
                         self.eggGroups.append(egg_group_map[egg_group_id])
-                self.abilities = []
-                for abilityId in data[19:21]:
-                    if abilityId > 0:
-                        self.abilities.append(ability_slugs[abilityId])
+                self.ability1, self.ability2 = None, None
+                if data[19] > 0:
+                    self.ability1 = ability_slugs[data[19]]
+                if data[20] > 0:
+                    self.ability2 = ability_slugs[data[20]]
                 self.safariZoneFleeRate = data[21]
-                self.color = data[22] & 0b01111111
+                self.color = color_map[data[22] & 0b01111111]
 
-        for species_id, species_slug in pokemon_slugs.items():
+        for species_id, species_slug in species_slugs.items():
             rom.seek(stats_offset + (species_id * stats_length_aligned))
             stats = BaseStats(rom.read(stats_length))
+            pokemon = out[species_slug]['pokemon'][pokemon_slugs[species_slug][0]]
+            pokemon.update({
+                'default': True,
+                'forms_switchable': False,
+                'forms_note': None,
+                'capture_rate': stats.captureRate,
+                'experience': stats.experience,
+                'types': stats.types,
+                'stats': {
+                    'hp': {
+                        'base_value': stats.hp,
+                        'effort_change': stats.evHp,
+                    },
+                    'attack': {
+                        'base_value': stats.attack,
+                        'effort_change': stats.evAttack,
+                    },
+                    'defense': {
+                        'base_value': stats.defense,
+                        'effort_change': stats.evDefense,
+                    },
+                    'speed': {
+                        'base_value': stats.speed,
+                        'effort_change': stats.evSpeed,
+                    },
+                    'special-attack': {
+                        'base_value': stats.specialAttack,
+                        'effort_change': stats.evSpecialDefense,
+                    },
+                    'special-defense': {
+                        'base_value': stats.hp,
+                        'effort_change': stats.evSpecialDefense,
+                    },
+                },
+                'growth_rate': stats.growthRate,
+                'female_rate': stats.femaleRate,
+                'hatch_steps': stats.hatchSteps,
+                'egg_groups': stats.eggGroups,
+                'wild_held_items': {},
+                'happiness': stats.happiness,
+                'abilities': {}
+            })
 
+            # Gender
+            if pokemon['female_rate'] == 255:
+                # Genderless
+                del pokemon['female_rate']
+            else:
+                pokemon['female_rate'] = round((pokemon['female_rate']) / 254 * 100)
+
+            # Wild held items
+            if stats.item1 or stats.item2:
+                if stats.item1 == stats.item2:
+                    pokemon['wild_held_items'][stats.item1] = 100
+                else:
+                    # These chances are hard coded in
+                    if stats.item1:
+                        pokemon['wild_held_items'][stats.item1] = 50
+                    if stats.item2:
+                        pokemon['wild_held_items'][stats.item2] = 5
+            else:
+                del pokemon['wild_held_items']
+
+            # Abilities
+            i = 1
+            for ability in [stats.ability1, stats.ability2]:
+                if not ability:
+                    continue
+                pokemon['abilities'][ability] = {'hidden': False, 'position': i}
+                i += 1
+
+            out[species_slug]['pokemon'][pokemon_slugs[species_slug][0]] = pokemon
+
+    def _get_flavor():
+        flavor_offset = {
+            Version.RUBY: 0x3B1874,
+            Version.SAPPHIRE: 0x3B18D0,
+            Version.EMERALD: 0x56B5B0,
+            Version.FIRERED: 0x44E850,
+            Version.LEAFGREEN: 0x44E270,
+        }
+        flavor_offset = flavor_offset[version]
+        if version_group == VersionGroup.EMERALD:
+            # Emerald eliminates the second description pointer
+            flavor_length = 30
+            flavor_length_aligned = 32
+        else:
+            flavor_length = 34
+            flavor_length_aligned = 36
+
+        @dataclass()
+        class Flavor:
+            def __init__(self, data: bytes):
+                if version_group == VersionGroup.EMERALD:
+                    # Emerald eliminates the second description pointer
+                    data = struct.unpack('<12sHH4s2xHHHH', data)
+                else:
+                    data = struct.unpack('<12sHH4s4s2xHHHH', data)
+
+                self.genus = data[0].decode('pokemon_gen3').strip()
+                self.height = data[1]
+                self.weight = data[2]
+                self.flavorPointers = [data[3]]
+                if version_group == VersionGroup.EMERALD:
+                    self.pokemonScale = data[4]
+                    self.pokemonOffset = data[5]
+                    self.tainerScale = data[6]
+                    self.trainerOffset = data[7]
+                else:
+                    if int.from_bytes(data[4], byteorder='little', signed=False) > 0:
+                        self.flavorPointers.append(data[4])
+                    self.pokemonScale = data[5]
+                    self.pokemonOffset = data[6]
+                    self.trainerScale = data[7]
+                    self.trainerOffset = data[8]
+
+        for species_slug in species_slugs.values():
+            pokedex_id = out[species_slug]['numbers']['national']
+            rom.seek(flavor_offset + (pokedex_id * flavor_length_aligned))
+            flavor = Flavor(rom.read(flavor_length))
+            pokemon = out[species_slug]['pokemon'][pokemon_slugs[species_slug][0]]
+            pokemon.update({
+                'genus': '{genus} Pokémon'.format(genus=flavor.genus),
+                'height': flavor.height,
+                'weight': flavor.weight
+            })
+            flavor_text = []
+            for flavor_pointer in flavor.flavorPointers:
+                rom.seek(gba.address_from_pointer(flavor_pointer))
+                page_text = bytearray()
+                while rom.peek(1)[0] != 0xFF:
+                    page_text.append(rom.read(1)[0])
+                page_text = page_text.decode('pokemon_gen3')
+                flavor_text.append(page_text)
+            pokemon['flavor_text'] = '\n'.join(flavor_text)
+            out[species_slug]['pokemon'][pokemon_slugs[species_slug][0]] = pokemon
+
+    def _build_forms():
+        for species_slug in species_slugs.values():
+            if species_slug in form_default_map:
+                form_slug = form_default_map[species_slug]
+            else:
+                form_slug = '{slug}-default'.format(slug=pokemon_slugs[species_slug][0])
+            form_name = out[species_slug]['name']
+
+            form = {
+                'name': form_name,
+                'form_name': 'Default Form',
+                'default': True,
+                'battle_only': False,
+                'icon': 'gen5/{slug}.png'.format(slug=form_slug),
+                'sprites': [
+                    '{version_group}/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/back/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/shiny/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                ],
+                'art': ['{slug}.png'.format(slug=form_slug)],
+                'footprint': '{slug}.png'.format(slug=species_slug),
+                'cry': 'gen5/{slug}.webm'.format(slug=form_slug),
+            }
+            if version_group == VersionGroup.EMERALD:
+                form['sprites'] = [
+                    '{version_group}/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/shiny/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/animated/{slug}.webm'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/animated/shiny/{slug}.webm'.format(version_group=version_group.value,
+                                                                        slug=form_slug),
+                ]
+            out[species_slug]['pokemon'][pokemon_slugs[species_slug][0]]['forms'] = {
+                pokemon_slugs[species_slug][0]: form
+            }
+
+    def _get_evolution():
+        evolution_offset = {
+            Version.RUBY: 0x203B80,
+            Version.SAPPHIRE: 0x203B10,
+            Version.EMERALD: 0x32531C,
+            Version.FIRERED: 0x259754,
+            Version.LEAFGREEN: 0x259734,
+        }
+        evolution_offset = evolution_offset[version]
+
+        @dataclass()
+        class Evolution:
+            def __init__(self, data: bytes):
+                data = struct.unpack('<HHH', data)
+                self.methodTrigger = data[0]
+                self.param = data[1]
+                self.evolvesIntoId = data[2]
+
+        # Each species has 5 entries in the evolution table.  Most of them are blank, but this leaves enough room
+        # to store all of Eevee's evolutions.
+        num_entries = 5
+        evolution_length = 6
+        evolution_length_aligned = 8
+        for species_id, species_slug in species_slugs.items():
+            for i in range(0, num_entries):
+                rom.seek(evolution_offset + (species_id * evolution_length_aligned * num_entries) + (
+                        i * evolution_length_aligned))
+                evolution = Evolution(rom.read(evolution_length))
+                if evolution.methodTrigger == 0:
+                    continue
+
+                evolves_into = species_slugs[evolution.evolvesIntoId]
+                out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                    'evolution_parent': '{species}/{pokemon}'.format(species=species_slug,
+                                                                     pokemon=pokemon_slugs[species_slug][0])
+                })
+
+                # The methodTrigger entry doesn't map cleanly to our data format, so everything
+                # is a special case.
+                if evolution.methodTrigger == 0x01:
+                    # Friendship, any time
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_happiness': 220,
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x02:
+                    # Friendship, during the day
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_happiness': 220,
+                                'time_of_day': ['morning', 'day'],
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x03:
+                    # Friendship, during the night
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_happiness': 220,
+                                'time_of_day': ['night'],
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x04:
+                    # Minimum level
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_level': evolution.param,
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x05:
+                    # Traded
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'trade': {}
+                        }
+                    })
+                elif evolution.methodTrigger == 0x06:
+                    # Traded, with item
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'trade': {
+                                'held_item': item_slugs[evolution.param],
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x07:
+                    # Use item
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'use-item': {
+                                'trigger_item': item_slugs[evolution.param],
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x08:
+                    # Minimum level, Attack > Defense
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_level': evolution.param,
+                                'physical_stats_difference': 1,
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x09:
+                    # Minimum level, Attack == Defense
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_level': evolution.param,
+                                'physical_stats_difference': 0,
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x0A:
+                    # Minimum level, Attack < Defense
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_level': evolution.param,
+                                'physical_stats_difference': -1,
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x0B or evolution.methodTrigger == 0x0C:
+                    # Minimum level (Wurmple to Silcoon or Cascoon)
+                    # Because our data structure is flipped from the way the games store it,
+                    # we already know what species the Wurmple will evolve into.  As such,
+                    # this is stored no differently from a normal level_up evolution condition.
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_level': evolution.param,
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x0D:
+                    # Minimum level
+                    # This is the Ninjask side of the evolution and functions no differently
+                    # from a normal level_up evolution condition
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_level': evolution.param,
+                            }
+                        }
+                    })
+                elif evolution.methodTrigger == 0x0E:
+                    # Shedinja
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'shed': {}
+                        }
+                    })
+                elif evolution.methodTrigger == 0x0F:
+                    # Minimum beauty
+                    out[evolves_into]['pokemon'][pokemon_slugs[evolves_into][0]].update({
+                        'evolution_conditions': {
+                            'level-up': {
+                                'minimum_beauty': evolution.param,
+                            }
+                        }
+                    })
+                else:
+                    raise Exception('0x{method_trigger:2x} is not a valid method/trigger value'.format(
+                        method_trigger=evolution.methodTrigger))
+
+    def _handle_specials():
+        # Generate the Unown forms
+        # A-Z
+        unown_letters = [char.to_bytes(1, byteorder=sys.byteorder).decode('ascii') for char in range(0x41, 0x5B)]
+        # Add the new ! and ? forms
+        unown_letters.extend(['!', '?'])
+        for letter in unown_letters:
+            form_slug = 'unown-{letter}'.format(
+                letter=letter.lower().replace('!', 'exclamation').replace('?', 'question'))
+            form = out['unown']['pokemon']['unown']['forms']['unown'].copy()
+            form.update({
+                'name': 'UNOWN ({letter})'.format(letter=letter.upper()),
+                'form_name': letter.upper(),
+                'default': letter.upper() == 'A',
+                'battle_only': False,
+                'icon': 'gen5/{slug}.png'.format(slug=form_slug),
+                'sprites': [
+                    '{version_group}/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/back/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/shiny/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                ],
+                'art': ['unown-f.png'],
+            })
+            if version_group == VersionGroup.EMERALD:
+                form['sprites'] = [
+                    '{version_group}/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/shiny/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/animated/{slug}.webm'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/animated/shiny/{slug}.webm'.format(version_group=version_group.value,
+                                                                        slug=form_slug),
+                ]
+            out['unown']['pokemon']['unown']['forms'][form_slug] = form
+        del out['unown']['pokemon']['unown']['forms']['unown']
+
+        # Castform's transformations are special cases in the battle code
+        castform_type_map = {
+            'sunny': 'fire',
+            'rainy': 'water',
+            'snowy': 'ice',
+        }
+        for form_slug, form_type in castform_type_map.items():
+            pokemon_slug = 'castform-{form}'.format(form=form_slug)
+            pokemon_name = '{form} CASTFORM'.format(form=form_slug.title())
+            pokemon_slugs['castform'].append(pokemon_slug)
+            pokemon = out['castform']['pokemon'][pokemon_slugs['castform'][0]].copy()
+            pokemon.update({
+                'name': pokemon_name,
+                'default': False,
+                'types': [form_type],
+            })
+            form = pokemon['forms'][pokemon_slugs['castform'][0]].copy()
+            form.update({
+                'name': pokemon_name,
+                'form_name': '{form} Form'.format(form=form_slug.title()),
+                'default': True,
+                'battle_only': True,
+                'icon': '{slug}.png'.format(slug=pokemon_slug),
+                'sprites': [
+                    '{version_group}/{slug}'.format(version_group=version_group.value, slug=pokemon_slug),
+                    '{version_group}/back/{slug}'.format(version_group=version_group.value, slug=pokemon_slug),
+                    '{version_group}/shiny/{slug}'.format(version_group=version_group.value, slug=pokemon_slug),
+                ],
+            })
+            if version_group == VersionGroup.EMERALD:
+                form['sprites'] = [
+                    '{version_group}/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/shiny/{slug}.png'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/animated/{slug}.webm'.format(version_group=version_group.value, slug=form_slug),
+                    '{version_group}/animated/shiny/{slug}.webm'.format(version_group=version_group.value,
+                                                                        slug=form_slug),
+                ]
+            pokemon['forms'] = {pokemon_slug: form}
+            out['castform']['pokemon'][pokemon_slug] = pokemon
+
+        # Deoxys is a special case in the game's data.  Only the form present in the version is
+        # in that version's code.  R/S only have Normal Deoxys, which has been inserted already.
+        deoxys_stats_offset = {
+            Version.EMERALD: 0x329D48,
+            Version.FIRERED: 0x25E026,
+            Version.LEAFGREEN: 0x25E00C,
+        }
+        deoxys_form_map = {
+            Version.EMERALD: 'speed',
+            Version.FIRERED: 'attack',
+            Version.LEAFGREEN: 'defense',
+        }
+        if version in deoxys_stats_offset:
+            # Using the normal form as a template, update the stats
+            rom.seek(deoxys_stats_offset[version])
+            pokemon_slug = 'deoxys-{form}'.format(form=deoxys_form_map[version])
+            pokemon_name = '{form} DEOXYS'.format(form=deoxys_form_map[version].title())
+            pokemon_slugs['deoxys'].append(pokemon_slug)
+            pokemon = out['deoxys']['pokemon'][pokemon_slugs['deoxys'][0]].copy()
+            del out['deoxys']['pokemon'][pokemon_slugs['deoxys'][0]]
+
+            is_default = version in [Version.EMERALD, Version.FIRERED]  # Need to pick one default
+            pokemon.update({
+                'name': pokemon_name,
+                'default': is_default,
+            })
+
+            # Update stats
+            stats = ['hp', 'attack', 'defense', 'speed', 'special-attack', 'special-defense']
+            i = 0
+            for stat in stats:
+                pokemon['stats'][stat]['base_value'] = int.from_bytes(rom.read(2), byteorder='little')
+                i += 1
+
+            # Update appearance
+            form = pokemon['forms'][pokemon_slugs['deoxys'][0]].copy()
+            del pokemon['forms'][pokemon_slugs['deoxys'][0]]
+            form.update({
+                'name': pokemon_name,
+                'form_name': '{form} Forme'.format(form=deoxys_form_map[version].title()),
+                'default': True,
+                'icon': 'gen5/{slug}.png'.format(slug=pokemon_slug),
+                'sprites': [
+                    '{version_group}/{slug}'.format(version_group=version_group.value, slug=pokemon_slug),
+                    '{version_group}/back/{slug}'.format(version_group=version_group.value, slug=pokemon_slug),
+                    '{version_group}/shiny/{slug}'.format(version_group=version_group.value, slug=pokemon_slug),
+                ],
+                'art': ['{slug}.png'.format(slug=pokemon_slug)],
+            })
+            if version_group == VersionGroup.EMERALD:
+                form['sprites'] = [
+                    '{version_group}/{slug}.png'.format(version_group=version_group.value, slug=pokemon_slug),
+                    '{version_group}/shiny/{slug}.png'.format(version_group=version_group.value, slug=pokemon_slug),
+                    '{version_group}/animated/{slug}.webm'.format(version_group=version_group.value, slug=pokemon_slug),
+                    '{version_group}/animated/shiny/{slug}.webm'.format(version_group=version_group.value,
+                                                                        slug=pokemon_slug),
+                ]
+            pokemon['forms'] = {pokemon_slug: form}
+            out['deoxys']['pokemon'][pokemon_slug] = pokemon
+        else:
+            # Update the names for R/S
+            out['deoxys']['pokemon'][pokemon_slugs['deoxys'][0]]['name'] = 'Normal DEOXYS'
+            out['deoxys']['pokemon'][pokemon_slugs['deoxys'][0]]['forms'][pokemon_slugs['deoxys'][0]].update({
+                'name': 'Normal DEOXYS',
+                'form_name': 'Normal Forme',
+            })
+
+    def _pullup_data():
+        pullup_keys = [
+            'forms_note',
+        ]
+        print('Using existing data')
+        for species_slug in progressbar.progressbar(species_slugs.values()):
+            yaml_path = os.path.join(args.out_pokemon, '{species}.yaml'.format(species=species_slug))
+            with open(yaml_path, 'r') as species_yaml:
+                old_species_data = yaml.load(species_yaml.read())
+                for key in pullup_keys:
+                    for pokemon_slug, pokemon_data in old_species_data[version_group.value]['pokemon'].items():
+                        if pokemon_slug not in out[species_slug]['pokemon']:
+                            # Not all version have the same Pokemon as their version group partner.
+                            continue
+                        if key in pokemon_data:
+                            out[species_slug]['pokemon'][pokemon_slug][key] = pokemon_data[key]
+                        elif key in out[species_slug]['pokemon'][pokemon_slug]:
+                            del out[species_slug]['pokemon'][pokemon_slug][key]
+
+    print('Dumping Pokemon')
     _get_names()
+    _get_numbers()
     _get_stats()
-    pass
+    _get_flavor()
+    _build_forms()
+    _get_evolution()
+    _handle_specials()
+    _pullup_data()
 
-    return out, pokemon_slugs
+    return out, species_slugs, pokemon_slugs
+
+
+def write_pokemon(out):
+    print('Writing Pokemon')
+    for species_slug, species_data in progressbar.progressbar(out.items()):
+        yaml_path = os.path.join(args.out_pokemon, '{slug}.yaml'.format(slug=species_slug))
+        try:
+            with open(yaml_path, 'r') as species_yaml:
+                data = yaml.load(species_yaml.read())
+        except IOError:
+            data = {}
+        data.update(species_data)
+        with open(yaml_path, 'w') as species_yaml:
+            yaml.dump(data, species_yaml)
 
 
 if __name__ == '__main__':
@@ -1554,8 +2141,9 @@ if __name__ == '__main__':
         out_shop_items.extend(vg_shop_items)
         vg_abilities, vg_ability_slugs = get_abilities(dump_rom, dump_version_group, dump_version)
         out_abilities = group_by_version_group(dump_version_group.value, vg_abilities, out_abilities)
-        vg_pokemon, vg_pokemon_slugs = get_pokemon(dump_rom, dump_version_group, dump_version, vg_item_slugs,
-                                                   vg_ability_slugs)
+        v_pokemon, vg_species_slugs, vg_pokemon_slugs = get_pokemon(dump_rom, dump_version_group, dump_version,
+                                                                    vg_item_slugs, vg_ability_slugs)
+        out_pokemon = group_pokemon(dump_version.value, dump_version_group.value, v_pokemon, out_pokemon)
 
         dumped_versions.add(dump_version.value)
         dumped_version_groups.add(dump_version_group.value)
@@ -1582,4 +2170,6 @@ if __name__ == '__main__':
             write_shop_items(dumped_version_groups, out_shop_items)
         if args.write_abilities:
             write_abilities(out_abilities)
+        if args.write_pokemon:
+            write_pokemon(out_pokemon)
         exit(0)

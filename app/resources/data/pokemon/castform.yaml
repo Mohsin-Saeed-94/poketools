@@ -1,32 +1,20 @@
 ruby-sapphire:
-  name: &ruby-sapphire.name Castform
-  position: &ruby-sapphire.position 379
+  name: &ruby-sapphire.name CASTFORM
+  position: &ruby-sapphire.position 351
   numbers: &ruby-sapphire.numbers
     national: &ruby-sapphire.numbers.national 351
     hoenn: 142
   pokemon:
-    castform:
-      genus: &ruby-sapphire.pokemon.castform.genus 'Weather Pokémon'
-      color: &ruby-sapphire.pokemon.castform.color gray
-      female_rate: &ruby-sapphire.pokemon.castform.female_rate 50
-      capture_rate: &ruby-sapphire.pokemon.castform.capture_rate 45
-      happiness: &ruby-sapphire.pokemon.castform.happiness 70
-      baby: &ruby-sapphire.pokemon.castform.baby false
-      hatch_steps: &ruby-sapphire.pokemon.castform.hatch_steps 25
-      growth_rate: &ruby-sapphire.pokemon.castform.growth_rate medium
-      forms_switchable: &ruby-sapphire.pokemon.castform.forms_switchable true
-      forms_note: &ruby-sapphire.pokemon.castform.forms_note 'Form changes along with type to match the [weather]{mechanic:weather} in battle, due to []{ability:forecast}.  Castform is always in its normal form outside of battle, regardless of weather.'
+    castform-default:
       name: *ruby-sapphire.name
-      default: &ruby-sapphire.pokemon.castform.default true
-      height: &ruby-sapphire.pokemon.castform.height 3
-      weight: &ruby-sapphire.pokemon.castform.weight 8
-      experience: &ruby-sapphire.pokemon.castform.experience 147
-      types: &ruby-sapphire.pokemon.castform.types
+      default: &ruby-sapphire.pokemon.castform-default.default true
+      forms_switchable: &ruby-sapphire.pokemon.castform-default.forms_switchable false
+      forms_note: &ruby-sapphire.pokemon.castform-default.forms_note 'Form changes along with type to match the [weather]{mechanic:weather} in battle, due to []{ability:forecast}.  Castform is always in its normal form outside of battle, regardless of weather.'
+      capture_rate: &ruby-sapphire.pokemon.castform-default.capture_rate 45
+      experience: &ruby-sapphire.pokemon.castform-default.experience 145
+      types: &ruby-sapphire.pokemon.castform-default.types
         - normal
-      egg_groups: &ruby-sapphire.pokemon.castform.egg_groups
-        - fairy
-        - indeterminate
-      stats: &ruby-sapphire.pokemon.castform.stats
+      stats: &ruby-sapphire.pokemon.castform-default.stats
         hp:
           base_value: 70
           effort_change: 1
@@ -45,17 +33,27 @@ ruby-sapphire:
         special-defense:
           base_value: 70
           effort_change: 0
-      abilities: &ruby-sapphire.pokemon.castform.abilities
+      growth_rate: &ruby-sapphire.pokemon.castform-default.growth_rate medium
+      female_rate: &ruby-sapphire.pokemon.castform-default.female_rate 50
+      hatch_steps: &ruby-sapphire.pokemon.castform-default.hatch_steps 25
+      egg_groups: &ruby-sapphire.pokemon.castform-default.egg_groups
+        - fairy
+        - indeterminate
+      wild_held_items: &ruby-sapphire.pokemon.castform-default.wild_held_items
+        ruby: &ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+          mystic-water: 100
+        sapphire: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+      happiness: &ruby-sapphire.pokemon.castform-default.happiness 70
+      abilities: &ruby-sapphire.pokemon.castform-default.abilities
         forecast:
           hidden: false
           position: 1
-      wild_held_items: &ruby-sapphire.pokemon.castform.wild_held_items
-        ruby: &ruby-sapphire.pokemon.castform.wild_held_items.ruby
-          mystic-water: 100
-        sapphire: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
-      flavor_text: &ruby-sapphire.pokemon.castform.flavor_text
+      genus: &ruby-sapphire.pokemon.castform-default.genus 'WEATHER Pokémon'
+      height: &ruby-sapphire.pokemon.castform-default.height 3
+      weight: &ruby-sapphire.pokemon.castform-default.weight 8
+      flavor_text: &ruby-sapphire.pokemon.castform-default.flavor_text
         ruby: |
-          CASTFORM’s appearance changes with
+          CASTFORM's appearance changes with
           the weather.
           This POKéMON gained the ability to use
           the vast power of nature to protect
@@ -64,398 +62,396 @@ ruby-sapphire:
           CASTFORM borrows the power of nature
           to transform itself into the guises of
           the sun, rain clouds, and snow clouds.
-          This POKéMON’s feelings change with the
+          This POKéMON's feelings change with the
           weather.
       forms:
-        castform:
+        castform-default:
           name: *ruby-sapphire.name
-          form_name: &ruby-sapphire.pokemon.castform.forms.castform.form_name Normal
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: &ruby-sapphire.pokemon.castform.forms.castform.battle_only false
-          icon: &ruby-sapphire.pokemon.castform.forms.castform.icon gen5/castform-default.png
+          form_name: &ruby-sapphire.pokemon.castform-default.forms.castform-default.form_name 'Default Form'
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: &ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only false
+          icon: &ruby-sapphire.pokemon.castform-default.forms.castform-default.icon gen5/castform-default.png
           sprites:
-            - ruby-sapphire/back/castform-default.png
             - ruby-sapphire/castform-default.png
+            - ruby-sapphire/back/castform-default.png
             - ruby-sapphire/shiny/castform-default.png
-          art: &ruby-sapphire.pokemon.castform.forms.castform.art
+          art: &ruby-sapphire.pokemon.castform-default.forms.castform-default.art
             - castform-default.png
-          footprint: &ruby-sapphire.pokemon.castform.forms.castform.footprint castform.png
-          cry: &ruby-sapphire.pokemon.castform.forms.castform.cry gen5/castform-default.webm
+          footprint: &ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint castform.png
+          cry: &ruby-sapphire.pokemon.castform-default.forms.castform-default.cry gen5/castform-default.webm
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: &ruby-sapphire.pokemon.castform-sunny.name 'Sunny Castform'
+      name: &ruby-sapphire.pokemon.castform-sunny.name 'Sunny CASTFORM'
       default: &ruby-sapphire.pokemon.castform-sunny.default false
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
       types: &ruby-sapphire.pokemon.castform-sunny.types
         - fire
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: *ruby-sapphire.pokemon.castform.wild_held_items
-      flavor_text: *ruby-sapphire.pokemon.castform.flavor_text
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: *ruby-sapphire.pokemon.castform-default.wild_held_items
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: *ruby-sapphire.pokemon.castform-default.flavor_text
       forms:
         castform-sunny:
           name: *ruby-sapphire.pokemon.castform-sunny.name
           form_name: &ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name 'Sunny Form'
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: &ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only true
-          icon: &ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon gen5/castform-sunny.png
+          icon: &ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon castform-sunny.png
           sprites:
-            - ruby-sapphire/back/castform-sunny.png
-            - ruby-sapphire/shiny/castform-sunny.png
-            - ruby-sapphire/castform-sunny.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+            - ruby-sapphire/castform-sunny
+            - ruby-sapphire/back/castform-sunny
+            - ruby-sapphire/shiny/castform-sunny
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: &ruby-sapphire.pokemon.castform-rainy.name 'Rainy Castform'
+      name: &ruby-sapphire.pokemon.castform-rainy.name 'Rainy CASTFORM'
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
       types: &ruby-sapphire.pokemon.castform-rainy.types
         - water
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: *ruby-sapphire.pokemon.castform.wild_held_items
-      flavor_text: *ruby-sapphire.pokemon.castform.flavor_text
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: *ruby-sapphire.pokemon.castform-default.wild_held_items
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: *ruby-sapphire.pokemon.castform-default.flavor_text
       forms:
         castform-rainy:
           name: *ruby-sapphire.pokemon.castform-rainy.name
           form_name: &ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name 'Rainy Form'
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: &ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon gen5/castform-rainy.png
+          icon: &ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon castform-rainy.png
           sprites:
-            - ruby-sapphire/back/castform-rainy.png
-            - ruby-sapphire/shiny/castform-rainy.png
-            - ruby-sapphire/castform-rainy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+            - ruby-sapphire/castform-rainy
+            - ruby-sapphire/back/castform-rainy
+            - ruby-sapphire/shiny/castform-rainy
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: &ruby-sapphire.pokemon.castform-snowy.name 'Snowy Castform'
+      name: &ruby-sapphire.pokemon.castform-snowy.name 'Snowy CASTFORM'
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
       types: &ruby-sapphire.pokemon.castform-snowy.types
         - ice
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: *ruby-sapphire.pokemon.castform.wild_held_items
-      flavor_text: *ruby-sapphire.pokemon.castform.flavor_text
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: *ruby-sapphire.pokemon.castform-default.wild_held_items
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: *ruby-sapphire.pokemon.castform-default.flavor_text
       forms:
         castform-snowy:
           name: *ruby-sapphire.pokemon.castform-snowy.name
           form_name: &ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name 'Snowy Form'
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: &ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon gen5/castform-snowy.png
+          icon: &ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon castform-snowy.png
           sprites:
-            - ruby-sapphire/castform-snowy.png
-            - ruby-sapphire/back/castform-snowy.png
-            - ruby-sapphire/shiny/castform-snowy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+            - ruby-sapphire/castform-snowy
+            - ruby-sapphire/back/castform-snowy
+            - ruby-sapphire/shiny/castform-snowy
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
 emerald:
   name: *ruby-sapphire.name
   position: *ruby-sapphire.position
   numbers: *ruby-sapphire.numbers
   pokemon:
-    castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+    castform-default:
       name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: &emerald.pokemon.castform.wild_held_items
-        emerald: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
-      flavor_text: &emerald.pokemon.castform.flavor_text
+      default: *ruby-sapphire.pokemon.castform-default.default
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: &emerald.pokemon.castform-default.wild_held_items
+        emerald: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: &emerald.pokemon.castform-default.flavor_text
         emerald: |
           It alters its form depending on the
           weather. Changes in the climate such as
           the temperature and humidity appear to
           affect its cellular structure.
       forms:
-        castform:
+        castform-default:
           name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
-          icon: *ruby-sapphire.pokemon.castform.forms.castform.icon
+          form_name: *ruby-sapphire.pokemon.castform-default.forms.castform-default.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
+          icon: *ruby-sapphire.pokemon.castform-default.forms.castform-default.icon
           sprites:
             - emerald/castform-default.png
             - emerald/shiny/castform-default.png
             - emerald/animated/castform-default.webm
             - emerald/animated/shiny/castform-default.webm
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
       name: *ruby-sapphire.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: *emerald.pokemon.castform.wild_held_items
-      flavor_text: *emerald.pokemon.castform.flavor_text
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: *emerald.pokemon.castform-default.wild_held_items
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: *emerald.pokemon.castform-default.flavor_text
       forms:
         castform-sunny:
           name: *ruby-sapphire.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
           icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
           sprites:
-            - emerald/shiny/castform-sunny.png
-            - emerald/castform-sunny.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+            - emerald/sunny.png
+            - emerald/shiny/sunny.png
+            - emerald/animated/sunny.webm
+            - emerald/animated/shiny/sunny.webm
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
       name: *ruby-sapphire.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: *emerald.pokemon.castform.wild_held_items
-      flavor_text: *emerald.pokemon.castform.flavor_text
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: *emerald.pokemon.castform-default.wild_held_items
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: *emerald.pokemon.castform-default.flavor_text
       forms:
         castform-rainy:
           name: *ruby-sapphire.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
           icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
           sprites:
-            - emerald/shiny/castform-rainy.png
-            - emerald/castform-rainy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+            - emerald/rainy.png
+            - emerald/shiny/rainy.png
+            - emerald/animated/rainy.webm
+            - emerald/animated/shiny/rainy.webm
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
       name: *ruby-sapphire.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: *emerald.pokemon.castform.wild_held_items
-      flavor_text: *emerald.pokemon.castform.flavor_text
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: *emerald.pokemon.castform-default.wild_held_items
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: *emerald.pokemon.castform-default.flavor_text
       forms:
         castform-snowy:
           name: *ruby-sapphire.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
           icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
           sprites:
-            - emerald/castform-snowy.png
-            - emerald/shiny/castform-snowy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+            - emerald/snowy.png
+            - emerald/shiny/snowy.png
+            - emerald/animated/snowy.webm
+            - emerald/animated/shiny/snowy.webm
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
 colosseum: &colosseum
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: &colosseum.name Castform
+  position: &colosseum.position 379
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      genus: &colosseum.pokemon.castform.genus 'Weather Pokémon'
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: &colosseum.pokemon.castform.baby false
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: &colosseum.pokemon.castform.forms_switchable true
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: &colosseum.pokemon.castform.experience 147
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       forms: &colosseum.pokemon.castform.forms
         castform:
-          name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
-          icon: *ruby-sapphire.pokemon.castform.forms.castform.icon
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          name: *colosseum.name
+          form_name: &colosseum.pokemon.castform.forms.castform.form_name Normal
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
+          icon: *ruby-sapphire.pokemon.castform-default.forms.castform-default.icon
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      genus: *colosseum.pokemon.castform.genus
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: &colosseum.pokemon.castform-sunny.name 'Sunny Castform'
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       forms: &colosseum.pokemon.castform-sunny.forms
         castform-sunny:
-          name: *ruby-sapphire.pokemon.castform-sunny.name
+          name: *colosseum.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          icon: &colosseum.pokemon.castform-sunny.forms.castform-sunny.icon gen5/castform-sunny.png
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      genus: *colosseum.pokemon.castform.genus
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: &colosseum.pokemon.castform-rainy.name 'Rainy Castform'
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       forms: &colosseum.pokemon.castform-rainy.forms
         castform-rainy:
-          name: *ruby-sapphire.pokemon.castform-rainy.name
+          name: *colosseum.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          icon: &colosseum.pokemon.castform-rainy.forms.castform-rainy.icon gen5/castform-rainy.png
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      genus: *colosseum.pokemon.castform.genus
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: &colosseum.pokemon.castform-snowy.name 'Snowy Castform'
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       forms: &colosseum.pokemon.castform-snowy.forms
         castform-snowy:
-          name: *ruby-sapphire.pokemon.castform-snowy.name
+          name: *colosseum.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          icon: &colosseum.pokemon.castform-snowy.forms.castform-snowy.icon gen5/castform-snowy.png
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
@@ -463,140 +459,184 @@ firered-leafgreen:
   numbers: &firered-leafgreen.numbers
     national: *ruby-sapphire.numbers.national
   pokemon:
-    castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      habitat: &firered-leafgreen.pokemon.castform.habitat grassland
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+    castform-default:
       name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: &firered-leafgreen.pokemon.castform.wild_held_items
-        firered: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
-        leafgreen: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
-      flavor_text: &firered-leafgreen.pokemon.castform.flavor_text
+      default: *ruby-sapphire.pokemon.castform-default.default
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: &firered-leafgreen.pokemon.castform-default.wild_held_items
+        firered: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+        leafgreen: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: &firered-leafgreen.pokemon.castform-default.flavor_text
         firered: |
           It has the ability to change its form into
-          the sun, the rain, or a snow cloud, 
+          the sun, the rain, or a snow cloud,
           depending on the weather.
         leafgreen: |
           It has the ability to change its form into
-          the sun, the rain, or a snow cloud, 
+          the sun, the rain,  or a snow cloud, 
           depending on the weather.
-      forms: *colosseum.pokemon.castform.forms
+      forms:
+        castform-default:
+          name: *ruby-sapphire.name
+          form_name: *ruby-sapphire.pokemon.castform-default.forms.castform-default.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
+          icon: *ruby-sapphire.pokemon.castform-default.forms.castform-default.icon
+          sprites:
+            - firered-leafgreen/castform-default.png
+            - firered-leafgreen/back/castform-default.png
+            - firered-leafgreen/shiny/castform-default.png
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      habitat: *firered-leafgreen.pokemon.castform.habitat
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
       name: *ruby-sapphire.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: *firered-leafgreen.pokemon.castform.wild_held_items
-      flavor_text: *firered-leafgreen.pokemon.castform.flavor_text
-      forms: *colosseum.pokemon.castform-sunny.forms
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: *firered-leafgreen.pokemon.castform-default.wild_held_items
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: *firered-leafgreen.pokemon.castform-default.flavor_text
+      forms:
+        castform-sunny:
+          name: *ruby-sapphire.pokemon.castform-sunny.name
+          form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
+          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
+          sprites:
+            - firered-leafgreen/castform-sunny
+            - firered-leafgreen/back/castform-sunny
+            - firered-leafgreen/shiny/castform-sunny
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      habitat: *firered-leafgreen.pokemon.castform.habitat
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
       name: *ruby-sapphire.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: *firered-leafgreen.pokemon.castform.wild_held_items
-      flavor_text: *firered-leafgreen.pokemon.castform.flavor_text
-      forms: *colosseum.pokemon.castform-rainy.forms
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: *firered-leafgreen.pokemon.castform-default.wild_held_items
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: *firered-leafgreen.pokemon.castform-default.flavor_text
+      forms:
+        castform-rainy:
+          name: *ruby-sapphire.pokemon.castform-rainy.name
+          form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
+          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
+          sprites:
+            - firered-leafgreen/castform-rainy
+            - firered-leafgreen/back/castform-rainy
+            - firered-leafgreen/shiny/castform-rainy
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      habitat: *firered-leafgreen.pokemon.castform.habitat
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
       name: *ruby-sapphire.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      forms_switchable: *ruby-sapphire.pokemon.castform-default.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      experience: *ruby-sapphire.pokemon.castform-default.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
-      wild_held_items: *firered-leafgreen.pokemon.castform.wild_held_items
-      flavor_text: *firered-leafgreen.pokemon.castform.flavor_text
-      forms: *colosseum.pokemon.castform-snowy.forms
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      wild_held_items: *firered-leafgreen.pokemon.castform-default.wild_held_items
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
+      genus: *ruby-sapphire.pokemon.castform-default.genus
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      flavor_text: *firered-leafgreen.pokemon.castform-default.flavor_text
+      forms:
+        castform-snowy:
+          name: *ruby-sapphire.pokemon.castform-snowy.name
+          form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
+          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
+          sprites:
+            - firered-leafgreen/castform-snowy
+            - firered-leafgreen/back/castform-snowy
+            - firered-leafgreen/shiny/castform-snowy
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
 diamond-pearl:
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: *colosseum.name
+  position: *colosseum.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: &diamond-pearl.pokemon.castform.shape ball
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: &diamond-pearl.pokemon.castform.pal_park
         area: field
         rate: 10
         score: 80
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: &diamond-pearl.pokemon.castform.wild_held_items
-        diamond: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
-        pearl: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
+        diamond: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+        pearl: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
       flavor_text: &diamond-pearl.pokemon.castform.flavor_text
         diamond: |
           Its appearance changes with the
@@ -608,158 +648,158 @@ diamond-pearl:
           were found to be just like water.
       forms:
         castform:
-          name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
-          icon: *ruby-sapphire.pokemon.castform.forms.castform.icon
+          name: *colosseum.name
+          form_name: *colosseum.pokemon.castform.forms.castform.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
+          icon: *ruby-sapphire.pokemon.castform-default.forms.castform-default.icon
           sprites:
             - diamond-pearl/back/castform-default.png
             - diamond-pearl/back/shiny/castform-default.png
             - diamond-pearl/castform-default.png
             - diamond-pearl/shiny/castform-default.png
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      name: *colosseum.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *diamond-pearl.pokemon.castform.wild_held_items
       flavor_text: *diamond-pearl.pokemon.castform.flavor_text
       forms:
         castform-sunny:
-          name: *ruby-sapphire.pokemon.castform-sunny.name
+          name: *colosseum.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
+          icon: *colosseum.pokemon.castform-sunny.forms.castform-sunny.icon
           sprites:
             - diamond-pearl/back/shiny/castform-sunny.png
             - diamond-pearl/back/castform-sunny.png
             - diamond-pearl/shiny/castform-sunny.png
             - diamond-pearl/castform-sunny.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      name: *colosseum.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *diamond-pearl.pokemon.castform.wild_held_items
       flavor_text: *diamond-pearl.pokemon.castform.flavor_text
       forms:
         castform-rainy:
-          name: *ruby-sapphire.pokemon.castform-rainy.name
+          name: *colosseum.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
+          icon: *colosseum.pokemon.castform-rainy.forms.castform-rainy.icon
           sprites:
             - diamond-pearl/back/shiny/castform-rainy.png
             - diamond-pearl/back/castform-rainy.png
             - diamond-pearl/shiny/castform-rainy.png
             - diamond-pearl/castform-rainy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      name: *colosseum.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *diamond-pearl.pokemon.castform.wild_held_items
       flavor_text: *diamond-pearl.pokemon.castform.flavor_text
       forms:
         castform-snowy:
-          name: *ruby-sapphire.pokemon.castform-snowy.name
+          name: *colosseum.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
+          icon: *colosseum.pokemon.castform-snowy.forms.castform-snowy.icon
           sprites:
             - diamond-pearl/castform-snowy.png
             - diamond-pearl/back/castform-snowy.png
             - diamond-pearl/back/shiny/castform-snowy.png
             - diamond-pearl/shiny/castform-snowy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
 platinum:
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: *colosseum.name
+  position: *colosseum.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: &platinum.pokemon.castform.wild_held_items
-        platinum: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
+        platinum: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
       flavor_text: &platinum.pokemon.castform.flavor_text
         platinum: |
           Its appearance changes with the
@@ -767,159 +807,159 @@ platinum:
           were found to be just like water.
       forms:
         castform:
-          name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
-          icon: *ruby-sapphire.pokemon.castform.forms.castform.icon
+          name: *colosseum.name
+          form_name: *colosseum.pokemon.castform.forms.castform.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
+          icon: *ruby-sapphire.pokemon.castform-default.forms.castform-default.icon
           sprites:
             - platinum/back/castform-default.png
             - platinum/back/shiny/castform-default.png
             - platinum/castform-default.png
             - platinum/shiny/castform-default.png
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      name: *colosseum.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *platinum.pokemon.castform.wild_held_items
       flavor_text: *platinum.pokemon.castform.flavor_text
       forms:
         castform-sunny:
-          name: *ruby-sapphire.pokemon.castform-sunny.name
+          name: *colosseum.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
+          icon: *colosseum.pokemon.castform-sunny.forms.castform-sunny.icon
           sprites:
             - platinum/back/shiny/castform-sunny.png
             - platinum/back/castform-sunny.png
             - platinum/shiny/castform-sunny.png
             - platinum/castform-sunny.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      name: *colosseum.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *platinum.pokemon.castform.wild_held_items
       flavor_text: *platinum.pokemon.castform.flavor_text
       forms:
         castform-rainy:
-          name: *ruby-sapphire.pokemon.castform-rainy.name
+          name: *colosseum.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
+          icon: *colosseum.pokemon.castform-rainy.forms.castform-rainy.icon
           sprites:
             - platinum/back/shiny/castform-rainy.png
             - platinum/back/castform-rainy.png
             - platinum/shiny/castform-rainy.png
             - platinum/castform-rainy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      name: *colosseum.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *platinum.pokemon.castform.wild_held_items
       flavor_text: *platinum.pokemon.castform.flavor_text
       forms:
         castform-snowy:
-          name: *ruby-sapphire.pokemon.castform-snowy.name
+          name: *colosseum.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
+          icon: *colosseum.pokemon.castform-snowy.forms.castform-snowy.icon
           sprites:
             - platinum/castform-snowy.png
             - platinum/back/castform-snowy.png
             - platinum/back/shiny/castform-snowy.png
             - platinum/shiny/castform-snowy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: *colosseum.name
+  position: *colosseum.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: &heartgold-soulsilver.pokemon.castform.wild_held_items
-        heartgold: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
-        soulsilver: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
+        heartgold: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+        soulsilver: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
       flavor_text: &heartgold-soulsilver.pokemon.castform.flavor_text
         heartgold: |
           This Pokémon can change its cells,
@@ -931,10 +971,10 @@ heartgold-soulsilver:
           the temperature and humidity.
       forms:
         castform:
-          name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
+          name: *colosseum.name
+          form_name: *colosseum.pokemon.castform.forms.castform.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
           pokeathlon_stats:
             speed:
               base_value: 4
@@ -951,155 +991,155 @@ heartgold-soulsilver:
             jump:
               base_value: 4
               range: 2-4
-          icon: *ruby-sapphire.pokemon.castform.forms.castform.icon
+          icon: *ruby-sapphire.pokemon.castform-default.forms.castform-default.icon
           sprites:
             - heartgold-soulsilver/back/castform-default.png
             - heartgold-soulsilver/back/shiny/castform-default.png
             - heartgold-soulsilver/castform-default.png
             - heartgold-soulsilver/shiny/castform-default.png
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      name: *colosseum.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *heartgold-soulsilver.pokemon.castform.wild_held_items
       flavor_text: *heartgold-soulsilver.pokemon.castform.flavor_text
       forms:
         castform-sunny:
-          name: *ruby-sapphire.pokemon.castform-sunny.name
+          name: *colosseum.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
+          icon: *colosseum.pokemon.castform-sunny.forms.castform-sunny.icon
           sprites:
             - heartgold-soulsilver/back/shiny/castform-sunny.png
             - heartgold-soulsilver/back/castform-sunny.png
             - heartgold-soulsilver/shiny/castform-sunny.png
             - heartgold-soulsilver/castform-sunny.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      name: *colosseum.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *heartgold-soulsilver.pokemon.castform.wild_held_items
       flavor_text: *heartgold-soulsilver.pokemon.castform.flavor_text
       forms:
         castform-rainy:
-          name: *ruby-sapphire.pokemon.castform-rainy.name
+          name: *colosseum.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
+          icon: *colosseum.pokemon.castform-rainy.forms.castform-rainy.icon
           sprites:
             - heartgold-soulsilver/back/shiny/castform-rainy.png
             - heartgold-soulsilver/back/castform-rainy.png
             - heartgold-soulsilver/shiny/castform-rainy.png
             - heartgold-soulsilver/castform-rainy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
+      genus: *colosseum.pokemon.castform.genus
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
       pal_park: *diamond-pearl.pokemon.castform.pal_park
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      name: *colosseum.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *heartgold-soulsilver.pokemon.castform.wild_held_items
       flavor_text: *heartgold-soulsilver.pokemon.castform.flavor_text
       forms:
         castform-snowy:
-          name: *ruby-sapphire.pokemon.castform-snowy.name
+          name: *colosseum.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
+          icon: *colosseum.pokemon.castform-snowy.forms.castform-snowy.icon
           sprites:
             - heartgold-soulsilver/castform-snowy.png
             - heartgold-soulsilver/back/castform-snowy.png
             - heartgold-soulsilver/back/shiny/castform-snowy.png
             - heartgold-soulsilver/shiny/castform-snowy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
 black-white:
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: *colosseum.name
+  position: *colosseum.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: &black-white.pokemon.castform.color gray
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: &black-white.pokemon.castform.wild_held_items
-        black: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
-        white: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
+        black: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+        white: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
       flavor_text: &black-white.pokemon.castform.flavor_text
         black: |
           Its appearance changes with the
@@ -1111,161 +1151,161 @@ black-white:
           were found to be just like water.
       forms:
         castform:
-          name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
-          icon: *ruby-sapphire.pokemon.castform.forms.castform.icon
+          name: *colosseum.name
+          form_name: *colosseum.pokemon.castform.forms.castform.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
+          icon: *ruby-sapphire.pokemon.castform-default.forms.castform-default.icon
           sprites:
             - black-white/back/castform-default.png
             - black-white/back/shiny/castform-default.png
             - black-white/castform-default.png
             - black-white/shiny/castform-default.png
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *black-white.pokemon.castform.wild_held_items
       flavor_text: *black-white.pokemon.castform.flavor_text
       forms:
         castform-sunny:
-          name: *ruby-sapphire.pokemon.castform-sunny.name
+          name: *colosseum.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
+          icon: *colosseum.pokemon.castform-sunny.forms.castform-sunny.icon
           sprites:
             - black-white/back/shiny/castform-sunny.png
             - black-white/back/castform-sunny.png
             - black-white/shiny/castform-sunny.png
             - black-white/castform-sunny.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *black-white.pokemon.castform.wild_held_items
       flavor_text: *black-white.pokemon.castform.flavor_text
       forms:
         castform-rainy:
-          name: *ruby-sapphire.pokemon.castform-rainy.name
+          name: *colosseum.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
+          icon: *colosseum.pokemon.castform-rainy.forms.castform-rainy.icon
           sprites:
             - black-white/back/shiny/castform-rainy.png
             - black-white/back/castform-rainy.png
             - black-white/shiny/castform-rainy.png
             - black-white/castform-rainy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *black-white.pokemon.castform.wild_held_items
       flavor_text: *black-white.pokemon.castform.flavor_text
       forms:
         castform-snowy:
-          name: *ruby-sapphire.pokemon.castform-snowy.name
+          name: *colosseum.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
+          icon: *colosseum.pokemon.castform-snowy.forms.castform-snowy.icon
           sprites:
             - black-white/castform-snowy.png
             - black-white/back/castform-snowy.png
             - black-white/back/shiny/castform-snowy.png
             - black-white/shiny/castform-snowy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
-          cry: *ruby-sapphire.pokemon.castform.forms.castform.cry
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
+          cry: *ruby-sapphire.pokemon.castform-default.forms.castform-default.cry
 black-2-white-2:
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: *colosseum.name
+  position: *colosseum.position
   numbers:
     national: *ruby-sapphire.numbers.national
     updated-unova: 163
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: &black-2-white-2.pokemon.castform.wild_held_items
-        black-2: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
-        white-2: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
+        black-2: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+        white-2: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
       flavor_text: &black-2-white-2.pokemon.castform.flavor_text
         black-2: |
           Temperature and weather affect its
@@ -1277,107 +1317,107 @@ black-2-white-2:
           changes form according to the weather.
       forms: *colosseum.pokemon.castform.forms
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *black-2-white-2.pokemon.castform.wild_held_items
       flavor_text: *black-2-white-2.pokemon.castform.flavor_text
       forms: *colosseum.pokemon.castform-sunny.forms
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *black-2-white-2.pokemon.castform.wild_held_items
       flavor_text: *black-2-white-2.pokemon.castform.flavor_text
       forms: *colosseum.pokemon.castform-rainy.forms
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *black-2-white-2.pokemon.castform.wild_held_items
       flavor_text: *black-2-white-2.pokemon.castform.flavor_text
       forms: *colosseum.pokemon.castform-snowy.forms
 x-y:
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: *colosseum.name
+  position: *colosseum.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: &x-y.pokemon.castform.mega false
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: &x-y.pokemon.castform.wild_held_items
-        x: *ruby-sapphire.pokemon.castform.wild_held_items.ruby
-        'y': *ruby-sapphire.pokemon.castform.wild_held_items.ruby
+        x: *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
+        'y': *ruby-sapphire.pokemon.castform-default.wild_held_items.ruby
       flavor_text: &x-y.pokemon.castform.flavor_text
         x: |
           This Pokémon can change its cells, taking different
@@ -1388,154 +1428,154 @@ x-y:
           the weather.
       forms:
         castform:
-          name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
+          name: *colosseum.name
+          form_name: *colosseum.pokemon.castform.forms.castform.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
           icon: &x-y.pokemon.castform.forms.castform.icon castform-default.png
           sprites:
             - x-y/castform-default.png
             - x-y/shiny/castform-default.png
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: &x-y.pokemon.castform.forms.castform.cry castform-default.webm
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *x-y.pokemon.castform.wild_held_items
       flavor_text: *x-y.pokemon.castform.flavor_text
       forms:
         castform-sunny:
-          name: *ruby-sapphire.pokemon.castform-sunny.name
+          name: *colosseum.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: &x-y.pokemon.castform-sunny.forms.castform-sunny.icon castform-sunny.png
+          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
           sprites:
             - x-y/shiny/castform-sunny.png
             - x-y/castform-sunny.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *x-y.pokemon.castform.wild_held_items
       flavor_text: *x-y.pokemon.castform.flavor_text
       forms:
         castform-rainy:
-          name: *ruby-sapphire.pokemon.castform-rainy.name
+          name: *colosseum.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: &x-y.pokemon.castform-rainy.forms.castform-rainy.icon castform-rainy.png
+          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
           sprites:
             - x-y/shiny/castform-rainy.png
             - x-y/castform-rainy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *x-y.pokemon.castform.wild_held_items
       flavor_text: *x-y.pokemon.castform.flavor_text
       forms:
         castform-snowy:
-          name: *ruby-sapphire.pokemon.castform-snowy.name
+          name: *colosseum.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: &x-y.pokemon.castform-snowy.forms.castform-snowy.icon castform-snowy.png
+          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
           sprites:
             - x-y/castform-snowy.png
             - x-y/shiny/castform-snowy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: *colosseum.name
+  position: *colosseum.position
   numbers:
     national: *ruby-sapphire.numbers.national
     updated-hoenn: 147
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       flavor_text: &omega-ruby-alpha-sapphire.pokemon.castform.flavor_text
         omega-ruby: |
           Castform’s appearance changes with the weather.
@@ -1547,125 +1587,125 @@ omega-ruby-alpha-sapphire:
           This Pokémon’s feelings change with the weather.
       forms:
         castform:
-          name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
+          name: *colosseum.name
+          form_name: *colosseum.pokemon.castform.forms.castform.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
           icon: *x-y.pokemon.castform.forms.castform.icon
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
           sprites:
             - omega-ruby-alpha-sapphire/castform-default.png
             - omega-ruby-alpha-sapphire/shiny/castform-default.png
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.castform.flavor_text
       forms:
         castform-sunny:
-          name: *ruby-sapphire.pokemon.castform-sunny.name
+          name: *colosseum.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *x-y.pokemon.castform-sunny.forms.castform-sunny.icon
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/castform-sunny.png
             - omega-ruby-alpha-sapphire/castform-sunny.png
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.castform.flavor_text
       forms:
         castform-rainy:
-          name: *ruby-sapphire.pokemon.castform-rainy.name
+          name: *colosseum.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *x-y.pokemon.castform-rainy.forms.castform-rainy.icon
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/castform-rainy.png
             - omega-ruby-alpha-sapphire/castform-rainy.png
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       flavor_text: *omega-ruby-alpha-sapphire.pokemon.castform.flavor_text
       forms:
         castform-snowy:
-          name: *ruby-sapphire.pokemon.castform-snowy.name
+          name: *colosseum.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *x-y.pokemon.castform-snowy.forms.castform-snowy.icon
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
           sprites:
             - omega-ruby-alpha-sapphire/castform-snowy.png
             - omega-ruby-alpha-sapphire/shiny/castform-snowy.png
 sun-moon:
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: *colosseum.name
+  position: *colosseum.position
   numbers:
     national: *ruby-sapphire.numbers.national
     original-alola: 181
@@ -1674,27 +1714,27 @@ sun-moon:
     original-poni: 69
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: &sun-moon.pokemon.castform.wild_held_items
         moon: &sun-moon.pokemon.castform.wild_held_items.moon
           mystic-water: 5
@@ -1704,128 +1744,128 @@ sun-moon:
           sensitive reactions to temperature and humidity.
       forms:
         castform:
-          name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
+          name: *colosseum.name
+          form_name: *colosseum.pokemon.castform.forms.castform.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
           icon: *x-y.pokemon.castform.forms.castform.icon
           sprites:
             - sun-moon/castform-default.png
             - sun-moon/shiny/castform-default.png
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *sun-moon.pokemon.castform.wild_held_items
       flavor_text: *sun-moon.pokemon.castform.flavor_text
       forms:
         castform-sunny:
-          name: *ruby-sapphire.pokemon.castform-sunny.name
+          name: *colosseum.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *x-y.pokemon.castform-sunny.forms.castform-sunny.icon
+          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
           sprites:
             - sun-moon/shiny/castform-sunny.png
             - sun-moon/castform-sunny.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *sun-moon.pokemon.castform.wild_held_items
       flavor_text: *sun-moon.pokemon.castform.flavor_text
       forms:
         castform-rainy:
-          name: *ruby-sapphire.pokemon.castform-rainy.name
+          name: *colosseum.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *x-y.pokemon.castform-rainy.forms.castform-rainy.icon
+          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
           sprites:
             - sun-moon/shiny/castform-rainy.png
             - sun-moon/castform-rainy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *sun-moon.pokemon.castform.wild_held_items
       flavor_text: *sun-moon.pokemon.castform.flavor_text
       forms:
         castform-snowy:
-          name: *ruby-sapphire.pokemon.castform-snowy.name
+          name: *colosseum.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *x-y.pokemon.castform-snowy.forms.castform-snowy.icon
+          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
           sprites:
             - sun-moon/castform-snowy.png
             - sun-moon/shiny/castform-snowy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
 ultra-sun-ultra-moon:
-  name: *ruby-sapphire.name
-  position: *ruby-sapphire.position
+  name: *colosseum.name
+  position: *colosseum.position
   numbers:
     national: *ruby-sapphire.numbers.national
     updated-alola: 220
@@ -1834,27 +1874,27 @@ ultra-sun-ultra-moon:
     updated-poni: 82
   pokemon:
     castform:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.name
-      default: *ruby-sapphire.pokemon.castform.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
-      types: *ruby-sapphire.pokemon.castform.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.name
+      default: *ruby-sapphire.pokemon.castform-default.default
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
+      types: *ruby-sapphire.pokemon.castform-default.types
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: &ultra-sun-ultra-moon.pokemon.castform.wild_held_items
         ultra-sun: *sun-moon.pokemon.castform.wild_held_items.moon
       flavor_text: &ultra-sun-ultra-moon.pokemon.castform.flavor_text
@@ -1864,122 +1904,122 @@ ultra-sun-ultra-moon:
           reaction and not the result of its own free will.
       forms:
         castform:
-          name: *ruby-sapphire.name
-          form_name: *ruby-sapphire.pokemon.castform.forms.castform.form_name
-          default: *ruby-sapphire.pokemon.castform.default
-          battle_only: *ruby-sapphire.pokemon.castform.forms.castform.battle_only
+          name: *colosseum.name
+          form_name: *colosseum.pokemon.castform.forms.castform.form_name
+          default: *ruby-sapphire.pokemon.castform-default.default
+          battle_only: *ruby-sapphire.pokemon.castform-default.forms.castform-default.battle_only
           icon: *x-y.pokemon.castform.forms.castform.icon
           sprites:
             - ultra-sun-ultra-moon/castform-default.png
             - ultra-sun-ultra-moon/shiny/castform-default.png
-          art: *ruby-sapphire.pokemon.castform.forms.castform.art
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          art: *ruby-sapphire.pokemon.castform-default.forms.castform-default.art
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
     castform-sunny:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-sunny.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-sunny.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-sunny.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *ultra-sun-ultra-moon.pokemon.castform.wild_held_items
       flavor_text: *ultra-sun-ultra-moon.pokemon.castform.flavor_text
       forms:
         castform-sunny:
-          name: *ruby-sapphire.pokemon.castform-sunny.name
+          name: *colosseum.pokemon.castform-sunny.name
           form_name: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *x-y.pokemon.castform-sunny.forms.castform-sunny.icon
+          icon: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.icon
           sprites:
             - ultra-sun-ultra-moon/shiny/castform-sunny.png
             - ultra-sun-ultra-moon/castform-sunny.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
     castform-rainy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-rainy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-rainy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-rainy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *ultra-sun-ultra-moon.pokemon.castform.wild_held_items
       flavor_text: *ultra-sun-ultra-moon.pokemon.castform.flavor_text
       forms:
         castform-rainy:
-          name: *ruby-sapphire.pokemon.castform-rainy.name
+          name: *colosseum.pokemon.castform-rainy.name
           form_name: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *x-y.pokemon.castform-rainy.forms.castform-rainy.icon
+          icon: *ruby-sapphire.pokemon.castform-rainy.forms.castform-rainy.icon
           sprites:
             - ultra-sun-ultra-moon/shiny/castform-rainy.png
             - ultra-sun-ultra-moon/castform-rainy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
     castform-snowy:
-      genus: *ruby-sapphire.pokemon.castform.genus
-      color: *ruby-sapphire.pokemon.castform.color
+      genus: *colosseum.pokemon.castform.genus
+      color: *black-white.pokemon.castform.color
       shape: *diamond-pearl.pokemon.castform.shape
-      female_rate: *ruby-sapphire.pokemon.castform.female_rate
-      capture_rate: *ruby-sapphire.pokemon.castform.capture_rate
-      happiness: *ruby-sapphire.pokemon.castform.happiness
-      baby: *ruby-sapphire.pokemon.castform.baby
-      hatch_steps: *ruby-sapphire.pokemon.castform.hatch_steps
-      growth_rate: *ruby-sapphire.pokemon.castform.growth_rate
-      forms_switchable: *ruby-sapphire.pokemon.castform.forms_switchable
-      forms_note: *ruby-sapphire.pokemon.castform.forms_note
-      name: *ruby-sapphire.pokemon.castform-snowy.name
+      female_rate: *ruby-sapphire.pokemon.castform-default.female_rate
+      capture_rate: *ruby-sapphire.pokemon.castform-default.capture_rate
+      happiness: *ruby-sapphire.pokemon.castform-default.happiness
+      baby: *colosseum.pokemon.castform.baby
+      hatch_steps: *ruby-sapphire.pokemon.castform-default.hatch_steps
+      growth_rate: *ruby-sapphire.pokemon.castform-default.growth_rate
+      forms_switchable: *colosseum.pokemon.castform.forms_switchable
+      forms_note: *ruby-sapphire.pokemon.castform-default.forms_note
+      name: *colosseum.pokemon.castform-snowy.name
       default: *ruby-sapphire.pokemon.castform-sunny.default
-      height: *ruby-sapphire.pokemon.castform.height
-      weight: *ruby-sapphire.pokemon.castform.weight
-      experience: *ruby-sapphire.pokemon.castform.experience
+      height: *ruby-sapphire.pokemon.castform-default.height
+      weight: *ruby-sapphire.pokemon.castform-default.weight
+      experience: *colosseum.pokemon.castform.experience
       types: *ruby-sapphire.pokemon.castform-snowy.types
-      egg_groups: *ruby-sapphire.pokemon.castform.egg_groups
+      egg_groups: *ruby-sapphire.pokemon.castform-default.egg_groups
       mega: *x-y.pokemon.castform.mega
-      stats: *ruby-sapphire.pokemon.castform.stats
-      abilities: *ruby-sapphire.pokemon.castform.abilities
+      stats: *ruby-sapphire.pokemon.castform-default.stats
+      abilities: *ruby-sapphire.pokemon.castform-default.abilities
       wild_held_items: *ultra-sun-ultra-moon.pokemon.castform.wild_held_items
       flavor_text: *ultra-sun-ultra-moon.pokemon.castform.flavor_text
       forms:
         castform-snowy:
-          name: *ruby-sapphire.pokemon.castform-snowy.name
+          name: *colosseum.pokemon.castform-snowy.name
           form_name: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.form_name
-          default: *ruby-sapphire.pokemon.castform.default
+          default: *ruby-sapphire.pokemon.castform-default.default
           battle_only: *ruby-sapphire.pokemon.castform-sunny.forms.castform-sunny.battle_only
-          icon: *x-y.pokemon.castform-snowy.forms.castform-snowy.icon
+          icon: *ruby-sapphire.pokemon.castform-snowy.forms.castform-snowy.icon
           sprites:
             - ultra-sun-ultra-moon/castform-snowy.png
             - ultra-sun-ultra-moon/shiny/castform-snowy.png
-          footprint: *ruby-sapphire.pokemon.castform.forms.castform.footprint
+          footprint: *ruby-sapphire.pokemon.castform-default.forms.castform-default.footprint
           cry: *x-y.pokemon.castform.forms.castform.cry
