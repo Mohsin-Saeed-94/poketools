@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:cut} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "hm01"})}}
+  machine: &red-blue.machine
+    type: HM
+    number: 1
+    move: cut
   category: &red-blue.category hm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -15,6 +19,7 @@ gold-silver: &gold-silver
   pocket: &gold-silver.pocket machines
   short_description: *red-blue.short_description
   description: *red-blue.description
+  machine: *red-blue.machine
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -33,16 +38,13 @@ ruby-sapphire: &ruby-sapphire
     Teaches []{move:cut} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "hm01"})}}
-  machine: &ruby-sapphire.machine
-    type: HM
-    number: 1
-    move: cut
+  machine: *red-blue.machine
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  machine: *ruby-sapphire.machine
+  machine: *red-blue.machine
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
   icon: *ruby-sapphire.icon
@@ -60,7 +62,7 @@ firered-leafgreen:
     and grass.
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
-  machine: *ruby-sapphire.machine
+  machine: *red-blue.machine
 diamond-pearl: *colosseum
 platinum: *colosseum
 heartgold-soulsilver: *colosseum

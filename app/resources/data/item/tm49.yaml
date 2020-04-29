@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:tri-attack} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm49"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 49
+    move: tri-attack
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:fury-cutter} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm49"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: fury-cutter
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -41,8 +49,8 @@ ruby-sapphire: &ruby-sapphire
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm49"})}}
   machine: &ruby-sapphire.machine
-    type: &ruby-sapphire.machine.type TM
-    number: &ruby-sapphire.machine.number 49
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: snatch
 emerald: *ruby-sapphire
 colosseum: &colosseum
@@ -82,8 +90,8 @@ black-white: &black-white
   buy: *colosseum.buy
   sell: *colosseum.sell
   machine:
-    type: *ruby-sapphire.machine.type
-    number: *ruby-sapphire.machine.number
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: echoed-voice
   short_description: 'Teaches []{move:echoed-voice} to a compatible Pokémon.'
   description: |

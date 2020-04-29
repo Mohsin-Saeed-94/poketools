@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:metronome} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm35"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 35
+    move: metronome
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:sleep-talk} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm35"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: sleep-talk
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -41,8 +49,8 @@ ruby-sapphire: &ruby-sapphire
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm35"})}}
   machine: &ruby-sapphire.machine
-    type: TM
-    number: 35
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: flamethrower
 emerald: *ruby-sapphire
 colosseum: &colosseum

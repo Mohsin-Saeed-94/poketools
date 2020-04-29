@@ -6,6 +6,10 @@ gold-silver: &gold-silver
     Teaches []{move:waterfall} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "hm07"})}}
+  machine: &gold-silver.machine
+    type: HM
+    number: 7
+    move: waterfall
   category: &gold-silver.category hm
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -24,16 +28,13 @@ ruby-sapphire: &ruby-sapphire
     Teaches []{move:waterfall} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "hm07"})}}
-  machine: &ruby-sapphire.machine
-    type: HM
-    number: 7
-    move: waterfall
+  machine: *gold-silver.machine
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  machine: *ruby-sapphire.machine
+  machine: *gold-silver.machine
   short_description: *gold-silver.short_description
   description: *ruby-sapphire.description
   icon: *ruby-sapphire.icon
@@ -51,7 +52,7 @@ firered-leafgreen:
     a waterfall.
   short_description: *gold-silver.short_description
   description: *ruby-sapphire.description
-  machine: *ruby-sapphire.machine
+  machine: *gold-silver.machine
 diamond-pearl: *colosseum
 platinum: *colosseum
 heartgold-soulsilver: *colosseum

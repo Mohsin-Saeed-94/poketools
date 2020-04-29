@@ -353,6 +353,11 @@ def get_items():
         ]).format(move=move_slugs[move_id], item=item['slug']).strip()
         item['short_description'] = short_description
         item['description'] = description
+        item['machine'] = {
+            'type': match.group('type').upper(),
+            'number': int(match.group('number')),
+            'move': move_slugs[move_id],
+        }
 
     # Put it all together
     out_items = {}

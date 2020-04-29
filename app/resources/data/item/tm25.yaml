@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:thunder} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm25"})}}
+  machine: &red-blue.machine
+    type: TM
+    number: 25
+    move: thunder
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -17,6 +21,7 @@ gold-silver: &gold-silver
   sell: 1000
   short_description: *red-blue.short_description
   description: *red-blue.description
+  machine: *red-blue.machine
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -37,10 +42,7 @@ ruby-sapphire: &ruby-sapphire
     Teaches []{move:thunder} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm25"})}}
-  machine: &ruby-sapphire.machine
-    type: TM
-    number: 25
-    move: thunder
+  machine: *red-blue.machine
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *red-blue.name
@@ -48,7 +50,7 @@ colosseum: &colosseum
   pocket: *gold-silver.pocket
   buy: 30000
   sell: 15000
-  machine: *ruby-sapphire.machine
+  machine: *red-blue.machine
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
   icon: *ruby-sapphire.icon
@@ -68,7 +70,7 @@ firered-leafgreen:
     paralyzed.
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
-  machine: *ruby-sapphire.machine
+  machine: *red-blue.machine
 diamond-pearl: *colosseum
 platinum: *colosseum
 heartgold-soulsilver: *colosseum

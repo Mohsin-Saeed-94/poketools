@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:whirlwind} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm04"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 4
+    move: whirlwind
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:rollout} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm04"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: rollout
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -41,8 +49,8 @@ ruby-sapphire: &ruby-sapphire
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm04"})}}
   machine: &ruby-sapphire.machine
-    type: TM
-    number: 4
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: calm-mind
 emerald: *ruby-sapphire
 colosseum: &colosseum

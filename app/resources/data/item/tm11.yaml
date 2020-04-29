@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:bubblebeam} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm11"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 11
+    move: bubblebeam
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:sunny-day} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm11"})}}
+  machine: &gold-silver.machine
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: sunny-day
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -40,10 +48,7 @@ ruby-sapphire: &ruby-sapphire
     Teaches []{move:sunny-day} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm11"})}}
-  machine: &ruby-sapphire.machine
-    type: TM
-    number: 11
-    move: sunny-day
+  machine: *gold-silver.machine
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *red-blue.name
@@ -51,7 +56,7 @@ colosseum: &colosseum
   pocket: *gold-silver.pocket
   buy: 50000
   sell: 25000
-  machine: *ruby-sapphire.machine
+  machine: *gold-silver.machine
   short_description: *gold-silver.short_description
   description: *ruby-sapphire.description
   icon: *ruby-sapphire.icon
@@ -71,7 +76,7 @@ firered-leafgreen:
     moves.
   short_description: *gold-silver.short_description
   description: *ruby-sapphire.description
-  machine: *ruby-sapphire.machine
+  machine: *gold-silver.machine
 diamond-pearl: *colosseum
 platinum: *colosseum
 heartgold-soulsilver: *colosseum

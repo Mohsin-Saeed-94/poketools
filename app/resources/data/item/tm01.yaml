@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:mega-punch} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm01"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 1
+    move: mega-punch
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:dynamicpunch} to a compatible Pokémon.
     
     {{App\ Controller\ItemController::tmPokemon({"itemSlug": "tm01"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: dynamicpunch
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -41,8 +49,8 @@ ruby-sapphire: &ruby-sapphire
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm01"})}}
   machine: &ruby-sapphire.machine
-    type: &ruby-sapphire.machine.type TM
-    number: &ruby-sapphire.machine.number 1
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: focus-punch
 emerald: *ruby-sapphire
 colosseum: &colosseum
@@ -82,8 +90,8 @@ black-white: &black-white
   buy: *colosseum.buy
   sell: *colosseum.sell
   machine:
-    type: *ruby-sapphire.machine.type
-    number: *ruby-sapphire.machine.number
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: hone-claws
   short_description: 'Teaches []{move:hone-claws} to a compatible Pokémon.'
   description: |
@@ -101,8 +109,8 @@ sun-moon: &sun-moon
   buy: *colosseum.buy
   sell: *colosseum.sell
   machine:
-    type: *ruby-sapphire.machine.type
-    number: *ruby-sapphire.machine.number
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: work-up
   short_description: 'Teaches []{move:work-up} to a compatible Pokémon.'
   description: |

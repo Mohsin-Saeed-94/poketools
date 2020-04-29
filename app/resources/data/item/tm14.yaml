@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:blizzard} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm14"})}}
+  machine: &red-blue.machine
+    type: TM
+    number: 14
+    move: blizzard
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -17,6 +21,7 @@ gold-silver: &gold-silver
   sell: 1500
   short_description: *red-blue.short_description
   description: *red-blue.description
+  machine: *red-blue.machine
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire:
@@ -37,10 +42,7 @@ ruby-sapphire:
     Teaches []{move:blizzard} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm14"})}}
-  machine: &ruby-sapphire.machine
-    type: TM
-    number: 14
-    move: blizzard
+  machine: *red-blue.machine
 emerald:
   name: *red-blue.name
   category: *red-blue.category
@@ -55,14 +57,14 @@ emerald:
     may freeze the foe.
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
-  machine: *ruby-sapphire.machine
+  machine: *red-blue.machine
 colosseum: &colosseum
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
   buy: 30000
   sell: 15000
-  machine: *ruby-sapphire.machine
+  machine: *red-blue.machine
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
   icon: *ruby-sapphire.icon
@@ -82,7 +84,7 @@ firered-leafgreen:
     foe solid.
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
-  machine: *ruby-sapphire.machine
+  machine: *red-blue.machine
 diamond-pearl: *colosseum
 platinum: *colosseum
 heartgold-soulsilver: *colosseum

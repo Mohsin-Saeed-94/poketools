@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:swift} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm39"})}}
+  machine: &red-blue.machine
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 39
+    move: swift
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -17,6 +21,7 @@ gold-silver: &gold-silver
   sell: 1000
   short_description: *red-blue.short_description
   description: *red-blue.description
+  machine: *red-blue.machine
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -38,8 +43,8 @@ ruby-sapphire: &ruby-sapphire
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm39"})}}
   machine: &ruby-sapphire.machine
-    type: TM
-    number: 39
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: rock-tomb
 emerald: *ruby-sapphire
 colosseum: &colosseum

@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:rage} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm20"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 20
+    move: rage
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:endure} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm20"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: endure
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -41,8 +49,8 @@ ruby-sapphire: &ruby-sapphire
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm20"})}}
   machine: &ruby-sapphire.machine
-    type: TM
-    number: 20
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: safeguard
 emerald: *ruby-sapphire
 colosseum: &colosseum

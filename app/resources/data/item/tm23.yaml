@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:dragon-rage} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm23"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 23
+    move: dragon-rage
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:iron-tail} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm23"})}}
+  machine: &gold-silver.machine
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: iron-tail
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -40,10 +48,7 @@ ruby-sapphire: &ruby-sapphire
     Teaches []{move:iron-tail} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm23"})}}
-  machine: &ruby-sapphire.machine
-    type: &ruby-sapphire.machine.type TM
-    number: &ruby-sapphire.machine.number 23
-    move: iron-tail
+  machine: *gold-silver.machine
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *red-blue.name
@@ -51,7 +56,7 @@ colosseum: &colosseum
   pocket: *gold-silver.pocket
   buy: &colosseum.buy 10000
   sell: &colosseum.sell 5000
-  machine: *ruby-sapphire.machine
+  machine: *gold-silver.machine
   short_description: *gold-silver.short_description
   description: *ruby-sapphire.description
   icon: *ruby-sapphire.icon
@@ -71,7 +76,7 @@ firered-leafgreen:
     foe's DEFENSE stat.
   short_description: *gold-silver.short_description
   description: *ruby-sapphire.description
-  machine: *ruby-sapphire.machine
+  machine: *gold-silver.machine
 diamond-pearl: *colosseum
 platinum: *colosseum
 heartgold-soulsilver: *colosseum
@@ -82,8 +87,8 @@ black-white: &black-white
   buy: *colosseum.buy
   sell: *colosseum.sell
   machine:
-    type: *ruby-sapphire.machine.type
-    number: *ruby-sapphire.machine.number
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: smack-down
   short_description: 'Teaches []{move:smack-down} to a compatible Pokémon.'
   description: |

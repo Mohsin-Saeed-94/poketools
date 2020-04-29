@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:horn-drill} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm07"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 7
+    move: horn-drill
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:zap-cannon} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm07"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: zap-cannon
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire:
@@ -41,8 +49,8 @@ ruby-sapphire:
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm07"})}}
   machine: &ruby-sapphire.machine
-    type: TM
-    number: 7
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: hail
 emerald:
   name: *red-blue.name

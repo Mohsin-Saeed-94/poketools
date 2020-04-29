@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:thunderbolt} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm24"})}}
+  machine: &red-blue.machine
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 24
+    move: thunderbolt
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:dragonbreath} to a compatible Pokémon.
     
     {{App\ Controller\ItemController::tmPokemon({"itemSlug": "tm24"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: dragonbreath
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -40,10 +48,7 @@ ruby-sapphire: &ruby-sapphire
     Teaches []{move:thunderbolt} to a compatible Pokémon.
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm24"})}}
-  machine: &ruby-sapphire.machine
-    type: TM
-    number: 24
-    move: thunderbolt
+  machine: *red-blue.machine
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *red-blue.name
@@ -51,7 +56,7 @@ colosseum: &colosseum
   pocket: *gold-silver.pocket
   buy: 10000
   sell: 5000
-  machine: *ruby-sapphire.machine
+  machine: *red-blue.machine
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
   icon: *ruby-sapphire.icon
@@ -71,7 +76,7 @@ firered-leafgreen:
     paralyzed.
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
-  machine: *ruby-sapphire.machine
+  machine: *red-blue.machine
 diamond-pearl: *colosseum
 platinum: *colosseum
 heartgold-soulsilver: *colosseum

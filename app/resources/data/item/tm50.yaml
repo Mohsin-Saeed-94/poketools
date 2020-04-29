@@ -8,6 +8,10 @@ red-blue: &red-blue
     Teaches []{move:substitute} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm50"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 50
+    move: substitute
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -20,6 +24,10 @@ gold-silver: &gold-silver
     Teaches []{move:nightmare} to a compatible Pokémon.
     
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm50"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: nightmare
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
@@ -41,8 +49,8 @@ ruby-sapphire: &ruby-sapphire
     
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm50"})}}
   machine: &ruby-sapphire.machine
-    type: TM
-    number: 50
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: overheat
 emerald: *ruby-sapphire
 colosseum: &colosseum
