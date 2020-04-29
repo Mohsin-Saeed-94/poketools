@@ -1,3 +1,6 @@
+pointer_length = 4
+
+
 def address_from_pointer(pointer: bytes, byteorder='little') -> int:
     """
     Calculate the location in the ROM of a pointer
@@ -21,4 +24,4 @@ def pointer_from_address(address: int, byteorder='little') -> bytes:
     :param byteorder:
     :return:
     """
-    return (address + 0x08000000).to_bytes(4, byteorder=byteorder, signed=False)
+    return (address + 0x08000000).to_bytes(pointer_length, byteorder=byteorder, signed=False)

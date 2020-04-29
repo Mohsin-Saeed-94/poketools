@@ -988,11 +988,11 @@ def _get_map(rom: BufferedReader, version_group: VersionGroup, version, group_id
 
     # Follow the pointers to the header
     old_position = rom.tell()
-    rom.seek(group_pointer_offset + (group_id * 4))
-    map_group_pointer = rom.read(4)
+    rom.seek(group_pointer_offset + (group_id * gba.pointer_length))
+    map_group_pointer = rom.read(gba.pointer_length)
     map_group_offset = gba.address_from_pointer(map_group_pointer)
-    rom.seek(map_group_offset + (map_id * 4))
-    map_header_pointer = rom.read(4)
+    rom.seek(map_group_offset + (map_id * gba.pointer_length))
+    map_header_pointer = rom.read(gba.pointer_length)
     rom.seek(gba.address_from_pointer(map_header_pointer))
 
     game_map = MapHeader(rom.read(MapHeader.length))
@@ -2007,6 +2007,7 @@ def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Versi
                 ]
             pokemon['forms'] = {pokemon_slug: form}
             out['deoxys']['pokemon'][pokemon_slug] = pokemon
+            del pokemon_slugs['deoxys'][0]
         else:
             # Update the names for R/S
             out['deoxys']['pokemon'][pokemon_slugs['deoxys'][0]]['name'] = 'Normal DEOXYS'
@@ -2042,7 +2043,7 @@ def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Versi
     _build_forms()
     _get_evolution()
     _handle_specials()
-    _pullup_data()
+    # _pullup_data()
 
     return out, species_slugs, pokemon_slugs
 
@@ -2059,6 +2060,241 @@ def write_pokemon(out):
         data.update(species_data)
         with open(yaml_path, 'w') as species_yaml:
             yaml.dump(data, species_yaml)
+
+
+def get_pokemon_moves(rom: BufferedReader, version_group: VersionGroup, version: Version, species_slugs: dict,
+                      pokemon_slugs: dict, move_slugs: dict, items: dict):
+    out = set()
+
+    def _get_levelup():
+        levelup_pointer_offset = {
+            Version.RUBY: 0x207BE0,
+            Version.SAPPHIRE: 0x207B70,
+            Version.EMERALD: 0x32937C,
+            Version.FIRERED: 0x25D7B4,
+            Version.LEAFGREEN: 0x25D794,
+        }
+        levelup_pointer_offset = levelup_pointer_offset[version]
+        levelup_entry_length = 2
+
+        for species_id, species_slug in species_slugs.items():
+            rom.seek(levelup_pointer_offset + (species_id * gba.pointer_length))
+            levelup_offset = gba.address_from_pointer(rom.read(gba.pointer_length))
+            rom.seek(levelup_offset)
+            while int.from_bytes(rom.peek(levelup_entry_length)[:levelup_entry_length], byteorder='little') != 0xFFFF:
+                data = int.from_bytes(rom.read(levelup_entry_length), byteorder='little')
+                move_id = data & 0x01FF
+                level = (data & 0xFE00) >> 9
+                for pokemon_slug in pokemon_slugs[species_slug]:
+                    out.add((
+                        ('species', species_slug),
+                        ('pokemon', pokemon_slug),
+                        ('version_group', version_group.value),
+                        ('move', move_slugs[move_id]),
+                        ('learn_method', 'level-up'),
+                        ('level', level),
+                        ('machine', None),
+                    ))
+
+    def _get_machines():
+        machines_offset = {
+            Version.RUBY: 0x1FD108,
+            Version.SAPPHIRE: 0x1FD098,
+            Version.EMERALD: 0x31E898,
+            Version.FIRERED: 0x252BC8,
+            Version.LEAFGREEN: 0x252BA4,
+        }
+        machines_offset = machines_offset[version]
+        machines_length = 8
+
+        # Get the moves each tm teaches
+        machine_moves = {}
+        for item_slug, item_data in items.items():
+            if 'machine' not in item_data:
+                continue
+            machine_data = item_data['machine']
+            machine_moves[item_slug] = machine_data['move']
+
+        for species_id, species_slug in species_slugs.items():
+            rom.seek(machines_offset + (species_id * machines_length))
+            machine_bits = int.from_bytes(rom.read(machines_length), byteorder='little')
+            for machine_id in range(1, 59):
+                can_learn = (machine_bits & (1 << (machine_id - 1))) > 0
+                if can_learn:
+                    if machine_id > 50:
+                        machine_type = 'HM'
+                        machine_number = machine_id - 50
+                    else:
+                        machine_type = 'TM'
+                        machine_number = machine_id
+                    item_slug = '{type}{number:02}'.format(type=machine_type.lower(), number=machine_number)
+
+                    for pokemon_slug in pokemon_slugs[species_slug]:
+                        out.add((
+                            ('species', species_slug),
+                            ('pokemon', pokemon_slug),
+                            ('version_group', version_group.value),
+                            ('move', machine_moves[item_slug]),
+                            ('learn_method', 'machine'),
+                            ('level', None),
+                            ('machine', item_slug),
+                        ))
+
+    def _get_egg_moves():
+        egg_moves_offset = {
+            Version.RUBY: 0x2091F4,
+            Version.SAPPHIRE: 0x209184,
+            Version.EMERALD: 0x32ADD8,
+            Version.FIRERED: 0x25EF0C,
+            Version.LEAFGREEN: 0x25EEEC,
+        }
+        egg_moves_offset = egg_moves_offset[version]
+
+        rom.seek(egg_moves_offset)
+        species_slug = None
+        while int.from_bytes(rom.peek(2)[:2], byteorder='little') != 0xFFFF:
+            data = int.from_bytes(rom.read(2), byteorder='little')
+            if (data - 20000) > 0:
+                # New species
+                species_slug = species_slugs[data - 20000]
+                continue
+
+            # Learnable move
+            move_slug = move_slugs[data]
+            for pokemon_slug in pokemon_slugs[species_slug]:
+                out.add((
+                    ('species', species_slug),
+                    ('pokemon', pokemon_slug),
+                    ('version_group', version_group.value),
+                    ('move', move_slug),
+                    ('learn_method', 'egg'),
+                    ('level', None),
+                    ('machine', None),
+                ))
+
+    def _get_tutors():
+        tutored_moves_offset = {
+            Version.EMERALD: 0x61500C,
+            Version.FIRERED: 0x459B60,
+            Version.LEAFGREEN: 0x459580,
+        }
+        tutor_learnset_offset = {
+            Version.EMERALD: 0x615048,
+            Version.FIRERED: 0x459B7E,
+            Version.LEAFGREEN: 0x45959E,
+        }
+        if version not in tutored_moves_offset:
+            # R/S has no move tutors
+            return
+        tutored_moves_offset = tutored_moves_offset[version]
+        tutor_learnset_offset = tutor_learnset_offset[version]
+        if version_group == VersionGroup.FIRERED_LEAFGREEN:
+            tutor_count = 15
+            tutor_length = 2
+        else:
+            tutor_count = 30
+            tutor_length = 4
+
+        # Find what move each tutor teaches
+        tutor_move_map = {}
+        for tutor_id in range(0, tutor_count):
+            rom.seek(tutored_moves_offset + (tutor_id * 2))
+            move_id = int.from_bytes(rom.read(2), byteorder='little')
+            tutor_move_map[tutor_id] = move_slugs[move_id]
+
+        # Get the learnsets
+        for species_id, species_slug in species_slugs.items():
+            rom.seek(tutor_learnset_offset + (species_id * tutor_length))
+            tutor_bits = int.from_bytes(rom.read(tutor_length), byteorder='little')
+            for tutor_id, move_slug in tutor_move_map.items():
+                can_learn = (tutor_bits & (1 << tutor_id)) > 0
+                if can_learn:
+                    for pokemon_slug in pokemon_slugs[species_slug]:
+                        out.add((
+                            ('species', species_slug),
+                            ('pokemon', pokemon_slug),
+                            ('version_group', version_group.value),
+                            ('move', move_slug),
+                            ('learn_method', 'tutor'),
+                            ('level', None),
+                            ('machine', None),
+                        ))
+
+        if version_group == VersionGroup.FIRERED_LEAFGREEN:
+            # FR/LG has three special case move tutors that will teach a move to a
+            # fully-evolved starter.  These are not listed in a table anywhere!
+            out.add((
+                ('species', 'venusaur'),
+                ('pokemon', 'venusaur'),
+                ('version_group', version_group.value),
+                ('move', 'frenzy-plant'),
+                ('learn_method', 'tutor'),
+                ('level', None),
+                ('machine', None),
+            ))
+            out.add((
+                ('species', 'charizard'),
+                ('pokemon', 'charizard'),
+                ('version_group', version_group.value),
+                ('move', 'blast-burn'),
+                ('learn_method', 'tutor'),
+                ('level', None),
+                ('machine', None),
+            ))
+            out.add((
+                ('species', 'blastoise'),
+                ('pokemon', 'blastoise'),
+                ('version_group', version_group.value),
+                ('move', 'hydro-cannon'),
+                ('learn_method', 'tutor'),
+                ('level', None),
+                ('machine', None),
+            ))
+
+    print('Dumping Pokemon moves')
+    _get_levelup()
+    _get_machines()
+    _get_egg_moves()
+    _get_tutors()
+
+    if version_group == VersionGroup.EMERALD:
+        # This is a special case in the daycare egg code
+        out.add((
+            ('species', 'pichu'),
+            ('pokemon', 'pichu'),
+            ('version_group', version_group.value),
+            ('move', 'volt-tackle'),
+            ('learn_method', 'light-ball-egg'),
+            ('level', None),
+            ('machine', None),
+        ))
+
+    return out
+
+
+def write_pokemon_moves(used_version_groups, out: set):
+    print('Writing Pokemon moves')
+
+    # Get existing data, removing those that have just been ripped.
+    delete_learn_methods = [
+        'level-up',
+        'machine',
+        'tutor',
+        'egg',
+        'light-ball-egg',
+    ]
+    data = []
+    with open(args.out_pokemon_moves, 'r') as pokemon_moves_csv:
+        for row in progressbar.progressbar(csv.DictReader(pokemon_moves_csv)):
+            if row['version_group'] not in used_version_groups or row['learn_method'] not in delete_learn_methods:
+                data.append(row)
+
+    data.extend([dict(row) for row in out])
+    with open(args.out_pokemon_moves, 'w') as pokemon_moves_csv:
+        writer = csv.DictWriter(pokemon_moves_csv, fieldnames=data[0].keys())
+        writer.writeheader()
+        for row in progressbar.progressbar(data):
+            writer.writerow(row)
 
 
 if __name__ == '__main__':
@@ -2111,6 +2347,7 @@ if __name__ == '__main__':
     out_shop_items = []
     out_abilities = {}
     out_pokemon = {}
+    out_pokemon_moves = set()
     dumped_versions = set()
     dumped_version_groups = set()
     dump_rom: BufferedReader
@@ -2144,6 +2381,9 @@ if __name__ == '__main__':
         v_pokemon, vg_species_slugs, vg_pokemon_slugs = get_pokemon(dump_rom, dump_version_group, dump_version,
                                                                     vg_item_slugs, vg_ability_slugs)
         out_pokemon = group_pokemon(dump_version.value, dump_version_group.value, v_pokemon, out_pokemon)
+        out_pokemon_moves.update(
+            get_pokemon_moves(dump_rom, dump_version_group, dump_version, vg_species_slugs, vg_pokemon_slugs,
+                              vg_move_slugs, vg_items))
 
         dumped_versions.add(dump_version.value)
         dumped_version_groups.add(dump_version_group.value)
@@ -2172,4 +2412,6 @@ if __name__ == '__main__':
             write_abilities(out_abilities)
         if args.write_pokemon:
             write_pokemon(out_pokemon)
+        if args.write_pokemon_moves:
+            write_pokemon_moves(dumped_version_groups, out_pokemon_moves)
         exit(0)
