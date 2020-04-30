@@ -2297,6 +2297,171 @@ def write_pokemon_moves(used_version_groups, out: set):
             writer.writerow(row)
 
 
+def get_encounters(rom: BufferedReader, version_group: VersionGroup, version: Version, species_slugs: dict,
+                   pokemon_slugs: dict):
+    if version_group == VersionGroup.RUBY_SAPPHIRE:
+        from .rs_maps import map_slugs
+    elif version_group == VersionGroup.EMERALD:
+        from .e_maps import map_slugs
+    else:
+        from .frlg_maps import map_slugs
+
+    print('Dumping encounters')
+
+    out = []
+
+    map_encounter_header_offset = {
+        Version.RUBY: 0x39D46C,
+        Version.SAPPHIRE: 0x39D2B4,
+        Version.EMERALD: 0x552D48,
+        Version.FIRERED: 0x3C9CB8,
+        Version.LEAFGREEN: 0x3C9AF4,
+    }
+    map_encounter_header_offset = map_encounter_header_offset[version]
+
+    method_slot_chances = {
+        'walk': [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1],
+        'surf': [60, 30, 5, 4, 1],
+        'rock-smash': [60, 30, 5, 4, 1],
+        'old-rod': [70, 30],
+        'good-rod': [60, 20, 20],
+        'super-rod': [40, 40, 15, 4, 1],
+    }
+
+    @dataclass()
+    class WildPokemonHeader:
+        length = 20
+
+        def __init__(self, data: bytes):
+            data = struct.unpack('<BB2x4s4s4s4s', data)
+            self.mapGroup = data[0]
+            self.mapId = data[1]
+            self.grassEncountersPointer = None
+            self.surfEncountersPointer = None
+            self.rockSmashEncountersPointer = None
+            self.fishingEncountersPointer = None
+            if int.from_bytes(data[2], byteorder='little') > 0:
+                self.grassEncountersPointer = data[2]
+            if int.from_bytes(data[3], byteorder='little') > 0:
+                self.surfEncountersPointer = data[3]
+            if int.from_bytes(data[4], byteorder='little') > 0:
+                self.rockSmashEncountersPointer = data[4]
+            if int.from_bytes(data[5], byteorder='little') > 0:
+                self.fishingEncountersPointer = data[5]
+
+    @dataclass()
+    class WildPokemonInfo:
+        length = 8
+
+        def __init__(self, data: bytes):
+            data = struct.unpack('<B3x4s', data)
+            self.mapEncounterRate = data[0]
+            self.encountersPointer = data[1]
+
+    @dataclass()
+    class WildPokemon:
+        length = 4
+
+        def __init__(self, data: bytes):
+            data = struct.unpack('<BBH', data)
+            self.levelMin = data[0]
+            self.levelMax = data[1]
+            self.species = species_slugs[data[2]]
+
+    def _process_encounters(map_info: dict, method: str, table_pointer: bytes):
+        if not table_pointer:
+            # No encounters for this method
+            return
+
+        rom.seek(gba.address_from_pointer(table_pointer))
+        encounter_info = WildPokemonInfo(rom.read(WildPokemonInfo.length))
+        rom.seek(gba.address_from_pointer(encounter_info.encountersPointer))
+        # The rods use different parts of the table:
+        # Old rod = 0-1
+        # Good rod = 2-4
+        # Super rod = 5-9
+        # This will seek to the correct place in the table.
+        if method == 'good-rod':
+            rom.seek(len(method_slot_chances['old-rod']) * WildPokemon.length, io.SEEK_CUR)
+        elif method == 'super-rod':
+            rom.seek(len(method_slot_chances['old-rod']) * WildPokemon.length, io.SEEK_CUR)
+            rom.seek(len(method_slot_chances['good-rod']) * WildPokemon.length, io.SEEK_CUR)
+        for encounter_chance in method_slot_chances[method]:
+            encounter = WildPokemon(rom.read(WildPokemon.length))
+            if encounter.levelMin == encounter.levelMax:
+                level_range = str(encounter.levelMin)
+            else:
+                level_range = '{min}-{max}'.format(min=encounter.levelMin, max=encounter.levelMax)
+            out.append({
+                'version': version.value,
+                'location': map_info['location'],
+                'area': map_info['area'],
+                'method': method,
+                'species': encounter.species,
+                'pokemon': pokemon_slugs[encounter.species][0],
+                'level': level_range,
+                'chance': encounter_chance,
+                'conditions': None,
+                'note': None,
+            })
+
+    rom.seek(map_encounter_header_offset)
+    while int.from_bytes(rom.peek(2)[:2], byteorder='little') != 0xFFFF:
+        map_encounter_header = WildPokemonHeader(rom.read(WildPokemonHeader.length))
+        # Need a bookmark of sorts as we follow the pointers around
+        next_header_start_position = rom.tell()
+
+        if map_encounter_header.mapGroup not in map_slugs \
+                or map_encounter_header.mapId not in map_slugs[map_encounter_header.mapGroup]:
+            # There's quite a few unused maps with encounter data, but we don't care about them.
+            continue
+        map_info = map_slugs[map_encounter_header.mapGroup][map_encounter_header.mapId]
+
+        _process_encounters(map_info, 'walk', map_encounter_header.grassEncountersPointer)
+        _process_encounters(map_info, 'surf', map_encounter_header.surfEncountersPointer)
+        _process_encounters(map_info, 'rock-smash', map_encounter_header.rockSmashEncountersPointer)
+        # The three rods use the same table, just different parts of it.
+        _process_encounters(map_info, 'old-rod', map_encounter_header.fishingEncountersPointer)
+        _process_encounters(map_info, 'good-rod', map_encounter_header.fishingEncountersPointer)
+        _process_encounters(map_info, 'super-rod', map_encounter_header.fishingEncountersPointer)
+
+        # Return to the bookmark
+        rom.seek(next_header_start_position)
+
+    return out
+
+
+def write_encounters(used_versions, out):
+    print('Writing encounters')
+    delete_encounter_methods = [
+        'walk',
+        'surf',
+        'old-rod',
+        'good-rod',
+        'super-rod',
+        'rock-smash',
+    ]
+    data = []
+    highest_id = 0
+    with open(args.out_encounters, 'r') as encounters_csv:
+        for row in progressbar.progressbar(csv.DictReader(encounters_csv)):
+            if row['version'] not in used_versions or row['method'] not in delete_encounter_methods:
+                data.append(row)
+                highest_id = max(highest_id, int(row['id']))
+
+    # Need to generate ids for our data; start with the highest id number in the existing data
+    last_id = highest_id
+    for encounter in out:
+        encounter['id'] = last_id + 5
+        last_id = encounter['id']
+        data.append(encounter)
+    with open(args.out_encounters, 'w') as encounters_csv:
+        writer = csv.DictWriter(encounters_csv, fieldnames=data[0].keys())
+        writer.writeheader()
+        for row in progressbar.progressbar(data):
+            writer.writerow(row)
+
+
 if __name__ == '__main__':
     # Get config
     argparser = argparse.ArgumentParser(description='Load Gen 3 data.  (R/S uses Rev 1.2 ROMs)')
@@ -2348,6 +2513,7 @@ if __name__ == '__main__':
     out_abilities = {}
     out_pokemon = {}
     out_pokemon_moves = set()
+    out_encounters = []
     dumped_versions = set()
     dumped_version_groups = set()
     dump_rom: BufferedReader
@@ -2384,6 +2550,8 @@ if __name__ == '__main__':
         out_pokemon_moves.update(
             get_pokemon_moves(dump_rom, dump_version_group, dump_version, vg_species_slugs, vg_pokemon_slugs,
                               vg_move_slugs, vg_items))
+        out_encounters.extend(
+            get_encounters(dump_rom, dump_version_group, dump_version, vg_species_slugs, vg_pokemon_slugs))
 
         dumped_versions.add(dump_version.value)
         dumped_version_groups.add(dump_version_group.value)
@@ -2414,4 +2582,6 @@ if __name__ == '__main__':
             write_pokemon(out_pokemon)
         if args.write_pokemon_moves:
             write_pokemon_moves(dumped_version_groups, out_pokemon_moves)
+        if args.write_encounters:
+            write_encounters(dumped_versions, out_encounters)
         exit(0)

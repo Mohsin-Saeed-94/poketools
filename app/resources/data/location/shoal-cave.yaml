@@ -1,22 +1,7 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Shoal Cave'
-  areas:
-    whole-area:
-      name: 'Whole area'
-      default: true
-    b1f:
-      name: B1F
-  super: &ruby-sapphire.super hoenn-route-125
-  map:
-    map: &ruby-sapphire.map.map hoenn
-    z: &ruby-sapphire.map.z 10
-    overlay: '<circle cx="204" cy="52" r="4" />'
-emerald: *ruby-sapphire
-omega-ruby-alpha-sapphire:
-  region: *ruby-sapphire.region
-  name: *ruby-sapphire.name
-  areas:
+  areas: &ruby-sapphire.areas
     entrance-high-tide:
       name: 'Entrance (High Tide)'
       default: true
@@ -32,6 +17,16 @@ omega-ruby-alpha-sapphire:
       name: 'Lower Room'
     ice:
       name: 'Ice Room'
+  super: &ruby-sapphire.super hoenn-route-125
+  map:
+    map: &ruby-sapphire.map.map hoenn
+    z: &ruby-sapphire.map.z 10
+    overlay: '<circle cx="204" cy="52" r="4" />'
+emerald: *ruby-sapphire
+omega-ruby-alpha-sapphire:
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
+  areas: *ruby-sapphire.areas
   super: *ruby-sapphire.super
   map:
     map: *ruby-sapphire.map.map
