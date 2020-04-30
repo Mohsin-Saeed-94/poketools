@@ -1753,7 +1753,7 @@ def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Versi
                         'evolution_conditions': {
                             'level-up': {
                                 'minimum_happiness': 220,
-                                'time_of_day': ['morning', 'day'],
+                                'time_of_day': ['day'],
                             }
                         }
                     })
@@ -2043,7 +2043,7 @@ def get_pokemon(rom: BufferedReader, version_group: VersionGroup, version: Versi
     _build_forms()
     _get_evolution()
     _handle_specials()
-    # _pullup_data()
+    _pullup_data()
 
     return out, species_slugs, pokemon_slugs
 
