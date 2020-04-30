@@ -34,7 +34,7 @@ ruby-sapphire: &ruby-sapphire
     
     The doll takes damage as normal, using the user's stats and types, and will break when its [HP]{mechanic:hp} reaches zero.  Self-inflicted damage from [confusion]{mechanic:confusion} or recoil is not absorbed.  Healing effects from opponents ignore the doll and heal the user as normal.  Moves that work based on the user's [HP]{mechanic:hp} still do so; the doll's [HP]{mechanic:hp} does not influence any move.
     
-    The doll will block [major status effect]{mechanic:major-status-effect}s, [confusion]{mechanic:confusion}, and [flinch]{mechanic:flinch}ing.  The effects of []{move:smelling-salts} do not trigger against a doll, even if the Pokémon behind the doll has the appropriate [major status effect]{mechanic:major-status-effect}.  Multi-turn trapping moves like []{move:wrap} will hit the doll for their [regular damage]{mechanic:regular-damage}, but the multi-turn trapping and damage effects will not activate.
+    The doll will block [major status effect]{mechanic:major-status-effect}s, [confusion]{mechanic:confusion}, and [flinch]{mechanic:flinch}ing.  The effects of []{move:smellingsalt} do not trigger against a doll, even if the Pokémon behind the doll has the appropriate [major status effect]{mechanic:major-status-effect}.  Multi-turn trapping moves like []{move:wrap} will hit the doll for their [regular damage]{mechanic:regular-damage}, but the multi-turn trapping and damage effects will not activate.
     
     Moves blocked or damage absorbed by the doll do not count as hitting the user or inflicting damage for any effects that respond to such, e.g. []{move:counter}.  []{move:magic-coat} still works as normal, even against moves the doll would block.  Opposing Pokémon that damage the doll with a leech move like []{move:absorb} are healed as normal.
     
@@ -48,8 +48,27 @@ ruby-sapphire: &ruby-sapphire
     
     All other effects work as normal.
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  short_description: 'Transfers 1/4 of the user''s max HP into a doll, (mostly) protecting the user from further damage or status changes until it breaks.'
+  description: |
+    Transfers 1/4 the user's max [HP]{mechanic:hp} into a doll that absorbs damage and causes most negative move effects to [fail]{mechanic:fail}.  If the user leaves the [field]{mechanic:field}, the doll will vanish.  If the user cannot pay the [HP]{mechanic:hp} cost, this move will fail.
+    
+    The doll takes damage as normal, using the user's stats and types, and will break when its [HP]{mechanic:hp} reaches zero.  Self-inflicted damage from [confusion]{mechanic:confusion} or recoil is not absorbed.  Healing effects from opponents ignore the doll and heal the user as normal.  Moves that work based on the user's [HP]{mechanic:hp} still do so; the doll's [HP]{mechanic:hp} does not influence any move.
+    
+    The doll will block [major status effect]{mechanic:major-status-effect}s, [confusion]{mechanic:confusion}, and [flinch]{mechanic:flinch}ing.  The effects of []{move:smelling-salts} do not trigger against a doll, even if the Pokémon behind the doll has the appropriate [major status effect]{mechanic:major-status-effect}.  Multi-turn trapping moves like []{move:wrap} will hit the doll for their [regular damage]{mechanic:regular-damage}, but the multi-turn trapping and damage effects will not activate.
+    
+    Moves blocked or damage absorbed by the doll do not count as hitting the user or inflicting damage for any effects that respond to such, e.g. []{move:counter}.  []{move:magic-coat} still works as normal, even against moves the doll would block.  Opposing Pokémon that damage the doll with a leech move like []{move:absorb} are healed as normal.
+    
+    The doll blocks []{ability:intimidate}, but all other abilities act as though the doll did not exist.  If the user has an ability that absorbs moves of a certain type for [HP]{mechanic:hp} (such as []{ability:volt-absorb} absorbing []{move:thunder-wave}), such moves will not be blocked.
+    
+    Berries that cause [confusion]{mechanic:confusion} still work as normal, but their respective [HP]{mechanic:hp} loss and [confusion]{mechanic:confusion} are absorbed/blocked by the doll.
+    
+    The user is still vulnerable to damage inflicted when entering or leaving the [field]{mechanic:field}, such as by []{move:pursuit} or []{move:spikes}.
+    
+    The doll is passed on by []{move:baton-pass}.  It keeps its existing [HP]{mechanic:hp}, but uses the replacement Pokémon's stats and types for damage calculation.
+    
+    All other effects work as normal.
+xd: *colosseum
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
   short_description: 'Transfers 1/4 of the user''s max HP into a doll, (mostly) protecting the user from further damage or status changes until it breaks.'

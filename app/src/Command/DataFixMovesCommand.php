@@ -106,6 +106,9 @@ final class DataFixMovesCommand extends Command
                 'yellow' => 87,
                 'gold-silver' => 157,
                 'crystal' => 157,
+                'ruby-sapphire' => 214,
+                'emerald' => 214,
+                'firered-leafgreen' => 214,
             ];
             $progress = $this->io->createProgressBar(count($finder));
             $progress->setFormat('debug');

@@ -42,6 +42,65 @@ crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   short_description: 'Power and type depend upon user''s IVs.  Power can range from 30 to 70.'
   description: |
+    Inflicts [regular damage]{mechanic:regular-damage}.  The move's power is determined by the user's [IV]{mechanic:iv}s using this formula:
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>h</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>hp</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&ge;</mo> <mn>2</mn> </mtd> <mtd> <mn>1</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>hp</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&lt;</mo> <mn>2</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>a</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>atk</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&ge;</mo> <mn>2</mn> </mtd> <mtd> <mn>2</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>atk</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&lt;</mo> <mn>2</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>d</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>def</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&ge;</mo> <mn>2</mn> </mtd> <mtd> <mn>4</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>def</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&lt;</mo> <mn>2</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>s</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>spd</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&ge;</mo> <mn>2</mn> </mtd> <mtd> <mn>8</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>spd</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&lt;</mo> <mn>2</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>p</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>sp atk</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&ge;</mo> <mn>2</mn> </mtd> <mtd> <mn>16</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>sp atk</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&lt;</mo> <mn>2</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>e</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>sp def</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&ge;</mo> <mn>2</mn> </mtd> <mtd> <mn>32</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>sp def</mi> </msub> <mo>mod</mo> <mn>4</mn> <mo>&lt;</mo> <mn>2</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>power</mi> <mo>=</mo> <mn>30</mn> <mo>+</mo> <mfrac> <mrow> <mo>(</mo> <mi>h</mi> <mo>+</mo> <mi>a</mi> <mo>+</mo> <mi>d</mi> <mo>+</mo> <mi>s</mi> <mo>+</mo> <mi>p</mi> <mo>+</mo> <mi>e</mi> <mo>)</mo> <mo>&times;</mo> <mn>40</mn> </mrow> <mrow> <mn>63</mn> </mrow> </mfrac> </math>
+    
+    To determine the move's type, use the formula and table below:
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>h</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>hp</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>=</mo> <mn>1</mn> </mtd> <mtd> <mn>1</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>hp</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>&ne;</mo> <mn>1</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>a</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>atk</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>=</mo> <mn>1</mn> </mtd> <mtd> <mn>2</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>atk</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>&ne;</mo> <mn>1</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>d</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>def</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>=</mo> <mn>1</mn> </mtd> <mtd> <mn>4</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>def</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>&ne;</mo> <mn>1</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>s</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>spd</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>=</mo> <mn>1</mn> </mtd> <mtd> <mn>8</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>spd</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>&ne;</mo> <mn>1</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>p</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>sp atk</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>=</mo> <mn>1</mn> </mtd> <mtd> <mn>16</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>sp atk</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>&ne;</mo> <mn>1</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>e</mi> <mo>=</mo> <mfenced open="{" close=""> <mtable> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>sp def</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>=</mo> <mn>1</mn> </mtd> <mtd> <mn>32</mn> </mtd> </mlabeledtr> <mlabeledtr> <mtd> <msub> <mi>IV</mi> <mi>sp def</mi> </msub> <mo>mod</mo> <mn>2</mn> <mo>&ne;</mo> <mn>1</mn> </mtd> <mtd> <mn>0</mn> </mtd> </mlabeledtr> </mtable> </mfenced> </mrow> </math>
+    
+    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>type</mi> <mo>=</mo> <mfrac> <mrow> <mo>(</mo> <mi>h</mi> <mo>+</mo> <mi>a</mi> <mo>+</mo> <mi>d</mi> <mo>+</mo> <mi>s</mi> <mo>+</mo> <mi>p</mi> <mo>+</mo> <mi>e</mi> <mo>)</mo> <mo>&times;</mo> <mn>15</mn> </mrow> <mrow> <mn>63</mn> </mrow> </mfrac> <mo>+</mo> <mn>1</mn> </math>
+    
+    Value | Type
+    ----: | --------
+    1     | []{type:fighting}
+    2     | []{type:flying}
+    3     | []{type:poison}
+    4     | []{type:ground}
+    5     | []{type:rock}
+    6     | []{type:bug}
+    7     | []{type:ghost}
+    8     | []{type:steel}
+    9     | []{type:fire}
+    10    | []{type:water}
+    11    | []{type:grass}
+    12    | []{type:electric}
+    13    | []{type:psychic}
+    14    | []{type:ice}
+    15    | []{type:dragon}
+    16    | []{type:dark}
+    
+    This formula is simplified from the [game's script](https://github.com/pret/pokeruby/blob/f302fcc134bf354c3655e3423be68fd7a99cb396/src/battle_script_commands.c#L12790).
+emerald: *ruby-sapphire
+colosseum: *ruby-sapphire
+xd: *ruby-sapphire
+firered-leafgreen: *ruby-sapphire
+diamond-pearl: &diamond-pearl
+  short_description: 'Power and type depend upon user''s IVs.  Power can range from 30 to 70.'
+  description: |
     Inflicts [regular damage]{mechanic:regular-damage}.  Power and type are determined by the user's [IV]{mechanic:iv}s.
     
     Power is given by `x * 40 / 63 + 30`.  `x` is obtained by arranging bit 1 from the [IV]{mechanic:iv} for each of [Special Defense]{mechanic:special-defense}, [Special Attack]{mechanic:special-attack}, [Speed]{mechanic:speed}, [Defense]{mechanic:defense}, [Attack]{mechanic:attack}, and [HP]{mechanic:hp} in that order.  (Bit 1 is 1 if the [IV]{mechanic:iv} is of the form `4n + 2` or `4n + 3`.  `x` is then 64 * [Special Defense]{mechanic:special-defense} [IV]{mechanic:iv} bit 1, plus 32 * [Special Attack]{mechanic:special-attack} [IV]{mechanic:iv} bit 1, etc.)
@@ -70,16 +129,11 @@ ruby-sapphire: &ruby-sapphire
     15    | []{type:dark}
     
     This move thus cannot be []{type:normal}.  Most other types have an equal 1/16 chance to be selected, given random [IV]{mechanic:iv}s.  However, due to the flooring used here, []{type:bug}, []{type:fighting}, and []{type:grass} appear 5/64 of the time, and []{type:dark} only 1/64 of the time.
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
-black-white: *ruby-sapphire
-black-2-white-2: *ruby-sapphire
-x-y: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
-sun-moon: *ruby-sapphire
-ultra-sun-ultra-moon: *ruby-sapphire
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl
+black-white: *diamond-pearl
+black-2-white-2: *diamond-pearl
+x-y: *diamond-pearl
+omega-ruby-alpha-sapphire: *diamond-pearl
+sun-moon: *diamond-pearl
+ultra-sun-ultra-moon: *diamond-pearl
