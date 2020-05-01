@@ -47,21 +47,37 @@ ruby-sapphire: &ruby-sapphire
     Strikes the foe with a bone
     in hand 2 to 5 times.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Bone Rush'
-  flags: *gold-silver.flags
+colosseum:
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: &colosseum.flavor_text |
+    Strikes the target with a
+    bone in hand 2 to 5 times.
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
+xd:
+  name: *gold-silver.name
   power: *gold-silver.power
-  pp: *gold-silver.pp
+  type: *gold-silver.type
   accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &colosseum.damage_class physical
+  pp: *gold-silver.pp
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *gold-silver.name
   power: *gold-silver.power
@@ -81,7 +97,7 @@ firered-leafgreen:
     in hand two to five
     times.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Bone Rush'
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -92,7 +108,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 7
@@ -103,7 +119,7 @@ diamond-pearl: &diamond-pearl
     times in a row.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -114,11 +130,11 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -129,7 +145,7 @@ black-white: &black-white
   accuracy: &black-white.accuracy 90
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: &black-white.flavor_text |
     The user strikes the target with a hard
@@ -137,7 +153,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -148,14 +164,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *black-white.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -166,7 +182,7 @@ sun-moon: &sun-moon
   accuracy: *black-white.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     The user strikes the target with a hard bone two to

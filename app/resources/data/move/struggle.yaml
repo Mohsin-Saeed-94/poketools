@@ -57,21 +57,39 @@ ruby-sapphire: &ruby-sapphire
     Used only if all PP are gone.
     Also hurts the user a little.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Struggle
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Used when all PP are gone.
+    Also hurts the user a bit.
+  flags: *ruby-sapphire.flags
   healing: *gold-silver.healing
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
   pp: *gold-silver.pp
-  priority: *red-blue.priority
+  effect: *gold-silver.effect
   target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
-  effect: *red-blue.effect
-xd: *colosseum
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  healing: *gold-silver.healing
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -92,7 +110,7 @@ firered-leafgreen:
     is no PP. It also
     hurts the user.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Struggle
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -103,7 +121,7 @@ diamond-pearl: &diamond-pearl
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
@@ -115,7 +133,7 @@ diamond-pearl: &diamond-pearl
     the user slightly.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -126,11 +144,11 @@ heartgold-soulsilver:
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -141,7 +159,7 @@ black-white: &black-white
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: |
     An attack that is used in desperation
@@ -149,7 +167,7 @@ black-white: &black-white
     the user slightly.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -160,14 +178,14 @@ x-y:
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: &x-y.target random-opponent
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: &x-y.flavor_text |
     An attack that is used in desperation
     only if the user has no PP. This also
     damages the user a little.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -178,13 +196,13 @@ omega-ruby-alpha-sapphire:
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *x-y.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   healing: *gold-silver.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -195,7 +213,7 @@ sun-moon: &sun-moon
   pp: *gold-silver.pp
   priority: *red-blue.priority
   target: *x-y.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: |
     This attack is used in desperation only if the user

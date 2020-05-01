@@ -52,23 +52,35 @@ ruby-sapphire: &ruby-sapphire
     - belly-drum
     - charm
     - yawn
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     The user sleeps for 2 turns,
     restoring HP and status.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Rest
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *ruby-sapphire.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: special
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -86,7 +98,7 @@ firered-leafgreen:
     restore HP and heal
     any status problem.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Rest
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -107,7 +119,7 @@ diamond-pearl: &diamond-pearl
     any status problem.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -120,7 +132,7 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -137,7 +149,7 @@ black-white: &black-white
     any status problem.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -153,7 +165,7 @@ x-y:
     This fully restores the user’s HP and
     heals any status conditions.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -169,7 +181,7 @@ omega-ruby-alpha-sapphire:
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

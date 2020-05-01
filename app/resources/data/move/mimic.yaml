@@ -49,19 +49,35 @@ ruby-sapphire: &ruby-sapphire
     Copies a move used by the
     foe during one battle.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Mimic
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Copies a move used by the
+    target during one battle.
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
+  accuracy: *red-blue.accuracy
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: physical
   effect: *red-blue.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -80,7 +96,7 @@ firered-leafgreen:
     the foe for the
     rest of the battle.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Mimic
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -101,7 +117,7 @@ diamond-pearl: &diamond-pearl
     of the battle.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -114,7 +130,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -132,7 +148,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -147,7 +163,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 19
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

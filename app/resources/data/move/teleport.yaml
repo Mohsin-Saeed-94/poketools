@@ -43,22 +43,33 @@ ruby-sapphire: &ruby-sapphire
     - psychic
     - kinesis
     - confusion
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     A psychic move for fleeing
     from battle instantly.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Teleport
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: special
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -75,7 +86,7 @@ firered-leafgreen:
     Also warps to the
     last POKé  CENTER.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Teleport
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -95,7 +106,7 @@ diamond-pearl: &diamond-pearl
     Poké Center visited.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -112,7 +123,7 @@ heartgold-soulsilver:
     the last Pokémon
     Center visited.
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -129,7 +140,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
@@ -143,7 +154,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 15
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns

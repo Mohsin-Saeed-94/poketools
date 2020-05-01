@@ -58,28 +58,45 @@ ruby-sapphire: &ruby-sapphire
   stat_change_chance: *gold-silver.stat_change_chance
   contest_type: &ruby-sapphire.contest_type tough
   contest_effect: 11
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Constricts to inflict pain.
     May lower SPEED.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Constrict
-  stat_change_chance: *gold-silver.stat_change_chance
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *gold-silver.effect_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *red-blue.stat_changes
-  type: *red-blue.type
+  stat_change_chance: *gold-silver.stat_change_chance
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
+  pp: *red-blue.pp
   effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
   effect_chance: *gold-silver.effect_chance
-xd: *colosseum
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *red-blue.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -102,7 +119,7 @@ firered-leafgreen:
     or vines. It may
     lower SPEED.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Constrict
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -115,7 +132,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -128,7 +145,7 @@ diamond-pearl: &diamond-pearl
     target’s Speed.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -141,12 +158,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -159,7 +176,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -168,7 +185,7 @@ black-white: &black-white
     It may also lower the target’s Speed stat.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -181,7 +198,7 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -189,7 +206,7 @@ x-y:
     tentacles or vines.
     This may also lower the target’s Speed stat.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -202,14 +219,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 9
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -222,7 +239,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

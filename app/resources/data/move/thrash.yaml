@@ -54,25 +54,39 @@ ruby-sapphire: &ruby-sapphire
   contest_effect: 19
   contest_use_after:
     - rage
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     A rampage of 2 to 3 turns
     that confuses the user.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Thrash
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
+  pp: *red-blue.pp
   effect: *red-blue.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -92,7 +106,7 @@ firered-leafgreen:
     three turns, then
     becomes confused.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Thrash
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -103,7 +117,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 7
@@ -115,7 +129,7 @@ diamond-pearl: &diamond-pearl
     confused, however.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -126,11 +140,11 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -141,7 +155,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The user rampages and attacks for two
@@ -149,7 +163,7 @@ black-white: &black-white
     confused, however.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -160,14 +174,14 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: &x-y.flavor_text |
     The user rampages and attacks
     for two to three turns.
     The user then becomes confused.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -178,13 +192,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 6
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -195,7 +209,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The user rampages and attacks for two to three

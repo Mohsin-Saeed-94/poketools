@@ -15,24 +15,37 @@ ruby-sapphire: &ruby-sapphire
     attack: 1
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: 39
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Howls to raise the spirit
     and boosts ATTACK.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Howl
+colosseum:
+  name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: physical
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  stat_changes: *ruby-sapphire.stat_changes
 firered-leafgreen:
   name: *ruby-sapphire.name
   type: *ruby-sapphire.type
@@ -51,7 +64,7 @@ firered-leafgreen:
     boost its ATTACK
     stat.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Howl
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -72,7 +85,7 @@ diamond-pearl: &diamond-pearl
     stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -86,7 +99,7 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -103,7 +116,7 @@ black-white: &black-white
     boosting its Attack stat.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -119,7 +132,7 @@ x-y:
     The user howls loudly to raise its spirit,
     which raises its Attack stat.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -135,7 +148,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 32
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits

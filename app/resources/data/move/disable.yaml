@@ -55,21 +55,37 @@ ruby-sapphire: &ruby-sapphire
     Psychically disables one of
     the foe's moves.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Disable
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Psychically disables one of
+    the target's moves.
+  flags: *ruby-sapphire.flags
   ailment: *red-blue.ailment
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
+  accuracy: *red-blue.accuracy
   pp: *red-blue.pp
-  accuracy: &colosseum.accuracy 80
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: physical
   effect: *red-blue.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  ailment: *red-blue.ailment
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -89,7 +105,7 @@ firered-leafgreen:
     from using the move
     it last used.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Disable
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -97,7 +113,7 @@ diamond-pearl: &diamond-pearl
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: &diamond-pearl.accuracy 80
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
@@ -112,7 +128,7 @@ diamond-pearl: &diamond-pearl
     used.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -120,14 +136,14 @@ heartgold-soulsilver:
   turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -146,7 +162,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -163,7 +179,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 18
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories

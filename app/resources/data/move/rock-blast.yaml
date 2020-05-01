@@ -21,23 +21,37 @@ ruby-sapphire: &ruby-sapphire
     Hurls boulders at the foe
     2 to 5 times in a row.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Rock Blast'
-  flags: &colosseum.flags
-    - protect
-    - mirror
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Hurls boulders at target
+    2 to 5 times in a row.
+  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: &colosseum.damage_class physical
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -57,8 +71,10 @@ firered-leafgreen:
     at the foe to
     attack.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: &diamond-pearl.name 'Rock Blast'
+  flags: &diamond-pearl.flags
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -68,7 +84,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 7
@@ -80,8 +96,8 @@ diamond-pearl: &diamond-pearl
     succession.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -91,12 +107,12 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -106,7 +122,7 @@ black-white: &black-white
   accuracy: &black-white.accuracy 90
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     The user hurls hard rocks at the target.
@@ -114,8 +130,8 @@ black-white: &black-white
     succession.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -125,14 +141,14 @@ x-y:
   accuracy: *black-white.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &x-y.flavor_text |
     The user hurls hard rocks at the target.
     Two to five rocks are launched in a row.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -142,14 +158,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *black-white.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 12
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -159,7 +175,7 @@ sun-moon: &sun-moon
   accuracy: *black-white.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     The user hurls hard rocks at the target. Two to five

@@ -64,27 +64,41 @@ ruby-sapphire: &ruby-sapphire
   contest_use_after:
     - rage
     - scary-face
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Frightens the foe with a
     leer to lower DEFENSE.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Leer
-  stat_change_chance: *gold-silver.stat_change_chance
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *gold-silver.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
+xd:
+  name: *red-blue.name
   type: *red-blue.type
-  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: physical
+  pp: *red-blue.pp
   effect: *red-blue.effect
-  effect_chance: &colosseum.effect_chance 100
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *gold-silver.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -105,7 +119,7 @@ firered-leafgreen:
     that lowers its
     DEFENSE stat.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Leer
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -119,7 +133,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: &diamond-pearl.effect_chance 100
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 19
   flavor_text: &diamond-pearl.flavor_text |
@@ -130,7 +144,7 @@ diamond-pearl: &diamond-pearl
     stat is reduced.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -144,10 +158,10 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -161,13 +175,13 @@ black-white:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The opposing team gains an intimidating
     leer with sharp eyes. The opposing team’s
     Defense stats are reduced.
 black-2-white-2:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -181,13 +195,13 @@ black-2-white-2:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user gains an intimidating leer with
     sharp eyes. The opposing team’s
     Defense stats are reduced.
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -201,12 +215,12 @@ x-y:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &x-y.flavor_text |
     The user gives opposing Pokémon
     an intimidating leer that lowers the Defense stat.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -220,7 +234,7 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 24
   contest_use_before:
@@ -234,7 +248,7 @@ omega-ruby-alpha-sapphire:
     - feint-attack
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -248,7 +262,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user gives opposing Pokémon an intimidating
     leer that lowers the Defense stat.

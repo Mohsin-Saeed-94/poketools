@@ -48,28 +48,45 @@ ruby-sapphire: &ruby-sapphire
   contest_effect: 13
   contest_use_after:
     - scary-face
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Crunches with sharp fangs.
     May lower SP. DEF.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Crunch
-  stat_change_chance: *gold-silver.stat_change_chance
-  flags: *gold-silver.flags
+colosseum:
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *gold-silver.effect_chance
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
+  stat_change_chance: *gold-silver.stat_change_chance
+xd:
+  name: *gold-silver.name
   power: *gold-silver.power
-  pp: *gold-silver.pp
+  type: *gold-silver.type
   accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
   target: *gold-silver.target
+  priority: *gold-silver.priority
   damage_class: special
-  effect: &colosseum.effect 70
+  flavor_text: *ruby-sapphire.flavor_text
   effect_chance: *gold-silver.effect_chance
-xd: *colosseum
+  flags: *ruby-sapphire.flags
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  stat_changes: *gold-silver.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
 firered-leafgreen:
   name: *gold-silver.name
   power: *gold-silver.power
@@ -92,7 +109,7 @@ firered-leafgreen:
     It may lower the
     foe's SP.  DEF.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Crunch
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -106,7 +123,7 @@ diamond-pearl: &diamond-pearl
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class physical
-  effect: *colosseum.effect
+  effect: &diamond-pearl.effect 70
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 18
@@ -118,7 +135,7 @@ diamond-pearl: &diamond-pearl
     Defense stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -132,11 +149,11 @@ heartgold-soulsilver:
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -150,7 +167,7 @@ black-white: &black-white
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user crunches up the target
@@ -158,7 +175,7 @@ black-white: &black-white
     the target’s Defense stat.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -172,14 +189,14 @@ x-y:
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The user crunches up the target
     with sharp fangs. This may also lower
     the target’s Defense stat.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -193,13 +210,13 @@ omega-ruby-alpha-sapphire:
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 4
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -213,7 +230,7 @@ sun-moon: &sun-moon
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The user crunches up the target with sharp fangs.

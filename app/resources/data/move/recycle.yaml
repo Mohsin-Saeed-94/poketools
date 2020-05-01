@@ -16,20 +16,33 @@ ruby-sapphire: &ruby-sapphire
     Recycles a used item for
     one more use.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Recycle
-  flags: &colosseum.flags
-    - snatch
+colosseum:
+  name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Recycles a used hold
+    item for one more use.
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: physical
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: physical
+  flavor_text: *colosseum.flavor_text
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   type: *ruby-sapphire.type
@@ -47,8 +60,9 @@ firered-leafgreen:
     item for use once
     more.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: &diamond-pearl.name Recycle
+  flags: &diamond-pearl.flags
+    - snatch
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -68,8 +82,8 @@ diamond-pearl: &diamond-pearl
     used again.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -86,8 +100,8 @@ heartgold-soulsilver:
     battle so it can be
     used again.
 black-white: &black-white
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -104,8 +118,8 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -119,8 +133,8 @@ omega-ruby-alpha-sapphire:
   contest_effect: 17
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns

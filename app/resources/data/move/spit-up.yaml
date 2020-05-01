@@ -18,25 +18,39 @@ ruby-sapphire: &ruby-sapphire
   contest_effect: &ruby-sapphire.contest_effect 1
   contest_use_after:
     - stockpile
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Releases stockpiled power
     (the more the better).
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Spit Up'
-  flags: &colosseum.flags
-    - protect
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
   type: *ruby-sapphire.type
-  pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: physical
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -56,8 +70,9 @@ firered-leafgreen:
     released at once
     for attack.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: &diamond-pearl.name 'Spit Up'
+  flags: &diamond-pearl.flags
+    - protect
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -77,8 +92,8 @@ diamond-pearl: &diamond-pearl
     at once in an attack.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -91,8 +106,8 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -109,8 +124,8 @@ black-white: &black-white
     power is stored, the greater the damage.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -126,8 +141,8 @@ x-y:
     is released at once in an attack. The more
     power is stored, the greater the move’s power.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -142,8 +157,8 @@ omega-ruby-alpha-sapphire:
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns

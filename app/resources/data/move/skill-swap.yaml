@@ -15,26 +15,37 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: 32
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     The user swaps special
     abilities with the target.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Skill Swap'
-  flags: &colosseum.flags
-    - protect
-    - mirror
-    - authentic
+colosseum:
+  name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: special
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   type: *ruby-sapphire.type
@@ -53,8 +64,11 @@ firered-leafgreen:
     to swap abilities
     with the foe.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: &diamond-pearl.name 'Skill Swap'
+  flags: &diamond-pearl.flags
+    - protect
+    - mirror
+    - authentic
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -73,8 +87,8 @@ diamond-pearl: &diamond-pearl
     with the foe.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -86,8 +100,8 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -103,8 +117,8 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -118,8 +132,8 @@ omega-ruby-alpha-sapphire:
   contest_effect: 20
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns

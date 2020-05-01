@@ -59,19 +59,31 @@ emerald:
   flavor_text: |
     Changes the user's type
     into a known move's type.
-colosseum: &colosseum
-  name: &colosseum.name Conversion
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Changes the user's type
+    into its own move's type.
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: physical
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: physical
+  flavor_text: *colosseum.flavor_text
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -88,7 +100,7 @@ firered-leafgreen:
     the type of one of
     its moves.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Conversion
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -108,7 +120,7 @@ diamond-pearl: &diamond-pearl
     its moves.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -121,7 +133,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -137,7 +149,7 @@ black-white: &black-white
     same type as one of its moves.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -153,7 +165,7 @@ x-y:
     same type as the move at the top of the
     list of moves it knows.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -168,7 +180,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 12
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

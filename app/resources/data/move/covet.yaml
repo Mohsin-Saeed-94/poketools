@@ -20,24 +20,37 @@ ruby-sapphire: &ruby-sapphire
     Cutely begs to obtain an
     item held by the foe.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Covet
-  flags: &colosseum.flags
-    - contact
-    - protect
-    - mirror
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Cutely begs to obtain an
+    item held by the target.
+  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
   type: *ruby-sapphire.type
-  power: &colosseum.power 60
-  pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: &colosseum.damage_class physical
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -57,18 +70,21 @@ firered-leafgreen:
     steals the foe's
     hold item.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: &diamond-pearl.name Covet
+  flags: &diamond-pearl.flags
+    - contact
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
-  power: *colosseum.power
+  power: &diamond-pearl.power 60
   pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 12
@@ -79,33 +95,33 @@ diamond-pearl: &diamond-pearl
     the foe is holding.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &black-white.flavor_text |
     The user endearingly approaches
@@ -113,50 +129,50 @@ black-white: &black-white
     held item.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: &x-y.pp 25
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: *x-y.pp
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 20
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: *x-y.pp
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     The user endearingly approaches the target, then

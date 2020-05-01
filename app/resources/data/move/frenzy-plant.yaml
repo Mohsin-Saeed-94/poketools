@@ -19,11 +19,11 @@ ruby-sapphire: &ruby-sapphire
   contest_effect: 19
   contest_use_after:
     - growth
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Powerful, but leaves the
     user immobile the next turn.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: &colosseum.name 'Frenzy Plant'
   flags: &colosseum.flags
     - recharge
@@ -41,7 +41,21 @@ colosseum: &colosseum
   target: *ruby-sapphire.target
   damage_class: &colosseum.damage_class special
   effect: *ruby-sapphire.effect
-xd: *colosseum
+xd:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: *colosseum.damage_class
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power

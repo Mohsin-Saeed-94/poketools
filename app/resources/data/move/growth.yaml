@@ -59,24 +59,37 @@ ruby-sapphire: &ruby-sapphire
     - bullet-seed
     - frenzy-plant
     - magical-leaf
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Forces the body to grow
     and heightens SP. ATK.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Growth
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *gold-silver.stat_changes
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
+  effect: *red-blue.effect
   target: *red-blue.target
+  priority: *red-blue.priority
   damage_class: physical
-  effect: &colosseum.effect 317
-xd: *colosseum
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *gold-silver.stat_changes
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -95,7 +108,7 @@ firered-leafgreen:
     raising the SP.
     ATK stat.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Growth
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -106,7 +119,7 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
-  effect: *colosseum.effect
+  effect: &diamond-pearl.effect 317
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 11
   super_contest_use_before:
@@ -118,7 +131,7 @@ diamond-pearl: &diamond-pearl
     Sp. Atk stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -129,10 +142,10 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -143,13 +156,13 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   flavor_text: &black-white.flavor_text |
     The user’s body grows all at once,
     raising the Attack and Sp. Atk stats.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -160,10 +173,10 @@ x-y:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -174,7 +187,7 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 32
   contest_use_before:
@@ -190,7 +203,7 @@ omega-ruby-alpha-sapphire:
     - magical-leaf
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -201,7 +214,7 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   flavor_text: |
     The user’s body grows all at once, raising the
     Attack and Sp. Atk stats.

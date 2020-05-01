@@ -22,21 +22,37 @@ ruby-sapphire: &ruby-sapphire
     Inflicts more damage if the
     user's HP is high.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Water Spout'
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    The higher the user's HP,
+    the more damage caused.
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: &colosseum.damage_class special
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class special
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -56,7 +72,7 @@ firered-leafgreen:
     powerful this
     attack becomes.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Water Spout'
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -67,7 +83,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 22
@@ -79,7 +95,7 @@ diamond-pearl: &diamond-pearl
     powerful it becomes.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -90,11 +106,11 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -105,7 +121,7 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     The user spouts water to damage the
@@ -113,7 +129,7 @@ black-white: &black-white
     the less powerful it becomes.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -124,14 +140,14 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &x-y.flavor_text |
     The user spouts water to damage opposing
     Pokémon. The lower the user’s HP,
     the lower the move’s power.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -142,13 +158,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 26
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
@@ -159,7 +175,7 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     The user spouts water to damage opposing

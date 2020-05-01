@@ -31,22 +31,33 @@ ruby-sapphire: &ruby-sapphire
     - mud-slap
     - weather-ball
     - sand-tomb
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Causes a sandstorm that
     rages for several turns.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Sandstorm
+colosseum:
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *ruby-sapphire.target
+  priority: *gold-silver.priority
+  flavor_text: *ruby-sapphire.flavor_text
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
+xd:
+  name: *gold-silver.name
   type: *gold-silver.type
   pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: physical
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *gold-silver.priority
+  damage_class: physical
+  flavor_text: *ruby-sapphire.flavor_text
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *gold-silver.name
   type: *gold-silver.type
@@ -63,7 +74,7 @@ firered-leafgreen:
     types except ROCK,
     GROUND,  and STEEL.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Sandstorm
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -83,7 +94,7 @@ diamond-pearl: &diamond-pearl
     Ground, and Steel.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -95,7 +106,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -112,7 +123,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
@@ -127,7 +138,7 @@ omega-ruby-alpha-sapphire:
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns

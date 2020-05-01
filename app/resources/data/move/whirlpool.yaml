@@ -48,24 +48,41 @@ ruby-sapphire: &ruby-sapphire
     Traps and hurts the foe in
     a whirlpool for 2 to 5 turns.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Whirlpool
+colosseum:
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: &colosseum.flavor_text |
+    Traps and hurts target in
+    a whirlpool for 2 to 5 turns.
+  flags: *ruby-sapphire.flags
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
-  flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
+xd:
+  name: *gold-silver.name
   power: *gold-silver.power
-  pp: *gold-silver.pp
+  type: *gold-silver.type
   accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
   target: *gold-silver.target
-  damage_class: &colosseum.damage_class special
-  effect: &colosseum.effect 262
-  effect_chance: &colosseum.effect_chance 100
-xd: *colosseum
+  priority: *gold-silver.priority
+  damage_class: &xd.damage_class special
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  ailment: *gold-silver.ailment
+  ailment_chance: *gold-silver.ailment_chance
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *gold-silver.name
   power: *gold-silver.power
@@ -87,7 +104,7 @@ firered-leafgreen:
     whirlpool for two
     to five turns.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Whirlpool
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -100,9 +117,9 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  damage_class: *xd.damage_class
+  effect: &diamond-pearl.effect 262
+  effect_chance: &diamond-pearl.effect_chance 100
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 21
   flavor_text: |
@@ -113,7 +130,7 @@ diamond-pearl: &diamond-pearl
     turns.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -126,9 +143,9 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  damage_class: *xd.damage_class
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     Traps the foe inside a
     whirlpool that lasts
@@ -136,7 +153,7 @@ heartgold-soulsilver:
     The user can pass
     through whirlpools.
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -149,15 +166,15 @@ black-white: &black-white
   accuracy: &black-white.accuracy 85
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  damage_class: *xd.damage_class
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     Traps foes in a violent swirling
     whirlpool for four to five turns.
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -170,14 +187,14 @@ x-y: &x-y
   accuracy: *black-white.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  damage_class: *xd.damage_class
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &x-y.flavor_text |
     The user traps the target in a violent swirling
     whirlpool for four to five turns.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *gold-silver.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *gold-silver.flags
@@ -190,9 +207,9 @@ omega-ruby-alpha-sapphire:
   accuracy: *black-white.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  damage_class: *xd.damage_class
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 24
   flavor_text: *x-y.flavor_text

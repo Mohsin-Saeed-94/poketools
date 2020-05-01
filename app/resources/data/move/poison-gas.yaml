@@ -52,21 +52,37 @@ ruby-sapphire: &ruby-sapphire
     Envelops the foe in a toxic
     gas that may poison.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Poison Gas'
-  ailment: *red-blue.ailment
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Envelops the target in a
+    toxic gas that may poison.
   flags: *red-blue.flags
+  ailment: *red-blue.ailment
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
+  accuracy: *red-blue.accuracy
   pp: *red-blue.pp
-  accuracy: &colosseum.accuracy 80
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: physical
   effect: *red-blue.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  damage_class: physical
+  flavor_text: *colosseum.flavor_text
+  flags: *red-blue.flags
+  ailment: *red-blue.ailment
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -86,7 +102,7 @@ firered-leafgreen:
     toxic gas that may
     poison the foe.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Poison Gas'
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -94,7 +110,7 @@ diamond-pearl: &diamond-pearl
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: &diamond-pearl.accuracy 80
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
@@ -109,7 +125,7 @@ diamond-pearl: &diamond-pearl
     target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -117,14 +133,14 @@ heartgold-soulsilver:
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -132,7 +148,7 @@ black-white: &black-white
   turns: *red-blue.turns
   type: *red-blue.type
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
@@ -143,7 +159,7 @@ black-white: &black-white
     It may poison those hit.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -161,7 +177,7 @@ x-y:
     in the face of opposing Pokémon.
     This may also poison those hit.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -178,7 +194,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 33
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories

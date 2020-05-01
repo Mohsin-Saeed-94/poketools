@@ -44,23 +44,35 @@ ruby-sapphire: &ruby-sapphire
   contest_effect: 6
   contest_use_after:
     - calm-mind
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Creates a wall of light that
     weakens physical attacks.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Reflect
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: special
   effect: *red-blue.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -78,7 +90,7 @@ firered-leafgreen:
     physical attacks
     for five turns.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Reflect
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -99,7 +111,7 @@ diamond-pearl: &diamond-pearl
     five turns.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -112,7 +124,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -129,7 +141,7 @@ black-white: &black-white
     for five turns.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -145,7 +157,7 @@ x-y:
     reduce damage from physical attacks
     for five turns.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -160,7 +172,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 15
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

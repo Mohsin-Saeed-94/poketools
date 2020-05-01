@@ -43,23 +43,35 @@ ruby-sapphire: &ruby-sapphire
   turns: *red-blue.turns
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: 28
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Creates a black haze that
     eliminates all stat changes.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Haze
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: special
   effect: *red-blue.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -77,7 +89,7 @@ firered-leafgreen:
     POKéMON engaged in
     battle.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Haze
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -98,7 +110,7 @@ diamond-pearl: &diamond-pearl
     engaged in battle.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -111,7 +123,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -129,7 +141,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -144,7 +156,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 33
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

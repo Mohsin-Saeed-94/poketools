@@ -25,26 +25,43 @@ ruby-sapphire: &ruby-sapphire
     A strange beam attack that
     may confuse the foe.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Signal Beam'
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Fires a peculiar ray that
+    may confuse the target.
+  effect_chance: *ruby-sapphire.effect_chance
+  flags: *ruby-sapphire.flags
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: &colosseum.flags
-    - protect
-    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: physical
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: physical
+  flavor_text: *colosseum.flavor_text
   effect_chance: *ruby-sapphire.effect_chance
-xd: *colosseum
+  flags: *ruby-sapphire.flags
+  ailment: *ruby-sapphire.ailment
+  ailment_chance: *ruby-sapphire.ailment_chance
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -67,10 +84,12 @@ firered-leafgreen:
     that may also
     cause confusion.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Signal Beam'
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: &diamond-pearl.flags
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -92,10 +111,10 @@ diamond-pearl: &diamond-pearl
     confuse the target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -110,10 +129,10 @@ heartgold-soulsilver:
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -131,10 +150,10 @@ black-white: &black-white
     light. It may also confuse the target.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -151,10 +170,10 @@ x-y:
     The user attacks with a sinister beam of
     light. This may also confuse the target.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -171,10 +190,10 @@ omega-ruby-alpha-sapphire:
   contest_effect: 21
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns

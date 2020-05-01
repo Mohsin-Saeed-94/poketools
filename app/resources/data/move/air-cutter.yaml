@@ -18,28 +18,41 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: 20
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Hacks with razorlike wind.
     High critical-hit ratio.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Air Cutter'
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   crit_rate_bonus: *ruby-sapphire.crit_rate_bonus
-  flags: &colosseum.flags
-    - protect
-    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: physical
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  crit_rate_bonus: *ruby-sapphire.crit_rate_bonus
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -60,9 +73,11 @@ firered-leafgreen:
     It has a high
     critical-hit ratio.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Air Cutter'
   crit_rate_bonus: *ruby-sapphire.crit_rate_bonus
-  flags: *colosseum.flags
+  flags: &diamond-pearl.flags
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -84,9 +99,9 @@ diamond-pearl: &diamond-pearl
     critical-hit ratio.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   crit_rate_bonus: *ruby-sapphire.crit_rate_bonus
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -100,9 +115,9 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   crit_rate_bonus: *ruby-sapphire.crit_rate_bonus
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -120,9 +135,9 @@ black-white: &black-white
     Critical hits land more easily.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   crit_rate_bonus: *ruby-sapphire.crit_rate_bonus
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -139,9 +154,9 @@ x-y:
     to slash the opposing Pokémon.
     Critical hits land more easily.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   crit_rate_bonus: *ruby-sapphire.crit_rate_bonus
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -157,9 +172,9 @@ omega-ruby-alpha-sapphire:
   contest_effect: 23
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   crit_rate_bonus: *ruby-sapphire.crit_rate_bonus
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns

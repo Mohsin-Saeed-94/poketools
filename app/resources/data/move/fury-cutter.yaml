@@ -40,25 +40,39 @@ ruby-sapphire: &ruby-sapphire
   contest_effect: 4
   contest_use_after:
     - swords-dance
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     An attack that intensifies
     on each successive hit.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Fury Cutter'
-  flags: *gold-silver.flags
+colosseum:
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
+xd:
+  name: *gold-silver.name
+  power: *gold-silver.power
   type: *gold-silver.type
-  power: &colosseum.power 20
-  pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &colosseum.damage_class physical
+  pp: *gold-silver.pp
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *gold-silver.name
   power: *gold-silver.power
@@ -78,18 +92,18 @@ firered-leafgreen:
     each successive
     hit.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Fury Cutter'
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *colosseum.power
+  power: &diamond-pearl.power 20
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 7
@@ -101,33 +115,33 @@ diamond-pearl: &diamond-pearl
     in succession.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     The target is slashed with scythes or
@@ -135,7 +149,7 @@ black-white: &black-white
     in succession.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -146,14 +160,14 @@ x-y:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: &x-y.flavor_text |
     The target is slashed with scythes or
     claws. This attack becomes more powerful
     if it hits in succession.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -164,13 +178,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 17
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -181,7 +195,7 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     The target is slashed with scythes or claws. This

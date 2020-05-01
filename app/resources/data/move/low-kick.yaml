@@ -58,20 +58,37 @@ ruby-sapphire: &ruby-sapphire
     A kick that inflicts more
     damage on heavier foes.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Low Kick'
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  power: *ruby-sapphire.power
+  type: *red-blue.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *red-blue.pp
+  effect: *ruby-sapphire.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    A kick that inflicts more
+    damage on heavier targets.
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
+  power: *ruby-sapphire.power
   type: *red-blue.type
-  pp: *red-blue.pp
   accuracy: *ruby-sapphire.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
+  pp: *red-blue.pp
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *ruby-sapphire.power
@@ -91,7 +108,7 @@ firered-leafgreen:
     damage on heavier
     foes.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Low Kick'
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -101,7 +118,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
@@ -113,7 +130,7 @@ diamond-pearl: &diamond-pearl
     heavier foes.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -123,11 +140,11 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -137,7 +154,7 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     A powerful low kick that makes the target
@@ -145,7 +162,7 @@ black-white: &black-white
     heavier targets.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -155,14 +172,14 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &x-y.flavor_text |
     A powerful low kick that makes the target
     fall over. The heavier the target,
     the greater the move’s power.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -172,13 +189,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 4
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -188,7 +205,7 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     A powerful low kick that makes the target fall over.

@@ -65,28 +65,45 @@ ruby-sapphire: &ruby-sapphire
     - psychic
     - kinesis
     - calm-mind
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     A psychic attack that may
     cause confusion.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Confusion
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *gold-silver.effect_chance
+  flags: *red-blue.flags
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class special
+  pp: *red-blue.pp
   effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class special
+  flavor_text: *ruby-sapphire.flavor_text
   effect_chance: *gold-silver.effect_chance
-xd: *colosseum
+  flags: *red-blue.flags
+  ailment: *red-blue.ailment
+  ailment_chance: *red-blue.ailment_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -109,7 +126,7 @@ firered-leafgreen:
     also leave the foe
     confused.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Confusion
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -122,7 +139,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -135,7 +152,7 @@ diamond-pearl: &diamond-pearl
     confused.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -148,12 +165,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -166,7 +183,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -175,7 +192,7 @@ black-white: &black-white
     target confused.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -188,14 +205,14 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is hit by a weak telekinetic
     force. This may also confuse the target.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -208,7 +225,7 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -216,7 +233,7 @@ omega-ruby-alpha-sapphire:
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -229,7 +246,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

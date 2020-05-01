@@ -15,26 +15,39 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: 6
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Lays roots that restore HP.
     The user can't switch out.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Ingrain
+colosseum:
+  name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   ailment: *ruby-sapphire.ailment
-  flags: &colosseum.flags
-    - snatch
-    - non-sky-battle
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: special
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  ailment: *ruby-sapphire.ailment
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   type: *ruby-sapphire.type
@@ -54,9 +67,11 @@ firered-leafgreen:
     every turn.
     It can't switch out.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Ingrain
   ailment: *ruby-sapphire.ailment
-  flags: *colosseum.flags
+  flags: &diamond-pearl.flags
+    - snatch
+    - non-sky-battle
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -76,9 +91,9 @@ diamond-pearl: &diamond-pearl
     it can’t switch out.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -90,9 +105,9 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -109,9 +124,9 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -125,9 +140,9 @@ omega-ruby-alpha-sapphire:
   contest_effect: 15
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns

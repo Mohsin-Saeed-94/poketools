@@ -23,30 +23,39 @@ ruby-sapphire: &ruby-sapphire
   contest_use_after:
     - rain-dance
     - surf
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Dives underwater the first
     turn and strikes next turn.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Dive
-  flags: &colosseum.flags
-    - contact
-    - charge
-    - protect
-    - mirror
-    - non-sky-battle
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
   target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   damage_class: special
-  effect: &colosseum.effect 256
-xd: *colosseum
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -66,8 +75,13 @@ firered-leafgreen:
     first turn and
     strikes next turn.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: &diamond-pearl.name Dive
+  flags: &diamond-pearl.flags
+    - contact
+    - charge
+    - protect
+    - mirror
+    - non-sky-battle
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -78,7 +92,7 @@ diamond-pearl: &diamond-pearl
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class physical
-  effect: *colosseum.effect
+  effect: &diamond-pearl.effect 256
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 6
   flavor_text: &diamond-pearl.flavor_text |
@@ -89,8 +103,8 @@ diamond-pearl: &diamond-pearl
     on the next turn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -101,11 +115,11 @@ heartgold-soulsilver:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -116,15 +130,15 @@ black-white: &black-white
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   flavor_text: |
     Diving on the first turn, the user floats
     up and attacks on the second turn.
     It can be used to dive deep in the ocean.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -135,13 +149,13 @@ x-y:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   flavor_text: |
     Diving on the first turn, the user floats
     up and attacks on the next turn.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -152,7 +166,7 @@ omega-ruby-alpha-sapphire:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 16
   contest_use_before: *ruby-sapphire.contest_use_before
@@ -161,8 +175,8 @@ omega-ruby-alpha-sapphire:
     and attacks on the next turn.
     It can be used to dive deep in the ocean.
 sun-moon: &sun-moon
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -173,7 +187,7 @@ sun-moon: &sun-moon
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   flavor_text: |
     Diving on the first turn, the user floats up and
     attacks on the next turn.

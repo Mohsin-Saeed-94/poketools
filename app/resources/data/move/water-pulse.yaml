@@ -48,28 +48,43 @@ emerald:
   flavor_text: |
     Attacks with ultrasonic
     waves. May confuse the foe.
-colosseum: &colosseum
-  name: &colosseum.name 'Water Pulse'
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Attacks with ultrasonic
+    waves. May confuse target.
+  effect_chance: *ruby-sapphire.effect_chance
+  flags: *ruby-sapphire.flags
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: &colosseum.flags
-    - protect
-    - mirror
-    - distance
-    - pulse
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: &colosseum.damage_class special
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class special
+  flavor_text: *colosseum.flavor_text
   effect_chance: *ruby-sapphire.effect_chance
-xd: *colosseum
+  flags: *ruby-sapphire.flags
+  ailment: *ruby-sapphire.ailment
+  ailment_chance: *ruby-sapphire.ailment_chance
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -92,10 +107,14 @@ firered-leafgreen:
     water. It may also
     confuse the foe.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Water Pulse'
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: &diamond-pearl.flags
+    - protect
+    - mirror
+    - distance
+    - pulse
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -105,7 +124,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -118,10 +137,10 @@ diamond-pearl: &diamond-pearl
     the foe.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -131,15 +150,15 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -149,7 +168,7 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
@@ -158,10 +177,10 @@ black-white: &black-white
     It may also confuse the target.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -171,7 +190,7 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -179,10 +198,10 @@ x-y:
     a pulsing blast of water.
     This may also confuse the target.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -192,17 +211,17 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 21
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -212,7 +231,7 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |

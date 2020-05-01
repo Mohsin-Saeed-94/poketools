@@ -59,23 +59,39 @@ ruby-sapphire: &ruby-sapphire
     Tucks in the head, then
     attacks on the next turn.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Skull Bash'
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Raises defense, then
+    attacks on the next turn.
+  flags: *ruby-sapphire.flags
   ailment_chance: *gold-silver.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
+  pp: *red-blue.pp
   effect: *gold-silver.effect
-  effect_chance: &colosseum.effect_chance 100
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  ailment_chance: *gold-silver.ailment_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -96,7 +112,7 @@ firered-leafgreen:
     turn, then attacks
     in the 2nd turn.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Skull Bash'
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -108,9 +124,9 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: &diamond-pearl.effect_chance 100
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 6
   flavor_text: &diamond-pearl.flavor_text |
@@ -121,7 +137,7 @@ diamond-pearl: &diamond-pearl
     foe on the next turn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -133,12 +149,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -150,16 +166,16 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &black-white.flavor_text |
     The user tucks in its head to raise its
     Defense in the first turn, then
     rams the target on the next turn.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -171,12 +187,12 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -188,14 +204,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 4
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -207,9 +223,9 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user tucks in its head to raise its Defense
     stat on the first turn, then rams the target on the

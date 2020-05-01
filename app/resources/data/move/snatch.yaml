@@ -34,20 +34,35 @@ emerald:
   flavor_text: |
     Steals the effects of the
     move the target uses next.
-colosseum: &colosseum
-  name: &colosseum.name Snatch
-  flags: &colosseum.flags
-    - authentic
+colosseum:
+  name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Steals and uses a target's 
+    move if it raises stats.
+  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: &colosseum.target user
-  damage_class: special
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: special
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   type: *ruby-sapphire.type
@@ -65,15 +80,16 @@ firered-leafgreen:
     healing or status-
     changing move.
 diamond-pearl:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: &diamond-pearl.name Snatch
+  flags: &diamond-pearl.flags
+    - authentic
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: &diamond-pearl.target user
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
@@ -85,15 +101,15 @@ diamond-pearl:
     changing move the foe
     attempts to use.
 platinum:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
@@ -105,28 +121,28 @@ platinum:
     changing move the foe
     attempts to use.
 heartgold-soulsilver:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *platinum.flavor_text
 black-white: &black-white
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
@@ -135,45 +151,45 @@ black-white: &black-white
     opponent attempts to use.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &x-y.flavor_text |
     The user steals the effects of any attempts
     to use a healing or stat-changing move.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 14
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |

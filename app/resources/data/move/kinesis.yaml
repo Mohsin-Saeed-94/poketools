@@ -43,7 +43,7 @@ ruby-sapphire: &ruby-sapphire
   effect: *gold-silver.effect
   target: *red-blue.target
   priority: *red-blue.priority
-  flags:
+  flags: &ruby-sapphire.flags
     - protect
     - mirror
   categories: *red-blue.categories
@@ -64,21 +64,37 @@ ruby-sapphire: &ruby-sapphire
     Distracts the foe.
     May lower accuracy.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Kinesis
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Distracts the target.
+    May lower accuracy.
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *gold-silver.stat_changes
+xd:
+  name: *red-blue.name
   type: *red-blue.type
-  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: special
+  pp: *red-blue.pp
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *gold-silver.stat_changes
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -98,7 +114,7 @@ firered-leafgreen:
     a spoon. It may
     lower accuracy.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Kinesis
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -121,7 +137,7 @@ diamond-pearl: &diamond-pearl
     target’s accuracy.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -136,7 +152,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -155,7 +171,7 @@ black-white: &black-white
     It lowers the target’s accuracy.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -173,7 +189,7 @@ x-y:
     by bending a spoon.
     This lowers the target’s accuracy.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -191,7 +207,7 @@ omega-ruby-alpha-sapphire:
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

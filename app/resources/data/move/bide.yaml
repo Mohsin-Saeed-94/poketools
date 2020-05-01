@@ -48,23 +48,39 @@ ruby-sapphire: &ruby-sapphire
   turns: *gold-silver.turns
   contest_type: &ruby-sapphire.contest_type tough
   contest_effect: 6
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Endures attack for 2
     turns to retaliate double.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Bide
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  power: *ruby-sapphire.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
+xd:
+  name: *red-blue.name
+  power: *ruby-sapphire.power
   type: *red-blue.type
+  accuracy: *red-blue.accuracy
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
   effect: *red-blue.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *ruby-sapphire.power
@@ -84,7 +100,7 @@ firered-leafgreen:
     turns, then strikes
     back double.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Bide
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -93,7 +109,7 @@ diamond-pearl: &diamond-pearl
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 15
@@ -105,7 +121,7 @@ diamond-pearl: &diamond-pearl
     the damage taken.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -114,11 +130,11 @@ heartgold-soulsilver:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -127,7 +143,7 @@ black-white: &black-white
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: &black-white.flavor_text |
     The user endures attacks for two
@@ -136,7 +152,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -145,13 +161,13 @@ omega-ruby-alpha-sapphire:
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 15
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -160,7 +176,7 @@ sun-moon: &sun-moon
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The user endures attacks for two turns, then strikes

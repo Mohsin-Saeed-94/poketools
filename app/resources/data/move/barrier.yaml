@@ -46,24 +46,37 @@ ruby-sapphire: &ruby-sapphire
   stat_changes: *red-blue.stat_changes
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: 6
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Creates a barrier that
     sharply raises DEFENSE.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Barrier
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *red-blue.stat_changes
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: special
   effect: *red-blue.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *red-blue.stat_changes
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -82,7 +95,7 @@ firered-leafgreen:
     sharply raises its
     DEFENSE stat.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Barrier
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -103,7 +116,7 @@ diamond-pearl: &diamond-pearl
     Defense stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -117,7 +130,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -134,7 +147,7 @@ black-white: &black-white
     sharply raises its Defense stat.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -148,7 +161,7 @@ x-y:
   effect: *red-blue.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -164,7 +177,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 15
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

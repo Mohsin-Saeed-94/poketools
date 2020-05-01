@@ -47,24 +47,37 @@ ruby-sapphire: &ruby-sapphire
   turns: *red-blue.turns
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: 20
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Recovers up to half the
     user's maximum HP.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Recover
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   healing: *red-blue.healing
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: physical
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  healing: *red-blue.healing
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -83,7 +96,7 @@ firered-leafgreen:
     up to half of the
     user's maximum HP.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Recover
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -104,7 +117,7 @@ diamond-pearl: &diamond-pearl
     of its max HP.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -118,7 +131,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -137,7 +150,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -153,7 +166,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 23
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   healing: *red-blue.healing
   flags: *red-blue.flags
   categories: *red-blue.categories

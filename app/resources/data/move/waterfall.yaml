@@ -60,23 +60,39 @@ ruby-sapphire: &ruby-sapphire
     Charges the foe with speed
     to climb waterfalls.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Waterfall
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Charges the target with
+    speed to climb waterfalls.
+  flags: *ruby-sapphire.flags
   flinch_chance: *gold-silver.flinch_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   target: *red-blue.target
+  priority: *red-blue.priority
   damage_class: special
-  effect: &colosseum.effect 32
-  effect_chance: &colosseum.effect_chance 20
-xd: *colosseum
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  flinch_chance: *gold-silver.flinch_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -97,7 +113,7 @@ firered-leafgreen:
     be used to climb
     a waterfall.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Waterfall
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -110,8 +126,8 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class physical
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: &diamond-pearl.effect 32
+  effect_chance: &diamond-pearl.effect_chance 20
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: |
@@ -122,7 +138,7 @@ diamond-pearl: &diamond-pearl
     to climb a waterfall.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -135,8 +151,8 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user charges at
     the foe rapidly, and
@@ -144,7 +160,7 @@ heartgold-soulsilver:
     It can also be used
     to climb a waterfall.
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -157,15 +173,15 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user charges at the target
     and may make it flinch.
     It can also be used to climb a waterfall.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -178,13 +194,13 @@ x-y:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &x-y.flavor_text |
     The user charges at the target and may make it
     flinch. This can also be used to climb a waterfall.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -197,13 +213,13 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 28
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -216,8 +232,8 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user charges at the target and may make
     it flinch.

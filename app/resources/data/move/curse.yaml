@@ -33,23 +33,33 @@ ruby-sapphire: &ruby-sapphire
     - destiny-bond
     - mean-look
     - grudge
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     A move that functions
     differently for GHOSTS.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Curse
-  flags: *gold-silver.flags
+colosseum:
+  name: *gold-silver.name
+  type: *gold-silver.type
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *ruby-sapphire.target
+  priority: *gold-silver.priority
+  flavor_text: *ruby-sapphire.flavor_text
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
+xd:
+  name: *gold-silver.name
   type: *gold-silver.type
   pp: *gold-silver.pp
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: physical
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *gold-silver.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *gold-silver.name
   type: *gold-silver.type
@@ -66,7 +76,7 @@ firered-leafgreen:
     GHOST-type and all
     the other types.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Curse
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -86,7 +96,7 @@ diamond-pearl: &diamond-pearl
     all the other types.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -99,7 +109,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -116,7 +126,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -132,7 +142,7 @@ omega-ruby-alpha-sapphire:
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits

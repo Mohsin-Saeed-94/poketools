@@ -60,22 +60,39 @@ ruby-sapphire: &ruby-sapphire
     An attack that steals half
     the damage inflicted.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Leech Life'
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    An attack that absorbs
+    half the damage inflicted.
+  flags: *ruby-sapphire.flags
   drain: *red-blue.drain
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
+  pp: *red-blue.pp
   effect: *red-blue.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  drain: *red-blue.drain
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -96,7 +113,7 @@ firered-leafgreen:
     damage it inflicted
     to restore HP.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Leech Life'
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -108,7 +125,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 20
@@ -120,7 +137,7 @@ diamond-pearl: &diamond-pearl
     by the target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -132,11 +149,11 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -148,7 +165,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: &black-white.flavor_text |
     The user drains the target’s blood.
@@ -157,7 +174,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -169,13 +186,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 9
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   drain: *red-blue.drain
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -187,7 +204,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The user drains the target’s blood. The user’s HP is

@@ -34,24 +34,37 @@ ruby-sapphire: &ruby-sapphire
     - kinesis
     - confusion
     - calm-mind
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Heightens inner power to
     strike 2 turns later.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Future Sight'
+colosseum:
+  name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: *ruby-sapphire.flavor_text
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
+xd:
+  name: *gold-silver.name
+  power: *gold-silver.power
   type: *gold-silver.type
-  power: &colosseum.power 100
-  pp: &colosseum.pp 10
-  accuracy: &colosseum.accuracy 100
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: &colosseum.damage_class special
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  damage_class: &xd.damage_class special
+  flavor_text: *ruby-sapphire.flavor_text
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *gold-silver.name
   power: *gold-silver.power
@@ -70,17 +83,17 @@ firered-leafgreen:
     the foe is attacked
     psychically.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Future Sight'
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *colosseum.power
-  pp: *colosseum.pp
-  accuracy: *colosseum.accuracy
+  power: &diamond-pearl.power 100
+  pp: &diamond-pearl.pp 10
+  accuracy: &diamond-pearl.accuracy 100
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
@@ -92,31 +105,31 @@ diamond-pearl: &diamond-pearl
     energy.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *colosseum.power
-  pp: *colosseum.pp
-  accuracy: *colosseum.accuracy
+  power: *diamond-pearl.power
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *colosseum.power
-  pp: *colosseum.pp
-  accuracy: *colosseum.accuracy
+  power: *diamond-pearl.power
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: &black-white.flavor_text |
     Two turns after this move is used,
@@ -124,47 +137,47 @@ black-white: &black-white
     attacks the target.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: &x-y.power 120
-  pp: *colosseum.pp
-  accuracy: *colosseum.accuracy
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: *x-y.power
-  pp: *colosseum.pp
-  accuracy: *colosseum.accuracy
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 24
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: *x-y.power
-  pp: *colosseum.pp
-  accuracy: *colosseum.accuracy
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     Two turns after this move is used, a hunk of psychic

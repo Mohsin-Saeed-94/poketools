@@ -26,24 +26,41 @@ ruby-sapphire: &ruby-sapphire
     Stops the foe from moving
     with rocks and cuts SPEED.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Rock Tomb'
-  stat_change_chance: *ruby-sapphire.stat_change_chance
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Immobilizes the target
+    with rocks, and cuts SPEED.
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
+  stat_change_chance: *ruby-sapphire.stat_change_chance
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: &colosseum.damage_class physical
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
-  effect_chance: &colosseum.effect_chance 100
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  stat_changes: *ruby-sapphire.stat_changes
+  stat_change_chance: *ruby-sapphire.stat_change_chance
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -65,7 +82,7 @@ firered-leafgreen:
     lowers the foe's
     SPEED if it hits.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Rock Tomb'
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -78,9 +95,9 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: &diamond-pearl.effect_chance 100
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 2
   flavor_text: &diamond-pearl.flavor_text |
@@ -91,7 +108,7 @@ diamond-pearl: &diamond-pearl
     its movement.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -104,12 +121,12 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -122,16 +139,16 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     Boulders are hurled at the target. It also
     lowers the target’s Speed by preventing
     its movement.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -144,15 +161,15 @@ x-y:
   accuracy: &x-y.accuracy 95
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &x-y.flavor_text |
     Boulders are hurled at the target. This also
     lowers the target’s Speed stat by preventing
     its movement.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -165,14 +182,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *x-y.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 24
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -185,9 +202,9 @@ sun-moon: &sun-moon
   accuracy: *x-y.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     Boulders are hurled at the target. This also lowers
     the target’s Speed stat by preventing its movement.

@@ -58,28 +58,45 @@ ruby-sapphire: &ruby-sapphire
   stat_change_chance: *gold-silver.stat_change_chance
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: 13
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Sprays a hide-melting acid.
     May lower DEFENSE.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Acid
-  stat_change_chance: *gold-silver.stat_change_chance
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *gold-silver.effect_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *gold-silver.stat_changes
-  type: *red-blue.type
+  stat_change_chance: *gold-silver.stat_change_chance
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   target: *red-blue.target
+  priority: *red-blue.priority
   damage_class: physical
-  effect: &colosseum.effect 73
+  flavor_text: *ruby-sapphire.flavor_text
   effect_chance: *gold-silver.effect_chance
-xd: *colosseum
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *gold-silver.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -102,7 +119,7 @@ firered-leafgreen:
     melting acid that
     may lower DEFENSE.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Acid
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -116,7 +133,7 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class special
-  effect: *colosseum.effect
+  effect: &diamond-pearl.effect 73
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
@@ -128,7 +145,7 @@ diamond-pearl: &diamond-pearl
     Sp. Def stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -142,11 +159,11 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -160,7 +177,7 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The opposing team is attacked with a spray
@@ -168,7 +185,7 @@ black-white: &black-white
     the targets’ Sp. Def stats.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -182,14 +199,14 @@ x-y:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The opposing Pokémon are attacked
     with a spray of harsh acid. This may
     also lower their Sp. Def stats.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -203,13 +220,13 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 4
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -223,7 +240,7 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
+  effect: *diamond-pearl.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The opposing Pokémon are attacked with a spray of

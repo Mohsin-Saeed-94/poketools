@@ -43,21 +43,37 @@ ruby-sapphire: &ruby-sapphire
     Spores cling to the foe,
     sharply reducing SPEED.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Cotton Spore'
-  flags: *gold-silver.flags
+colosseum:
+  name: *gold-silver.name
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: &colosseum.flavor_text |
+    Spores cling to the target,
+    sharply reducing SPEED.
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
+xd:
+  name: *gold-silver.name
   type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
   pp: *gold-silver.pp
-  accuracy: &colosseum.accuracy 100
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: special
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  damage_class: special
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  stat_changes: *gold-silver.stat_changes
 firered-leafgreen:
   name: *gold-silver.name
   type: *gold-silver.type
@@ -77,7 +93,7 @@ firered-leafgreen:
     sharply reducing
     its SPEED stat.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Cotton Spore'
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -85,7 +101,7 @@ diamond-pearl: &diamond-pearl
   stat_changes: *gold-silver.stat_changes
   type: *gold-silver.type
   pp: *gold-silver.pp
-  accuracy: *colosseum.accuracy
+  accuracy: &diamond-pearl.accuracy 100
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: &diamond-pearl.damage_class status
@@ -100,7 +116,7 @@ diamond-pearl: &diamond-pearl
     its Speed stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -108,14 +124,14 @@ heartgold-soulsilver:
   stat_changes: *gold-silver.stat_changes
   type: *gold-silver.type
   pp: *gold-silver.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -123,7 +139,7 @@ black-white: &black-white
   stat_changes: *gold-silver.stat_changes
   type: *gold-silver.type
   pp: *gold-silver.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
   damage_class: *diamond-pearl.damage_class
@@ -134,7 +150,7 @@ black-white: &black-white
     harshly reducing its Speed stat.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -142,7 +158,7 @@ x-y:
   stat_changes: *gold-silver.stat_changes
   type: *gold-silver.type
   pp: *gold-silver.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: &x-y.target all-opponents
   damage_class: *diamond-pearl.damage_class
@@ -152,7 +168,7 @@ x-y:
     that cling to the opposing Pokémon,
     which harshly lowers their Speed stats.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -160,7 +176,7 @@ omega-ruby-alpha-sapphire:
   stat_changes: *gold-silver.stat_changes
   type: *gold-silver.type
   pp: *gold-silver.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *x-y.target
   damage_class: *diamond-pearl.damage_class
@@ -169,7 +185,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 10
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -177,7 +193,7 @@ sun-moon: &sun-moon
   stat_changes: *gold-silver.stat_changes
   type: *gold-silver.type
   pp: *gold-silver.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *x-y.target
   damage_class: *diamond-pearl.damage_class

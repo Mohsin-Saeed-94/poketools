@@ -28,28 +28,43 @@ ruby-sapphire: &ruby-sapphire
     A life-risking tackle that
     slightly hurts the user.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Volt Tackle'
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    A life-risking tackle that
+    also hurts the user.
+  flags: *ruby-sapphire.flags
   ailment: *ruby-sapphire.ailment
-  recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: &colosseum.flags
-    - contact
-    - protect
-    - mirror
+  recoil: *ruby-sapphire.recoil
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
   target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   damage_class: special
-  effect: &colosseum.effect 263
-  effect_chance: &colosseum.effect_chance 10
-xd: *colosseum
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  ailment: *ruby-sapphire.ailment
+  ailment_chance: *ruby-sapphire.ailment_chance
+  recoil: *ruby-sapphire.recoil
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -72,11 +87,14 @@ firered-leafgreen:
     It hurts the user
     a little.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Volt Tackle'
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: &diamond-pearl.flags
+    - contact
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -87,8 +105,8 @@ diamond-pearl: &diamond-pearl
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class physical
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: &diamond-pearl.effect 263
+  effect_chance: &diamond-pearl.effect_chance 10
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 22
   flavor_text: &diamond-pearl.flavor_text |
@@ -99,11 +117,11 @@ diamond-pearl: &diamond-pearl
     to the user as well.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -114,15 +132,15 @@ heartgold-soulsilver:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -133,18 +151,18 @@ black-white:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user electrifies itself, then charges. 
     It causes considerable damage to the user
     and may leave the target with paralysis.
 black-2-white-2:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -155,18 +173,18 @@ black-2-white-2:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user electrifies itself, then charges.
     It causes considerable damage to the user
     and may leave the target with paralysis.
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -177,18 +195,18 @@ x-y:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &x-y.flavor_text |
     The user electrifies itself, then charges.
     This also damages the user quite a lot.
     This may leave the target with paralysis.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -199,17 +217,17 @@ omega-ruby-alpha-sapphire:
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 3
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   recoil: *ruby-sapphire.recoil
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *colosseum.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -220,8 +238,8 @@ sun-moon: &sun-moon
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
-  effect: *colosseum.effect
-  effect_chance: *colosseum.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user electrifies itself and charges the target.
     This also damages the user quite a lot. This attack

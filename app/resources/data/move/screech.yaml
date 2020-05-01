@@ -58,21 +58,37 @@ ruby-sapphire: &ruby-sapphire
     Emits a screech to sharply
     reduce the foe's DEFENSE.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Screech
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Screeches to sharply lower
+    the target's DEFENSE.
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   stat_changes: *red-blue.stat_changes
+xd:
+  name: *red-blue.name
   type: *red-blue.type
-  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: physical
+  pp: *red-blue.pp
   effect: *red-blue.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *red-blue.stat_changes
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -92,7 +108,7 @@ firered-leafgreen:
     to sharply reduce
     the foe's DEFENSE.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Screech
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -114,7 +130,7 @@ diamond-pearl: &diamond-pearl
     foe’s Defense stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -129,7 +145,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -147,7 +163,7 @@ black-white: &black-white
     the target’s Defense stat.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -164,7 +180,7 @@ x-y:
     An earsplitting screech harshly lowers
     the target’s Defense stat.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -181,7 +197,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 5
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

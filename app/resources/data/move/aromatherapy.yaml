@@ -13,25 +13,35 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   contest_type: &ruby-sapphire.contest_type smart
   contest_effect: 31
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Heals all status problems
     with a soothing scent.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Aromatherapy
-  flags: &colosseum.flags
-    - snatch
-    - distance
+colosseum:
+  name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: &colosseum.target users-field
-  damage_class: special
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   type: *ruby-sapphire.type
@@ -49,15 +59,17 @@ firered-leafgreen:
     all status problems
     in the user's party.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: &diamond-pearl.name Aromatherapy
+  flags: &diamond-pearl.flags
+    - snatch
+    - distance
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: &diamond-pearl.target users-field
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
@@ -70,28 +82,28 @@ diamond-pearl: &diamond-pearl
     the user’s party.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
@@ -100,8 +112,8 @@ black-white: &black-white
     the user’s party.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -116,8 +128,8 @@ x-y:
     heals all status conditions affecting
     the user’s party.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -131,8 +143,8 @@ omega-ruby-alpha-sapphire:
   contest_effect: 28
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
-  flags: *colosseum.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns

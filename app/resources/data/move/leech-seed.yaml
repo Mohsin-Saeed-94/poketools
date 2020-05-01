@@ -52,21 +52,37 @@ ruby-sapphire: &ruby-sapphire
     Plants a seed on the foe to
     steal HP on every turn.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Leech Seed'
-  ailment: *red-blue.ailment
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Plants a seed on the target
+    to steal HP on every turn.
   flags: *red-blue.flags
+  ailment: *red-blue.ailment
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
-  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: special
+  pp: *red-blue.pp
   effect: *red-blue.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *colosseum.flavor_text
+  flags: *red-blue.flags
+  ailment: *red-blue.ailment
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   type: *red-blue.type
@@ -86,7 +102,7 @@ firered-leafgreen:
     some HP for the 
     user on every turn.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Leech Seed'
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -109,7 +125,7 @@ diamond-pearl: &diamond-pearl
     every turn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -124,7 +140,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -143,7 +159,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -160,7 +176,7 @@ omega-ruby-alpha-sapphire:
   contest_effect: 8
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   flags: *red-blue.flags
   categories: *red-blue.categories

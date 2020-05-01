@@ -18,27 +18,43 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   contest_type: &ruby-sapphire.contest_type cool
   contest_effect: 13
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Attacks with a peculiar
     power. May cause flinching.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Extrasensory
-  flinch_chance: *ruby-sapphire.flinch_chance
+colosseum:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *ruby-sapphire.effect_chance
   flags: *ruby-sapphire.flags
+  flinch_chance: *ruby-sapphire.flinch_chance
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
   target: *ruby-sapphire.target
-  damage_class: &colosseum.damage_class special
-  effect: &colosseum.effect 32
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class special
+  flavor_text: *ruby-sapphire.flavor_text
   effect_chance: *ruby-sapphire.effect_chance
-xd: *colosseum
+  flags: *ruby-sapphire.flags
+  flinch_chance: *ruby-sapphire.flinch_chance
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   power: *ruby-sapphire.power
@@ -60,7 +76,7 @@ firered-leafgreen:
     that may make the
     foe flinch.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Extrasensory
   flinch_chance: *ruby-sapphire.flinch_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -72,8 +88,8 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
+  damage_class: *xd.damage_class
+  effect: &diamond-pearl.effect 32
   effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
@@ -85,7 +101,7 @@ diamond-pearl: &diamond-pearl
     foe flinch.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *ruby-sapphire.flinch_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -97,12 +113,12 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
+  damage_class: *xd.damage_class
+  effect: *diamond-pearl.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *ruby-sapphire.flinch_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -114,8 +130,8 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
+  damage_class: *xd.damage_class
+  effect: *diamond-pearl.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     The user attacks with an odd,
@@ -123,7 +139,7 @@ black-white: &black-white
     It may also make the target flinch.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *ruby-sapphire.flinch_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -135,15 +151,15 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
+  damage_class: *xd.damage_class
+  effect: *diamond-pearl.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: &x-y.flavor_text |
     The user attacks with an odd,
     unseeable power.
     This may also make the target flinch.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *ruby-sapphire.flinch_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -155,14 +171,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
+  damage_class: *xd.damage_class
+  effect: *diamond-pearl.effect
   effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 4
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flinch_chance: *ruby-sapphire.flinch_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -174,8 +190,8 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *colosseum.damage_class
-  effect: *colosseum.effect
+  damage_class: *xd.damage_class
+  effect: *diamond-pearl.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     The user attacks with an odd, unseeable power.

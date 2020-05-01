@@ -57,26 +57,41 @@ ruby-sapphire: &ruby-sapphire
   contest_effect: 38
   contest_use_after:
     - focus-energy
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     A chopping attack with a
     high critical-hit ratio.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name 'Karate Chop'
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *gold-silver.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *ruby-sapphire.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   crit_rate_bonus: *red-blue.crit_rate_bonus
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *gold-silver.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *gold-silver.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
+  pp: *red-blue.pp
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  crit_rate_bonus: *red-blue.crit_rate_bonus
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -97,7 +112,7 @@ firered-leafgreen:
     It has a high
     critical-hit ratio.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Karate Chop'
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -109,14 +124,14 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: *firered-leafgreen.flavor_text
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -128,11 +143,11 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *firered-leafgreen.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -144,7 +159,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &black-white.flavor_text |
     The target is attacked with a sharp chop.
@@ -152,7 +167,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -164,13 +179,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 2
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   crit_rate_bonus: *red-blue.crit_rate_bonus
   flags: *red-blue.flags
   categories: *red-blue.categories
@@ -182,7 +197,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     The target is attacked with a sharp chop. Critical

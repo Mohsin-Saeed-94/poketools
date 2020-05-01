@@ -60,21 +60,37 @@ ruby-sapphire: &ruby-sapphire
     Charges the foe with a full-
     body tackle.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Tackle
-  flags: *red-blue.flags
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Charges the target with a
+    full-body tackle.
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
+  power: *red-blue.power
   type: *red-blue.type
-  power: &colosseum.power 50
+  accuracy: *red-blue.accuracy
   pp: *red-blue.pp
-  accuracy: &colosseum.accuracy 100
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
   effect: *red-blue.effect
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -94,18 +110,18 @@ firered-leafgreen:
     charges, full body,
     into the foe.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Tackle
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *colosseum.power
+  power: &diamond-pearl.power 50
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: &diamond-pearl.accuracy 100
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
@@ -117,33 +133,33 @@ diamond-pearl: &diamond-pearl
     its whole body.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: &black-white.flavor_text |
     A physical attack in which the user
@@ -152,24 +168,24 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
   type: *red-blue.type
-  power: *colosseum.power
+  power: *diamond-pearl.power
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -177,10 +193,10 @@ sun-moon: &sun-moon
   type: *red-blue.type
   power: 40
   pp: *red-blue.pp
-  accuracy: *colosseum.accuracy
+  accuracy: *diamond-pearl.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: |
     A physical attack in which the user charges and

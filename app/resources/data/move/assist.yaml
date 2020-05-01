@@ -12,22 +12,35 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   contest_type: &ruby-sapphire.contest_type cute
   contest_effect: 35
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Attacks randomly with one
     of the partner's moves.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Assist
+colosseum:
+  name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: &colosseum.target user
-  damage_class: physical
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: physical
+  flavor_text: *ruby-sapphire.flavor_text
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
   type: *ruby-sapphire.type
@@ -45,14 +58,14 @@ firered-leafgreen:
     move of an allied
     POKéMON.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Assist
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: &diamond-pearl.target user
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
@@ -65,26 +78,26 @@ diamond-pearl: &diamond-pearl
     Pokémon in the party.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
@@ -93,14 +106,14 @@ black-white: &black-white
     Pokémon in the party.
 black-2-white-2: *black-white
 x-y:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &x-y.flavor_text |
@@ -108,28 +121,28 @@ x-y:
     uses a move among those known
     by other Pokémon in the party.
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 25
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *colosseum.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |

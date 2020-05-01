@@ -62,24 +62,41 @@ ruby-sapphire: &ruby-sapphire
     Wraps and squeezes the foe
     2 to 5 times with vines, etc.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Wrap
+colosseum:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Wraps and squeezes 2 to 5 
+    times with vines, etc.
+  flags: *ruby-sapphire.flags
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *gold-silver.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: &colosseum.damage_class physical
+  pp: *red-blue.pp
   effect: *red-blue.effect
-  effect_chance: &colosseum.effect_chance 100
-xd: *colosseum
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  ailment: *red-blue.ailment
+  ailment_chance: *gold-silver.ailment_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *red-blue.name
   power: *red-blue.power
@@ -101,7 +118,7 @@ firered-leafgreen:
     wrap the foe for
     two to five turns.
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Wrap
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -114,9 +131,9 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: &diamond-pearl.effect_chance 100
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 21
   flavor_text: &diamond-pearl.flavor_text |
@@ -126,7 +143,7 @@ diamond-pearl: &diamond-pearl
     two to five turns.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -139,12 +156,12 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -157,16 +174,16 @@ black-white: &black-white
   accuracy: &black-white.accuracy 90
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &black-white.flavor_text |
     A long body or vines are used to wrap and
     squeeze the target for four to five turns.
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -179,14 +196,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *black-white.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: 24
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
@@ -199,9 +216,9 @@ sun-moon: &sun-moon
   accuracy: *black-white.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *colosseum.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
-  effect_chance: *colosseum.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     A long body, vines, or the like are used to wrap and 
     squeeze the target for four to five turns.
