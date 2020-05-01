@@ -102,7 +102,7 @@ def get_string(root: Path, table: StringTableBase, string_id: int):
                     binary.extend(table_file.read(ColoXdCodec.control_length[control_code]))
             else:
                 binary.extend(char)
-        return binary.decode('colo_xd')
+        return binary.decode('pokemon_colo_xd')
 
 
 class ColoXdCodec(codecs.Codec):
@@ -159,7 +159,7 @@ _colo_xd_codec = ColoXdCodec()
 
 def codec_search(encoding: str):
     codec_map = {
-        'colo_xd': _colo_xd_codec,
+        'pokemon_colo_xd': _colo_xd_codec,
     }
     if encoding not in codec_map:
         return None
