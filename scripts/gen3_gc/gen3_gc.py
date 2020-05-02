@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 
 from gen3_gc import strings
+from gen3_gc.items import get_items, update_machines, write_items
 from inc import group_by_version_group
 from .enums import Version
 from .moves import get_moves, write_moves
@@ -65,6 +66,10 @@ if __name__ == '__main__':
         vg_moves, vg_move_slugs = get_moves(dump_path, version, args.out_moves)
         out_moves = group_by_version_group(version.value, vg_moves, out_moves)
 
+        vg_items, vg_item_slugs = get_items(dump_path, version, args.out_items)
+        vg_items = update_machines(dump_path, version, vg_items, vg_move_slugs)
+        out_items = group_by_version_group(version.value, vg_items, out_items)
+
         dumped_versions.add(version.value)
 
     if len(dumped_versions) < len(args.version):
@@ -73,10 +78,12 @@ if __name__ == '__main__':
         for requested_version in args.version:
             if requested_version not in dumped_versions:
                 missing_versions.append(requested_version)
-        print('Could not dump these versions because the ROMs were not available: {roms}'.format(
-            roms=', '.join(missing_versions)))
+        print('Could not dump these versions because the files were not available: {versions}'.format(
+            versions=', '.join(missing_versions)))
         exit(1)
     else:
         if args.write_moves:
             write_moves(out_moves, args.out_moves)
+        if args.write_items:
+            write_items(out_items, args.out_items)
         exit(0)

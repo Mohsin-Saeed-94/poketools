@@ -18,6 +18,11 @@ def get_moves(game_path: Path, version: Version, moves_out_path: Path):
     common_rel_path = (game_path.joinpath(Path('common.fsys/common_rel.fdat')))
     assert common_rel_path.is_file()
 
+    out.clear()
+    move_slugs.clear()
+
+    print('Dumping moves')
+
     common_rel: BufferedReader
     with common_rel_path.open('rb') as common_rel:
         _get_stats(game_path, common_rel, version)
@@ -116,8 +121,6 @@ def _get_stats(game_path: Path, common_rel: BufferedReader, version: Version):
     def is_shadow(move_id: int):
         # The shadow moves are defined internally as normal type, so this extra check is needed.
         return move_id >= 355
-
-    print('Dumping moves')
 
     for move_id in range(1, num_moves + 1):
         common_rel.seek(stats_offset + ((move_id - 1) * stats_length))

@@ -33,7 +33,7 @@ ruby-sapphire: &ruby-sapphire
   icon: &ruby-sapphire.icon tm-ground.png
   buy: *gold-silver.buy
   sell: *gold-silver.sell
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Digs underground
     the 1st turn, then
     strikes next turn.
@@ -46,14 +46,14 @@ ruby-sapphire: &ruby-sapphire
 emerald: *ruby-sapphire
 colosseum: &colosseum
   name: *red-blue.name
-  category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: &colosseum.buy 30000
-  sell: &colosseum.sell 15000
-  machine: *red-blue.machine
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *red-blue.category
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
-  icon: *ruby-sapphire.icon
+  machine: *red-blue.machine
 xd: *colosseum
 firered-leafgreen:
   name: *red-blue.name
@@ -71,19 +71,28 @@ firered-leafgreen:
   short_description: *red-blue.short_description
   description: *ruby-sapphire.description
   machine: *red-blue.machine
-diamond-pearl: *colosseum
-platinum: *colosseum
-heartgold-soulsilver: *colosseum
-black-white: *colosseum
-black-2-white-2: *colosseum
-x-y: *colosseum
-omega-ruby-alpha-sapphire: *colosseum
+diamond-pearl: &diamond-pearl
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  buy: &diamond-pearl.buy 30000
+  sell: &diamond-pearl.sell 15000
+  machine: *red-blue.machine
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl
+black-white: *diamond-pearl
+black-2-white-2: *diamond-pearl
+x-y: *diamond-pearl
+omega-ruby-alpha-sapphire: *diamond-pearl
 sun-moon: &sun-moon
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: *colosseum.buy
-  sell: *colosseum.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   machine:
     type: *red-blue.machine.type
     number: *red-blue.machine.number

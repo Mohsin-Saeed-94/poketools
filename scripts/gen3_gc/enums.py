@@ -48,3 +48,19 @@ move_name_changes = {
     'thundershock': 'thunder-shock',
     'vicegrip': 'vice-grip',
 }
+
+item_name_changes = {
+    'blackglasses': 'black-glasses',
+    'brightpowder': 'bright-powder',
+    'deepseatooth': 'deep-sea-tooth',
+    'deepseascale': 'deep-sea-scale',
+    'energypowder': 'energy-powder',
+    'nevermeltice': 'never-melt-ice',
+    'parlyz-heal': 'paralyze-heal',
+    'silverpowder': 'silver-powder',
+    'x-defend': 'x-defense',
+    'x-special': 'x-sp-atk',
+    'thunderstone': 'thunder-stone',
+    'tinymushroom': 'tiny-mushroom',
+    'twistedspoon': 'twisted-spoon',
+}

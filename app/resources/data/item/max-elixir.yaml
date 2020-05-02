@@ -11,7 +11,7 @@ ruby-sapphire: &ruby-sapphire
   icon: &ruby-sapphire.icon max-elixir.png
   buy: &ruby-sapphire.buy 4500
   sell: &ruby-sapphire.sell 2250
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     Fully restores the
     PP of a POKéMON's
     moves.
@@ -21,19 +21,15 @@ ruby-sapphire: &ruby-sapphire
     :   Restores [PP]{mechanic:pp} to full for each move.
 emerald: *ruby-sapphire
 colosseum: &colosseum
-  name: &colosseum.name 'Max Elixir'
-  category: *ruby-sapphire.category
-  pocket: &colosseum.pocket medicine
+  name: *ruby-sapphire.name
+  pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *ruby-sapphire.category
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  flavor_text: |
-    Fully restores the
-    PP of a POKéMON’s
-    moves.
-  icon: *ruby-sapphire.icon
 xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
@@ -49,9 +45,9 @@ firered-leafgreen:
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name 'Max Elixir'
   category: *ruby-sapphire.category
-  pocket: *colosseum.pocket
+  pocket: &diamond-pearl.pocket medicine
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -69,9 +65,9 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *colosseum.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
-  pocket: *colosseum.pocket
+  pocket: *diamond-pearl.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -86,9 +82,9 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
-  pocket: *colosseum.pocket
+  pocket: *diamond-pearl.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage

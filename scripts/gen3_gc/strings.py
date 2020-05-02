@@ -21,12 +21,14 @@ class ColoStrings:
     class StringTable(StringTableBase):
         MAIN = StringTableInfo(path=Path('../sys/main.dol'), offsets=[0x2CC810])
         COMMON_REL = StringTableInfo(path=Path('common.fsys/common_rel.fdat'), offsets=[0x059890, 0x066000, 0x0784E0])
+        POCKET_MENU_2 = StringTableInfo(path=Path('pocket_menu.fsys/pocket_menu_00000002.fdat'), offsets=[0x000000])
 
 
 class XdStrings:
     class StringTable(StringTableBase):
         MAIN = StringTableInfo(path=Path('../sys/main.dol'), offsets=[0x374FC0])
         COMMON_REL = StringTableInfo(path=Path('common.fsys/common_rel.fdat'), offsets=[0x04E274])
+        POCKET_MENU_1 = StringTableInfo(path=Path('pocket_menu.fsys/pocket_menu_00000001.fdat'), offsets=[0x000000])
 
 
 class _StringTableCache:
