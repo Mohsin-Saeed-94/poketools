@@ -1,7 +1,8 @@
+import argparse
 from dataclasses import dataclass
 from pathlib import Path
 import sys
-from typing import List
+from typing import List, Union
 
 from tabulate import tabulate
 
@@ -14,7 +15,7 @@ class SearchResult:
     address: int = None
 
 
-def _search_dir(path: Path, needle: str) -> List[SearchResult]:
+def _search_dir(path: Path, needle: Union[str, bytes]) -> List[SearchResult]:
     found: List[SearchResult] = []
     for child in path.iterdir():
         found.extend(search(child, needle))
@@ -22,9 +23,12 @@ def _search_dir(path: Path, needle: str) -> List[SearchResult]:
     return found
 
 
-def _search_file(path: Path, needle: str) -> List[SearchResult]:
+def _search_file(path: Path, needle: Union[str, bytes]) -> List[SearchResult]:
     found: List[SearchResult] = []
-    needle_binary = needle.encode('pokemon_colo_xd')
+    if isinstance(needle, str):
+        needle_binary = needle.encode('pokemon_colo_xd')
+    else:
+        needle_binary = needle
     with path.open('rb') as file:
         contents = file.read()
         position = 0
@@ -37,7 +41,7 @@ def _search_file(path: Path, needle: str) -> List[SearchResult]:
     return found
 
 
-def search(path: Path, needle: str):
+def search(path: Path, needle: Union[str, bytes]):
     found: List[SearchResult] = []
     if path.is_dir():
         found.extend(_search_dir(path, needle))
@@ -50,10 +54,25 @@ def search(path: Path, needle: str):
 if __name__ == '__main__':
     register_codec()
 
-    path = Path(sys.argv[1])
-    needle = sys.argv[2]
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('path', type=lambda path: Path(path), help='The path to search.')
+    needle_arg_group = arg_parser.add_mutually_exclusive_group(required=True)
+    needle_arg_group.add_argument('--string', type=str, help='String to search for.')
+    needle_arg_group.add_argument('--bytes', type=lambda hex_string: bytes.fromhex(hex_string),
+                                  help='Hex bytes to search for.')
+    args = arg_parser.parse_args()
+
+    path = args.path
+    if args.string:
+        needle = args.string
+    else:
+        needle = args.bytes
 
     found = search(Path(path), needle)
+    if isinstance(needle, str):
+        needle_display = needle
+    else:
+        needle_display = needle.hex()
     if len(found) > 0:
         table = []
         for result in found:
@@ -61,8 +80,8 @@ if __name__ == '__main__':
                 'Path': result.path.relative_to(path),
                 'Address': hex(result.address)
             })
-        print('Found {number} results for "{needle}":'.format(number=len(found), needle=needle))
+        print('Found {number} results for "{needle}":'.format(number=len(found), needle=needle_display))
         print()
         print(tabulate(table, headers='keys'))
     else:
-        print('No results found for "{needle}".'.format(needle=needle))
+        print('No results found for "{needle}".'.format(needle=needle_display))
