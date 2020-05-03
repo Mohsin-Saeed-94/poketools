@@ -66,6 +66,7 @@ def _get_items(game_path: Path, version: Version):
         7: 'disc-case',  # XD only
     }
     slug_overrides = {
+        'gonzap-s-key': 'gonzaps-key',
         'king-s-rock': 'kings-rock',
         'oak-s-parcel': 'oaks-parcel',
         's-s-ticket': 'ss-ticket',
@@ -105,8 +106,22 @@ def _get_items(game_path: Path, version: Version):
         'magma-emblem',
         'old-sea-map',
 
+        # Unused Pokeballs
         'safari-ball',
         'dive-ball',
+
+        # Unobtainable items
+        'battle-cd-51',
+        'battle-cd-52',
+        'battle-cd-53',
+        'battle-cd-54',
+        'battle-cd-55',
+        'battle-cd-56',
+        'battle-cd-57',
+        'battle-cd-58',
+        'battle-cd-59',
+        'battle-cd-60',
+        'safe-key',
     ]
 
     @dataclass()
