@@ -1,8 +1,18 @@
-colosseum: &colosseum
-  region: orre
-  name: 'Mt. Battle'
+colosseum:
+  region: &colosseum.region orre
+  name: &colosseum.name 'Mt. Battle'
   areas:
-    whole-area:
+    whole-area: &colosseum.areas.whole-area
       name: 'Whole area'
       default: true
-xd: *colosseum
+    lobby:
+      name: Lobby
+      shops:
+        poke-coupon-exchange:
+          name: 'Poké Coupon Exchange'
+          default: true
+xd:
+  region: *colosseum.region
+  name: *colosseum.name
+  areas:
+    whole-area: *colosseum.areas.whole-area

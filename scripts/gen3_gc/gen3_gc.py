@@ -3,6 +3,7 @@ from pathlib import Path
 
 from gen3_gc import strings
 from gen3_gc.items import get_items, update_machines, write_items
+from gen3_gc.shops import get_shop_items, write_shop_items
 from inc import group_by_version_group
 from .enums import Version
 from .moves import get_moves, write_moves
@@ -70,6 +71,8 @@ if __name__ == '__main__':
         vg_items = update_machines(dump_path, version, vg_items, vg_move_slugs)
         out_items = group_by_version_group(version.value, vg_items, out_items)
 
+        out_shop_items.extend(get_shop_items(dump_path, version, vg_item_slugs, vg_items))
+
         dumped_versions.add(version.value)
 
     if len(dumped_versions) < len(args.version):
@@ -86,4 +89,6 @@ if __name__ == '__main__':
             write_moves(out_moves, args.out_moves)
         if args.write_items:
             write_items(out_items, args.out_items)
+        if args.write_shop_items:
+            write_shop_items(dumped_versions, out_shop_items, args.out_shop_items)
         exit(0)

@@ -1,8 +1,24 @@
-colosseum: &colosseum
-  region: orre
-  name: 'Outskirt Stand'
+colosseum:
+  region: &colosseum.region orre
+  name: &colosseum.name 'Outskirt Stand'
   areas:
-    whole-area:
+    whole-area: &colosseum.areas.whole-area
       name: 'Whole area'
       default: true
-xd: *colosseum
+    diner:
+      name: &colosseum.areas.diner.name Diner
+      shops:
+        clerk-start:
+          name: 'Clerk (Start of game)'
+          default: true
+        clerk-rui:
+          name: 'Clerk (Met Rui)'
+        clerk-duking-email:
+          name: 'Clerk (Duking''s first e-mail)'
+xd:
+  region: *colosseum.region
+  name: *colosseum.name
+  areas:
+    whole-area: *colosseum.areas.whole-area
+    diner:
+      name: *colosseum.areas.diner.name

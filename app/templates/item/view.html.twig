@@ -223,7 +223,13 @@
                                 {% endif %}
                             </td>
                             <td>{{ shop_item.shop.name }}</td>
-                            <td class="pkt-text">${{ shop_item.buy }}</td>
+                            <td class="pkt-text">
+                                {% if shop_item.buy %}
+                                    ${{ shop_item.buy }}
+                                {% else %}
+                                    &mdash;
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

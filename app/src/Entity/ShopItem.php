@@ -30,10 +30,9 @@ class ShopItem extends AbstractDexEntity implements EntityIsSortableInterface
     private $item;
 
     /**
-     * @var int
+     * @var int|null
      *
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\GreaterThan(0)
      */
     private $buy;
@@ -59,7 +58,7 @@ class ShopItem extends AbstractDexEntity implements EntityIsSortableInterface
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getBuy(): ?int
     {
@@ -67,11 +66,11 @@ class ShopItem extends AbstractDexEntity implements EntityIsSortableInterface
     }
 
     /**
-     * @param int $buy
+     * @param int|null $buy
      *
      * @return self
      */
-    public function setBuy(int $buy): self
+    public function setBuy(?int $buy): self
     {
         $this->buy = $buy;
 
