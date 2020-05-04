@@ -1,18 +1,14 @@
 ruby-sapphire: &ruby-sapphire
   name: STURDY
-  flavor_text: &ruby-sapphire.flavor_text 'Negates 1-hit KO attacks.'
+  flavor_text: 'Negates 1-hit KO attacks.'
   short_description: &ruby-sapphire.short_description 'Does not prevent regular KOs from full [HP]{mechanic:hp}.'
   description: &ruby-sapphire.description 'Does not prevent regular KOs from full [HP]{mechanic:hp}.'
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Sturdy
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  flavor_text: *ruby-sapphire.flavor_text
-xd: *colosseum
+colosseum: *ruby-sapphire
+xd: *ruby-sapphire
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Sturdy
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
   flavor_text: |
@@ -20,14 +16,14 @@ diamond-pearl: &diamond-pearl
     against 1-hit KO attacks.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
   flavor_text: |
     It is protected against
     1-hit KO attacks.
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   short_description: &black-white.short_description 'Prevents being KOed from full [HP]{mechanic:hp}, leaving 1 HP instead.  Protects against the one-hit KO moves regardless of HP.'
   description: &black-white.description |
     When this Pokémon is at full [HP]{mechanic:hp}, any hit that would knock it out will instead leave it with 1 HP.  Regardless of its current HP, it is also immune to the one-hit KO moves: []{move:fissure}, []{move:guillotine}, []{move:horn-drill}, and []{move:sheer-cold}.
@@ -40,7 +36,7 @@ black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire: *black-white
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   short_description: *black-white.short_description
   description: *black-white.description
   flavor_text: |

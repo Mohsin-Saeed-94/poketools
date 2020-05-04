@@ -1,18 +1,14 @@
 ruby-sapphire: &ruby-sapphire
   name: PICKUP
-  flavor_text: &ruby-sapphire.flavor_text 'May pick up items.'
+  flavor_text: 'May pick up items.'
   short_description: &ruby-sapphire.short_description 'Has no effect in battle.'
   description: &ruby-sapphire.description 'Has no effect in battle.'
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Pickup
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  flavor_text: *ruby-sapphire.flavor_text
-xd: *colosseum
+colosseum: *ruby-sapphire
+xd: *ruby-sapphire
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Pickup
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
   flavor_text: |
@@ -20,14 +16,14 @@ diamond-pearl: &diamond-pearl
     items.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *colosseum.name
+  name: *diamond-pearl.name
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
   flavor_text: &heartgold-soulsilver.flavor_text |
     The Pokémon may
     pick up items.
 black-white: &black-white
-  name: *colosseum.name
+  name: *diamond-pearl.name
   short_description: &black-white.short_description 'Picks up other Pokémon''s used and [Flung]{move:fling} held items.  May also pick up an item after battle.'
   description: &black-white.description |
     At the end of each turn, if another Pokémon consumed or [Flung]{move:fling} a held item that turn, this Pokémon picks up the item if it is not already holding one.  After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one.
@@ -40,7 +36,7 @@ black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire: *black-white
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   short_description: *black-white.short_description
   description: *black-white.description
   flavor_text: |

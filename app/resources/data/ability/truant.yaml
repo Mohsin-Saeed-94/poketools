@@ -1,8 +1,8 @@
 ruby-sapphire: &ruby-sapphire
   name: TRUANT
-  flavor_text: &ruby-sapphire.flavor_text 'Moves only every two turns.'
+  flavor_text: 'Moves only every two turns.'
   short_description: &ruby-sapphire.short_description 'Skips every second turn.'
-  description: &ruby-sapphire.description |
+  description: |
     Every second turn on which this Pokémon should attempt to use a move, it will instead do nothing ("loaf around").
     
     Loafing around interrupts moves that take multiple turns the same way [paralysis]{mechanic:paralysis}, [flinching]{mechanic:flinching}, etc do.  Most such moves, for example []{move:bide} or []{move:rollout}, are simply cut off upon loafing around.  Attacks with a recharge turn, such as []{move:hyper-beam}, do not have to recharge; attacks with a preparation turn, such as []{move:fly}, do not end up being used.  Moves that are forced over multiple turns and keep going through failure, such as []{move:outrage}, []{move:uproar}, or any move forced by []{move:encore}, keep going as usual.
@@ -13,15 +13,11 @@ ruby-sapphire: &ruby-sapphire
     
     This ability can be changed with []{move:role-play} or traded away with []{move:skill-swap}.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: &colosseum.name Truant
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  flavor_text: *ruby-sapphire.flavor_text
-xd: *colosseum
+colosseum: *ruby-sapphire
+xd: *ruby-sapphire
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
-  name: *colosseum.name
+  name: &diamond-pearl.name Truant
   short_description: *ruby-sapphire.short_description
   description: &diamond-pearl.description |
     Every second turn on which this Pokémon should attempt to use a move, it will instead do nothing ("loaf around").
@@ -38,7 +34,7 @@ diamond-pearl: &diamond-pearl
     on consecutive turns.
 platinum: *diamond-pearl
 heartgold-soulsilver: &heartgold-soulsilver
-  name: *colosseum.name
+  name: *diamond-pearl.name
   short_description: *ruby-sapphire.short_description
   description: *diamond-pearl.description
   flavor_text: |
@@ -49,7 +45,7 @@ black-2-white-2: *heartgold-soulsilver
 x-y: *diamond-pearl
 omega-ruby-alpha-sapphire: *diamond-pearl
 sun-moon: &sun-moon
-  name: *colosseum.name
+  name: *diamond-pearl.name
   short_description: *ruby-sapphire.short_description
   description: *diamond-pearl.description
   flavor_text: |

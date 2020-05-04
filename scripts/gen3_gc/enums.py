@@ -64,3 +64,8 @@ item_name_changes = {
     'tinymushroom': 'tiny-mushroom',
     'twistedspoon': 'twisted-spoon',
 }
+
+ability_name_changes = {
+    'lightningrod': 'lightning-rod',
+    'compoundeyes': 'compound-eyes',
+}
