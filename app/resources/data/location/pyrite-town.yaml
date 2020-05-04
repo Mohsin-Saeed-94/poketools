@@ -2,11 +2,15 @@ colosseum:
   region: &colosseum.region orre
   name: &colosseum.name 'Pyrite Town'
   areas:
-    whole-area: &colosseum.areas.whole-area
-      name: 'Whole area'
+    whole-area:
+      name: &colosseum.areas.whole-area.name 'Whole area'
       default: true
-    mart: &colosseum.areas.mart
-      name: 'Poké Mart'
+    mart:
+      name: &colosseum.areas.mart.name 'Poké Mart'
+      shops:
+        mart:
+          name: *colosseum.areas.mart.name
+          default: true
     pyrite-bldg:
       name: 'Pyrite Bldg'
     pyrite-colosseum: &colosseum.areas.pyrite-colosseum
@@ -15,8 +19,21 @@ xd:
   region: *colosseum.region
   name: *colosseum.name
   areas:
-    whole-area: *colosseum.areas.whole-area
-    mart: *colosseum.areas.mart
+    whole-area:
+      name: *colosseum.areas.whole-area.name
+      default: true
+      shops:
+        vending-machine:
+          name: 'Vending Machine'
+          default: true
+    mart:
+      name: *colosseum.areas.mart.name
+      shops:
+        mart-start:
+          name: 'Poké Mart (Start of game)'
+          default: true
+        mart-onbs:
+          name: 'Poké Mart (After ONBS crisis)'
     onbs:
       name: ONBS
     pyrite-colosseum: *colosseum.areas.pyrite-colosseum

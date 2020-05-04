@@ -1,8 +1,8 @@
-colosseum: &colosseum
-  region: orre
-  name: 'Agate Village'
+colosseum:
+  region: &colosseum.region orre
+  name: &colosseum.name 'Agate Village'
   areas:
-    whole-area:
+    whole-area: &colosseum.areas.whole-area
       name: 'Whole area'
       default: true
     mart:
@@ -11,8 +11,24 @@ colosseum: &colosseum
         mart:
           name: *colosseum.areas.mart.name
           default: true
-    relic-cave:
+    relic-cave: &colosseum.areas.relic-cave
       name: 'Relic Cave'
-    relic-stone:
+    relic-stone: &colosseum.areas.relic-stone
       name: 'Relic Stone'
-xd: *colosseum
+xd:
+  region: *colosseum.region
+  name: *colosseum.name
+  areas:
+    whole-area: *colosseum.areas.whole-area
+    mart:
+      name: *colosseum.areas.mart.name
+      shops:
+        mart-start:
+          name: 'Poké Mart (Start of game)'
+          default: true
+        mart-aidan:
+          name: 'Poké Mart (After Aidan''s e-mail)'
+        mart-onbs:
+          name: 'Poké Mart (After ONBS crisis)'
+    relic-cave: *colosseum.areas.relic-cave
+    relic-stone: *colosseum.areas.relic-stone

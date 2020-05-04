@@ -24,6 +24,13 @@ def get_items(game_path: Path, version: Version, items_out_path: Path):
     _get_items(game_path, version)
     _pullup_data(version, items_out_path)
 
+    # csv_items = StringIO()
+    # writer = csv.writer(csv_items)
+    # writer.writerow(['id', 'slug'])
+    # for item_id, item_slug in item_slugs.items():
+    #     writer.writerow(['0x{id:04x}'.format(id=item_id), item_slug])
+    # print(csv_items.getvalue())
+
     return out, item_slugs
 
 
@@ -136,12 +143,18 @@ def _get_items(game_path: Path, version: Version):
             self.position = data[4]
 
     with file_path.open('rb') as container:
-        for item_id in range(1, num_items + 1):
-            container.seek(items_offset + ((item_id - 1) * item_length))
+        for item_index in range(1, num_items + 1):
+            container.seek(items_offset + ((item_index - 1) * item_length))
             item = Item(container.read(item_length))
             if item.pocketId == 0 or item.nameId == 0:
                 # Dummy item
                 continue
+            if version == Version.COLOSSEUM and item_index >= 0x015D:
+                item_id = item_index + 0x97
+            elif version == Version.XD and item_index >= 0x15F:
+                item_id = item_index + 0x96
+            else:
+                item_id = item_index
 
             name = get_string(game_path, name_table, item.nameId)
             slug = slugify(name)
