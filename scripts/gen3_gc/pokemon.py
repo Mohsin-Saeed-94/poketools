@@ -1,6 +1,6 @@
+import csv
 from dataclasses import dataclass
 from io import BufferedReader
-import math
 from pathlib import Path
 import struct
 import sys
@@ -35,7 +35,7 @@ def get_pokemon(game_path: Path, version: Version, pokemon_out_path: Path, abili
     out_pokemon_moves.clear()
 
     print('Dumping Pokemon')
-    species_levelup_data, species_machine_data, species_evolution_data = \
+    species_levelup_data, species_machine_data, species_evolution_data, species_tutor_data = \
         _get_stats(game_path, version, ability_slugs, item_slugs)
     _get_strategy_memo_order()
     _build_forms(version)
@@ -56,7 +56,10 @@ def get_pokemon(game_path: Path, version: Version, pokemon_out_path: Path, abili
     for species_slug, data in species_machine_data.items():
         _get_machine_moves(species_slug, version, move_slugs, machine_moves, data)
 
-    _pullup_data(version, pokemon_out_path)
+    for species_slug, data in species_tutor_data.items():
+        _get_tutor_moves(species_slug, version, move_slugs, data)
+
+    # _pullup_data(version, pokemon_out_path)
 
     return out, out_pokemon_moves, species_slugs, pokemon_slugs
 
@@ -134,6 +137,7 @@ def _get_stats(game_path: Path, version: Version, ability_slugs: dict, item_slug
             self.types = None
             self.abilities = None
             self.machines = None
+            self.tutors = None
             self.hp = None
             self.attack = None
             self.defense = None
@@ -203,7 +207,7 @@ def _get_stats(game_path: Path, version: Version, ability_slugs: dict, item_slug
                 self.levelupMoves = data[37]
                 self.iconId = data[38]
             else:
-                data = struct.unpack('>BBBxHHHHHH2xHH2xII14xHBBBB58s32xHHHHHHHHHHHH30s80s16x', data)
+                data = struct.unpack('>BBBxHHHHHH2xHH2xII14xHBBBB58s12s20xHHHHHHHHHHHH30s80s16x', data)
                 self.growthRate = growth_rate_map[data[0]]
                 self.captureRate = data[1]
                 self.femaleRate = data[2]
@@ -227,24 +231,26 @@ def _get_stats(game_path: Path, version: Version, ability_slugs: dict, item_slug
                     if ability_id > 0:
                         self.abilities.append(ability_slugs[ability_id])
                 self.machines = data[18]
-                self.hp = data[19]
-                self.attack = data[20]
-                self.defense = data[21]
-                self.specialAttack = data[22]
-                self.specialDefense = data[23]
-                self.speed = data[24]
-                self.evHp = data[25]
-                self.evAttack = data[26]
-                self.evDefense = data[27]
-                self.evSpecialAttack = data[28]
-                self.evSpecialDefense = data[29]
-                self.evSpeed = data[30]
-                self.evolution = data[31]
-                self.levelupMoves = data[32]
+                self.tutors = data[19]
+                self.hp = data[20]
+                self.attack = data[21]
+                self.defense = data[22]
+                self.specialAttack = data[23]
+                self.specialDefense = data[24]
+                self.speed = data[25]
+                self.evHp = data[26]
+                self.evAttack = data[27]
+                self.evDefense = data[28]
+                self.evSpecialAttack = data[29]
+                self.evSpecialDefense = data[30]
+                self.evSpeed = data[31]
+                self.evolution = data[32]
+                self.levelupMoves = data[33]
 
     levelup_data = {}
     machine_data = {}
     evolution_data = {}
+    tutor_data = {}
 
     common_rel_file: BufferedReader
     with common_rel_path.open('rb') as common_rel_file:
@@ -368,8 +374,10 @@ def _get_stats(game_path: Path, version: Version, ability_slugs: dict, item_slug
             levelup_data[species_slug] = stats.levelupMoves
             machine_data[species_slug] = stats.machines
             evolution_data[species_slug] = stats.evolution
+            if stats.tutors:
+                tutor_data[species_slug] = stats.tutors
 
-    return levelup_data, machine_data, evolution_data
+    return levelup_data, machine_data, evolution_data, tutor_data
 
 
 def _get_strategy_memo_order():
@@ -429,6 +437,36 @@ def _get_machine_moves(species_slug: str, version: Version, move_slugs: dict, ma
                                                 'learn_method': 'machine',
                                                 'level': None,
                                                 'machine': item_slug,
+                                            }.items()))
+
+
+def _get_tutor_moves(species_slug: str, version: Version, move_slugs: dict, tutor_data: bytes):
+    tutor_move_map = {
+        0: 'body-slam',
+        1: 'double-edge',
+        2: 'seismic-toss',
+        3: 'mimic',
+        4: 'nightmare',
+        5: 'thunder-wave',
+        6: 'swagger',
+        7: 'icy-wind',
+        8: 'substitute',
+        9: 'sky-attack',
+        10: 'selfdestruct',
+        11: 'dream-eater',
+    }
+    for tutor_id, move_slug in tutor_move_map.items():
+        can_learn = bool(tutor_data[tutor_id])
+        if can_learn:
+            for pokemon_slug in pokemon_slugs[species_slug]:
+                out_pokemon_moves.add(tuple({
+                                                'species': species_slug,
+                                                'pokemon': pokemon_slug,
+                                                'version_group': version.value,
+                                                'move': move_slug,
+                                                'learn_method': 'tutor',
+                                                'level': None,
+                                                'machine': None,
                                             }.items()))
 
 
@@ -727,3 +765,26 @@ def write_pokemon(out_data: dict, pokemon_out_path: Path):
         data.update(species_data)
         with yaml_path.open('w') as species_yaml:
             yaml.dump(data, species_yaml)
+
+
+def write_pokemon_moves(used_version_groups, out_data: set, pokemon_move_out_path: Path):
+    print('Writing Pokemon moves')
+
+    # Get existing data, removing those that have just been ripped.
+    delete_learn_methods = [
+        'level-up',
+        'machine',
+        'tutor',
+    ]
+    data = []
+    with pokemon_move_out_path.open('r') as pokemon_moves_csv:
+        for row in progressbar.progressbar(csv.DictReader(pokemon_moves_csv)):
+            if row['version_group'] not in used_version_groups or row['learn_method'] not in delete_learn_methods:
+                data.append(row)
+
+    data.extend([dict(row) for row in out_data])
+    with pokemon_move_out_path.open('w') as pokemon_moves_csv:
+        writer = csv.DictWriter(pokemon_moves_csv, fieldnames=data[0].keys())
+        writer.writeheader()
+        for row in progressbar.progressbar(data):
+            writer.writerow(row)

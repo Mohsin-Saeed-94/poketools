@@ -4,7 +4,7 @@ from pathlib import Path
 from gen3_gc import strings
 from gen3_gc.abilities import get_abilities, write_abilities
 from gen3_gc.items import get_items, update_machines, write_items
-from gen3_gc.pokemon import get_pokemon, write_pokemon
+from gen3_gc.pokemon import get_pokemon, write_pokemon, write_pokemon_moves
 from gen3_gc.shops import get_shop_items, write_shop_items
 from inc import group_by_version_group, group_pokemon
 from .enums import Version
@@ -105,4 +105,6 @@ if __name__ == '__main__':
             write_abilities(out_abilities, args.out_abilities)
         if args.write_pokemon:
             write_pokemon(out_pokemon, args.out_pokemon)
+        if args.write_pokemon_moves:
+            write_pokemon_moves(dumped_versions, out_pokemon_moves, args.out_pokemon_moves)
         exit(0)
