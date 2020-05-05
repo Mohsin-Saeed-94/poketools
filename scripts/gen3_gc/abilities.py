@@ -19,6 +19,13 @@ def get_abilities(game_path: Path, version: Version, abilities_out_path: Path):
     _get_abilities(game_path, version)
     _pullup_data(version, abilities_out_path)
 
+    # csv_items = StringIO()
+    # writer = csv.writer(csv_items)
+    # writer.writerow(['id', 'slug'])
+    # for ability_id, ability_slug in ability_slugs.items():
+    #     writer.writerow(['0x{id:02x}'.format(id=ability_id), ability_slug])
+    # print(csv_items.getvalue())
+
     return out, ability_slugs
 
 

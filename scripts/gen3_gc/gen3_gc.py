@@ -4,8 +4,9 @@ from pathlib import Path
 from gen3_gc import strings
 from gen3_gc.abilities import get_abilities, write_abilities
 from gen3_gc.items import get_items, update_machines, write_items
+from gen3_gc.pokemon import get_pokemon, write_pokemon
 from gen3_gc.shops import get_shop_items, write_shop_items
-from inc import group_by_version_group
+from inc import group_by_version_group, group_pokemon
 from .enums import Version
 from .moves import get_moves, write_moves
 
@@ -77,6 +78,11 @@ if __name__ == '__main__':
         vg_abilities, vg_ability_slugs = get_abilities(dump_path, version, args.out_abilities)
         out_abilities = group_by_version_group(version.value, vg_abilities, out_abilities)
 
+        vg_species, vg_pokemon_moves, vg_species_slugs, vg_pokemon_slugs = \
+            get_pokemon(dump_path, version, args.out_pokemon, vg_ability_slugs, vg_item_slugs, vg_move_slugs, vg_items)
+        out_pokemon = group_pokemon(version.value, version.value, vg_species, out_pokemon)
+        out_pokemon_moves.update(vg_pokemon_moves)
+
         dumped_versions.add(version.value)
 
     if len(dumped_versions) < len(args.version):
@@ -97,4 +103,6 @@ if __name__ == '__main__':
             write_shop_items(dumped_versions, out_shop_items, args.out_shop_items)
         if args.write_abilities:
             write_abilities(out_abilities, args.out_abilities)
+        if args.write_pokemon:
+            write_pokemon(out_pokemon, args.out_pokemon)
         exit(0)

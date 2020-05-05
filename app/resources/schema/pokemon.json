@@ -314,6 +314,28 @@
                     "minProperties": 0,
                     "additionalProperties": false,
                     "properties": {
+                      "bag_item": {
+                        "title": "Item in Bag",
+                        "allOf": [
+                          {
+                            "$ref": "types/identifier.json"
+                          },
+                          {
+                            "type": "string",
+                            "$filters": [
+                              "itemIdentifier",
+                              {
+                                "$func": "itemInVersionGroup",
+                                "$vars": {
+                                  "versionGroup": {
+                                    "$ref": "5#"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
                       "trigger_item": {
                         "title": "Trigger item",
                         "allOf": [

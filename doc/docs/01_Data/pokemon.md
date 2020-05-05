@@ -204,6 +204,10 @@ when *all* of the conditions are true.  See existing data for examples.
 
 :type: mapping\[string: mapping\]
 
+#### bag_item
+Identifier for the [Item](item.md) that must be in the player's bag.
+{{ include:types/identifier }}
+
 #### trigger_item
 Identifier for the [Item](item.md) that will trigger evolution (e.g. evolutionary
 stone).

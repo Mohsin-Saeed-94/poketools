@@ -28,6 +28,13 @@ def get_moves(game_path: Path, version: Version, moves_out_path: Path):
         _get_stats(game_path, common_rel, version)
     _pullup_data(version, moves_out_path)
 
+    # csv_items = StringIO()
+    # writer = csv.writer(csv_items)
+    # writer.writerow(['id', 'slug'])
+    # for move_id, move_slug in move_slugs.items():
+    #     writer.writerow(['0x{id:04x}'.format(id=move_id), move_slug])
+    # print(csv_items.getvalue())
+
     return out, move_slugs
 
 
