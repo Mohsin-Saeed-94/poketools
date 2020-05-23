@@ -1,7 +1,7 @@
 #######################################
 # BASE IMAGE
 #######################################
-FROM php:7.3-fpm-alpine as base
+FROM php:7.4-fpm-alpine as base
 
 WORKDIR /var/www
 
@@ -155,7 +155,7 @@ COPY --from=build /usr/local/bin/composer /usr/local/bin/composer
 
 RUN set -xe \
     && apk add --no-cache $PHPIZE_DEPS \
-    && pecl install xdebug-2.7.1 \
+    && pecl install xdebug-2.9.5 \
     && docker-php-ext-enable xdebug
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
