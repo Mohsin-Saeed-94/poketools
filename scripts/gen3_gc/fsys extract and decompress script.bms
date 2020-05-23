@@ -1,0 +1,57 @@
+endian big
+comtype lzss "12 4 2 2 0"
+
+# 0x00
+idstring "FSYS"
+get TEMP long
+get TEMP long
+get DATA_COUNT long
+# 0x10
+get TEMP long
+get TEMP long
+get INFO_OFFSET long
+get DATA_BASE long
+# 0x20
+get FILE_SIZE long
+
+goto INFO_OFFSET
+# 0x00
+get OFFSET_ARRAY long
+get NAME_TABLE   long
+get BASE_OFFSET  long
+
+For i = 0 < DATA_COUNT
+   goto OFFSET_ARRAY
+   get DATA_OFFSET long
+   
+   goto DATA_OFFSET
+   # 0x00
+   get DATA_HASH   long
+   get OFFSET      long
+   get SIZE        long
+   get TEMP        long
+   # 0x10
+   get TEMP        long
+   get ZSIZE       long
+   get TEMP        long
+   get TEMP        long
+   # 0x20
+   get TEMP        long
+   get NAME_OFFSET long
+   
+   goto NAME_OFFSET
+   get NAME string
+   string NAME += ".fdat"
+   
+   goto OFFSET
+   idstring "LZSS"
+   get SIZE  long
+   get ZSIZE long
+   get DUMMY long
+   savepos OFFSET
+   math ZSIZE -= 12
+
+   clog NAME OFFSET ZSIZE SIZE
+   
+   math OFFSET_ARRAY += 4
+next i
