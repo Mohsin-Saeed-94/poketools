@@ -1,78 +1,100 @@
 red-blue: &red-blue
-  name: &red-blue.name Reflect
+  name: &red-blue.name REFLECT
+  type: &red-blue.type psychic
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 20
+  effect: &red-blue.effect 66
   flags: &red-blue.flags
     - snatch
   categories: &red-blue.categories
     - field-effect
   hits: &red-blue.hits 1
-  turns: &red-blue.turns 1
-  type: &red-blue.type psychic
-  pp: &red-blue.pp 20
+  turns: 5
   priority: &red-blue.priority 0
   target: &red-blue.target users-field
-  damage_class: &red-blue.damage_class special
-  effect: &red-blue.effect 66
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
+  turns: &gold-silver.turns 1
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
   flavor_text: |
     Raises DEFENSE
     with a barrier.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: &ruby-sapphire.target user
+  priority: *red-blue.priority
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  turns: *gold-silver.turns
   contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 15
-  flavor_text: |
+  contest_effect: 6
+  contest_use_after:
+    - calm-mind
+  flavor_text: &ruby-sapphire.flavor_text |
     Creates a wall of light that
     weakens physical attacks.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
+colosseum:
   name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
   effect: *red-blue.effect
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
+firered-leafgreen:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
   flavor_text: |
     A wall of light
     cuts damage from
     physical attacks
     for five turns.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: &diamond-pearl.name Reflect
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
@@ -89,11 +111,11 @@ diamond-pearl: &diamond-pearl
     five turns.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
@@ -102,11 +124,11 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
@@ -119,11 +141,11 @@ black-white: &black-white
     for five turns.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
@@ -135,11 +157,11 @@ x-y:
     reduce damage from physical attacks
     for five turns.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
@@ -147,14 +169,14 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 15
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority

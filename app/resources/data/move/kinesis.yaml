@@ -1,5 +1,9 @@
 red-blue: &red-blue
-  name: &red-blue.name Kinesis
+  name: &red-blue.name KINESIS
+  type: &red-blue.type psychic
+  accuracy: &red-blue.accuracy 80
+  pp: &red-blue.pp 15
+  effect: 23
   flags: &red-blue.flags
     - protect
     - reflectable
@@ -8,95 +12,121 @@ red-blue: &red-blue
     - net-good-stats
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  stat_changes: &red-blue.stat_changes
-    accuracy: -1
-  type: &red-blue.type psychic
-  pp: &red-blue.pp 15
-  accuracy: &red-blue.accuracy 80
+  stat_changes:
+    accuracy: 1
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class special
-  effect: &red-blue.effect 24
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: &gold-silver.effect 24
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  stat_changes: &gold-silver.stat_changes
+    accuracy: -1
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
   flavor_text: |
     Reduces the foe's
     accuracy.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
-  flags: *red-blue.flags
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  stat_changes: *gold-silver.stat_changes
   contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 24
+  contest_effect: 48
   contest_use_before: &ruby-sapphire.contest_use_before
     - confusion
     - psychic
     - teleport
     - future-sight
+  contest_use_after:
+    - psychic
+    - confusion
   flavor_text: |
     Distracts the foe.
     May lower accuracy.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
+colosseum:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Distracts the target.
+    May lower accuracy.
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *gold-silver.stat_changes
+xd:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *gold-silver.stat_changes
 firered-leafgreen:
   name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  stat_changes: *gold-silver.stat_changes
   flavor_text: |
     The user distracts
     the foe by bending
     a spoon. It may
     lower accuracy.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: &diamond-pearl.name Kinesis
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 11
   flavor_text: &diamond-pearl.flavor_text |
@@ -107,89 +137,89 @@ diamond-pearl: &diamond-pearl
     target’s accuracy.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: |
     The user distracts the target
     by bending a spoon.
     It lowers the target’s accuracy.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: &x-y.flavor_text |
     The user distracts the target
     by bending a spoon.
     This lowers the target’s accuracy.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 24
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
+  effect: *gold-silver.effect
   flavor_text: |
     The user distracts the target by bending a spoon.
     This lowers the target’s accuracy.

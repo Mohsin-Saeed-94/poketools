@@ -1,5 +1,10 @@
 gold-silver: &gold-silver
-  name: &gold-silver.name Magnitude
+  name: &gold-silver.name MAGNITUDE
+  power: &gold-silver.power 1
+  type: &gold-silver.type ground
+  accuracy: &gold-silver.accuracy 100
+  pp: &gold-silver.pp 30
+  effect: &gold-silver.effect 127
   flags: &gold-silver.flags
     - protect
     - mirror
@@ -8,71 +13,83 @@ gold-silver: &gold-silver
     - damage
   hits: &gold-silver.hits 1
   turns: &gold-silver.turns 1
-  type: &gold-silver.type ground
-  pp: &gold-silver.pp 30
-  accuracy: &gold-silver.accuracy 100
   priority: &gold-silver.priority 0
   target: &gold-silver.target all-other-pokemon
-  damage_class: &gold-silver.damage_class physical
-  effect: &gold-silver.effect 127
   flavor_text: |
     A ground attack
     with random power.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
-  flags: *gold-silver.flags
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: &ruby-sapphire.flags
+    - protect
+    - mirror
+    - kings-rock
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 11
-  flavor_text: |
+  contest_effect: 47
+  flavor_text: &ruby-sapphire.flavor_text |
     A ground-shaking attack
     of random intensity.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *gold-silver.name
-  flags: *gold-silver.flags
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
+xd:
+  name: *gold-silver.name
+  power: *gold-silver.power
   type: *gold-silver.type
-  pp: *gold-silver.pp
   accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  pp: *gold-silver.pp
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *gold-silver.name
-  flags: *gold-silver.flags
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flags: *ruby-sapphire.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     A ground-shaking
     attack against all
     standing POKéMON.
     Its power varies.
-
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: &diamond-pearl.name Magnitude
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -82,7 +99,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 18
@@ -94,7 +111,7 @@ diamond-pearl: &diamond-pearl
     varies.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -104,11 +121,11 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -118,7 +135,7 @@ black-white: &black-white
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     The user looses a ground-shaking quake
@@ -126,7 +143,7 @@ black-white: &black-white
     Its power varies.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -136,14 +153,14 @@ x-y:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: &x-y.flavor_text |
     The user attacks everything around it
     with a ground-shaking quake.
     Its power varies.
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -153,13 +170,13 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 11
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -169,7 +186,7 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     The user attacks everything around it with a

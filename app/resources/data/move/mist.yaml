@@ -1,74 +1,94 @@
 red-blue: &red-blue
-  name: &red-blue.name Mist
+  name: &red-blue.name MIST
+  type: &red-blue.type ice
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 30
+  effect: &red-blue.effect 47
   flags: &red-blue.flags
     - snatch
   categories: &red-blue.categories
     - field-effect
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type ice
-  pp: &red-blue.pp 30
   priority: &red-blue.priority 0
   target: &red-blue.target users-field
-  damage_class: &red-blue.damage_class special
-  effect: &red-blue.effect 47
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
   flavor_text: |
     Prevents stat
     reduction.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: &ruby-sapphire.target user
+  priority: *red-blue.priority
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
   contest_type: &ruby-sapphire.contest_type beauty
-  contest_effect: &ruby-sapphire.contest_effect 15
-  flavor_text: |
+  contest_effect: 6
+  flavor_text: &ruby-sapphire.flavor_text |
     Creates a mist that stops
     reduction of abilities.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
+colosseum:
   name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
+xd:
+  name: *red-blue.name
   type: *red-blue.type
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
   effect: *red-blue.effect
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+firered-leafgreen:
+  name: *red-blue.name
+  type: *red-blue.type
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *ruby-sapphire.target
+  priority: *red-blue.priority
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
   flavor_text: |
     The ally party is
     protected by a
     mist that prevents
     stat reductions.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: &diamond-pearl.name Mist
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -89,7 +109,7 @@ diamond-pearl: &diamond-pearl
     cut for five turns.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -102,7 +122,7 @@ heartgold-soulsilver:
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -119,7 +139,7 @@ black-white: &black-white
     cut for five turns.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -135,7 +155,7 @@ x-y:
     white mist that prevents any of their stats
     from being lowered for five turns.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -147,10 +167,10 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 15
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits

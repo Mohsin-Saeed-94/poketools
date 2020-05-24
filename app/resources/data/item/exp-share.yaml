@@ -14,7 +14,7 @@ gold-silver:
   description: &gold-silver.description |
     Held
     :   [Experience]{mechanic:experience} is split across two groups: Pokémon who participated in battle, and Pokémon holding this item.  Each Pokémon earns experience as though it had battled alone, divided by the number of Pokémon in its group, then divided by the number of groups. Pokémon holding this item who also participated in battle effectively earn experience twice.
-    
+
     [Fainted]{mechanic:fainted} Pokémon never earn experience, and empty groups are
     ignored; thus, if a single Pokémon is holding this item and the only Pokémon who battled faints from []{move:explosion}, the holder will gain full experience.
 crystal:
@@ -30,34 +30,47 @@ crystal:
   short_description: *gold-silver.short_description
   description: *gold-silver.description
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Exp. Share'
+  name: &ruby-sapphire.name 'EXP. SHARE'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon exp-share.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A hold item that
     gets EXP. points
     from battles.
-  icon: &ruby-sapphire.icon exp-share.png
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *gold-silver.category
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     An item to be held by a POKéMON.
     The holder gets a share of EXP.
-    points without having to battle.
-  icon: *ruby-sapphire.icon
+     points without having to battle.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Exp. Share'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   flags: *gold-silver.flags
@@ -73,7 +86,7 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   flags: *gold-silver.flags
@@ -86,7 +99,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
   flags: *gold-silver.flags

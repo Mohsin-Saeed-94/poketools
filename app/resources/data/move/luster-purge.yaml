@@ -1,6 +1,13 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Luster Purge'
-  stat_change_chance: &ruby-sapphire.stat_change_chance 50
+  name: &ruby-sapphire.name 'LUSTER PURGE'
+  power: &ruby-sapphire.power 70
+  type: &ruby-sapphire.type psychic
+  accuracy: &ruby-sapphire.accuracy 100
+  pp: &ruby-sapphire.pp 5
+  effect: &ruby-sapphire.effect 73
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
+  effect_chance: &ruby-sapphire.effect_chance 50
   flags: &ruby-sapphire.flags
     - protect
     - mirror
@@ -11,64 +18,73 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   stat_changes: &ruby-sapphire.stat_changes
     special-defense: -1
-  type: &ruby-sapphire.type psychic
-  power: &ruby-sapphire.power 70
-  pp: &ruby-sapphire.pp 5
-  accuracy: &ruby-sapphire.accuracy 100
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 73
-  effect_chance: &ruby-sapphire.effect_chance 50
+  stat_change_chance: &ruby-sapphire.stat_change_chance 50
   contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 9
-  flavor_text: |
+  contest_effect: 11
+  contest_use_after:
+    - calm-mind
+  flavor_text: &ruby-sapphire.flavor_text |
     Attacks with a burst of
     light. May lower SP. DEF.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *ruby-sapphire.name
-  stat_change_chance: *ruby-sapphire.stat_change_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *ruby-sapphire.effect_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
+  stat_change_chance: *ruby-sapphire.stat_change_chance
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class special
+  flavor_text: *ruby-sapphire.flavor_text
   effect_chance: *ruby-sapphire.effect_chance
-xd: *colosseum
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  stat_changes: *ruby-sapphire.stat_changes
+  stat_change_chance: *ruby-sapphire.stat_change_chance
 firered-leafgreen:
   name: *ruby-sapphire.name
-  stat_change_chance: *ruby-sapphire.stat_change_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  effect_chance: *ruby-sapphire.effect_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  stat_change_chance: *ruby-sapphire.stat_change_chance
   flavor_text: |
     A burst of light
     injures the foe. It
     may also lower the
-    foe’s SP. DEF.
-
+    foe's SP.  DEF.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Luster Purge'
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -81,7 +97,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -94,7 +110,7 @@ diamond-pearl: &diamond-pearl
     Sp. Def stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -107,12 +123,12 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -125,7 +141,7 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
@@ -134,7 +150,7 @@ black-white: &black-white
     Sp. Def stat.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -147,7 +163,7 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -155,7 +171,7 @@ x-y:
     of light. This may also lower the target’s
     Sp. Def stat.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -168,14 +184,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 9
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -188,7 +204,7 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |

@@ -694,6 +694,9 @@ SQL
             if (isset($evolutionCondition['console_inverted'])) {
                 $evolutionCondition['console_inverted'] = (bool)$evolutionCondition['console_inverted'];
             }
+            if (isset($evolutionCondition['time_of_day'])) {
+                $evolutionCondition['time_of_day'] = [$evolutionCondition['time_of_day']];
+            }
             $evolutionConditions[$trigger][] = $evolutionCondition;
         }
 

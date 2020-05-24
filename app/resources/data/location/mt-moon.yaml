@@ -8,7 +8,7 @@ red-blue: &red-blue
       name: B2F
     1f: &red-blue.areas.1f
       name: 1F
-      default: &red-blue.areas.1f.default true
+      default: true
   map:
     map: &red-blue.map.map kanto
     z: &red-blue.map.z 10
@@ -17,16 +17,16 @@ yellow: *red-blue
 gold-silver: &gold-silver
   region: *red-blue.region
   name: *red-blue.name
-  areas: &gold-silver.areas
-    1f: *red-blue.areas.1f
-    2f:
-      name: 2F
-    mt-moon-square:
+  areas:
+    cave:
+      name: Cave
+      default: true
+    mt-moon-square: &gold-silver.areas.mt-moon-square
       name: 'Mt. Moon Square'
       shops:
         shop:
           name: Shop
-          default: *red-blue.areas.1f.default
+          default: true
   map:
     map: *red-blue.map.map
     overlay: '<rect width="8" height="8" x="64" y="32" />'
@@ -42,8 +42,11 @@ firered-leafgreen:
 heartgold-soulsilver:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *gold-silver.areas
+  areas:
+    1f: *red-blue.areas.1f
+    2f:
+      name: 2F
+    mt-moon-square: *gold-silver.areas.mt-moon-square
   map:
     map: *red-blue.map.map
-    overlay: |
-      <circle r="3" cy="37" cx="115" />
+    overlay: '<circle r="3" cy="37" cx="115" />'

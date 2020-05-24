@@ -8,6 +8,7 @@ use App\Entity\PokemonEvolutionCondition;
 use App\Entity\PokemonEvolutionCondition\ConsoleInvertedEvolutionCondition;
 use App\Entity\PokemonEvolutionCondition\GenderEvolutionCondition;
 use App\Entity\PokemonEvolutionCondition\HeldItemEvolutionCondition;
+use App\Entity\PokemonEvolutionCondition\ItemInBagEvolutionCondition;
 use App\Entity\PokemonEvolutionCondition\KnowsMoveEvolutionCondition;
 use App\Entity\PokemonEvolutionCondition\KnowsMoveTypeEvolutionCondition;
 use App\Entity\PokemonEvolutionCondition\LocationEvolutionCondition;
@@ -243,8 +244,8 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
         array $values
     ): PokemonEvolutionCondition {
         /** @var string[] $conditionClassMap */
-        // @formatter:off
         $conditionClassMap = [
+            'bag_item' => ItemInBagEvolutionCondition::class,
             'trigger_item' => TriggerItemEvolutionCondition::class,
             'minimum_level' => MinimumLevelEvolutionCondition::class,
             'gender' => GenderEvolutionCondition::class,
@@ -264,10 +265,9 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
             'console_inverted' => ConsoleInvertedEvolutionCondition::class,
             'no_conditions' => NoConditionsEvolutionCondition::class,
         ];
-        // @formatter:on
         /** @var callable[] $createConditionCallableMap */
-        // @formatter:off
         $createConditionCallableMap = [
+            'bag_item' => [$this, 'itemInBagEvolutionCondition'],
             'trigger_item' => [$this, 'triggerItemEvolutionCondition'],
             'minimum_level' => [$this, 'minimumLevelEvolutionCondition'],
             'gender' => [$this, 'genderEvolutionCondition'],
@@ -287,7 +287,6 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
             'console_inverted' => [$this, 'consoleInvertedEvolutionCondition'],
             'no_conditions' => [$this, 'noConditionsEvolutionCondition'],
         ];
-        // @formatter:on
 
         // Sanity checks
         if (!isset($conditionClassMap[$conditionName])
@@ -328,6 +327,37 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
     public function defaultResult()
     {
         $this->nonexistantPokemon();
+    }
+
+    /**
+     * @param \App\Entity\EvolutionTrigger $trigger
+     * @param \App\Entity\PokemonEvolutionCondition\ItemInBagEvolutionCondition $condition
+     * @param \App\Entity\VersionGroup $versionGroup
+     * @param array $value
+     * @return \App\Entity\PokemonEvolutionCondition\ItemInBagEvolutionCondition
+     */
+    protected function itemInBagEvolutionCondition(
+        EvolutionTrigger $trigger,
+        ItemInBagEvolutionCondition $condition,
+        VersionGroup $versionGroup,
+        array $value
+    ): ItemInBagEvolutionCondition {
+        $itemName = array_pop($value);
+        /** @var \App\Entity\Item $item */
+        $item = $this->referenceStore->get(Item::class, ['identifier' => $itemName]);
+        $item = $item->findChildByGrouping($versionGroup);
+        if (!$item) {
+            throw new \DomainException(
+                sprintf(
+                    'The item "%s" is not available in the version group "%s".',
+                    $itemName,
+                    $versionGroup->getName()
+                )
+            );
+        }
+        $condition->setBagItem($item);
+
+        return $condition;
     }
 
     /**
@@ -718,15 +748,17 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
         VersionGroup $versionGroup,
         array $value
     ): TimeOfDayEvolutionCondition {
-        /** @var \App\Entity\TimeOfDay $time */
-        $time = $this->referenceStore->get(
-            TimeOfDay::class,
-            [
-                'generation' => $versionGroup->getGeneration()->getNumber(),
-                'identifier' => array_pop($value),
-            ]
-        );
-        $condition->setTimeOfDay($time);
+        foreach ($value as $timeOfDayIdentifier) {
+            /** @var \App\Entity\TimeOfDay $time */
+            $time = $this->referenceStore->get(
+                TimeOfDay::class,
+                [
+                    'generation' => $versionGroup->getGeneration()->getNumber(),
+                    'identifier' => $timeOfDayIdentifier,
+                ]
+            );
+            $condition->addTimeOfDay($time);
+        }
 
         return $condition;
     }

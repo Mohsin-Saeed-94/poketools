@@ -1,6 +1,11 @@
 gold-silver: &gold-silver
-  name: &gold-silver.name 'Iron Tail'
-  stat_change_chance: &gold-silver.stat_change_chance 30
+  name: &gold-silver.name 'IRON TAIL'
+  power: &gold-silver.power 100
+  type: &gold-silver.type steel
+  accuracy: &gold-silver.accuracy 75
+  pp: &gold-silver.pp 15
+  effect: &gold-silver.effect 70
+  effect_chance: &gold-silver.effect_chance 30
   flags: &gold-silver.flags
     - contact
     - protect
@@ -12,85 +17,93 @@ gold-silver: &gold-silver
   turns: &gold-silver.turns 1
   stat_changes: &gold-silver.stat_changes
     defense: -1
-  type: &gold-silver.type steel
-  power: &gold-silver.power 100
-  pp: &gold-silver.pp 15
-  accuracy: &gold-silver.accuracy 75
+  stat_change_chance: &gold-silver.stat_change_chance 30
   priority: &gold-silver.priority 0
   target: &gold-silver.target selected-pokemon
-  damage_class: &gold-silver.damage_class physical
-  effect: &gold-silver.effect 70
-  effect_chance: &gold-silver.effect_chance 30
   flavor_text: |
     An attack that may
     reduce DEFENSE.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
-  stat_change_chance: *gold-silver.stat_change_chance
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 4
-  flavor_text: |
+  contest_effect: 13
+  flavor_text: &ruby-sapphire.flavor_text |
     Attacks with a rock-hard
     tail. May lower DEFENSE.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *gold-silver.name
-  stat_change_chance: *gold-silver.stat_change_chance
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *gold-silver.effect_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
+  stat_change_chance: *gold-silver.stat_change_chance
+xd:
+  name: *gold-silver.name
   power: *gold-silver.power
-  pp: *gold-silver.pp
+  type: *gold-silver.type
   accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  pp: *gold-silver.pp
   effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
   effect_chance: *gold-silver.effect_chance
-xd: *colosseum
+  flags: *gold-silver.flags
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
+  stat_changes: *gold-silver.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
 firered-leafgreen:
   name: *gold-silver.name
-  stat_change_chance: *gold-silver.stat_change_chance
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  effect_chance: *gold-silver.effect_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   stat_changes: *gold-silver.stat_changes
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
+  stat_change_chance: *gold-silver.stat_change_chance
   flavor_text: |
     An attack with a
     steel-hard tail.
     It may lower the
-    foe’s DEFENSE stat.
-
+    foe's DEFENSE stat.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: &diamond-pearl.name 'Iron Tail'
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -103,7 +116,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -116,7 +129,7 @@ diamond-pearl: &diamond-pearl
     Defense stat.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -129,12 +142,12 @@ heartgold-soulsilver:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -147,7 +160,7 @@ black-white: &black-white
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -156,7 +169,7 @@ black-white: &black-white
     Defense stat.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -169,7 +182,7 @@ x-y:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -177,7 +190,7 @@ x-y:
     tail. This may also lower the target’s
     Defense stat.
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -190,14 +203,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 4
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   stat_change_chance: *gold-silver.stat_change_chance
   flags: *gold-silver.flags
   categories: *gold-silver.categories
@@ -210,7 +223,7 @@ sun-moon: &sun-moon
   accuracy: *gold-silver.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

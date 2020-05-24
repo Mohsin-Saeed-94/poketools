@@ -8,7 +8,7 @@ red-blue: &red-blue
   description: &red-blue.description |
     When this item is used on some Pokémon, the Pokémon will evolve.  Below is a list
     of compatible Pokémon.
-    
+
     {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "leaf-stone"})}}
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -24,40 +24,51 @@ gold-silver: &gold-silver
   description: *red-blue.description
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Leaf Stone'
+  name: *red-blue.name
   category: *red-blue.category
   pocket: *red-blue.pocket
-  buy: &ruby-sapphire.buy 3000
-  sell: &ruby-sapphire.sell 1500
-  short_description: *red-blue.short_description
-  description: *red-blue.description
-  flavor_text: |
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon leaf-stone.png
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     Makes certain
     species of POKéMON
     evolve.
-  icon: &ruby-sapphire.icon leaf-stone.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *red-blue.category
-  pocket: *red-blue.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
   short_description: *red-blue.short_description
   description: *red-blue.description
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *red-blue.category
+  short_description: *red-blue.short_description
+  description: *red-blue.description
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *red-blue.buy
+  sell: *red-blue.sell
   flavor_text: |
     A peculiar stone that makes certain
     species of POKéMON evolve.
-    It has a leaf pattern.
-  icon: *ruby-sapphire.icon
+     It has a leaf pattern.
+  short_description: *red-blue.short_description
+  description: *red-blue.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Leaf Stone'
   category: *red-blue.category
   pocket: *red-blue.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &diamond-pearl.buy 3000
+  sell: &diamond-pearl.sell 1500
   fling_effect: damage
   fling_power: 30
   flags:
@@ -71,11 +82,11 @@ diamond-pearl: &diamond-pearl
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: &heartgold-soulsilver
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *red-blue.category
   pocket: *red-blue.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: *red-blue.short_description
@@ -85,11 +96,11 @@ heartgold-soulsilver: &heartgold-soulsilver
 black-white: *heartgold-soulsilver
 black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *red-blue.category
   pocket: *red-blue.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: *red-blue.short_description
@@ -101,11 +112,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *red-blue.category
   pocket: *red-blue.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: *red-blue.short_description

@@ -1,9 +1,12 @@
 gold-silver: &gold-silver
-  name: BRIGHTPOWDER
-  category: &gold-silver.category held-items
+  name: &gold-silver.name BRIGHTPOWDER
   pocket: &gold-silver.pocket misc
-  buy: 10
-  sell: 5
+  buy: &gold-silver.buy 10
+  sell: &gold-silver.sell 5
+  flavor_text: |
+    Lowers the foe's
+    accuracy. (HOLD)
+  category: &gold-silver.category held-items
   flags: &gold-silver.flags
     - holdable
     - holdable-active
@@ -11,47 +14,53 @@ gold-silver: &gold-silver
   description: &gold-silver.description |
     Held in battle
     :   Moves targeting the holder have 0.9× chance to hit.
-  flavor_text: |
-    Lowers the foe's
-    accuracy. (HOLD)
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name BrightPowder
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 4000
-  sell: &ruby-sapphire.sell 2000
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon bright-powder.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A hold item that
     casts a glare to
     reduce accuracy.
-  icon: &ruby-sapphire.icon bright-powder.png
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
+colosseum: &colosseum
+  name: *gold-silver.name
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *gold-silver.category
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     An item to be held by a POKéMON.
     It casts a tricky glare that lowers
-    the opponent’s accuracy.
-  icon: *ruby-sapphire.icon
+     the opponent's accuracy.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: BrightPowder
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: 4000
+  sell: 2000
   fling_effect: damage
   fling_power: 10
   flags: *gold-silver.flags

@@ -1,16 +1,18 @@
 red-blue: &red-blue
   region: &red-blue.region kanto
   name: &red-blue.name 'Cerulean City'
-  areas: &red-blue.areas
+  areas:
     whole-area:
       name: &red-blue.areas.whole-area.name 'Whole area'
-      default: &red-blue.areas.whole-area.default true
+      default: true
       shops:
         mart: &red-blue.areas.whole-area.shops.mart
-          name: 'Poké Mart'
-          default: *red-blue.areas.whole-area.default
+          name: &red-blue.areas.whole-area.shops.mart.name 'Poké Mart'
+          default: true
         bike-shop:
           name: 'Miracle Cycle'
+    gym: &red-blue.areas.gym
+      name: Gym
   map:
     map: &red-blue.map.map kanto
     overlay: '<rect x="96" y="16" width="8" height="8" />'
@@ -21,8 +23,8 @@ gold-silver: &gold-silver
   areas: &gold-silver.areas
     whole-area:
       name: *red-blue.areas.whole-area.name
-      default: *red-blue.areas.whole-area.default
-      shops:
+      default: true
+      shops: &gold-silver.areas.whole-area.shops
         mart: *red-blue.areas.whole-area.shops.mart
   map:
     map: *red-blue.map.map
@@ -31,7 +33,14 @@ crystal: *gold-silver
 firered-leafgreen:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas:
+    whole-area:
+      name: *red-blue.areas.whole-area.name
+      default: true
+    gym: *red-blue.areas.gym
+    mart:
+      name: *red-blue.areas.whole-area.shops.mart.name
+      shops: *gold-silver.areas.whole-area.shops
   map:
     map: *red-blue.map.map
     overlay: '<rect width="8" height="8" x="120" y="40" />'
@@ -41,5 +50,4 @@ heartgold-soulsilver:
   areas: *gold-silver.areas
   map:
     map: *red-blue.map.map
-    overlay: |
-      <rect x="142" y="32" width="18" height="18" rx="3" ry="3" />
+    overlay: '<rect x="142" y="32" width="18" height="18" rx="3" ry="3" />'

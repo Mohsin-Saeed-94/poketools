@@ -1,84 +1,115 @@
 red-blue: &red-blue
-  name: &red-blue.name Bide
+  name: &red-blue.name BIDE
+  type: &red-blue.type normal
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 10
+  effect: &red-blue.effect 27
   flags: &red-blue.flags
     - contact
     - protect
   categories: &red-blue.categories
     - damage
   hits: &red-blue.hits 1
-  turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  pp: &red-blue.pp 10
+  turns: 2-3
   priority: &red-blue.priority 1
   target: &red-blue.target user
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 27
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
+  turns: &gold-silver.turns 1
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
   flavor_text: |
     Waits 2-3 turns &
     hits back double.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
-  flags: *red-blue.flags
+  power: &ruby-sapphire.power 1
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: &ruby-sapphire.priority 0
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - kings-rock
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
-  type: *red-blue.type
-  pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
+  turns: *gold-silver.turns
   contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 15
-  flavor_text: |
+  contest_effect: 6
+  flavor_text: &ruby-sapphire.flavor_text |
     Endures attack for 2
     turns to retaliate double.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
+colosseum:
   name: *red-blue.name
-  flags: *red-blue.flags
+  power: *ruby-sapphire.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
+xd:
+  name: *red-blue.name
+  power: *ruby-sapphire.power
   type: *red-blue.type
+  accuracy: *red-blue.accuracy
   pp: *red-blue.pp
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
   effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
+firered-leafgreen:
+  name: *red-blue.name
+  power: *ruby-sapphire.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *ruby-sapphire.priority
+  flags: *ruby-sapphire.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
   flavor_text: |
     The user endures
     attacks for two
     turns, then strikes
     back double.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: &diamond-pearl.name Bide
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 15
@@ -90,29 +121,29 @@ diamond-pearl: &diamond-pearl
     the damage taken.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: &black-white.flavor_text |
     The user endures attacks for two
@@ -121,31 +152,31 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 15
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *diamond-pearl.name
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   pp: *red-blue.pp
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   flavor_text: |
     The user endures attacks for two turns, then strikes

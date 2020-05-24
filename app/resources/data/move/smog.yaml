@@ -1,5 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Smog
+  name: &red-blue.name SMOG
+  power: &red-blue.power 20
+  type: &red-blue.type poison
+  accuracy: &red-blue.accuracy 70
+  pp: &red-blue.pp 20
+  effect: 34
   ailment: &red-blue.ailment poison
   ailment_chance: &red-blue.ailment_chance 40
   flags: &red-blue.flags
@@ -10,89 +15,111 @@ red-blue: &red-blue
     - ailment
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type poison
-  power: &red-blue.power 20
-  pp: &red-blue.pp 20
-  accuracy: &red-blue.accuracy 70
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 3
-  effect_chance: &red-blue.effect_chance 40
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: &gold-silver.effect 3
+  effect_chance: &gold-silver.effect_chance 40
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
   flavor_text: |
     An attack that may
     poison the foe.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *red-blue.flags
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
   contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 5
+  contest_effect: 14
   contest_use_before: &ruby-sapphire.contest_use_before
     - smokescreen
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     An exhaust-gas attack
     that may also poison.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
+colosseum:
   name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *gold-silver.effect_chance
+  flags: *red-blue.flags
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  priority: *red-blue.priority
+  damage_class: physical
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *gold-silver.effect_chance
+  flags: *red-blue.flags
+  ailment: *red-blue.ailment
+  ailment_chance: *red-blue.ailment_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+firered-leafgreen:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
+  flags: *red-blue.flags
+  ailment: *red-blue.ailment
+  ailment_chance: *red-blue.ailment_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
   flavor_text: |
     The foe is attacked
     with exhaust gases.
     It may also poison
     the foe.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: &diamond-pearl.name Smog
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -106,8 +133,8 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class special
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *gold-silver.effect
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: &diamond-pearl.flavor_text |
@@ -118,7 +145,7 @@ diamond-pearl: &diamond-pearl
     the target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -132,11 +159,11 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *gold-silver.effect
+  effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -150,15 +177,15 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *gold-silver.effect
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is attacked with a
     discharge of filthy gases.
     It may also poison the target.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -172,14 +199,14 @@ x-y:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *gold-silver.effect
+  effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
     The target is attacked with a
     discharge of filthy gases.
     This may also poison the target.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -193,14 +220,14 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *gold-silver.effect
+  effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 5
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
   ailment_chance: *red-blue.ailment_chance
   flags: *red-blue.flags
@@ -214,8 +241,8 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *gold-silver.effect
+  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The target is attacked with a discharge of filthy
     gases. This may also poison the target.

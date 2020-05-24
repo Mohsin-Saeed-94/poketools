@@ -1,19 +1,14 @@
 red-blue:
-  name: &red-blue.name Fearow
+  name: &red-blue.name FEAROW
   position: &red-blue.position 22
   numbers: &red-blue.numbers
     national: &red-blue.numbers.national 22
     kanto: 22
   pokemon:
     fearow:
-      genus: &red-blue.pokemon.fearow.genus 'Beak Pokémon'
-      evolution_parent: &red-blue.pokemon.fearow.evolution_parent spearow/spearow
-      capture_rate: &red-blue.pokemon.fearow.capture_rate 90
-      growth_rate: &red-blue.pokemon.fearow.growth_rate medium
       name: *red-blue.name
       default: &red-blue.pokemon.fearow.default true
-      height: &red-blue.pokemon.fearow.height 12
-      weight: &red-blue.pokemon.fearow.weight 380
+      capture_rate: &red-blue.pokemon.fearow.capture_rate 90
       experience: &red-blue.pokemon.fearow.experience 162
       types: &red-blue.pokemon.fearow.types
         - normal
@@ -34,24 +29,29 @@ red-blue:
         special:
           base_value: 61
           effort_change: 61
-      evolution_conditions: &red-blue.pokemon.fearow.evolution_conditions
-        level-up:
-          minimum_level: 20
+      growth_rate: &red-blue.pokemon.fearow.growth_rate medium
+      genus: &red-blue.pokemon.fearow.genus 'BEAK Pokémon'
+      height: &red-blue.pokemon.fearow.height 11
+      weight: &red-blue.pokemon.fearow.weight 3810
       flavor_text:
         red: |
           With its huge and
           magnificent wings,
           it can keep aloft
           without ever
-          having to land
+           having to land
           for rest.
         blue: |
           With its huge and
           magnificent wings,
           it can keep aloft
           without ever
-          having to land
+           having to land
           for rest.
+      evolution_parent: &red-blue.pokemon.fearow.evolution_parent spearow/spearow
+      evolution_conditions: &red-blue.pokemon.fearow.evolution_conditions
+        level-up:
+          minimum_level: 20
       forms:
         fearow:
           name: *red-blue.name
@@ -59,12 +59,11 @@ red-blue:
           default: *red-blue.pokemon.fearow.default
           battle_only: &red-blue.pokemon.fearow.forms.fearow.battle_only false
           sprites:
+            - red-blue/fearow-default.png
             - red-blue/gray/fearow-default.png
             - red-blue/back/fearow-default.png
-            - red-blue/fearow-default.png
           art: &red-blue.pokemon.fearow.forms.fearow.art
             - fearow-default.png
-          footprint: &red-blue.pokemon.fearow.forms.fearow.footprint fearow.png
           cry: &red-blue.pokemon.fearow.forms.fearow.cry gen5/fearow-default.webm
           icon: &red-blue.pokemon.fearow.forms.fearow.icon gen1/bird_m.png
 yellow:
@@ -73,26 +72,26 @@ yellow:
   numbers: *red-blue.numbers
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
-      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      capture_rate: *red-blue.pokemon.fearow.capture_rate
-      growth_rate: *red-blue.pokemon.fearow.growth_rate
       name: *red-blue.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
+      capture_rate: *red-blue.pokemon.fearow.capture_rate
       experience: *red-blue.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
       stats: *red-blue.pokemon.fearow.stats
-      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
+      growth_rate: *red-blue.pokemon.fearow.growth_rate
+      genus: *red-blue.pokemon.fearow.genus
+      height: *red-blue.pokemon.fearow.height
+      weight: *red-blue.pokemon.fearow.weight
       flavor_text:
         yellow: |
           A POKéMON that
           dates back many
           years. If it
           senses danger, it
-          flies high and
+           flies high and
           away, instantly.
+      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
+      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
       forms:
         fearow:
           name: *red-blue.name
@@ -100,39 +99,26 @@ yellow:
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
           sprites:
+            - yellow/fearow-default.png
             - yellow/gray/fearow-default.png
             - yellow/back/fearow-default.png
-            - yellow/gbc/fearow-default.png
-            - yellow/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
           icon: *red-blue.pokemon.fearow.forms.fearow.icon
 gold-silver:
   name: *red-blue.name
-  position: *red-blue.position
+  position: &gold-silver.position 21
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 14
+    original-johto: 13
+    original-johto-abc: 47
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
-      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      female_rate: &gold-silver.pokemon.fearow.female_rate 50
-      capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: &gold-silver.pokemon.fearow.happiness 70
-      baby: &gold-silver.pokemon.fearow.baby false
-      hatch_steps: &gold-silver.pokemon.fearow.hatch_steps 15
-      growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: &gold-silver.pokemon.fearow.forms_switchable false
       name: *red-blue.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
+      capture_rate: *red-blue.pokemon.fearow.capture_rate
       experience: *red-blue.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
-      egg_groups: &gold-silver.pokemon.fearow.egg_groups
-        - flying
       stats: &gold-silver.pokemon.fearow.stats
         hp:
           base_value: 65
@@ -152,7 +138,18 @@ gold-silver:
         special-defense:
           base_value: 61
           effort_change: 61
-      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
+      growth_rate: *red-blue.pokemon.fearow.growth_rate
+      female_rate: &gold-silver.pokemon.fearow.female_rate 50
+      hatch_steps: &gold-silver.pokemon.fearow.hatch_steps 15
+      egg_groups: &gold-silver.pokemon.fearow.egg_groups
+        - flying
+      wild_held_items:
+        gold: &gold-silver.pokemon.fearow.wild_held_items.gold
+          sharp-beak: 2
+        silver: *gold-silver.pokemon.fearow.wild_held_items.gold
+      genus: *red-blue.pokemon.fearow.genus
+      height: *red-blue.pokemon.fearow.height
+      weight: &gold-silver.pokemon.fearow.weight 381
       flavor_text:
         gold: |
           It shoots itself
@@ -168,6 +165,8 @@ gold-silver:
           eat small insects
           that hide under
           the ground.
+      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
+      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
       forms:
         fearow:
           name: *red-blue.name
@@ -175,37 +174,33 @@ gold-silver:
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
           sprites:
+            - gold-silver/fearow-default.png
             - gold-silver/back/fearow-default.png
             - gold-silver/shiny/fearow-default.png
-            - gold-silver/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
           icon: &gold-silver.pokemon.fearow.forms.fearow.icon gen2/bird.png
 crystal:
   name: *red-blue.name
-  position: *red-blue.position
+  position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
-      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      female_rate: *gold-silver.pokemon.fearow.female_rate
-      capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
-      hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
-      growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
+      capture_rate: *red-blue.pokemon.fearow.capture_rate
       experience: *red-blue.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
-      egg_groups: *gold-silver.pokemon.fearow.egg_groups
       stats: *gold-silver.pokemon.fearow.stats
-      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
+      growth_rate: *red-blue.pokemon.fearow.growth_rate
+      female_rate: *gold-silver.pokemon.fearow.female_rate
+      hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
+      egg_groups: *gold-silver.pokemon.fearow.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.fearow.wild_held_items.gold
+      genus: *red-blue.pokemon.fearow.genus
+      height: *red-blue.pokemon.fearow.height
+      weight: *gold-silver.pokemon.fearow.weight
       flavor_text:
         crystal: |
           It uses its long
@@ -214,6 +209,8 @@ crystal:
           long reach, so it
           must be treated
           with caution.
+      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
+      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
       forms:
         fearow:
           name: *red-blue.name
@@ -221,13 +218,10 @@ crystal:
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
           sprites:
+            - crystal/fearow-default.png
             - crystal/back/fearow-default.png
             - crystal/shiny/fearow-default.png
-            - crystal/animated/shiny/fearow-default.webm
-            - crystal/animated/fearow-default.webm
-            - crystal/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
           icon: *gold-silver.pokemon.fearow.forms.fearow.icon
 ruby-sapphire:
@@ -235,25 +229,15 @@ ruby-sapphire:
   position: *red-blue.position
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
+    hoenn: 224
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
-      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      color: &ruby-sapphire.pokemon.fearow.color brown
-      female_rate: *gold-silver.pokemon.fearow.female_rate
-      capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
-      hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
-      growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: &ruby-sapphire.pokemon.fearow.experience 155
+      forms_switchable: &ruby-sapphire.pokemon.fearow.forms_switchable false
+      capture_rate: *red-blue.pokemon.fearow.capture_rate
+      experience: *red-blue.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
-      egg_groups: *gold-silver.pokemon.fearow.egg_groups
       stats: &ruby-sapphire.pokemon.fearow.stats
         hp:
           base_value: 65
@@ -271,17 +255,24 @@ ruby-sapphire:
           base_value: 61
           effort_change: 0
         special-defense:
-          base_value: 61
+          base_value: 65
           effort_change: 0
-      abilities: &ruby-sapphire.pokemon.fearow.abilities
-        keen-eye: &ruby-sapphire.pokemon.fearow.abilities.keen-eye
-          hidden: false
-          position: 1
+      growth_rate: *red-blue.pokemon.fearow.growth_rate
+      female_rate: *gold-silver.pokemon.fearow.female_rate
+      hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
+      egg_groups: *gold-silver.pokemon.fearow.egg_groups
       wild_held_items:
         ruby: &ruby-sapphire.pokemon.fearow.wild_held_items.ruby
           sharp-beak: 5
         sapphire: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
-      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
+      happiness: &ruby-sapphire.pokemon.fearow.happiness 70
+      abilities: &ruby-sapphire.pokemon.fearow.abilities
+        keen-eye: &ruby-sapphire.pokemon.fearow.abilities.keen-eye
+          hidden: false
+          position: 1
+      genus: *red-blue.pokemon.fearow.genus
+      height: &ruby-sapphire.pokemon.fearow.height 12
+      weight: &ruby-sapphire.pokemon.fearow.weight 380
       flavor_text:
         ruby: |
           FEAROW is recognized by its long neck
@@ -305,40 +296,38 @@ ruby-sapphire:
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
           icon: &ruby-sapphire.pokemon.fearow.forms.fearow.icon gen5/fearow-default.png
           sprites:
+            - ruby-sapphire/fearow-default.png
             - ruby-sapphire/back/fearow-default.png
             - ruby-sapphire/shiny/fearow-default.png
-            - ruby-sapphire/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: &ruby-sapphire.pokemon.fearow.forms.fearow.footprint fearow.png
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
+      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
+      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
 emerald:
   name: *red-blue.name
   position: *red-blue.position
   numbers: *ruby-sapphire.numbers
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
-      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      color: *ruby-sapphire.pokemon.fearow.color
-      female_rate: *gold-silver.pokemon.fearow.female_rate
-      capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
-      hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
-      growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      capture_rate: *red-blue.pokemon.fearow.capture_rate
+      experience: *red-blue.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
-      egg_groups: *gold-silver.pokemon.fearow.egg_groups
       stats: *ruby-sapphire.pokemon.fearow.stats
-      abilities: *ruby-sapphire.pokemon.fearow.abilities
+      growth_rate: *red-blue.pokemon.fearow.growth_rate
+      female_rate: *gold-silver.pokemon.fearow.female_rate
+      hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
+      egg_groups: *gold-silver.pokemon.fearow.egg_groups
       wild_held_items:
         emerald: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
-      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      abilities: *ruby-sapphire.pokemon.fearow.abilities
+      genus: *red-blue.pokemon.fearow.genus
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
       flavor_text:
         emerald: |
           Its long neck and elongated beak are
@@ -353,77 +342,108 @@ emerald:
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
           icon: *ruby-sapphire.pokemon.fearow.forms.fearow.icon
           sprites:
-            - emerald/shiny/fearow-default.png
-            - emerald/animated/shiny/fearow-default.webm
-            - emerald/animated/fearow-default.webm
             - emerald/fearow-default.png
+            - emerald/shiny/fearow-default.png
+            - emerald/animated/fearow-default.webm
+            - emerald/animated/shiny/fearow-default.webm
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
-colosseum: &colosseum
+      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
+      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
+colosseum:
   name: *red-blue.name
   position: *red-blue.position
+  numbers: &colosseum.numbers
+    national: *red-blue.numbers.national
+    orre-strategy-memo: 94
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
-      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      female_rate: *gold-silver.pokemon.fearow.female_rate
-      capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
-      hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
-      growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      capture_rate: *red-blue.pokemon.fearow.capture_rate
+      experience: *red-blue.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
-      egg_groups: *gold-silver.pokemon.fearow.egg_groups
       stats: *ruby-sapphire.pokemon.fearow.stats
+      growth_rate: *red-blue.pokemon.fearow.growth_rate
+      female_rate: *gold-silver.pokemon.fearow.female_rate
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
       abilities: *ruby-sapphire.pokemon.fearow.abilities
-      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
-      forms: &colosseum.pokemon.fearow.forms
+      genus: *red-blue.pokemon.fearow.genus
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      forms:
         fearow:
           name: *red-blue.name
           form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
-          icon: *ruby-sapphire.pokemon.fearow.forms.fearow.icon
+          sprites:
+            - colosseum/fearow-default.png
+            - colosseum/shiny/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
-xd: *colosseum
+      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
+      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
+xd:
+  name: *red-blue.name
+  position: *red-blue.position
+  numbers: *colosseum.numbers
+  pokemon:
+    fearow:
+      name: *red-blue.name
+      default: *red-blue.pokemon.fearow.default
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      capture_rate: *red-blue.pokemon.fearow.capture_rate
+      experience: *red-blue.pokemon.fearow.experience
+      types: *red-blue.pokemon.fearow.types
+      stats: *ruby-sapphire.pokemon.fearow.stats
+      growth_rate: *red-blue.pokemon.fearow.growth_rate
+      female_rate: *gold-silver.pokemon.fearow.female_rate
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      abilities: *ruby-sapphire.pokemon.fearow.abilities
+      genus: *red-blue.pokemon.fearow.genus
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      forms:
+        fearow:
+          name: *red-blue.name
+          form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
+          default: *red-blue.pokemon.fearow.default
+          battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
+          sprites:
+            - xd/fearow-default.png
+            - xd/shiny/fearow-default.png
+          art: *red-blue.pokemon.fearow.forms.fearow.art
+          cry: *red-blue.pokemon.fearow.forms.fearow.cry
+      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
+      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
 firered-leafgreen:
   name: *red-blue.name
   position: *red-blue.position
   numbers: *red-blue.numbers
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
-      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      habitat: rough-terrain
-      female_rate: *gold-silver.pokemon.fearow.female_rate
-      capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
-      hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
-      growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      capture_rate: *red-blue.pokemon.fearow.capture_rate
+      experience: *red-blue.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
-      egg_groups: *gold-silver.pokemon.fearow.egg_groups
       stats: *ruby-sapphire.pokemon.fearow.stats
-      abilities: *ruby-sapphire.pokemon.fearow.abilities
+      growth_rate: *red-blue.pokemon.fearow.growth_rate
+      female_rate: *gold-silver.pokemon.fearow.female_rate
+      hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
+      egg_groups: *gold-silver.pokemon.fearow.egg_groups
       wild_held_items:
         firered: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
         leafgreen: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
-      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      abilities: *ruby-sapphire.pokemon.fearow.abilities
+      genus: *red-blue.pokemon.fearow.genus
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
       flavor_text:
         firered: |
           Its huge and magnificent wings can keep it
@@ -441,40 +461,61 @@ firered-leafgreen:
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
           icon: *ruby-sapphire.pokemon.fearow.forms.fearow.icon
           sprites:
+            - firered-leafgreen/fearow-default.png
             - firered-leafgreen/back/fearow-default.png
             - firered-leafgreen/shiny/fearow-default.png
-            - firered-leafgreen/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
+      evolution_parent: *red-blue.pokemon.fearow.evolution_parent
+      evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
 diamond-pearl:
-  name: *red-blue.name
+  name: &diamond-pearl.name Fearow
   position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  numbers: &diamond-pearl.numbers
+    national: *red-blue.numbers.national
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
+      genus: &diamond-pearl.pokemon.fearow.genus 'Beak Pokémon'
       evolution_parent: *red-blue.pokemon.fearow.evolution_parent
       shape: &diamond-pearl.pokemon.fearow.shape wings
       female_rate: *gold-silver.pokemon.fearow.female_rate
       capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      baby: &diamond-pearl.pokemon.fearow.baby false
       hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
       growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
       pal_park: &diamond-pearl.pokemon.fearow.pal_park
         area: field
         rate: 30
         score: 50
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      experience: &diamond-pearl.pokemon.fearow.experience 155
       types: *red-blue.pokemon.fearow.types
       egg_groups: *gold-silver.pokemon.fearow.egg_groups
-      stats: *ruby-sapphire.pokemon.fearow.stats
+      stats: &diamond-pearl.pokemon.fearow.stats
+        hp:
+          base_value: 65
+          effort_change: 0
+        attack:
+          base_value: 90
+          effort_change: 0
+        defense:
+          base_value: 65
+          effort_change: 0
+        speed:
+          base_value: 100
+          effort_change: 2
+        special-attack:
+          base_value: 61
+          effort_change: 0
+        special-defense:
+          base_value: 61
+          effort_change: 0
       abilities: &diamond-pearl.pokemon.fearow.abilities
         keen-eye: *ruby-sapphire.pokemon.fearow.abilities.keen-eye
         sniper:
@@ -495,7 +536,7 @@ diamond-pearl:
           fights by using its sharp beak.
       forms:
         fearow:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
@@ -506,33 +547,33 @@ diamond-pearl:
             - diamond-pearl/shiny/fearow-default.png
             - diamond-pearl/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
 platinum:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  numbers: *diamond-pearl.numbers
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
+      genus: *diamond-pearl.pokemon.fearow.genus
       evolution_parent: *red-blue.pokemon.fearow.evolution_parent
       shape: *diamond-pearl.pokemon.fearow.shape
       female_rate: *gold-silver.pokemon.fearow.female_rate
       capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      baby: *diamond-pearl.pokemon.fearow.baby
       hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
       growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
       pal_park: *diamond-pearl.pokemon.fearow.pal_park
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      experience: *diamond-pearl.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
       egg_groups: *gold-silver.pokemon.fearow.egg_groups
-      stats: *ruby-sapphire.pokemon.fearow.stats
+      stats: *diamond-pearl.pokemon.fearow.stats
       abilities: *diamond-pearl.pokemon.fearow.abilities
       wild_held_items:
         platinum: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
@@ -544,7 +585,7 @@ platinum:
           fights by using its sharp beak.
       forms:
         fearow:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
@@ -555,35 +596,35 @@ platinum:
             - platinum/shiny/fearow-default.png
             - platinum/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 14
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
+      genus: *diamond-pearl.pokemon.fearow.genus
       evolution_parent: *red-blue.pokemon.fearow.evolution_parent
       shape: *diamond-pearl.pokemon.fearow.shape
       female_rate: *gold-silver.pokemon.fearow.female_rate
       capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      baby: *diamond-pearl.pokemon.fearow.baby
       hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
       growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
       pal_park: *diamond-pearl.pokemon.fearow.pal_park
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      experience: *diamond-pearl.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
       egg_groups: *gold-silver.pokemon.fearow.egg_groups
-      stats: *ruby-sapphire.pokemon.fearow.stats
+      stats: *diamond-pearl.pokemon.fearow.stats
       abilities: *diamond-pearl.pokemon.fearow.abilities
       wild_held_items:
         heartgold: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
@@ -600,7 +641,7 @@ heartgold-soulsilver:
           that hide under the ground.
       forms:
         fearow:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
@@ -627,33 +668,33 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/fearow-default.png
             - heartgold-soulsilver/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
 black-white:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  numbers: *diamond-pearl.numbers
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
+      genus: *diamond-pearl.pokemon.fearow.genus
       evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      color: *ruby-sapphire.pokemon.fearow.color
+      color: &black-white.pokemon.fearow.color brown
       shape: *diamond-pearl.pokemon.fearow.shape
       female_rate: *gold-silver.pokemon.fearow.female_rate
       capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      baby: *diamond-pearl.pokemon.fearow.baby
       hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
       growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      experience: *diamond-pearl.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
       egg_groups: *gold-silver.pokemon.fearow.egg_groups
-      stats: *ruby-sapphire.pokemon.fearow.stats
+      stats: *diamond-pearl.pokemon.fearow.stats
       abilities: *diamond-pearl.pokemon.fearow.abilities
       wild_held_items:
         black: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
@@ -670,7 +711,7 @@ black-white:
           fights by using its sharp beak.
       forms:
         fearow:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
@@ -681,33 +722,33 @@ black-white:
             - black-white/shiny/fearow-default.png
             - black-white/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: *red-blue.pokemon.fearow.forms.fearow.cry
 black-2-white-2:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  numbers: *diamond-pearl.numbers
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
+      genus: *diamond-pearl.pokemon.fearow.genus
       evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      color: *ruby-sapphire.pokemon.fearow.color
+      color: *black-white.pokemon.fearow.color
       shape: *diamond-pearl.pokemon.fearow.shape
       female_rate: *gold-silver.pokemon.fearow.female_rate
       capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      baby: *diamond-pearl.pokemon.fearow.baby
       hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
       growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      experience: *diamond-pearl.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
       egg_groups: *gold-silver.pokemon.fearow.egg_groups
-      stats: *ruby-sapphire.pokemon.fearow.stats
+      stats: *diamond-pearl.pokemon.fearow.stats
       abilities: *diamond-pearl.pokemon.fearow.abilities
       wild_held_items:
         black-2: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
@@ -722,35 +763,44 @@ black-2-white-2:
           It has the stamina to fly all
           day on its broad wings. It
           fights by using its sharp beak.
-      forms: *colosseum.pokemon.fearow.forms
+      forms:
+        fearow:
+          name: *diamond-pearl.name
+          form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
+          default: *red-blue.pokemon.fearow.default
+          battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
+          icon: *ruby-sapphire.pokemon.fearow.forms.fearow.icon
+          art: *red-blue.pokemon.fearow.forms.fearow.art
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
+          cry: *red-blue.pokemon.fearow.forms.fearow.cry
 x-y:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 110
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
+      genus: *diamond-pearl.pokemon.fearow.genus
       evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      color: *ruby-sapphire.pokemon.fearow.color
+      color: *black-white.pokemon.fearow.color
       shape: *diamond-pearl.pokemon.fearow.shape
       female_rate: *gold-silver.pokemon.fearow.female_rate
       capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      baby: *diamond-pearl.pokemon.fearow.baby
       hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
       growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      experience: *diamond-pearl.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
       egg_groups: *gold-silver.pokemon.fearow.egg_groups
       mega: &x-y.pokemon.fearow.mega false
-      stats: *ruby-sapphire.pokemon.fearow.stats
+      stats: *diamond-pearl.pokemon.fearow.stats
       abilities: *diamond-pearl.pokemon.fearow.abilities
       wild_held_items:
         x: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
@@ -765,7 +815,7 @@ x-y:
           It fights by using its sharp beak.
       forms:
         fearow:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
@@ -774,34 +824,34 @@ x-y:
             - x-y/shiny/fearow-default.png
             - x-y/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: &x-y.pokemon.fearow.forms.fearow.cry fearow-default.webm
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  numbers: *diamond-pearl.numbers
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
+      genus: *diamond-pearl.pokemon.fearow.genus
       evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      color: *ruby-sapphire.pokemon.fearow.color
+      color: *black-white.pokemon.fearow.color
       shape: *diamond-pearl.pokemon.fearow.shape
       female_rate: *gold-silver.pokemon.fearow.female_rate
       capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      baby: *diamond-pearl.pokemon.fearow.baby
       hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
       growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      experience: *diamond-pearl.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
       egg_groups: *gold-silver.pokemon.fearow.egg_groups
       mega: *x-y.pokemon.fearow.mega
-      stats: *ruby-sapphire.pokemon.fearow.stats
+      stats: *diamond-pearl.pokemon.fearow.stats
       abilities: *diamond-pearl.pokemon.fearow.abilities
       evolution_conditions: *red-blue.pokemon.fearow.evolution_conditions
       flavor_text:
@@ -816,19 +866,19 @@ omega-ruby-alpha-sapphire:
           water. It deftly moves its long and skinny beak to pluck prey.
       forms:
         fearow:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
           icon: *x-y.pokemon.fearow.forms.fearow.icon
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: *x-y.pokemon.fearow.forms.fearow.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/fearow-default.png
             - omega-ruby-alpha-sapphire/fearow-default.png
 sun-moon:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
@@ -838,26 +888,26 @@ sun-moon:
     original-poni: 25
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
+      genus: *diamond-pearl.pokemon.fearow.genus
       evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      color: *ruby-sapphire.pokemon.fearow.color
+      color: *black-white.pokemon.fearow.color
       shape: *diamond-pearl.pokemon.fearow.shape
       female_rate: *gold-silver.pokemon.fearow.female_rate
       capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      baby: *diamond-pearl.pokemon.fearow.baby
       hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
       growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      experience: *diamond-pearl.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
       egg_groups: *gold-silver.pokemon.fearow.egg_groups
       mega: *x-y.pokemon.fearow.mega
-      stats: *ruby-sapphire.pokemon.fearow.stats
+      stats: *diamond-pearl.pokemon.fearow.stats
       abilities: *diamond-pearl.pokemon.fearow.abilities
       wild_held_items:
         moon: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
@@ -868,7 +918,7 @@ sun-moon:
           be seen in murals from deep in ancient history.
       forms:
         fearow:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
@@ -877,10 +927,10 @@ sun-moon:
             - sun-moon/shiny/fearow-default.png
             - sun-moon/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: *x-y.pokemon.fearow.forms.fearow.cry
 ultra-sun-ultra-moon:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   position: *red-blue.position
   numbers:
     national: *red-blue.numbers.national
@@ -890,26 +940,26 @@ ultra-sun-ultra-moon:
     updated-poni: 34
   pokemon:
     fearow:
-      genus: *red-blue.pokemon.fearow.genus
+      genus: *diamond-pearl.pokemon.fearow.genus
       evolution_parent: *red-blue.pokemon.fearow.evolution_parent
-      color: *ruby-sapphire.pokemon.fearow.color
+      color: *black-white.pokemon.fearow.color
       shape: *diamond-pearl.pokemon.fearow.shape
       female_rate: *gold-silver.pokemon.fearow.female_rate
       capture_rate: *red-blue.pokemon.fearow.capture_rate
-      happiness: *gold-silver.pokemon.fearow.happiness
-      baby: *gold-silver.pokemon.fearow.baby
+      happiness: *ruby-sapphire.pokemon.fearow.happiness
+      baby: *diamond-pearl.pokemon.fearow.baby
       hatch_steps: *gold-silver.pokemon.fearow.hatch_steps
       growth_rate: *red-blue.pokemon.fearow.growth_rate
-      forms_switchable: *gold-silver.pokemon.fearow.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.fearow.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.fearow.default
-      height: *red-blue.pokemon.fearow.height
-      weight: *red-blue.pokemon.fearow.weight
-      experience: *ruby-sapphire.pokemon.fearow.experience
+      height: *ruby-sapphire.pokemon.fearow.height
+      weight: *ruby-sapphire.pokemon.fearow.weight
+      experience: *diamond-pearl.pokemon.fearow.experience
       types: *red-blue.pokemon.fearow.types
       egg_groups: *gold-silver.pokemon.fearow.egg_groups
       mega: *x-y.pokemon.fearow.mega
-      stats: *ruby-sapphire.pokemon.fearow.stats
+      stats: *diamond-pearl.pokemon.fearow.stats
       abilities: *diamond-pearl.pokemon.fearow.abilities
       wild_held_items:
         ultra-sun: *ruby-sapphire.pokemon.fearow.wild_held_items.ruby
@@ -921,7 +971,7 @@ ultra-sun-ultra-moon:
           you in a flash!
       forms:
         fearow:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.fearow.forms.fearow.form_name
           default: *red-blue.pokemon.fearow.default
           battle_only: *red-blue.pokemon.fearow.forms.fearow.battle_only
@@ -930,5 +980,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/fearow-default.png
             - ultra-sun-ultra-moon/fearow-default.png
           art: *red-blue.pokemon.fearow.forms.fearow.art
-          footprint: *red-blue.pokemon.fearow.forms.fearow.footprint
+          footprint: *ruby-sapphire.pokemon.fearow.forms.fearow.footprint
           cry: *x-y.pokemon.fearow.forms.fearow.cry

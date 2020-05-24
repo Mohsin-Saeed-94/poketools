@@ -6,60 +6,101 @@ red-blue: &red-blue
   short_description: &red-blue.short_description 'Teaches []{move:dig} to a compatible Pokémon.'
   description: &red-blue.description |
     Teaches []{move:dig} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm28"})}}
+  machine: &red-blue.machine
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 28
+    move: dig
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
   pocket: &gold-silver.pocket machines
-  buy: 2000
-  sell: 1000
+  buy: &gold-silver.buy 2000
+  sell: &gold-silver.sell 1000
   short_description: *red-blue.short_description
   description: *red-blue.description
+  machine: *red-blue.machine
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 30000
-  sell: &ruby-sapphire.sell 15000
-  machine:
-    type: &ruby-sapphire.machine.type TM
-    number: &ruby-sapphire.machine.number 28
-    move: dig
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm-ground.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
+    Digs underground
+    the 1st turn, then
+    strikes next turn.
   short_description: *red-blue.short_description
-  description: |
+  description: &ruby-sapphire.description |
     Teaches []{move:dig} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm28"})}}
-  icon: tm-ground.png
+  machine: *red-blue.machine
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
-black-white: *ruby-sapphire
-black-2-white-2: *ruby-sapphire
-x-y: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *red-blue.category
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  machine: *red-blue.machine
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    An attack that hits
+    on the 2nd turn.
+    Can also be used
+    to exit dungeons.
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  machine: *red-blue.machine
+diamond-pearl: &diamond-pearl
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  buy: &diamond-pearl.buy 30000
+  sell: &diamond-pearl.sell 15000
+  machine: *red-blue.machine
+  short_description: *red-blue.short_description
+  description: *ruby-sapphire.description
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl
+black-white: *diamond-pearl
+black-2-white-2: *diamond-pearl
+x-y: *diamond-pearl
+omega-ruby-alpha-sapphire: *diamond-pearl
 sun-moon: &sun-moon
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   machine:
-    type: *ruby-sapphire.machine.type
-    number: *ruby-sapphire.machine.number
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: leech-life
   short_description: 'Teaches []{move:leech-life} to a compatible Pokémon.'
   description: |
     Teaches []{move:leech-life} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm28"})}}
   icon: tm-bug.png
 ultra-sun-ultra-moon: *sun-moon

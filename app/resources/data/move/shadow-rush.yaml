@@ -1,16 +1,41 @@
 colosseum:
-  name: 'Shadow Rush'
+  name: &colosseum.name 'SHADOW RUSH'
+  power: 90
+  type: &colosseum.type shadow
+  accuracy: &colosseum.accuracy 100
+  pp: &colosseum.pp 5
+  effect: 49
+  target: &colosseum.target selected-pokemon
+  priority: &colosseum.priority 0
+  flavor_text: |
+    An attack that is so harsh,
+    it also hurts the attacker.
   flags:
     - contact
     - protect
-  categories:
+    - mirror
+    - kings-rock
+  categories: &colosseum.categories
     - damage
-  hits: 1
-  turns: 1
-  type: shadow
+  hits: &colosseum.hits 1
+  turns: &colosseum.turns 1
+xd:
+  name: *colosseum.name
   power: 55
-  accuracy: 100
-  priority: 0
-  target: selected-pokemon
-  damage_class: physical
+  type: *colosseum.type
+  accuracy: *colosseum.accuracy
+  pp: *colosseum.pp
   effect: 10001
+  target: *colosseum.target
+  priority: *colosseum.priority
+  damage_class: physical
+  flavor_text: |
+    A POKéMON executes a tackle  
+    while exuding a shadowy aura.
+  flags:
+    - contact
+    - protect
+    - kings-rock
+  categories: *colosseum.categories
+  hits: *colosseum.hits
+  turns: *colosseum.turns

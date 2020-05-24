@@ -3,15 +3,15 @@ red-blue: &red-blue
   name: &red-blue.name 'Saffron City'
   areas: &red-blue.areas
     whole-area: &red-blue.areas.whole-area
-      name: 'Whole area'
-      default: &red-blue.areas.whole-area.default true
-      shops:
+      name: &red-blue.areas.whole-area.name 'Whole area'
+      default: true
+      shops: &red-blue.areas.whole-area.shops
         mart:
-          name: 'Poké Mart'
-          default: *red-blue.areas.whole-area.default
+          name: &red-blue.areas.whole-area.shops.mart.name 'Poké Mart'
+          default: true
     fighting-dojo: &red-blue.areas.fighting-dojo
       name: 'Fighting Dojo'
-    silph-co-7f:
+    silph-co-7f: &red-blue.areas.silph-co-7f
       name: 'Silph Co. (7F)'
   map:
     map: &red-blue.map.map kanto
@@ -32,7 +32,15 @@ crystal: *gold-silver
 firered-leafgreen:
   region: *red-blue.region
   name: *red-blue.name
-  areas: *red-blue.areas
+  areas:
+    whole-area:
+      name: *red-blue.areas.whole-area.name
+      default: true
+    fighting-dojo: *red-blue.areas.fighting-dojo
+    silph-co-7f: *red-blue.areas.silph-co-7f
+    mart:
+      name: *red-blue.areas.whole-area.shops.mart.name
+      shops: *red-blue.areas.whole-area.shops
   map:
     map: *red-blue.map.map
     z: *red-blue.map.z
@@ -44,5 +52,4 @@ heartgold-soulsilver:
   map:
     map: *red-blue.map.map
     z: *red-blue.map.z
-    overlay: |
-      <rect width="18" height="18" x="142" y="56" rx="3" ry="3" />
+    overlay: '<rect width="18" height="18" x="142" y="56" rx="3" ry="3" />'

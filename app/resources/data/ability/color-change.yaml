@@ -1,14 +1,18 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Color Change'
+  name: &ruby-sapphire.name 'COLOR CHANGE'
+  flavor_text: 'Changes type to foe''s move.'
   short_description: &ruby-sapphire.short_description 'Triggers on every hit of multiple-hit moves.'
   description: &ruby-sapphire.description 'Triggers on every hit of multiple-hit moves.'
-  flavor_text: 'Changes type to foe’s move.'
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  flavor_text: 'Changes type to target''s move.'
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+xd: *colosseum
 firered-leafgreen: *ruby-sapphire
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Color Change'
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
   flavor_text: &diamond-pearl.flavor_text |
@@ -17,20 +21,20 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   short_description: &black-white.short_description 'Changes type to match when hit by a damaging move.'
   description: &black-white.description |
     Whenever this Pokémon takes damage from a move, the Pokémon's type changes to match the move.
-    
+
     If the Pokémon has two types, both are overridden.  The Pokémon must directly take damage; for example, moves blocked by a []{move:substitute} will not trigger this ability, nor will moves that deal damage indirectly, such as []{move:spikes}.
-    
+
     This ability takes effect on only the last hit of a multiple-hit attack.
-    
+
     In Pokémon Colosseum and XD: Gale of Darkness, this ability does not take effect on Shadow-type moves.
   flavor_text: *diamond-pearl.flavor_text
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   short_description: *black-white.short_description
   description: *black-white.description
   flavor_text: |
@@ -38,7 +42,7 @@ x-y: &x-y
     the type of the move used on it.
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   short_description: *black-white.short_description
   description: *black-white.description
   flavor_text: |

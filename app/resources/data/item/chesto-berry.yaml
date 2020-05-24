@@ -1,19 +1,89 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Chesto Berry'
+  name: &ruby-sapphire.name 'CHESTO BERRY'
   category: &ruby-sapphire.category medicine
   pocket: &ruby-sapphire.pocket berries
-  buy: &ruby-sapphire.buy 20
-  sell: &ruby-sapphire.sell 10
   flags: &ruby-sapphire.flags
     - holdable-active
+  icon: &ruby-sapphire.icon chesto-berry.png
+  buy: &ruby-sapphire.buy 20
+  sell: &ruby-sapphire.sell 10
+  flavor_text: &ruby-sapphire.flavor_text |
+    A hold item that
+    awakens POKéMON
+    in battle.
   short_description: &ruby-sapphire.short_description 'Held: Consumed when [asleep]{mechanic:sleep} to awaken.'
   description: &ruby-sapphire.description |
     Held in battle
     :   When the holder is [asleep]{mechanic:sleep}, it consumes this item to wake up.
-    
+
     Used on a party Pokémon
     :   Cures [sleep]{mechanic:sleep}.
-  berry: &ruby-sapphire.berry
+  berry:
+    number: 2
+    firmness: super-hard
+    size: 80
+    growth_time: 3
+    smoothness: 25
+    flavors:
+      spicy: 0
+      dry: 10
+      sweet: 0
+      bitter: 0
+      sour: 0
+    harvest: 2-3
+    flavor_text: |
+      The BERRY's thick skin and fruit are
+      very tough. It is dry-tasting all over.
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *ruby-sapphire.category
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+xd: *colosseum
+firered-leafgreen:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    When held by a POKéMON, it will be
+    used in battle to wake up.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry:
+    number: 2
+    firmness: super-hard
+    size: 80
+    growth_time: 3
+    smoothness: 25
+    flavors:
+      spicy: 0
+      dry: 10
+      sweet: 0
+      bitter: 0
+      sour: 0
+    harvest: 2-3
+diamond-pearl: &diamond-pearl
+  name: &diamond-pearl.name 'Chesto Berry'
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: berry-effect
+  fling_power: 10
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: &diamond-pearl.berry
     firmness: super-hard
     natural_gift_type: water
     natural_gift_power: 60
@@ -29,47 +99,13 @@ ruby-sapphire: &ruby-sapphire
       sour: 0
     harvest: 1-5
   flavor_text: |
-    A hold item that
-    awakens POKéMON
-    in battle.
-  icon: &ruby-sapphire.icon chesto-berry.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
-  flavor_text: |
-    When held by a POKéMON, it will be
-    used in battle to wake up.
-  icon: *ruby-sapphire.icon
-diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  fling_effect: berry-effect
-  fling_power: 10
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
-  flavor_text: |
     A Poffin ingredient. It may be used
     or held by a Pokémon to recover from
     sleep.
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -79,13 +115,13 @@ heartgold-soulsilver:
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: |
     It may be used or held by a Pokémon to
     recover from sleep.
   icon: *ruby-sapphire.icon
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -95,14 +131,14 @@ black-white: &black-white
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: |
     If held by a Pokémon,
     it recovers from sleep.
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -112,7 +148,7 @@ x-y: &x-y
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: |
     A Berry to be consumed by Pokémon.
     If a Pokémon holds one, it can recover
@@ -120,7 +156,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy

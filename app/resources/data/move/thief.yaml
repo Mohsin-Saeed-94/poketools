@@ -1,5 +1,11 @@
 gold-silver: &gold-silver
-  name: &gold-silver.name Thief
+  name: &gold-silver.name THIEF
+  power: &gold-silver.power 40
+  type: &gold-silver.type dark
+  accuracy: &gold-silver.accuracy 100
+  pp: &gold-silver.pp 10
+  effect: &gold-silver.effect 106
+  effect_chance: 100
   flags: &gold-silver.flags
     - contact
     - protect
@@ -8,75 +14,82 @@ gold-silver: &gold-silver
     - damage
   hits: &gold-silver.hits 1
   turns: &gold-silver.turns 1
-  type: &gold-silver.type dark
-  power: &gold-silver.power 40
-  pp: &gold-silver.pp 10
-  accuracy: &gold-silver.accuracy 100
   priority: &gold-silver.priority 0
   target: &gold-silver.target selected-pokemon
-  damage_class: &gold-silver.damage_class special
-  effect: &gold-silver.effect 106
   flavor_text: |
     An attack that may
     steal a held item.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 20
+  contest_effect: 32
   flavor_text: |
     While attacking, it may
-    steal the foe’s held item.
+    steal the foe's held item.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: &colosseum.flavor_text |
+    An attack that may steal 
+    the target's held item.
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
+xd:
+  name: *gold-silver.name
   power: *gold-silver.power
-  pp: *gold-silver.pp
+  type: *gold-silver.type
   accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  pp: *gold-silver.pp
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  damage_class: special
+  flavor_text: *colosseum.flavor_text
+  flags: *gold-silver.flags
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     An attack that may
-    take the foe’s held
+    take the foe's held
     item if the user
-    isn’t holding one.
-
+    isn't holding one.
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: &diamond-pearl.name Thief
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -99,7 +112,7 @@ diamond-pearl: &diamond-pearl
     user holds an item.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -114,7 +127,7 @@ heartgold-soulsilver:
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -133,7 +146,7 @@ black-white: &black-white
     It can’t steal if the user holds an item.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -151,7 +164,7 @@ x-y:
     held item simultaneously. The user can’t
     steal anything if it already holds an item.
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits
@@ -165,10 +178,10 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 20
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   flags: *gold-silver.flags
   categories: *gold-silver.categories
   hits: *gold-silver.hits

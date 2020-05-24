@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'MOOMOO MILK'
-  pocket: misc
-  buy: 500
-  sell: 250
+  name: &gold-silver.name 'MOOMOO MILK'
+  pocket: &gold-silver.pocket misc
+  buy: &gold-silver.buy 500
+  sell: &gold-silver.sell 250
   flavor_text: |
     Restores POKéMON
     HP by 100.
@@ -19,42 +19,51 @@ gold-silver: &gold-silver
     :   Restores 100 [HP]{mechanic:hp}.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Moomoo Milk'
+  name: *gold-silver.name
   category: *gold-silver.category
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 600
-  sell: &ruby-sapphire.sell 300
+  pocket: *gold-silver.pocket
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon moomoo-milk.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A nutritious milk
     that restores HP
     by 100 points.
-  icon: &ruby-sapphire.icon moomoo-milk.png
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
+colosseum: &colosseum
+  name: *gold-silver.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     Highly nutritious milk.
     It restores the HP of one POKéMON
     by 100 points.
-  icon: *ruby-sapphire.icon
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Moomoo Milk'
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: &diamond-pearl.pocket medicine
+  buy: &diamond-pearl.buy 600
+  sell: &diamond-pearl.sell 300
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -70,11 +79,11 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: *diamond-pearl.pocket
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags
@@ -87,11 +96,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  pocket: *diamond-pearl.pocket
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   flags: *gold-silver.flags

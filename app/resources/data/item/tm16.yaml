@@ -6,48 +6,95 @@ red-blue: &red-blue
   short_description: 'Teaches []{move:pay-day} to a compatible Pokémon.'
   description: |
     Teaches []{move:pay-day} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm16"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 16
+    move: pay-day
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
   pocket: &gold-silver.pocket machines
-  buy: 3000
-  sell: 1500
+  buy: &gold-silver.buy 3000
+  sell: &gold-silver.sell 1500
   short_description: 'Teaches []{move:icy-wind} to a compatible Pokémon.'
   description: |
     Teaches []{move:icy-wind} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm16"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: icy-wind
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm-psychic.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
+    Creates a wall of
+    light that lowers
+    SP. ATK damage.
+  short_description: &ruby-sapphire.short_description 'Teaches []{move:light-screen} to a compatible Pokémon.'
+  description: &ruby-sapphire.description |
+    Teaches []{move:light-screen} to a compatible Pokémon.
+
+    {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm16"})}}
+  machine: &ruby-sapphire.machine
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: light-screen
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *red-blue.category
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    A wall of light
+    cuts damage from
+    SP. ATK attacks
+    for five turns.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: &diamond-pearl
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
   buy: 10000
   sell: 5000
-  machine:
-    type: TM
-    number: 16
-    move: light-screen
-  short_description: 'Teaches []{move:light-screen} to a compatible Pokémon.'
-  description: |
-    Teaches []{move:light-screen} to a compatible Pokémon.
-    
-    {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm16"})}}
-  icon: tm-psychic.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
-black-white: *ruby-sapphire
-black-2-white-2: *ruby-sapphire
-x-y: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
-sun-moon: *ruby-sapphire
-ultra-sun-ultra-moon: *ruby-sapphire
+  machine: *ruby-sapphire.machine
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl
+black-white: *diamond-pearl
+black-2-white-2: *diamond-pearl
+x-y: *diamond-pearl
+omega-ruby-alpha-sapphire: *diamond-pearl
+sun-moon: *diamond-pearl
+ultra-sun-ultra-moon: *diamond-pearl

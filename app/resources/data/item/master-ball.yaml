@@ -10,7 +10,7 @@ red-blue: &red-blue
   description: &red-blue.description |
     Used in battle
     :   [Catches]{mechanic:catch} a wild Pokémon without fail.
-    
+
     If used in a trainer battle, nothing happens and the ball is lost.
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -29,34 +29,41 @@ gold-silver: &gold-silver
   description: *red-blue.description
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Master Ball'
+  name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
   flags: *gold-silver.flags
-  short_description: *red-blue.short_description
-  description: *red-blue.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon master-ball.png
+  flavor_text: &ruby-sapphire.flavor_text |
     The best BALL that
     catches a POKéMON
     without fail.
-  icon: &ruby-sapphire.icon master-ball.png
+  short_description: *red-blue.short_description
+  description: *red-blue.description
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *red-blue.category
+colosseum: &colosseum
+  name: *red-blue.name
   pocket: *gold-silver.pocket
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *red-blue.category
   flags: *gold-silver.flags
   short_description: *red-blue.short_description
   description: *red-blue.description
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
   flavor_text: |
     The best BALL with the ultimate
     performance. It will catch any wild
-    POKéMON without fail.
-  icon: *ruby-sapphire.icon
+     POKéMON without fail.
+  short_description: *red-blue.short_description
+  description: *red-blue.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Master Ball'
   category: *red-blue.category
   pocket: *gold-silver.pocket
   flags: *gold-silver.flags
@@ -72,7 +79,7 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
   flags: *gold-silver.flags
@@ -85,7 +92,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
   flags: *gold-silver.flags

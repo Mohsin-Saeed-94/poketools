@@ -30,6 +30,7 @@ class MoveEffect extends AbstractDoctrineDataMigration implements DataMigrationI
      */
     public function transform($sourceData, $destinationData)
     {
+        $destinationData->setId($sourceData['id']);
         unset($sourceData['id']);
         foreach ($sourceData as $versionGroup => $versionGroupSource) {
             /** @var \App\Entity\VersionGroup $versionGroup */

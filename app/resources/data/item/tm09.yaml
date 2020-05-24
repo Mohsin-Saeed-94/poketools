@@ -6,8 +6,12 @@ red-blue: &red-blue
   short_description: 'Teaches []{move:take-down} to a compatible Pokémon.'
   description: |
     Teaches []{move:take-down} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm09"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 9
+    move: take-down
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -18,47 +22,93 @@ gold-silver: &gold-silver
   short_description: 'Teaches []{move:psych-up} to a compatible Pokémon.'
   description: |
     Teaches []{move:psych-up} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm09"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: psych-up
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 10000
-  sell: &ruby-sapphire.sell 5000
-  machine:
-    type: &ruby-sapphire.machine.type TM
-    number: &ruby-sapphire.machine.number 9
-    move: bullet-seed
-  short_description: 'Teaches []{move:bullet-seed} to a compatible Pokémon.'
-  description: |
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm-grass.png
+  buy: &ruby-sapphire.buy 3000
+  sell: &ruby-sapphire.sell 1500
+  flavor_text: |
+    Shoots 2 to 5 seeds
+    in a row to strike
+    the foe.
+  short_description: &ruby-sapphire.short_description 'Teaches []{move:bullet-seed} to a compatible Pokémon.'
+  description: &ruby-sapphire.description |
     Teaches []{move:bullet-seed} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm09"})}}
-  icon: tm-grass.png
+  machine: &ruby-sapphire.machine
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: bullet-seed
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    Shoots 2 to 5 seeds
+    in a row to strike
+    the target.
+  category: *red-blue.category
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    The user shoots
+    seeds at the foe.
+    Two to five seeds
+    are shot at once.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: &diamond-pearl
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  buy: &diamond-pearl.buy 10000
+  sell: &diamond-pearl.sell 5000
+  machine: *ruby-sapphire.machine
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   machine:
-    type: *ruby-sapphire.machine.type
-    number: *ruby-sapphire.machine.number
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: venoshock
   short_description: 'Teaches []{move:venoshock} to a compatible Pokémon.'
   description: |
     Teaches []{move:venoshock} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm09"})}}
   icon: tm-poison.png
 black-2-white-2: *black-white

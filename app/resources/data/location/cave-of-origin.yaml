@@ -1,4 +1,4 @@
-ruby-sapphire: &ruby-sapphire
+ruby-sapphire:
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Cave of Origin'
   areas:
@@ -13,8 +13,17 @@ ruby-sapphire: &ruby-sapphire
       name: B2F
     b3f: &ruby-sapphire.areas.b3f
       name: B3F
+    deepest: &ruby-sapphire.areas.deepest
+      name: 'Deepest Cavern'
   super: &ruby-sapphire.super sootopolis-city
-emerald: *ruby-sapphire
+emerald:
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
+  areas:
+    entrance: *ruby-sapphire.areas.entrance
+    1f: *ruby-sapphire.areas.1f
+    deepest: *ruby-sapphire.areas.deepest
+  super: *ruby-sapphire.super
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
@@ -28,10 +37,8 @@ omega-ruby-alpha-sapphire:
       name: B4F
     side-path:
       name: 'Side Path'
-    deepest:
-      name: 'Deepest Cavern'
+    deepest: *ruby-sapphire.areas.deepest
   super: *ruby-sapphire.super
   map:
     map: hoenn
-    overlay: |
-      <rect x="224" y="95" width="11" height="11" />
+    overlay: '<rect x="224" y="95" width="11" height="11" />'

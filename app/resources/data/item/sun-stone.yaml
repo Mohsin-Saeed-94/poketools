@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'SUN STONE'
+  name: &gold-silver.name 'SUN STONE'
   pocket: &gold-silver.pocket misc
-  buy: 2100
-  sell: 1050
+  buy: &gold-silver.buy 2100
+  sell: &gold-silver.sell 1050
   flavor_text: |
     Evolves certain
     kinds of POKéMON.
@@ -11,44 +11,55 @@ gold-silver: &gold-silver
   description: &gold-silver.description |
     When this item is used on some Pokémon, the Pokémon will evolve.  Below is a list
     of compatible Pokémon.
-    
+
     {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "sun-stone"})}}
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Sun Stone'
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 3000
-  sell: &ruby-sapphire.sell 1500
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon sun-stone.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     Makes certain
     species of POKéMON
     evolve.
-  icon: &ruby-sapphire.icon sun-stone.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
-  pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: *gold-silver.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *gold-silver.category
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A peculiar stone that makes certain
     species of POKéMON evolve.
-    It is as red as the sun.
-  icon: *ruby-sapphire.icon
+     It is as red as the sun.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Sun Stone'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &diamond-pearl.buy 3000
+  sell: &diamond-pearl.sell 1500
   fling_effect: damage
   fling_power: 30
   flags:
@@ -62,11 +73,11 @@ diamond-pearl: &diamond-pearl
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: &heartgold-soulsilver
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: *gold-silver.short_description
@@ -76,11 +87,11 @@ heartgold-soulsilver: &heartgold-soulsilver
 black-white: *heartgold-soulsilver
 black-2-white-2: *heartgold-soulsilver
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: *gold-silver.short_description
@@ -92,11 +103,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: *gold-silver.short_description

@@ -47,7 +47,7 @@ class AbilityController extends AbstractDexController
      * @param string $appEnv
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/debug_view", name="item_debug")
+     * @Route("/debug_view", name="debug")
      * @ParamConverter("version", options={"mapping": {"versionSlug": "slug"}})
      */
     public function debug(Request $request, Version $version, string $appEnv): Response

@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'STAR PIECE'
+  name: &gold-silver.name 'STAR PIECE'
   pocket: &gold-silver.pocket misc
-  buy: 9800
-  sell: 4900
+  buy: &gold-silver.buy 9800
+  sell: &gold-silver.sell 4900
   flavor_text: |
     A hunk of red gem.
     Sell very high.
@@ -11,40 +11,51 @@ gold-silver: &gold-silver
   description: &gold-silver.description 'No effect.  Sell to shops.'
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Star Piece'
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 12000
-  sell: &ruby-sapphire.sell 6000
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon star-piece.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A red gem shard.
     It would sell for a
     very high price.
-  icon: &ruby-sapphire.icon star-piece.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
-  pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: *gold-silver.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *gold-silver.category
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+xd: *colosseum
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A shard of a pretty gem that
     sparkles in a red color.
     It can be sold at a high price.
-  icon: *ruby-sapphire.icon
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl:
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Star Piece'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &diamond-pearl.buy 12000
+  sell: &diamond-pearl.sell 6000
   fling_effect: damage
   fling_power: 30
   flags: &diamond-pearl.flags
@@ -57,27 +68,27 @@ diamond-pearl:
     high price to shops.
   icon: *ruby-sapphire.icon
 platinum:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   flags: *diamond-pearl.flags
   short_description: 'No effect.  Sell to shops.  Can also trade for one of each color shard.'
   description: |
     No effect.  Sell to shops.
-    
+
     Can also be traded with Mr. Fuego in []{location:fuego-ironworks} for one of each color shard.
   flavor_text: *diamond-pearl.flavor_text
   icon: *ruby-sapphire.icon
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: *gold-silver.short_description
@@ -85,27 +96,27 @@ heartgold-soulsilver:
   flavor_text: *diamond-pearl.flavor_text
   icon: *ruby-sapphire.icon
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: 'No effect.  Sell to shops for $4900 or to the Ore Maniac for $9800.  Can also be traded for a []{item:pp-up}.'
   description: |
     No effect.  Sell to shops for $4900, or the Ore Maniac in the []{location:icirrus-city} Pokémon Center for $9800.
-    
+
     Can also be traded with a man in []{location:anville-town} for a []{item:pp-up} on Saturday or Sunday.
   flavor_text: *diamond-pearl.flavor_text
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: *gold-silver.short_description
@@ -117,11 +128,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   short_description: *gold-silver.short_description

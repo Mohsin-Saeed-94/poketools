@@ -6,59 +6,109 @@ red-blue: &red-blue
   short_description: 'Teaches []{move:tri-attack} to a compatible Pokémon.'
   description: |
     Teaches []{move:tri-attack} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm49"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 49
+    move: tri-attack
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
   pocket: &gold-silver.pocket machines
-  buy: 3000
-  sell: 1500
+  buy: &gold-silver.buy 3000
+  sell: &gold-silver.sell 1500
   short_description: 'Teaches []{move:fury-cutter} to a compatible Pokémon.'
   description: |
     Teaches []{move:fury-cutter} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm49"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: fury-cutter
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 10000
-  sell: &ruby-sapphire.sell 5000
-  machine:
-    type: &ruby-sapphire.machine.type TM
-    number: &ruby-sapphire.machine.number 49
-    move: snatch
-  short_description: 'Teaches []{move:snatch} to a compatible Pokémon.'
-  description: |
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm-dark.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    Steals the effects
+    of the move the foe
+    is trying to use.
+  short_description: &ruby-sapphire.short_description 'Teaches []{move:snatch} to a compatible Pokémon.'
+  description: &ruby-sapphire.description |
     Teaches []{move:snatch} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm49"})}}
-  icon: tm-dark.png
+  machine: &ruby-sapphire.machine
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: snatch
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    Steals and uses
+    a target's move
+    if it raises stats.
+  category: *red-blue.category
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    Steals the effects
+    of the foe's
+    healing or status-
+    changing move.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: &diamond-pearl
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  buy: &diamond-pearl.buy 10000
+  sell: &diamond-pearl.sell 5000
+  machine: *ruby-sapphire.machine
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   machine:
-    type: *ruby-sapphire.machine.type
-    number: *ruby-sapphire.machine.number
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: echoed-voice
   short_description: 'Teaches []{move:echoed-voice} to a compatible Pokémon.'
   description: |
     Teaches []{move:echoed-voice} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm49"})}}
   icon: tm-normal.png
 black-2-white-2: *black-white

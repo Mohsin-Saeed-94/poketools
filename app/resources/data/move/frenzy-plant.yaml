@@ -1,31 +1,35 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Frenzy Plant'
+  name: &ruby-sapphire.name 'FRENZY PLANT'
+  power: &ruby-sapphire.power 150
+  type: &ruby-sapphire.type grass
+  accuracy: &ruby-sapphire.accuracy 90
+  pp: &ruby-sapphire.pp 5
+  effect: &ruby-sapphire.effect 81
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
-    - recharge
     - protect
     - mirror
-    - non-sky-battle
+    - kings-rock
   categories: &ruby-sapphire.categories
     - damage
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 1
-  type: &ruby-sapphire.type grass
-  power: &ruby-sapphire.power 150
-  pp: &ruby-sapphire.pp 5
-  accuracy: &ruby-sapphire.accuracy 90
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 81
   contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 6
-  flavor_text: |
+  contest_effect: 19
+  contest_use_after:
+    - growth
+  flavor_text: &ruby-sapphire.flavor_text |
     Powerful, but leaves the
     user immobile the next turn.
 emerald: *ruby-sapphire
-colosseum: &colosseum
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+colosseum:
+  name: &colosseum.name 'Frenzy Plant'
+  flags: &colosseum.flags
+    - recharge
+    - protect
+    - mirror
+    - non-sky-battle
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -35,32 +39,44 @@ colosseum: &colosseum
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: &colosseum.damage_class special
   effect: *ruby-sapphire.effect
-xd: *colosseum
+xd:
+  name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: *colosseum.damage_class
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     The foe is hit with
     an enormous branch.
-    The user can’t move
+    The user can't move
     on the next turn.
-
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -70,7 +86,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 22
@@ -82,8 +98,8 @@ diamond-pearl: &diamond-pearl
     on the next turn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -93,12 +109,12 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -108,7 +124,7 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &black-white.flavor_text |
     The user slams the target with
@@ -117,8 +133,8 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -128,14 +144,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 6
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *colosseum.name
+  flags: *colosseum.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -145,7 +161,7 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *colosseum.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
     The user slams the target with an enormous tree.

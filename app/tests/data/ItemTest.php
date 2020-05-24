@@ -6,7 +6,7 @@ namespace App\Tests\data;
  * Test Item data
  *
  * @group data
- * @group location
+ * @group item
  * @coversNothing
  */
 class ItemTest extends DataTestCase

@@ -1,6 +1,9 @@
 red-blue: &red-blue
-  name: &red-blue.name Leer
-  stat_change_chance: &red-blue.stat_change_chance 100
+  name: &red-blue.name LEER
+  type: &red-blue.type normal
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 30
+  effect: &red-blue.effect 20
   flags: &red-blue.flags
     - protect
     - reflectable
@@ -9,56 +12,47 @@ red-blue: &red-blue
     - net-good-stats
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  stat_changes: &red-blue.stat_changes
-    defense: -1
-  type: &red-blue.type normal
-  pp: &red-blue.pp 30
-  accuracy: &red-blue.accuracy 100
+  stat_changes:
+    defense: 1
   priority: &red-blue.priority 0
   target: &red-blue.target all-opponents
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 20
-  effect_chance: &red-blue.effect_chance 100
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  stat_changes: &gold-silver.stat_changes
+    defense: -1
+  stat_change_chance: &gold-silver.stat_change_chance 100
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
   flavor_text: |
     Reduces the foe's
     DEFENSE.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
-  type: *red-blue.type
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  stat_changes: *gold-silver.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
   contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 24
-  contest_use_before: &ruby-sapphire.contest_use_before
+  contest_effect: 48
+  contest_use_before:
     - scratch
     - stomp
     - horn-attack
@@ -66,43 +60,72 @@ ruby-sapphire: &ruby-sapphire
     - bite
     - glare
     - scary-face
-    - feint-attack
-  flavor_text: |
+    - faint-attack
+  contest_use_after:
+    - rage
+    - scary-face
+  flavor_text: &ruby-sapphire.flavor_text |
     Frightens the foe with a
     leer to lower DEFENSE.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
+colosseum:
   name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
+xd:
+  name: *red-blue.name
   type: *red-blue.type
-  pp: *red-blue.pp
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  pp: *red-blue.pp
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *gold-silver.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
+firered-leafgreen:
+  name: *red-blue.name
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *red-blue.flags
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+  stat_changes: *gold-silver.stat_changes
+  stat_change_chance: *gold-silver.stat_change_chance
   flavor_text: |
     The foe is given an
     intimidating look
     that lowers its
     DEFENSE stat.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  name: &diamond-pearl.name Leer
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -110,7 +133,7 @@ diamond-pearl: &diamond-pearl
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class status
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: &diamond-pearl.effect_chance 100
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 19
   flavor_text: &diamond-pearl.flavor_text |
@@ -121,13 +144,13 @@ diamond-pearl: &diamond-pearl
     stat is reduced.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  name: *diamond-pearl.name
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -135,16 +158,16 @@ heartgold-soulsilver:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white:
-  name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  name: *diamond-pearl.name
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -152,20 +175,19 @@ black-white:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The opposing team gains an intimidating
     leer with sharp eyes. The opposing team’s
     Defense stats are reduced.
-
 black-2-white-2:
-  name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  name: *diamond-pearl.name
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -173,20 +195,19 @@ black-2-white-2:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user gains an intimidating leer with
     sharp eyes. The opposing team’s
     Defense stats are reduced.
-
 x-y:
-  name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  name: *diamond-pearl.name
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -194,18 +215,18 @@ x-y:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &x-y.flavor_text |
     The user gives opposing Pokémon
     an intimidating leer that lowers the Defense stat.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  name: *diamond-pearl.name
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -213,19 +234,27 @@ omega-ruby-alpha-sapphire:
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_effect: 24
+  contest_use_before:
+    - scratch
+    - stomp
+    - horn-attack
+    - tackle
+    - bite
+    - glare
+    - scary-face
+    - feint-attack
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
-  stat_change_chance: *red-blue.stat_change_chance
+  name: *diamond-pearl.name
+  stat_change_chance: *gold-silver.stat_change_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  stat_changes: *red-blue.stat_changes
+  stat_changes: *gold-silver.stat_changes
   type: *red-blue.type
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
@@ -233,7 +262,7 @@ sun-moon: &sun-moon
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user gives opposing Pokémon an intimidating
     leer that lowers the Defense stat.

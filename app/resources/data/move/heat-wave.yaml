@@ -1,73 +1,91 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Heat Wave'
-  ailment: &ruby-sapphire.ailment burn
-  ailment_chance: &ruby-sapphire.ailment_chance 10
+  name: &ruby-sapphire.name 'HEAT WAVE'
+  power: &ruby-sapphire.power 100
+  type: &ruby-sapphire.type fire
+  accuracy: &ruby-sapphire.accuracy 90
+  pp: &ruby-sapphire.pp 10
+  effect: &ruby-sapphire.effect 5
+  target: &ruby-sapphire.target all-opponents
+  priority: &ruby-sapphire.priority 0
+  effect_chance: &ruby-sapphire.effect_chance 10
   flags: &ruby-sapphire.flags
     - protect
     - mirror
+  ailment: &ruby-sapphire.ailment burn
+  ailment_chance: &ruby-sapphire.ailment_chance 10
   categories: &ruby-sapphire.categories
     - damage
     - ailment
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 1
-  type: &ruby-sapphire.type fire
-  power: &ruby-sapphire.power 100
-  pp: &ruby-sapphire.pp 10
-  accuracy: &ruby-sapphire.accuracy 90
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target all-opponents
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 5
-  effect_chance: &ruby-sapphire.effect_chance 10
   contest_type: &ruby-sapphire.contest_type beauty
   contest_effect: &ruby-sapphire.contest_effect 1
+  contest_use_after:
+    - sunny-day
   flavor_text: |
     Exhales a hot breath on the
     foe. May inflict a burn.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Exhales a hot breath on the
+    target. May inflict a burn.
+  effect_chance: *ruby-sapphire.effect_chance
+  flags: *ruby-sapphire.flags
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class special
+  flavor_text: *colosseum.flavor_text
   effect_chance: *ruby-sapphire.effect_chance
-xd: *colosseum
+  flags: *ruby-sapphire.flags
+  ailment: *ruby-sapphire.ailment
+  ailment_chance: *ruby-sapphire.ailment_chance
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  effect_chance: *ruby-sapphire.effect_chance
+  flags: *ruby-sapphire.flags
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
-  flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     The user exhales a
     heated breath to
     attack. It may also
     inflict a burn.
-
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Heat Wave'
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
   flags: *ruby-sapphire.flags
@@ -80,7 +98,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -93,7 +111,7 @@ diamond-pearl: &diamond-pearl
     with a burn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
   flags: *ruby-sapphire.flags
@@ -106,12 +124,12 @@ heartgold-soulsilver:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
   flags: *ruby-sapphire.flags
@@ -124,7 +142,7 @@ black-white: &black-white
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
@@ -133,7 +151,7 @@ black-white: &black-white
     targets with a burn.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
   flags: *ruby-sapphire.flags
@@ -146,7 +164,7 @@ x-y:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -154,7 +172,7 @@ x-y:
     on the opposing Pokémon. This may also leave
     those Pokémon with a burn.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
   flags: *ruby-sapphire.flags
@@ -167,14 +185,14 @@ omega-ruby-alpha-sapphire:
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   contest_type: *ruby-sapphire.contest_type
   contest_effect: *ruby-sapphire.contest_effect
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   ailment_chance: *ruby-sapphire.ailment_chance
   flags: *ruby-sapphire.flags
@@ -187,7 +205,7 @@ sun-moon: &sun-moon
   accuracy: *ruby-sapphire.accuracy
   priority: *ruby-sapphire.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
   effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |

@@ -1,28 +1,18 @@
 gold-silver:
-  name: &gold-silver.name Magby
-  position: &gold-silver.position 148
+  name: &gold-silver.name MAGBY
+  position: &gold-silver.position 239
   numbers: &gold-silver.numbers
     national: &gold-silver.numbers.national 240
-    original-johto: 150
+    original-johto: 149
+    original-johto-abc: 105
   pokemon:
     magby:
-      genus: &gold-silver.pokemon.magby.genus 'Live Coal Pokémon'
-      female_rate: &gold-silver.pokemon.magby.female_rate 25
-      capture_rate: &gold-silver.pokemon.magby.capture_rate 45
-      happiness: &gold-silver.pokemon.magby.happiness 70
-      baby: &gold-silver.pokemon.magby.baby true
-      hatch_steps: &gold-silver.pokemon.magby.hatch_steps 25
-      growth_rate: &gold-silver.pokemon.magby.growth_rate medium
-      forms_switchable: &gold-silver.pokemon.magby.forms_switchable false
       name: *gold-silver.name
       default: &gold-silver.pokemon.magby.default true
-      height: &gold-silver.pokemon.magby.height 7
-      weight: &gold-silver.pokemon.magby.weight 214
+      capture_rate: &gold-silver.pokemon.magby.capture_rate 45
       experience: &gold-silver.pokemon.magby.experience 117
       types: &gold-silver.pokemon.magby.types
         - fire
-      egg_groups: &gold-silver.pokemon.magby.egg_groups
-        - no-eggs
       stats: &gold-silver.pokemon.magby.stats
         hp:
           base_value: 45
@@ -42,6 +32,18 @@ gold-silver:
         special-defense:
           base_value: 55
           effort_change: 70
+      growth_rate: &gold-silver.pokemon.magby.growth_rate medium
+      female_rate: &gold-silver.pokemon.magby.female_rate 25
+      hatch_steps: &gold-silver.pokemon.magby.hatch_steps 25
+      egg_groups: &gold-silver.pokemon.magby.egg_groups
+        - no-eggs
+      wild_held_items:
+        gold: &gold-silver.pokemon.magby.wild_held_items.gold
+          burnt-berry: 2
+        silver: *gold-silver.pokemon.magby.wild_held_items.gold
+      genus: &gold-silver.pokemon.magby.genus 'LIVE COAL Pokémon'
+      height: &gold-silver.pokemon.magby.height 7
+      weight: &gold-silver.pokemon.magby.weight 213
       flavor_text:
         gold: |
           Each and every
@@ -55,7 +57,7 @@ gold-silver:
           volcanic craters.
           Its body temp. is
           over 1100 degrees,
-          so don't under­
+          so don't under-
           estimate it.
       forms:
         magby:
@@ -64,12 +66,11 @@ gold-silver:
           default: *gold-silver.pokemon.magby.default
           battle_only: &gold-silver.pokemon.magby.forms.magby.battle_only false
           sprites:
+            - gold-silver/magby-default.png
             - gold-silver/back/magby-default.png
             - gold-silver/shiny/magby-default.png
-            - gold-silver/magby-default.png
           art: &gold-silver.pokemon.magby.forms.magby.art
             - magby-default.png
-          footprint: &gold-silver.pokemon.magby.forms.magby.footprint magby.png
           cry: &gold-silver.pokemon.magby.forms.magby.cry gen5/magby-default.webm
           icon: &gold-silver.pokemon.magby.forms.magby.icon gen2/humanshape.png
 crystal:
@@ -78,22 +79,21 @@ crystal:
   numbers: *gold-silver.numbers
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
-      female_rate: *gold-silver.pokemon.magby.female_rate
-      capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
-      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
-      growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.magby.default
-      height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
+      capture_rate: *gold-silver.pokemon.magby.capture_rate
       experience: *gold-silver.pokemon.magby.experience
       types: *gold-silver.pokemon.magby.types
-      egg_groups: *gold-silver.pokemon.magby.egg_groups
       stats: *gold-silver.pokemon.magby.stats
+      growth_rate: *gold-silver.pokemon.magby.growth_rate
+      female_rate: *gold-silver.pokemon.magby.female_rate
+      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
+      egg_groups: *gold-silver.pokemon.magby.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.magby.wild_held_items.gold
+      genus: *gold-silver.pokemon.magby.genus
+      height: *gold-silver.pokemon.magby.height
+      weight: *gold-silver.pokemon.magby.weight
       flavor_text:
         crystal: |
           It naturally spits
@@ -109,39 +109,272 @@ crystal:
           default: *gold-silver.pokemon.magby.default
           battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
           sprites:
+            - crystal/magby-default.png
             - crystal/back/magby-default.png
             - crystal/shiny/magby-default.png
-            - crystal/magby-default.png
-            - crystal/animated/magby-default.webm
-            - crystal/animated/shiny/magby-default.webm
           art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
           cry: *gold-silver.pokemon.magby.forms.magby.cry
           icon: *gold-silver.pokemon.magby.forms.magby.icon
 ruby-sapphire:
   name: *gold-silver.name
-  position: *gold-silver.position
+  position: &ruby-sapphire.position 240
   numbers: &ruby-sapphire.numbers
+    national: *gold-silver.numbers.national
+    hoenn: 375
+  pokemon:
+    magby:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.magby.default
+      forms_switchable: &ruby-sapphire.pokemon.magby.forms_switchable false
+      capture_rate: *gold-silver.pokemon.magby.capture_rate
+      experience: *gold-silver.pokemon.magby.experience
+      types: *gold-silver.pokemon.magby.types
+      stats: &ruby-sapphire.pokemon.magby.stats
+        hp:
+          base_value: 45
+          effort_change: 0
+        attack:
+          base_value: 75
+          effort_change: 0
+        defense:
+          base_value: 37
+          effort_change: 0
+        speed:
+          base_value: 83
+          effort_change: 1
+        special-attack:
+          base_value: 70
+          effort_change: 0
+        special-defense:
+          base_value: 45
+          effort_change: 0
+      growth_rate: *gold-silver.pokemon.magby.growth_rate
+      female_rate: *gold-silver.pokemon.magby.female_rate
+      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
+      egg_groups: *gold-silver.pokemon.magby.egg_groups
+      wild_held_items:
+        ruby: &ruby-sapphire.pokemon.magby.wild_held_items.ruby
+          rawst-berry: 100
+        sapphire: *ruby-sapphire.pokemon.magby.wild_held_items.ruby
+      happiness: &ruby-sapphire.pokemon.magby.happiness 70
+      abilities: &ruby-sapphire.pokemon.magby.abilities
+        flame-body: &ruby-sapphire.pokemon.magby.abilities.flame-body
+          hidden: false
+          position: 1
+      genus: *gold-silver.pokemon.magby.genus
+      height: *gold-silver.pokemon.magby.height
+      weight: &ruby-sapphire.pokemon.magby.weight 214
+      flavor_text:
+        ruby: |
+          MAGBY's state of health is determined
+          by observing the fire it breathes.
+           If the POKéMON is spouting yellow
+          flames from its mouth, it is in good
+           health. When it is fatigued, black smoke
+          will be mixed in with the flames.
+        sapphire: |
+          MAGBY's state of health is determined
+          by observing the fire it breathes.
+          If the POKéMON is spouting yellow
+          flames from its mouth, it is in good
+          health. When it is fatigued, black smoke
+          will be mixed in with the flames.
+      forms:
+        magby:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.magby.forms.magby.form_name
+          default: *gold-silver.pokemon.magby.default
+          battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
+          icon: &ruby-sapphire.pokemon.magby.forms.magby.icon gen5/magby-default.png
+          sprites:
+            - ruby-sapphire/magby-default.png
+            - ruby-sapphire/back/magby-default.png
+            - ruby-sapphire/shiny/magby-default.png
+          art: *gold-silver.pokemon.magby.forms.magby.art
+          footprint: &ruby-sapphire.pokemon.magby.forms.magby.footprint magby.png
+          cry: *gold-silver.pokemon.magby.forms.magby.cry
+emerald:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *ruby-sapphire.numbers
+  pokemon:
+    magby:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.magby.default
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      capture_rate: *gold-silver.pokemon.magby.capture_rate
+      experience: *gold-silver.pokemon.magby.experience
+      types: *gold-silver.pokemon.magby.types
+      stats: *ruby-sapphire.pokemon.magby.stats
+      growth_rate: *gold-silver.pokemon.magby.growth_rate
+      female_rate: *gold-silver.pokemon.magby.female_rate
+      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
+      egg_groups: *gold-silver.pokemon.magby.egg_groups
+      wild_held_items:
+        emerald: *ruby-sapphire.pokemon.magby.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      abilities: *ruby-sapphire.pokemon.magby.abilities
+      genus: *gold-silver.pokemon.magby.genus
+      height: *gold-silver.pokemon.magby.height
+      weight: *ruby-sapphire.pokemon.magby.weight
+      flavor_text:
+        emerald: |
+          If a MAGBY is spouting yellow flames from
+          its mouth, it is in good health. When it is
+          fatigued, black smoke will be mixed in with
+          the flames.
+      forms:
+        magby:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.magby.forms.magby.form_name
+          default: *gold-silver.pokemon.magby.default
+          battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
+          icon: *ruby-sapphire.pokemon.magby.forms.magby.icon
+          sprites:
+            - emerald/magby-default.png
+            - emerald/shiny/magby-default.png
+            - emerald/animated/magby-default.webm
+            - emerald/animated/shiny/magby-default.webm
+          art: *gold-silver.pokemon.magby.forms.magby.art
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
+          cry: *gold-silver.pokemon.magby.forms.magby.cry
+colosseum:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &colosseum.numbers
+    national: *gold-silver.numbers.national
+    orre-strategy-memo: 179
+  pokemon:
+    magby:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.magby.default
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      capture_rate: *gold-silver.pokemon.magby.capture_rate
+      experience: *gold-silver.pokemon.magby.experience
+      types: *gold-silver.pokemon.magby.types
+      stats: *ruby-sapphire.pokemon.magby.stats
+      growth_rate: *gold-silver.pokemon.magby.growth_rate
+      female_rate: *gold-silver.pokemon.magby.female_rate
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      abilities: *ruby-sapphire.pokemon.magby.abilities
+      genus: *gold-silver.pokemon.magby.genus
+      height: *gold-silver.pokemon.magby.height
+      weight: *ruby-sapphire.pokemon.magby.weight
+      forms:
+        magby:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.magby.forms.magby.form_name
+          default: *gold-silver.pokemon.magby.default
+          battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
+          sprites:
+            - colosseum/magby-default.png
+            - colosseum/shiny/magby-default.png
+          art: *gold-silver.pokemon.magby.forms.magby.art
+          cry: *gold-silver.pokemon.magby.forms.magby.cry
+xd:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *colosseum.numbers
+  pokemon:
+    magby:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.magby.default
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      capture_rate: *gold-silver.pokemon.magby.capture_rate
+      experience: *gold-silver.pokemon.magby.experience
+      types: *gold-silver.pokemon.magby.types
+      stats: *ruby-sapphire.pokemon.magby.stats
+      growth_rate: *gold-silver.pokemon.magby.growth_rate
+      female_rate: *gold-silver.pokemon.magby.female_rate
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      abilities: *ruby-sapphire.pokemon.magby.abilities
+      genus: *gold-silver.pokemon.magby.genus
+      height: *gold-silver.pokemon.magby.height
+      weight: *ruby-sapphire.pokemon.magby.weight
+      forms:
+        magby:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.magby.forms.magby.form_name
+          default: *gold-silver.pokemon.magby.default
+          battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
+          sprites:
+            - xd/magby-default.png
+            - xd/shiny/magby-default.png
+          art: *gold-silver.pokemon.magby.forms.magby.art
+          cry: *gold-silver.pokemon.magby.forms.magby.cry
+firered-leafgreen:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &firered-leafgreen.numbers
     national: *gold-silver.numbers.national
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
-      color: &ruby-sapphire.pokemon.magby.color red
-      female_rate: *gold-silver.pokemon.magby.female_rate
-      capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
-      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
-      growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.magby.default
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      capture_rate: *gold-silver.pokemon.magby.capture_rate
+      experience: *gold-silver.pokemon.magby.experience
+      types: *gold-silver.pokemon.magby.types
+      stats: *ruby-sapphire.pokemon.magby.stats
+      growth_rate: *gold-silver.pokemon.magby.growth_rate
+      female_rate: *gold-silver.pokemon.magby.female_rate
+      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
+      egg_groups: *gold-silver.pokemon.magby.egg_groups
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      abilities: *ruby-sapphire.pokemon.magby.abilities
+      genus: *gold-silver.pokemon.magby.genus
       height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: &ruby-sapphire.pokemon.magby.experience 73
+      weight: *ruby-sapphire.pokemon.magby.weight
+      flavor_text:
+        firered: |
+          It is found in volcanic craters. Its body
+          heat exceeds 1,100 degrees Fahrenheit,
+          so don't underestimate it.
+        leafgreen: |
+          Each and every time it inhales and
+          exhales, hot embers dribble out of its
+          mouth and nostrils.
+      forms:
+        magby:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.magby.forms.magby.form_name
+          default: *gold-silver.pokemon.magby.default
+          battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
+          icon: *ruby-sapphire.pokemon.magby.forms.magby.icon
+          sprites:
+            - firered-leafgreen/magby-default.png
+            - firered-leafgreen/back/magby-default.png
+            - firered-leafgreen/shiny/magby-default.png
+          art: *gold-silver.pokemon.magby.forms.magby.art
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
+          cry: *gold-silver.pokemon.magby.forms.magby.cry
+diamond-pearl:
+  name: &diamond-pearl.name Magby
+  position: &diamond-pearl.position 148
+  numbers: *firered-leafgreen.numbers
+  pokemon:
+    magby:
+      genus: &diamond-pearl.pokemon.magby.genus 'Live Coal Pokémon'
+      shape: &diamond-pearl.pokemon.magby.shape upright
+      female_rate: *gold-silver.pokemon.magby.female_rate
+      capture_rate: *gold-silver.pokemon.magby.capture_rate
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      baby: &diamond-pearl.pokemon.magby.baby true
+      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
+      growth_rate: *gold-silver.pokemon.magby.growth_rate
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      pal_park: &diamond-pearl.pokemon.magby.pal_park
+        area: mountain
+        rate: 10
+        score: 80
+      name: *diamond-pearl.name
+      default: *gold-silver.pokemon.magby.default
+      height: *gold-silver.pokemon.magby.height
+      weight: *ruby-sapphire.pokemon.magby.weight
+      experience: &diamond-pearl.pokemon.magby.experience 73
       types: *gold-silver.pokemon.magby.types
       egg_groups: *gold-silver.pokemon.magby.egg_groups
-      stats: &ruby-sapphire.pokemon.magby.stats
+      stats: &diamond-pearl.pokemon.magby.stats
         hp:
           base_value: 45
           effort_change: 0
@@ -160,188 +393,11 @@ ruby-sapphire:
         special-defense:
           base_value: 55
           effort_change: 0
-      abilities: &ruby-sapphire.pokemon.magby.abilities
-        flame-body:
-          hidden: false
-          position: 1
+      abilities: &diamond-pearl.pokemon.magby.abilities
+        flame-body: *ruby-sapphire.pokemon.magby.abilities.flame-body
         vital-spirit:
           hidden: true
           position: 3
-      wild_held_items:
-        ruby: &ruby-sapphire.pokemon.magby.wild_held_items.ruby
-          rawst-berry: 100
-        sapphire: *ruby-sapphire.pokemon.magby.wild_held_items.ruby
-      flavor_text:
-        ruby: |
-          MAGBY’s state of health is determined
-          by observing the fire it breathes.
-          If the POKéMON is spouting yellow
-          flames from its mouth, it is in good
-          health. When it is fatigued, black smoke
-          will be mixed in with the flames.
-        sapphire: |
-          MAGBY’s state of health is determined
-          by observing the fire it breathes.
-          If the POKéMON is spouting yellow
-          flames from its mouth, it is in good
-          health. When it is fatigued, black smoke
-          will be mixed in with the flames.
-      forms:
-        magby:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.magby.forms.magby.form_name
-          default: *gold-silver.pokemon.magby.default
-          battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
-          icon: &ruby-sapphire.pokemon.magby.forms.magby.icon gen5/magby-default.png
-          sprites:
-            - ruby-sapphire/back/magby-default.png
-            - ruby-sapphire/shiny/magby-default.png
-            - ruby-sapphire/magby-default.png
-          art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
-          cry: *gold-silver.pokemon.magby.forms.magby.cry
-emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    magby:
-      genus: *gold-silver.pokemon.magby.genus
-      color: *ruby-sapphire.pokemon.magby.color
-      female_rate: *gold-silver.pokemon.magby.female_rate
-      capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
-      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
-      growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.magby.default
-      height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
-      types: *gold-silver.pokemon.magby.types
-      egg_groups: *gold-silver.pokemon.magby.egg_groups
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
-      wild_held_items:
-        emerald: *ruby-sapphire.pokemon.magby.wild_held_items.ruby
-      flavor_text:
-        emerald: |
-          If a MAGBY is spouting yellow flames from
-          its mouth, it is in good health. When it is
-          fatigued, black smoke will be mixed in with
-          the flames.
-      forms:
-        magby:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.magby.forms.magby.form_name
-          default: *gold-silver.pokemon.magby.default
-          battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
-          icon: *ruby-sapphire.pokemon.magby.forms.magby.icon
-          sprites:
-            - emerald/shiny/magby-default.png
-            - emerald/magby-default.png
-            - emerald/animated/magby-default.webm
-            - emerald/animated/shiny/magby-default.webm
-          art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
-          cry: *gold-silver.pokemon.magby.forms.magby.cry
-colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
-  pokemon:
-    magby:
-      genus: *gold-silver.pokemon.magby.genus
-      female_rate: *gold-silver.pokemon.magby.female_rate
-      capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
-      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
-      growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.magby.default
-      height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
-      types: *gold-silver.pokemon.magby.types
-      egg_groups: *gold-silver.pokemon.magby.egg_groups
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
-      forms: &colosseum.pokemon.magby.forms
-        magby:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.magby.forms.magby.form_name
-          default: *gold-silver.pokemon.magby.default
-          battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
-          icon: *ruby-sapphire.pokemon.magby.forms.magby.icon
-          art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
-          cry: *gold-silver.pokemon.magby.forms.magby.cry
-xd: *colosseum
-firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    magby:
-      genus: *gold-silver.pokemon.magby.genus
-      habitat: mountain
-      female_rate: *gold-silver.pokemon.magby.female_rate
-      capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
-      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
-      growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.magby.default
-      height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
-      types: *gold-silver.pokemon.magby.types
-      egg_groups: *gold-silver.pokemon.magby.egg_groups
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
-      flavor_text:
-        firered: |
-          It is found in volcanic craters. Its body
-          heat exceeds 1,100 degrees Fahrenheit,
-          so don’t underestimate it.
-        leafgreen: |
-          Each and every time it inhales and
-          exhales, hot embers dribble out of its
-          mouth and nostrils.
-      forms: *colosseum.pokemon.magby.forms
-diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    magby:
-      genus: *gold-silver.pokemon.magby.genus
-      shape: &diamond-pearl.pokemon.magby.shape upright
-      female_rate: *gold-silver.pokemon.magby.female_rate
-      capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
-      hatch_steps: *gold-silver.pokemon.magby.hatch_steps
-      growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      pal_park: &diamond-pearl.pokemon.magby.pal_park
-        area: mountain
-        rate: 10
-        score: 80
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.magby.default
-      height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
-      types: *gold-silver.pokemon.magby.types
-      egg_groups: *gold-silver.pokemon.magby.egg_groups
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
       wild_held_items:
         diamond: &diamond-pearl.pokemon.magby.wild_held_items.diamond
           magmarizer: 5
@@ -358,7 +414,7 @@ diamond-pearl:
           it is breathing yellow flames.
       forms:
         magby:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.magby.forms.magby.form_name
           default: *gold-silver.pokemon.magby.default
           battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
@@ -369,35 +425,35 @@ diamond-pearl:
             - diamond-pearl/shiny/magby-default.png
             - diamond-pearl/magby-default.png
           art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
           cry: *gold-silver.pokemon.magby.forms.magby.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     extended-sinnoh: 200
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
+      genus: *diamond-pearl.pokemon.magby.genus
       shape: *diamond-pearl.pokemon.magby.shape
       female_rate: *gold-silver.pokemon.magby.female_rate
       capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      baby: *diamond-pearl.pokemon.magby.baby
       hatch_steps: *gold-silver.pokemon.magby.hatch_steps
       growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
       pal_park: *diamond-pearl.pokemon.magby.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.magby.default
       height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
+      weight: *ruby-sapphire.pokemon.magby.weight
+      experience: *diamond-pearl.pokemon.magby.experience
       types: *gold-silver.pokemon.magby.types
       egg_groups: *gold-silver.pokemon.magby.egg_groups
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
+      stats: *diamond-pearl.pokemon.magby.stats
+      abilities: *diamond-pearl.pokemon.magby.abilities
       wild_held_items:
         platinum: *diamond-pearl.pokemon.magby.wild_held_items.pearl
       flavor_text:
@@ -407,7 +463,7 @@ platinum:
           heat can top 1,100 degrees F.
       forms:
         magby:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.magby.forms.magby.form_name
           default: *gold-silver.pokemon.magby.default
           battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
@@ -418,35 +474,35 @@ platinum:
             - platinum/shiny/magby-default.png
             - platinum/magby-default.png
           art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
           cry: *gold-silver.pokemon.magby.forms.magby.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-johto: 152
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
+      genus: *diamond-pearl.pokemon.magby.genus
       shape: *diamond-pearl.pokemon.magby.shape
       female_rate: *gold-silver.pokemon.magby.female_rate
       capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      baby: *diamond-pearl.pokemon.magby.baby
       hatch_steps: *gold-silver.pokemon.magby.hatch_steps
       growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
       pal_park: *diamond-pearl.pokemon.magby.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.magby.default
       height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
+      weight: *ruby-sapphire.pokemon.magby.weight
+      experience: *diamond-pearl.pokemon.magby.experience
       types: *gold-silver.pokemon.magby.types
       egg_groups: *gold-silver.pokemon.magby.egg_groups
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
+      stats: *diamond-pearl.pokemon.magby.stats
+      abilities: *diamond-pearl.pokemon.magby.abilities
       flavor_text:
         heartgold: |
           Each and every time it inhales
@@ -458,7 +514,7 @@ heartgold-soulsilver:
           Fahrenheit, so don’t underestimate it.
       forms:
         magby:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.magby.forms.magby.form_name
           default: *gold-silver.pokemon.magby.default
           battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
@@ -485,33 +541,33 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/magby-default.png
             - heartgold-soulsilver/magby-default.png
           art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
           cry: *gold-silver.pokemon.magby.forms.magby.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
-      color: *ruby-sapphire.pokemon.magby.color
+      genus: *diamond-pearl.pokemon.magby.genus
+      color: &black-white.pokemon.magby.color red
       shape: *diamond-pearl.pokemon.magby.shape
       female_rate: *gold-silver.pokemon.magby.female_rate
       capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      baby: *diamond-pearl.pokemon.magby.baby
       hatch_steps: *gold-silver.pokemon.magby.hatch_steps
       growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.magby.default
       height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
+      weight: *ruby-sapphire.pokemon.magby.weight
+      experience: *diamond-pearl.pokemon.magby.experience
       types: *gold-silver.pokemon.magby.types
       egg_groups: *gold-silver.pokemon.magby.egg_groups
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
+      stats: *diamond-pearl.pokemon.magby.stats
+      abilities: *diamond-pearl.pokemon.magby.abilities
       flavor_text:
         black: |
           Its magma-like blood circulates
@@ -523,7 +579,7 @@ black-white:
           heat can top 1,100 degrees F.
       forms:
         magby:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.magby.forms.magby.form_name
           default: *gold-silver.pokemon.magby.default
           battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
@@ -534,35 +590,35 @@ black-white:
             - black-white/shiny/magby-default.png
             - black-white/magby-default.png
           art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
           cry: *gold-silver.pokemon.magby.forms.magby.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-unova: 53
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
-      color: *ruby-sapphire.pokemon.magby.color
+      genus: *diamond-pearl.pokemon.magby.genus
+      color: *black-white.pokemon.magby.color
       shape: *diamond-pearl.pokemon.magby.shape
       female_rate: *gold-silver.pokemon.magby.female_rate
       capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      baby: *diamond-pearl.pokemon.magby.baby
       hatch_steps: *gold-silver.pokemon.magby.hatch_steps
       growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.magby.default
       height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
+      weight: *ruby-sapphire.pokemon.magby.weight
+      experience: *diamond-pearl.pokemon.magby.experience
       types: *gold-silver.pokemon.magby.types
       egg_groups: *gold-silver.pokemon.magby.egg_groups
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
+      stats: *diamond-pearl.pokemon.magby.stats
+      abilities: *diamond-pearl.pokemon.magby.abilities
       flavor_text:
         black-2: |
           It’s small, but its body temperature
@@ -572,33 +628,42 @@ black-2-white-2:
           It’s small, but its body temperature
           is over 1,100 degrees F. Embers escape
           its mouth and nose when it breathes.
-      forms: *colosseum.pokemon.magby.forms
+      forms:
+        magby:
+          name: *diamond-pearl.name
+          form_name: *gold-silver.pokemon.magby.forms.magby.form_name
+          default: *gold-silver.pokemon.magby.default
+          battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
+          icon: *ruby-sapphire.pokemon.magby.forms.magby.icon
+          art: *gold-silver.pokemon.magby.forms.magby.art
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
+          cry: *gold-silver.pokemon.magby.forms.magby.cry
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
-      color: *ruby-sapphire.pokemon.magby.color
+      genus: *diamond-pearl.pokemon.magby.genus
+      color: *black-white.pokemon.magby.color
       shape: *diamond-pearl.pokemon.magby.shape
       female_rate: *gold-silver.pokemon.magby.female_rate
       capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      baby: *diamond-pearl.pokemon.magby.baby
       hatch_steps: *gold-silver.pokemon.magby.hatch_steps
       growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.magby.default
       height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
+      weight: *ruby-sapphire.pokemon.magby.weight
+      experience: *diamond-pearl.pokemon.magby.experience
       types: *gold-silver.pokemon.magby.types
       egg_groups: *gold-silver.pokemon.magby.egg_groups
       mega: &x-y.pokemon.magby.mega false
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
+      stats: *diamond-pearl.pokemon.magby.stats
+      abilities: *diamond-pearl.pokemon.magby.abilities
       flavor_text:
         x: |
           It’s small, but its body temperature is over
@@ -610,7 +675,7 @@ x-y:
           1,100 degrees Fahrenheit.
       forms:
         magby:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.magby.forms.magby.form_name
           default: *gold-silver.pokemon.magby.default
           battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
@@ -619,34 +684,34 @@ x-y:
             - x-y/shiny/magby-default.png
             - x-y/magby-default.png
           art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
           cry: &x-y.pokemon.magby.forms.magby.cry magby-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
-      color: *ruby-sapphire.pokemon.magby.color
+      genus: *diamond-pearl.pokemon.magby.genus
+      color: *black-white.pokemon.magby.color
       shape: *diamond-pearl.pokemon.magby.shape
       female_rate: *gold-silver.pokemon.magby.female_rate
       capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      baby: *diamond-pearl.pokemon.magby.baby
       hatch_steps: *gold-silver.pokemon.magby.hatch_steps
       growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.magby.default
       height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
+      weight: *ruby-sapphire.pokemon.magby.weight
+      experience: *diamond-pearl.pokemon.magby.experience
       types: *gold-silver.pokemon.magby.types
       egg_groups: *gold-silver.pokemon.magby.egg_groups
       mega: *x-y.pokemon.magby.mega
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
+      stats: *diamond-pearl.pokemon.magby.stats
+      abilities: *diamond-pearl.pokemon.magby.abilities
       flavor_text:
         omega-ruby: |
           Magby’s state of health is determined by observing the fire it
@@ -660,46 +725,46 @@ omega-ruby-alpha-sapphire:
           will be mixed in with the flames.
       forms:
         magby:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.magby.forms.magby.form_name
           default: *gold-silver.pokemon.magby.default
           battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
           icon: *x-y.pokemon.magby.forms.magby.icon
           art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
           cry: *x-y.pokemon.magby.forms.magby.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/magby-default.png
             - omega-ruby-alpha-sapphire/magby-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     original-alola: 166
     original-akala: 93
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
-      color: *ruby-sapphire.pokemon.magby.color
+      genus: *diamond-pearl.pokemon.magby.genus
+      color: *black-white.pokemon.magby.color
       shape: *diamond-pearl.pokemon.magby.shape
       female_rate: *gold-silver.pokemon.magby.female_rate
       capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      baby: *diamond-pearl.pokemon.magby.baby
       hatch_steps: *gold-silver.pokemon.magby.hatch_steps
       growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.magby.default
       height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
+      weight: *ruby-sapphire.pokemon.magby.weight
+      experience: *diamond-pearl.pokemon.magby.experience
       types: *gold-silver.pokemon.magby.types
       egg_groups: *gold-silver.pokemon.magby.egg_groups
       mega: *x-y.pokemon.magby.mega
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
+      stats: *diamond-pearl.pokemon.magby.stats
+      abilities: *diamond-pearl.pokemon.magby.abilities
       wild_held_items:
         moon: *diamond-pearl.pokemon.magby.wild_held_items.diamond
       flavor_text:
@@ -708,7 +773,7 @@ sun-moon:
           Apparently its soft flames produce fine works.
       forms:
         magby:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.magby.forms.magby.form_name
           default: *gold-silver.pokemon.magby.default
           battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
@@ -717,37 +782,37 @@ sun-moon:
             - sun-moon/shiny/magby-default.png
             - sun-moon/magby-default.png
           art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
           cry: *x-y.pokemon.magby.forms.magby.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-alola: 200
     updated-akala: 101
   pokemon:
     magby:
-      genus: *gold-silver.pokemon.magby.genus
-      color: *ruby-sapphire.pokemon.magby.color
+      genus: *diamond-pearl.pokemon.magby.genus
+      color: *black-white.pokemon.magby.color
       shape: *diamond-pearl.pokemon.magby.shape
       female_rate: *gold-silver.pokemon.magby.female_rate
       capture_rate: *gold-silver.pokemon.magby.capture_rate
-      happiness: *gold-silver.pokemon.magby.happiness
-      baby: *gold-silver.pokemon.magby.baby
+      happiness: *ruby-sapphire.pokemon.magby.happiness
+      baby: *diamond-pearl.pokemon.magby.baby
       hatch_steps: *gold-silver.pokemon.magby.hatch_steps
       growth_rate: *gold-silver.pokemon.magby.growth_rate
-      forms_switchable: *gold-silver.pokemon.magby.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.magby.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.magby.default
       height: *gold-silver.pokemon.magby.height
-      weight: *gold-silver.pokemon.magby.weight
-      experience: *ruby-sapphire.pokemon.magby.experience
+      weight: *ruby-sapphire.pokemon.magby.weight
+      experience: *diamond-pearl.pokemon.magby.experience
       types: *gold-silver.pokemon.magby.types
       egg_groups: *gold-silver.pokemon.magby.egg_groups
       mega: *x-y.pokemon.magby.mega
-      stats: *ruby-sapphire.pokemon.magby.stats
-      abilities: *ruby-sapphire.pokemon.magby.abilities
+      stats: *diamond-pearl.pokemon.magby.stats
+      abilities: *diamond-pearl.pokemon.magby.abilities
       wild_held_items:
         ultra-sun: *diamond-pearl.pokemon.magby.wild_held_items.diamond
       flavor_text:
@@ -757,7 +822,7 @@ ultra-sun-ultra-moon:
           some magma.
       forms:
         magby:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.magby.forms.magby.form_name
           default: *gold-silver.pokemon.magby.default
           battle_only: *gold-silver.pokemon.magby.forms.magby.battle_only
@@ -766,5 +831,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/magby-default.png
             - ultra-sun-ultra-moon/magby-default.png
           art: *gold-silver.pokemon.magby.forms.magby.art
-          footprint: *gold-silver.pokemon.magby.forms.magby.footprint
+          footprint: *ruby-sapphire.pokemon.magby.forms.magby.footprint
           cry: *x-y.pokemon.magby.forms.magby.cry

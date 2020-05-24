@@ -72,7 +72,7 @@ class MoveTest extends DataSchemaTestCase
             'integer' => [
                 'moveEffectId' => new YamlIdentifierExists('move_effect'),
                 'moveEffectInVersionGroup' => new EntityHasVersionGroup('move_effect'),
-                'contestEffectId' => new CsvIdentifierExists('contest_effect', 'id'),
+                'contestEffectId' => new YamlIdentifierExists('contest_effect'),
                 'superContestEffectId' => new CsvIdentifierExists('super_contest_effect', 'id'),
             ],
         ];

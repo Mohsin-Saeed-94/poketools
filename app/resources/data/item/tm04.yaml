@@ -6,8 +6,12 @@ red-blue: &red-blue
   short_description: 'Teaches []{move:whirlwind} to a compatible Pokémon.'
   description: |
     Teaches []{move:whirlwind} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm04"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 4
+    move: whirlwind
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
@@ -18,36 +22,79 @@ gold-silver: &gold-silver
   short_description: 'Teaches []{move:rollout} to a compatible Pokémon.'
   description: |
     Teaches []{move:rollout} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm04"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: rollout
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm-psychic.png
+  buy: &ruby-sapphire.buy 3000
+  sell: &ruby-sapphire.sell 1500
+  flavor_text: &ruby-sapphire.flavor_text |
+    Raises SP. ATK and
+    SP. DEF by focusing
+    the mind.
+  short_description: &ruby-sapphire.short_description 'Teaches []{move:calm-mind} to a compatible Pokémon.'
+  description: &ruby-sapphire.description |
+    Teaches []{move:calm-mind} to a compatible Pokémon.
+
+    {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm04"})}}
+  machine: &ruby-sapphire.machine
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: calm-mind
+emerald: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  pocket: *gold-silver.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *red-blue.category
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    The user focuses
+    its mind to raise
+    the SP. ATK and
+    SP. DEF stats.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: &diamond-pearl
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
   buy: 10000
   sell: 5000
-  machine:
-    type: TM
-    number: 4
-    move: calm-mind
-  short_description: 'Teaches []{move:calm-mind} to a compatible Pokémon.'
-  description: |
-    Teaches []{move:calm-mind} to a compatible Pokémon.
-    
-    {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm04"})}}
-  icon: tm-psychic.png
-emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
-black-white: *ruby-sapphire
-black-2-white-2: *ruby-sapphire
-x-y: *ruby-sapphire
-omega-ruby-alpha-sapphire: *ruby-sapphire
-sun-moon: *ruby-sapphire
-ultra-sun-ultra-moon: *ruby-sapphire
+  machine: *ruby-sapphire.machine
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl
+black-white: *diamond-pearl
+black-2-white-2: *diamond-pearl
+x-y: *diamond-pearl
+omega-ruby-alpha-sapphire: *diamond-pearl
+sun-moon: *diamond-pearl
+ultra-sun-ultra-moon: *diamond-pearl

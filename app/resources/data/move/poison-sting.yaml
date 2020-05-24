@@ -1,7 +1,12 @@
 red-blue: &red-blue
-  name: &red-blue.name 'Poison Sting'
+  name: &red-blue.name 'POISON STING'
+  power: &red-blue.power 15
+  type: &red-blue.type poison
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 35
+  effect: &red-blue.effect 3
   ailment: &red-blue.ailment poison
-  ailment_chance: &red-blue.ailment_chance 30
+  ailment_chance: 20
   flags: &red-blue.flags
     - protect
     - mirror
@@ -10,105 +15,111 @@ red-blue: &red-blue
     - ailment
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type poison
-  power: &red-blue.power 15
-  pp: &red-blue.pp 35
-  accuracy: &red-blue.accuracy 100
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 3
-  effect_chance: 20
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  effect_chance: &gold-silver.effect_chance 30
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: &gold-silver.ailment_chance 30
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: &gold-silver.effect_chance 30
   flavor_text: |
     An attack that may
     poison the target.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
-  ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
   flags: *red-blue.flags
+  ailment: *red-blue.ailment
+  ailment_chance: *gold-silver.ailment_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 9
-  flavor_text: |
+  contest_effect: 11
+  flavor_text: &ruby-sapphire.flavor_text |
     A toxic attack with barbs,
     etc., that may poison.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *red-blue.name
-  ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *gold-silver.effect_chance
   flags: *red-blue.flags
+  ailment: *red-blue.ailment
+  ailment_chance: *gold-silver.ailment_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  pp: *red-blue.pp
   effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
   effect_chance: *gold-silver.effect_chance
-xd: *colosseum
+  flags: *red-blue.flags
+  ailment: *red-blue.ailment
+  ailment_chance: *gold-silver.ailment_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
-  ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
   flags: *red-blue.flags
+  ailment: *red-blue.ailment
+  ailment_chance: *gold-silver.ailment_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     The foe is stabbed
     with a toxic barb,
     etc. It may poison
     the foe.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
+  name: &diamond-pearl.name 'Poison Sting'
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -119,7 +130,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -132,9 +143,9 @@ diamond-pearl: &diamond-pearl
     the target.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -145,14 +156,14 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -163,7 +174,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &black-white.flavor_text |
@@ -173,9 +184,9 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -186,16 +197,16 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 9
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
+  name: *diamond-pearl.name
   ailment: *red-blue.ailment
-  ailment_chance: *red-blue.ailment_chance
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -206,7 +217,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *red-blue.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

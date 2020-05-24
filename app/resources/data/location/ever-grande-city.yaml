@@ -1,20 +1,37 @@
-ruby-sapphire: &ruby-sapphire
+ruby-sapphire:
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Ever Grande City'
-  areas: &ruby-sapphire.areas
-    whole-area:
+  areas:
+    whole-area: &ruby-sapphire.areas.whole-area
       name: 'Whole area'
       default: true
-  map:
+    pokemon-league:
+      name: &ruby-sapphire.areas.pokemon-league.name 'Pokemon League'
+      shops: &ruby-sapphire.areas.pokemon-league.shops
+        mart:
+          name: 'Poké Mart'
+          default: true
+  map: &ruby-sapphire.map
     map: &ruby-sapphire.map.map hoenn
-    overlay: |
-      <rect x="224" y="80" width="8" height="16" />
-emerald: *ruby-sapphire
+    overlay: '<rect x="224" y="80" width="8" height="16" />'
+emerald:
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
+  areas:
+    whole-area: *ruby-sapphire.areas.whole-area
+    pokemon-league:
+      name: *ruby-sapphire.areas.pokemon-league.name
+      children:
+        1f:
+          name: 1F
+          default: true
+          shops: *ruby-sapphire.areas.pokemon-league.shops
+  map: *ruby-sapphire.map
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    whole-area: *ruby-sapphire.areas.whole-area
   map:
     map: *ruby-sapphire.map.map
-    overlay: |
-      <rect x="300" y="128" width="13" height="13" />
+    overlay: '<rect x="300" y="128" width="13" height="13" />'

@@ -1,32 +1,34 @@
 emerald:
   region: hoenn
   name: &emerald.name 'Battle Frontier'
-  areas: &emerald.areas
-    whole-area:
+  areas:
+    whole-area: &emerald.areas.whole-area
       name: 'Whole area'
       default: true
+    mart:
+      name: &emerald.areas.mart.name 'Poké Mart'
+      shops:
+        mart:
+          name: *emerald.areas.mart.name
+          default: true
   map:
     map: hoenn
     z: &emerald.map.z 10
-    overlay: |
-      <circle cx="188" cy="114" r="4" />
-
+    overlay: '<circle cx="188" cy="114" r="4" />'
 platinum:
   region: sinnoh
   name: *emerald.name
-  areas: *emerald.areas
+  areas: &platinum.areas
+    whole-area: *emerald.areas.whole-area
   super: fight-area
   map:
     map: sinnoh
     z: *emerald.map.z
-    overlay: |
-      <path d="m 141.5,52.5 h 5 c 1.108,0 2,0.892 2,2 v -7 c 0,-1.104569 -0.89543,-2 -2,-2 h -4 c -0.55228,0 -1,-0.447715 -1,-1 z" />
-
+    overlay: '<path d="m 141.5,52.5 h 5 c 1.108,0 2,0.892 2,2 v -7 c 0,-1.104569 -0.89543,-2 -2,-2 h -4 c -0.55228,0 -1,-0.447715 -1,-1 z" />'
 heartgold-soulsilver:
   region: johto
   name: *emerald.name
-  areas: *emerald.areas
+  areas: *platinum.areas
   map:
     map: johto
-    overlay: |
-      <rect x="44" y="60" width="10" height="10" rx="3" ry="3" />
+    overlay: '<rect x="44" y="60" width="10" height="10" rx="3" ry="3" />'

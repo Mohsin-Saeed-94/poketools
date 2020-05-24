@@ -9,6 +9,7 @@ use DragoonBoots\A2B\Drivers\Source\YamlSourceDriver;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -59,7 +60,13 @@ final class DataCleanYamlCommand extends Command
     {
         $this
             ->setDescription(
-                'Clean a YAML data directory, normalizing data presentation and generating anchors/references'
+                'Clean a YAML data directory, normalizing data presentation and generating anchors/references.'
+            )
+            ->addOption(
+                'expand',
+                null,
+                InputOption::VALUE_NONE,
+                'Remove all anchors and references from the modified data.'
             )
             ->addArgument('migration', InputArgument::REQUIRED, 'Migration class with the YAML as the destination');
     }
@@ -109,6 +116,9 @@ final class DataCleanYamlCommand extends Command
         $this->yamlSourceDriver->configure($sourceDefinition);
         $this->yamlDestinationDriver->configure($sourceDefinition);
         $migration->configureDestination($this->yamlDestinationDriver);
+        if ($input->getOption('expand')) {
+            $this->yamlDestinationDriver->setOption('refs', false);
+        }
 
         // Run the data through the Yaml Driver
         $it = $this->yamlSourceDriver->getIterator();

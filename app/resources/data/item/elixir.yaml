@@ -1,43 +1,52 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Elixir
+  name: &ruby-sapphire.name ELIXIR
   category: &ruby-sapphire.category pp-recovery
-  pocket: &ruby-sapphire.pocket medicine
-  buy: &ruby-sapphire.buy 3000
-  sell: &ruby-sapphire.sell 1500
+  pocket: &ruby-sapphire.pocket misc
   flags: &ruby-sapphire.flags
     - countable
     - consumable
     - usable-overworld
     - usable-in-battle
     - holdable
+  icon: &ruby-sapphire.icon elixir.png
+  buy: &ruby-sapphire.buy 3000
+  sell: &ruby-sapphire.sell 1500
+  flavor_text: &ruby-sapphire.flavor_text |
+    Restores the PP
+    of all moves by 10.
   short_description: &ruby-sapphire.short_description 'Restores 10 [PP]{mechanic:pp} for each move.'
   description: &ruby-sapphire.description |
     Used on a party Pokémon
     :   Restores 10 [PP]{mechanic:pp} for each move.
-  flavor_text: |
-    Restores the PP
-    of all moves by 10.
-  icon: &ruby-sapphire.icon elixir.png
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *ruby-sapphire.category
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
   flavor_text: |
     Restores the PP of all moves for
     one POKéMON by 10 points each.
-  icon: *ruby-sapphire.icon
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name Elixir
   category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  pocket: &diamond-pearl.pocket medicine
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -55,9 +64,9 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  pocket: *diamond-pearl.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage
@@ -72,9 +81,9 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
+  pocket: *diamond-pearl.pocket
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
   fling_effect: damage

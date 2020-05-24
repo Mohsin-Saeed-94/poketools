@@ -1,33 +1,34 @@
-ruby-sapphire: &ruby-sapphire
+ruby-sapphire:
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Meteor Falls'
-  areas:
-    whole-area:
-      name: 'Whole area'
-      default: &ruby-sapphire.areas.whole-area.default true
-    back:
-      name: back
+  areas: &ruby-sapphire.areas
+    1f: &ruby-sapphire.areas.1f
+      name: 1F
+      default: true
+    1f-back: &ruby-sapphire.areas.1f-back
+      name: '1F (Back)'
     b1f: &ruby-sapphire.areas.b1f
       name: B1F
-    backsmall-room:
-      name: 'back/small room'
-  map:
+    b1f-back: &ruby-sapphire.areas.b1f-back
+      name: 'B1F (Back)'
+  map: &ruby-sapphire.map
     map: &ruby-sapphire.map.map hoenn
     overlay: '<circle r="4" cy="36" cx="16" />'
-emerald: *ruby-sapphire
-omega-ruby-alpha-sapphire:
+emerald:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
   areas:
-    1f:
-      name: 1F
-      default: *ruby-sapphire.areas.whole-area.default
-    1f-back:
-      name: '1F (Back)'
+    1f: *ruby-sapphire.areas.1f
+    1f-back: *ruby-sapphire.areas.1f-back
     b1f: *ruby-sapphire.areas.b1f
-    b1f-back:
-      name: 'B1F (Back)'
+    b1f-back: *ruby-sapphire.areas.b1f-back
+    stevens-cave:
+      name: 'Steven''s Cave'
+  map: *ruby-sapphire.map
+omega-ruby-alpha-sapphire:
+  region: *ruby-sapphire.region
+  name: *ruby-sapphire.name
+  areas: *ruby-sapphire.areas
   map:
     map: *ruby-sapphire.map.map
-    overlay: |
-      <rect width="12" height="11" x="9" y="41" />
+    overlay: '<rect width="12" height="11" x="9" y="41" />'

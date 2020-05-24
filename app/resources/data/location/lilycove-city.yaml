@@ -1,12 +1,50 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Lilycove City'
-  areas: &ruby-sapphire.areas
-    whole-area:
+  areas:
+    whole-area: &ruby-sapphire.areas.whole-area
       name: 'Whole area'
       default: true
-    contest-hall:
+    contest-hall: &ruby-sapphire.areas.contest-hall
       name: 'Contest hall'
+    department-store:
+      name: 'Department Store'
+      children:
+        1f:
+          name: 1F
+          default: true
+        2f:
+          name: 2F
+          shops: &ruby-sapphire.areas.department-store.children.2f.shops
+            right-clerk:
+              name: 'Right Clerk'
+              default: true
+            left-clerk:
+              name: 'Left Clerk'
+        3f:
+          name: 3F
+          shops: *ruby-sapphire.areas.department-store.children.2f.shops
+        4f:
+          name: 4F
+          shops: *ruby-sapphire.areas.department-store.children.2f.shops
+        5f:
+          name: 5F
+          shops:
+            upper-left-clerk:
+              name: 'Upper-Left Clerk'
+              default: true
+            upper-right-clerk:
+              name: 'Upper-Right Clerk'
+            lower-left-clerk:
+              name: 'Lower-Left Clerk'
+            lower-right-clerk:
+              name: 'Lower-Right Clerk'
+        roof:
+          name: Roof
+          shops:
+            rooftop-sale:
+              name: 'Rooftop Sale'
+              default: true
   map:
     map: &ruby-sapphire.map.map hoenn
     overlay: '<rect width="16" height="8" x="152" y="40" />'
@@ -14,8 +52,9 @@ emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    whole-area: *ruby-sapphire.areas.whole-area
+    contest-hall: *ruby-sapphire.areas.contest-hall
   map:
     map: *ruby-sapphire.map.map
-    overlay: |
-      <rect width="24" height="13" x="212" y="51" />
+    overlay: '<rect width="24" height="13" x="212" y="51" />'

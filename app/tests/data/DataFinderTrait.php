@@ -37,7 +37,7 @@ trait DataFinderTrait
         $directory = realpath(__DIR__.'/../../resources/data').'/'.trim($directory, '/');
         $finder = new Finder();
         $finder->in($directory)
-            ->sortByName();
+            ->sortByName(true);
 
         return $finder;
     }

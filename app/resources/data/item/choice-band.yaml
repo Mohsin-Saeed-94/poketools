@@ -1,46 +1,55 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Choice Band'
+  name: &ruby-sapphire.name 'CHOICE BAND'
   category: &ruby-sapphire.category choice
   pocket: &ruby-sapphire.pocket misc
-  buy: &ruby-sapphire.buy 4000
-  sell: &ruby-sapphire.sell 2000
   flags: &ruby-sapphire.flags
     - holdable
     - holdable-active
+  icon: &ruby-sapphire.icon choice-band.png
+  buy: &ruby-sapphire.buy 100
+  sell: &ruby-sapphire.sell 50
+  flavor_text: &ruby-sapphire.flavor_text |
+    Raises a move's
+    power, but permits
+    only that move.
   short_description: &ruby-sapphire.short_description 'Held: Increases [Attack]{mechanic:attack} by 50%, but restricts the holder to only one move.'
   description: &ruby-sapphire.description |
     Held in battle
     :   Holder has 1.5× its [Attack]{mechanic:attack}.  When the holder attempts to use a move, all its other moves are disabled until it leaves battle or loses this item.
-    
+
     The restriction ends even if this item is swapped for another Choice item via []{move:trick}.
-  flavor_text: |
-    Raises a move’s
-    power, but permits
-    only that move.
-  icon: &ruby-sapphire.icon choice-band.png
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *ruby-sapphire.category
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
   flavor_text: |
     An item to be held by a POKéMON.
     It powers up one move, which
     becomes the only usable one.
-  icon: *ruby-sapphire.icon
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Choice Band'
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &diamond-pearl.buy 4000
+  sell: &diamond-pearl.sell 2000
   fling_effect: damage
   fling_power: 10
   flags: *ruby-sapphire.flags
@@ -48,7 +57,7 @@ diamond-pearl: &diamond-pearl
   description: &diamond-pearl.description |
     Held in battle
     :   Holder has 1.5× its [Attack]{mechanic:attack}.  When the holder attempts to use a move, all its other moves are disabled until it leaves battle or loses this item.
-    
+
     The restriction ends even if this item is swapped for another Choice item
     via []{move:trick} or []{move:switcheroo}.
   flavor_text: |
@@ -59,11 +68,11 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 10
   flags: *ruby-sapphire.flags
@@ -76,11 +85,11 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 10
   flags: *ruby-sapphire.flags
@@ -93,11 +102,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 10
   flags: *ruby-sapphire.flags

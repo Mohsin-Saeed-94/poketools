@@ -1,12 +1,18 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Verdanturf Town'
-  areas: &ruby-sapphire.areas
-    whole-area:
+  areas:
+    whole-area: &ruby-sapphire.areas.whole-area
       name: 'Whole area'
       default: true
-    contest-hall:
+    contest-hall: &ruby-sapphire.areas.contest-hall
       name: 'Contest hall'
+    mart:
+      name: &ruby-sapphire.areas.mart.name 'Poké Mart'
+      shops:
+        mart:
+          name: *ruby-sapphire.areas.mart.name
+          default: true
   map:
     map: &ruby-sapphire.map.map hoenn
     overlay: '<rect width="8" height="8" x="40" y="64" />'
@@ -14,8 +20,9 @@ emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    whole-area: *ruby-sapphire.areas.whole-area
+    contest-hall: *ruby-sapphire.areas.contest-hall
   map:
     map: *ruby-sapphire.map.map
-    overlay: |
-      <rect width="13" height="13" x="47" y="84" />
+    overlay: '<rect width="13" height="13" x="47" y="84" />'

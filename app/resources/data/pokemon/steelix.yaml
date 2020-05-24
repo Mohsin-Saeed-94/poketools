@@ -1,30 +1,19 @@
 gold-silver:
-  name: &gold-silver.name Steelix
-  position: &gold-silver.position 104
+  name: &gold-silver.name STEELIX
+  position: &gold-silver.position 207
   numbers: &gold-silver.numbers
     national: &gold-silver.numbers.national 208
-    original-johto: 63
+    original-johto: 62
+    original-johto-abc: 201
   pokemon:
     steelix:
-      genus: &gold-silver.pokemon.steelix.genus 'Iron Snake Pokémon'
-      evolution_parent: &gold-silver.pokemon.steelix.evolution_parent onix/onix
-      female_rate: &gold-silver.pokemon.steelix.female_rate 50
-      capture_rate: &gold-silver.pokemon.steelix.capture_rate 25
-      happiness: &gold-silver.pokemon.steelix.happiness 70
-      baby: &gold-silver.pokemon.steelix.baby false
-      hatch_steps: &gold-silver.pokemon.steelix.hatch_steps 25
-      growth_rate: &gold-silver.pokemon.steelix.growth_rate medium
-      forms_switchable: &gold-silver.pokemon.steelix.forms_switchable false
       name: *gold-silver.name
       default: &gold-silver.pokemon.steelix.default true
-      height: &gold-silver.pokemon.steelix.height 92
-      weight: &gold-silver.pokemon.steelix.weight 4000
+      capture_rate: &gold-silver.pokemon.steelix.capture_rate 25
       experience: &gold-silver.pokemon.steelix.experience 196
       types: &gold-silver.pokemon.steelix.types
         - steel
         - ground
-      egg_groups: &gold-silver.pokemon.steelix.egg_groups
-        - mineral
       stats: &gold-silver.pokemon.steelix.stats
         hp:
           base_value: 75
@@ -44,9 +33,18 @@ gold-silver:
         special-defense:
           base_value: 65
           effort_change: 55
-      evolution_conditions: &gold-silver.pokemon.steelix.evolution_conditions
-        trade:
-          held_item: metal-coat
+      growth_rate: &gold-silver.pokemon.steelix.growth_rate medium
+      female_rate: &gold-silver.pokemon.steelix.female_rate 50
+      hatch_steps: &gold-silver.pokemon.steelix.hatch_steps 25
+      egg_groups: &gold-silver.pokemon.steelix.egg_groups
+        - mineral
+      wild_held_items:
+        gold: &gold-silver.pokemon.steelix.wild_held_items.gold
+          metal-coat: 2
+        silver: *gold-silver.pokemon.steelix.wild_held_items.gold
+      genus: &gold-silver.pokemon.steelix.genus 'IRON SNAKE Pokémon'
+      height: &gold-silver.pokemon.steelix.height 91
+      weight: &gold-silver.pokemon.steelix.weight 4000
       flavor_text:
         gold: |
           Its body has been
@@ -62,6 +60,10 @@ gold-silver:
           its composition
           changes to become
           diamond-like.
+      evolution_parent: &gold-silver.pokemon.steelix.evolution_parent onix/onix
+      evolution_conditions: &gold-silver.pokemon.steelix.evolution_conditions
+        trade:
+          held_item: metal-coat
       forms:
         steelix:
           name: *gold-silver.name
@@ -74,7 +76,6 @@ gold-silver:
             - gold-silver/shiny/steelix-default.png
           art: &gold-silver.pokemon.steelix.forms.steelix.art
             - steelix-default.png
-          footprint: &gold-silver.pokemon.steelix.forms.steelix.footprint steelix.png
           cry: &gold-silver.pokemon.steelix.forms.steelix.cry gen5/steelix-default.webm
           icon: &gold-silver.pokemon.steelix.forms.steelix.icon gen2/serpent.png
 crystal:
@@ -83,32 +84,31 @@ crystal:
   numbers: *gold-silver.numbers
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
-      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      female_rate: *gold-silver.pokemon.steelix.female_rate
-      capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
-      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
-      growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
-      weight: *gold-silver.pokemon.steelix.weight
+      capture_rate: *gold-silver.pokemon.steelix.capture_rate
       experience: *gold-silver.pokemon.steelix.experience
       types: *gold-silver.pokemon.steelix.types
-      egg_groups: *gold-silver.pokemon.steelix.egg_groups
       stats: *gold-silver.pokemon.steelix.stats
-      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
+      growth_rate: *gold-silver.pokemon.steelix.growth_rate
+      female_rate: *gold-silver.pokemon.steelix.female_rate
+      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
+      egg_groups: *gold-silver.pokemon.steelix.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.steelix.wild_held_items.gold
+      genus: *gold-silver.pokemon.steelix.genus
+      height: *gold-silver.pokemon.steelix.height
+      weight: *gold-silver.pokemon.steelix.weight
       flavor_text:
         crystal: |
           The many small
           metal particles
           that cover this
-          POKéMON's body
+          #MON's body
           reflect bright
           light well.
+      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
       forms:
         steelix:
           name: *gold-silver.name
@@ -119,37 +119,288 @@ crystal:
             - crystal/steelix-default.png
             - crystal/back/steelix-default.png
             - crystal/shiny/steelix-default.png
-            - crystal/animated/steelix-default.webm
-            - crystal/animated/shiny/steelix-default.webm
           art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
           cry: *gold-silver.pokemon.steelix.forms.steelix.cry
           icon: *gold-silver.pokemon.steelix.forms.steelix.icon
 ruby-sapphire:
   name: *gold-silver.name
-  position: *gold-silver.position
+  position: &ruby-sapphire.position 208
   numbers: &ruby-sapphire.numbers
+    national: *gold-silver.numbers.national
+    hoenn: 351
+  pokemon:
+    steelix:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.steelix.default
+      forms_switchable: &ruby-sapphire.pokemon.steelix.forms_switchable false
+      capture_rate: *gold-silver.pokemon.steelix.capture_rate
+      experience: *gold-silver.pokemon.steelix.experience
+      types: *gold-silver.pokemon.steelix.types
+      stats: &ruby-sapphire.pokemon.steelix.stats
+        hp:
+          base_value: 75
+          effort_change: 0
+        attack:
+          base_value: 85
+          effort_change: 0
+        defense:
+          base_value: 200
+          effort_change: 2
+        speed:
+          base_value: 30
+          effort_change: 0
+        special-attack:
+          base_value: 55
+          effort_change: 0
+        special-defense:
+          base_value: 75
+          effort_change: 0
+      growth_rate: *gold-silver.pokemon.steelix.growth_rate
+      female_rate: *gold-silver.pokemon.steelix.female_rate
+      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
+      egg_groups: *gold-silver.pokemon.steelix.egg_groups
+      wild_held_items:
+        ruby: &ruby-sapphire.pokemon.steelix.wild_held_items.ruby
+          metal-coat: 5
+        sapphire: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
+      happiness: &ruby-sapphire.pokemon.steelix.happiness 70
+      abilities: &ruby-sapphire.pokemon.steelix.abilities
+        rock-head: &ruby-sapphire.pokemon.steelix.abilities.rock-head
+          hidden: &ruby-sapphire.pokemon.steelix.abilities.rock-head.hidden false
+          position: 1
+        sturdy: &ruby-sapphire.pokemon.steelix.abilities.sturdy
+          hidden: *ruby-sapphire.pokemon.steelix.abilities.rock-head.hidden
+          position: 2
+      genus: *gold-silver.pokemon.steelix.genus
+      height: &ruby-sapphire.pokemon.steelix.height 92
+      weight: *gold-silver.pokemon.steelix.weight
+      flavor_text:
+        ruby: |
+          STEELIX lives even further underground
+          than ONIX. This POKéMON is known to dig
+          towards the earth's core.
+          There are records of this POKéMON
+           reaching a depth of over six-tenths
+          of a mile underground.
+        sapphire: |
+          STEELIX lives even further underground
+          than ONIX. This POKéMON is known to dig
+          towards the earth's core.
+          There are records of this POKéMON
+          reaching a depth of over six-tenths
+          of a mile underground.
+      forms:
+        steelix:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
+          default: *gold-silver.pokemon.steelix.default
+          battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
+          icon: &ruby-sapphire.pokemon.steelix.forms.steelix.icon gen5/steelix-default.png
+          sprites:
+            - ruby-sapphire/steelix-default.png
+            - ruby-sapphire/back/steelix-default.png
+            - ruby-sapphire/shiny/steelix-default.png
+          art: *gold-silver.pokemon.steelix.forms.steelix.art
+          footprint: &ruby-sapphire.pokemon.steelix.forms.steelix.footprint steelix.png
+          cry: *gold-silver.pokemon.steelix.forms.steelix.cry
+      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
+emerald:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *ruby-sapphire.numbers
+  pokemon:
+    steelix:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.steelix.default
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
+      capture_rate: *gold-silver.pokemon.steelix.capture_rate
+      experience: *gold-silver.pokemon.steelix.experience
+      types: *gold-silver.pokemon.steelix.types
+      stats: *ruby-sapphire.pokemon.steelix.stats
+      growth_rate: *gold-silver.pokemon.steelix.growth_rate
+      female_rate: *gold-silver.pokemon.steelix.female_rate
+      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
+      egg_groups: *gold-silver.pokemon.steelix.egg_groups
+      wild_held_items:
+        emerald: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      abilities: *ruby-sapphire.pokemon.steelix.abilities
+      genus: *gold-silver.pokemon.steelix.genus
+      height: *ruby-sapphire.pokemon.steelix.height
+      weight: *gold-silver.pokemon.steelix.weight
+      flavor_text:
+        emerald: |
+          STEELIX live even further underground
+          than ONIX. This POKéMON is known to dig
+          toward the earth's core, reaching a depth
+          of over six-tenths of a mile underground.
+      forms:
+        steelix:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
+          default: *gold-silver.pokemon.steelix.default
+          battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
+          icon: *ruby-sapphire.pokemon.steelix.forms.steelix.icon
+          sprites:
+            - emerald/steelix-default.png
+            - emerald/shiny/steelix-default.png
+            - emerald/animated/steelix-default.webm
+            - emerald/animated/shiny/steelix-default.webm
+          art: *gold-silver.pokemon.steelix.forms.steelix.art
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
+          cry: *gold-silver.pokemon.steelix.forms.steelix.cry
+      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
+colosseum:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &colosseum.numbers
+    national: *gold-silver.numbers.national
+    orre-strategy-memo: 324
+  pokemon:
+    steelix:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.steelix.default
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
+      capture_rate: *gold-silver.pokemon.steelix.capture_rate
+      experience: *gold-silver.pokemon.steelix.experience
+      types: *gold-silver.pokemon.steelix.types
+      stats: *ruby-sapphire.pokemon.steelix.stats
+      growth_rate: *gold-silver.pokemon.steelix.growth_rate
+      female_rate: *gold-silver.pokemon.steelix.female_rate
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      abilities: *ruby-sapphire.pokemon.steelix.abilities
+      genus: *gold-silver.pokemon.steelix.genus
+      height: *ruby-sapphire.pokemon.steelix.height
+      weight: *gold-silver.pokemon.steelix.weight
+      forms:
+        steelix:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
+          default: *gold-silver.pokemon.steelix.default
+          battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
+          sprites:
+            - colosseum/steelix-default.png
+            - colosseum/shiny/steelix-default.png
+          art: *gold-silver.pokemon.steelix.forms.steelix.art
+          cry: *gold-silver.pokemon.steelix.forms.steelix.cry
+      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
+xd:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *colosseum.numbers
+  pokemon:
+    steelix:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.steelix.default
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
+      capture_rate: *gold-silver.pokemon.steelix.capture_rate
+      experience: *gold-silver.pokemon.steelix.experience
+      types: *gold-silver.pokemon.steelix.types
+      stats: *ruby-sapphire.pokemon.steelix.stats
+      growth_rate: *gold-silver.pokemon.steelix.growth_rate
+      female_rate: *gold-silver.pokemon.steelix.female_rate
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      abilities: *ruby-sapphire.pokemon.steelix.abilities
+      genus: *gold-silver.pokemon.steelix.genus
+      height: *ruby-sapphire.pokemon.steelix.height
+      weight: *gold-silver.pokemon.steelix.weight
+      forms:
+        steelix:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
+          default: *gold-silver.pokemon.steelix.default
+          battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
+          sprites:
+            - xd/steelix-default.png
+            - xd/shiny/steelix-default.png
+          art: *gold-silver.pokemon.steelix.forms.steelix.art
+          cry: *gold-silver.pokemon.steelix.forms.steelix.cry
+      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
+firered-leafgreen:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &firered-leafgreen.numbers
     national: *gold-silver.numbers.national
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
-      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: &ruby-sapphire.pokemon.steelix.color gray
-      female_rate: *gold-silver.pokemon.steelix.female_rate
-      capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
-      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
-      growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
+      capture_rate: *gold-silver.pokemon.steelix.capture_rate
+      experience: *gold-silver.pokemon.steelix.experience
+      types: *gold-silver.pokemon.steelix.types
+      stats: *ruby-sapphire.pokemon.steelix.stats
+      growth_rate: *gold-silver.pokemon.steelix.growth_rate
+      female_rate: *gold-silver.pokemon.steelix.female_rate
+      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
+      egg_groups: *gold-silver.pokemon.steelix.egg_groups
+      wild_held_items:
+        firered: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
+        leafgreen: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      abilities: *ruby-sapphire.pokemon.steelix.abilities
+      genus: *gold-silver.pokemon.steelix.genus
+      height: *ruby-sapphire.pokemon.steelix.height
       weight: *gold-silver.pokemon.steelix.weight
-      experience: &ruby-sapphire.pokemon.steelix.experience 179
+      flavor_text:
+        firered: |
+          It is said that if an ONIX lives for over
+          100 years, its composition changes to
+          become diamond-like.
+        leafgreen: |
+          Its body has been compressed deep under
+          the ground. As a result,  it is even harder
+          than diamond.
+      forms:
+        steelix:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
+          default: *gold-silver.pokemon.steelix.default
+          battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
+          icon: *ruby-sapphire.pokemon.steelix.forms.steelix.icon
+          sprites:
+            - firered-leafgreen/steelix-default.png
+            - firered-leafgreen/back/steelix-default.png
+            - firered-leafgreen/shiny/steelix-default.png
+          art: *gold-silver.pokemon.steelix.forms.steelix.art
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
+          cry: *gold-silver.pokemon.steelix.forms.steelix.cry
+      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
+diamond-pearl:
+  name: &diamond-pearl.name Steelix
+  position: &diamond-pearl.position 104
+  numbers:
+    national: *gold-silver.numbers.national
+    original-sinnoh: 35
+  pokemon:
+    steelix:
+      genus: &diamond-pearl.pokemon.steelix.genus 'Iron Snake Pokémon'
+      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
+      shape: &diamond-pearl.pokemon.steelix.shape squiggle
+      female_rate: *gold-silver.pokemon.steelix.female_rate
+      capture_rate: *gold-silver.pokemon.steelix.capture_rate
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: &diamond-pearl.pokemon.steelix.baby false
+      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
+      growth_rate: *gold-silver.pokemon.steelix.growth_rate
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
+      pal_park: &diamond-pearl.pokemon.steelix.pal_park
+        area: mountain
+        rate: 3
+        score: 90
+      name: *diamond-pearl.name
+      default: *gold-silver.pokemon.steelix.default
+      height: *ruby-sapphire.pokemon.steelix.height
+      weight: *gold-silver.pokemon.steelix.weight
+      experience: &diamond-pearl.pokemon.steelix.experience 179
       types: *gold-silver.pokemon.steelix.types
       egg_groups: *gold-silver.pokemon.steelix.egg_groups
-      stats: &ruby-sapphire.pokemon.steelix.stats
+      stats: &diamond-pearl.pokemon.steelix.stats
         hp:
           base_value: 75
           effort_change: 0
@@ -168,200 +419,6 @@ ruby-sapphire:
         special-defense:
           base_value: 65
           effort_change: 0
-      abilities: &ruby-sapphire.pokemon.steelix.abilities
-        rock-head: &ruby-sapphire.pokemon.steelix.abilities.rock-head
-          hidden: &ruby-sapphire.pokemon.steelix.abilities.rock-head.hidden false
-          position: 1
-        sturdy: &ruby-sapphire.pokemon.steelix.abilities.sturdy
-          hidden: *ruby-sapphire.pokemon.steelix.abilities.rock-head.hidden
-          position: 2
-      wild_held_items:
-        ruby: &ruby-sapphire.pokemon.steelix.wild_held_items.ruby
-          metal-coat: 5
-        sapphire: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
-      flavor_text:
-        ruby: |
-          STEELIX lives even further underground
-          than ONIX. This POKéMON is known to dig
-          towards the earth’s core.
-          There are records of this POKéMON
-          reaching a depth of over six-tenths
-          of a mile underground.
-        sapphire: |
-          STEELIX lives even further underground
-          than ONIX. This POKéMON is known to dig
-          towards the earth’s core.
-          There are records of this POKéMON
-          reaching a depth of over six-tenths
-          of a mile underground.
-      forms:
-        steelix:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
-          default: *gold-silver.pokemon.steelix.default
-          battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
-          icon: &ruby-sapphire.pokemon.steelix.forms.steelix.icon gen5/steelix-default.png
-          sprites:
-            - ruby-sapphire/steelix-default.png
-            - ruby-sapphire/back/steelix-default.png
-            - ruby-sapphire/shiny/steelix-default.png
-          art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
-          cry: *gold-silver.pokemon.steelix.forms.steelix.cry
-emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    steelix:
-      genus: *gold-silver.pokemon.steelix.genus
-      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
-      female_rate: *gold-silver.pokemon.steelix.female_rate
-      capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
-      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
-      growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
-      weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
-      types: *gold-silver.pokemon.steelix.types
-      egg_groups: *gold-silver.pokemon.steelix.egg_groups
-      stats: *ruby-sapphire.pokemon.steelix.stats
-      abilities: *ruby-sapphire.pokemon.steelix.abilities
-      wild_held_items:
-        emerald: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
-      flavor_text:
-        emerald: |
-          STEELIX live even further underground
-          than ONIX. This POKéMON is known to dig
-          toward the earth’s core, reaching a depth
-          of over six-tenths of a mile underground.
-      forms:
-        steelix:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
-          default: *gold-silver.pokemon.steelix.default
-          battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
-          icon: *ruby-sapphire.pokemon.steelix.forms.steelix.icon
-          sprites:
-            - emerald/steelix-default.png
-            - emerald/shiny/steelix-default.png
-            - emerald/animated/steelix-default.webm
-            - emerald/animated/shiny/steelix-default.webm
-          art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
-          cry: *gold-silver.pokemon.steelix.forms.steelix.cry
-colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
-  pokemon:
-    steelix:
-      genus: *gold-silver.pokemon.steelix.genus
-      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      female_rate: *gold-silver.pokemon.steelix.female_rate
-      capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
-      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
-      growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
-      weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
-      types: *gold-silver.pokemon.steelix.types
-      egg_groups: *gold-silver.pokemon.steelix.egg_groups
-      stats: *ruby-sapphire.pokemon.steelix.stats
-      abilities: *ruby-sapphire.pokemon.steelix.abilities
-      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
-      forms: &colosseum.pokemon.steelix.forms
-        steelix:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
-          default: *gold-silver.pokemon.steelix.default
-          battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
-          icon: *ruby-sapphire.pokemon.steelix.forms.steelix.icon
-          art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
-          cry: *gold-silver.pokemon.steelix.forms.steelix.cry
-xd: *colosseum
-firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    steelix:
-      genus: *gold-silver.pokemon.steelix.genus
-      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      habitat: cave
-      female_rate: *gold-silver.pokemon.steelix.female_rate
-      capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
-      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
-      growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
-      weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
-      types: *gold-silver.pokemon.steelix.types
-      egg_groups: *gold-silver.pokemon.steelix.egg_groups
-      stats: *ruby-sapphire.pokemon.steelix.stats
-      abilities: *ruby-sapphire.pokemon.steelix.abilities
-      wild_held_items:
-        firered: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
-        leafgreen: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
-      flavor_text:
-        firered: |
-          It is said that if an ONIX lives for over
-          100 years, its composition changes to
-          become diamond-like.
-        leafgreen: |
-          Its body has been compressed deep under
-          the ground. As a result, it is even harder
-          than diamond.
-      forms: *colosseum.pokemon.steelix.forms
-diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers:
-    national: *gold-silver.numbers.national
-    original-sinnoh: 35
-  pokemon:
-    steelix:
-      genus: *gold-silver.pokemon.steelix.genus
-      evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      shape: &diamond-pearl.pokemon.steelix.shape squiggle
-      female_rate: *gold-silver.pokemon.steelix.female_rate
-      capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
-      hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
-      growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
-      pal_park: &diamond-pearl.pokemon.steelix.pal_park
-        area: mountain
-        rate: 3
-        score: 90
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
-      weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
-      types: *gold-silver.pokemon.steelix.types
-      egg_groups: *gold-silver.pokemon.steelix.egg_groups
-      stats: *ruby-sapphire.pokemon.steelix.stats
       abilities: *ruby-sapphire.pokemon.steelix.abilities
       wild_held_items:
         diamond: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
@@ -378,7 +435,7 @@ diamond-pearl:
           see in the darkness underground.
       forms:
         steelix:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
           default: *gold-silver.pokemon.steelix.default
           battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
@@ -392,35 +449,35 @@ diamond-pearl:
             - diamond-pearl/shiny/steelix-default.png
             - diamond-pearl/shiny/female/steelix-default.png
           art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *gold-silver.pokemon.steelix.forms.steelix.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     extended-sinnoh: 35
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
       pal_park: *diamond-pearl.pokemon.steelix.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
+      height: *ruby-sapphire.pokemon.steelix.height
       weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
+      experience: *diamond-pearl.pokemon.steelix.experience
       types: *gold-silver.pokemon.steelix.types
       egg_groups: *gold-silver.pokemon.steelix.egg_groups
-      stats: *ruby-sapphire.pokemon.steelix.stats
+      stats: *diamond-pearl.pokemon.steelix.stats
       abilities: *ruby-sapphire.pokemon.steelix.abilities
       wild_held_items:
         platinum: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
@@ -432,7 +489,7 @@ platinum:
           internally from swallowing soil.
       forms:
         steelix:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
           default: *gold-silver.pokemon.steelix.default
           battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
@@ -446,35 +503,35 @@ platinum:
             - platinum/shiny/steelix-default.png
             - platinum/shiny/female/steelix-default.png
           art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *gold-silver.pokemon.steelix.forms.steelix.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-johto: 63
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
       pal_park: *diamond-pearl.pokemon.steelix.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
+      height: *ruby-sapphire.pokemon.steelix.height
       weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
+      experience: *diamond-pearl.pokemon.steelix.experience
       types: *gold-silver.pokemon.steelix.types
       egg_groups: *gold-silver.pokemon.steelix.egg_groups
-      stats: *ruby-sapphire.pokemon.steelix.stats
+      stats: *diamond-pearl.pokemon.steelix.stats
       abilities: *ruby-sapphire.pokemon.steelix.abilities
       wild_held_items:
         heartgold: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
@@ -491,7 +548,7 @@ heartgold-soulsilver:
           diamondlike as it evolves into a STEELIX.
       forms:
         steelix:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
           default: *gold-silver.pokemon.steelix.default
           battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
@@ -521,33 +578,33 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/steelix-default.png
             - heartgold-soulsilver/shiny/female/steelix-default.png
           art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *gold-silver.pokemon.steelix.forms.steelix.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
+      color: &black-white.pokemon.steelix.color gray
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
+      height: *ruby-sapphire.pokemon.steelix.height
       weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
+      experience: *diamond-pearl.pokemon.steelix.experience
       types: *gold-silver.pokemon.steelix.types
       egg_groups: *gold-silver.pokemon.steelix.egg_groups
-      stats: *ruby-sapphire.pokemon.steelix.stats
+      stats: *diamond-pearl.pokemon.steelix.stats
       abilities: &black-white.pokemon.steelix.abilities
         rock-head: *ruby-sapphire.pokemon.steelix.abilities.rock-head
         sturdy: *ruby-sapphire.pokemon.steelix.abilities.sturdy
@@ -569,7 +626,7 @@ black-white:
           internally from swallowing soil.
       forms:
         steelix:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
           default: *gold-silver.pokemon.steelix.default
           battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
@@ -583,35 +640,35 @@ black-white:
             - black-white/shiny/steelix-default.png
             - black-white/shiny/female/steelix-default.png
           art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *gold-silver.pokemon.steelix.forms.steelix.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-unova: 72
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
+      color: *black-white.pokemon.steelix.color
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
+      height: *ruby-sapphire.pokemon.steelix.height
       weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
+      experience: *diamond-pearl.pokemon.steelix.experience
       types: *gold-silver.pokemon.steelix.types
       egg_groups: *gold-silver.pokemon.steelix.egg_groups
-      stats: *ruby-sapphire.pokemon.steelix.stats
+      stats: *diamond-pearl.pokemon.steelix.stats
       abilities: *black-white.pokemon.steelix.abilities
       wild_held_items:
         black-2: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
@@ -626,35 +683,44 @@ black-2-white-2:
           The iron it ingested with the soil it
           swallowed transformed its body and
           made it harder than diamonds.
-      forms: *colosseum.pokemon.steelix.forms
+      forms:
+        steelix:
+          name: *diamond-pearl.name
+          form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
+          default: *gold-silver.pokemon.steelix.default
+          battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
+          icon: *ruby-sapphire.pokemon.steelix.forms.steelix.icon
+          art: *gold-silver.pokemon.steelix.forms.steelix.art
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
+          cry: *gold-silver.pokemon.steelix.forms.steelix.cry
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     kalos-coastal: 54
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
+      color: *black-white.pokemon.steelix.color
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
-      forms_switchable: *gold-silver.pokemon.steelix.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.steelix.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
+      height: *ruby-sapphire.pokemon.steelix.height
       weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
+      experience: *diamond-pearl.pokemon.steelix.experience
       types: *gold-silver.pokemon.steelix.types
       egg_groups: *gold-silver.pokemon.steelix.egg_groups
       mega: &x-y.pokemon.steelix.mega false
-      stats: *ruby-sapphire.pokemon.steelix.stats
+      stats: *diamond-pearl.pokemon.steelix.stats
       abilities: *black-white.pokemon.steelix.abilities
       wild_held_items:
         x: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
@@ -670,7 +736,7 @@ x-y:
           darkness underground.
       forms:
         steelix:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
           default: *gold-silver.pokemon.steelix.default
           battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
@@ -681,34 +747,34 @@ x-y:
             - x-y/shiny/steelix-default.png
             - x-y/shiny/female/steelix-default.png
           art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: &x-y.pokemon.steelix.forms.steelix.cry steelix-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
+      color: *black-white.pokemon.steelix.color
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
       forms_switchable: &omega-ruby-alpha-sapphire.pokemon.steelix.forms_switchable true
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
+      height: *ruby-sapphire.pokemon.steelix.height
       weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
+      experience: *diamond-pearl.pokemon.steelix.experience
       types: *gold-silver.pokemon.steelix.types
       egg_groups: *gold-silver.pokemon.steelix.egg_groups
       mega: *x-y.pokemon.steelix.mega
-      stats: *ruby-sapphire.pokemon.steelix.stats
+      stats: *diamond-pearl.pokemon.steelix.stats
       abilities: *black-white.pokemon.steelix.abilities
       evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
       flavor_text: &omega-ruby-alpha-sapphire.pokemon.steelix.flavor_text
@@ -724,13 +790,13 @@ omega-ruby-alpha-sapphire:
           over six-tenths of a mile underground.
       forms:
         steelix:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
           default: *gold-silver.pokemon.steelix.default
           battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
           icon: *x-y.pokemon.steelix.forms.steelix.icon
           art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *x-y.pokemon.steelix.forms.steelix.cry
           sprites:
             - omega-ruby-alpha-sapphire/steelix-default.png
@@ -738,14 +804,14 @@ omega-ruby-alpha-sapphire:
             - omega-ruby-alpha-sapphire/shiny/steelix-default.png
             - omega-ruby-alpha-sapphire/shiny/female/steelix-default.png
     steelix-mega:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
+      color: *black-white.pokemon.steelix.color
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.steelix.forms_switchable
@@ -789,41 +855,41 @@ omega-ruby-alpha-sapphire:
           icon: &omega-ruby-alpha-sapphire.pokemon.steelix-mega.forms.steelix-mega.icon steelix-mega.png
           art: &omega-ruby-alpha-sapphire.pokemon.steelix-mega.forms.steelix-mega.art
             - steelix-mega.png
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *x-y.pokemon.steelix.forms.steelix.cry
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
+      color: *black-white.pokemon.steelix.color
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.steelix.forms_switchable
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
+      height: *ruby-sapphire.pokemon.steelix.height
       weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
+      experience: *diamond-pearl.pokemon.steelix.experience
       types: *gold-silver.pokemon.steelix.types
       egg_groups: *gold-silver.pokemon.steelix.egg_groups
       mega: *x-y.pokemon.steelix.mega
-      stats: *ruby-sapphire.pokemon.steelix.stats
+      stats: *diamond-pearl.pokemon.steelix.stats
       abilities: *black-white.pokemon.steelix.abilities
       wild_held_items: &sun-moon.pokemon.steelix.wild_held_items
         moon: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
       evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
       forms:
         steelix:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
           default: *gold-silver.pokemon.steelix.default
           battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
@@ -834,17 +900,17 @@ sun-moon:
             - sun-moon/shiny/steelix-default.png
             - sun-moon/shiny/female/steelix-default.png
           art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *x-y.pokemon.steelix.forms.steelix.cry
     steelix-mega:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
+      color: *black-white.pokemon.steelix.color
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.steelix.forms_switchable
@@ -871,41 +937,41 @@ sun-moon:
             - sun-moon/steelix-mega.png
             - sun-moon/shiny/steelix-mega.png
           art: *omega-ruby-alpha-sapphire.pokemon.steelix-mega.forms.steelix-mega.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *x-y.pokemon.steelix.forms.steelix.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     steelix:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
+      color: *black-white.pokemon.steelix.color
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.steelix.forms_switchable
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.steelix.default
-      height: *gold-silver.pokemon.steelix.height
+      height: *ruby-sapphire.pokemon.steelix.height
       weight: *gold-silver.pokemon.steelix.weight
-      experience: *ruby-sapphire.pokemon.steelix.experience
+      experience: *diamond-pearl.pokemon.steelix.experience
       types: *gold-silver.pokemon.steelix.types
       egg_groups: *gold-silver.pokemon.steelix.egg_groups
       mega: *x-y.pokemon.steelix.mega
-      stats: *ruby-sapphire.pokemon.steelix.stats
+      stats: *diamond-pearl.pokemon.steelix.stats
       abilities: *black-white.pokemon.steelix.abilities
       wild_held_items: &ultra-sun-ultra-moon.pokemon.steelix.wild_held_items
         ultra-sun: *ruby-sapphire.pokemon.steelix.wild_held_items.ruby
       evolution_conditions: *gold-silver.pokemon.steelix.evolution_conditions
       forms:
         steelix:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.steelix.forms.steelix.form_name
           default: *gold-silver.pokemon.steelix.default
           battle_only: *gold-silver.pokemon.steelix.forms.steelix.battle_only
@@ -916,17 +982,17 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/steelix-default.png
             - ultra-sun-ultra-moon/shiny/female/steelix-default.png
           art: *gold-silver.pokemon.steelix.forms.steelix.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *x-y.pokemon.steelix.forms.steelix.cry
     steelix-mega:
-      genus: *gold-silver.pokemon.steelix.genus
+      genus: *diamond-pearl.pokemon.steelix.genus
       evolution_parent: *gold-silver.pokemon.steelix.evolution_parent
-      color: *ruby-sapphire.pokemon.steelix.color
+      color: *black-white.pokemon.steelix.color
       shape: *diamond-pearl.pokemon.steelix.shape
       female_rate: *gold-silver.pokemon.steelix.female_rate
       capture_rate: *gold-silver.pokemon.steelix.capture_rate
-      happiness: *gold-silver.pokemon.steelix.happiness
-      baby: *gold-silver.pokemon.steelix.baby
+      happiness: *ruby-sapphire.pokemon.steelix.happiness
+      baby: *diamond-pearl.pokemon.steelix.baby
       hatch_steps: *gold-silver.pokemon.steelix.hatch_steps
       growth_rate: *gold-silver.pokemon.steelix.growth_rate
       forms_switchable: *omega-ruby-alpha-sapphire.pokemon.steelix.forms_switchable
@@ -953,5 +1019,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/steelix-mega.png
             - ultra-sun-ultra-moon/shiny/steelix-mega.png
           art: *omega-ruby-alpha-sapphire.pokemon.steelix-mega.forms.steelix-mega.art
-          footprint: *gold-silver.pokemon.steelix.forms.steelix.footprint
+          footprint: *ruby-sapphire.pokemon.steelix.forms.steelix.footprint
           cry: *x-y.pokemon.steelix.forms.steelix.cry

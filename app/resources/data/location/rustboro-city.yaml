@@ -1,20 +1,25 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Rustboro City'
-  areas: &ruby-sapphire.areas
-    whole-area:
+  areas:
+    whole-area: &ruby-sapphire.areas.whole-area
       name: 'Whole area'
       default: true
+    mart:
+      name: &ruby-sapphire.areas.mart.name 'Poké Mart'
+      shops:
+        mart:
+          name: *ruby-sapphire.areas.mart.name
+          default: true
   map:
     map: &ruby-sapphire.map.map hoenn
-    overlay: |
-      <rect width="8" height="16" x="8" y="56" />
+    overlay: '<rect width="8" height="16" x="8" y="56" />'
 emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    whole-area: *ruby-sapphire.areas.whole-area
   map:
     map: *ruby-sapphire.map.map
-    overlay: |
-      <rect width="13" height="24" x="3" y="73" />
+    overlay: '<rect width="13" height="24" x="3" y="73" />'

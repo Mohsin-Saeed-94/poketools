@@ -1,42 +1,51 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Shell Bell'
+  name: &ruby-sapphire.name 'SHELL BELL'
   category: &ruby-sapphire.category held-items
   pocket: &ruby-sapphire.pocket misc
-  buy: &ruby-sapphire.buy 4000
-  sell: &ruby-sapphire.sell 2000
   flags: &ruby-sapphire.flags
     - holdable
     - holdable-active
-  short_description: &ruby-sapphire.short_description 'Held: Holder receives 1/8 of the damage it deals when attacking.'
-  description: &ruby-sapphire.description 'Held: Heals the holder by 1/8 of any damage it inflicts.'
-  flavor_text: |
+  icon: &ruby-sapphire.icon shell-bell.png
+  buy: &ruby-sapphire.buy 200
+  sell: &ruby-sapphire.sell 100
+  flavor_text: &ruby-sapphire.flavor_text |
     A hold item that
     restores HP upon
     striking the foe.
-  icon: &ruby-sapphire.icon shell-bell.png
+  short_description: &ruby-sapphire.short_description 'Held: Holder receives 1/8 of the damage it deals when attacking.'
+  description: &ruby-sapphire.description 'Held: Heals the holder by 1/8 of any damage it inflicts.'
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *ruby-sapphire.category
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
   flavor_text: |
     An item to be held by a POKéMON.
     The holding POKéMON regains some
-    HP upon striking the foe.
-  icon: *ruby-sapphire.icon
+     HP upon striking the foe.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Shell Bell'
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &diamond-pearl.buy 4000
+  sell: &diamond-pearl.sell 2000
   fling_effect: damage
   fling_power: 30
   flags: *ruby-sapphire.flags
@@ -52,11 +61,11 @@ heartgold-soulsilver: *diamond-pearl
 black-white: *diamond-pearl
 black-2-white-2: *diamond-pearl
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   flags: *ruby-sapphire.flags
@@ -69,11 +78,11 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 30
   flags: *ruby-sapphire.flags

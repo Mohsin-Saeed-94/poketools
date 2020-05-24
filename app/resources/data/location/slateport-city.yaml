@@ -1,12 +1,28 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Slateport City'
-  areas: &ruby-sapphire.areas
+  areas:
     whole-area:
-      name: 'Whole area'
+      name: 'Whole Area'
       default: true
-    contest-hall:
+      shops:
+        tm-shop:
+          name: 'TM Shop'
+          default: true
+        energy-guru:
+          name: 'Energy Guru'
+        doll-shop:
+          name: 'Doll Shop'
+        secret-power-club:
+          name: 'Secret Power Club Shop'
+    contest-hall: &ruby-sapphire.areas.contest-hall
       name: 'Contest hall'
+    mart:
+      name: &ruby-sapphire.areas.mart.name 'Poké Mart'
+      shops:
+        mart:
+          name: *ruby-sapphire.areas.mart.name
+          default: true
   map:
     map: &ruby-sapphire.map.map hoenn
     overlay: '<rect width="8" height="16" x="72" y="96" />'
@@ -14,8 +30,11 @@ emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    whole-area:
+      name: 'Whole area'
+      default: true
+    contest-hall: *ruby-sapphire.areas.contest-hall
   map:
     map: *ruby-sapphire.map.map
-    overlay: |
-      <rect width="13" height="24" x="91" y="139" />
+    overlay: '<rect width="13" height="24" x="91" y="139" />'

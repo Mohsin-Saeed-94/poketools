@@ -1,9 +1,16 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Mud Shot'
-  stat_change_chance: &ruby-sapphire.stat_change_chance 100
+  name: &ruby-sapphire.name 'MUD SHOT'
+  power: &ruby-sapphire.power 55
+  type: &ruby-sapphire.type ground
+  accuracy: &ruby-sapphire.accuracy 95
+  pp: &ruby-sapphire.pp 15
+  effect: &ruby-sapphire.effect 71
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
     - protect
     - mirror
+    - kings-rock
   categories: &ruby-sapphire.categories
     - damage
     - lower
@@ -11,66 +18,74 @@ ruby-sapphire: &ruby-sapphire
   turns: &ruby-sapphire.turns 1
   stat_changes: &ruby-sapphire.stat_changes
     speed: -1
-  type: &ruby-sapphire.type ground
-  power: &ruby-sapphire.power 55
-  pp: &ruby-sapphire.pp 15
-  accuracy: &ruby-sapphire.accuracy 95
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 71
-  effect_chance: &ruby-sapphire.effect_chance 100
+  stat_change_chance: &ruby-sapphire.stat_change_chance 100
   contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 5
+  contest_effect: 14
   flavor_text: |
     Hurls mud at the foe and
     reduces SPEED.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *ruby-sapphire.name
-  stat_change_chance: *ruby-sapphire.stat_change_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Hurls mud at the target
+    and reduces SPEED.
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
+  stat_change_chance: *ruby-sapphire.stat_change_chance
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  stat_changes: *ruby-sapphire.stat_changes
+  stat_change_chance: *ruby-sapphire.stat_change_chance
 firered-leafgreen:
   name: *ruby-sapphire.name
-  stat_change_chance: *ruby-sapphire.stat_change_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  stat_change_chance: *ruby-sapphire.stat_change_chance
   flavor_text: |
     The user attacks by
     hurling mud.
     It also reduces the
-    foe’s SPEED.
-
+    foe's SPEED.
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Mud Shot'
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: &diamond-pearl.flags
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -83,7 +98,7 @@ diamond-pearl: &diamond-pearl
   target: *ruby-sapphire.target
   damage_class: &diamond-pearl.damage_class special
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: &diamond-pearl.effect_chance 100
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 2
   flavor_text: &diamond-pearl.flavor_text |
@@ -94,9 +109,9 @@ diamond-pearl: &diamond-pearl
     target’s Speed.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -109,12 +124,12 @@ heartgold-soulsilver:
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -127,16 +142,16 @@ black-white: &black-white
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user attacks by hurling a blob of mud
     at the target.
     It also reduces the target’s Speed.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -149,15 +164,15 @@ x-y:
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &x-y.flavor_text |
     The user attacks by hurling a blob of mud
     at the target.
     This also lowers the target’s Speed stat.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -170,14 +185,14 @@ omega-ruby-alpha-sapphire:
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 5
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   stat_change_chance: *ruby-sapphire.stat_change_chance
-  flags: *ruby-sapphire.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -190,7 +205,7 @@ sun-moon: &sun-moon
   target: *ruby-sapphire.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user attacks by hurling a blob of mud at the
     target. This also lowers the target’s Speed stat.

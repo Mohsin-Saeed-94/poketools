@@ -1,68 +1,80 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Water Sport'
-  flags: &ruby-sapphire.flags
-    - non-sky-battle
+  name: &ruby-sapphire.name 'WATER SPORT'
+  type: &ruby-sapphire.type water
+  accuracy: &ruby-sapphire.accuracy 100
+  pp: &ruby-sapphire.pp 15
+  effect: &ruby-sapphire.effect 211
+  target: &ruby-sapphire.target user
+  priority: &ruby-sapphire.priority 0
   categories: &ruby-sapphire.categories
     - whole-field-effect
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 1
-  type: &ruby-sapphire.type water
-  pp: &ruby-sapphire.pp 15
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target entire-field
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 211
   contest_type: &ruby-sapphire.contest_type cute
   contest_effect: &ruby-sapphire.contest_effect 1
   contest_use_before: &ruby-sapphire.contest_use_before
     - water-gun
     - refresh
     - mud-sport
-  flavor_text: |
+  contest_use_after:
+    - rain-dance
+    - mud-sport
+  flavor_text: &ruby-sapphire.flavor_text |
     The user becomes soaked to
     raise resistance to fire.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     Weakens FIRE-type
     attacks while the
     user is in the
     battle.
-
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: &diamond-pearl.name 'Water Sport'
+  flags: &diamond-pearl.flags
+    - non-sky-battle
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: &diamond-pearl.target entire-field
   damage_class: &diamond-pearl.damage_class status
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
@@ -75,28 +87,28 @@ diamond-pearl: &diamond-pearl
     is in the battle.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |
@@ -105,15 +117,15 @@ black-white: &black-white
     is in the battle.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: &x-y.flavor_text |
@@ -121,15 +133,15 @@ x-y:
     This weakens Fire-type moves
     for five turns.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
@@ -137,15 +149,15 @@ omega-ruby-alpha-sapphire:
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
   priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
+  target: *diamond-pearl.target
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   flavor_text: |

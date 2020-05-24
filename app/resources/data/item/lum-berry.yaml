@@ -1,19 +1,106 @@
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Lum Berry'
+ruby-sapphire:
+  name: &ruby-sapphire.name 'LUM BERRY'
   category: &ruby-sapphire.category medicine
   pocket: &ruby-sapphire.pocket berries
-  buy: &ruby-sapphire.buy 20
-  sell: &ruby-sapphire.sell 10
   flags: &ruby-sapphire.flags
     - holdable-active
+  icon: &ruby-sapphire.icon lum-berry.png
+  buy: &ruby-sapphire.buy 20
+  sell: &ruby-sapphire.sell 10
+  flavor_text: |
+    A hold item that
+    heals status in
+    battle.
   short_description: &ruby-sapphire.short_description 'Held: Consumed to cure any status condition or confusion.'
   description: &ruby-sapphire.description |
     Held in battle
     :   When the holder is afflicted with a [major status ailment]{mechanic:major-status-ailment}, it consumes this item to cure the ailment.
-    
+
     Used on a party Pokémon
     :   Cures any [major status ailment]{mechanic:major-status-ailment}.
   berry: &ruby-sapphire.berry
+    number: 9
+    firmness: super-hard
+    size: 34
+    growth_time: 12
+    smoothness: 20
+    flavors:
+      spicy: 10
+      dry: 10
+      sweet: 10
+      bitter: 10
+      sour: 10
+    harvest: 1-2
+    flavor_text: |
+      Slow to grow. If raised with loving
+      care, it may grow two BERRIES.
+emerald:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    A hold item that
+    heals any status
+    problem in battle.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: *ruby-sapphire.berry
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    A hold item that
+    heals any status
+    change in battle.
+  category: *ruby-sapphire.category
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+xd: *colosseum
+firered-leafgreen:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    When held by a POKéMON, it will be
+    used in battle to heal any problem.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry:
+    number: 9
+    firmness: super-hard
+    size: 34
+    growth_time: 12
+    smoothness: 20
+    flavors:
+      spicy: 10
+      dry: 10
+      sweet: 10
+      bitter: 10
+      sour: 10
+    harvest: 1-2
+diamond-pearl: &diamond-pearl
+  name: &diamond-pearl.name 'Lum Berry'
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: berry-effect
+  fling_power: 10
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  berry: &diamond-pearl.berry
     firmness: super-hard
     natural_gift_type: flying
     natural_gift_power: 60
@@ -29,61 +116,13 @@ ruby-sapphire: &ruby-sapphire
       sour: 0
     harvest: 1-5
   flavor_text: |
-    A hold item that
-    heals status in
-    battle.
-  icon: &ruby-sapphire.icon lum-berry.png
-emerald:
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
-  flavor_text: |
-    A hold item that
-    heals any status
-    problem in battle.
-  icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
-  flavor_text: |
-    When held by a POKéMON, it will be
-    used in battle to heal any problem.
-  icon: *ruby-sapphire.icon
-diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  fling_effect: berry-effect
-  fling_power: 10
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
-  flavor_text: |
     A Poffin ingredient. It may be used
     or held by a Pokémon to recover from
     any status problem.
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -93,13 +132,13 @@ heartgold-soulsilver:
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: |
     It may be used or held by a Pokémon to
     recover from any status problem.
   icon: *ruby-sapphire.icon
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -109,14 +148,14 @@ black-white: &black-white
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: |
     If held by a Pokémon,
     it recovers from any status problem.
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y: &x-y
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -126,7 +165,7 @@ x-y: &x-y
   flags: *ruby-sapphire.flags
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: |
     A Berry to be consumed by Pokémon.
     If a Pokémon holds one, it can recover
@@ -134,7 +173,7 @@ x-y: &x-y
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire: *x-y
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy

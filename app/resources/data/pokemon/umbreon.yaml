@@ -1,29 +1,18 @@
 gold-silver:
-  name: &gold-silver.name Umbreon
-  position: &gold-silver.position 162
+  name: &gold-silver.name UMBREON
+  position: &gold-silver.position 196
   numbers: &gold-silver.numbers
     national: &gold-silver.numbers.national 197
-    original-johto: 185
+    original-johto: 184
+    original-johto-abc: 218
   pokemon:
     umbreon:
-      genus: &gold-silver.pokemon.umbreon.genus 'Moonlight Pokémon'
-      evolution_parent: &gold-silver.pokemon.umbreon.evolution_parent eevee/eevee
-      female_rate: &gold-silver.pokemon.umbreon.female_rate 12
-      capture_rate: &gold-silver.pokemon.umbreon.capture_rate 45
-      happiness: &gold-silver.pokemon.umbreon.happiness 35
-      baby: &gold-silver.pokemon.umbreon.baby false
-      hatch_steps: &gold-silver.pokemon.umbreon.hatch_steps 35
-      growth_rate: &gold-silver.pokemon.umbreon.growth_rate medium
-      forms_switchable: &gold-silver.pokemon.umbreon.forms_switchable false
       name: *gold-silver.name
       default: &gold-silver.pokemon.umbreon.default true
-      height: &gold-silver.pokemon.umbreon.height 10
-      weight: &gold-silver.pokemon.umbreon.weight 270
+      capture_rate: &gold-silver.pokemon.umbreon.capture_rate 45
       experience: &gold-silver.pokemon.umbreon.experience 197
       types: &gold-silver.pokemon.umbreon.types
         - dark
-      egg_groups: &gold-silver.pokemon.umbreon.egg_groups
-        - ground
       stats: &gold-silver.pokemon.umbreon.stats
         hp:
           base_value: 95
@@ -43,14 +32,18 @@ gold-silver:
         special-defense:
           base_value: 130
           effort_change: 60
-      evolution_conditions: &gold-silver.pokemon.umbreon.evolution_conditions
-        level-up:
-          time_of_day: night
-          minimum_happiness: 220
+      growth_rate: &gold-silver.pokemon.umbreon.growth_rate medium
+      female_rate: &gold-silver.pokemon.umbreon.female_rate 12
+      hatch_steps: &gold-silver.pokemon.umbreon.hatch_steps 35
+      egg_groups: &gold-silver.pokemon.umbreon.egg_groups
+        - ground
+      genus: &gold-silver.pokemon.umbreon.genus 'MOONLIGHT Pokémon'
+      height: &gold-silver.pokemon.umbreon.height 9
+      weight: &gold-silver.pokemon.umbreon.weight 272
       flavor_text:
         gold: |
           When agitated,
-          this POKéMON pro­
+          this #MON pro-
           tects itself by
           spraying poisonous
           sweat from its
@@ -62,6 +55,12 @@ gold-silver:
           to glow, striking
           fear in the hearts
           of anyone nearby.
+      evolution_parent: &gold-silver.pokemon.umbreon.evolution_parent eevee/eevee
+      evolution_conditions: &gold-silver.pokemon.umbreon.evolution_conditions
+        level-up:
+          minimum_happiness: &gold-silver.pokemon.umbreon.evolution_conditions.level-up.minimum_happiness 220
+          time_of_day: &gold-silver.pokemon.umbreon.evolution_conditions.level-up.time_of_day
+            - night
       forms:
         umbreon:
           name: *gold-silver.name
@@ -69,12 +68,11 @@ gold-silver:
           default: *gold-silver.pokemon.umbreon.default
           battle_only: &gold-silver.pokemon.umbreon.forms.umbreon.battle_only false
           sprites:
+            - gold-silver/umbreon-default.png
             - gold-silver/back/umbreon-default.png
             - gold-silver/shiny/umbreon-default.png
-            - gold-silver/umbreon-default.png
           art: &gold-silver.pokemon.umbreon.forms.umbreon.art
             - umbreon-default.png
-          footprint: &gold-silver.pokemon.umbreon.forms.umbreon.footprint umbreon.png
           cry: &gold-silver.pokemon.umbreon.forms.umbreon.cry gen5/umbreon-default.webm
           icon: &gold-silver.pokemon.umbreon.forms.umbreon.icon gen2/fox.png
 crystal:
@@ -83,24 +81,19 @@ crystal:
   numbers: *gold-silver.numbers
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
-      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      female_rate: *gold-silver.pokemon.umbreon.female_rate
-      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
-      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
-      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
+      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
       experience: *gold-silver.pokemon.umbreon.experience
       types: *gold-silver.pokemon.umbreon.types
-      egg_groups: *gold-silver.pokemon.umbreon.egg_groups
       stats: *gold-silver.pokemon.umbreon.stats
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
+      female_rate: *gold-silver.pokemon.umbreon.female_rate
+      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
+      egg_groups: *gold-silver.pokemon.umbreon.egg_groups
+      genus: *gold-silver.pokemon.umbreon.genus
+      height: *gold-silver.pokemon.umbreon.height
+      weight: *gold-silver.pokemon.umbreon.weight
       flavor_text:
         crystal: |
           On the night of a
@@ -109,6 +102,8 @@ crystal:
           the ring patterns
           on its body glow
           yellow.
+      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
       forms:
         umbreon:
           name: *gold-silver.name
@@ -116,40 +111,280 @@ crystal:
           default: *gold-silver.pokemon.umbreon.default
           battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
           sprites:
+            - crystal/umbreon-default.png
             - crystal/back/umbreon-default.png
             - crystal/shiny/umbreon-default.png
-            - crystal/animated/umbreon-default.webm
-            - crystal/animated/shiny/umbreon-default.webm
-            - crystal/umbreon-default.png
           art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
           cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
           icon: *gold-silver.pokemon.umbreon.forms.umbreon.icon
 ruby-sapphire:
   name: *gold-silver.name
-  position: *gold-silver.position
+  position: &ruby-sapphire.position 197
   numbers: &ruby-sapphire.numbers
+    national: *gold-silver.numbers.national
+    hoenn: 342
+  pokemon:
+    umbreon:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.umbreon.default
+      forms_switchable: &ruby-sapphire.pokemon.umbreon.forms_switchable false
+      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
+      experience: *gold-silver.pokemon.umbreon.experience
+      types: *gold-silver.pokemon.umbreon.types
+      stats: &ruby-sapphire.pokemon.umbreon.stats
+        hp:
+          base_value: 95
+          effort_change: 0
+        attack:
+          base_value: 65
+          effort_change: 0
+        defense:
+          base_value: 110
+          effort_change: 0
+        speed:
+          base_value: 65
+          effort_change: 0
+        special-attack:
+          base_value: 60
+          effort_change: 2
+        special-defense:
+          base_value: 95
+          effort_change: 2
+      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
+      female_rate: *gold-silver.pokemon.umbreon.female_rate
+      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
+      egg_groups: *gold-silver.pokemon.umbreon.egg_groups
+      happiness: &ruby-sapphire.pokemon.umbreon.happiness 35
+      abilities: &ruby-sapphire.pokemon.umbreon.abilities
+        synchronize: &ruby-sapphire.pokemon.umbreon.abilities.synchronize
+          hidden: false
+          position: 1
+      genus: *gold-silver.pokemon.umbreon.genus
+      height: &ruby-sapphire.pokemon.umbreon.height 10
+      weight: &ruby-sapphire.pokemon.umbreon.weight 270
+      flavor_text:
+        ruby: |
+          UMBREON evolved as a result of exposure
+          to the moon's waves.
+          It hides silently in darkness and waits
+          for its foes to make a move.
+          The rings on its body glow when it leaps
+          to attack.
+        sapphire: |
+          UMBREON evolved as a result of exposure
+          to the moon's waves.
+           It hides silently in darkness and waits
+          for its foes to make a move.
+           The rings on its body glow when it leaps
+          to attack.
+      forms:
+        umbreon:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
+          default: *gold-silver.pokemon.umbreon.default
+          battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
+          icon: &ruby-sapphire.pokemon.umbreon.forms.umbreon.icon gen5/umbreon-default.png
+          sprites:
+            - ruby-sapphire/umbreon-default.png
+            - ruby-sapphire/back/umbreon-default.png
+            - ruby-sapphire/shiny/umbreon-default.png
+          art: *gold-silver.pokemon.umbreon.forms.umbreon.art
+          footprint: &ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint umbreon.png
+          cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
+      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+emerald:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *ruby-sapphire.numbers
+  pokemon:
+    umbreon:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.umbreon.default
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
+      experience: *gold-silver.pokemon.umbreon.experience
+      types: *gold-silver.pokemon.umbreon.types
+      stats: *ruby-sapphire.pokemon.umbreon.stats
+      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
+      female_rate: *gold-silver.pokemon.umbreon.female_rate
+      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
+      egg_groups: *gold-silver.pokemon.umbreon.egg_groups
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      abilities: *ruby-sapphire.pokemon.umbreon.abilities
+      genus: *gold-silver.pokemon.umbreon.genus
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      flavor_text:
+        emerald: |
+          UMBREON evolved from exposure to the
+          moon's energy pulses. It lurks in darkness
+          and waits for its foes to move. The rings
+          on its body glow when it leaps to attack.
+      forms:
+        umbreon:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
+          default: *gold-silver.pokemon.umbreon.default
+          battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
+          icon: *ruby-sapphire.pokemon.umbreon.forms.umbreon.icon
+          sprites:
+            - emerald/umbreon-default.png
+            - emerald/shiny/umbreon-default.png
+            - emerald/animated/umbreon-default.webm
+            - emerald/animated/shiny/umbreon-default.webm
+          art: *gold-silver.pokemon.umbreon.forms.umbreon.art
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
+          cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
+      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+colosseum:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &colosseum.numbers
+    national: *gold-silver.numbers.national
+    orre-strategy-memo: 352
+  pokemon:
+    umbreon:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.umbreon.default
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
+      experience: *gold-silver.pokemon.umbreon.experience
+      types: *gold-silver.pokemon.umbreon.types
+      stats: *ruby-sapphire.pokemon.umbreon.stats
+      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
+      female_rate: *gold-silver.pokemon.umbreon.female_rate
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      abilities: *ruby-sapphire.pokemon.umbreon.abilities
+      genus: *gold-silver.pokemon.umbreon.genus
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      forms:
+        umbreon:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
+          default: *gold-silver.pokemon.umbreon.default
+          battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
+          sprites:
+            - colosseum/umbreon-default.png
+            - colosseum/shiny/umbreon-default.png
+          art: *gold-silver.pokemon.umbreon.forms.umbreon.art
+          cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
+      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+xd:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *colosseum.numbers
+  pokemon:
+    umbreon:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.umbreon.default
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
+      experience: *gold-silver.pokemon.umbreon.experience
+      types: *gold-silver.pokemon.umbreon.types
+      stats: *ruby-sapphire.pokemon.umbreon.stats
+      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
+      female_rate: *gold-silver.pokemon.umbreon.female_rate
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      abilities: *ruby-sapphire.pokemon.umbreon.abilities
+      genus: *gold-silver.pokemon.umbreon.genus
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      forms:
+        umbreon:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
+          default: *gold-silver.pokemon.umbreon.default
+          battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
+          sprites:
+            - xd/umbreon-default.png
+            - xd/shiny/umbreon-default.png
+          art: *gold-silver.pokemon.umbreon.forms.umbreon.art
+          cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
+      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
+      evolution_conditions:
+        level-up:
+          minimum_happiness: *gold-silver.pokemon.umbreon.evolution_conditions.level-up.minimum_happiness
+          bag_item: moon-shard
+firered-leafgreen:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &firered-leafgreen.numbers
     national: *gold-silver.numbers.national
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
-      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      color: &ruby-sapphire.pokemon.umbreon.color black
-      female_rate: *gold-silver.pokemon.umbreon.female_rate
-      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
-      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
-      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: &ruby-sapphire.pokemon.umbreon.experience 184
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
+      experience: *gold-silver.pokemon.umbreon.experience
+      types: *gold-silver.pokemon.umbreon.types
+      stats: *ruby-sapphire.pokemon.umbreon.stats
+      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
+      female_rate: *gold-silver.pokemon.umbreon.female_rate
+      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
+      egg_groups: *gold-silver.pokemon.umbreon.egg_groups
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      abilities: *ruby-sapphire.pokemon.umbreon.abilities
+      genus: *gold-silver.pokemon.umbreon.genus
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      flavor_text:
+        firered: |
+          When darkness falls, the rings on its body
+          begin to glow, striking fear in the hearts
+          of anyone nearby.
+        leafgreen: |
+          When agitated, this POKéMON protects
+          itself by spraying poisonous sweat from its
+          pores.
+      forms:
+        umbreon:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
+          default: *gold-silver.pokemon.umbreon.default
+          battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
+          icon: *ruby-sapphire.pokemon.umbreon.forms.umbreon.icon
+          sprites:
+            - firered-leafgreen/umbreon-default.png
+            - firered-leafgreen/back/umbreon-default.png
+            - firered-leafgreen/shiny/umbreon-default.png
+          art: *gold-silver.pokemon.umbreon.forms.umbreon.art
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
+          cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
+      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+diamond-pearl:
+  name: &diamond-pearl.name Umbreon
+  position: &diamond-pearl.position 162
+  numbers: *firered-leafgreen.numbers
+  pokemon:
+    umbreon:
+      genus: &diamond-pearl.pokemon.umbreon.genus 'Moonlight Pokémon'
+      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
+      shape: &diamond-pearl.pokemon.umbreon.shape quadruped
+      female_rate: *gold-silver.pokemon.umbreon.female_rate
+      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      baby: &diamond-pearl.pokemon.umbreon.baby false
+      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
+      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      pal_park: &diamond-pearl.pokemon.umbreon.pal_park
+        area: field
+        rate: 3
+        score: 90
+      name: *diamond-pearl.name
+      default: *gold-silver.pokemon.umbreon.default
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      experience: &diamond-pearl.pokemon.umbreon.experience 184
       types: *gold-silver.pokemon.umbreon.types
       egg_groups: *gold-silver.pokemon.umbreon.egg_groups
-      stats: &ruby-sapphire.pokemon.umbreon.stats
+      stats: &diamond-pearl.pokemon.umbreon.stats
         hp:
           base_value: 95
           effort_change: 0
@@ -168,191 +403,15 @@ ruby-sapphire:
         special-defense:
           base_value: 130
           effort_change: 2
-      abilities: &ruby-sapphire.pokemon.umbreon.abilities
-        synchronize:
-          hidden: false
-          position: 1
+      abilities: &diamond-pearl.pokemon.umbreon.abilities
+        synchronize: *ruby-sapphire.pokemon.umbreon.abilities.synchronize
         inner-focus:
           hidden: true
           position: 3
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
-      flavor_text:
-        ruby: |
-          UMBREON evolved as a result of exposure
-          to the moon’s waves.
-          It hides silently in darkness and waits
-          for its foes to make a move.
-          The rings on its body glow when it leaps
-          to attack.
-        sapphire: |
-          UMBREON evolved as a result of exposure
-          to the moon’s waves.
-          It hides silently in darkness and waits
-          for its foes to make a move.
-          The rings on its body glow when it leaps
-          to attack.
-      forms:
-        umbreon:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
-          default: *gold-silver.pokemon.umbreon.default
-          battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
-          icon: &ruby-sapphire.pokemon.umbreon.forms.umbreon.icon gen5/umbreon-default.png
-          sprites:
-            - ruby-sapphire/back/umbreon-default.png
-            - ruby-sapphire/shiny/umbreon-default.png
-            - ruby-sapphire/umbreon-default.png
-          art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
-          cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
-emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
-      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      color: *ruby-sapphire.pokemon.umbreon.color
-      female_rate: *gold-silver.pokemon.umbreon.female_rate
-      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
-      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
-      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
-      types: *gold-silver.pokemon.umbreon.types
-      egg_groups: *gold-silver.pokemon.umbreon.egg_groups
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
-      flavor_text:
-        emerald: |
-          UMBREON evolved from exposure to the
-          moon’s energy pulses. It lurks in darkness
-          and waits for its foes to move. The rings
-          on its body glow when it leaps to attack.
-      forms:
-        umbreon:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
-          default: *gold-silver.pokemon.umbreon.default
-          battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
-          icon: *ruby-sapphire.pokemon.umbreon.forms.umbreon.icon
-          sprites:
-            - emerald/shiny/umbreon-default.png
-            - emerald/animated/umbreon-default.webm
-            - emerald/animated/shiny/umbreon-default.webm
-            - emerald/umbreon-default.png
-          art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
-          cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
-colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
-  pokemon:
-    umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
-      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      female_rate: *gold-silver.pokemon.umbreon.female_rate
-      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
-      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
-      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
-      types: *gold-silver.pokemon.umbreon.types
-      egg_groups: *gold-silver.pokemon.umbreon.egg_groups
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
-      forms: &colosseum.pokemon.umbreon.forms
-        umbreon:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
-          default: *gold-silver.pokemon.umbreon.default
-          battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
-          icon: *ruby-sapphire.pokemon.umbreon.forms.umbreon.icon
-          art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
-          cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
-xd: *colosseum
-firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
-      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      habitat: urban
-      female_rate: *gold-silver.pokemon.umbreon.female_rate
-      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
-      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
-      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
-      types: *gold-silver.pokemon.umbreon.types
-      egg_groups: *gold-silver.pokemon.umbreon.egg_groups
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
-      flavor_text:
-        firered: |
-          When darkness falls, the rings on its body
-          begin to glow, striking fear in the hearts
-          of anyone nearby.
-        leafgreen: |
-          When agitated, this POKéMON protects
-          itself by spraying poisonous sweat from its
-          pores.
-      forms: *colosseum.pokemon.umbreon.forms
-diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
-      evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      shape: &diamond-pearl.pokemon.umbreon.shape quadruped
-      female_rate: *gold-silver.pokemon.umbreon.female_rate
-      capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
-      hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
-      growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      pal_park: &diamond-pearl.pokemon.umbreon.pal_park
-        area: field
-        rate: 3
-        score: 90
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
-      types: *gold-silver.pokemon.umbreon.types
-      egg_groups: *gold-silver.pokemon.umbreon.egg_groups
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      evolution_conditions: &diamond-pearl.pokemon.umbreon.evolution_conditions
+        level-up:
+          time_of_day: *gold-silver.pokemon.umbreon.evolution_conditions.level-up.time_of_day
+          minimum_happiness: *gold-silver.pokemon.umbreon.evolution_conditions.level-up.minimum_happiness
       flavor_text:
         diamond: |
           The light of the moon changed
@@ -364,7 +423,7 @@ diamond-pearl:
           lurks in darkness for prey.
       forms:
         umbreon:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
           default: *gold-silver.pokemon.umbreon.default
           battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
@@ -375,37 +434,37 @@ diamond-pearl:
             - diamond-pearl/shiny/umbreon-default.png
             - diamond-pearl/umbreon-default.png
           art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
           cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     extended-sinnoh: 168
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
+      genus: *diamond-pearl.pokemon.umbreon.genus
       evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
       shape: *diamond-pearl.pokemon.umbreon.shape
       female_rate: *gold-silver.pokemon.umbreon.female_rate
       capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      baby: *diamond-pearl.pokemon.umbreon.baby
       hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
       growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
       pal_park: *diamond-pearl.pokemon.umbreon.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      experience: *diamond-pearl.pokemon.umbreon.experience
       types: *gold-silver.pokemon.umbreon.types
       egg_groups: *gold-silver.pokemon.umbreon.egg_groups
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      stats: *diamond-pearl.pokemon.umbreon.stats
+      abilities: *diamond-pearl.pokemon.umbreon.abilities
+      evolution_conditions: *diamond-pearl.pokemon.umbreon.evolution_conditions
       flavor_text:
         platinum: |
           When exposed to the moon’s aura,
@@ -413,7 +472,7 @@ platinum:
           and it gains a mysterious power.
       forms:
         umbreon:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
           default: *gold-silver.pokemon.umbreon.default
           battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
@@ -424,37 +483,37 @@ platinum:
             - platinum/shiny/umbreon-default.png
             - platinum/umbreon-default.png
           art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
           cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-johto: 189
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
+      genus: *diamond-pearl.pokemon.umbreon.genus
       evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
       shape: *diamond-pearl.pokemon.umbreon.shape
       female_rate: *gold-silver.pokemon.umbreon.female_rate
       capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      baby: *diamond-pearl.pokemon.umbreon.baby
       hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
       growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
       pal_park: *diamond-pearl.pokemon.umbreon.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      experience: *diamond-pearl.pokemon.umbreon.experience
       types: *gold-silver.pokemon.umbreon.types
       egg_groups: *gold-silver.pokemon.umbreon.egg_groups
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      stats: *diamond-pearl.pokemon.umbreon.stats
+      abilities: *diamond-pearl.pokemon.umbreon.abilities
+      evolution_conditions: *diamond-pearl.pokemon.umbreon.evolution_conditions
       flavor_text:
         heartgold: |
           When agitated, this Pokémon
@@ -466,7 +525,7 @@ heartgold-soulsilver:
           fear in the hearts of anyone nearby.
       forms:
         umbreon:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
           default: *gold-silver.pokemon.umbreon.default
           battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
@@ -493,35 +552,35 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/umbreon-default.png
             - heartgold-soulsilver/umbreon-default.png
           art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
           cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
+      genus: *diamond-pearl.pokemon.umbreon.genus
       evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      color: *ruby-sapphire.pokemon.umbreon.color
+      color: &black-white.pokemon.umbreon.color black
       shape: *diamond-pearl.pokemon.umbreon.shape
       female_rate: *gold-silver.pokemon.umbreon.female_rate
       capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      baby: *diamond-pearl.pokemon.umbreon.baby
       hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
       growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      experience: *diamond-pearl.pokemon.umbreon.experience
       types: *gold-silver.pokemon.umbreon.types
       egg_groups: *gold-silver.pokemon.umbreon.egg_groups
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      stats: *diamond-pearl.pokemon.umbreon.stats
+      abilities: *diamond-pearl.pokemon.umbreon.abilities
+      evolution_conditions: *diamond-pearl.pokemon.umbreon.evolution_conditions
       flavor_text:
         black: |
           When exposed to the moon’s aura,
@@ -533,7 +592,7 @@ black-white:
           and it gains a mysterious power.
       forms:
         umbreon:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
           default: *gold-silver.pokemon.umbreon.default
           battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
@@ -544,37 +603,37 @@ black-white:
             - black-white/shiny/umbreon-default.png
             - black-white/umbreon-default.png
           art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
           cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-unova: 96
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
+      genus: *diamond-pearl.pokemon.umbreon.genus
       evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      color: *ruby-sapphire.pokemon.umbreon.color
+      color: *black-white.pokemon.umbreon.color
       shape: *diamond-pearl.pokemon.umbreon.shape
       female_rate: *gold-silver.pokemon.umbreon.female_rate
       capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      baby: *diamond-pearl.pokemon.umbreon.baby
       hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
       growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      experience: *diamond-pearl.pokemon.umbreon.experience
       types: *gold-silver.pokemon.umbreon.types
       egg_groups: *gold-silver.pokemon.umbreon.egg_groups
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      stats: *diamond-pearl.pokemon.umbreon.stats
+      abilities: *diamond-pearl.pokemon.umbreon.abilities
+      evolution_conditions: *diamond-pearl.pokemon.umbreon.evolution_conditions
       flavor_text:
         black-2: |
           When exposed to the moon’s aura,
@@ -584,37 +643,46 @@ black-2-white-2:
           When exposed to the moon’s aura,
           the rings on its body glow faintly
           and it’s filled with a mysterious power.
-      forms: *colosseum.pokemon.umbreon.forms
+      forms:
+        umbreon:
+          name: *diamond-pearl.name
+          form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
+          default: *gold-silver.pokemon.umbreon.default
+          battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
+          icon: *ruby-sapphire.pokemon.umbreon.forms.umbreon.icon
+          art: *gold-silver.pokemon.umbreon.forms.umbreon.art
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
+          cry: *gold-silver.pokemon.umbreon.forms.umbreon.cry
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     kalos-coastal: 82
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
+      genus: *diamond-pearl.pokemon.umbreon.genus
       evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      color: *ruby-sapphire.pokemon.umbreon.color
+      color: *black-white.pokemon.umbreon.color
       shape: *diamond-pearl.pokemon.umbreon.shape
       female_rate: *gold-silver.pokemon.umbreon.female_rate
       capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      baby: *diamond-pearl.pokemon.umbreon.baby
       hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
       growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      experience: *diamond-pearl.pokemon.umbreon.experience
       types: *gold-silver.pokemon.umbreon.types
       egg_groups: *gold-silver.pokemon.umbreon.egg_groups
       mega: &x-y.pokemon.umbreon.mega false
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      stats: *diamond-pearl.pokemon.umbreon.stats
+      abilities: *diamond-pearl.pokemon.umbreon.abilities
+      evolution_conditions: *diamond-pearl.pokemon.umbreon.evolution_conditions
       flavor_text:
         x: |
           The light of the moon changed Eevee’s genetic
@@ -625,7 +693,7 @@ x-y:
           mysterious power.
       forms:
         umbreon:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
           default: *gold-silver.pokemon.umbreon.default
           battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
@@ -634,36 +702,36 @@ x-y:
             - x-y/shiny/umbreon-default.png
             - x-y/umbreon-default.png
           art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
           cry: &x-y.pokemon.umbreon.forms.umbreon.cry umbreon-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
+      genus: *diamond-pearl.pokemon.umbreon.genus
       evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      color: *ruby-sapphire.pokemon.umbreon.color
+      color: *black-white.pokemon.umbreon.color
       shape: *diamond-pearl.pokemon.umbreon.shape
       female_rate: *gold-silver.pokemon.umbreon.female_rate
       capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      baby: *diamond-pearl.pokemon.umbreon.baby
       hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
       growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      experience: *diamond-pearl.pokemon.umbreon.experience
       types: *gold-silver.pokemon.umbreon.types
       egg_groups: *gold-silver.pokemon.umbreon.egg_groups
       mega: *x-y.pokemon.umbreon.mega
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      stats: *diamond-pearl.pokemon.umbreon.stats
+      abilities: *diamond-pearl.pokemon.umbreon.abilities
+      evolution_conditions: *diamond-pearl.pokemon.umbreon.evolution_conditions
       flavor_text:
         omega-ruby: |
           Umbreon evolved as a result of exposure to the moon’s waves.
@@ -675,48 +743,48 @@ omega-ruby-alpha-sapphire:
           move. The rings on its body glow when it leaps to attack.
       forms:
         umbreon:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
           default: *gold-silver.pokemon.umbreon.default
           battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
           icon: *x-y.pokemon.umbreon.forms.umbreon.icon
           art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
           cry: *x-y.pokemon.umbreon.forms.umbreon.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/umbreon-default.png
             - omega-ruby-alpha-sapphire/umbreon-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     original-alola: 128
     original-akala: 55
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
+      genus: *diamond-pearl.pokemon.umbreon.genus
       evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      color: *ruby-sapphire.pokemon.umbreon.color
+      color: *black-white.pokemon.umbreon.color
       shape: *diamond-pearl.pokemon.umbreon.shape
       female_rate: *gold-silver.pokemon.umbreon.female_rate
       capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      baby: *diamond-pearl.pokemon.umbreon.baby
       hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
       growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      experience: *diamond-pearl.pokemon.umbreon.experience
       types: *gold-silver.pokemon.umbreon.types
       egg_groups: *gold-silver.pokemon.umbreon.egg_groups
       mega: *x-y.pokemon.umbreon.mega
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      stats: *diamond-pearl.pokemon.umbreon.stats
+      abilities: *diamond-pearl.pokemon.umbreon.abilities
+      evolution_conditions: *diamond-pearl.pokemon.umbreon.evolution_conditions
       flavor_text:
         moon: |
           With its black fur, it blends into the darkness.
@@ -724,7 +792,7 @@ sun-moon:
           Pokémon goes for its throat, and then eats it.
       forms:
         umbreon:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
           default: *gold-silver.pokemon.umbreon.default
           battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
@@ -733,39 +801,39 @@ sun-moon:
             - sun-moon/shiny/umbreon-default.png
             - sun-moon/umbreon-default.png
           art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
           cry: *x-y.pokemon.umbreon.forms.umbreon.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-alola: 158
     updated-akala: 59
   pokemon:
     umbreon:
-      genus: *gold-silver.pokemon.umbreon.genus
+      genus: *diamond-pearl.pokemon.umbreon.genus
       evolution_parent: *gold-silver.pokemon.umbreon.evolution_parent
-      color: *ruby-sapphire.pokemon.umbreon.color
+      color: *black-white.pokemon.umbreon.color
       shape: *diamond-pearl.pokemon.umbreon.shape
       female_rate: *gold-silver.pokemon.umbreon.female_rate
       capture_rate: *gold-silver.pokemon.umbreon.capture_rate
-      happiness: *gold-silver.pokemon.umbreon.happiness
-      baby: *gold-silver.pokemon.umbreon.baby
+      happiness: *ruby-sapphire.pokemon.umbreon.happiness
+      baby: *diamond-pearl.pokemon.umbreon.baby
       hatch_steps: *gold-silver.pokemon.umbreon.hatch_steps
       growth_rate: *gold-silver.pokemon.umbreon.growth_rate
-      forms_switchable: *gold-silver.pokemon.umbreon.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.umbreon.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.umbreon.default
-      height: *gold-silver.pokemon.umbreon.height
-      weight: *gold-silver.pokemon.umbreon.weight
-      experience: *ruby-sapphire.pokemon.umbreon.experience
+      height: *ruby-sapphire.pokemon.umbreon.height
+      weight: *ruby-sapphire.pokemon.umbreon.weight
+      experience: *diamond-pearl.pokemon.umbreon.experience
       types: *gold-silver.pokemon.umbreon.types
       egg_groups: *gold-silver.pokemon.umbreon.egg_groups
       mega: *x-y.pokemon.umbreon.mega
-      stats: *ruby-sapphire.pokemon.umbreon.stats
-      abilities: *ruby-sapphire.pokemon.umbreon.abilities
-      evolution_conditions: *gold-silver.pokemon.umbreon.evolution_conditions
+      stats: *diamond-pearl.pokemon.umbreon.stats
+      abilities: *diamond-pearl.pokemon.umbreon.abilities
+      evolution_conditions: *diamond-pearl.pokemon.umbreon.evolution_conditions
       flavor_text:
         ultra-sun: |
           This Pokémon is nocturnal. Even in total
@@ -773,7 +841,7 @@ ultra-sun-ultra-moon:
           prey clearly!
       forms:
         umbreon:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.umbreon.forms.umbreon.form_name
           default: *gold-silver.pokemon.umbreon.default
           battle_only: *gold-silver.pokemon.umbreon.forms.umbreon.battle_only
@@ -782,5 +850,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/umbreon-default.png
             - ultra-sun-ultra-moon/umbreon-default.png
           art: *gold-silver.pokemon.umbreon.forms.umbreon.art
-          footprint: *gold-silver.pokemon.umbreon.forms.umbreon.footprint
+          footprint: *ruby-sapphire.pokemon.umbreon.forms.umbreon.footprint
           cry: *x-y.pokemon.umbreon.forms.umbreon.cry

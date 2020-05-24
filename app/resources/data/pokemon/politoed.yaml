@@ -1,29 +1,18 @@
 gold-silver:
-  name: &gold-silver.name Politoed
-  position: &gold-silver.position 68
+  name: &gold-silver.name POLITOED
+  position: &gold-silver.position 185
   numbers: &gold-silver.numbers
     national: &gold-silver.numbers.national 186
-    original-johto: 75
+    original-johto: 74
+    original-johto-abc: 153
   pokemon:
     politoed:
-      genus: &gold-silver.pokemon.politoed.genus 'Frog Pokémon'
-      evolution_parent: &gold-silver.pokemon.politoed.evolution_parent poliwhirl/poliwhirl
-      female_rate: &gold-silver.pokemon.politoed.female_rate 50
-      capture_rate: &gold-silver.pokemon.politoed.capture_rate 45
-      happiness: &gold-silver.pokemon.politoed.happiness 70
-      baby: &gold-silver.pokemon.politoed.baby false
-      hatch_steps: &gold-silver.pokemon.politoed.hatch_steps 20
-      growth_rate: &gold-silver.pokemon.politoed.growth_rate medium-slow
-      forms_switchable: &gold-silver.pokemon.politoed.forms_switchable false
       name: *gold-silver.name
       default: &gold-silver.pokemon.politoed.default true
-      height: &gold-silver.pokemon.politoed.height 11
-      weight: &gold-silver.pokemon.politoed.weight 339
+      capture_rate: &gold-silver.pokemon.politoed.capture_rate 45
       experience: &gold-silver.pokemon.politoed.experience 185
       types: &gold-silver.pokemon.politoed.types
         - water
-      egg_groups: &gold-silver.pokemon.politoed.egg_groups
-        - water1
       stats: &gold-silver.pokemon.politoed.stats
         hp:
           base_value: 90
@@ -43,15 +32,24 @@ gold-silver:
         special-defense:
           base_value: 100
           effort_change: 90
-      evolution_conditions: &gold-silver.pokemon.politoed.evolution_conditions
-        trade:
-          held_item: kings-rock
+      growth_rate: &gold-silver.pokemon.politoed.growth_rate medium-slow
+      female_rate: &gold-silver.pokemon.politoed.female_rate 50
+      hatch_steps: &gold-silver.pokemon.politoed.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.politoed.egg_groups
+        - water1
+      wild_held_items:
+        gold: &gold-silver.pokemon.politoed.wild_held_items.gold
+          kings-rock: 2
+        silver: *gold-silver.pokemon.politoed.wild_held_items.gold
+      genus: &gold-silver.pokemon.politoed.genus 'FROG Pokémon'
+      height: &gold-silver.pokemon.politoed.height 10
+      weight: &gold-silver.pokemon.politoed.weight 340
       flavor_text:
         gold: |
           If POLIWAG and
           POLIWHIRL hear its
           echoing cry, they
-          respond by gather­
+          respond by gather-
           ing from far and
           wide.
         silver: |
@@ -61,6 +59,10 @@ gold-silver:
           sing in a loud
           voice that sounds
           like bellowing.
+      evolution_parent: &gold-silver.pokemon.politoed.evolution_parent poliwhirl/poliwhirl
+      evolution_conditions: &gold-silver.pokemon.politoed.evolution_conditions
+        trade:
+          held_item: kings-rock
       forms:
         politoed:
           name: *gold-silver.name
@@ -73,7 +75,6 @@ gold-silver:
             - gold-silver/shiny/politoed-default.png
           art: &gold-silver.pokemon.politoed.forms.politoed.art
             - politoed-default.png
-          footprint: &gold-silver.pokemon.politoed.forms.politoed.footprint politoed.png
           cry: &gold-silver.pokemon.politoed.forms.politoed.cry gen5/politoed-default.webm
           icon: &gold-silver.pokemon.politoed.forms.politoed.icon gen2/poliwag.png
 crystal:
@@ -82,24 +83,21 @@ crystal:
   numbers: *gold-silver.numbers
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
-      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      female_rate: *gold-silver.pokemon.politoed.female_rate
-      capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
-      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
-      growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
+      capture_rate: *gold-silver.pokemon.politoed.capture_rate
       experience: *gold-silver.pokemon.politoed.experience
       types: *gold-silver.pokemon.politoed.types
-      egg_groups: *gold-silver.pokemon.politoed.egg_groups
       stats: *gold-silver.pokemon.politoed.stats
-      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
+      growth_rate: *gold-silver.pokemon.politoed.growth_rate
+      female_rate: *gold-silver.pokemon.politoed.female_rate
+      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
+      egg_groups: *gold-silver.pokemon.politoed.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.politoed.wild_held_items.gold
+      genus: *gold-silver.pokemon.politoed.genus
+      height: *gold-silver.pokemon.politoed.height
+      weight: *gold-silver.pokemon.politoed.weight
       flavor_text:
         crystal: |
           When it expands
@@ -108,6 +106,8 @@ crystal:
           nearby POLIWAG and
           POLIWHIRL gather
           immediately.
+      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
       forms:
         politoed:
           name: *gold-silver.name
@@ -118,37 +118,284 @@ crystal:
             - crystal/politoed-default.png
             - crystal/back/politoed-default.png
             - crystal/shiny/politoed-default.png
-            - crystal/animated/shiny/politoed-default.webm
-            - crystal/animated/politoed-default.webm
           art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
           cry: *gold-silver.pokemon.politoed.forms.politoed.cry
           icon: *gold-silver.pokemon.politoed.forms.politoed.icon
 ruby-sapphire:
   name: *gold-silver.name
-  position: *gold-silver.position
+  position: &ruby-sapphire.position 186
   numbers: &ruby-sapphire.numbers
+    national: *gold-silver.numbers.national
+    hoenn: 331
+  pokemon:
+    politoed:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.politoed.default
+      forms_switchable: &ruby-sapphire.pokemon.politoed.forms_switchable false
+      capture_rate: *gold-silver.pokemon.politoed.capture_rate
+      experience: *gold-silver.pokemon.politoed.experience
+      types: *gold-silver.pokemon.politoed.types
+      stats: &ruby-sapphire.pokemon.politoed.stats
+        hp:
+          base_value: 90
+          effort_change: 0
+        attack:
+          base_value: 75
+          effort_change: 0
+        defense:
+          base_value: 75
+          effort_change: 0
+        speed:
+          base_value: 70
+          effort_change: 0
+        special-attack:
+          base_value: 90
+          effort_change: 3
+        special-defense:
+          base_value: 90
+          effort_change: 3
+      growth_rate: *gold-silver.pokemon.politoed.growth_rate
+      female_rate: *gold-silver.pokemon.politoed.female_rate
+      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
+      egg_groups: *gold-silver.pokemon.politoed.egg_groups
+      wild_held_items:
+        ruby: &ruby-sapphire.pokemon.politoed.wild_held_items.ruby
+          kings-rock: 5
+        sapphire: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
+      happiness: &ruby-sapphire.pokemon.politoed.happiness 70
+      abilities: &ruby-sapphire.pokemon.politoed.abilities
+        water-absorb: &ruby-sapphire.pokemon.politoed.abilities.water-absorb
+          hidden: &ruby-sapphire.pokemon.politoed.abilities.water-absorb.hidden false
+          position: 1
+        damp: &ruby-sapphire.pokemon.politoed.abilities.damp
+          hidden: *ruby-sapphire.pokemon.politoed.abilities.water-absorb.hidden
+          position: 2
+      genus: *gold-silver.pokemon.politoed.genus
+      height: &ruby-sapphire.pokemon.politoed.height 11
+      weight: &ruby-sapphire.pokemon.politoed.weight 339
+      flavor_text:
+        ruby: |
+          The curled hair on POLITOED's head is
+          proof of its status as a king.  It is said
+          that the longer and more curled the
+          hair, the more respect this POKéMON
+          earns from its peers.
+        sapphire: |
+          The curled hair on POLITOED's head is
+          proof of its status as a king. It is said
+          that the longer and more curled the
+          hair, the more respect this POKéMON
+          earns from its peers.
+      forms:
+        politoed:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
+          default: *gold-silver.pokemon.politoed.default
+          battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
+          icon: &ruby-sapphire.pokemon.politoed.forms.politoed.icon gen5/politoed-default.png
+          sprites:
+            - ruby-sapphire/politoed-default.png
+            - ruby-sapphire/back/politoed-default.png
+            - ruby-sapphire/shiny/politoed-default.png
+          art: *gold-silver.pokemon.politoed.forms.politoed.art
+          footprint: &ruby-sapphire.pokemon.politoed.forms.politoed.footprint politoed.png
+          cry: *gold-silver.pokemon.politoed.forms.politoed.cry
+      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
+emerald:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *ruby-sapphire.numbers
+  pokemon:
+    politoed:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.politoed.default
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      capture_rate: *gold-silver.pokemon.politoed.capture_rate
+      experience: *gold-silver.pokemon.politoed.experience
+      types: *gold-silver.pokemon.politoed.types
+      stats: *ruby-sapphire.pokemon.politoed.stats
+      growth_rate: *gold-silver.pokemon.politoed.growth_rate
+      female_rate: *gold-silver.pokemon.politoed.female_rate
+      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
+      egg_groups: *gold-silver.pokemon.politoed.egg_groups
+      wild_held_items:
+        emerald: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      genus: *gold-silver.pokemon.politoed.genus
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      flavor_text:
+        emerald: |
+          The curled hair on its head proves its
+          status as a king. It is said that the
+          longer and curlier the hair, the more
+          respect it earns from its peers.
+      forms:
+        politoed:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
+          default: *gold-silver.pokemon.politoed.default
+          battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
+          icon: *ruby-sapphire.pokemon.politoed.forms.politoed.icon
+          sprites:
+            - emerald/politoed-default.png
+            - emerald/shiny/politoed-default.png
+            - emerald/animated/politoed-default.webm
+            - emerald/animated/shiny/politoed-default.webm
+          art: *gold-silver.pokemon.politoed.forms.politoed.art
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
+          cry: *gold-silver.pokemon.politoed.forms.politoed.cry
+      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
+colosseum:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &colosseum.numbers
+    national: *gold-silver.numbers.national
+    orre-strategy-memo: 247
+  pokemon:
+    politoed:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.politoed.default
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      capture_rate: *gold-silver.pokemon.politoed.capture_rate
+      experience: *gold-silver.pokemon.politoed.experience
+      types: *gold-silver.pokemon.politoed.types
+      stats: *ruby-sapphire.pokemon.politoed.stats
+      growth_rate: *gold-silver.pokemon.politoed.growth_rate
+      female_rate: *gold-silver.pokemon.politoed.female_rate
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      genus: *gold-silver.pokemon.politoed.genus
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      forms:
+        politoed:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
+          default: *gold-silver.pokemon.politoed.default
+          battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
+          sprites:
+            - colosseum/politoed-default.png
+            - colosseum/shiny/politoed-default.png
+          art: *gold-silver.pokemon.politoed.forms.politoed.art
+          cry: *gold-silver.pokemon.politoed.forms.politoed.cry
+      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
+xd:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *colosseum.numbers
+  pokemon:
+    politoed:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.politoed.default
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      capture_rate: *gold-silver.pokemon.politoed.capture_rate
+      experience: *gold-silver.pokemon.politoed.experience
+      types: *gold-silver.pokemon.politoed.types
+      stats: *ruby-sapphire.pokemon.politoed.stats
+      growth_rate: *gold-silver.pokemon.politoed.growth_rate
+      female_rate: *gold-silver.pokemon.politoed.female_rate
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      genus: *gold-silver.pokemon.politoed.genus
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      forms:
+        politoed:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
+          default: *gold-silver.pokemon.politoed.default
+          battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
+          sprites:
+            - xd/politoed-default.png
+            - xd/shiny/politoed-default.png
+          art: *gold-silver.pokemon.politoed.forms.politoed.art
+          cry: *gold-silver.pokemon.politoed.forms.politoed.cry
+      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
+firered-leafgreen:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &firered-leafgreen.numbers
     national: *gold-silver.numbers.national
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
-      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      color: &ruby-sapphire.pokemon.politoed.color green
-      female_rate: *gold-silver.pokemon.politoed.female_rate
-      capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
-      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
-      growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: &ruby-sapphire.pokemon.politoed.experience 225
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      capture_rate: *gold-silver.pokemon.politoed.capture_rate
+      experience: *gold-silver.pokemon.politoed.experience
+      types: *gold-silver.pokemon.politoed.types
+      stats: *ruby-sapphire.pokemon.politoed.stats
+      growth_rate: *gold-silver.pokemon.politoed.growth_rate
+      female_rate: *gold-silver.pokemon.politoed.female_rate
+      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
+      egg_groups: *gold-silver.pokemon.politoed.egg_groups
+      wild_held_items:
+        firered: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
+        leafgreen: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      genus: *gold-silver.pokemon.politoed.genus
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      flavor_text:
+        firered: |
+          Whenever three or more of these get
+          together, they sing in a loud voice that
+          sounds like bellowing.
+        leafgreen: |
+          If POLIWAG and POLIWHIRL hear its
+          echoing cry, they respond by gathering
+          from far and wide.
+      forms:
+        politoed:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
+          default: *gold-silver.pokemon.politoed.default
+          battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
+          icon: *ruby-sapphire.pokemon.politoed.forms.politoed.icon
+          sprites:
+            - firered-leafgreen/politoed-default.png
+            - firered-leafgreen/back/politoed-default.png
+            - firered-leafgreen/shiny/politoed-default.png
+          art: *gold-silver.pokemon.politoed.forms.politoed.art
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
+          cry: *gold-silver.pokemon.politoed.forms.politoed.cry
+      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
+diamond-pearl:
+  name: &diamond-pearl.name Politoed
+  position: &diamond-pearl.position 68
+  numbers: *firered-leafgreen.numbers
+  pokemon:
+    politoed:
+      genus: &diamond-pearl.pokemon.politoed.genus 'Frog Pokémon'
+      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
+      shape: &diamond-pearl.pokemon.politoed.shape humanoid
+      female_rate: *gold-silver.pokemon.politoed.female_rate
+      capture_rate: *gold-silver.pokemon.politoed.capture_rate
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      baby: &diamond-pearl.pokemon.politoed.baby false
+      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
+      growth_rate: *gold-silver.pokemon.politoed.growth_rate
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      pal_park: &diamond-pearl.pokemon.politoed.pal_park
+        area: pond
+        rate: 10
+        score: 80
+      name: *diamond-pearl.name
+      default: *gold-silver.pokemon.politoed.default
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      experience: &diamond-pearl.pokemon.politoed.experience 225
       types: *gold-silver.pokemon.politoed.types
       egg_groups: *gold-silver.pokemon.politoed.egg_groups
-      stats: &ruby-sapphire.pokemon.politoed.stats
+      stats: &diamond-pearl.pokemon.politoed.stats
         hp:
           base_value: 90
           effort_change: 0
@@ -167,200 +414,12 @@ ruby-sapphire:
         special-defense:
           base_value: 100
           effort_change: 3
-      abilities: &ruby-sapphire.pokemon.politoed.abilities
-        water-absorb:
-          hidden: &ruby-sapphire.pokemon.politoed.abilities.water-absorb.hidden false
-          position: 1
-        damp:
-          hidden: *ruby-sapphire.pokemon.politoed.abilities.water-absorb.hidden
-          position: 2
+      abilities: &diamond-pearl.pokemon.politoed.abilities
+        water-absorb: *ruby-sapphire.pokemon.politoed.abilities.water-absorb
+        damp: *ruby-sapphire.pokemon.politoed.abilities.damp
         drizzle:
           hidden: true
           position: 3
-      wild_held_items:
-        ruby: &ruby-sapphire.pokemon.politoed.wild_held_items.ruby
-          kings-rock: 5
-        sapphire: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
-      flavor_text:
-        ruby: |
-          The curled hair on POLITOED’s head is
-          proof of its status as a king. It is said
-          that the longer and more curled the
-          hair, the more respect this POKéMON
-          earns from its peers.
-        sapphire: |
-          The curled hair on POLITOED’s head is
-          proof of its status as a king. It is said
-          that the longer and more curled the
-          hair, the more respect this POKéMON
-          earns from its peers.
-      forms:
-        politoed:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
-          default: *gold-silver.pokemon.politoed.default
-          battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
-          icon: &ruby-sapphire.pokemon.politoed.forms.politoed.icon gen5/politoed-default.png
-          sprites:
-            - ruby-sapphire/politoed-default.png
-            - ruby-sapphire/back/politoed-default.png
-            - ruby-sapphire/shiny/politoed-default.png
-          art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
-          cry: *gold-silver.pokemon.politoed.forms.politoed.cry
-emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    politoed:
-      genus: *gold-silver.pokemon.politoed.genus
-      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      color: *ruby-sapphire.pokemon.politoed.color
-      female_rate: *gold-silver.pokemon.politoed.female_rate
-      capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
-      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
-      growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
-      types: *gold-silver.pokemon.politoed.types
-      egg_groups: *gold-silver.pokemon.politoed.egg_groups
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
-      wild_held_items:
-        emerald: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
-      flavor_text:
-        emerald: |
-          The curled hair on its head proves its
-          status as a king. It is said that the
-          longer and curlier the hair, the more
-          respect it earns from its peers.
-      forms:
-        politoed:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
-          default: *gold-silver.pokemon.politoed.default
-          battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
-          icon: *ruby-sapphire.pokemon.politoed.forms.politoed.icon
-          sprites:
-            - emerald/politoed-default.png
-            - emerald/shiny/politoed-default.png
-            - emerald/animated/shiny/politoed-default.webm
-            - emerald/animated/politoed-default.webm
-          art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
-          cry: *gold-silver.pokemon.politoed.forms.politoed.cry
-colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
-  pokemon:
-    politoed:
-      genus: *gold-silver.pokemon.politoed.genus
-      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      female_rate: *gold-silver.pokemon.politoed.female_rate
-      capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
-      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
-      growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
-      types: *gold-silver.pokemon.politoed.types
-      egg_groups: *gold-silver.pokemon.politoed.egg_groups
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
-      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
-      forms: &colosseum.pokemon.politoed.forms
-        politoed:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
-          default: *gold-silver.pokemon.politoed.default
-          battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
-          icon: *ruby-sapphire.pokemon.politoed.forms.politoed.icon
-          art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
-          cry: *gold-silver.pokemon.politoed.forms.politoed.cry
-xd: *colosseum
-firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    politoed:
-      genus: *gold-silver.pokemon.politoed.genus
-      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      habitat: waters-edge
-      female_rate: *gold-silver.pokemon.politoed.female_rate
-      capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
-      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
-      growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
-      types: *gold-silver.pokemon.politoed.types
-      egg_groups: *gold-silver.pokemon.politoed.egg_groups
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
-      wild_held_items:
-        firered: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
-        leafgreen: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
-      flavor_text:
-        firered: |
-          Whenever three or more of these get
-          together, they sing in a loud voice that
-          sounds like bellowing.
-        leafgreen: |
-          If POLIWAG and POLIWHIRL hear its
-          echoing cry, they respond by gathering
-          from far and wide.
-      forms: *colosseum.pokemon.politoed.forms
-diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    politoed:
-      genus: *gold-silver.pokemon.politoed.genus
-      evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      shape: &diamond-pearl.pokemon.politoed.shape humanoid
-      female_rate: *gold-silver.pokemon.politoed.female_rate
-      capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
-      hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
-      growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      pal_park: &diamond-pearl.pokemon.politoed.pal_park
-        area: pond
-        rate: 10
-        score: 80
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
-      types: *gold-silver.pokemon.politoed.types
-      egg_groups: *gold-silver.pokemon.politoed.egg_groups
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
       wild_held_items:
         diamond: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
         pearl: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
@@ -376,7 +435,7 @@ diamond-pearl:
           POLIWAG obey.
       forms:
         politoed:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
           default: *gold-silver.pokemon.politoed.default
           battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
@@ -390,34 +449,34 @@ diamond-pearl:
             - diamond-pearl/shiny/politoed-default.png
             - diamond-pearl/shiny/female/politoed-default.png
           art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
           cry: *gold-silver.pokemon.politoed.forms.politoed.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
+      genus: *diamond-pearl.pokemon.politoed.genus
       evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
       shape: *diamond-pearl.pokemon.politoed.shape
       female_rate: *gold-silver.pokemon.politoed.female_rate
       capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      baby: *diamond-pearl.pokemon.politoed.baby
       hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
       growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
       pal_park: *diamond-pearl.pokemon.politoed.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      experience: *diamond-pearl.pokemon.politoed.experience
       types: *gold-silver.pokemon.politoed.types
       egg_groups: *gold-silver.pokemon.politoed.egg_groups
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      stats: *diamond-pearl.pokemon.politoed.stats
+      abilities: *diamond-pearl.pokemon.politoed.abilities
       wild_held_items:
         platinum: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
       evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
@@ -428,7 +487,7 @@ platinum:
           POLIWAG obey.
       forms:
         politoed:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
           default: *gold-silver.pokemon.politoed.default
           battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
@@ -442,36 +501,36 @@ platinum:
             - platinum/shiny/politoed-default.png
             - platinum/shiny/female/politoed-default.png
           art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
           cry: *gold-silver.pokemon.politoed.forms.politoed.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-johto: 75
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
+      genus: *diamond-pearl.pokemon.politoed.genus
       evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
       shape: *diamond-pearl.pokemon.politoed.shape
       female_rate: *gold-silver.pokemon.politoed.female_rate
       capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      baby: *diamond-pearl.pokemon.politoed.baby
       hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
       growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
       pal_park: *diamond-pearl.pokemon.politoed.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      experience: *diamond-pearl.pokemon.politoed.experience
       types: *gold-silver.pokemon.politoed.types
       egg_groups: *gold-silver.pokemon.politoed.egg_groups
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      stats: *diamond-pearl.pokemon.politoed.stats
+      abilities: *diamond-pearl.pokemon.politoed.abilities
       wild_held_items:
         heartgold: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
         soulsilver: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
@@ -487,7 +546,7 @@ heartgold-soulsilver:
           voice that sounds like bellowing.
       forms:
         politoed:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
           default: *gold-silver.pokemon.politoed.default
           battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
@@ -517,34 +576,34 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/politoed-default.png
             - heartgold-soulsilver/shiny/female/politoed-default.png
           art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
           cry: *gold-silver.pokemon.politoed.forms.politoed.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
+      genus: *diamond-pearl.pokemon.politoed.genus
       evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      color: *ruby-sapphire.pokemon.politoed.color
+      color: &black-white.pokemon.politoed.color green
       shape: *diamond-pearl.pokemon.politoed.shape
       female_rate: *gold-silver.pokemon.politoed.female_rate
       capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      baby: *diamond-pearl.pokemon.politoed.baby
       hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
       growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      experience: *diamond-pearl.pokemon.politoed.experience
       types: *gold-silver.pokemon.politoed.types
       egg_groups: *gold-silver.pokemon.politoed.egg_groups
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      stats: *diamond-pearl.pokemon.politoed.stats
+      abilities: *diamond-pearl.pokemon.politoed.abilities
       wild_held_items:
         black: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
         white: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
@@ -560,7 +619,7 @@ black-white:
           Poliwag obey.
       forms:
         politoed:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
           default: *gold-silver.pokemon.politoed.default
           battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
@@ -574,34 +633,34 @@ black-white:
             - black-white/shiny/politoed-default.png
             - black-white/shiny/female/politoed-default.png
           art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
           cry: *gold-silver.pokemon.politoed.forms.politoed.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
+      genus: *diamond-pearl.pokemon.politoed.genus
       evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      color: *ruby-sapphire.pokemon.politoed.color
+      color: *black-white.pokemon.politoed.color
       shape: *diamond-pearl.pokemon.politoed.shape
       female_rate: *gold-silver.pokemon.politoed.female_rate
       capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      baby: *diamond-pearl.pokemon.politoed.baby
       hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
       growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      experience: *diamond-pearl.pokemon.politoed.experience
       types: *gold-silver.pokemon.politoed.types
       egg_groups: *gold-silver.pokemon.politoed.egg_groups
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      stats: *diamond-pearl.pokemon.politoed.stats
+      abilities: *diamond-pearl.pokemon.politoed.abilities
       wild_held_items:
         black-2: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
         white-2: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
@@ -615,36 +674,45 @@ black-2-white-2:
           It gathers groups of others as
           their leader. Its cries make
           Poliwag obey.
-      forms: *colosseum.pokemon.politoed.forms
+      forms:
+        politoed:
+          name: *diamond-pearl.name
+          form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
+          default: *gold-silver.pokemon.politoed.default
+          battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
+          icon: *ruby-sapphire.pokemon.politoed.forms.politoed.icon
+          art: *gold-silver.pokemon.politoed.forms.politoed.art
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
+          cry: *gold-silver.pokemon.politoed.forms.politoed.cry
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     kalos-mountain: 36
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
+      genus: *diamond-pearl.pokemon.politoed.genus
       evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      color: *ruby-sapphire.pokemon.politoed.color
+      color: *black-white.pokemon.politoed.color
       shape: *diamond-pearl.pokemon.politoed.shape
       female_rate: *gold-silver.pokemon.politoed.female_rate
       capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      baby: *diamond-pearl.pokemon.politoed.baby
       hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
       growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      experience: *diamond-pearl.pokemon.politoed.experience
       types: *gold-silver.pokemon.politoed.types
       egg_groups: *gold-silver.pokemon.politoed.egg_groups
       mega: &x-y.pokemon.politoed.mega false
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      stats: *diamond-pearl.pokemon.politoed.stats
+      abilities: *diamond-pearl.pokemon.politoed.abilities
       wild_held_items:
         x: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
         'y': *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
@@ -658,7 +726,7 @@ x-y:
           respond by gathering from far and wide.
       forms:
         politoed:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
           default: *gold-silver.pokemon.politoed.default
           battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
@@ -669,35 +737,35 @@ x-y:
             - x-y/shiny/politoed-default.png
             - x-y/shiny/female/politoed-default.png
           art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
           cry: &x-y.pokemon.politoed.forms.politoed.cry politoed-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *firered-leafgreen.numbers
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
+      genus: *diamond-pearl.pokemon.politoed.genus
       evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      color: *ruby-sapphire.pokemon.politoed.color
+      color: *black-white.pokemon.politoed.color
       shape: *diamond-pearl.pokemon.politoed.shape
       female_rate: *gold-silver.pokemon.politoed.female_rate
       capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      baby: *diamond-pearl.pokemon.politoed.baby
       hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
       growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      experience: *diamond-pearl.pokemon.politoed.experience
       types: *gold-silver.pokemon.politoed.types
       egg_groups: *gold-silver.pokemon.politoed.egg_groups
       mega: *x-y.pokemon.politoed.mega
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      stats: *diamond-pearl.pokemon.politoed.stats
+      abilities: *diamond-pearl.pokemon.politoed.abilities
       evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
       flavor_text:
         omega-ruby: |
@@ -710,13 +778,13 @@ omega-ruby-alpha-sapphire:
           more respect this Pokémon earns from its peers.
       forms:
         politoed:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
           default: *gold-silver.pokemon.politoed.default
           battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
           icon: *x-y.pokemon.politoed.forms.politoed.icon
           art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
           cry: *x-y.pokemon.politoed.forms.politoed.cry
           sprites:
             - omega-ruby-alpha-sapphire/politoed-default.png
@@ -724,8 +792,8 @@ omega-ruby-alpha-sapphire:
             - omega-ruby-alpha-sapphire/shiny/politoed-default.png
             - omega-ruby-alpha-sapphire/shiny/female/politoed-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     original-alola: 152
@@ -733,27 +801,27 @@ sun-moon:
     original-ulaula: 71
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
+      genus: *diamond-pearl.pokemon.politoed.genus
       evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      color: *ruby-sapphire.pokemon.politoed.color
+      color: *black-white.pokemon.politoed.color
       shape: *diamond-pearl.pokemon.politoed.shape
       female_rate: *gold-silver.pokemon.politoed.female_rate
       capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      baby: *diamond-pearl.pokemon.politoed.baby
       hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
       growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      experience: *diamond-pearl.pokemon.politoed.experience
       types: *gold-silver.pokemon.politoed.types
       egg_groups: *gold-silver.pokemon.politoed.egg_groups
       mega: *x-y.pokemon.politoed.mega
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      stats: *diamond-pearl.pokemon.politoed.stats
+      abilities: *diamond-pearl.pokemon.politoed.abilities
       wild_held_items:
         moon: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
       evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
@@ -763,7 +831,7 @@ sun-moon:
           When Politoed roars, they all cower in fear.
       forms:
         politoed:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
           default: *gold-silver.pokemon.politoed.default
           battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
@@ -774,11 +842,11 @@ sun-moon:
             - sun-moon/shiny/politoed-default.png
             - sun-moon/shiny/female/politoed-default.png
           art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
           cry: *x-y.pokemon.politoed.forms.politoed.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-alola: 185
@@ -786,27 +854,27 @@ ultra-sun-ultra-moon:
     updated-ulaula: 77
   pokemon:
     politoed:
-      genus: *gold-silver.pokemon.politoed.genus
+      genus: *diamond-pearl.pokemon.politoed.genus
       evolution_parent: *gold-silver.pokemon.politoed.evolution_parent
-      color: *ruby-sapphire.pokemon.politoed.color
+      color: *black-white.pokemon.politoed.color
       shape: *diamond-pearl.pokemon.politoed.shape
       female_rate: *gold-silver.pokemon.politoed.female_rate
       capture_rate: *gold-silver.pokemon.politoed.capture_rate
-      happiness: *gold-silver.pokemon.politoed.happiness
-      baby: *gold-silver.pokemon.politoed.baby
+      happiness: *ruby-sapphire.pokemon.politoed.happiness
+      baby: *diamond-pearl.pokemon.politoed.baby
       hatch_steps: *gold-silver.pokemon.politoed.hatch_steps
       growth_rate: *gold-silver.pokemon.politoed.growth_rate
-      forms_switchable: *gold-silver.pokemon.politoed.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.politoed.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.politoed.default
-      height: *gold-silver.pokemon.politoed.height
-      weight: *gold-silver.pokemon.politoed.weight
-      experience: *ruby-sapphire.pokemon.politoed.experience
+      height: *ruby-sapphire.pokemon.politoed.height
+      weight: *ruby-sapphire.pokemon.politoed.weight
+      experience: *diamond-pearl.pokemon.politoed.experience
       types: *gold-silver.pokemon.politoed.types
       egg_groups: *gold-silver.pokemon.politoed.egg_groups
       mega: *x-y.pokemon.politoed.mega
-      stats: *ruby-sapphire.pokemon.politoed.stats
-      abilities: *ruby-sapphire.pokemon.politoed.abilities
+      stats: *diamond-pearl.pokemon.politoed.stats
+      abilities: *diamond-pearl.pokemon.politoed.abilities
       wild_held_items:
         ultra-sun: *ruby-sapphire.pokemon.politoed.wild_held_items.ruby
       evolution_conditions: *gold-silver.pokemon.politoed.evolution_conditions
@@ -817,7 +885,7 @@ ultra-sun-ultra-moon:
           influenced by the sounds.
       forms:
         politoed:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.politoed.forms.politoed.form_name
           default: *gold-silver.pokemon.politoed.default
           battle_only: *gold-silver.pokemon.politoed.forms.politoed.battle_only
@@ -828,5 +896,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/politoed-default.png
             - ultra-sun-ultra-moon/shiny/female/politoed-default.png
           art: *gold-silver.pokemon.politoed.forms.politoed.art
-          footprint: *gold-silver.pokemon.politoed.forms.politoed.footprint
+          footprint: *ruby-sapphire.pokemon.politoed.forms.politoed.footprint
           cry: *x-y.pokemon.politoed.forms.politoed.cry

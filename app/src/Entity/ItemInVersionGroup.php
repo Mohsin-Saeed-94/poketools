@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -118,6 +117,14 @@ class ItemInVersionGroup extends AbstractDexEntity implements
      *     fetch="EAGER")
      */
     protected $machine;
+
+    /**
+     * @var \App\Entity\Decoration|null
+     *
+     * @ORM\OneToOne(targetEntity="App\Entity\Decoration", inversedBy="item", cascade={"all"}, orphanRemoval=true,
+     *     fetch="EAGER")
+     */
+    protected $decoration;
 
     /**
      * @var Collection|PokemonWildHeldItem[]
@@ -327,6 +334,25 @@ class ItemInVersionGroup extends AbstractDexEntity implements
     public function setMachine(?Machine $machine): self
     {
         $this->machine = $machine;
+
+        return $this;
+    }
+
+    /**
+     * @return \App\Entity\Decoration|null
+     */
+    public function getDecoration(): ?Decoration
+    {
+        return $this->decoration;
+    }
+
+    /**
+     * @param \App\Entity\Decoration|null $decoration
+     * @return ItemInVersionGroup
+     */
+    public function setDecoration(?Decoration $decoration): ItemInVersionGroup
+    {
+        $this->decoration = $decoration;
 
         return $this;
     }

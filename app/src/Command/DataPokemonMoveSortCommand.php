@@ -104,7 +104,7 @@ final class DataPokemonMoveSortCommand extends Command
         $data = $this->sortData($data);
 
         $this->io->text(['Writing new data to '.$path, 'This will take a while...']);
-        $success = $this->writeData($data, str_replace('.csv', '.new.csv', $path));
+        $success = $this->writeData($data, $path);
 
         if ($success) {
             $this->io->success(
@@ -224,6 +224,9 @@ final class DataPokemonMoveSortCommand extends Command
 
                 $aVersionGroup = $a->getVersionGroup();
                 $bVersionGroup = $b->getVersionGroup();
+                if ($a->getVersionGroup() !== $b->getVersionGroup()) {
+                    return $versionGroupOrder[$a->getVersionGroup()] - $versionGroupOrder[$b->getVersionGroup()];
+                }
                 if ($a->getSpecies() !== $b->getSpecies()) {
                     return $speciesOrder[$aVersionGroup][$a->getSpecies()]
                         - $speciesOrder[$bVersionGroup][$b->getSpecies()];
@@ -231,9 +234,6 @@ final class DataPokemonMoveSortCommand extends Command
                 if ($a->getPokemon() !== $b->getPokemon()) {
                     return $pokemonOrder[$aVersionGroup][$a->getSpecies()][$a->getPokemon()]
                         - $pokemonOrder[$bVersionGroup][$b->getSpecies()][$b->getPokemon()];
-                }
-                if ($a->getVersionGroup() !== $b->getVersionGroup()) {
-                    return $versionGroupOrder[$a->getVersionGroup()] - $versionGroupOrder[$b->getVersionGroup()];
                 }
                 if ($a->getLearnMethod() !== $b->getLearnMethod()) {
                     return $learnMethodOrder[$a->getLearnMethod()] - $learnMethodOrder[$b->getLearnMethod()];

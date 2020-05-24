@@ -1,18 +1,14 @@
 red-blue:
-  name: &red-blue.name Staryu
-  position: &red-blue.position 137
+  name: &red-blue.name STARYU
+  position: &red-blue.position 120
   numbers: &red-blue.numbers
     national: &red-blue.numbers.national 120
     kanto: 120
   pokemon:
     staryu:
-      genus: &red-blue.pokemon.staryu.genus 'Star Shape Pokémon'
-      capture_rate: &red-blue.pokemon.staryu.capture_rate 225
-      growth_rate: &red-blue.pokemon.staryu.growth_rate slow
       name: *red-blue.name
       default: &red-blue.pokemon.staryu.default true
-      height: &red-blue.pokemon.staryu.height 8
-      weight: &red-blue.pokemon.staryu.weight 345
+      capture_rate: &red-blue.pokemon.staryu.capture_rate 225
       experience: &red-blue.pokemon.staryu.experience 106
       types: &red-blue.pokemon.staryu.types
         - water
@@ -32,6 +28,10 @@ red-blue:
         special:
           base_value: 70
           effort_change: 70
+      growth_rate: &red-blue.pokemon.staryu.growth_rate slow
+      genus: &red-blue.pokemon.staryu.genus 'STARSHAPE Pokémon'
+      height: &red-blue.pokemon.staryu.height 7
+      weight: &red-blue.pokemon.staryu.weight 3447
       flavor_text:
         red: |
           An enigmatic
@@ -54,12 +54,11 @@ red-blue:
           default: *red-blue.pokemon.staryu.default
           battle_only: &red-blue.pokemon.staryu.forms.staryu.battle_only false
           sprites:
+            - red-blue/staryu-default.png
             - red-blue/gray/staryu-default.png
             - red-blue/back/staryu-default.png
-            - red-blue/staryu-default.png
           art: &red-blue.pokemon.staryu.forms.staryu.art
             - staryu-default.png
-          footprint: &red-blue.pokemon.staryu.forms.staryu.footprint staryu.png
           cry: &red-blue.pokemon.staryu.forms.staryu.cry gen5/staryu-default.webm
           icon: &red-blue.pokemon.staryu.forms.staryu.icon gen1/helix.png
 yellow:
@@ -68,23 +67,23 @@ yellow:
   numbers: *red-blue.numbers
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      capture_rate: *red-blue.pokemon.staryu.capture_rate
-      growth_rate: *red-blue.pokemon.staryu.growth_rate
       name: *red-blue.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
+      capture_rate: *red-blue.pokemon.staryu.capture_rate
       experience: *red-blue.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
       stats: *red-blue.pokemon.staryu.stats
+      growth_rate: *red-blue.pokemon.staryu.growth_rate
+      genus: *red-blue.pokemon.staryu.genus
+      height: *red-blue.pokemon.staryu.height
+      weight: *red-blue.pokemon.staryu.weight
       flavor_text:
         yellow: |
           As long as the
           center section is
           unharmed, it can
           grow back fully
-          even if it is
+           even if it is
           chopped to bits.
       forms:
         staryu:
@@ -93,37 +92,26 @@ yellow:
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
           sprites:
+            - yellow/staryu-default.png
             - yellow/gray/staryu-default.png
             - yellow/back/staryu-default.png
-            - yellow/gbc/staryu-default.png
-            - yellow/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
           icon: *red-blue.pokemon.staryu.forms.staryu.icon
 gold-silver:
   name: *red-blue.name
-  position: *red-blue.position
+  position: &gold-silver.position 119
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 167
+    original-johto: 166
+    original-johto-abc: 200
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: &gold-silver.pokemon.staryu.happiness 70
-      baby: &gold-silver.pokemon.staryu.baby false
-      hatch_steps: &gold-silver.pokemon.staryu.hatch_steps 20
-      growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: &gold-silver.pokemon.staryu.forms_switchable false
       name: *red-blue.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
+      capture_rate: *red-blue.pokemon.staryu.capture_rate
       experience: *red-blue.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
-      egg_groups: &gold-silver.pokemon.staryu.egg_groups
-        - water3
       stats: &gold-silver.pokemon.staryu.stats
         hp:
           base_value: 30
@@ -143,9 +131,22 @@ gold-silver:
         special-defense:
           base_value: 55
           effort_change: 70
+      growth_rate: *red-blue.pokemon.staryu.growth_rate
+      female_rate: &gold-silver.pokemon.staryu.female_rate 100
+      hatch_steps: &gold-silver.pokemon.staryu.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.staryu.egg_groups
+        - water3
+      wild_held_items:
+        gold: &gold-silver.pokemon.staryu.wild_held_items.gold
+          stardust: 23
+          star-piece: 2
+        silver: *gold-silver.pokemon.staryu.wild_held_items.gold
+      genus: *red-blue.pokemon.staryu.genus
+      height: *red-blue.pokemon.staryu.height
+      weight: &gold-silver.pokemon.staryu.weight 344
       flavor_text:
         gold: |
-          At night, the cen­
+          At night, the cen-
           ter of its body
           slowly flickers
           with the same
@@ -156,7 +157,7 @@ gold-silver:
           is torn, it can
           regenerate as long
           as the glowing
-          central core re­
+          central core re-
           mains intact.
       forms:
         staryu:
@@ -165,34 +166,33 @@ gold-silver:
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
           sprites:
+            - gold-silver/staryu-default.png
             - gold-silver/back/staryu-default.png
             - gold-silver/shiny/staryu-default.png
-            - gold-silver/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
           icon: &gold-silver.pokemon.staryu.forms.staryu.icon gen2/staryu.png
 crystal:
   name: *red-blue.name
-  position: *red-blue.position
+  position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
-      hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
-      growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
+      capture_rate: *red-blue.pokemon.staryu.capture_rate
       experience: *red-blue.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
-      egg_groups: *gold-silver.pokemon.staryu.egg_groups
       stats: *gold-silver.pokemon.staryu.stats
+      growth_rate: *red-blue.pokemon.staryu.growth_rate
+      female_rate: *gold-silver.pokemon.staryu.female_rate
+      hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
+      egg_groups: *gold-silver.pokemon.staryu.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.staryu.wild_held_items.gold
+      genus: *red-blue.pokemon.staryu.genus
+      height: *red-blue.pokemon.staryu.height
+      weight: *gold-silver.pokemon.staryu.weight
       flavor_text:
         crystal: |
           When the stars
@@ -208,13 +208,10 @@ crystal:
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
           sprites:
+            - crystal/staryu-default.png
             - crystal/back/staryu-default.png
             - crystal/shiny/staryu-default.png
-            - crystal/animated/shiny/staryu-default.webm
-            - crystal/animated/staryu-default.webm
-            - crystal/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
           icon: *gold-silver.pokemon.staryu.forms.staryu.icon
 ruby-sapphire:
@@ -225,21 +222,12 @@ ruby-sapphire:
     hoenn: 143
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      color: &ruby-sapphire.pokemon.staryu.color brown
-      capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
-      hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
-      growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: &ruby-sapphire.pokemon.staryu.experience 68
+      forms_switchable: &ruby-sapphire.pokemon.staryu.forms_switchable false
+      capture_rate: *red-blue.pokemon.staryu.capture_rate
+      experience: *red-blue.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
-      egg_groups: *gold-silver.pokemon.staryu.egg_groups
       stats: &ruby-sapphire.pokemon.staryu.stats
         hp:
           base_value: 30
@@ -257,8 +245,17 @@ ruby-sapphire:
           base_value: 70
           effort_change: 0
         special-defense:
-          base_value: 55
+          base_value: 30
           effort_change: 0
+      growth_rate: *red-blue.pokemon.staryu.growth_rate
+      hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
+      egg_groups: *gold-silver.pokemon.staryu.egg_groups
+      wild_held_items:
+        ruby: &ruby-sapphire.pokemon.staryu.wild_held_items.ruby
+          stardust: 50
+          star-piece: 5
+        sapphire: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
+      happiness: &ruby-sapphire.pokemon.staryu.happiness 70
       abilities: &ruby-sapphire.pokemon.staryu.abilities
         illuminate: &ruby-sapphire.pokemon.staryu.abilities.illuminate
           hidden: &ruby-sapphire.pokemon.staryu.abilities.illuminate.hidden false
@@ -266,14 +263,12 @@ ruby-sapphire:
         natural-cure: &ruby-sapphire.pokemon.staryu.abilities.natural-cure
           hidden: *ruby-sapphire.pokemon.staryu.abilities.illuminate.hidden
           position: 2
-      wild_held_items:
-        ruby: &ruby-sapphire.pokemon.staryu.wild_held_items.ruby
-          stardust: 50
-          star-piece: 5
-        sapphire: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
+      genus: &ruby-sapphire.pokemon.staryu.genus 'STAR SHAPE Pokémon'
+      height: &ruby-sapphire.pokemon.staryu.height 8
+      weight: &ruby-sapphire.pokemon.staryu.weight 345
       flavor_text:
         ruby: |
-          STARYU’s center section has an organ
+          STARYU's center section has an organ
           called the core that shines bright red.
           If you go to a beach toward the
           end of summer, the glowing cores of
@@ -294,11 +289,11 @@ ruby-sapphire:
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
           icon: &ruby-sapphire.pokemon.staryu.forms.staryu.icon gen5/staryu-default.png
           sprites:
+            - ruby-sapphire/staryu-default.png
             - ruby-sapphire/back/staryu-default.png
             - ruby-sapphire/shiny/staryu-default.png
-            - ruby-sapphire/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: &ruby-sapphire.pokemon.staryu.forms.staryu.footprint staryu.png
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
 emerald:
   name: *red-blue.name
@@ -306,25 +301,23 @@ emerald:
   numbers: *ruby-sapphire.numbers
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      color: *ruby-sapphire.pokemon.staryu.color
-      capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
-      hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
-      growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      capture_rate: *red-blue.pokemon.staryu.capture_rate
+      experience: *red-blue.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
-      egg_groups: *gold-silver.pokemon.staryu.egg_groups
       stats: *ruby-sapphire.pokemon.staryu.stats
-      abilities: *ruby-sapphire.pokemon.staryu.abilities
+      growth_rate: *red-blue.pokemon.staryu.growth_rate
+      hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
+      egg_groups: *gold-silver.pokemon.staryu.egg_groups
       wild_held_items:
         emerald: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      abilities: *ruby-sapphire.pokemon.staryu.abilities
+      genus: *ruby-sapphire.pokemon.staryu.genus
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
       flavor_text:
         emerald: |
           It gathers with others in the night and
@@ -339,71 +332,99 @@ emerald:
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
           icon: *ruby-sapphire.pokemon.staryu.forms.staryu.icon
           sprites:
-            - emerald/shiny/staryu-default.png
-            - emerald/animated/shiny/staryu-default.webm
-            - emerald/animated/staryu-default.webm
             - emerald/staryu-default.png
+            - emerald/shiny/staryu-default.png
+            - emerald/animated/staryu-default.webm
+            - emerald/animated/shiny/staryu-default.webm
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
-colosseum: &colosseum
+colosseum:
   name: *red-blue.name
   position: *red-blue.position
+  numbers: &colosseum.numbers
+    national: *red-blue.numbers.national
+    orre-strategy-memo: 323
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
-      hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
-      growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      capture_rate: *red-blue.pokemon.staryu.capture_rate
+      experience: *red-blue.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
-      egg_groups: *gold-silver.pokemon.staryu.egg_groups
       stats: *ruby-sapphire.pokemon.staryu.stats
+      growth_rate: *red-blue.pokemon.staryu.growth_rate
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
       abilities: *ruby-sapphire.pokemon.staryu.abilities
-      forms: &colosseum.pokemon.staryu.forms
+      genus: *ruby-sapphire.pokemon.staryu.genus
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      forms:
         staryu:
           name: *red-blue.name
           form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
-          icon: *ruby-sapphire.pokemon.staryu.forms.staryu.icon
+          sprites:
+            - colosseum/staryu-default.png
+            - colosseum/shiny/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
-xd: *colosseum
+xd:
+  name: *red-blue.name
+  position: *red-blue.position
+  numbers: *colosseum.numbers
+  pokemon:
+    staryu:
+      name: *red-blue.name
+      default: *red-blue.pokemon.staryu.default
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      capture_rate: *red-blue.pokemon.staryu.capture_rate
+      experience: *red-blue.pokemon.staryu.experience
+      types: *red-blue.pokemon.staryu.types
+      stats: *ruby-sapphire.pokemon.staryu.stats
+      growth_rate: *red-blue.pokemon.staryu.growth_rate
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      abilities: *ruby-sapphire.pokemon.staryu.abilities
+      genus: *ruby-sapphire.pokemon.staryu.genus
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      forms:
+        staryu:
+          name: *red-blue.name
+          form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
+          default: *red-blue.pokemon.staryu.default
+          battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
+          sprites:
+            - xd/staryu-default.png
+            - xd/shiny/staryu-default.png
+          art: *red-blue.pokemon.staryu.forms.staryu.art
+          cry: *red-blue.pokemon.staryu.forms.staryu.cry
 firered-leafgreen:
   name: *red-blue.name
   position: *red-blue.position
   numbers: *red-blue.numbers
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      habitat: sea
-      capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
-      hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
-      growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      capture_rate: *red-blue.pokemon.staryu.capture_rate
+      experience: *red-blue.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
-      egg_groups: *gold-silver.pokemon.staryu.egg_groups
       stats: *ruby-sapphire.pokemon.staryu.stats
-      abilities: *ruby-sapphire.pokemon.staryu.abilities
+      growth_rate: *red-blue.pokemon.staryu.growth_rate
+      hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
+      egg_groups: *gold-silver.pokemon.staryu.egg_groups
       wild_held_items:
         firered: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
         leafgreen: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      abilities: *ruby-sapphire.pokemon.staryu.abilities
+      genus: *ruby-sapphire.pokemon.staryu.genus
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
       flavor_text:
         firered: |
           It appears in large numbers by seashores.
@@ -421,39 +442,57 @@ firered-leafgreen:
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
           icon: *ruby-sapphire.pokemon.staryu.forms.staryu.icon
           sprites:
+            - firered-leafgreen/staryu-default.png
             - firered-leafgreen/back/staryu-default.png
             - firered-leafgreen/shiny/staryu-default.png
-            - firered-leafgreen/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
 diamond-pearl:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: &diamond-pearl.name Staryu
+  position: &diamond-pearl.position 137
   numbers: &diamond-pearl.numbers
     national: *red-blue.numbers.national
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
+      genus: &diamond-pearl.pokemon.staryu.genus 'Star Shape Pokémon'
       shape: &diamond-pearl.pokemon.staryu.shape blob
       capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      baby: &diamond-pearl.pokemon.staryu.baby false
       hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
       growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
       pal_park: &diamond-pearl.pokemon.staryu.pal_park
         area: sea
         rate: 30
         score: 50
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      experience: &diamond-pearl.pokemon.staryu.experience 68
       types: *red-blue.pokemon.staryu.types
       egg_groups: *gold-silver.pokemon.staryu.egg_groups
-      stats: *ruby-sapphire.pokemon.staryu.stats
+      stats: &diamond-pearl.pokemon.staryu.stats
+        hp:
+          base_value: 30
+          effort_change: 0
+        attack:
+          base_value: 45
+          effort_change: 0
+        defense:
+          base_value: 55
+          effort_change: 0
+        speed:
+          base_value: 85
+          effort_change: 1
+        special-attack:
+          base_value: 70
+          effort_change: 0
+        special-defense:
+          base_value: 55
+          effort_change: 0
       abilities: *ruby-sapphire.pokemon.staryu.abilities
       wild_held_items:
         diamond: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
@@ -469,7 +508,7 @@ diamond-pearl:
           The core flashes at midnight.
       forms:
         staryu:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
@@ -480,31 +519,31 @@ diamond-pearl:
             - diamond-pearl/shiny/staryu-default.png
             - diamond-pearl/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
 platinum:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers: *diamond-pearl.numbers
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
+      genus: *diamond-pearl.pokemon.staryu.genus
       shape: *diamond-pearl.pokemon.staryu.shape
       capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      baby: *diamond-pearl.pokemon.staryu.baby
       hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
       growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
       pal_park: *diamond-pearl.pokemon.staryu.pal_park
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      experience: *diamond-pearl.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
       egg_groups: *gold-silver.pokemon.staryu.egg_groups
-      stats: *ruby-sapphire.pokemon.staryu.stats
+      stats: *diamond-pearl.pokemon.staryu.stats
       abilities: *ruby-sapphire.pokemon.staryu.abilities
       wild_held_items:
         platinum: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
@@ -515,7 +554,7 @@ platinum:
           The core flashes at midnight.
       forms:
         staryu:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
@@ -526,33 +565,33 @@ platinum:
             - platinum/shiny/staryu-default.png
             - platinum/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
 heartgold-soulsilver:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 169
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
+      genus: *diamond-pearl.pokemon.staryu.genus
       shape: *diamond-pearl.pokemon.staryu.shape
       capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      baby: *diamond-pearl.pokemon.staryu.baby
       hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
       growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
       pal_park: *diamond-pearl.pokemon.staryu.pal_park
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      experience: *diamond-pearl.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
       egg_groups: *gold-silver.pokemon.staryu.egg_groups
-      stats: *ruby-sapphire.pokemon.staryu.stats
+      stats: *diamond-pearl.pokemon.staryu.stats
       abilities: *ruby-sapphire.pokemon.staryu.abilities
       wild_held_items:
         heartgold: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
@@ -568,7 +607,7 @@ heartgold-soulsilver:
           central core remains intact.
       forms:
         staryu:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
@@ -595,31 +634,31 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/staryu-default.png
             - heartgold-soulsilver/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
 black-white:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers: *diamond-pearl.numbers
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      color: *ruby-sapphire.pokemon.staryu.color
+      genus: *diamond-pearl.pokemon.staryu.genus
+      color: &black-white.pokemon.staryu.color brown
       shape: *diamond-pearl.pokemon.staryu.shape
       capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      baby: *diamond-pearl.pokemon.staryu.baby
       hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
       growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      experience: *diamond-pearl.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
       egg_groups: *gold-silver.pokemon.staryu.egg_groups
-      stats: *ruby-sapphire.pokemon.staryu.stats
+      stats: *diamond-pearl.pokemon.staryu.stats
       abilities: &black-white.pokemon.staryu.abilities
         illuminate: *ruby-sapphire.pokemon.staryu.abilities.illuminate
         natural-cure: *ruby-sapphire.pokemon.staryu.abilities.natural-cure
@@ -640,7 +679,7 @@ black-white:
           The core flashes at midnight.
       forms:
         staryu:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
@@ -651,33 +690,33 @@ black-white:
             - black-white/shiny/staryu-default.png
             - black-white/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: *red-blue.pokemon.staryu.forms.staryu.cry
 black-2-white-2:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *red-blue.numbers.national
     updated-unova: 238
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      color: *ruby-sapphire.pokemon.staryu.color
+      genus: *diamond-pearl.pokemon.staryu.genus
+      color: *black-white.pokemon.staryu.color
       shape: *diamond-pearl.pokemon.staryu.shape
       capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      baby: *diamond-pearl.pokemon.staryu.baby
       hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
       growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      experience: *diamond-pearl.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
       egg_groups: *gold-silver.pokemon.staryu.egg_groups
-      stats: *ruby-sapphire.pokemon.staryu.stats
+      stats: *diamond-pearl.pokemon.staryu.stats
       abilities: *black-white.pokemon.staryu.abilities
       wild_held_items:
         black-2: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
@@ -691,33 +730,42 @@ black-2-white-2:
           As long as its red core remains,
           it can regenerate its body instantly,
           even if it’s torn apart.
-      forms: *colosseum.pokemon.staryu.forms
+      forms:
+        staryu:
+          name: *diamond-pearl.name
+          form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
+          default: *red-blue.pokemon.staryu.default
+          battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
+          icon: *ruby-sapphire.pokemon.staryu.forms.staryu.icon
+          art: *red-blue.pokemon.staryu.forms.staryu.art
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
+          cry: *red-blue.pokemon.staryu.forms.staryu.cry
 x-y:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *red-blue.numbers.national
     kalos-coastal: 34
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      color: *ruby-sapphire.pokemon.staryu.color
+      genus: *diamond-pearl.pokemon.staryu.genus
+      color: *black-white.pokemon.staryu.color
       shape: *diamond-pearl.pokemon.staryu.shape
       capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      baby: *diamond-pearl.pokemon.staryu.baby
       hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
       growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      experience: *diamond-pearl.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
       egg_groups: *gold-silver.pokemon.staryu.egg_groups
       mega: &x-y.pokemon.staryu.mega false
-      stats: *ruby-sapphire.pokemon.staryu.stats
+      stats: *diamond-pearl.pokemon.staryu.stats
       abilities: *black-white.pokemon.staryu.abilities
       wild_held_items:
         x: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
@@ -731,7 +779,7 @@ x-y:
           its central core flashes with a red light.
       forms:
         staryu:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
@@ -740,34 +788,34 @@ x-y:
             - x-y/shiny/staryu-default.png
             - x-y/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: &x-y.pokemon.staryu.forms.staryu.cry staryu-default.webm
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *red-blue.numbers.national
     updated-hoenn: 148
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      color: *ruby-sapphire.pokemon.staryu.color
+      genus: *diamond-pearl.pokemon.staryu.genus
+      color: *black-white.pokemon.staryu.color
       shape: *diamond-pearl.pokemon.staryu.shape
       capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      baby: *diamond-pearl.pokemon.staryu.baby
       hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
       growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      experience: *diamond-pearl.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
       egg_groups: *gold-silver.pokemon.staryu.egg_groups
       mega: *x-y.pokemon.staryu.mega
-      stats: *ruby-sapphire.pokemon.staryu.stats
+      stats: *diamond-pearl.pokemon.staryu.stats
       abilities: *black-white.pokemon.staryu.abilities
       flavor_text:
         omega-ruby: |
@@ -782,44 +830,44 @@ omega-ruby-alpha-sapphire:
           pieces and limbs.
       forms:
         staryu:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
           icon: *x-y.pokemon.staryu.forms.staryu.icon
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: *x-y.pokemon.staryu.forms.staryu.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/staryu-default.png
             - omega-ruby-alpha-sapphire/staryu-default.png
 sun-moon:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *red-blue.numbers.national
     original-alola: 184
     original-akala: 111
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      color: *ruby-sapphire.pokemon.staryu.color
+      genus: *diamond-pearl.pokemon.staryu.genus
+      color: *black-white.pokemon.staryu.color
       shape: *diamond-pearl.pokemon.staryu.shape
       capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      baby: *diamond-pearl.pokemon.staryu.baby
       hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
       growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      experience: *diamond-pearl.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
       egg_groups: *gold-silver.pokemon.staryu.egg_groups
       mega: *x-y.pokemon.staryu.mega
-      stats: *ruby-sapphire.pokemon.staryu.stats
+      stats: *diamond-pearl.pokemon.staryu.stats
       abilities: *black-white.pokemon.staryu.abilities
       wild_held_items:
         moon: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
@@ -830,7 +878,7 @@ sun-moon:
           fast, so it’s unconcerned by their snack attacks.
       forms:
         staryu:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
@@ -839,35 +887,35 @@ sun-moon:
             - sun-moon/shiny/staryu-default.png
             - sun-moon/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: *x-y.pokemon.staryu.forms.staryu.cry
 ultra-sun-ultra-moon:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *red-blue.numbers.national
     updated-alola: 223
     updated-akala: 124
   pokemon:
     staryu:
-      genus: *red-blue.pokemon.staryu.genus
-      color: *ruby-sapphire.pokemon.staryu.color
+      genus: *diamond-pearl.pokemon.staryu.genus
+      color: *black-white.pokemon.staryu.color
       shape: *diamond-pearl.pokemon.staryu.shape
       capture_rate: *red-blue.pokemon.staryu.capture_rate
-      happiness: *gold-silver.pokemon.staryu.happiness
-      baby: *gold-silver.pokemon.staryu.baby
+      happiness: *ruby-sapphire.pokemon.staryu.happiness
+      baby: *diamond-pearl.pokemon.staryu.baby
       hatch_steps: *gold-silver.pokemon.staryu.hatch_steps
       growth_rate: *red-blue.pokemon.staryu.growth_rate
-      forms_switchable: *gold-silver.pokemon.staryu.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.staryu.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.staryu.default
-      height: *red-blue.pokemon.staryu.height
-      weight: *red-blue.pokemon.staryu.weight
-      experience: *ruby-sapphire.pokemon.staryu.experience
+      height: *ruby-sapphire.pokemon.staryu.height
+      weight: *ruby-sapphire.pokemon.staryu.weight
+      experience: *diamond-pearl.pokemon.staryu.experience
       types: *red-blue.pokemon.staryu.types
       egg_groups: *gold-silver.pokemon.staryu.egg_groups
       mega: *x-y.pokemon.staryu.mega
-      stats: *ruby-sapphire.pokemon.staryu.stats
+      stats: *diamond-pearl.pokemon.staryu.stats
       abilities: *black-white.pokemon.staryu.abilities
       wild_held_items:
         ultra-sun: *ruby-sapphire.pokemon.staryu.wild_held_items.ruby
@@ -877,7 +925,7 @@ ultra-sun-ultra-moon:
           falling into the ocean and becoming Staryu.
       forms:
         staryu:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.staryu.forms.staryu.form_name
           default: *red-blue.pokemon.staryu.default
           battle_only: *red-blue.pokemon.staryu.forms.staryu.battle_only
@@ -886,5 +934,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/staryu-default.png
             - ultra-sun-ultra-moon/staryu-default.png
           art: *red-blue.pokemon.staryu.forms.staryu.art
-          footprint: *red-blue.pokemon.staryu.forms.staryu.footprint
+          footprint: *ruby-sapphire.pokemon.staryu.forms.staryu.footprint
           cry: *x-y.pokemon.staryu.forms.staryu.cry

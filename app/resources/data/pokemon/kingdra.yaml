@@ -1,30 +1,18 @@
 gold-silver:
-  name: &gold-silver.name Kingdra
-  position: &gold-silver.position 134
+  name: &gold-silver.name KINGDRA
+  position: &gold-silver.position 229
   numbers: &gold-silver.numbers
     national: &gold-silver.numbers.national 230
-    original-johto: 188
+    original-johto: 187
+    original-johto-abc: 91
   pokemon:
     kingdra:
-      genus: &gold-silver.pokemon.kingdra.genus 'Dragon Pokémon'
-      evolution_parent: &gold-silver.pokemon.kingdra.evolution_parent seadra/seadra
-      female_rate: &gold-silver.pokemon.kingdra.female_rate 50
-      capture_rate: &gold-silver.pokemon.kingdra.capture_rate 45
-      happiness: &gold-silver.pokemon.kingdra.happiness 70
-      baby: &gold-silver.pokemon.kingdra.baby false
-      hatch_steps: &gold-silver.pokemon.kingdra.hatch_steps 20
-      growth_rate: &gold-silver.pokemon.kingdra.growth_rate medium
-      forms_switchable: &gold-silver.pokemon.kingdra.forms_switchable false
       name: *gold-silver.name
       default: &gold-silver.pokemon.kingdra.default true
-      height: &gold-silver.pokemon.kingdra.height 18
-      weight: &gold-silver.pokemon.kingdra.weight 1520
+      capture_rate: &gold-silver.pokemon.kingdra.capture_rate 45
       experience: &gold-silver.pokemon.kingdra.experience 207
       types: &gold-silver.pokemon.kingdra.types
         - water
-        - dragon
-      egg_groups: &gold-silver.pokemon.kingdra.egg_groups
-        - water1
         - dragon
       stats: &gold-silver.pokemon.kingdra.stats
         hp:
@@ -45,9 +33,19 @@ gold-silver:
         special-defense:
           base_value: 95
           effort_change: 95
-      evolution_conditions: &gold-silver.pokemon.kingdra.evolution_conditions
-        trade:
-          held_item: dragon-scale
+      growth_rate: &gold-silver.pokemon.kingdra.growth_rate medium
+      female_rate: &gold-silver.pokemon.kingdra.female_rate 50
+      hatch_steps: &gold-silver.pokemon.kingdra.hatch_steps 20
+      egg_groups: &gold-silver.pokemon.kingdra.egg_groups
+        - water1
+        - dragon
+      wild_held_items:
+        gold: &gold-silver.pokemon.kingdra.wild_held_items.gold
+          dragon-scale: 2
+        silver: *gold-silver.pokemon.kingdra.wild_held_items.gold
+      genus: &gold-silver.pokemon.kingdra.genus 'DRAGON Pokémon'
+      height: &gold-silver.pokemon.kingdra.height 18
+      weight: &gold-silver.pokemon.kingdra.weight 1519
       flavor_text:
         gold: |
           It is said that it
@@ -63,6 +61,10 @@ gold-silver:
           It is said to
           cause tornadoes as
           it wakes.
+      evolution_parent: &gold-silver.pokemon.kingdra.evolution_parent seadra/seadra
+      evolution_conditions: &gold-silver.pokemon.kingdra.evolution_conditions
+        trade:
+          held_item: dragon-scale
       forms:
         kingdra:
           name: *gold-silver.name
@@ -70,12 +72,11 @@ gold-silver:
           default: *gold-silver.pokemon.kingdra.default
           battle_only: &gold-silver.pokemon.kingdra.forms.kingdra.battle_only false
           sprites:
+            - gold-silver/kingdra-default.png
             - gold-silver/back/kingdra-default.png
             - gold-silver/shiny/kingdra-default.png
-            - gold-silver/kingdra-default.png
           art: &gold-silver.pokemon.kingdra.forms.kingdra.art
             - kingdra-default.png
-          footprint: &gold-silver.pokemon.kingdra.forms.kingdra.footprint kingdra.png
           cry: &gold-silver.pokemon.kingdra.forms.kingdra.cry gen5/kingdra-default.webm
           icon: &gold-silver.pokemon.kingdra.forms.kingdra.icon gen2/bigmon.png
 crystal:
@@ -84,24 +85,21 @@ crystal:
   numbers: *gold-silver.numbers
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
-      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      female_rate: *gold-silver.pokemon.kingdra.female_rate
-      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
-      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
-      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.kingdra.default
-      height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
+      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
       experience: *gold-silver.pokemon.kingdra.experience
       types: *gold-silver.pokemon.kingdra.types
-      egg_groups: *gold-silver.pokemon.kingdra.egg_groups
       stats: *gold-silver.pokemon.kingdra.stats
-      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
+      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
+      female_rate: *gold-silver.pokemon.kingdra.female_rate
+      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
+      egg_groups: *gold-silver.pokemon.kingdra.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.kingdra.wild_held_items.gold
+      genus: *gold-silver.pokemon.kingdra.genus
+      height: *gold-silver.pokemon.kingdra.height
+      weight: *gold-silver.pokemon.kingdra.weight
       flavor_text:
         crystal: |
           It stores energy
@@ -110,6 +108,8 @@ crystal:
           at which no other
           life forms can
           survive.
+      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
       forms:
         kingdra:
           name: *gold-silver.name
@@ -117,41 +117,284 @@ crystal:
           default: *gold-silver.pokemon.kingdra.default
           battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
           sprites:
+            - crystal/kingdra-default.png
             - crystal/back/kingdra-default.png
             - crystal/shiny/kingdra-default.png
-            - crystal/animated/shiny/kingdra-default.webm
-            - crystal/animated/kingdra-default.webm
-            - crystal/kingdra-default.png
           art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
           cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
           icon: *gold-silver.pokemon.kingdra.forms.kingdra.icon
 ruby-sapphire:
   name: *gold-silver.name
-  position: *gold-silver.position
+  position: &ruby-sapphire.position 230
   numbers: &ruby-sapphire.numbers
     national: *gold-silver.numbers.national
     hoenn: 186
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
-      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      color: &ruby-sapphire.pokemon.kingdra.color blue
-      female_rate: *gold-silver.pokemon.kingdra.female_rate
-      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
-      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
-      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
       name: *gold-silver.name
       default: *gold-silver.pokemon.kingdra.default
+      forms_switchable: &ruby-sapphire.pokemon.kingdra.forms_switchable false
+      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
+      experience: *gold-silver.pokemon.kingdra.experience
+      types: *gold-silver.pokemon.kingdra.types
+      stats: &ruby-sapphire.pokemon.kingdra.stats
+        hp:
+          base_value: 75
+          effort_change: 0
+        attack:
+          base_value: 95
+          effort_change: 1
+        defense:
+          base_value: 95
+          effort_change: 0
+        speed:
+          base_value: 85
+          effort_change: 0
+        special-attack:
+          base_value: 95
+          effort_change: 1
+        special-defense:
+          base_value: 75
+          effort_change: 1
+      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
+      female_rate: *gold-silver.pokemon.kingdra.female_rate
+      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
+      egg_groups: *gold-silver.pokemon.kingdra.egg_groups
+      wild_held_items:
+        ruby: &ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
+          dragon-scale: 5
+        sapphire: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
+      happiness: &ruby-sapphire.pokemon.kingdra.happiness 70
+      abilities: &ruby-sapphire.pokemon.kingdra.abilities
+        swift-swim: &ruby-sapphire.pokemon.kingdra.abilities.swift-swim
+          hidden: &ruby-sapphire.pokemon.kingdra.abilities.swift-swim.hidden false
+          position: 1
+      genus: *gold-silver.pokemon.kingdra.genus
       height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: &ruby-sapphire.pokemon.kingdra.experience 243
+      weight: &ruby-sapphire.pokemon.kingdra.weight 1520
+      flavor_text:
+        ruby: |
+          KINGDRA lives at extreme ocean depths
+          that are otherwise uninhabited.
+           It has long been believed that the
+          yawning of this POKéMON creates
+          spiraling ocean currents.
+        sapphire: |
+          KINGDRA sleeps on the seafloor where
+          it is otherwise devoid of life.
+          When a storm arrives, the POKéMON is
+          said to awaken and wander about in
+          search of prey.
+      forms:
+        kingdra:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
+          default: *gold-silver.pokemon.kingdra.default
+          battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
+          icon: &ruby-sapphire.pokemon.kingdra.forms.kingdra.icon gen5/kingdra-default.png
+          sprites:
+            - ruby-sapphire/kingdra-default.png
+            - ruby-sapphire/back/kingdra-default.png
+            - ruby-sapphire/shiny/kingdra-default.png
+          art: *gold-silver.pokemon.kingdra.forms.kingdra.art
+          footprint: &ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint kingdra.png
+          cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
+      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
+emerald:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *ruby-sapphire.numbers
+  pokemon:
+    kingdra:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.kingdra.default
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
+      experience: *gold-silver.pokemon.kingdra.experience
+      types: *gold-silver.pokemon.kingdra.types
+      stats: *ruby-sapphire.pokemon.kingdra.stats
+      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
+      female_rate: *gold-silver.pokemon.kingdra.female_rate
+      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
+      egg_groups: *gold-silver.pokemon.kingdra.egg_groups
+      wild_held_items:
+        emerald: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      abilities: *ruby-sapphire.pokemon.kingdra.abilities
+      genus: *gold-silver.pokemon.kingdra.genus
+      height: *gold-silver.pokemon.kingdra.height
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      flavor_text:
+        emerald: |
+          It sleeps quietly, deep on the seafloor.
+          When it comes up to the surface, it
+          creates a huge whirlpool that can swallow
+          even ships.
+      forms:
+        kingdra:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
+          default: *gold-silver.pokemon.kingdra.default
+          battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
+          icon: *ruby-sapphire.pokemon.kingdra.forms.kingdra.icon
+          sprites:
+            - emerald/kingdra-default.png
+            - emerald/shiny/kingdra-default.png
+            - emerald/animated/kingdra-default.webm
+            - emerald/animated/shiny/kingdra-default.webm
+          art: *gold-silver.pokemon.kingdra.forms.kingdra.art
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
+          cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
+      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
+colosseum:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &colosseum.numbers
+    national: *gold-silver.numbers.national
+    orre-strategy-memo: 152
+  pokemon:
+    kingdra:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.kingdra.default
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
+      experience: *gold-silver.pokemon.kingdra.experience
+      types: *gold-silver.pokemon.kingdra.types
+      stats: *ruby-sapphire.pokemon.kingdra.stats
+      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
+      female_rate: *gold-silver.pokemon.kingdra.female_rate
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      abilities: *ruby-sapphire.pokemon.kingdra.abilities
+      genus: *gold-silver.pokemon.kingdra.genus
+      height: *gold-silver.pokemon.kingdra.height
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      forms:
+        kingdra:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
+          default: *gold-silver.pokemon.kingdra.default
+          battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
+          sprites:
+            - colosseum/kingdra-default.png
+            - colosseum/shiny/kingdra-default.png
+          art: *gold-silver.pokemon.kingdra.forms.kingdra.art
+          cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
+      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
+xd:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: *colosseum.numbers
+  pokemon:
+    kingdra:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.kingdra.default
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
+      experience: *gold-silver.pokemon.kingdra.experience
+      types: *gold-silver.pokemon.kingdra.types
+      stats: *ruby-sapphire.pokemon.kingdra.stats
+      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
+      female_rate: *gold-silver.pokemon.kingdra.female_rate
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      abilities: *ruby-sapphire.pokemon.kingdra.abilities
+      genus: *gold-silver.pokemon.kingdra.genus
+      height: *gold-silver.pokemon.kingdra.height
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      forms:
+        kingdra:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
+          default: *gold-silver.pokemon.kingdra.default
+          battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
+          sprites:
+            - xd/kingdra-default.png
+            - xd/shiny/kingdra-default.png
+          art: *gold-silver.pokemon.kingdra.forms.kingdra.art
+          cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
+      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
+firered-leafgreen:
+  name: *gold-silver.name
+  position: *ruby-sapphire.position
+  numbers: &firered-leafgreen.numbers
+    national: *gold-silver.numbers.national
+  pokemon:
+    kingdra:
+      name: *gold-silver.name
+      default: *gold-silver.pokemon.kingdra.default
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
+      experience: *gold-silver.pokemon.kingdra.experience
+      types: *gold-silver.pokemon.kingdra.types
+      stats: *ruby-sapphire.pokemon.kingdra.stats
+      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
+      female_rate: *gold-silver.pokemon.kingdra.female_rate
+      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
+      egg_groups: *gold-silver.pokemon.kingdra.egg_groups
+      wild_held_items:
+        firered: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
+        leafgreen: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      abilities: *ruby-sapphire.pokemon.kingdra.abilities
+      genus: *gold-silver.pokemon.kingdra.genus
+      height: *gold-silver.pokemon.kingdra.height
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      flavor_text:
+        firered: |
+          It sleeps deep on the ocean floor to
+          build its energy. It is said to cause
+          tornadoes as it wakes.
+        leafgreen: |
+          It is said that it usually hides in
+          underwater caves. It can create
+          whirlpools by yawning.
+      forms:
+        kingdra:
+          name: *gold-silver.name
+          form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
+          default: *gold-silver.pokemon.kingdra.default
+          battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
+          icon: *ruby-sapphire.pokemon.kingdra.forms.kingdra.icon
+          sprites:
+            - firered-leafgreen/kingdra-default.png
+            - firered-leafgreen/back/kingdra-default.png
+            - firered-leafgreen/shiny/kingdra-default.png
+          art: *gold-silver.pokemon.kingdra.forms.kingdra.art
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
+          cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
+      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
+      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
+diamond-pearl:
+  name: &diamond-pearl.name Kingdra
+  position: &diamond-pearl.position 134
+  numbers: *firered-leafgreen.numbers
+  pokemon:
+    kingdra:
+      genus: &diamond-pearl.pokemon.kingdra.genus 'Dragon Pokémon'
+      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
+      shape: &diamond-pearl.pokemon.kingdra.shape blob
+      female_rate: *gold-silver.pokemon.kingdra.female_rate
+      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      baby: &diamond-pearl.pokemon.kingdra.baby false
+      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
+      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      pal_park: &diamond-pearl.pokemon.kingdra.pal_park
+        area: sea
+        rate: 10
+        score: 80
+      name: *diamond-pearl.name
+      default: *gold-silver.pokemon.kingdra.default
+      height: *gold-silver.pokemon.kingdra.height
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      experience: &diamond-pearl.pokemon.kingdra.experience 243
       types: *gold-silver.pokemon.kingdra.types
       egg_groups: *gold-silver.pokemon.kingdra.egg_groups
-      stats: &ruby-sapphire.pokemon.kingdra.stats
+      stats: &diamond-pearl.pokemon.kingdra.stats
         hp:
           base_value: 75
           effort_change: 0
@@ -170,203 +413,14 @@ ruby-sapphire:
         special-defense:
           base_value: 95
           effort_change: 1
-      abilities: &ruby-sapphire.pokemon.kingdra.abilities
-        swift-swim: &ruby-sapphire.pokemon.kingdra.abilities.swift-swim
-          hidden: &ruby-sapphire.pokemon.kingdra.abilities.swift-swim.hidden false
-          position: 1
-        damp: &ruby-sapphire.pokemon.kingdra.abilities.damp
-          hidden: true
-          position: 3
-      wild_held_items:
-        ruby: &ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
-          dragon-scale: 5
-        sapphire: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
-      flavor_text:
-        ruby: |
-          KINGDRA lives at extreme ocean depths
-          that are otherwise uninhabited.
-          It has long been believed that the
-          yawning of this POKéMON creates
-          spiraling ocean currents.
-        sapphire: |
-          KINGDRA sleeps on the seafloor where
-          it is otherwise devoid of life.
-          When a storm arrives, the POKéMON is
-          said to awaken and wander about in
-          search of prey.
-      forms:
-        kingdra:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
-          default: *gold-silver.pokemon.kingdra.default
-          battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
-          icon: &ruby-sapphire.pokemon.kingdra.forms.kingdra.icon gen5/kingdra-default.png
-          sprites:
-            - ruby-sapphire/back/kingdra-default.png
-            - ruby-sapphire/shiny/kingdra-default.png
-            - ruby-sapphire/kingdra-default.png
-          art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
-          cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
-emerald:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *ruby-sapphire.numbers
-  pokemon:
-    kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
-      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      color: *ruby-sapphire.pokemon.kingdra.color
-      female_rate: *gold-silver.pokemon.kingdra.female_rate
-      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
-      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
-      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.kingdra.default
-      height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
-      types: *gold-silver.pokemon.kingdra.types
-      egg_groups: *gold-silver.pokemon.kingdra.egg_groups
-      stats: *ruby-sapphire.pokemon.kingdra.stats
-      abilities: *ruby-sapphire.pokemon.kingdra.abilities
-      wild_held_items:
-        emerald: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
-      flavor_text:
-        emerald: |
-          It sleeps quietly, deep on the seafloor.
-          When it comes up to the surface, it
-          creates a huge whirlpool that can swallow
-          even ships.
-      forms:
-        kingdra:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
-          default: *gold-silver.pokemon.kingdra.default
-          battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
-          icon: *ruby-sapphire.pokemon.kingdra.forms.kingdra.icon
-          sprites:
-            - emerald/shiny/kingdra-default.png
-            - emerald/animated/shiny/kingdra-default.webm
-            - emerald/animated/kingdra-default.webm
-            - emerald/kingdra-default.png
-          art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
-          cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
-colosseum: &colosseum
-  name: *gold-silver.name
-  position: *gold-silver.position
-  pokemon:
-    kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
-      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      female_rate: *gold-silver.pokemon.kingdra.female_rate
-      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
-      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
-      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.kingdra.default
-      height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
-      types: *gold-silver.pokemon.kingdra.types
-      egg_groups: *gold-silver.pokemon.kingdra.egg_groups
-      stats: *ruby-sapphire.pokemon.kingdra.stats
-      abilities: *ruby-sapphire.pokemon.kingdra.abilities
-      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
-      forms: &colosseum.pokemon.kingdra.forms
-        kingdra:
-          name: *gold-silver.name
-          form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
-          default: *gold-silver.pokemon.kingdra.default
-          battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
-          icon: *ruby-sapphire.pokemon.kingdra.forms.kingdra.icon
-          art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
-          cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
-xd: *colosseum
-firered-leafgreen:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: &firered-leafgreen.numbers
-    national: *gold-silver.numbers.national
-  pokemon:
-    kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
-      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      habitat: sea
-      female_rate: *gold-silver.pokemon.kingdra.female_rate
-      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
-      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
-      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.kingdra.default
-      height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
-      types: *gold-silver.pokemon.kingdra.types
-      egg_groups: *gold-silver.pokemon.kingdra.egg_groups
-      stats: *ruby-sapphire.pokemon.kingdra.stats
-      abilities: *ruby-sapphire.pokemon.kingdra.abilities
-      wild_held_items:
-        firered: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
-        leafgreen: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
-      evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
-      flavor_text:
-        firered: |
-          It sleeps deep on the ocean floor to
-          build its energy. It is said to cause
-          tornadoes as it wakes.
-        leafgreen: |
-          It is said that it usually hides in
-          underwater caves. It can create
-          whirlpools by yawning.
-      forms: *colosseum.pokemon.kingdra.forms
-diamond-pearl:
-  name: *gold-silver.name
-  position: *gold-silver.position
-  numbers: *firered-leafgreen.numbers
-  pokemon:
-    kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
-      evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      shape: &diamond-pearl.pokemon.kingdra.shape blob
-      female_rate: *gold-silver.pokemon.kingdra.female_rate
-      capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
-      hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
-      growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      pal_park: &diamond-pearl.pokemon.kingdra.pal_park
-        area: sea
-        rate: 10
-        score: 80
-      name: *gold-silver.name
-      default: *gold-silver.pokemon.kingdra.default
-      height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
-      types: *gold-silver.pokemon.kingdra.types
-      egg_groups: *gold-silver.pokemon.kingdra.egg_groups
-      stats: *ruby-sapphire.pokemon.kingdra.stats
       abilities: &diamond-pearl.pokemon.kingdra.abilities
         swift-swim: *ruby-sapphire.pokemon.kingdra.abilities.swift-swim
         sniper:
           hidden: *ruby-sapphire.pokemon.kingdra.abilities.swift-swim.hidden
           position: 2
-        damp: *ruby-sapphire.pokemon.kingdra.abilities.damp
+        damp:
+          hidden: true
+          position: 3
       wild_held_items:
         diamond: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
         pearl: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
@@ -382,7 +436,7 @@ diamond-pearl:
           every time it moves.
       forms:
         kingdra:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
           default: *gold-silver.pokemon.kingdra.default
           battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
@@ -393,33 +447,33 @@ diamond-pearl:
             - diamond-pearl/shiny/kingdra-default.png
             - diamond-pearl/kingdra-default.png
           art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
           cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
 platinum:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
+      genus: *diamond-pearl.pokemon.kingdra.genus
       evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
       shape: *diamond-pearl.pokemon.kingdra.shape
       female_rate: *gold-silver.pokemon.kingdra.female_rate
       capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      baby: *diamond-pearl.pokemon.kingdra.baby
       hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
       growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
       pal_park: *diamond-pearl.pokemon.kingdra.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.kingdra.default
       height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      experience: *diamond-pearl.pokemon.kingdra.experience
       types: *gold-silver.pokemon.kingdra.types
       egg_groups: *gold-silver.pokemon.kingdra.egg_groups
-      stats: *ruby-sapphire.pokemon.kingdra.stats
+      stats: *diamond-pearl.pokemon.kingdra.stats
       abilities: *diamond-pearl.pokemon.kingdra.abilities
       wild_held_items:
         platinum: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
@@ -431,7 +485,7 @@ platinum:
           every time it moves.
       forms:
         kingdra:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
           default: *gold-silver.pokemon.kingdra.default
           battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
@@ -442,35 +496,35 @@ platinum:
             - platinum/shiny/kingdra-default.png
             - platinum/kingdra-default.png
           art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
           cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
 heartgold-soulsilver:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-johto: 192
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
+      genus: *diamond-pearl.pokemon.kingdra.genus
       evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
       shape: *diamond-pearl.pokemon.kingdra.shape
       female_rate: *gold-silver.pokemon.kingdra.female_rate
       capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      baby: *diamond-pearl.pokemon.kingdra.baby
       hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
       growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
       pal_park: *diamond-pearl.pokemon.kingdra.pal_park
-      name: *gold-silver.name
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.kingdra.default
       height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      experience: *diamond-pearl.pokemon.kingdra.experience
       types: *gold-silver.pokemon.kingdra.types
       egg_groups: *gold-silver.pokemon.kingdra.egg_groups
-      stats: *ruby-sapphire.pokemon.kingdra.stats
+      stats: *diamond-pearl.pokemon.kingdra.stats
       abilities: *diamond-pearl.pokemon.kingdra.abilities
       wild_held_items:
         heartgold: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
@@ -487,7 +541,7 @@ heartgold-soulsilver:
           cause tornadoes as it wakes.
       forms:
         kingdra:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
           default: *gold-silver.pokemon.kingdra.default
           battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
@@ -514,33 +568,33 @@ heartgold-soulsilver:
             - heartgold-soulsilver/shiny/kingdra-default.png
             - heartgold-soulsilver/kingdra-default.png
           art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
           cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
 black-white:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
+      genus: *diamond-pearl.pokemon.kingdra.genus
       evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      color: *ruby-sapphire.pokemon.kingdra.color
+      color: &black-white.pokemon.kingdra.color blue
       shape: *diamond-pearl.pokemon.kingdra.shape
       female_rate: *gold-silver.pokemon.kingdra.female_rate
       capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      baby: *diamond-pearl.pokemon.kingdra.baby
       hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
       growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.kingdra.default
       height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      experience: *diamond-pearl.pokemon.kingdra.experience
       types: *gold-silver.pokemon.kingdra.types
       egg_groups: *gold-silver.pokemon.kingdra.egg_groups
-      stats: *ruby-sapphire.pokemon.kingdra.stats
+      stats: *diamond-pearl.pokemon.kingdra.stats
       abilities: *diamond-pearl.pokemon.kingdra.abilities
       wild_held_items:
         black: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
@@ -557,7 +611,7 @@ black-white:
           every time it moves.
       forms:
         kingdra:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
           default: *gold-silver.pokemon.kingdra.default
           battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
@@ -568,33 +622,33 @@ black-white:
             - black-white/shiny/kingdra-default.png
             - black-white/kingdra-default.png
           art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
           cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
 black-2-white-2:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
+      genus: *diamond-pearl.pokemon.kingdra.genus
       evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      color: *ruby-sapphire.pokemon.kingdra.color
+      color: *black-white.pokemon.kingdra.color
       shape: *diamond-pearl.pokemon.kingdra.shape
       female_rate: *gold-silver.pokemon.kingdra.female_rate
       capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      baby: *diamond-pearl.pokemon.kingdra.baby
       hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
       growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.kingdra.default
       height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      experience: *diamond-pearl.pokemon.kingdra.experience
       types: *gold-silver.pokemon.kingdra.types
       egg_groups: *gold-silver.pokemon.kingdra.egg_groups
-      stats: *ruby-sapphire.pokemon.kingdra.stats
+      stats: *diamond-pearl.pokemon.kingdra.stats
       abilities: *diamond-pearl.pokemon.kingdra.abilities
       wild_held_items:
         black-2: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
@@ -609,35 +663,44 @@ black-2-white-2:
           It lives in caves on the seafloor
           and creates giant whirlpools
           every time it moves.
-      forms: *colosseum.pokemon.kingdra.forms
+      forms:
+        kingdra:
+          name: *diamond-pearl.name
+          form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
+          default: *gold-silver.pokemon.kingdra.default
+          battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
+          icon: *ruby-sapphire.pokemon.kingdra.forms.kingdra.icon
+          art: *gold-silver.pokemon.kingdra.forms.kingdra.art
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
+          cry: *gold-silver.pokemon.kingdra.forms.kingdra.cry
 x-y:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     kalos-coastal: 41
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
+      genus: *diamond-pearl.pokemon.kingdra.genus
       evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      color: *ruby-sapphire.pokemon.kingdra.color
+      color: *black-white.pokemon.kingdra.color
       shape: *diamond-pearl.pokemon.kingdra.shape
       female_rate: *gold-silver.pokemon.kingdra.female_rate
       capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      baby: *diamond-pearl.pokemon.kingdra.baby
       hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
       growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.kingdra.default
       height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      experience: *diamond-pearl.pokemon.kingdra.experience
       types: *gold-silver.pokemon.kingdra.types
       egg_groups: *gold-silver.pokemon.kingdra.egg_groups
       mega: &x-y.pokemon.kingdra.mega false
-      stats: *ruby-sapphire.pokemon.kingdra.stats
+      stats: *diamond-pearl.pokemon.kingdra.stats
       abilities: *diamond-pearl.pokemon.kingdra.abilities
       wild_held_items:
         x: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
@@ -652,7 +715,7 @@ x-y:
           at which no other life-forms can survive.
       forms:
         kingdra:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
           default: *gold-silver.pokemon.kingdra.default
           battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
@@ -661,36 +724,36 @@ x-y:
             - x-y/shiny/kingdra-default.png
             - x-y/kingdra-default.png
           art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
           cry: &x-y.pokemon.kingdra.forms.kingdra.cry kingdra-default.webm
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *gold-silver.numbers.national
     updated-hoenn: 195
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
+      genus: *diamond-pearl.pokemon.kingdra.genus
       evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      color: *ruby-sapphire.pokemon.kingdra.color
+      color: *black-white.pokemon.kingdra.color
       shape: *diamond-pearl.pokemon.kingdra.shape
       female_rate: *gold-silver.pokemon.kingdra.female_rate
       capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      baby: *diamond-pearl.pokemon.kingdra.baby
       hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
       growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.kingdra.default
       height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      experience: *diamond-pearl.pokemon.kingdra.experience
       types: *gold-silver.pokemon.kingdra.types
       egg_groups: *gold-silver.pokemon.kingdra.egg_groups
       mega: *x-y.pokemon.kingdra.mega
-      stats: *ruby-sapphire.pokemon.kingdra.stats
+      stats: *diamond-pearl.pokemon.kingdra.stats
       abilities: *diamond-pearl.pokemon.kingdra.abilities
       evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
       flavor_text:
@@ -704,50 +767,50 @@ omega-ruby-alpha-sapphire:
           and wander about in search of prey.
       forms:
         kingdra:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
           default: *gold-silver.pokemon.kingdra.default
           battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
           icon: *x-y.pokemon.kingdra.forms.kingdra.icon
           art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
           cry: *x-y.pokemon.kingdra.forms.kingdra.cry
           sprites:
             - omega-ruby-alpha-sapphire/shiny/kingdra-default.png
             - omega-ruby-alpha-sapphire/kingdra-default.png
 sun-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
+      genus: *diamond-pearl.pokemon.kingdra.genus
       evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      color: *ruby-sapphire.pokemon.kingdra.color
+      color: *black-white.pokemon.kingdra.color
       shape: *diamond-pearl.pokemon.kingdra.shape
       female_rate: *gold-silver.pokemon.kingdra.female_rate
       capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      baby: *diamond-pearl.pokemon.kingdra.baby
       hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
       growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.kingdra.default
       height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      experience: *diamond-pearl.pokemon.kingdra.experience
       types: *gold-silver.pokemon.kingdra.types
       egg_groups: *gold-silver.pokemon.kingdra.egg_groups
       mega: *x-y.pokemon.kingdra.mega
-      stats: *ruby-sapphire.pokemon.kingdra.stats
+      stats: *diamond-pearl.pokemon.kingdra.stats
       abilities: *diamond-pearl.pokemon.kingdra.abilities
       wild_held_items:
         moon: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
       evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
       forms:
         kingdra:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
           default: *gold-silver.pokemon.kingdra.default
           battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
@@ -756,41 +819,41 @@ sun-moon:
             - sun-moon/shiny/kingdra-default.png
             - sun-moon/kingdra-default.png
           art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
           cry: *x-y.pokemon.kingdra.forms.kingdra.cry
 ultra-sun-ultra-moon:
-  name: *gold-silver.name
-  position: *gold-silver.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers: *firered-leafgreen.numbers
   pokemon:
     kingdra:
-      genus: *gold-silver.pokemon.kingdra.genus
+      genus: *diamond-pearl.pokemon.kingdra.genus
       evolution_parent: *gold-silver.pokemon.kingdra.evolution_parent
-      color: *ruby-sapphire.pokemon.kingdra.color
+      color: *black-white.pokemon.kingdra.color
       shape: *diamond-pearl.pokemon.kingdra.shape
       female_rate: *gold-silver.pokemon.kingdra.female_rate
       capture_rate: *gold-silver.pokemon.kingdra.capture_rate
-      happiness: *gold-silver.pokemon.kingdra.happiness
-      baby: *gold-silver.pokemon.kingdra.baby
+      happiness: *ruby-sapphire.pokemon.kingdra.happiness
+      baby: *diamond-pearl.pokemon.kingdra.baby
       hatch_steps: *gold-silver.pokemon.kingdra.hatch_steps
       growth_rate: *gold-silver.pokemon.kingdra.growth_rate
-      forms_switchable: *gold-silver.pokemon.kingdra.forms_switchable
-      name: *gold-silver.name
+      forms_switchable: *ruby-sapphire.pokemon.kingdra.forms_switchable
+      name: *diamond-pearl.name
       default: *gold-silver.pokemon.kingdra.default
       height: *gold-silver.pokemon.kingdra.height
-      weight: *gold-silver.pokemon.kingdra.weight
-      experience: *ruby-sapphire.pokemon.kingdra.experience
+      weight: *ruby-sapphire.pokemon.kingdra.weight
+      experience: *diamond-pearl.pokemon.kingdra.experience
       types: *gold-silver.pokemon.kingdra.types
       egg_groups: *gold-silver.pokemon.kingdra.egg_groups
       mega: *x-y.pokemon.kingdra.mega
-      stats: *ruby-sapphire.pokemon.kingdra.stats
+      stats: *diamond-pearl.pokemon.kingdra.stats
       abilities: *diamond-pearl.pokemon.kingdra.abilities
       wild_held_items:
         ultra-sun: *ruby-sapphire.pokemon.kingdra.wild_held_items.ruby
       evolution_conditions: *gold-silver.pokemon.kingdra.evolution_conditions
       forms:
         kingdra:
-          name: *gold-silver.name
+          name: *diamond-pearl.name
           form_name: *gold-silver.pokemon.kingdra.forms.kingdra.form_name
           default: *gold-silver.pokemon.kingdra.default
           battle_only: *gold-silver.pokemon.kingdra.forms.kingdra.battle_only
@@ -799,5 +862,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/shiny/kingdra-default.png
             - ultra-sun-ultra-moon/kingdra-default.png
           art: *gold-silver.pokemon.kingdra.forms.kingdra.art
-          footprint: *gold-silver.pokemon.kingdra.forms.kingdra.footprint
+          footprint: *ruby-sapphire.pokemon.kingdra.forms.kingdra.footprint
           cry: *x-y.pokemon.kingdra.forms.kingdra.cry

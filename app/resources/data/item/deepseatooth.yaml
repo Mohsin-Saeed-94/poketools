@@ -1,47 +1,56 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name DeepSeaTooth
+  name: &ruby-sapphire.name DEEPSEATOOTH
   category: &ruby-sapphire.category species-specific
   pocket: &ruby-sapphire.pocket misc
-  buy: &ruby-sapphire.buy 2000
-  sell: &ruby-sapphire.sell 1000
   flags: &ruby-sapphire.flags
     - holdable
-  short_description: &ruby-sapphire.short_description 'Doubles [Clamperl''s]{pokemon:clamperl} [Special Attack]{mechanic:special-attack};  Traded: Some Pokémon will evolve.'
-  description: &ruby-sapphire.description |
-    Held by []{pokemon:clamperl}: Doubles the holder's [Special Attack]{mechanic:special-attack}.
-    
-    When some Pokémon are traded holding this item, they will evolve.  Below is a list
-    of compatible Pokémon.
-    
-    {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "deep-sea-tooth"})}}
-  flavor_text: |
+  icon: &ruby-sapphire.icon deep-sea-tooth.png
+  buy: &ruby-sapphire.buy 200
+  sell: &ruby-sapphire.sell 100
+  flavor_text: &ruby-sapphire.flavor_text |
     A hold item that
     raises the SP. ATK
     of CLAMPERL.
-  icon: &ruby-sapphire.icon deep-sea-tooth.png
+  short_description: &ruby-sapphire.short_description 'Doubles [Clamperl''s]{pokemon:clamperl} [Special Attack]{mechanic:special-attack};           Traded: Some Pokémon will evolve.'
+  description: &ruby-sapphire.description |
+    Held by []{pokemon:clamperl}: Doubles the holder's [Special Attack]{mechanic:special-attack}.
+
+    When some Pokémon are traded holding this item, they will evolve.  Below is a list
+    of compatible Pokémon.
+
+    {{App\Controller\ItemController::evolutionPokemon({"itemSlug": "deep-sea-tooth"})}}
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
+colosseum: &colosseum
+  name: *ruby-sapphire.name
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *ruby-sapphire.category
+  flags: *ruby-sapphire.flags
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+xd: *colosseum
 firered-leafgreen:
   name: *ruby-sapphire.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
   buy: *ruby-sapphire.buy
   sell: *ruby-sapphire.sell
-  flags: *ruby-sapphire.flags
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
   flavor_text: |
     An item to be held by a POKéMON.
     A fang that gleams a sharp silver.
-    It raises the SP. ATK stat.
-  icon: *ruby-sapphire.icon
+     It raises the SP. ATK stat.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name DeepSeaTooth
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &diamond-pearl.buy 2000
+  sell: &diamond-pearl.sell 1000
   fling_effect: damage
   fling_power: 90
   flags: *ruby-sapphire.flags
@@ -55,11 +64,11 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 90
   flags: *ruby-sapphire.flags

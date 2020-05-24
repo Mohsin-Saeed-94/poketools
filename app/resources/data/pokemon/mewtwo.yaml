@@ -1,18 +1,14 @@
 red-blue:
-  name: &red-blue.name Mewtwo
-  position: &red-blue.position 182
+  name: &red-blue.name MEWTWO
+  position: &red-blue.position 150
   numbers: &red-blue.numbers
     national: &red-blue.numbers.national 150
     kanto: 150
   pokemon:
     mewtwo:
-      genus: &red-blue.pokemon.mewtwo.genus 'Genetic Pokémon'
-      capture_rate: &red-blue.pokemon.mewtwo.capture_rate 3
-      growth_rate: &red-blue.pokemon.mewtwo.growth_rate slow
       name: *red-blue.name
       default: &red-blue.pokemon.mewtwo.default true
-      height: &red-blue.pokemon.mewtwo.height 20
-      weight: &red-blue.pokemon.mewtwo.weight 1220
+      capture_rate: &red-blue.pokemon.mewtwo.capture_rate 3
       experience: &red-blue.pokemon.mewtwo.experience 220
       types: &red-blue.pokemon.mewtwo.types
         - psychic
@@ -32,6 +28,10 @@ red-blue:
         special:
           base_value: 154
           effort_change: 154
+      growth_rate: &red-blue.pokemon.mewtwo.growth_rate slow
+      genus: &red-blue.pokemon.mewtwo.genus 'GENETIC Pokémon'
+      height: &red-blue.pokemon.mewtwo.height 20
+      weight: &red-blue.pokemon.mewtwo.weight 12201
       flavor_text:
         red: |
           It was created by
@@ -59,7 +59,6 @@ red-blue:
             - red-blue/back/mewtwo-default.png
           art: &red-blue.pokemon.mewtwo.forms.mewtwo.art
             - mewtwo-default.png
-          footprint: &red-blue.pokemon.mewtwo.forms.mewtwo.footprint mewtwo.png
           cry: &red-blue.pokemon.mewtwo.forms.mewtwo.cry gen5/mewtwo-default.webm
           icon: &red-blue.pokemon.mewtwo.forms.mewtwo.icon gen1/mon.png
 yellow:
@@ -68,23 +67,23 @@ yellow:
   numbers: *red-blue.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       name: *red-blue.name
       default: *red-blue.pokemon.mewtwo.default
-      height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
+      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
       experience: *red-blue.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
       stats: *red-blue.pokemon.mewtwo.stats
+      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
+      genus: *red-blue.pokemon.mewtwo.genus
+      height: *red-blue.pokemon.mewtwo.height
+      weight: *red-blue.pokemon.mewtwo.weight
       flavor_text:
         yellow: |
           Its DNA is almost
           the same as MEW's.
           However, its size
           and disposition
-          are vastly dif­
+           are vastly dif-
           ferent.
       forms:
         mewtwo:
@@ -96,34 +95,23 @@ yellow:
             - yellow/mewtwo-default.png
             - yellow/gray/mewtwo-default.png
             - yellow/back/mewtwo-default.png
-            - yellow/gbc/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
           icon: *red-blue.pokemon.mewtwo.forms.mewtwo.icon
 gold-silver:
   name: *red-blue.name
-  position: *red-blue.position
+  position: &gold-silver.position 149
   numbers: &gold-silver.numbers
     national: *red-blue.numbers.national
-    original-johto: 249
+    original-johto: 248
+    original-johto-abc: 120
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: &gold-silver.pokemon.mewtwo.happiness 0
-      baby: &gold-silver.pokemon.mewtwo.baby false
-      hatch_steps: &gold-silver.pokemon.mewtwo.hatch_steps 120
-      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: &gold-silver.pokemon.mewtwo.forms_switchable false
       name: *red-blue.name
       default: *red-blue.pokemon.mewtwo.default
-      height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
+      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
       experience: *red-blue.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
-      egg_groups: &gold-silver.pokemon.mewtwo.egg_groups
-        - no-eggs
       stats: &gold-silver.pokemon.mewtwo.stats
         hp:
           base_value: 106
@@ -143,19 +131,31 @@ gold-silver:
         special-defense:
           base_value: 90
           effort_change: 154
+      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
+      female_rate: &gold-silver.pokemon.mewtwo.female_rate 100
+      hatch_steps: &gold-silver.pokemon.mewtwo.hatch_steps 120
+      egg_groups: &gold-silver.pokemon.mewtwo.egg_groups
+        - no-eggs
+      wild_held_items:
+        gold: &gold-silver.pokemon.mewtwo.wild_held_items.gold
+          berserk-gene: 2
+        silver: *gold-silver.pokemon.mewtwo.wild_held_items.gold
+      genus: *red-blue.pokemon.mewtwo.genus
+      height: *red-blue.pokemon.mewtwo.height
+      weight: &gold-silver.pokemon.mewtwo.weight 1220
       flavor_text:
         gold: |
           Because its battle
           abilities were
           raised to the
           ultimate level, it
-          thinks only of de­
+          thinks only of de-
           feating its foes.
         silver: |
           It usually remains
-          motionless to con­
+          motionless to con-
           serve energy, so
-          that it may un­
+          that it may un-
           leash its full
           power in battle.
       forms:
@@ -169,36 +169,35 @@ gold-silver:
             - gold-silver/back/mewtwo-default.png
             - gold-silver/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
           icon: &gold-silver.pokemon.mewtwo.forms.mewtwo.icon gen2/humanshape.png
 crystal:
   name: *red-blue.name
-  position: *red-blue.position
+  position: *gold-silver.position
   numbers: *gold-silver.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
-      hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
-      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.mewtwo.default
-      height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
+      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
       experience: *red-blue.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
-      egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
       stats: *gold-silver.pokemon.mewtwo.stats
+      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
+      female_rate: *gold-silver.pokemon.mewtwo.female_rate
+      hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
+      egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
+      wild_held_items:
+        crystal: *gold-silver.pokemon.mewtwo.wild_held_items.gold
+      genus: *red-blue.pokemon.mewtwo.genus
+      height: *red-blue.pokemon.mewtwo.height
+      weight: *gold-silver.pokemon.mewtwo.weight
       flavor_text:
         crystal: |
-          Said to rest qui­
+          Said to rest qui-
           etly in an
           undiscovered cave,
-          this POKéMON was
+          this #MON was
           created solely for
           battling.
       forms:
@@ -211,10 +210,7 @@ crystal:
             - crystal/mewtwo-default.png
             - crystal/back/mewtwo-default.png
             - crystal/shiny/mewtwo-default.png
-            - crystal/animated/mewtwo-default.webm
-            - crystal/animated/shiny/mewtwo-default.webm
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
           icon: *gold-silver.pokemon.mewtwo.forms.mewtwo.icon
 ruby-sapphire:
@@ -222,23 +218,15 @@ ruby-sapphire:
   position: *red-blue.position
   numbers: &ruby-sapphire.numbers
     national: *red-blue.numbers.national
+    hoenn: 305
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: &ruby-sapphire.pokemon.mewtwo.color purple
-      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
-      hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
-      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.mewtwo.default
-      height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: &ruby-sapphire.pokemon.mewtwo.experience 306
+      forms_switchable: &ruby-sapphire.pokemon.mewtwo.forms_switchable false
+      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
+      experience: *red-blue.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
-      egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
       stats: &ruby-sapphire.pokemon.mewtwo.stats
         hp:
           base_value: 106
@@ -254,28 +242,35 @@ ruby-sapphire:
           effort_change: 0
         special-attack:
           base_value: 154
-          effort_change: 3
-        special-defense:
-          base_value: 90
           effort_change: 0
+        special-defense:
+          base_value: 106
+          effort_change: 0
+      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
+      hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
+      egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
+      happiness: &ruby-sapphire.pokemon.mewtwo.happiness 0
       abilities: &ruby-sapphire.pokemon.mewtwo.abilities
         pressure: &ruby-sapphire.pokemon.mewtwo.abilities.pressure
           hidden: false
           position: 1
+      genus: *red-blue.pokemon.mewtwo.genus
+      height: *red-blue.pokemon.mewtwo.height
+      weight: *gold-silver.pokemon.mewtwo.weight
       flavor_text:
         ruby: |
           MEWTWO is a POKéMON that was created
           by genetic manipulation.
-          However, even though the scientific
-          power of humans created this POKéMON’s
-          body, they failed to endow MEWTWO with
+          However,  even though the scientific
+          power of humans created this POKéMON's
+          body,  they failed to endow MEWTWO with
           a compassionate heart.
         sapphire: |
           MEWTWO is a POKéMON that was created
           by genetic manipulation.
-          However, even though the scientific
-          power of humans created this POKéMON’s
-          body, they failed to endow MEWTWO with
+           However, even though the scientific
+          power of humans created this POKéMON's
+           body, they failed to endow MEWTWO with
           a compassionate heart.
       forms:
         mewtwo:
@@ -289,7 +284,7 @@ ruby-sapphire:
             - ruby-sapphire/back/mewtwo-default.png
             - ruby-sapphire/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: &ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint mewtwo.png
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
 emerald:
   name: *red-blue.name
@@ -297,23 +292,21 @@ emerald:
   numbers: *ruby-sapphire.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
-      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
-      hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
-      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.mewtwo.default
-      height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      forms_switchable: *ruby-sapphire.pokemon.mewtwo.forms_switchable
+      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
+      experience: *red-blue.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
-      egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
       stats: *ruby-sapphire.pokemon.mewtwo.stats
+      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
+      hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
+      egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
       abilities: *ruby-sapphire.pokemon.mewtwo.abilities
+      genus: *red-blue.pokemon.mewtwo.genus
+      height: *red-blue.pokemon.mewtwo.height
+      weight: *gold-silver.pokemon.mewtwo.weight
       flavor_text:
         emerald: |
           A POKéMON that was created by genetic
@@ -333,68 +326,96 @@ emerald:
             - emerald/animated/mewtwo-default.webm
             - emerald/animated/shiny/mewtwo-default.webm
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
-colosseum: &colosseum
+colosseum:
   name: *red-blue.name
   position: *red-blue.position
+  numbers: &colosseum.numbers
+    national: *red-blue.numbers.national
+    orre-strategy-memo: 203
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
-      hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
-      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.mewtwo.default
-      height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      forms_switchable: *ruby-sapphire.pokemon.mewtwo.forms_switchable
+      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
+      experience: *red-blue.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
-      egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
       stats: *ruby-sapphire.pokemon.mewtwo.stats
+      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
       abilities: *ruby-sapphire.pokemon.mewtwo.abilities
-      forms: &colosseum.pokemon.mewtwo.forms
+      genus: *red-blue.pokemon.mewtwo.genus
+      height: *red-blue.pokemon.mewtwo.height
+      weight: *gold-silver.pokemon.mewtwo.weight
+      forms:
         mewtwo:
           name: *red-blue.name
           form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
           default: *red-blue.pokemon.mewtwo.default
           battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
-          icon: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.icon
+          sprites:
+            - colosseum/mewtwo-default.png
+            - colosseum/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
-xd: *colosseum
+xd:
+  name: *red-blue.name
+  position: *red-blue.position
+  numbers: *colosseum.numbers
+  pokemon:
+    mewtwo:
+      name: *red-blue.name
+      default: *red-blue.pokemon.mewtwo.default
+      forms_switchable: *ruby-sapphire.pokemon.mewtwo.forms_switchable
+      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
+      experience: *red-blue.pokemon.mewtwo.experience
+      types: *red-blue.pokemon.mewtwo.types
+      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      abilities: *ruby-sapphire.pokemon.mewtwo.abilities
+      genus: *red-blue.pokemon.mewtwo.genus
+      height: *red-blue.pokemon.mewtwo.height
+      weight: *gold-silver.pokemon.mewtwo.weight
+      forms:
+        mewtwo:
+          name: *red-blue.name
+          form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
+          default: *red-blue.pokemon.mewtwo.default
+          battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
+          sprites:
+            - xd/mewtwo-default.png
+            - xd/shiny/mewtwo-default.png
+          art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
+          cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
 firered-leafgreen:
   name: *red-blue.name
   position: *red-blue.position
   numbers: *red-blue.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      habitat: rare
-      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
-      hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
-      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
       name: *red-blue.name
       default: *red-blue.pokemon.mewtwo.default
-      height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      forms_switchable: *ruby-sapphire.pokemon.mewtwo.forms_switchable
+      capture_rate: *red-blue.pokemon.mewtwo.capture_rate
+      experience: *red-blue.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
-      egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
       stats: *ruby-sapphire.pokemon.mewtwo.stats
+      growth_rate: *red-blue.pokemon.mewtwo.growth_rate
+      hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
+      egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
       abilities: *ruby-sapphire.pokemon.mewtwo.abilities
+      genus: *red-blue.pokemon.mewtwo.genus
+      height: *red-blue.pokemon.mewtwo.height
+      weight: *gold-silver.pokemon.mewtwo.weight
       flavor_text:
         firered: |
           A POKéMON whose genetic code was
           repeatedly recombined for research.
-          It turned vicious as a result.
+           It turned vicious as a result.
         leafgreen: |
           It was created by a scientist after years
           of horrific gene-splicing and DNA-
@@ -411,34 +432,53 @@ firered-leafgreen:
             - firered-leafgreen/back/mewtwo-default.png
             - firered-leafgreen/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
 diamond-pearl:
-  name: *red-blue.name
-  position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  name: &diamond-pearl.name Mewtwo
+  position: &diamond-pearl.position 182
+  numbers: &diamond-pearl.numbers
+    national: *red-blue.numbers.national
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
+      genus: &diamond-pearl.pokemon.mewtwo.genus 'Genetic Pokémon'
       shape: &diamond-pearl.pokemon.mewtwo.shape upright
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: &diamond-pearl.pokemon.mewtwo.baby false
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.mewtwo.forms_switchable
       pal_park: &diamond-pearl.pokemon.mewtwo.pal_park
         area: field
         rate: 3
         score: 90
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.mewtwo.default
       height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      weight: *gold-silver.pokemon.mewtwo.weight
+      experience: &diamond-pearl.pokemon.mewtwo.experience 306
       types: *red-blue.pokemon.mewtwo.types
       egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
-      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      stats: &diamond-pearl.pokemon.mewtwo.stats
+        hp:
+          base_value: 106
+          effort_change: 0
+        attack:
+          base_value: 110
+          effort_change: 0
+        defense:
+          base_value: 90
+          effort_change: 0
+        speed:
+          base_value: 130
+          effort_change: 0
+        special-attack:
+          base_value: 154
+          effort_change: 3
+        special-defense:
+          base_value: 90
+          effort_change: 0
       abilities: *ruby-sapphire.pokemon.mewtwo.abilities
       flavor_text:
         diamond: |
@@ -451,7 +491,7 @@ diamond-pearl:
           most savage heart among Pokémon.
       forms:
         mewtwo:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
           default: *red-blue.pokemon.mewtwo.default
           battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
@@ -462,31 +502,31 @@ diamond-pearl:
             - diamond-pearl/back/shiny/mewtwo-default.png
             - diamond-pearl/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
 platinum:
-  name: *red-blue.name
-  position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *diamond-pearl.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
+      genus: *diamond-pearl.pokemon.mewtwo.genus
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.mewtwo.forms_switchable
       pal_park: *diamond-pearl.pokemon.mewtwo.pal_park
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.mewtwo.default
       height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      weight: *gold-silver.pokemon.mewtwo.weight
+      experience: *diamond-pearl.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
       egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
-      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      stats: *diamond-pearl.pokemon.mewtwo.stats
       abilities: *ruby-sapphire.pokemon.mewtwo.abilities
       flavor_text:
         platinum: |
@@ -495,7 +535,7 @@ platinum:
           most savage heart among Pokémon.
       forms:
         mewtwo:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
           default: *red-blue.pokemon.mewtwo.default
           battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
@@ -506,33 +546,33 @@ platinum:
             - platinum/back/shiny/mewtwo-default.png
             - platinum/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
 heartgold-soulsilver:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *red-blue.numbers.national
     updated-johto: 254
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
+      genus: *diamond-pearl.pokemon.mewtwo.genus
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
+      forms_switchable: *ruby-sapphire.pokemon.mewtwo.forms_switchable
       pal_park: *diamond-pearl.pokemon.mewtwo.pal_park
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.mewtwo.default
       height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      weight: *gold-silver.pokemon.mewtwo.weight
+      experience: *diamond-pearl.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
       egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
-      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      stats: *diamond-pearl.pokemon.mewtwo.stats
       abilities: *ruby-sapphire.pokemon.mewtwo.abilities
       flavor_text:
         heartgold: |
@@ -545,7 +585,7 @@ heartgold-soulsilver:
           unleash its full power in battle.
       forms:
         mewtwo:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
           default: *red-blue.pokemon.mewtwo.default
           battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
@@ -572,31 +612,31 @@ heartgold-soulsilver:
             - heartgold-soulsilver/back/shiny/mewtwo-default.png
             - heartgold-soulsilver/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
 black-white:
-  name: *red-blue.name
-  position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *diamond-pearl.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: &black-white.pokemon.mewtwo.color purple
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.mewtwo.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.mewtwo.default
       height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      weight: *gold-silver.pokemon.mewtwo.weight
+      experience: *diamond-pearl.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
       egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
-      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      stats: *diamond-pearl.pokemon.mewtwo.stats
       abilities: &black-white.pokemon.mewtwo.abilities
         pressure: *ruby-sapphire.pokemon.mewtwo.abilities.pressure
         unnerve:
@@ -613,7 +653,7 @@ black-white:
           most savage heart among Pokémon.
       forms:
         mewtwo:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
           default: *red-blue.pokemon.mewtwo.default
           battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
@@ -624,31 +664,31 @@ black-white:
             - black-white/back/shiny/mewtwo-default.png
             - black-white/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
 black-2-white-2:
-  name: *red-blue.name
-  position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *diamond-pearl.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
-      forms_switchable: *gold-silver.pokemon.mewtwo.forms_switchable
-      name: *red-blue.name
+      forms_switchable: *ruby-sapphire.pokemon.mewtwo.forms_switchable
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.mewtwo.default
       height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      weight: *gold-silver.pokemon.mewtwo.weight
+      experience: *diamond-pearl.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
       egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
-      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      stats: *diamond-pearl.pokemon.mewtwo.stats
       abilities: *black-white.pokemon.mewtwo.abilities
       flavor_text:
         black-2: |
@@ -659,33 +699,42 @@ black-2-white-2:
           A Pokémon created by recombining
           Mew’s genes. It’s said to have the
           most savage heart among Pokémon.
-      forms: *colosseum.pokemon.mewtwo.forms
+      forms:
+        mewtwo:
+          name: *diamond-pearl.name
+          form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
+          default: *red-blue.pokemon.mewtwo.default
+          battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
+          icon: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.icon
+          art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
+          cry: *red-blue.pokemon.mewtwo.forms.mewtwo.cry
 x-y:
-  name: *red-blue.name
-  position: *red-blue.position
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
   numbers:
     national: *red-blue.numbers.national
     kalos-mountain: 151
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: &x-y.pokemon.mewtwo.forms_switchable true
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.mewtwo.default
       height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      weight: *gold-silver.pokemon.mewtwo.weight
+      experience: *diamond-pearl.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
       egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
       mega: &x-y.pokemon.mewtwo.mega false
-      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      stats: *diamond-pearl.pokemon.mewtwo.stats
       abilities: *black-white.pokemon.mewtwo.abilities
       flavor_text: &x-y.pokemon.mewtwo.flavor_text
         x: |
@@ -697,7 +746,7 @@ x-y:
           among Pokémon.
       forms:
         mewtwo:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
           default: *red-blue.pokemon.mewtwo.default
           battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
@@ -706,15 +755,15 @@ x-y:
             - x-y/mewtwo-default.png
             - x-y/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: &x-y.pokemon.mewtwo.forms.mewtwo.cry mewtwo-default.webm
     mewtwo-mega-x:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
@@ -762,15 +811,15 @@ x-y:
             - x-y/shiny/mewtwo-mega-x.png
           art: &x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.art
             - mewtwo-mega-x.png
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: &x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.cry mewtwo-mega-x.webm
     mewtwo-mega-y:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
@@ -816,32 +865,32 @@ x-y:
             - x-y/shiny/mewtwo-mega-y.png
           art: &x-y.pokemon.mewtwo-mega-y.forms.mewtwo-mega-y.art
             - mewtwo-mega-y.png
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: &x-y.pokemon.mewtwo-mega-y.forms.mewtwo-mega-y.cry mewtwo-mega-y.webm
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
-  position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *diamond-pearl.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.mewtwo.default
       height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      weight: *gold-silver.pokemon.mewtwo.weight
+      experience: *diamond-pearl.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
       egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
       mega: *x-y.pokemon.mewtwo.mega
-      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      stats: *diamond-pearl.pokemon.mewtwo.stats
       abilities: *black-white.pokemon.mewtwo.abilities
       flavor_text: &omega-ruby-alpha-sapphire.pokemon.mewtwo.flavor_text
         omega-ruby: |
@@ -856,24 +905,24 @@ omega-ruby-alpha-sapphire:
           endow Mewtwo with a compassionate heart.
       forms:
         mewtwo:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
           default: *red-blue.pokemon.mewtwo.default
           battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
           icon: *x-y.pokemon.mewtwo.forms.mewtwo.icon
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *x-y.pokemon.mewtwo.forms.mewtwo.cry
           sprites:
             - omega-ruby-alpha-sapphire/mewtwo-default.png
             - omega-ruby-alpha-sapphire/shiny/mewtwo-default.png
     mewtwo-mega-x:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
@@ -896,18 +945,18 @@ omega-ruby-alpha-sapphire:
           battle_only: *x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.battle_only
           icon: *x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.icon
           art: *x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.cry
           sprites:
             - omega-ruby-alpha-sapphire/mewtwo-mega-x.png
             - omega-ruby-alpha-sapphire/shiny/mewtwo-mega-x.png
     mewtwo-mega-y:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
@@ -930,39 +979,39 @@ omega-ruby-alpha-sapphire:
           battle_only: *x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.battle_only
           icon: *x-y.pokemon.mewtwo-mega-y.forms.mewtwo-mega-y.icon
           art: *x-y.pokemon.mewtwo-mega-y.forms.mewtwo-mega-y.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *x-y.pokemon.mewtwo-mega-y.forms.mewtwo-mega-y.cry
           sprites:
             - omega-ruby-alpha-sapphire/mewtwo-mega-y.png
             - omega-ruby-alpha-sapphire/shiny/mewtwo-mega-y.png
 sun-moon:
-  name: *red-blue.name
-  position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *diamond-pearl.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.mewtwo.default
       height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      weight: *gold-silver.pokemon.mewtwo.weight
+      experience: *diamond-pearl.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
       egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
       mega: *x-y.pokemon.mewtwo.mega
-      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      stats: *diamond-pearl.pokemon.mewtwo.stats
       abilities: *black-white.pokemon.mewtwo.abilities
       forms:
         mewtwo:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
           default: *red-blue.pokemon.mewtwo.default
           battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
@@ -971,15 +1020,15 @@ sun-moon:
             - sun-moon/mewtwo-default.png
             - sun-moon/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *x-y.pokemon.mewtwo.forms.mewtwo.cry
     mewtwo-mega-x:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
@@ -1004,15 +1053,15 @@ sun-moon:
             - sun-moon/mewtwo-mega-x.png
             - sun-moon/shiny/mewtwo-mega-x.png
           art: *x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.cry
     mewtwo-mega-y:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
@@ -1037,36 +1086,36 @@ sun-moon:
             - sun-moon/mewtwo-mega-y.png
             - sun-moon/shiny/mewtwo-mega-y.png
           art: *x-y.pokemon.mewtwo-mega-y.forms.mewtwo-mega-y.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *x-y.pokemon.mewtwo-mega-y.forms.mewtwo-mega-y.cry
 ultra-sun-ultra-moon:
-  name: *red-blue.name
-  position: *red-blue.position
-  numbers: *ruby-sapphire.numbers
+  name: *diamond-pearl.name
+  position: *diamond-pearl.position
+  numbers: *diamond-pearl.numbers
   pokemon:
     mewtwo:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
-      name: *red-blue.name
+      name: *diamond-pearl.name
       default: *red-blue.pokemon.mewtwo.default
       height: *red-blue.pokemon.mewtwo.height
-      weight: *red-blue.pokemon.mewtwo.weight
-      experience: *ruby-sapphire.pokemon.mewtwo.experience
+      weight: *gold-silver.pokemon.mewtwo.weight
+      experience: *diamond-pearl.pokemon.mewtwo.experience
       types: *red-blue.pokemon.mewtwo.types
       egg_groups: *gold-silver.pokemon.mewtwo.egg_groups
       mega: *x-y.pokemon.mewtwo.mega
-      stats: *ruby-sapphire.pokemon.mewtwo.stats
+      stats: *diamond-pearl.pokemon.mewtwo.stats
       abilities: *black-white.pokemon.mewtwo.abilities
       forms:
         mewtwo:
-          name: *red-blue.name
+          name: *diamond-pearl.name
           form_name: *red-blue.pokemon.mewtwo.forms.mewtwo.form_name
           default: *red-blue.pokemon.mewtwo.default
           battle_only: *red-blue.pokemon.mewtwo.forms.mewtwo.battle_only
@@ -1075,15 +1124,15 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/mewtwo-default.png
             - ultra-sun-ultra-moon/shiny/mewtwo-default.png
           art: *red-blue.pokemon.mewtwo.forms.mewtwo.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *x-y.pokemon.mewtwo.forms.mewtwo.cry
     mewtwo-mega-x:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
@@ -1108,15 +1157,15 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/mewtwo-mega-x.png
             - ultra-sun-ultra-moon/shiny/mewtwo-mega-x.png
           art: *x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *x-y.pokemon.mewtwo-mega-x.forms.mewtwo-mega-x.cry
     mewtwo-mega-y:
-      genus: *red-blue.pokemon.mewtwo.genus
-      color: *ruby-sapphire.pokemon.mewtwo.color
+      genus: *diamond-pearl.pokemon.mewtwo.genus
+      color: *black-white.pokemon.mewtwo.color
       shape: *diamond-pearl.pokemon.mewtwo.shape
       capture_rate: *red-blue.pokemon.mewtwo.capture_rate
-      happiness: *gold-silver.pokemon.mewtwo.happiness
-      baby: *gold-silver.pokemon.mewtwo.baby
+      happiness: *ruby-sapphire.pokemon.mewtwo.happiness
+      baby: *diamond-pearl.pokemon.mewtwo.baby
       hatch_steps: *gold-silver.pokemon.mewtwo.hatch_steps
       growth_rate: *red-blue.pokemon.mewtwo.growth_rate
       forms_switchable: *x-y.pokemon.mewtwo.forms_switchable
@@ -1141,5 +1190,5 @@ ultra-sun-ultra-moon:
             - ultra-sun-ultra-moon/mewtwo-mega-y.png
             - ultra-sun-ultra-moon/shiny/mewtwo-mega-y.png
           art: *x-y.pokemon.mewtwo-mega-y.forms.mewtwo-mega-y.art
-          footprint: *red-blue.pokemon.mewtwo.forms.mewtwo.footprint
+          footprint: *ruby-sapphire.pokemon.mewtwo.forms.mewtwo.footprint
           cry: *x-y.pokemon.mewtwo-mega-y.forms.mewtwo-mega-y.cry

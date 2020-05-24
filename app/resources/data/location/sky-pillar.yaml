@@ -1,21 +1,23 @@
 ruby-sapphire: &ruby-sapphire
   region: &ruby-sapphire.region hoenn
   name: &ruby-sapphire.name 'Sky Pillar'
-  areas: &ruby-sapphire.areas
-    entrance:
+  areas:
+    entrance: &ruby-sapphire.areas.entrance
       name: Entrance
       default: true
-    1f:
+    outside:
+      name: Outside
+    1f: &ruby-sapphire.areas.1f
       name: 1F
-    2f:
+    2f: &ruby-sapphire.areas.2f
       name: 2F
-    3f:
+    3f: &ruby-sapphire.areas.3f
       name: 3F
-    4f:
+    4f: &ruby-sapphire.areas.4f
       name: 4F
-    5f:
+    5f: &ruby-sapphire.areas.5f
       name: 5F
-    peak:
+    peak: &ruby-sapphire.areas.peak
       name: Peak
   super: &ruby-sapphire.super hoenn-route-131
   map:
@@ -26,10 +28,16 @@ emerald: *ruby-sapphire
 omega-ruby-alpha-sapphire:
   region: *ruby-sapphire.region
   name: *ruby-sapphire.name
-  areas: *ruby-sapphire.areas
+  areas:
+    entrance: *ruby-sapphire.areas.entrance
+    1f: *ruby-sapphire.areas.1f
+    2f: *ruby-sapphire.areas.2f
+    3f: *ruby-sapphire.areas.3f
+    4f: *ruby-sapphire.areas.4f
+    5f: *ruby-sapphire.areas.5f
+    peak: *ruby-sapphire.areas.peak
   super: *ruby-sapphire.super
   map:
     map: *ruby-sapphire.map.map
     z: *ruby-sapphire.map.z
-    overlay: |
-      <rect x="227" y="128" width="11" height="11" />
+    overlay: '<rect x="227" y="128" width="11" height="11" />'

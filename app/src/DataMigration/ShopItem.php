@@ -110,10 +110,12 @@ class ShopItem extends AbstractDoctrineDataMigration implements DataMigrationInt
         static $position = 1;
         $sourceData['position'] = $position;
         $position++;
-        $properties = [
-            'position',
-            'buy',
-        ];
+        $properties = ['position'];
+        if (!$sourceData['buy']) {
+            unset($sourceData['buy']);
+        } else {
+            $properties[] = 'buy';
+        }
         $this->mergeProperties($sourceData, $destinationData, $properties);
 
         return $destinationData;

@@ -1,6 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name 'Skull Bash'
-  ailment_chance: &red-blue.ailment_chance 100
+  name: &red-blue.name 'SKULL BASH'
+  power: &red-blue.power 100
+  type: &red-blue.type normal
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 15
+  effect: 40
   flags: &red-blue.flags
     - contact
     - charge
@@ -9,99 +13,120 @@ red-blue: &red-blue
   categories: &red-blue.categories
     - damage
   hits: &red-blue.hits 1
-  turns: &red-blue.turns 1
-  type: &red-blue.type normal
-  power: &red-blue.power 100
-  pp: &red-blue.pp 15
-  accuracy: &red-blue.accuracy 100
+  turns: 2
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class physical
-  effect: &red-blue.effect 146
-  effect_chance: &red-blue.effect_chance 100
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
-  ailment_chance: *red-blue.ailment_chance
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: &gold-silver.effect 146
+  ailment_chance: &gold-silver.ailment_chance 100
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
+  turns: &gold-silver.turns 1
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
   flavor_text: |
     1st turn: Prepare
     2nd turn: Attack
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
-  ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
+  ailment_chance: *gold-silver.ailment_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  turns: *gold-silver.turns
   contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 4
+  contest_effect: 13
   flavor_text: |
     Tucks in the head, then
     attacks on the next turn.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
+colosseum:
   name: *red-blue.name
-  ailment_chance: *red-blue.ailment_chance
-  flags: *red-blue.flags
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Raises defense, then
+    attacks on the next turn.
+  flags: *ruby-sapphire.flags
+  ailment_chance: *gold-silver.ailment_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
-  type: *red-blue.type
+  turns: *gold-silver.turns
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  ailment_chance: *gold-silver.ailment_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
+firered-leafgreen:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
+  ailment_chance: *gold-silver.ailment_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *gold-silver.turns
   flavor_text: |
     The user raises its
     DEFENSE in the 1st
     turn, then attacks
     in the 2nd turn.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
-  ailment_chance: *red-blue.ailment_chance
+  name: &diamond-pearl.name 'Skull Bash'
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  damage_class: *xd.damage_class
+  effect: *gold-silver.effect
+  effect_chance: &diamond-pearl.effect_chance 100
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 6
   flavor_text: &diamond-pearl.flavor_text |
@@ -112,95 +137,95 @@ diamond-pearl: &diamond-pearl
     foe on the next turn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
-  ailment_chance: *red-blue.ailment_chance
+  name: *diamond-pearl.name
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  damage_class: *xd.damage_class
+  effect: *gold-silver.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
-  ailment_chance: *red-blue.ailment_chance
+  name: *diamond-pearl.name
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *red-blue.power
   pp: *red-blue.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  damage_class: *xd.damage_class
+  effect: *gold-silver.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &black-white.flavor_text |
     The user tucks in its head to raise its
     Defense in the first turn, then
     rams the target on the next turn.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
-  ailment_chance: *red-blue.ailment_chance
+  name: *diamond-pearl.name
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: &x-y.power 130
   pp: &x-y.pp 10
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  damage_class: *xd.damage_class
+  effect: *gold-silver.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
-  ailment_chance: *red-blue.ailment_chance
+  name: *diamond-pearl.name
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *x-y.power
   pp: *x-y.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  damage_class: *xd.damage_class
+  effect: *gold-silver.effect
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 4
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
-  ailment_chance: *red-blue.ailment_chance
+  name: *diamond-pearl.name
+  ailment_chance: *gold-silver.ailment_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
-  turns: *red-blue.turns
+  turns: *gold-silver.turns
   type: *red-blue.type
   power: *x-y.power
   pp: *x-y.pp
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  damage_class: *xd.damage_class
+  effect: *gold-silver.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user tucks in its head to raise its Defense
     stat on the first turn, then rams the target on the

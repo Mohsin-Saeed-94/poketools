@@ -1,85 +1,99 @@
 gold-silver: &gold-silver
-  name: &gold-silver.name 'Future Sight'
+  name: &gold-silver.name 'FUTURE SIGHT'
+  power: &gold-silver.power 80
+  type: &gold-silver.type psychic
+  accuracy: &gold-silver.accuracy 90
+  pp: &gold-silver.pp 15
+  effect: &gold-silver.effect 149
   categories: &gold-silver.categories
     - unique
   hits: &gold-silver.hits 1
   turns: &gold-silver.turns 1
-  type: &gold-silver.type psychic
-  power: &gold-silver.power 100
-  pp: &gold-silver.pp 10
-  accuracy: &gold-silver.accuracy 100
   priority: &gold-silver.priority 0
   target: &gold-silver.target selected-pokemon
-  damage_class: &gold-silver.damage_class special
-  effect: &gold-silver.effect 149
   flavor_text: |
     An attack that
     hits on 3rd turn.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
   contest_type: &ruby-sapphire.contest_type smart
-  contest_effect: &ruby-sapphire.contest_effect 24
-  flavor_text: |
+  contest_effect: 48
+  contest_use_after:
+    - psychic
+    - kinesis
+    - confusion
+    - calm-mind
+  flavor_text: &ruby-sapphire.flavor_text |
     Heightens inner power to
     strike 2 turns later.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  flavor_text: *ruby-sapphire.flavor_text
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
+xd:
+  name: *gold-silver.name
   power: *gold-silver.power
-  pp: *gold-silver.pp
+  type: *gold-silver.type
   accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  pp: *gold-silver.pp
   effect: *gold-silver.effect
-xd: *colosseum
+  target: *gold-silver.target
+  priority: *gold-silver.priority
+  damage_class: &xd.damage_class special
+  flavor_text: *ruby-sapphire.flavor_text
+  categories: *gold-silver.categories
+  hits: *gold-silver.hits
+  turns: *gold-silver.turns
 firered-leafgreen:
   name: *gold-silver.name
+  power: *gold-silver.power
+  type: *gold-silver.type
+  accuracy: *gold-silver.accuracy
+  pp: *gold-silver.pp
+  effect: *gold-silver.effect
+  target: *gold-silver.target
+  priority: *gold-silver.priority
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
-  type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
-  priority: *gold-silver.priority
-  target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
-  effect: *gold-silver.effect
   flavor_text: |
     Two turns after
     this move is used,
     the foe is attacked
     psychically.
-
 diamond-pearl: &diamond-pearl
-  name: *gold-silver.name
+  name: &diamond-pearl.name 'Future Sight'
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
+  power: &diamond-pearl.power 100
+  pp: &diamond-pearl.pp 10
+  accuracy: &diamond-pearl.accuracy 100
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
@@ -91,31 +105,31 @@ diamond-pearl: &diamond-pearl
     energy.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
+  power: *diamond-pearl.power
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
-  power: *gold-silver.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
+  power: *diamond-pearl.power
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: &black-white.flavor_text |
     Two turns after this move is used,
@@ -123,47 +137,47 @@ black-white: &black-white
     attacks the target.
 black-2-white-2: *black-white
 x-y:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: &x-y.power 120
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: *black-white.flavor_text
 omega-ruby-alpha-sapphire:
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: *x-y.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 24
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *gold-silver.name
+  name: *diamond-pearl.name
   categories: *gold-silver.categories
   hits: *gold-silver.hits
   turns: *gold-silver.turns
   type: *gold-silver.type
   power: *x-y.power
-  pp: *gold-silver.pp
-  accuracy: *gold-silver.accuracy
+  pp: *diamond-pearl.pp
+  accuracy: *diamond-pearl.accuracy
   priority: *gold-silver.priority
   target: *gold-silver.target
-  damage_class: *gold-silver.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   flavor_text: |
     Two turns after this move is used, a hunk of psychic

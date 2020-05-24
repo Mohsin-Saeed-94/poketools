@@ -1,9 +1,9 @@
 red-blue: &red-blue
   name: &red-blue.name 'X SPECIAL'
-  category: &red-blue.category stat-boosts
   pocket: &red-blue.pocket misc
   buy: &red-blue.buy 350
   sell: &red-blue.sell 175
+  category: &red-blue.category stat-boosts
   flags:
     - countable
     - consumable
@@ -15,33 +15,73 @@ red-blue: &red-blue
 yellow: *red-blue
 gold-silver:
   name: *red-blue.name
-  category: *red-blue.category
   pocket: *red-blue.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
+  flavor_text: |
+    Raises SPECIAL
+    stats. (1 BTL)
+  category: *red-blue.category
   flags: &gold-silver.flags
     - countable
     - consumable
     - usable-in-battle
     - holdable
   short_description: &gold-silver.short_description 'Raises [Special Attack]{mechanic:special-attack} by one stage in battle.  Raises happiness.'
-  description: |
+  description: &gold-silver.description |
     Used on a party Pokémon in battle
     :   [Raises]{mechanic:raise} the target's [Special Attack]{mechanic:special-attack} by one stage.  Increases happiness by 1/1/0.
-  flavor_text: |
-    Raises SPECIAL
-    stats. (1 BTL)
 crystal:
   name: *red-blue.name
-  category: *red-blue.category
   pocket: *red-blue.pocket
   buy: *red-blue.buy
   sell: *red-blue.sell
+  flavor_text: |
+    Raises SPECIAL
+    ATTACK. (1 BTL)
+  category: *red-blue.category
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: |
     Used on a party Pokémon in battle
     :   [Raises]{mechanic:raise} the target's [Special]{mechanic:special} by one stage.  Increases happiness by 1/1/0.
+ruby-sapphire: &ruby-sapphire
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  flags: *gold-silver.flags
+  icon: &ruby-sapphire.icon x-sp-atk.png
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: &ruby-sapphire.flavor_text |
+    Raises the stat
+    SP. ATK during one
+    battle.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+emerald: *ruby-sapphire
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *red-blue.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *red-blue.buy
+  sell: *red-blue.sell
   flavor_text: |
-    Raises SPECIAL
-    ATTACK. (1 BTL)
+    Raises the SP. ATK stat of
+    POKéMON in battle. Wears off if the
+     POKéMON is withdrawn.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+colosseum: &colosseum
+  name: *red-blue.name
+  pocket: *red-blue.pocket
+  buy: *red-blue.buy
+  sell: *red-blue.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *red-blue.category
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+xd: *colosseum

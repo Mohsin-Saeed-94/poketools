@@ -2,79 +2,52 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Effect of a move when used in a Contest.
  *
  * @ORM\Entity(repositoryClass="App\Repository\ContestEffectRepository")
  */
-class ContestEffect extends AbstractDexEntity implements EntityHasDescriptionInterface, EntityHasFlavorTextInterface
+class ContestEffect extends AbstractDexEntity implements EntityHasChildrenInterface
 {
 
-    use EntityHasDescriptionTrait;
-    use EntityHasFlavorTextTrait;
+    use EntityHasChildrenTrait;
 
     /**
-     * The base number of hearts the user of this move gets
+     * Unique Id
      *
      * @var int
      *
-     * @ORM\Column(type="integer")
-     *
-     * @Assert\GreaterThanOrEqual(0)
+     * @ORM\Id()
+     * @ORM\Column(type="integer", unique=true)
      */
-    protected $appeal;
+    protected $id;
 
     /**
-     * The base number of hearts the user’s opponent loses
+     * @var Collection|MoveEffectInVersionGroup[]
      *
-     * @var int
-     *
-     * @ORM\Column(type="integer")
-     *
-     * @Assert\GreaterThanOrEqual(0)
+     * @ORM\OneToMany(targetEntity="App\Entity\ContestEffectInVersionGroup", mappedBy="parent", cascade={"all"}, fetch="EAGER")
      */
-    protected $jam;
+    protected $children;
 
     /**
-     * @return int
+     * Ability constructor.
      */
-    public function getAppeal(): ?int
+    public function __construct()
     {
-        return $this->appeal;
+        $this->children = new ArrayCollection();
     }
 
     /**
-     * @param int $appeal
-     *
+     * @param int $id
      * @return self
      */
-    public function setAppeal(int $appeal): self
+    public function setId(int $id): self
     {
-        $this->appeal = $appeal;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getJam(): ?int
-    {
-        return $this->jam;
-    }
-
-    /**
-     * @param int $jam
-     *
-     * @return self
-     */
-    public function setJam(int $jam): self
-    {
-        $this->jam = $jam;
+        $this->id = $id;
 
         return $this;
     }

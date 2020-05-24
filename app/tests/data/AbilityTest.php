@@ -3,10 +3,10 @@
 namespace App\Tests\data;
 
 /**
- * Test Ability data
+ * Test Move Effect data
  *
  * @group data
- * @group location
+ * @group move_effect
  * @coversNothing
  */
 class AbilityTest extends DataTestCase

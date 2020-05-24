@@ -1,6 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name 'Rock Slide'
-  flinch_chance: &red-blue.flinch_chance 30
+  name: &red-blue.name 'ROCK SLIDE'
+  power: &red-blue.power 75
+  type: &red-blue.type rock
+  accuracy: &red-blue.accuracy 90
+  pp: &red-blue.pp 10
+  effect: 1
   flags: &red-blue.flags
     - protect
     - mirror
@@ -8,99 +12,107 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type rock
-  power: &red-blue.power 75
-  pp: &red-blue.pp 10
-  accuracy: &red-blue.accuracy 90
   priority: &red-blue.priority 0
   target: &red-blue.target all-opponents
-  damage_class: &red-blue.damage_class physical
-  effect: 1
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: &gold-silver.effect 32
+  effect_chance: &gold-silver.effect_chance 30
+  flinch_chance: &gold-silver.flinch_chance 30
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: &gold-silver.effect 32
-  effect_chance: &gold-silver.effect_chance 30
   flavor_text: |
     An attack that may
     cause flinching.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
   flags: *red-blue.flags
+  flinch_chance: *gold-silver.flinch_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
   contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 5
-  flavor_text: |
+  contest_effect: 14
+  contest_use_after:
+    - rock-throw
+  flavor_text: &ruby-sapphire.flavor_text |
     Large boulders are hurled.
     May cause flinching.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: *ruby-sapphire.flavor_text
+  effect_chance: *gold-silver.effect_chance
   flags: *red-blue.flags
+  flinch_chance: *gold-silver.flinch_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  pp: *red-blue.pp
   effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
   effect_chance: *gold-silver.effect_chance
-xd: *colosseum
+  flags: *red-blue.flags
+  flinch_chance: *gold-silver.flinch_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
 firered-leafgreen:
   name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *gold-silver.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  effect_chance: *gold-silver.effect_chance
   flags: *red-blue.flags
+  flinch_chance: *gold-silver.flinch_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *gold-silver.effect
-  effect_chance: *gold-silver.effect_chance
   flavor_text: |
     Large boulders are
     hurled at the foe.
     It may make the
     foe flinch.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: &diamond-pearl.name 'Rock Slide'
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -111,7 +123,7 @@ diamond-pearl: &diamond-pearl
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
@@ -124,8 +136,8 @@ diamond-pearl: &diamond-pearl
     target flinch.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -136,13 +148,13 @@ heartgold-soulsilver:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -153,7 +165,7 @@ black-white: &black-white
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |
@@ -162,8 +174,8 @@ black-white: &black-white
     the targets flinch.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -174,7 +186,7 @@ x-y:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: &x-y.flavor_text |
@@ -182,8 +194,8 @@ x-y:
     Pokémon to inflict damage. This may also make
     the opposing Pokémon flinch.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -194,15 +206,15 @@ omega-ruby-alpha-sapphire:
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 5
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -213,7 +225,7 @@ sun-moon: &sun-moon
   accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  damage_class: *xd.damage_class
   effect: *gold-silver.effect
   effect_chance: *gold-silver.effect_chance
   flavor_text: |

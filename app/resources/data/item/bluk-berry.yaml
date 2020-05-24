@@ -1,12 +1,69 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Bluk Berry'
+  name: &ruby-sapphire.name 'BLUK BERRY'
   category: &ruby-sapphire.category baking-only
   pocket: &ruby-sapphire.pocket berries
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon bluk-berry.png
   buy: &ruby-sapphire.buy 20
   sell: &ruby-sapphire.sell 10
+  flavor_text: POKéBLOCK
   short_description: &ruby-sapphire.short_description 'Used for creating [Pokéblocks]{mechanic:pokeblock}.'
   description: &ruby-sapphire.description 'No effect; only useful for creating [Pokéblocks]{mechanic:pokeblock}.'
-  berry: &ruby-sapphire.berry
+  berry:
+    number: 17
+    firmness: soft
+    size: 108
+    growth_time: 1
+    smoothness: 20
+    flavors:
+      spicy: 0
+      dry: 10
+      sweet: 10
+      bitter: 0
+      sour: 0
+    harvest: 3-6
+    flavor_text: |
+      The BERRY is blue on the outside, but
+      it blackens the mouth when eaten.
+emerald: *ruby-sapphire
+firered-leafgreen:
+  name: *ruby-sapphire.name
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  flavor_text: |
+    Can be ground up into a powder as
+    an ingredient for medicine.
+  short_description: 'Used for creating [Berry Powder]{mechanic:berry-crush}.'
+  description: 'No effect; only useful for [crushing]{mechanic:berry-crush} into [Berry Powder]{mechanic:berry-powder}.'
+  berry:
+    number: 17
+    firmness: soft
+    size: 108
+    growth_time: 1
+    smoothness: 20
+    flavors:
+      spicy: 0
+      dry: 10
+      sweet: 10
+      bitter: 0
+      sour: 0
+    harvest: 3-6
+diamond-pearl: &diamond-pearl
+  name: &diamond-pearl.name 'Bluk Berry'
+  category: *ruby-sapphire.category
+  pocket: *ruby-sapphire.pocket
+  buy: *ruby-sapphire.buy
+  sell: *ruby-sapphire.sell
+  fling_effect: damage
+  fling_power: 10
+  short_description: 'Used for creating [Poffins]{mechanic:poffin}.'
+  description: 'No effect; only useful for [Poffins]{mechanic:poffin}.'
+  berry: &diamond-pearl.berry
     firmness: soft
     natural_gift_type: fire
     natural_gift_power: 70
@@ -22,43 +79,13 @@ ruby-sapphire: &ruby-sapphire
       sour: 0
     harvest: 1-10
   flavor_text: |
-    POKéBLOCK ingredient.
-    Plant in loamy soil
-    to grow BLUK.
-  icon: &ruby-sapphire.icon bluk-berry.png
-emerald: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  short_description: 'Used for creating [Berry Powder]{mechanic:berry-crush}.'
-  description: 'No effect; only useful for [crushing]{mechanic:berry-crush} into [Berry Powder]{mechanic:berry-powder}.'
-  berry: *ruby-sapphire.berry
-  flavor_text: |
-    Can be ground up into a powder as
-    an ingredient for medicine.
-  icon: *ruby-sapphire.icon
-diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
-  category: *ruby-sapphire.category
-  pocket: *ruby-sapphire.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  fling_effect: damage
-  fling_power: 10
-  short_description: 'Used for creating [Poffins]{mechanic:poffin}.'
-  description: 'No effect; only useful for [Poffins]{mechanic:poffin}.'
-  berry: *ruby-sapphire.berry
-  flavor_text: |
     A Poffin ingredient.
     Bury it in soft soil to grow a
     Bluk Plant.
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -67,14 +94,14 @@ heartgold-soulsilver:
   fling_power: 10
   short_description: &heartgold-soulsilver.short_description 'No effect.  Sell to shops.'
   description: &heartgold-soulsilver.description 'No effect.  Sell to shops.'
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: |
     In the Sinnoh region, they like to make
     sweets known as Poffins with this Berry
     and feed them to their Pokémon.
   icon: *ruby-sapphire.icon
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -83,7 +110,7 @@ black-white: &black-white
   fling_power: 10
   short_description: 'No effect.  Sell to shops for $10 or to the Hungry Maid for $500.'
   description: 'No effect.  Sell to shops for $10, or the Hungry Maid in a trailer on []{location:unova-route-5} for $500.'
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: |
     A Berry which is very rare in the
     Unova region.
@@ -91,7 +118,7 @@ black-white: &black-white
   icon: *ruby-sapphire.icon
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -100,14 +127,14 @@ x-y:
   fling_power: 10
   short_description: *heartgold-soulsilver.short_description
   description: *heartgold-soulsilver.description
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: &x-y.flavor_text |
     A Berry to be used in cooking.
     This Berry is very rare and hard
     to obtain in the Unova region.
   icon: *ruby-sapphire.icon
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy
@@ -116,11 +143,11 @@ omega-ruby-alpha-sapphire:
   fling_power: 10
   short_description: *ruby-sapphire.short_description
   description: *ruby-sapphire.description
-  berry: *ruby-sapphire.berry
+  berry: *diamond-pearl.berry
   flavor_text: *x-y.flavor_text
   icon: *ruby-sapphire.icon
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *ruby-sapphire.category
   pocket: *ruby-sapphire.pocket
   buy: *ruby-sapphire.buy

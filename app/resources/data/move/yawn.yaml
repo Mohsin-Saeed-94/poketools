@@ -1,22 +1,22 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name Yawn
-  ailment: &ruby-sapphire.ailment yawn
+  name: &ruby-sapphire.name YAWN
+  type: &ruby-sapphire.type normal
+  accuracy: &ruby-sapphire.accuracy 100
+  pp: &ruby-sapphire.pp 10
+  effect: &ruby-sapphire.effect 188
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
     - protect
     - reflectable
     - mirror
+  ailment: &ruby-sapphire.ailment yawn
   categories: &ruby-sapphire.categories
     - ailment
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 2
-  type: &ruby-sapphire.type normal
-  pp: &ruby-sapphire.pp 10
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 188
   contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 18
+  contest_effect: 27
   contest_use_before: &ruby-sapphire.contest_use_before
     - rest
     - slack-off
@@ -24,41 +24,57 @@ ruby-sapphire: &ruby-sapphire
     Lulls the foe into yawning,
     then sleeping next turn.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *ruby-sapphire.name
-  ailment: *ruby-sapphire.ailment
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: &colosseum.flavor_text |
+    Makes the target yawn
+    and fall asleep next turn.
   flags: *ruby-sapphire.flags
+  ailment: *ruby-sapphire.ailment
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: physical
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  ailment: *ruby-sapphire.ailment
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
-  ailment: *ruby-sapphire.ailment
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
+  ailment: *ruby-sapphire.ailment
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     A huge yawn lulls
     the foe into falling
     asleep on the next
     turn.
-
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name Yawn
   ailment: *ruby-sapphire.ailment
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -80,7 +96,7 @@ diamond-pearl: &diamond-pearl
     turn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -94,7 +110,7 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -113,7 +129,7 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
@@ -126,11 +142,11 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 18
   contest_use_before: *ruby-sapphire.contest_use_before
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   ailment: *ruby-sapphire.ailment
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories

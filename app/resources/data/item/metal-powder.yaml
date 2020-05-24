@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'METAL POWDER'
+  name: &gold-silver.name 'METAL POWDER'
   pocket: &gold-silver.pocket misc
-  buy: 10
-  sell: 5
+  buy: &gold-silver.buy 10
+  sell: &gold-silver.sell 5
   flavor_text: |
     Raises DEFENSE of
     DITTO. (HOLD)
@@ -12,58 +12,76 @@ gold-silver: &gold-silver
   short_description: &gold-silver.short_description 'Raises [Ditto''s]{pokemon:ditto} [defense]{mechanic:defense} and [Special Defense]{mechanic:special-defense} by 50%.'
   description: 'Held by []{pokemon:ditto}: Raises holder''s [defense]{mechanic:defense} and [Special Defense]{mechanic:special-defense} by 50%.'
 crystal: *gold-silver
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Metal Powder'
+ruby-sapphire:
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
   flags: *gold-silver.flags
+  icon: &ruby-sapphire.icon metal-powder.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
+    A hold item that
+    raises DEFENSE.
   short_description: *gold-silver.short_description
   description: &ruby-sapphire.description |
     Held by []{pokemon:ditto}: Raises holder's [defense]{mechanic:defense} and [Special Defense]{mechanic:special-defense} by 50%.
-    
+
     The boost is lost after transforming.
-  flavor_text: |
-    A hold item that
-    raises DEFENSE.
-  icon: &ruby-sapphire.icon metal-powder.png
 emerald:
-  name: *ruby-sapphire.name
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *ruby-sapphire.description
-  flavor_text: |
-    A hold item that
-    raises DITTO’s
-    DEFENSE.
   icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &emerald.flavor_text |
+    A hold item that
+    raises DITTO's
+    DEFENSE.
+  short_description: *gold-silver.short_description
+  description: *ruby-sapphire.description
+colosseum:
+  name: *gold-silver.name
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *gold-silver.category
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *ruby-sapphire.description
+xd:
+  name: *gold-silver.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *emerald.flavor_text
+  category: *gold-silver.category
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *ruby-sapphire.description
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A fine, hard powder to be held by
     a DITTO.
-    It raises DITTO’s DEFENSE stat.
-  icon: *ruby-sapphire.icon
+    It raises DITTO's DEFENSE stat.
+  short_description: *gold-silver.short_description
+  description: *ruby-sapphire.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Metal Powder'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &diamond-pearl.buy 1000
+  sell: &diamond-pearl.sell 500
   fling_effect: damage
   fling_power: 10
   flags: *gold-silver.flags
@@ -77,11 +95,11 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 10
   flags: *gold-silver.flags
@@ -96,11 +114,11 @@ black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire: *black-white
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 10
   flags: *gold-silver.flags

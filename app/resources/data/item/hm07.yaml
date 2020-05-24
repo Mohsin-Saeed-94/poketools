@@ -4,28 +4,53 @@ gold-silver: &gold-silver
   short_description: &gold-silver.short_description 'Teaches []{move:waterfall} to a compatible Pokémon.'
   description: |
     Teaches []{move:waterfall} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "hm07"})}}
+  machine: &gold-silver.machine
+    type: HM
+    number: 7
+    move: waterfall
   category: &gold-silver.category hm
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  machine:
-    type: HM
-    number: 7
-    move: waterfall
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon hm-water.png
+  flavor_text: |
+    Attacks the foe
+    with enough power
+    to climb waterfalls.
   short_description: *gold-silver.short_description
-  description: |
+  description: &ruby-sapphire.description |
     Teaches []{move:waterfall} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "hm07"})}}
-  icon: hm-water.png
+  machine: *gold-silver.machine
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  flavor_text: |
+    A powerful charge
+    attack. It can also
+    be used to climb
+    a waterfall.
+  short_description: *gold-silver.short_description
+  description: *ruby-sapphire.description
+  machine: *gold-silver.machine
+diamond-pearl: &diamond-pearl
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  machine: *gold-silver.machine
+  short_description: *gold-silver.short_description
+  description: *ruby-sapphire.description
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl

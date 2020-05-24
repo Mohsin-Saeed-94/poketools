@@ -1,6 +1,10 @@
 red-blue: &red-blue
-  name: &red-blue.name Waterfall
-  flinch_chance: &red-blue.flinch_chance 20
+  name: &red-blue.name WATERFALL
+  power: &red-blue.power 80
+  type: &red-blue.type water
+  accuracy: &red-blue.accuracy 100
+  pp: &red-blue.pp 15
+  effect: &red-blue.effect 1
   flags: &red-blue.flags
     - contact
     - protect
@@ -9,85 +13,108 @@ red-blue: &red-blue
     - damage
   hits: &red-blue.hits 1
   turns: &red-blue.turns 1
-  type: &red-blue.type water
-  power: &red-blue.power 80
-  pp: &red-blue.pp 15
-  accuracy: &red-blue.accuracy 100
   priority: &red-blue.priority 0
   target: &red-blue.target selected-pokemon
-  damage_class: &red-blue.damage_class special
-  effect: &red-blue.effect 32
-  effect_chance: &red-blue.effect_chance 20
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  flinch_chance: &gold-silver.flinch_chance 20
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
   priority: *red-blue.priority
   target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
   flavor_text: |
     An aquatic charge
     attack.
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
-  flags: *red-blue.flags
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: &ruby-sapphire.flags
+    - contact
+    - protect
+    - mirror
+    - kings-rock
+  flinch_chance: *gold-silver.flinch_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
-  power: *red-blue.power
-  pp: *red-blue.pp
-  accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
   contest_type: &ruby-sapphire.contest_type tough
-  contest_effect: &ruby-sapphire.contest_effect 28
+  contest_effect: 31
+  contest_use_after:
+    - rain-dance
   flavor_text: |
     Charges the foe with speed
     to climb waterfalls.
 emerald: *ruby-sapphire
-colosseum: *red-blue
-xd: *red-blue
-firered-leafgreen:
+colosseum:
   name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
-  flags: *red-blue.flags
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flavor_text: &colosseum.flavor_text |
+    Charges the target with
+    speed to climb waterfalls.
+  flags: *ruby-sapphire.flags
+  flinch_chance: *gold-silver.flinch_chance
   categories: *red-blue.categories
   hits: *red-blue.hits
   turns: *red-blue.turns
-  type: *red-blue.type
+xd:
+  name: *red-blue.name
   power: *red-blue.power
-  pp: *red-blue.pp
+  type: *red-blue.type
   accuracy: *red-blue.accuracy
-  priority: *red-blue.priority
-  target: *red-blue.target
-  damage_class: *red-blue.damage_class
+  pp: *red-blue.pp
   effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  target: *red-blue.target
+  priority: *red-blue.priority
+  damage_class: special
+  flavor_text: *colosseum.flavor_text
+  flags: *ruby-sapphire.flags
+  flinch_chance: *gold-silver.flinch_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
+firered-leafgreen:
+  name: *red-blue.name
+  power: *red-blue.power
+  type: *red-blue.type
+  accuracy: *red-blue.accuracy
+  pp: *red-blue.pp
+  effect: *red-blue.effect
+  target: *red-blue.target
+  priority: *red-blue.priority
+  flags: *ruby-sapphire.flags
+  flinch_chance: *gold-silver.flinch_chance
+  categories: *red-blue.categories
+  hits: *red-blue.hits
+  turns: *red-blue.turns
   flavor_text: |
     A powerful charge
     attack. It can also
     be used to climb
     a waterfall.
-
 diamond-pearl: &diamond-pearl
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: &diamond-pearl.name Waterfall
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -99,8 +126,8 @@ diamond-pearl: &diamond-pearl
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: &diamond-pearl.damage_class physical
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: &diamond-pearl.effect 32
+  effect_chance: &diamond-pearl.effect_chance 20
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 5
   flavor_text: |
@@ -111,8 +138,8 @@ diamond-pearl: &diamond-pearl
     to climb a waterfall.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -124,18 +151,17 @@ heartgold-soulsilver:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user charges at
     the foe rapidly, and
     may make it flinch.
     It can also be used
     to climb a waterfall.
-
 black-white: &black-white
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -147,16 +173,16 @@ black-white: &black-white
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user charges at the target
     and may make it flinch.
     It can also be used to climb a waterfall.
 black-2-white-2: *black-white
 x-y:
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -168,14 +194,14 @@ x-y:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &x-y.flavor_text |
     The user charges at the target and may make it
     flinch. This can also be used to climb a waterfall.
 omega-ruby-alpha-sapphire:
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -187,14 +213,14 @@ omega-ruby-alpha-sapphire:
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
+  contest_effect: 28
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *red-blue.name
-  flinch_chance: *red-blue.flinch_chance
+  name: *diamond-pearl.name
+  flinch_chance: *gold-silver.flinch_chance
   flags: *red-blue.flags
   categories: *red-blue.categories
   hits: *red-blue.hits
@@ -206,8 +232,8 @@ sun-moon: &sun-moon
   priority: *red-blue.priority
   target: *red-blue.target
   damage_class: *diamond-pearl.damage_class
-  effect: *red-blue.effect
-  effect_chance: *red-blue.effect_chance
+  effect: *diamond-pearl.effect
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     The user charges at the target and may make
     it flinch.

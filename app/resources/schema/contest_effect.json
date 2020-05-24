@@ -3,9 +3,21 @@
   "$id": "https://poketools.gamestuff.info/data/schema/contest_effect.json",
   "title": "Contest Effect List",
   "description": "In versions with Pokemon Contests (but not Super Contests), every move has one of these effects.",
-  "type": "array",
-  "uniqueItems": true,
-  "items": {
+  "type": "object",
+  "propertyNames": {
+    "title": "Version Group identifier",
+    "allOf": [
+      {
+        "$ref": "types/identifier.json"
+      },
+      {
+        "type": "string",
+        "$filters": "versionGroupIdentifier"
+      }
+    ]
+  },
+  "minProperties": 1,
+  "additionalProperties": {
     "type": "object",
     "properties": {
       "id": {
@@ -29,13 +41,10 @@
         "$ref": "types/markdown.json"
       }
     },
-    "additionalProperties": false,
     "required": [
-      "id",
       "appeal",
       "jam",
-      "flavor_text",
-      "description"
+      "flavor_text"
     ]
   }
 }

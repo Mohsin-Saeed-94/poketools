@@ -1,8 +1,8 @@
 gold-silver: &gold-silver
-  name: 'THICK CLUB'
+  name: &gold-silver.name 'THICK CLUB'
   pocket: &gold-silver.pocket misc
-  buy: 500
-  sell: 250
+  buy: &gold-silver.buy 500
+  sell: &gold-silver.sell 250
   flavor_text: |
     A bone of some
     sort. Sell low.
@@ -12,56 +12,77 @@ gold-silver: &gold-silver
   short_description: &gold-silver.short_description 'Doubles []{pokemon:cubone} or [Marowak''s]{pokemon:marowak} [Attack]{mechanic:attack}.'
   description: &gold-silver.description 'Held by []{pokemon:cubone} or []{pokemon:marowak}: Doubles the holder''s [Attack]{mechanic:attack}.'
 crystal: *gold-silver
-ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Thick Club'
+ruby-sapphire:
+  name: *gold-silver.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 1000
-  sell: &ruby-sapphire.sell 500
   flags: *gold-silver.flags
-  short_description: *gold-silver.short_description
-  description: *gold-silver.description
-  flavor_text: |
+  icon: &ruby-sapphire.icon thick-club.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: &ruby-sapphire.flavor_text |
     A bone of some
     sort. It can be sold
     cheaply.
-  icon: &ruby-sapphire.icon thick-club.png
-emerald:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
-  pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
-  flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+emerald:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A hold item that 
     raises CUBONE or
-    MAROWAK’s ATTACK.
-  icon: *ruby-sapphire.icon
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen:
-  name: *ruby-sapphire.name
-  category: *gold-silver.category
+    MAROWAK's ATTACK.
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+colosseum:
+  name: *gold-silver.name
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: *ruby-sapphire.flavor_text
+  category: *gold-silver.category
   flags: *gold-silver.flags
   short_description: *gold-silver.short_description
   description: *gold-silver.description
+xd:
+  name: *gold-silver.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    A hold item that 
+    raises MAROWAK or
+    CUBONE's ATTACK.
+  category: *gold-silver.category
+  flags: *gold-silver.flags
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
+firered-leafgreen:
+  name: *gold-silver.name
+  category: *gold-silver.category
+  pocket: *gold-silver.pocket
+  flags: *gold-silver.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
   flavor_text: |
     A hard bone of some sort to be
     held by a CUBONE or MAROWAK.
     It raises the ATTACK stat.
-  icon: *ruby-sapphire.icon
+  short_description: *gold-silver.short_description
+  description: *gold-silver.description
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Thick Club'
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: &diamond-pearl.buy 1000
+  sell: &diamond-pearl.sell 500
   fling_effect: damage
   fling_power: 90
   flags: *gold-silver.flags
@@ -75,11 +96,11 @@ diamond-pearl: &diamond-pearl
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 90
   flags: *gold-silver.flags
@@ -94,11 +115,11 @@ black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire: *black-white
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   category: *gold-silver.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   fling_effect: damage
   fling_power: 90
   flags: *gold-silver.flags

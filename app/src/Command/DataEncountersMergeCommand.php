@@ -78,7 +78,7 @@ final class DataEncountersMergeCommand extends Command
         $removed = $this->mergeEncounters();
 
         $this->io->text(['Writing new data to '.$path, 'This will take a while...']);
-        $success = $this->writeData(str_replace('.csv', '.new.csv', $path));
+        $success = $this->writeData($path);
 
         if ($success) {
             $this->io->success(sprintf('Removed %u encounters (%u%%).', $removed, $removed / $count * 100));

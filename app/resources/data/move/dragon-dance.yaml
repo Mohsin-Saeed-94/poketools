@@ -1,8 +1,12 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Dragon Dance'
+  name: &ruby-sapphire.name 'DRAGON DANCE'
+  type: &ruby-sapphire.type dragon
+  pp: &ruby-sapphire.pp 20
+  effect: &ruby-sapphire.effect 213
+  target: &ruby-sapphire.target user
+  priority: &ruby-sapphire.priority 0
   flags: &ruby-sapphire.flags
     - snatch
-    - dance
   categories: &ruby-sapphire.categories
     - net-good-stats
   hits: &ruby-sapphire.hits 1
@@ -10,58 +14,68 @@ ruby-sapphire: &ruby-sapphire
   stat_changes: &ruby-sapphire.stat_changes
     attack: 1
     speed: 1
-  type: &ruby-sapphire.type dragon
-  pp: &ruby-sapphire.pp 20
-  priority: &ruby-sapphire.priority 0
-  target: &ruby-sapphire.target user
-  damage_class: &ruby-sapphire.damage_class special
-  effect: &ruby-sapphire.effect 213
   contest_type: &ruby-sapphire.contest_type cool
-  contest_effect: &ruby-sapphire.contest_effect 32
-  contest_use_before: &ruby-sapphire.contest_use_before
+  contest_effect: 39
+  contest_use_before:
     - dragon-rage
-    - dragon-breath
+    - dragonbreath
     - dragon-claw
-  flavor_text: |
+  contest_use_after:
+    - dragon-rage
+    - dragonbreath
+  flavor_text: &ruby-sapphire.flavor_text |
     A mystical dance that ups
     ATTACK and SPEED.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
+xd:
+  name: *ruby-sapphire.name
   type: *ruby-sapphire.type
   pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
   effect: *ruby-sapphire.effect
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: special
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
+  stat_changes: *ruby-sapphire.stat_changes
 firered-leafgreen:
   name: *ruby-sapphire.name
+  type: *ruby-sapphire.type
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
   stat_changes: *ruby-sapphire.stat_changes
-  type: *ruby-sapphire.type
-  pp: *ruby-sapphire.pp
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
   flavor_text: |
     A mystic, powerful
     dance that boosts
-    the user’s ATTACK
+    the user's ATTACK
     and SPEED stats.
-
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: &diamond-pearl.name 'Dragon Dance'
+  flags: &diamond-pearl.flags
+    - snatch
+    - dance
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -82,8 +96,8 @@ diamond-pearl: &diamond-pearl
     Speed stats.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -96,8 +110,8 @@ heartgold-soulsilver:
   effect: *ruby-sapphire.effect
   flavor_text: *diamond-pearl.flavor_text
 black-white: &black-white
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -114,8 +128,8 @@ black-white: &black-white
     Speed stats.
 black-2-white-2: *black-white
 x-y:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -131,8 +145,8 @@ x-y:
     powerful dance that raises its Attack and
     Speed stats.
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -144,12 +158,15 @@ omega-ruby-alpha-sapphire:
   damage_class: *diamond-pearl.damage_class
   effect: *ruby-sapphire.effect
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_effect: 32
+  contest_use_before:
+    - dragon-rage
+    - dragon-breath
+    - dragon-claw
   flavor_text: *x-y.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
-  flags: *ruby-sapphire.flags
+  name: *diamond-pearl.name
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns

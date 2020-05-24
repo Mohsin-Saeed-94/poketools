@@ -1,78 +1,89 @@
 ruby-sapphire: &ruby-sapphire
-  name: &ruby-sapphire.name 'Fake Out'
-  flinch_chance: &ruby-sapphire.flinch_chance 100
+  name: &ruby-sapphire.name 'FAKE OUT'
+  power: &ruby-sapphire.power 40
+  type: &ruby-sapphire.type normal
+  accuracy: &ruby-sapphire.accuracy 100
+  pp: &ruby-sapphire.pp 10
+  effect: &ruby-sapphire.effect 159
+  target: &ruby-sapphire.target selected-pokemon
+  priority: &ruby-sapphire.priority 1
   flags: &ruby-sapphire.flags
-    - contact
     - protect
     - mirror
+  flinch_chance: &ruby-sapphire.flinch_chance 100
   categories: &ruby-sapphire.categories
     - damage
   hits: &ruby-sapphire.hits 1
   turns: &ruby-sapphire.turns 1
-  type: &ruby-sapphire.type normal
-  power: &ruby-sapphire.power 40
-  pp: &ruby-sapphire.pp 10
-  accuracy: &ruby-sapphire.accuracy 100
-  priority: &ruby-sapphire.priority 3
-  target: &ruby-sapphire.target selected-pokemon
-  damage_class: &ruby-sapphire.damage_class physical
-  effect: &ruby-sapphire.effect 159
-  effect_chance: &ruby-sapphire.effect_chance 100
   contest_type: &ruby-sapphire.contest_type cute
-  contest_effect: &ruby-sapphire.contest_effect 23
-  contest_use_before: &ruby-sapphire.contest_use_before
+  contest_effect: 20
+  contest_use_before:
     - seismic-toss
-    - feint-attack
+    - faint-attack
     - vital-throw
     - knock-off
     - arm-thrust
-  flavor_text: |
+  flavor_text: &ruby-sapphire.flavor_text |
     A 1st-turn, 1st-strike move
     that causes flinching.
 emerald: *ruby-sapphire
-colosseum: &colosseum
+colosseum:
   name: *ruby-sapphire.name
-  flinch_chance: *ruby-sapphire.flinch_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  flavor_text: *ruby-sapphire.flavor_text
   flags: *ruby-sapphire.flags
+  flinch_chance: *ruby-sapphire.flinch_chance
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
+xd:
+  name: *ruby-sapphire.name
   power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
+  type: *ruby-sapphire.type
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  pp: *ruby-sapphire.pp
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
-xd: *colosseum
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
+  damage_class: &xd.damage_class physical
+  flavor_text: *ruby-sapphire.flavor_text
+  flags: *ruby-sapphire.flags
+  flinch_chance: *ruby-sapphire.flinch_chance
+  categories: *ruby-sapphire.categories
+  hits: *ruby-sapphire.hits
+  turns: *ruby-sapphire.turns
 firered-leafgreen:
   name: *ruby-sapphire.name
-  flinch_chance: *ruby-sapphire.flinch_chance
+  power: *ruby-sapphire.power
+  type: *ruby-sapphire.type
+  accuracy: *ruby-sapphire.accuracy
+  pp: *ruby-sapphire.pp
+  effect: *ruby-sapphire.effect
+  target: *ruby-sapphire.target
+  priority: *ruby-sapphire.priority
   flags: *ruby-sapphire.flags
+  flinch_chance: *ruby-sapphire.flinch_chance
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
-  type: *ruby-sapphire.type
-  power: *ruby-sapphire.power
-  pp: *ruby-sapphire.pp
-  accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
-  target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
-  effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
   flavor_text: |
     An attack that hits
     first and causes
     flinching. Usable
     only on 1st turn.
-
 diamond-pearl: &diamond-pearl
-  name: *ruby-sapphire.name
+  name: &diamond-pearl.name 'Fake Out'
   flinch_chance: *ruby-sapphire.flinch_chance
-  flags: *ruby-sapphire.flags
+  flags: &diamond-pearl.flags
+    - contact
+    - protect
+    - mirror
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -80,11 +91,11 @@ diamond-pearl: &diamond-pearl
   power: *ruby-sapphire.power
   pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
+  priority: &diamond-pearl.priority 3
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: &diamond-pearl.effect_chance 100
   contest_type: *ruby-sapphire.contest_type
   super_contest_effect: 17
   flavor_text: |
@@ -95,9 +106,9 @@ diamond-pearl: &diamond-pearl
     on the first turn.
 platinum: *diamond-pearl
 heartgold-soulsilver:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   flinch_chance: *ruby-sapphire.flinch_chance
-  flags: *ruby-sapphire.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -105,22 +116,21 @@ heartgold-soulsilver:
   power: *ruby-sapphire.power
   pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
+  priority: *diamond-pearl.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     An attack that hits
     first and makes the
     target flinch. It only
     works the first turn
     the user is in battle.
-
 black-white: &black-white
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   flinch_chance: *ruby-sapphire.flinch_chance
-  flags: *ruby-sapphire.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -128,11 +138,11 @@ black-white: &black-white
   power: *ruby-sapphire.power
   pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
+  priority: *diamond-pearl.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: &black-white.flavor_text |
     An attack that hits first and makes the
     target flinch. It only works the first turn
@@ -140,9 +150,9 @@ black-white: &black-white
 black-2-white-2: *black-white
 x-y: *black-white
 omega-ruby-alpha-sapphire:
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   flinch_chance: *ruby-sapphire.flinch_chance
-  flags: *ruby-sapphire.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -150,19 +160,24 @@ omega-ruby-alpha-sapphire:
   power: *ruby-sapphire.power
   pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
+  priority: *diamond-pearl.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   contest_type: *ruby-sapphire.contest_type
-  contest_effect: *ruby-sapphire.contest_effect
-  contest_use_before: *ruby-sapphire.contest_use_before
+  contest_effect: 23
+  contest_use_before:
+    - seismic-toss
+    - feint-attack
+    - vital-throw
+    - knock-off
+    - arm-thrust
   flavor_text: *black-white.flavor_text
 sun-moon: &sun-moon
-  name: *ruby-sapphire.name
+  name: *diamond-pearl.name
   flinch_chance: *ruby-sapphire.flinch_chance
-  flags: *ruby-sapphire.flags
+  flags: *diamond-pearl.flags
   categories: *ruby-sapphire.categories
   hits: *ruby-sapphire.hits
   turns: *ruby-sapphire.turns
@@ -170,11 +185,11 @@ sun-moon: &sun-moon
   power: *ruby-sapphire.power
   pp: *ruby-sapphire.pp
   accuracy: *ruby-sapphire.accuracy
-  priority: *ruby-sapphire.priority
+  priority: *diamond-pearl.priority
   target: *ruby-sapphire.target
-  damage_class: *ruby-sapphire.damage_class
+  damage_class: *xd.damage_class
   effect: *ruby-sapphire.effect
-  effect_chance: *ruby-sapphire.effect_chance
+  effect_chance: *diamond-pearl.effect_chance
   flavor_text: |
     This attack hits first and makes the target flinch.
     It only works the first turn the user is in battle.

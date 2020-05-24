@@ -101,10 +101,9 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
      *
      * Before Generation 4, this is taken from the move's type.
      *
-     * @var MoveDamageClass
+     * @var MoveDamageClass|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\MoveDamageClass", fetch="EAGER")
-     * @Assert\NotBlank()
      */
     protected $damageClass;
 
@@ -142,9 +141,9 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     /**
      * The move’s Contest effect, if applicable in this version group.
      *
-     * @var ContestEffect|null
+     * @var ContestEffectInVersionGroup|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ContestEffect", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="ContestEffectInVersionGroup", fetch="EAGER")
      */
     protected $contestEffect;
 
@@ -471,7 +470,7 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     }
 
     /**
-     * @return MoveDamageClass
+     * @return MoveDamageClass|null
      */
     public function getDamageClass(): ?MoveDamageClass
     {
@@ -479,11 +478,11 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     }
 
     /**
-     * @param MoveDamageClass $damageClass
+     * @param MoveDamageClass|null $damageClass
      *
      * @return self
      */
-    public function setDamageClass(MoveDamageClass $damageClass): self
+    public function setDamageClass(?MoveDamageClass $damageClass): self
     {
         $this->damageClass = $damageClass;
 
@@ -551,19 +550,19 @@ class MoveInVersionGroup extends AbstractDexEntity implements EntityHasParentInt
     }
 
     /**
-     * @return ContestEffect|null
+     * @return ContestEffectInVersionGroup|null
      */
-    public function getContestEffect(): ?ContestEffect
+    public function getContestEffect(): ?ContestEffectInVersionGroup
     {
         return $this->contestEffect;
     }
 
     /**
-     * @param ContestEffect|null $contestEffect
+     * @param ContestEffectInVersionGroup|null $contestEffect
      *
      * @return self
      */
-    public function setContestEffect(?ContestEffect $contestEffect): self
+    public function setContestEffect(?ContestEffectInVersionGroup $contestEffect): self
     {
         $this->contestEffect = $contestEffect;
 

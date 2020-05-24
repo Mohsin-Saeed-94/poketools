@@ -6,59 +6,109 @@ red-blue: &red-blue
   short_description: 'Teaches []{move:mega-punch} to a compatible Pokémon.'
   description: |
     Teaches []{move:mega-punch} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm01"})}}
+  machine:
+    type: &red-blue.machine.type TM
+    number: &red-blue.machine.number 1
+    move: mega-punch
   category: &red-blue.category tm
 yellow: *red-blue
 gold-silver: &gold-silver
   name: *red-blue.name
   pocket: &gold-silver.pocket machines
-  buy: 3000
-  sell: 1500
-  short_description: 'Teaches []{move:dynamic-punch} to a compatible Pokémon.'
+  buy: &gold-silver.buy 3000
+  sell: &gold-silver.sell 1500
+  short_description: 'Teaches []{move:dynamicpunch} to a compatible Pokémon.'
   description: |
-    Teaches []{move:dynamic-punch} to a compatible Pokémon.
-    
+    Teaches []{move:dynamicpunch} to a compatible Pokémon.
+
     {{App\ Controller\ItemController::tmPokemon({"itemSlug": "tm01"})}}
+  machine:
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: dynamicpunch
   category: *red-blue.category
 crystal: *gold-silver
 ruby-sapphire: &ruby-sapphire
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: &ruby-sapphire.buy 10000
-  sell: &ruby-sapphire.sell 5000
-  machine:
-    type: &ruby-sapphire.machine.type TM
-    number: &ruby-sapphire.machine.number 1
-    move: focus-punch
-  short_description: 'Teaches []{move:focus-punch} to a compatible Pokémon.'
-  description: |
+  flags: &ruby-sapphire.flags
+    {  }
+  icon: &ruby-sapphire.icon tm-fighting.png
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    Powerful, but makes
+    the user flinch if
+    hit by the foe.
+  short_description: &ruby-sapphire.short_description 'Teaches []{move:focus-punch} to a compatible Pokémon.'
+  description: &ruby-sapphire.description |
     Teaches []{move:focus-punch} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm01"})}}
-  icon: tm-fighting.png
+  machine: &ruby-sapphire.machine
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
+    move: focus-punch
 emerald: *ruby-sapphire
-colosseum: *ruby-sapphire
-xd: *ruby-sapphire
-firered-leafgreen: *ruby-sapphire
-diamond-pearl: *ruby-sapphire
-platinum: *ruby-sapphire
-heartgold-soulsilver: *ruby-sapphire
+colosseum: &colosseum
+  name: *red-blue.name
+  pocket: *gold-silver.pocket
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    Powerful, but makes
+    the user flinch if
+    hit by the target.
+  category: *red-blue.category
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+xd: *colosseum
+firered-leafgreen:
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  flags: *ruby-sapphire.flags
+  icon: *ruby-sapphire.icon
+  buy: *gold-silver.buy
+  sell: *gold-silver.sell
+  flavor_text: |
+    An attack that is
+    executed last.
+    The user flinches
+    if hit beforehand.
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  machine: *ruby-sapphire.machine
+diamond-pearl: &diamond-pearl
+  name: *red-blue.name
+  category: *red-blue.category
+  pocket: *gold-silver.pocket
+  buy: &diamond-pearl.buy 10000
+  sell: &diamond-pearl.sell 5000
+  machine: *ruby-sapphire.machine
+  short_description: *ruby-sapphire.short_description
+  description: *ruby-sapphire.description
+  icon: *ruby-sapphire.icon
+platinum: *diamond-pearl
+heartgold-soulsilver: *diamond-pearl
 black-white: &black-white
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   machine:
-    type: *ruby-sapphire.machine.type
-    number: *ruby-sapphire.machine.number
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: hone-claws
   short_description: 'Teaches []{move:hone-claws} to a compatible Pokémon.'
   description: |
     Teaches []{move:hone-claws} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm01"})}}
   icon: tm-dark.png
 black-2-white-2: *black-white
@@ -68,16 +118,16 @@ sun-moon: &sun-moon
   name: *red-blue.name
   category: *red-blue.category
   pocket: *gold-silver.pocket
-  buy: *ruby-sapphire.buy
-  sell: *ruby-sapphire.sell
+  buy: *diamond-pearl.buy
+  sell: *diamond-pearl.sell
   machine:
-    type: *ruby-sapphire.machine.type
-    number: *ruby-sapphire.machine.number
+    type: *red-blue.machine.type
+    number: *red-blue.machine.number
     move: work-up
   short_description: 'Teaches []{move:work-up} to a compatible Pokémon.'
   description: |
     Teaches []{move:work-up} to a compatible Pokémon.
-    
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm01"})}}
   icon: tm-normal.png
 ultra-sun-ultra-moon: *sun-moon
