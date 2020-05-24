@@ -6,7 +6,7 @@ red-blue: &red-blue
   short_description: &red-blue.short_description 'Teaches []{move:solarbeam} to a compatible Pokémon.'
   description: &red-blue.description |
     Teaches []{move:solarbeam} to a compatible Pokémon.
-    
+
     {{App\Controller\ ItemController::tmPokemon({"itemSlug": "tm22"})}}
   machine: &red-blue.machine
     type: &red-blue.machine.type TM
@@ -37,10 +37,10 @@ ruby-sapphire: &ruby-sapphire
     Absorbs sunlight in
     the 1st turn, then
     attacks next turn.
-  short_description: &ruby-sapphire.short_description 'Teaches []{move:solar-beam} to a compatible Pokémon.'
+  short_description: *red-blue.short_description
   description: &ruby-sapphire.description |
-    Teaches []{move:solar-beam} to a compatible Pokémon.
-    
+    Teaches []{move:solarbeam} to a compatible Pokémon.
+
     {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm22"})}}
   machine: *red-blue.machine
 emerald: *ruby-sapphire
@@ -51,7 +51,7 @@ colosseum: &colosseum
   sell: *gold-silver.sell
   flavor_text: *ruby-sapphire.flavor_text
   category: *red-blue.category
-  short_description: *ruby-sapphire.short_description
+  short_description: *red-blue.short_description
   description: *ruby-sapphire.description
   machine: *red-blue.machine
 xd: *colosseum
@@ -68,7 +68,7 @@ firered-leafgreen:
     blasts the foe with
     absorbed energy in
     the 2nd turn.
-  short_description: *ruby-sapphire.short_description
+  short_description: *red-blue.short_description
   description: *ruby-sapphire.description
   machine: *red-blue.machine
 diamond-pearl: &diamond-pearl
@@ -81,8 +81,11 @@ diamond-pearl: &diamond-pearl
     type: *red-blue.machine.type
     number: *red-blue.machine.number
     move: solar-beam
-  short_description: *ruby-sapphire.short_description
-  description: *ruby-sapphire.description
+  short_description: 'Teaches []{move:solar-beam} to a compatible Pokémon.'
+  description: |
+    Teaches []{move:solar-beam} to a compatible Pokémon.
+
+    {{App\Controller\ItemController::tmPokemon({"itemSlug": "tm22"})}}
   icon: *ruby-sapphire.icon
 platinum: *diamond-pearl
 heartgold-soulsilver: *diamond-pearl
