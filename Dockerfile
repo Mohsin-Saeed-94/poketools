@@ -50,7 +50,7 @@ RUN composer dump-autoload --classmap-authoritative
 #######################################
 # DATA DOCS
 #######################################
-FROM php:7.3-cli-alpine as docs
+FROM php:7.4-cli-alpine as docs
 
 COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer
 
@@ -72,7 +72,7 @@ RUN vendor/bin/daux generate --destination=/var/www/public
 #######################################
 # ASSETS
 #######################################
-FROM node:10-alpine as webpack
+FROM node:12-alpine as webpack
 
 ARG APP_ENV=prod
 

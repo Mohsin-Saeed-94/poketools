@@ -6,7 +6,7 @@ namespace Todaymade\Daux\Extension\Markdown\DescriptionList;
 
 use League\CommonMark\Block\Element\ListData;
 use League\CommonMark\Block\Element\Paragraph;
-use League\CommonMark\Block\Parser\AbstractBlockParser;
+use League\CommonMark\Block\Parser\BlockParserInterface;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 use League\CommonMark\Util\RegexHelper;
@@ -14,7 +14,7 @@ use League\CommonMark\Util\RegexHelper;
 /**
  * Class DescriptionListParser
  */
-class DescriptionListParser extends AbstractBlockParser
+class DescriptionListParser implements BlockParserInterface
 {
     /**
      * @param ContextInterface $context
@@ -22,7 +22,7 @@ class DescriptionListParser extends AbstractBlockParser
      *
      * @return bool
      */
-    public function parse(ContextInterface $context, Cursor $cursor)
+    public function parse(ContextInterface $context, Cursor $cursor): bool
     {
         if ($cursor->isIndented() && !($context->getContainer() instanceof DescriptionListBlock)) {
             return false;
@@ -82,7 +82,7 @@ class DescriptionListParser extends AbstractBlockParser
      *
      * @return int
      */
-    private function calculateListMarkerPadding(Cursor $cursor, $markerLength)
+    private function calculateListMarkerPadding(Cursor $cursor, $markerLength): int
     {
         $start = $cursor->saveState();
         $spacesStartCol = $cursor->getColumn();

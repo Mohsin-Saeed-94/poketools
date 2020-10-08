@@ -6,7 +6,7 @@ use App\Entity\Pokemon;
 use App\Entity\PokemonForm;
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method PokemonForm|null find($id, $lockMode = null, $lockVersion = null)

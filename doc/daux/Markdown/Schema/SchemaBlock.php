@@ -22,7 +22,6 @@ class SchemaBlock extends AbstractBlock
      */
     public function __construct(string $schemaPath)
     {
-        parent::__construct();
         $this->schemaPath = $schemaPath;
     }
 
@@ -33,7 +32,7 @@ class SchemaBlock extends AbstractBlock
      *
      * @return bool
      */
-    public function canContain(AbstractBlock $block)
+    public function canContain(AbstractBlock $block): bool
     {
         return false;
     }
@@ -43,7 +42,7 @@ class SchemaBlock extends AbstractBlock
      *
      * @return bool
      */
-    public function acceptsLines()
+    public function acceptsLines(): bool
     {
         return false;
     }
@@ -53,7 +52,7 @@ class SchemaBlock extends AbstractBlock
      *
      * @return bool
      */
-    public function isCode()
+    public function isCode(): bool
     {
         return true;
     }
@@ -63,7 +62,7 @@ class SchemaBlock extends AbstractBlock
      *
      * @return bool
      */
-    public function matchesNextLine(Cursor $cursor)
+    public function matchesNextLine(Cursor $cursor): bool
     {
         return false;
     }

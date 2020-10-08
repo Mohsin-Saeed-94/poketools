@@ -17,7 +17,7 @@ class DescriptionListBlock extends ListBlock
     /**
      * @inheritDoc
      */
-    public function canContain(AbstractBlock $block)
+    public function canContain(AbstractBlock $block): bool
     {
         return $block instanceof DescriptionListItem;
     }

@@ -6,7 +6,7 @@ namespace App\Handler;
 
 use App\Entity\EntityGroupedInterface;
 use App\Entity\EntityHasParentInterface;
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\Persistence\Mapping\ClassMetadata;
 use Gedmo\Sluggable\Handler\RelativeSlugHandler;
 use Gedmo\Sluggable\Mapping\Event\SluggableAdapter;
 

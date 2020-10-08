@@ -4,7 +4,7 @@
 namespace Todaymade\Daux\Extension\Markdown\Schema;
 
 
-use League\CommonMark\Block\Parser\AbstractBlockParser;
+use League\CommonMark\Block\Parser\BlockParserInterface;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 
@@ -13,7 +13,7 @@ use League\CommonMark\Cursor;
  *
  * Match {{ schema:$path }}
  */
-class SchemaParser extends AbstractBlockParser
+class SchemaParser implements BlockParserInterface
 {
     private const RE_SCHEMA = '`{{\s*schema:(\S+)\s*}}`';
 
@@ -38,7 +38,7 @@ class SchemaParser extends AbstractBlockParser
      *
      * @return bool
      */
-    public function parse(ContextInterface $context, Cursor $cursor)
+    public function parse(ContextInterface $context, Cursor $cursor): bool
     {
         $previousState = $cursor->saveState();
         $line = $cursor->match(self::RE_SCHEMA);

@@ -6,7 +6,7 @@ use App\Entity\Type;
 use App\Entity\TypeChart;
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method TypeChart|null find($id, $lockMode = null, $lockVersion = null)

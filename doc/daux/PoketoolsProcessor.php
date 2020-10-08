@@ -271,7 +271,9 @@ class PoketoolsProcessor extends BaseProcessor
                         $parent = $parent->getParent();
                     } else {
                         if (!$parent->offsetExists($pathPart)) {
-                            user_error('Cannot generate toctree as path "%s" does not exist.', $match['path']);
+                            user_error(
+                                sprintf('Cannot generate toctree as path "%s" does not exist.', $match['path'])
+                            );
                             continue 2;
                         }
                         $parent = $parent->offsetGet($pathPart);

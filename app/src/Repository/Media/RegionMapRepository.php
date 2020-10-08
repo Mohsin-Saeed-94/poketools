@@ -4,7 +4,7 @@ namespace App\Repository\Media;
 
 use App\Entity\Media\RegionMap;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method RegionMap|null find($id, $lockMode = null, $lockVersion = null)

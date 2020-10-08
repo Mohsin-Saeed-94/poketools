@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\NatureBattleStylePreference;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method NatureBattleStylePreference|null find($id, $lockMode = null, $lockVersion = null)

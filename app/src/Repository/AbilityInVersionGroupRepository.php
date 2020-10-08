@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\AbilityInVersionGroup;
 use App\Entity\Version;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method AbilityInVersionGroup|null find($id, $lockMode = null, $lockVersion = null)
