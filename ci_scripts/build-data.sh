@@ -10,7 +10,7 @@ docker pull "${IMAGE_BASENAME}/db:${CI_COMMIT_BRANCH}"
 pull_failed=$?
 set -e
 
-apk add --no-cache gcc libc-dev libffi-dev make openssl-dev py-pip python2-dev
+apk add --no-cache gcc libc-dev libffi-dev make openssl-dev py-pip python3-dev
 pip install docker-compose
 if [[ ${CI_COMMIT_MESSAGE} =~ ^.*\[data\] || ${pull_failed} -gt 0 ]]; then
   docker pull "${IMAGE_BASENAME}/app:${CI_COMMIT_BRANCH}"
