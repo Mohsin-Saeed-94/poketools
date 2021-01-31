@@ -2,6 +2,7 @@
 
 namespace App\DataMigration\Veekun;
 
+use App\DataMigration\Helpers;
 use Doctrine\DBAL\Driver\Statement;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
@@ -220,9 +221,9 @@ SQL
         unset($sourceData['id'], $sourceData['identifier']);
         $sourceData['categories'] = explode('+', $sourceData['category']);
         unset($sourceData['category']);
-        $sourceData['hits'] = $this->buildRangeString($sourceData['hits_min'], $sourceData['hits_max']);
+        $sourceData['hits'] = Helpers::buildRangeString($sourceData['hits_min'], $sourceData['hits_max']);
         unset($sourceData['hits_min'], $sourceData['hits_max']);
-        $sourceData['turns'] = $this->buildRangeString($sourceData['turns_min'], $sourceData['turns_max']);
+        $sourceData['turns'] = Helpers::buildRangeString($sourceData['turns_min'], $sourceData['turns_max']);
         unset($sourceData['turns_min'], $sourceData['turns_max']);
         if (isset($sourceData['flags'])) {
             $sourceData['flags'] = explode(',', $sourceData['flags']);
@@ -233,7 +234,7 @@ SQL
             $sourceData['stat_changes'][$statChangeSourceData['stat']] = (int)$statChangeSourceData['change'];
         }
 
-        $sourceData = $this->removeNulls($sourceData);
+        $sourceData = Helpers::removeNulls($sourceData);
         $intFields = [
             'drain',
             'recoil',
@@ -243,7 +244,7 @@ SQL
             'flinch_chance',
             'stat_change_chance',
         ];
-        $sourceData = $this->convertToInts($sourceData, $intFields);
+        $sourceData = Helpers::convertToInts($sourceData, $intFields);
 
         $this->versionGroupData->execute(['move' => $moveId]);
         foreach ($this->versionGroupData as $versionGroupSourceData) {
@@ -263,7 +264,7 @@ SQL
                 );
             }
 
-            $versionGroupSourceData = $this->removeNulls($versionGroupSourceData);
+            $versionGroupSourceData = Helpers::removeNulls($versionGroupSourceData);
             $intFields = [
                 'power',
                 'pp',
@@ -274,7 +275,7 @@ SQL
                 'contest_effect',
                 'super_contest_effect',
             ];
-            $versionGroupSourceData = $this->convertToInts($versionGroupSourceData, $intFields);
+            $versionGroupSourceData = Helpers::convertToInts($versionGroupSourceData, $intFields);
             $destinationData[$versionGroup] = array_merge(
                 $sourceData,
                 $versionGroupSourceData,

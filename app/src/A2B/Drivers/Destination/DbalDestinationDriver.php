@@ -157,7 +157,7 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
      * @throws \Doctrine\DBAL\ConnectionException
      * @throws \Exception
      */
-    public function write($data)
+    public function write($data): ?array
     {
         try {
             $tableDataset = [];
@@ -301,14 +301,6 @@ SQL;
         }
 
         return false;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function readMultiple(array $destIdSet)
-    {
-        return parent::readMultiple($destIdSet);
     }
 
     /**

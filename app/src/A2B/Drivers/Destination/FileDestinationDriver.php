@@ -185,7 +185,7 @@ class FileDestinationDriver extends AbstractDestinationDriver
     /**
      * {@inheritdoc}
      */
-    public function readMultiple(array $destIdSet)
+    public function readMultiple(array $destIdSet): array
     {
         return $this->findEntities($destIdSet);
     }
@@ -195,7 +195,7 @@ class FileDestinationDriver extends AbstractDestinationDriver
      *
      * The migration is responsible for writing data!
      */
-    public function write($data)
+    public function write($data): ?array
     {
         if ($data instanceof \SplFileInfo) {
             $data = ['id' => $data->getFilename()];

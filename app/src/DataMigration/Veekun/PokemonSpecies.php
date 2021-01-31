@@ -3,6 +3,7 @@
 namespace App\DataMigration\Veekun;
 
 use App\DataMigration\AbstractDoctrineDataMigration;
+use App\DataMigration\Helpers;
 use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\FetchMode;
 use DragoonBoots\A2B\Annotations\DataMigration;
@@ -643,10 +644,10 @@ SQL
             'hatch_steps',
             'position',
         ];
-        $sourceData = $this->convertToInts($sourceData, $intFields);
+        $sourceData = Helpers::convertToInts($sourceData, $intFields);
         $sourceData['baby'] = (bool)$sourceData['baby'];
         $sourceData['forms_switchable'] = (bool)$sourceData['forms_switchable'];
-        $sourceData = $this->removeNulls($sourceData);
+        $sourceData = Helpers::removeNulls($sourceData);
 
         // Clean up pal park data
         if (isset($sourceData['pal_park_area'], $sourceData['pal_park_rate'], $sourceData['pal_park_score'])) {
@@ -673,7 +674,7 @@ SQL
             array_column($numbersData, 'pokedex'),
             array_column($numbersData, 'number')
         );
-        $pokedexNumbersData = $this->convertToInts($pokedexNumbersData, array_keys($pokedexNumbersData));
+        $pokedexNumbersData = Helpers::convertToInts($pokedexNumbersData, array_keys($pokedexNumbersData));
 
         // Map evolution data by trigger
         $this->evolutionData->execute(['species' => $speciesId]);
@@ -689,8 +690,8 @@ SQL
         foreach ($evolutionData as $evolutionDatum) {
             $trigger = $evolutionDatum['trigger'];
             unset($evolutionDatum['trigger']);
-            $evolutionCondition = $this->removeNulls($evolutionDatum);
-            $evolutionCondition = $this->convertToInts($evolutionCondition, $intFields);
+            $evolutionCondition = Helpers::removeNulls($evolutionDatum);
+            $evolutionCondition = Helpers::convertToInts($evolutionCondition, $intFields);
             if (isset($evolutionCondition['console_inverted'])) {
                 $evolutionCondition['console_inverted'] = (bool)$evolutionCondition['console_inverted'];
             }
@@ -750,12 +751,12 @@ SQL
                         ) as $pokeathlonSourceData) {
                             $pokeathlonStat = $pokeathlonSourceData['pokeathlon_stat'];
                             unset($pokeathlonSourceData['pokeathlon_stat']);
-                            $pokeathlonSourceData['range'] = $this->buildRangeString(
+                            $pokeathlonSourceData['range'] = Helpers::buildRangeString(
                                 $pokeathlonSourceData['min'],
                                 $pokeathlonSourceData['max']
                             );
                             unset($pokeathlonSourceData['min'], $pokeathlonSourceData['max']);
-                            $pokeathlonSourceData = $this->convertToInts($pokeathlonSourceData, ['base_value']);
+                            $pokeathlonSourceData = Helpers::convertToInts($pokeathlonSourceData, ['base_value']);
 
                             $versionGroupData['pokeathlon_stats'][$pokeathlonStat] = $pokeathlonSourceData;
                         }
@@ -854,7 +855,7 @@ SQL
                 'weight',
                 'experience',
             ];
-            $pokemonSourceData = $this->convertToInts($pokemonSourceData, $intFields);
+            $pokemonSourceData = Helpers::convertToInts($pokemonSourceData, $intFields);
             $pokemonSourceData['mega'] = (bool)$pokemonSourceData['mega'];
             $pokemonSourceData['default'] = (bool)$pokemonSourceData['default'];
 
@@ -873,7 +874,7 @@ SQL
                 unset($abilitiesSourceData['identifier']);
                 $abilityVersionGroups = explode(',', $abilitiesSourceData['version_groups']);
                 unset($abilitiesSourceData['version_groups']);
-                $abilitiesSourceData = $this->convertToInts($abilitiesSourceData, ['position']);
+                $abilitiesSourceData = Helpers::convertToInts($abilitiesSourceData, ['position']);
                 $abilitiesSourceData['hidden'] = (bool)$abilitiesSourceData['hidden'];
                 foreach ($abilityVersionGroups as $abilityVersionGroup) {
                     if (!isset($versionGroupAbilityData[$abilityVersionGroup])) {
@@ -899,7 +900,7 @@ SQL
             foreach ($this->statsData->fetchAll(FetchMode::ASSOCIATIVE) as $statData) {
                 $stat = $statData['stat'];
                 unset($statData['stat']);
-                $statData = $this->convertToInts(
+                $statData = Helpers::convertToInts(
                     $statData,
                     [
                         'base_value',

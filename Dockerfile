@@ -1,19 +1,26 @@
 #######################################
 # BASE IMAGE
 #######################################
-FROM php:7.4-fpm-alpine as base
+FROM php:8.0-apache as base
 
 WORKDIR /var/www
 
-# Install dependencies
-RUN set -xe \
-    && apk add --no-cache bash icu-dev libgd libjpeg libpng-dev libzip-dev postgresql-dev \
-    && docker-php-ext-install gd intl opcache pcntl pdo_pgsql zip
+# Production PHP.ini
+RUN cp ${PHP_INI_DIR}/php.ini-production ${PHP_INI_DIR}/php.ini
 
+# Install needed extensions
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions gd intl opcache pcntl pdo_pgsql zip
+
+# PHP configuration
 COPY docker/app/entrypoint.sh /usr/local/bin/php-entrypoint
-
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY docker/app/custom.ini $PHP_INI_DIR/conf.d/
+
+# Web server configuration
+COPY docker/app/app.apache2.conf ${APACHE_CONFDIR}/sites-available/app.conf
+RUN a2ensite app; \
+    a2dissite 000-default; \
+    a2enmod rewrite
 
 CMD ["/usr/local/bin/php-entrypoint"]
 
@@ -22,22 +29,21 @@ CMD ["/usr/local/bin/php-entrypoint"]
 #######################################
 FROM base as build
 
-COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
 RUN rm -rf /var/www && mkdir /var/www
 WORKDIR /var/www
 
 COPY app/composer.* /var/www/
+# Wacky dest path allows same composer.json path both locally and inside the container.
+COPY a2b/ /var/a2b
 
 ARG APP_ENV=prod
 
-# Some packages require git to install
-RUN set -xe \
-    && apk add --no-cache git
-
+# Composer symlinking causes issues when these are copied later
 RUN set -xe \
     && if [ "$APP_ENV" = "prod" ]; then export ARGS="--no-dev"; fi \
-    && composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction $ARGS
+    && COMPOSER_MIRROR_PATH_REPOS=1 composer install --prefer-dist --no-scripts --no-progress --no-interaction $ARGS
 
 # Remove assets from app image except those required for app function
 COPY app/. /var/www
@@ -46,28 +52,6 @@ RUN set -xe \
 COPY app/assets/static/map /var/www/assets/static/map
 
 RUN composer dump-autoload --classmap-authoritative
-
-#######################################
-# DATA DOCS
-#######################################
-FROM php:7.4-cli-alpine as docs
-
-COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer
-
-RUN rm -rf /var/www && mkdir /var/www
-WORKDIR /var/www
-
-COPY doc /var/www/doc
-COPY app/resources/schema /var/www/app/resources/schema
-WORKDIR /var/www/doc
-
-# Some packages require git to install
-RUN set -xe \
-    && apk add --no-cache git
-
-RUN composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction --no-dev
-
-RUN vendor/bin/daux generate --destination=/var/www/public
 
 #######################################
 # ASSETS
@@ -85,10 +69,6 @@ COPY app/public app/yarn.lock app/package.json app/webpack.config.js app/postcss
 COPY app/assets /var/www/assets
 # Some assets come from PHP vendors
 COPY --from=build /var/www/vendor/ /var/www/vendor/
-
-# Some packages require git to install
-RUN set -xe \
-    && apk add --no-cache git
 
 RUN set -xe \
     && yarn install --non-interactive  --frozen-lockfile $ARGS
@@ -120,47 +100,26 @@ COPY --from=build /var/www/ /var/www/
 COPY --from=webpack /var/www/public/build/manifest.json /var/www/public/build/manifest.json
 COPY --from=webpack /var/www/public/build/entrypoints.json /var/www/public/build/entrypoints.json
 
-RUN mkdir -p var/cache \
-    && chown -R www-data:www-data var
-
-RUN IDE=none bin/console assets:install
-RUN chown -R www-data:www-data var
+RUN mkdir -p var/cache; \
+    chown -R www-data:www-data var
 
 #######################################
-# WEB SERVER
-#######################################
-FROM nginx:stable-alpine as web
-
-ARG NGINX_BACKEND_HOST=app
-ENV NGINX_BACKEND_HOST $NGINX_BACKEND_HOST
-
-WORKDIR /var/www/public
-
-COPY docker/web/entrypoint.sh /usr/local/bin/nginx-entrypoint
-COPY docker/web/default.conf /etc/nginx/conf.d/default.conf.tmpl
-
-COPY --from=webpack /var/www/public/build /var/www/public/build
-COPY --from=app /var/www/public/bundles /var/www/public/bundles
-COPY --from=docs /var/www/public /var/www/public/doc
-COPY app/resources/schema /var/www/public/data/schema
-
-CMD ["/usr/local/bin/nginx-entrypoint"]
-
-#######################################
-# APP DEVELOPMENT SUPPORT
+# DEVELOPMENT SUPPORT
 #######################################
 FROM app as app_dev
 
+RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+# Install some helper utilities for server debugging
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends bash less nano psmisc
+
 COPY --from=build /usr/local/bin/composer /usr/local/bin/composer
 
-RUN set -xe \
-    && apk add --no-cache $PHPIZE_DEPS \
-    && pecl install xdebug-2.9.5 \
-    && docker-php-ext-enable xdebug
-
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
-
-#######################################
-# WEB DEVELOPMENT SUPPORT
-#######################################
-FROM web as web_dev
+# Install xdebug
+RUN install-php-extensions xdebug
+RUN { \
+		echo 'xdebug.mode=debug'; \
+		echo 'xdebug.discover_client_host=1'; \
+	} >> ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini

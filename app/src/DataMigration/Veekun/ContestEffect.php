@@ -2,6 +2,7 @@
 
 namespace App\DataMigration\Veekun;
 
+use App\DataMigration\Helpers;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\AbstractDataMigration;
@@ -67,7 +68,7 @@ SQL
             'appeal',
             'jam',
         ];
-        $sourceData = $this->convertToInts($sourceData, $intFields);
+        $sourceData = Helpers::convertToInts($sourceData, $intFields);
 
         # Use the same info for all version groups with classic contests.
         $contestVersionGroups = ['ruby-sapphire', 'emerald', 'omega-ruby-alpha-sapphire'];

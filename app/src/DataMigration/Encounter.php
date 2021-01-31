@@ -59,13 +59,13 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
             'id',
             'chance',
         ];
-        $sourceData = $this->convertToInts($sourceData, $intFields);
+        $sourceData = Helpers::convertToInts($sourceData, $intFields);
         foreach ($sourceData as &$sourceDatum) {
             if ($sourceDatum === '') {
                 $sourceDatum = null;
             }
         }
-        $sourceData = $this->removeNulls($sourceData);
+        $sourceData = Helpers::removeNulls($sourceData);
         $encounterId = $sourceData['id'];
         $destinationData['encounter']['id'] = $sourceData['id'];
         $destinationData['encounter']['chance'] = $sourceData['chance'];

@@ -2,6 +2,7 @@
 
 namespace App\DataMigration\Veekun;
 
+use App\DataMigration\Helpers;
 use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\FetchMode;
 use DragoonBoots\A2B\Annotations\DataMigration;
@@ -345,12 +346,12 @@ SQL
                 array_column($sourceData['berry']['flavors'], 'flavor'),
                 array_column($sourceData['berry']['flavors'], 'level')
             );
-            $sourceData['berry']['flavors'] = $this->convertToInts(
+            $sourceData['berry']['flavors'] = Helpers::convertToInts(
                 $sourceData['berry']['flavors'],
                 array_keys($sourceData['berry']['flavors'])
             );
 
-            $sourceData['berry']['harvest'] = $this->buildRangeString(
+            $sourceData['berry']['harvest'] = Helpers::buildRangeString(
                 $sourceData['berry']['harvest_min'],
                 $sourceData['berry']['harvest_max']
             );
@@ -363,7 +364,7 @@ SQL
                 'water',
                 'smoothness',
             ];
-            $sourceData['berry'] = $this->convertToInts($sourceData['berry'], $berryIntFields);
+            $sourceData['berry'] = Helpers::convertToInts($sourceData['berry'], $berryIntFields);
         }
         unset($sourceData['is_berry']);
 
@@ -424,8 +425,8 @@ SQL
             'sell',
             'fling_power',
         ];
-        $sourceData = $this->removeNulls($sourceData);
-        $sourceData = $this->convertToInts($sourceData, $intFields);
+        $sourceData = Helpers::removeNulls($sourceData);
+        $sourceData = Helpers::convertToInts($sourceData, $intFields);
 
         foreach ($versionGroups as $versionGroup) {
             // Because Veekun does not have complete version group info for
