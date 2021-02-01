@@ -1,11 +1,11 @@
 <?php
 
-namespace App\DataMigration;
+namespace App\DataMigration\Helpers;
 
 /**
  * Generic reusable helper functions for use in Data Migrations
  */
-class Helpers
+final class Normalizer
 {
     /**
      * Remove nulls from the passed data

@@ -3,6 +3,7 @@
 namespace App\DataMigration;
 
 use App\A2B\Drivers\Destination\DbalDestinationDriver;
+use App\DataMigration\Helpers\Normalizer;
 use App\Entity\Embeddable\Range;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
@@ -59,13 +60,13 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
             'id',
             'chance',
         ];
-        $sourceData = Helpers::convertToInts($sourceData, $intFields);
+        $sourceData = Normalizer::convertToInts($sourceData, $intFields);
         foreach ($sourceData as &$sourceDatum) {
             if ($sourceDatum === '') {
                 $sourceDatum = null;
             }
         }
-        $sourceData = Helpers::removeNulls($sourceData);
+        $sourceData = Normalizer::removeNulls($sourceData);
         $encounterId = $sourceData['id'];
         $destinationData['encounter']['id'] = $sourceData['id'];
         $destinationData['encounter']['chance'] = $sourceData['chance'];
