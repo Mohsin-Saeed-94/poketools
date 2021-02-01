@@ -5,6 +5,8 @@
 
 namespace App\Tests\data;
 
+use Generator;
+
 /**
  * Test Location data
  *
@@ -35,7 +37,11 @@ class LocationTest extends DataTestCase
 
                 $versionGroup = $this->getVersionGroup($versionGroupSlug);
                 foreach ($versionGroup->getVersions() as $version) {
-                    $converter = $this->getMarkdownConverter($version->getSlug(), [$identifier, $versionGroupSlug], $badDescriptions);
+                    $converter = $this->getMarkdownConverter(
+                        $version->getSlug(),
+                        [$identifier, $versionGroupSlug],
+                        $badDescriptions
+                    );
                     self::assertNotEmpty($converter->convertToHtml($versionData['description']));
                 }
             }
@@ -45,9 +51,9 @@ class LocationTest extends DataTestCase
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
-    public function getLocationsData(): \Generator
+    public function getLocationsData(): Generator
     {
         $finder = $this->getFinderForDirectory('location');
         $finder->name('*.yaml');

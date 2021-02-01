@@ -3,9 +3,9 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\DataFinderTrait;
-use App\Tests\data\YamlParserTrait;
 use App\Tests\dataschema\Filter\CsvIdentifierExists;
+use App\Tests\dataschema\Filter\YamlIdentifierExists;
+use App\Tests\Traits\YamlParserTrait;
 
 /**
  * Test Version Group
@@ -16,32 +16,22 @@ use App\Tests\dataschema\Filter\CsvIdentifierExists;
  */
 class VersionGroupTest extends DataSchemaTestCase
 {
-    use DataFinderTrait;
+
     use YamlParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $data): void
     {
-        $allData = $this->getData();
-        foreach ($allData as $identifier => $yaml) {
-            $data = $this->parseYaml($yaml);
-            $this->assertDataSchema('version_group', $data, $identifier);
-        }
+        $this->assertDataSchema('version_group', $data);
     }
 
-    /**
-     * @return \Generator
-     */
-    public function getData(): \Generator
+    public function dataProvider()
     {
-        $finder = $this->getFinderForDirectory('version_group');
-        $finder->name('*.yaml');
-
-        foreach ($finder as $fileInfo) {
-            yield $fileInfo->getFilename() => $fileInfo->getContents();
-        }
+        return $this->buildYamlDataProvider('version_group');
     }
 
     /**
@@ -52,10 +42,13 @@ class VersionGroupTest extends DataSchemaTestCase
         return [
             'integer' => [
                 'generationId' => new CsvIdentifierExists('generation', 'id'),
+                'typeChartId' => new YamlIdentifierExists('type_chart'),
             ],
             'string' => [
                 'featureIdentifier' => new CsvIdentifierExists('feature'),
+                'pokedexIdentifier' => new YamlIdentifierExists('pokedex'),
             ],
         ];
     }
+
 }

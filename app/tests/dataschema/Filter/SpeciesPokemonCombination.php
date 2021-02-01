@@ -4,8 +4,7 @@
 namespace App\Tests\dataschema\Filter;
 
 
-use App\Tests\data\YamlParserTrait;
-use Opis\JsonSchema\IFilter;
+use App\Tests\Traits\YamlParserTrait;
 
 /**
  * Ensure that a species/pokemon string contains valid references
@@ -13,8 +12,9 @@ use Opis\JsonSchema\IFilter;
  * args:
  * - versionGroup
  */
-class SpeciesPokemonCombination implements IFilter
+class SpeciesPokemonCombination extends SpeciesHasPokemon
 {
+
     use YamlParserTrait;
 
     /**
@@ -22,13 +22,12 @@ class SpeciesPokemonCombination implements IFilter
      */
     private $yamlIdentifierExists;
 
-    private $species = [];
-
     /**
      * SpeciesPokemonCombination constructor.
      */
     public function __construct()
     {
+        parent::__construct();
         $this->yamlIdentifierExists = new YamlIdentifierExists('pokemon');
     }
 
@@ -42,23 +41,24 @@ class SpeciesPokemonCombination implements IFilter
     {
         $versionGroup = $args['versionGroup'];
 
-        [$species, $pokemon] = explode('/', $data, 2);
+        $parts = explode('/', $data);
+        if (count($parts) != 2) {
+            return false;
+        }
+        [$species, $pokemon] = $parts;
 
         // Ensure the species exists
         if (!$this->yamlIdentifierExists->validate($species, [])) {
             return false;
         }
 
-        if (!isset($this->species[$species])) {
-            $entity = $this->loadEntityYaml(sprintf('pokemon/%s', $species));
-            foreach ($entity as $versionGroupSlug => $versionGroupData) {
-                $this->species[$species][$versionGroupSlug] = array_fill_keys(
-                    array_keys($versionGroupData['pokemon']),
-                    0
-                );
-            }
-        }
-
-        return isset($this->species[$species][$versionGroup][$pokemon]);
+        return parent::validate(
+            $pokemon,
+            [
+                'species' => $species,
+                'versionGroup' => $versionGroup,
+            ]
+        );
     }
+
 }

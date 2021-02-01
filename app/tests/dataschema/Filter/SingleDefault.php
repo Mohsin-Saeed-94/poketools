@@ -11,6 +11,7 @@ use Opis\JsonSchema\IFilter;
  */
 class SingleDefault implements IFilter
 {
+
     /**
      * @var bool
      */
@@ -39,8 +40,12 @@ class SingleDefault implements IFilter
             if (isset($datum->default) && $datum->default === true) {
                 $defaults++;
             }
+            if ($defaults > 1) {
+                break;
+            }
         }
 
         return $this->allowNoDefaults ? $defaults <= 1 : $defaults === 1;
     }
+
 }

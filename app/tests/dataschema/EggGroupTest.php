@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Egg Group
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class EggGroupTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('egg_group');
-        $this->assertDataSchema('egg_group', $allData);
+        $this->assertDataSchema('egg_group', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('egg_group', 'identifier');
+    }
+
 }

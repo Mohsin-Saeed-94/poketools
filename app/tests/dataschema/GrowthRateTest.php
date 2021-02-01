@@ -3,9 +3,8 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\DataFinderTrait;
-use App\Tests\data\YamlParserTrait;
 use App\Tests\dataschema\Filter\ExpressionFilter;
+use App\Tests\Traits\YamlParserTrait;
 
 /**
  * Test Growth Rate
@@ -16,32 +15,22 @@ use App\Tests\dataschema\Filter\ExpressionFilter;
  */
 class GrowthRateTest extends DataSchemaTestCase
 {
-    use DataFinderTrait;
+
     use YamlParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $data): void
     {
-        $allData = $this->getData();
-        foreach ($allData as $identifier => $yaml) {
-            $data = $this->parseYaml($yaml);
-            $this->assertDataSchema('growth_rate', $data, $identifier);
-        }
+        $this->assertDataSchema('growth_rate', $data);
     }
 
-    /**
-     * @return \Generator
-     */
-    public function getData(): \Generator
+    public function dataProvider()
     {
-        $finder = $this->getFinderForDirectory('growth_rate');
-        $finder->name('*.yaml');
-
-        foreach ($finder as $fileInfo) {
-            yield $fileInfo->getFilename() => $fileInfo->getContents();
-        }
+        return $this->buildYamlDataProvider('growth_rate');
     }
 
     /**
@@ -55,4 +44,5 @@ class GrowthRateTest extends DataSchemaTestCase
             ],
         ];
     }
+
 }

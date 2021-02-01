@@ -1,30 +1,27 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://poketools.gamestuff.info/data/schema/pokemon_color.json",
-  "title": "Pokemon color list",
-  "description": "Pokemon color list, used for flavor in some version Pokedexes",
-  "type": "array",
-  "uniqueItems": true,
-  "items": {
-    "type": "object",
-    "properties": {
-      "identifier": {
-        "$ref": "types/identifier.json"
-      },
-      "name": {
-        "$ref": "types/name.json"
-      },
-      "css_color": {
-        "title": "CSS Color",
-        "description": "A valid CSS Color string.  See the [CSS 2 Spec](https://www.w3.org/TR/CSS2/syndata.html#color-units) and the [extended color name list](https://drafts.csswg.org/css-color-3/#svg-color).",
-        "type": "string",
-        "minLength": 1
-      }
+  "title": "Pokemon color",
+  "description": "Pokemon color, used for flavor in some version Pokedexes",
+  "type": "object",
+  "properties": {
+    "identifier": {
+      "$ref": "types/identifier.json"
     },
-    "additionalProperties": false,
-    "required": [
-      "identifier",
-      "name"
-    ]
-  }
+    "name": {
+      "$ref": "types/name.json"
+    },
+    "css_color": {
+      "title": "CSS Color",
+      "description": "A valid CSS Color string.  See the [CSS 2 Spec](https://www.w3.org/TR/CSS2/syndata.html#color-units) and the [extended color name list](https://drafts.csswg.org/css-color-3/#svg-color).",
+      "type": "string",
+      "minLength": 1,
+      "$filters": "cssColor"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "identifier",
+    "name"
+  ]
 }

@@ -3,9 +3,8 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\DataFinderTrait;
-use App\Tests\data\YamlParserTrait;
 use App\Tests\dataschema\Filter\YamlIdentifierExists;
+use App\Tests\Traits\YamlParserTrait;
 
 /**
  * Test Pokedex
@@ -16,32 +15,22 @@ use App\Tests\dataschema\Filter\YamlIdentifierExists;
  */
 class PokedexTest extends DataSchemaTestCase
 {
-    use DataFinderTrait;
+
     use YamlParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $data): void
     {
-        $allData = $this->getData();
-        foreach ($allData as $identifier => $yaml) {
-            $data = $this->parseYaml($yaml);
-            $this->assertDataSchema('pokedex', $data, $identifier);
-        }
+        $this->assertDataSchema('pokedex', $data);
     }
 
-    /**
-     * @return \Generator
-     */
-    public function getData(): \Generator
+    public function dataProvider()
     {
-        $finder = $this->getFinderForDirectory('pokedex');
-        $finder->name('*.yaml');
-
-        foreach ($finder as $fileInfo) {
-            yield $fileInfo->getFilename() => $fileInfo->getContents();
-        }
+        return $this->buildYamlDataProvider('pokedex');
     }
 
     /**

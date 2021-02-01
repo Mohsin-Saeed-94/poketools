@@ -3,7 +3,8 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\dataschema\Filter\CssColor;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Pokemon Color
@@ -14,14 +15,31 @@ use App\Tests\data\CsvParserTrait;
  */
 class PokemonColorTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('pokemon_color');
-        $this->assertDataSchema('pokemon_color', $allData);
+        $this->assertDataSchema('pokemon_color', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('pokemon_color', 'identifier');
+    }
+
+    protected function getFilters(): array
+    {
+        return [
+            'string' => [
+                'cssColor' => new CssColor(),
+            ],
+        ];
+    }
+
 }

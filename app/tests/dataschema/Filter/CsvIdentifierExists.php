@@ -4,7 +4,8 @@
 namespace App\Tests\dataschema\Filter;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
+use Ds\Set;
 use Opis\JsonSchema\IFilter;
 
 /**
@@ -12,19 +13,10 @@ use Opis\JsonSchema\IFilter;
  */
 class CsvIdentifierExists implements IFilter
 {
+
     use CsvParserTrait;
 
-    /**
-     * @var string
-     */
-    private $entityType;
-
-    /**
-     * A list of identifiers in the CSV file
-     *
-     * @var array
-     */
-    private $identifiers = [];
+    private Set $identifiers;
 
     /**
      * CsvIdentifierExists constructor.
@@ -35,19 +27,11 @@ class CsvIdentifierExists implements IFilter
      */
     public function __construct(string $entityType, string $column = 'identifier')
     {
-        $this->entityType = $entityType;
-        $this->init($column);
-    }
-
-    /**
-     * Extract the identifiers from the CSV
-     *
-     * @param string $column
-     */
-    private function init(string $column): void
-    {
-        $it = $this->getIteratorForCsv($this->entityType);
-        $this->identifiers = array_column($it, $column);
+        $this->identifiers = new Set();
+        $reader = $this->getCsvReader($entityType);
+        foreach ($reader as $row) {
+            $this->identifiers->add($row[$column]);
+        }
     }
 
     /**
@@ -58,6 +42,7 @@ class CsvIdentifierExists implements IFilter
      */
     public function validate($data, array $args): bool
     {
-        return in_array((string)$data, $this->identifiers, true);
+        return $this->identifiers->contains((string)$data);
     }
+
 }

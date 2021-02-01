@@ -1,11 +1,8 @@
 <?php
-/**
- * @file BerryFlavorTest.php
- */
 
 namespace App\Tests\dataschema;
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Berry Flavor
@@ -16,14 +13,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class BerryFlavorTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('berry_flavor');
-        $this->assertDataSchema('berry_flavor', $allData);
+        $this->assertDataSchema('berry_flavor', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('berry_flavor', 'identifier');
+    }
+
 }

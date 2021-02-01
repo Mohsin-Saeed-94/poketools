@@ -2,6 +2,8 @@
 
 namespace App\Tests\data;
 
+use Generator;
+
 /**
  * Test Item data
  *
@@ -28,7 +30,11 @@ class ItemTest extends DataTestCase
             foreach ($data as $versionGroupSlug => $versionData) {
                 $versionGroup = $this->getVersionGroup($versionGroupSlug);
                 foreach ($versionGroup->getVersions() as $version) {
-                    $converter = $this->getMarkdownConverter($version->getSlug(), [$identifier, $versionGroupSlug], $invalidDescriptions);
+                    $converter = $this->getMarkdownConverter(
+                        $version->getSlug(),
+                        [$identifier, $versionGroupSlug],
+                        $invalidDescriptions
+                    );
                     self::assertNotEmpty($converter->convertToHtml($versionData['short_description']));
                     self::assertNotEmpty($converter->convertToHtml($versionData['description']));
                 }
@@ -39,9 +45,9 @@ class ItemTest extends DataTestCase
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
-    public function getItemData(): \Generator
+    public function getItemData(): Generator
     {
         $finder = $this->getFinderForDirectory('item');
         $finder->name('*.yaml');

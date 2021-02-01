@@ -3,13 +3,12 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\DataFinderTrait;
-use App\Tests\data\YamlParserTrait;
 use App\Tests\dataschema\Filter\CsvIdentifierExists;
 use App\Tests\dataschema\Filter\EntityHasVersionGroup;
 use App\Tests\dataschema\Filter\RangeFilter;
 use App\Tests\dataschema\Filter\TypeInVersionGroup;
 use App\Tests\dataschema\Filter\YamlIdentifierExists;
+use App\Tests\Traits\YamlParserTrait;
 
 /**
  * Test Move
@@ -20,32 +19,22 @@ use App\Tests\dataschema\Filter\YamlIdentifierExists;
  */
 class MoveTest extends DataSchemaTestCase
 {
-    use DataFinderTrait;
+
     use YamlParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $data): void
     {
-        $allData = $this->getData();
-        foreach ($allData as $identifier => $yaml) {
-            $data = $this->parseYaml($yaml);
-            $this->assertDataSchema('move', $data, $identifier);
-        }
+        $this->assertDataSchema('move', $data);
     }
 
-    /**
-     * @return \Generator
-     */
-    public function getData(): \Generator
+    public function dataProvider()
     {
-        $finder = $this->getFinderForDirectory('move');
-        $finder->name('*.yaml');
-
-        foreach ($finder as $fileInfo) {
-            yield $fileInfo->getFilename() => $fileInfo->getContents();
-        }
+        return $this->buildYamlDataProvider('move');
     }
 
     /**
@@ -77,4 +66,5 @@ class MoveTest extends DataSchemaTestCase
             ],
         ];
     }
+
 }

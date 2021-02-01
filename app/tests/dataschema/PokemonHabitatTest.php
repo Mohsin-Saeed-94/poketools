@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Pokemon Habitat
@@ -14,15 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class PokemonHabitatTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        // @todo Implement
-        $allData = $this->getIteratorForCsv('pokemon_habitat');
-        $this->assertDataSchema('pokemon_habitat', $allData);
+        $this->assertDataSchema('pokemon_habitat', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('pokemon_habitat', 'identifier');
+    }
+
 }

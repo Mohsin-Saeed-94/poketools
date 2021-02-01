@@ -37,7 +37,17 @@
             },
             {
               "type": "string",
-              "$filters": "pokedexIdentifier"
+              "$filters": [
+                "pokedexIdentifier",
+                {
+                  "$func": "versionGroupHasPokedex",
+                  "$vars": {
+                    "versionGroup": {
+                      "$ref": "1#"
+                    }
+                  }
+                }
+              ]
             }
           ]
         }

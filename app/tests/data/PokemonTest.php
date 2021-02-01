@@ -2,6 +2,8 @@
 
 namespace App\Tests\data;
 
+use Generator;
+
 /**
  * Test Pokemon data
  *
@@ -45,9 +47,9 @@ class PokemonTest extends DataTestCase
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
-    public function getPokemonData(): \Generator
+    public function getPokemonData(): Generator
     {
         $finder = $this->getFinderForDirectory('item');
         $finder->name('*.yaml');

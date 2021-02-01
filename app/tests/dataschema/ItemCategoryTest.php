@@ -3,8 +3,8 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
 use App\Tests\dataschema\Filter\CsvIdentifierExists;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Item Category
@@ -15,15 +15,22 @@ use App\Tests\dataschema\Filter\CsvIdentifierExists;
  */
 class ItemCategoryTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('item_category');
-        $this->assertDataSchema('item_category', $allData);
+        $this->assertDataSchema('item_category', $row);
+    }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('item_category', 'identifier');
     }
 
     /**
@@ -37,4 +44,5 @@ class ItemCategoryTest extends DataSchemaTestCase
             ],
         ];
     }
+
 }

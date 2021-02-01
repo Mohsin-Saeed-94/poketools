@@ -26,6 +26,8 @@ use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\Extension\Table\TableRenderer as CommonMarkTableRenderer;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
+use ReflectionException;
+use RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -84,8 +86,9 @@ abstract class DataTestCase extends KernelTestCase
      * @param array $context
      * @param string[]|null $logs
      *   This will be filled with the log output from the converter.
+     *
      * @return CommonMarkConverter
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     protected function getMarkdownConverter(
         ?string $versionSlug = null,
@@ -157,13 +160,14 @@ abstract class DataTestCase extends KernelTestCase
     {
         $message = $this->formatLoggedMessage($type, $message, $context);
 
-        throw new \RuntimeException($message);
+        throw new RuntimeException($message);
     }
 
     /**
      * @param string $type
      * @param string $message
      * @param array $context
+     *
      * @return string
      */
     private function formatLoggedMessage(string $type, string $message, array $context): string

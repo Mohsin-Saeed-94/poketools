@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Feature
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class FeatureTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('feature');
-        $this->assertDataSchema('feature', $allData);
+        $this->assertDataSchema('feature', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('feature', 'identifier');
+    }
+
 }

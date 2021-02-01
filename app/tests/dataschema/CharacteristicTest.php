@@ -2,8 +2,8 @@
 
 namespace App\Tests\dataschema;
 
-use App\Tests\data\CsvParserTrait;
 use App\Tests\dataschema\Filter\CsvIdentifierExists;
+use App\Tests\Traits\CsvParserTrait;
 
 
 /**
@@ -15,15 +15,22 @@ use App\Tests\dataschema\Filter\CsvIdentifierExists;
  */
 class CharacteristicTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('characteristic');
-        $this->assertDataSchema('characteristic', $allData);
+        $this->assertDataSchema('characteristic', $row);
+    }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('characteristic', ['stat', 'iv_determinator']);
     }
 
     /**
@@ -37,4 +44,5 @@ class CharacteristicTest extends DataSchemaTestCase
             ],
         ];
     }
+
 }

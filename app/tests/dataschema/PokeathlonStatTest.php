@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Pokeathlon Stat
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class PokeathlonStatTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('pokeathlon_stat');
-        $this->assertDataSchema('pokeathlon_stat', $allData);
+        $this->assertDataSchema('pokeathlon_stat', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('pokeathlon_stat', 'identifier');
+    }
+
 }

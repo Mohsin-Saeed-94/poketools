@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Move Damage Class
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class MoveDamageClassTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('move_damage_class');
-        $this->assertDataSchema('move_damage_class', $allData);
+        $this->assertDataSchema('move_damage_class', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('move_damage_class', 'identifier');
+    }
+
 }

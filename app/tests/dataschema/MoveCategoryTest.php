@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Move Category
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class MoveCategoryTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('move_category');
-        $this->assertDataSchema('move_category', $allData);
+        $this->assertDataSchema('move_category', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('move_category', 'identifier');
+    }
+
 }

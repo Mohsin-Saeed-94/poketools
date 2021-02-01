@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Time of Day
@@ -14,14 +14,28 @@ use App\Tests\data\CsvParserTrait;
  */
 class TimeOfDayTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('time_of_day');
-        $this->assertDataSchema('time_of_day', $allData);
+        $this->assertDataSchema('time_of_day', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider(
+            'time_of_day',
+            [
+                'generation',
+                'identifier',
+            ]
+        );
+    }
+
 }

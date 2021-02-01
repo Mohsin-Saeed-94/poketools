@@ -3,8 +3,8 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
 use App\Tests\dataschema\Filter\CsvIdentifierExists;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Contest Type
@@ -15,15 +15,22 @@ use App\Tests\dataschema\Filter\CsvIdentifierExists;
  */
 class ContestTypeTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('contest_type');
-        $this->assertDataSchema('contest_type', $allData);
+        $this->assertDataSchema('contest_type', $row);
+    }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('contest_type', 'identifier');
     }
 
     /**

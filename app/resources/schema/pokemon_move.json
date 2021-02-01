@@ -3,139 +3,135 @@
   "$id": "https://poketools.gamestuff.info/data/schema/pokemon_move.json",
   "title": "Pokemon Move Map",
   "description": "Maps Pokemon to Moves they can learn as well as describing requirements and methods to learn those moves.",
-  "type": "array",
-  "uniqueItems": true,
-  "items": {
-    "type": "object",
-    "properties": {
-      "species": {
-        "title": "Species identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "type": "string",
-            "$filters": [
-              "speciesIdentifier",
-              {
-                "$func": "speciesInVersionGroup",
-                "$vars": {
-                  "versionGroup": {
-                    "$ref": "1/version_group"
-                  }
+  "type": "object",
+  "properties": {
+    "species": {
+      "title": "Species identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": [
+            "speciesIdentifier",
+            {
+              "$func": "speciesInVersionGroup",
+              "$vars": {
+                "versionGroup": {
+                  "$ref": "1/version_group"
                 }
               }
-            ]
-          }
-        ]
-      },
-      "pokemon": {
-        "title": "Pokemon identifier",
-        "$ref": "types/identifier.json"
-      },
-      "version_group": {
-        "title": "Version Group identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "type": "string",
-            "$filters": "versionGroupIdentifier"
-          }
-        ]
-      },
-      "move": {
-        "title": "Move identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "type": "string",
-            "$filters": [
-              "moveIdentifier",
-              {
-                "$func": "moveInVersionGroup",
-                "$vars": {
-                  "versionGroup": {
-                    "$ref": "1/version_group"
-                  }
+            }
+          ]
+        }
+      ]
+    },
+    "pokemon": {
+      "title": "Pokemon identifier",
+      "$ref": "types/identifier.json"
+    },
+    "version_group": {
+      "title": "Version Group identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": "versionGroupIdentifier"
+        }
+      ]
+    },
+    "move": {
+      "title": "Move identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": [
+            "moveIdentifier",
+            {
+              "$func": "moveInVersionGroup",
+              "$vars": {
+                "versionGroup": {
+                  "$ref": "1/version_group"
                 }
               }
-            ]
-          }
-        ]
-      },
-      "learn_method": {
-        "title": "Learn method identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "type": "string",
-            "$filters": "learnMethodIdentifier"
-          }
-        ]
-      },
-      "level": {
-        "title": "Learn level",
-        "description": "Only applicable if `learn_method` is `level-up`.",
-        "oneOf": [
-          {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 100
-          },
-          {
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 0
-          }
-        ]
-      },
-      "machine": {
-        "title": "Machine identifier",
-        "description": "Only applicable if `learn_method` is `machine`.",
-        "oneOf": [
-          {
-            "allOf": [
-              {
-                "$ref": "types/identifier.json"
-              },
-              {
-                "type": "string",
-                "$filter": [
-                  "itemIdentifier",
-                  {
-                    "$func": "itemInVersionGroup",
-                    "$vars": {
-                      "versionGroup": {
-                        "$ref": "1/version_group"
-                      }
+            }
+          ]
+        }
+      ]
+    },
+    "learn_method": {
+      "title": "Learn method identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": "learnMethodIdentifier"
+        }
+      ]
+    },
+    "level": {
+      "title": "Learn level",
+      "description": "Only applicable if `learn_method` is `level-up`.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    },
+    "machine": {
+      "title": "Machine identifier",
+      "description": "Only applicable if `learn_method` is `machine`.",
+      "oneOf": [
+        {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filter": [
+                "itemIdentifier",
+                {
+                  "$func": "itemInVersionGroup",
+                  "$vars": {
+                    "versionGroup": {
+                      "$ref": "1/version_group"
                     }
                   }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 0
-          }
-        ]
-      }
-    },
-    "additionalProperties": false,
-    "required": [
-      "species",
-      "pokemon",
-      "version_group",
-      "move",
-      "learn_method"
-    ]
-  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "species",
+    "pokemon",
+    "version_group",
+    "move",
+    "learn_method"
+  ]
 }

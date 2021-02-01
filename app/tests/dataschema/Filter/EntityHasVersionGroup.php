@@ -4,8 +4,10 @@
 namespace App\Tests\dataschema\Filter;
 
 
-use App\Tests\data\CsvParserTrait;
-use App\Tests\data\YamlParserTrait;
+use App\Tests\Traits\VersionVersionGroupTrait;
+use App\Tests\Traits\YamlParserTrait;
+use Ds\Map;
+use Ds\Set;
 use Opis\JsonSchema\IFilter;
 
 /**
@@ -21,15 +23,21 @@ use Opis\JsonSchema\IFilter;
  */
 class EntityHasVersionGroup implements IFilter
 {
-    use CsvParserTrait;
+
     use YamlParserTrait;
+    use VersionVersionGroupTrait;
 
     /**
      * @var string
      */
     private $entityType;
 
-    private $versionGroups = [];
+    /**
+     * Map entitys to their version groups
+     *
+     * @var \Ds\Map
+     */
+    private Map $entityVersionGroups;
 
     /**
      * EntityHasVersionGroup constructor.
@@ -38,6 +46,7 @@ class EntityHasVersionGroup implements IFilter
      */
     public function __construct(string $entityType)
     {
+        $this->entityVersionGroups = new Map();
         $this->entityType = $entityType;
     }
 
@@ -50,33 +59,18 @@ class EntityHasVersionGroup implements IFilter
     public function validate($data, array $args): bool
     {
         if (isset($args['version'])) {
-            $versionGroup = $this->getVersions()[$args['version']];
+            $versionGroup = $this->getVersionVersionGroup($args['version']);
         } else {
             $versionGroup = $args['versionGroup'];
         }
 
-        $identifier = $this->entityType.'/'.$data;
-        if (!isset($this->versionGroups[$identifier])) {
-            $entity = $this->loadEntityYaml($identifier);
-            $this->versionGroups[$identifier] = array_fill_keys(array_keys($entity), 0);
+        if (!$this->entityVersionGroups->hasKey($data)) {
+            // Lookup data
+            $entity = $this->loadEntityYaml($this->entityType.'/'.$data);
+            $this->entityVersionGroups->put($data, new Set(array_keys($entity)));
         }
 
-        return isset($this->versionGroups[$identifier][$versionGroup]);
+        return $this->entityVersionGroups->get($data)->contains($versionGroup);
     }
 
-    /**
-     * Get a map of versions to version groups
-     *
-     * @return string[]
-     */
-    private function getVersions(): array
-    {
-        static $versions = null;
-        if (!isset($versions)) {
-            $versionData = $this->getIteratorForCsv('version');
-            $versions = array_column($versionData, 'version_group', 'identifier');
-        }
-
-        return $versions;
-    }
 }

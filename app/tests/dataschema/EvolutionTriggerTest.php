@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Evolution Trigger
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class EvolutionTriggerTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('evolution_trigger');
-        $this->assertDataSchema('evolution_trigger', $allData);
+        $this->assertDataSchema('evolution_trigger', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('evolution_trigger', 'identifier');
+    }
+
 }

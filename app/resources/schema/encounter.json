@@ -1,186 +1,229 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://poketools.gamestuff.info/data/schema/encounter.json",
-  "title": "Encounter List",
+  "title": "Encounter",
   "description": "A list of Pokemon Encounters.",
-  "type": "array",
-  "uniqueItems": true,
-  "items": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "types/id.json"
-      },
-      "version": {
-        "title": "Version identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "type": "string",
-            "$filters": "versionIdentifier"
-          }
-        ]
-      },
-      "location": {
-        "title": "Location identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "$filters": [
-              "locationIdentifier",
-              {
-                "$func": "locationInVersionGroup",
-                "$vars": {
-                  "version": {
-                    "$ref": "1/version"
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "area": {
-        "title": "Location Area identifier",
-        "$ref": "types/identifier.json"
-      },
-      "method": {
-        "title": "Encounter Method identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "type": "string",
-            "$filters": "encounterMethodIdentifier"
-          }
-        ]
-      },
-      "species": {
-        "title": "Pokemon Species identifier",
-        "description": "This refers to the Species (e.g. `basculin`).",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "type": "string",
-            "$filters": [
-              "speciesIdentifier",
-              {
-                "$func": "speciesInVersionGroup",
-                "$vars": {
-                  "version": {
-                    "$ref": "1/version"
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "pokemon": {
-        "title": "Pokemon identifier",
-        "description": "This refers to the Pokemon under the Species (e.g. `basculin-red-striped`).",
-        "$ref": "types/identifier.json"
-      },
-      "level": {
-        "title": "Level range",
-        "description": "All values must be in the range 1-100.",
-        "oneOf": [
-          {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 100
-          },
-          {
-            "allOf": [
-              {
-                "$ref": "types/range.json"
-              },
-              {
-                "type": "string",
-                "$filters": {
-                  "$func": "range",
-                  "$vars": {
-                    "min": 1,
-                    "max": 100
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "chance": {
-        "title": "Encounter chance percentage",
-        "description": "If this is a fateful encounter (e.g. from an event or in-game story point), leave this empty.",
-        "oneOf": [
-          {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 100
-          },
-          {
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 0
-          },
-          {
-            "type": "null"
-          }
-        ]
-      },
-      "conditions": {
-        "title": "Encounter conditions",
-        "description": "A list of conditions that must be met for this encounter to occur.Format these as `condition/condition-stage`.  If multiple conditions must occur simultaneously, separate them with a single comma.",
-        "examples": [
-          "time/time-day",
-          "time/time-morning,radio/radio-off"
-        ],
-        "oneOf": [
-          {
-            "type": "string",
-            "pattern": "^([a-z0-9\\-]+/[a-z0-9\\-]+,?)+$"
-          },
-          {
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 0
-          }
-        ],
-        "default": ""
-      },
-      "note": {
-        "title": "Special note",
-        "description": "A special note about this encounter.  If this is a fateful encounter, describe the conditions here.",
-        "oneOf": [
-          {
-            "$ref": "types/markdown.json"
-          },
-          {
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 0
-          }
-        ],
-        "default": ""
-      }
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "types/id.json"
     },
-    "additionalProperties": false,
-    "required": [
-      "id",
-      "version",
-      "location",
-      "area",
-      "method",
-      "species",
-      "pokemon",
-      "level"
-    ]
-  }
+    "version": {
+      "title": "Version identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": "versionIdentifier"
+        }
+      ]
+    },
+    "location": {
+      "title": "Location identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "$filters": [
+            "locationIdentifier",
+            {
+              "$func": "locationInVersionGroup",
+              "$vars": {
+                "version": {
+                  "$ref": "1/version"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "area": {
+      "title": "Location Area identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "$filters": [
+            {
+              "$func": "locationHasArea",
+              "$vars": {
+                "version": {
+                  "$ref": "1/version"
+                },
+                "location": {
+                  "$ref": "1/location"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "method": {
+      "title": "Encounter Method identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": "encounterMethodIdentifier"
+        }
+      ]
+    },
+    "species": {
+      "title": "Pokemon Species identifier",
+      "description": "This refers to the Species (e.g. `basculin`).",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": [
+            "speciesIdentifier",
+            {
+              "$func": "speciesInVersionGroup",
+              "$vars": {
+                "version": {
+                  "$ref": "1/version"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "pokemon": {
+      "title": "Pokemon identifier",
+      "description": "This refers to the Pokemon under the Species (e.g. `basculin-red-striped`).",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": [
+            {
+              "$func": "speciesHasPokemon",
+              "$vars": {
+                "version": {
+                  "$ref": "1/version"
+                },
+                "species": {
+                  "$ref": "1/species"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "level": {
+      "title": "Level range",
+      "description": "All values must be in the range 1-100.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "types/range.json"
+            },
+            {
+              "type": "string",
+              "$filters": {
+                "$func": "range",
+                "$vars": {
+                  "min": 1,
+                  "max": 100
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "chance": {
+      "title": "Encounter chance percentage",
+      "description": "If this is a fateful encounter (e.g. from an event or in-game story point), leave this empty.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "conditions": {
+      "title": "Encounter conditions",
+      "description": "A list of conditions that must be met for this encounter to occur.Format these as `condition/condition-stage`.  If multiple conditions must occur simultaneously, separate them with a single comma.",
+      "examples": [
+        "time/time-day",
+        "time/time-morning,radio/radio-off"
+      ],
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^([a-z0-9\\-]+/[a-z0-9\\-]+,?)+$"
+            },
+            {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 0
+            }
+          ]
+        },
+        {
+          "type": "string",
+          "$filters": "encounterConditionList"
+        }
+      ],
+      "default": ""
+    },
+    "note": {
+      "title": "Special note",
+      "description": "A special note about this encounter.  If this is a fateful encounter, describe the conditions here.",
+      "oneOf": [
+        {
+          "$ref": "types/markdown.json"
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ],
+      "default": ""
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "location",
+    "area",
+    "method",
+    "species",
+    "pokemon",
+    "level"
+  ]
 }

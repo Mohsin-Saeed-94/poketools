@@ -4,7 +4,8 @@
 namespace App\Tests\dataschema\Filter;
 
 
-use App\Tests\data\DataFinderTrait;
+use App\Tests\Traits\DataFinderTrait;
+use Ds\Set;
 use Opis\JsonSchema\IFilter;
 
 /**
@@ -12,16 +13,15 @@ use Opis\JsonSchema\IFilter;
  */
 class YamlIdentifierExists implements IFilter
 {
+
     use DataFinderTrait;
-    /**
-     * @var string
-     */
-    private $entityType;
 
     /**
-     * @var array
+     * List of identifiers for the entity type
+     *
+     * @var Set
      */
-    private $identifiers = [];
+    private Set $identifiers;
 
     /**
      * YamlIdentifierExists constructor.
@@ -30,19 +30,12 @@ class YamlIdentifierExists implements IFilter
      */
     public function __construct(string $entityType)
     {
-        $this->entityType = $entityType;
-        $this->init();
-    }
+        $this->identifiers = new Set();
 
-    /**
-     * Get the list of identifiers
-     */
-    private function init()
-    {
-        $finder = $this->getFinderForDirectory($this->entityType);
-        $finder->name('*.yaml');
+        $finder = $this->getFinderForDirectory($entityType)
+            ->files()->name(['*.yaml', '*.yml']);
         foreach ($finder as $fileInfo) {
-            $this->identifiers[] = $fileInfo->getBasename('.'.$fileInfo->getExtension());
+            $this->identifiers->add($fileInfo->getFilenameWithoutExtension());
         }
     }
 
@@ -54,6 +47,7 @@ class YamlIdentifierExists implements IFilter
      */
     public function validate($data, array $args): bool
     {
-        return in_array((string)$data, $this->identifiers, true);
+        return $this->identifiers->contains((string)$data);
     }
+
 }

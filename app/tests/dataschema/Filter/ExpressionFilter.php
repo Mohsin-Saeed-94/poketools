@@ -29,7 +29,7 @@ class ExpressionFilter implements IFilter
         $names = $args['vars'] ?? [];
         try {
             $this->exprLang()->parse($data, $names);
-        } catch (SyntaxError $e) {
+        } catch (SyntaxError) {
             return false;
         }
 
@@ -48,4 +48,5 @@ class ExpressionFilter implements IFilter
 
         return $exprLang;
     }
+
 }

@@ -32,4 +32,5 @@ class RangeFilter implements IFilter
 
         return $range->getMin() >= $min && $range->getMax() <= $max;
     }
+
 }

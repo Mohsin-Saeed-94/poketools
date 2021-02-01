@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Super Contest Effect
@@ -18,10 +18,18 @@ class SuperContestEffectTest extends DataSchemaTestCase
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $data): void
     {
-        $allData = $this->getIteratorForCsv('super_contest_effect');
-        $this->assertDataSchema('super_contest_effect', $allData);
+
+        $this->assertDataSchema('super_contest_effect', $data);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('super_contest_effect', 'id');
+    }
+
 }

@@ -1,101 +1,129 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://poketools.gamestuff.info/data/schema/shop_item.json",
-  "title": "Shop Item list",
+  "title": "Shop Item",
   "description": "Items available for purchase at shops",
-  "type": "array",
-  "uniqueItems": true,
-  "items": {
-    "type": "object",
-    "properties": {
-      "version_group": {
-        "title": "Version Group identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "type": "string",
-            "$filters": "versionGroupIdentifier"
-          }
-        ]
-      },
-      "location": {
-        "title": "Location identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
-          },
-          {
-            "type": "string",
-            "$filters": [
-              "locationIdentifier",
-              {
-                "$func": "locationInVersionGroup",
-                "$vars": {
-                  "versionGroup": {
-                    "$ref": "1/version_group"
-                  }
+  "type": "object",
+  "properties": {
+    "version_group": {
+      "title": "Version Group identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": "versionGroupIdentifier"
+        }
+      ]
+    },
+    "location": {
+      "title": "Location identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": [
+            "locationIdentifier",
+            {
+              "$func": "locationInVersionGroup",
+              "$vars": {
+                "versionGroup": {
+                  "$ref": "1/version_group"
                 }
               }
-            ]
-          }
-        ]
-      },
-      "area": {
-        "title": "Area identifier path",
-        "description": "Use \"/\" to specify the tree path.",
-        "type": "string",
-        "pattern": "^(?:[a-z0-9\\-]+/?)+$"
-      },
-      "shop": {
-        "title": "Shop identifier",
-        "$ref": "types/identifier.json"
-      },
-      "item": {
-        "title": "Item identifier",
-        "allOf": [
-          {
-            "$ref": "types/identifier.json"
+            }
+          ]
+        }
+      ]
+    },
+    "area": {
+      "title": "Area identifier path",
+      "description": "Use \"/\" to specify the tree path.",
+      "type": "string",
+      "pattern": "^(?:[a-z0-9\\-]+/?)+$",
+      "$filters": {
+        "$func": "locationHasArea",
+        "$vars": {
+          "versionGroup": {
+            "$ref": "1/version_group"
           },
-          {
-            "type": "string",
-            "$filters": [
-              "itemIdentifier",
-              {
-                "$func": "itemInVersionGroup",
-                "$vars": {
-                  "versionGroup": {
-                    "$ref": "1/version_group"
-                  }
-                }
-              }
-            ]
+          "location": {
+            "$ref": "1/location"
           }
-        ]
-      },
-      "buy": {
-        "title": "Purchase price",
-        "oneOf": [
-          {
-            "type": "integer",
-            "minimum": 1
-          },
-          {
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 0
-          }
-        ]
+        }
       }
     },
-    "additionalProperties": false,
-    "required": [
-      "version_group",
-      "location",
-      "area",
-      "shop",
-      "item"
-    ]
-  }
+    "shop": {
+      "title": "Shop identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": {
+            "$func": "locationAreaHasShop",
+            "$vars": {
+              "versionGroup": {
+                "$ref": "1/version_group"
+              },
+              "location": {
+                "$ref": "1/location"
+              },
+              "area": {
+                "$ref": "1/area"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "item": {
+      "title": "Item identifier",
+      "allOf": [
+        {
+          "$ref": "types/identifier.json"
+        },
+        {
+          "type": "string",
+          "$filters": [
+            "itemIdentifier",
+            {
+              "$func": "itemInVersionGroup",
+              "$vars": {
+                "versionGroup": {
+                  "$ref": "1/version_group"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "buy": {
+      "title": "Purchase price",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "version_group",
+    "location",
+    "area",
+    "shop",
+    "item"
+  ]
 }

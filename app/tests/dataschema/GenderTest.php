@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Gender
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class GenderTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('gender');
-        $this->assertDataSchema('gender', $allData);
+        $this->assertDataSchema('gender', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('gender', 'identifier');
+    }
+
 }

@@ -3,36 +3,32 @@
   "$id": "https://poketools.gamestuff.info/data/schema/move_category.json",
   "title": "Move Category list",
   "description": "Move Category list",
-  "type": "array",
-  "uniqueItems": true,
-  "items": {
-    "type": "object",
-    "properties": {
-      "identifier": {
-        "$ref": "types/identifier.json"
-      },
-      "name": {
-        "$ref": "types/name.json"
-      },
-      "description": {
-        "oneOf": [
-          {
-            "$ref": "types/markdown.json"
-          },
-          {
-            "title": "Blank",
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 0
-          }
-        ]
-      }
+  "type": "object",
+  "properties": {
+    "identifier": {
+      "$ref": "types/identifier.json"
     },
-    "additionalProperties": false,
-    "required": [
-      "identifier",
-      "name",
-      "description"
-    ]
-  }
+    "name": {
+      "$ref": "types/name.json"
+    },
+    "description": {
+      "oneOf": [
+        {
+          "$ref": "types/markdown.json"
+        },
+        {
+          "title": "Blank",
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "identifier",
+    "name",
+    "description"
+  ]
 }

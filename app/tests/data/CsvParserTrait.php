@@ -6,6 +6,7 @@
 namespace App\Tests\data;
 
 
+use Generator;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 
 trait CsvParserTrait
@@ -17,9 +18,9 @@ trait CsvParserTrait
      * @param array $keys
      *   The keys in $array to use as the data set label.
      *
-     * @return \Generator
+     * @return Generator
      */
-    protected function buildArrayDataProvider(array $data, array $keys): \Generator
+    protected function buildArrayDataProvider(array $data, array $keys): Generator
     {
         foreach ($data as $datum) {
             $keyValues = [];

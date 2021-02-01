@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Pal Park Area
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class PalParkAreaTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('pal_park_area');
-        $this->assertDataSchema('pal_park_area', $allData);
+        $this->assertDataSchema('pal_park_area', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('pal_park_area', 'identifier');
+    }
+
 }

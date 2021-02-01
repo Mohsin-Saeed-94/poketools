@@ -3,8 +3,8 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
 use App\Tests\dataschema\Filter\YamlIdentifierExists;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Version
@@ -15,15 +15,22 @@ use App\Tests\dataschema\Filter\YamlIdentifierExists;
  */
 class VersionTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('version');
-        $this->assertDataSchema('version', $allData);
+        $this->assertDataSchema('version', $row);
+    }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('version', 'identifier');
     }
 
     /**
@@ -37,4 +44,5 @@ class VersionTest extends DataSchemaTestCase
             ],
         ];
     }
+
 }

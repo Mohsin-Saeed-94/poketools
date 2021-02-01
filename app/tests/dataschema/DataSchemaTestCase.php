@@ -1,15 +1,12 @@
 <?php
-/**
- * @file DataSchemaTestCase.php
- */
 
 namespace App\Tests\dataschema;
 
 use App\Tests\dataschema\Validator\MediaType\CommonMarkMediaType;
 use App\Tests\dataschema\Validator\MediaType\MathMlMediaType;
 use App\Tests\dataschema\Validator\MediaType\SvgMediaType;
+use Ds\Map;
 use Opis\JsonSchema\FilterContainer;
-use Opis\JsonSchema\IValidator;
 use Opis\JsonSchema\Loaders\File;
 use Opis\JsonSchema\Schema;
 use Opis\JsonSchema\ValidationError;
@@ -25,6 +22,25 @@ abstract class DataSchemaTestCase extends TestCase
     protected const BASE_DIR_SCHEMA = __DIR__.'/../../resources/schema/';
     protected const BASE_DIR_DATA = self::BASE_DIR_SCHEMA.'/../data';
 
+    /** @var \Ds\Map Cache parsed schemas */
+    static private Map $schemas;
+
+    /** @var \Ds\Map Cache built validators */
+    static private Map $validators;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$schemas = new Map();
+        self::$validators = new Map();
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        // Free memory
+        self::$schemas->clear();
+        self::$validators->clear();
+    }
+
     /**
      * Assert the data follows the schema.
      *
@@ -34,38 +50,25 @@ abstract class DataSchemaTestCase extends TestCase
      */
     protected function assertDataSchema(string $name, $data, ?string $context = null): void
     {
-        static $schemas = [];
-        if (!isset($schemas[$name])) {
+        if (!self::$schemas->hasKey($name)) {
             $schemaPath = realpath(self::BASE_DIR_SCHEMA.$name.'.json');
-            $schemas[$name] = Schema::fromJsonString(file_get_contents($schemaPath));
+            self::$schemas->put($name, Schema::fromJsonString(file_get_contents($schemaPath)));
         }
-        static $validators = [];
-        if (!isset($validators[$name])) {
-            $validators[$name] = $this->getValidator();
+        if (!self::$validators->hasKey($name)) {
+            $loader = new File(self::SCHEMA_BASE_URI, [self::BASE_DIR_SCHEMA]);
+            $validator = new Validator(null, $loader);
+            $this->addMediaTypes($validator);
+            $this->addFilters($validator);
+            self::$validators->put($name, $validator);
+        } else {
+            $validator = self::$validators->get($name);
         }
-        $validator = $validators[$name];
 
         // Kludge to get data to be properly encapsulated (arrays vs objects)
         $data = json_decode(json_encode($data, JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION), false);
 
-        $result = $validator->schemaValidation($data, $schemas[$name], 1, $validator->getLoader());
-        self::assertTrue($result->isValid(), $this->buildSchemaErrorMessage($result->getErrors(), $context));
-    }
-
-    /**
-     * @return IValidator
-     */
-    private function getValidator(): IValidator
-    {
-        static $validator = null;
-        if ($validator === null) {
-            $loader = new File(self::SCHEMA_BASE_URI, [self::BASE_DIR_SCHEMA]);
-            $validator = new Validator(null, $loader);
-        }
-        $this->addMediaTypes($validator);
-        $this->addFilters($validator);
-
-        return $validator;
+        $result = $validator->schemaValidation($data, self::$schemas->get($name), 1, $validator->getLoader());
+        $this->assertTrue($result->isValid(), $this->buildSchemaErrorMessage($result->getErrors(), $context));
     }
 
     /**
@@ -151,4 +154,5 @@ abstract class DataSchemaTestCase extends TestCase
 
         return "Data does not follow schema:\n".implode(str_repeat('-', 10)."\n", $messages);
     }
+
 }

@@ -1,58 +1,54 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://poketools.gamestuff.info/data/schema/type.json",
-  "title": "Type list",
-  "description": "Type list, including normally hidden \"behind the scenes\" types like ??? and Shadow.",
-  "type": "array",
-  "uniqueItems": true,
-  "items": {
-    "type": "object",
-    "properties": {
-      "identifier": {
-        "$ref": "types/identifier.json"
-      },
-      "name": {
-        "$ref": "types/name.json"
-      },
-      "damage_class": {
-        "title": "Damage Class identifier",
-        "description": "For versions where damage class comes from the type.  Types introduced after the switch will have this blank.",
-        "oneOf": [
-          {
-            "allOf": [
-              {
-                "$ref": "types/identifier.json"
-              },
-              {
-                "type": "string",
-                "$filters": "damageClassIdentifier"
-              }
-            ]
-          },
-          {
-            "title": "Blank",
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 0
-          }
-        ]
-      },
-      "hidden": {
-        "title": "Is hidden",
-        "description": "Is this type normally shown?  If this is set the type will generally be excluded from displayed type lists unless it is specifically involved in the matchup.",
-        "type": "integer",
-        "enum": [
-          0,
-          1
-        ],
-        "default": 0
-      }
+  "title": "Type",
+  "description": "Type, including normally hidden \"behind the scenes\" types like ??? and Shadow.",
+  "type": "object",
+  "properties": {
+    "identifier": {
+      "$ref": "types/identifier.json"
     },
-    "additionalProperties": false,
-    "required": [
-      "identifier",
-      "name",
-      "hidden"
-    ]
-  }
+    "name": {
+      "$ref": "types/name.json"
+    },
+    "damage_class": {
+      "title": "Damage Class identifier",
+      "description": "For versions where damage class comes from the type.  Types introduced after the switch will have this blank.",
+      "oneOf": [
+        {
+          "allOf": [
+            {
+              "$ref": "types/identifier.json"
+            },
+            {
+              "type": "string",
+              "$filters": "damageClassIdentifier"
+            }
+          ]
+        },
+        {
+          "title": "Blank",
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    },
+    "hidden": {
+      "title": "Is hidden",
+      "description": "Is this type normally shown?  If this is set the type will generally be excluded from displayed type lists unless it is specifically involved in the matchup.",
+      "type": "integer",
+      "enum": [
+        0,
+        1
+      ],
+      "default": 0
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "identifier",
+    "name",
+    "hidden"
+  ]
 }

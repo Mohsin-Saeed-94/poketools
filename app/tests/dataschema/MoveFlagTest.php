@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Move Flag
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class MoveFlagTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $data): void
     {
-        $allData = $this->getIteratorForCsv('move_flag');
-        $this->assertDataSchema('move_flag', $allData);
+        $this->assertDataSchema('move_flag', $data);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('move_flag', 'identifier');
+    }
+
 }

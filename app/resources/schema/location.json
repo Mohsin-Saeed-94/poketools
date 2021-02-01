@@ -146,7 +146,25 @@
           "map": {
             "title": "Map identifier",
             "description": "This is the map the overlay will be drawn on.",
-            "$ref": "types/identifier.json"
+            "allOf": [
+              {
+                "$ref": "types/identifier.json"
+              },
+              {
+                "type": "string",
+                "$filters": {
+                  "$func": "regionHasMap",
+                  "$vars": {
+                    "versionGroup": {
+                      "$ref": "2#"
+                    },
+                    "region": {
+                      "$ref": "2/region"
+                    }
+                  }
+                }
+              }
+            ]
           },
           "z": {
             "title": "Z-Index",

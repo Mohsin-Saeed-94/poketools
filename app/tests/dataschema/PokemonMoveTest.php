@@ -3,9 +3,9 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
 use App\Tests\dataschema\Filter\EntityHasVersionGroup;
 use App\Tests\dataschema\Filter\YamlIdentifierExists;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Pokemon Move
@@ -16,38 +16,22 @@ use App\Tests\dataschema\Filter\YamlIdentifierExists;
  */
 class PokemonMoveTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('pokemon_move');
-
-        // This loop is needed to work around an unknown bug in the validator.  Allowing the validator to iterate
-        // will cause the test to take literal hours instead of seconds.
-        foreach ($allData as $i => $data) {
-            $this->assertDataSchema('pokemon_move', [$data], $i);
-        }
+        $this->assertDataSchema('pokemon_move', $row);
     }
 
-    /**
-     * Test for repetitions
-     */
-    public function testUnique(): void
+    public function dataProvider()
     {
-        $allData = $this->getIteratorForCsv('pokemon_move');
-
-        // Serialize the map values for uniqueness check
-        $strings = [];
-        foreach ($allData as $i => $data) {
-            $strings[$i] = serialize($data);
-        }
-        sort($strings);
-        $uniqueStrings = array_unique($strings);
-        $duplicates = array_diff($strings, $uniqueStrings);
-        self::assertEmpty($duplicates, count($duplicates).' rows are duplicated');
+        return $this->buildCsvDataProvider('pokemon_move');
     }
 
     /**
@@ -68,4 +52,5 @@ class PokemonMoveTest extends DataSchemaTestCase
             ],
         ];
     }
+
 }

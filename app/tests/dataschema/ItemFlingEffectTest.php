@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Item Fling Effect
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class ItemFlingEffectTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('item_fling_effect');
-        $this->assertDataSchema('item_fling_effect', $allData);
+        $this->assertDataSchema('item_fling_effect', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('item_fling_effect', 'identifier');
+    }
+
 }

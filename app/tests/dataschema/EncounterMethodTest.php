@@ -3,7 +3,7 @@
 namespace App\Tests\dataschema;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Encounter Method
@@ -14,14 +14,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class EncounterMethodTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('encounter_method');
-        $this->assertDataSchema('encounter_method', $allData);
+        $this->assertDataSchema('encounter_method', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('encounter_method', 'identifier');
+    }
+
 }

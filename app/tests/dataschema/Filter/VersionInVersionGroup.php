@@ -4,7 +4,8 @@
 namespace App\Tests\dataschema\Filter;
 
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
+use App\Tests\Traits\VersionVersionGroupTrait;
 use Opis\JsonSchema\IFilter;
 
 /**
@@ -14,28 +15,9 @@ use Opis\JsonSchema\IFilter;
  */
 class VersionInVersionGroup implements IFilter
 {
+
     use CsvParserTrait;
-
-    /**
-     * Cache versions
-     *
-     * @var array
-     */
-    private $versions;
-
-    /**
-     * EntityHasVersionGroup constructor.
-     */
-    public function __construct()
-    {
-        $this->init();
-    }
-
-    private function init(): void
-    {
-        $it = $this->getIteratorForCsv('version');
-        $this->versions = array_column($it, 'version_group', 'identifier');
-    }
+    use VersionVersionGroupTrait;
 
     /**
      * @param $data
@@ -47,6 +29,7 @@ class VersionInVersionGroup implements IFilter
     {
         $versionGroup = $args['versionGroup'];
 
-        return $this->versions[$data] === $versionGroup;
+        return $this->getVersionVersionGroup($data) === $versionGroup;
     }
+
 }

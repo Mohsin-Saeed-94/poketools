@@ -1,11 +1,8 @@
 <?php
-/**
- * @file BattleStyleTest.php
- */
 
 namespace App\Tests\dataschema;
 
-use App\Tests\data\CsvParserTrait;
+use App\Tests\Traits\CsvParserTrait;
 
 /**
  * Test Battle Styles
@@ -16,14 +13,22 @@ use App\Tests\data\CsvParserTrait;
  */
 class BattleStyleTest extends DataSchemaTestCase
 {
+
     use CsvParserTrait;
 
     /**
      * Test data matches schema
+     *
+     * @dataProvider dataProvider
      */
-    public function testData(): void
+    public function testData(array $row): void
     {
-        $allData = $this->getIteratorForCsv('battle_style');
-        $this->assertDataSchema('battle_style', $allData);
+        $this->assertDataSchema('battle_style', $row);
     }
+
+    public function dataProvider()
+    {
+        return $this->buildCsvDataProvider('battle_style', 'identifier');
+    }
+
 }

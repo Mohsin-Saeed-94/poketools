@@ -4,9 +4,10 @@
 namespace App\Tests\dataschema\Filter;
 
 
-use App\Tests\data\CsvParserTrait;
-use App\Tests\data\DataFinderTrait;
-use App\Tests\data\YamlParserTrait;
+use App\Tests\Traits\VersionVersionGroupTrait;
+use App\Tests\Traits\YamlParserTrait;
+use Ds\Map;
+use Ds\Set;
 use Opis\JsonSchema\IFilter;
 
 /**
@@ -22,45 +23,31 @@ use Opis\JsonSchema\IFilter;
  */
 class TypeInVersionGroup implements IFilter
 {
-    use CsvParserTrait;
+
     use YamlParserTrait;
-    use DataFinderTrait;
+    use VersionVersionGroupTrait;
 
     /**
-     * @var array
+     * Map types to a set of version groups
+     *
+     * @var Map
      */
-    private $typeVersionGroups;
+    private Map $versionGroupTypes;
 
-    /**
-     * EntityHasVersionGroup constructor.
-     */
+
     public function __construct()
     {
-        $this->init();
-    }
+        $this->versionGroupTypes = new Map();
 
-    private function init(): void
-    {
-        $this->typeVersionGroups = $this->getVersionGroupTypes();
-    }
-
-    /**
-     * @return array
-     */
-    private function getVersionGroupTypes(): array
-    {
-        $finder = $this->getFinderForDirectory('type_chart');
-        $finder->name('*.yaml');
-
-        $types = [];
-        foreach ($finder as $fileInfo) {
-            $data = $this->parseYaml($fileInfo->getContents());
-            foreach ($data['version_groups'] as $versionGroup) {
-                $types[$versionGroup] = array_fill_keys(array_keys($data['efficacy']), 0);
+        // Build the map
+        foreach ($this->buildYamlDataProvider('type_chart') as $data) {
+            $data = $data[0];
+            $versionGroups = $data['version_groups'];
+            $types = new Set(array_keys($data['efficacy']));
+            foreach ($versionGroups as $versionGroup) {
+                $this->versionGroupTypes->put($versionGroup, $types);
             }
         }
-
-        return $types;
     }
 
     /**
@@ -72,27 +59,12 @@ class TypeInVersionGroup implements IFilter
     public function validate($data, array $args): bool
     {
         if (isset($args['version'])) {
-            $versionGroup = $this->getVersions()[$args['version']];
+            $versionGroup = $this->getVersionVersionGroup($args['version']);
         } else {
             $versionGroup = $args['versionGroup'];
         }
 
-        return isset($this->typeVersionGroups[$versionGroup][$data]);
+        return $this->versionGroupTypes->get($versionGroup)->contains($data);
     }
 
-    /**
-     * Get a map of versions to version groups
-     *
-     * @return string[]
-     */
-    private function getVersions(): array
-    {
-        static $versions = null;
-        if (!isset($versions)) {
-            $versionData = $this->getIteratorForCsv('version');
-            $versions = array_column($versionData, 'version_group', 'identifier');
-        }
-
-        return $versions;
-    }
 }

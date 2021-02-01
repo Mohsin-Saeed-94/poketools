@@ -6,6 +6,7 @@
 namespace App\Tests\data;
 
 
+use Generator;
 use Symfony\Component\Finder\Finder;
 
 trait DataFinderTrait
@@ -18,9 +19,9 @@ trait DataFinderTrait
      *
      * @param Finder $finder
      *
-     * @return \Generator
+     * @return Generator
      */
-    protected function buildFinderDataProvider(Finder $finder): \Generator
+    protected function buildFinderDataProvider(Finder $finder): Generator
     {
         foreach ($finder as $fileInfo) {
             yield $fileInfo->getFilename() => [$fileInfo->getContents()];
