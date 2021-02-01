@@ -4,10 +4,13 @@ namespace App\DataMigration;
 
 
 use App\DataMigration\Helpers\PokemonLookup;
+use App\Entity\ItemInVersionGroup;
+use App\Entity\MoveInVersionGroup;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
 use DragoonBoots\A2B\DataMigration\MigrationReferenceStoreInterface;
+use Ds\Map;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 /**
@@ -41,6 +44,11 @@ class PokemonMove extends AbstractDoctrineDataMigration implements DataMigration
 {
     private PokemonLookup $pokemonLookupHelper;
 
+    private Map $moves;
+    private Map $versionGroupMoves;
+    private Map $items;
+    private Map $versionGroupItems;
+
     /**
      * @inheritDoc
      */
@@ -50,6 +58,10 @@ class PokemonMove extends AbstractDoctrineDataMigration implements DataMigration
     ) {
         parent::__construct($referenceStore, $propertyAccess);
         $this->pokemonLookupHelper = new PokemonLookup($referenceStore);
+        $this->moves = new Map();
+        $this->versionGroupMoves = new Map();
+        $this->items = new Map();
+        $this->versionGroupItems = new Map();
     }
 
     /**
@@ -73,13 +85,10 @@ class PokemonMove extends AbstractDoctrineDataMigration implements DataMigration
             $sourceData['pokemon']
         );
         $sourceData['pokemon_id'] = $pokemon->getId();
-        unset($sourceData['version_group'], $sourceData['species'], $sourceData['pokemon']);
-
-        /** @var \App\Entity\Move $move */
-        $move = $this->referenceStore->get(Move::class, ['identifier' => $sourceData['move']]);
-        $move = $move->findChildByGrouping($versionGroup);
-        $sourceData['move_id'] = $move->getId();
+        unset($sourceData['version_group'], $sourceData['species'], $sourceData['pokemon']);;
+        $sourceData['move_id'] = $this->lookupMove($versionGroup, $sourceData['move'])->getId();
         unset($sourceData['move']);
+
         // Remove nulls and blank strings
         $sourceData = array_filter(
             $sourceData,
@@ -96,9 +105,7 @@ class PokemonMove extends AbstractDoctrineDataMigration implements DataMigration
         unset($sourceData['learn_method']);
 
         if (isset($sourceData['machine'])) {
-            /** @var \App\Entity\Item $item */
-            $item = $this->referenceStore->get(Item::class, ['identifier' => $sourceData['machine']]);
-            $item = $item->findChildByGrouping($versionGroup);
+            $item = $this->lookupItem($versionGroup, $sourceData['machine']);
 
             // @TODO This is a failsafe if the item does not exist in the dataset yet.
             if (!is_null($item)) {
@@ -118,4 +125,75 @@ class PokemonMove extends AbstractDoctrineDataMigration implements DataMigration
 
         return $destinationData;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function cleanup(): void
+    {
+        unset($this->pokemonLookupHelper);
+        $this->moves->clear();
+        $this->versionGroupMoves->clear();
+        $this->items->clear();
+        $this->versionGroupItems->clear();
+    }
+
+    /**
+     * Lookup move from the cache or fetch it from the database
+     *
+     * @param \App\Entity\VersionGroup $versionGroup
+     * @param string $identifier
+     *
+     * @return MoveInVersionGroup|null
+     * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
+     */
+    private function lookupMove(\App\Entity\VersionGroup $versionGroup, string $identifier): ?MoveInVersionGroup
+    {
+        if (!$this->versionGroupMoves->hasKey($versionGroup->getId())) {
+            $this->versionGroupMoves->put($versionGroup->getId(), new Map());
+        }
+        /** @var Map $versionGroupMoves */
+        $versionGroupMoves = $this->versionGroupMoves->get($versionGroup->getId());
+        if (!$versionGroupMoves->hasKey($identifier)) {
+            if (!$this->moves->hasKey($identifier)) {
+                // Fetch entity
+                $this->moves->put($identifier, $this->referenceStore->get(Move::class, ['identifier' => $identifier]));
+            }
+            /** @var \App\Entity\Move $move */
+            $move = $this->moves->get($identifier);
+            $versionGroupMoves->put($identifier, $move->findChildByGrouping($versionGroup));
+        }
+
+        return $versionGroupMoves->get($identifier);
+    }
+
+    /**
+     * Lookup move from the cache or fetch it from the database
+     *
+     * @param \App\Entity\VersionGroup $versionGroup
+     * @param string $identifier
+     *
+     * @return ItemInVersionGroup|null
+     * @throws \DragoonBoots\A2B\Exception\NoMappingForIdsException
+     */
+    private function lookupItem(\App\Entity\VersionGroup $versionGroup, string $identifier): ?ItemInVersionGroup
+    {
+        if (!$this->versionGroupItems->hasKey($versionGroup->getId())) {
+            $this->versionGroupItems->put($versionGroup->getId(), new Map());
+        }
+        /** @var Map $versionGroupItems */
+        $versionGroupItems = $this->versionGroupItems->get($versionGroup->getId());
+        if (!$versionGroupItems->hasKey($identifier)) {
+            if (!$this->items->hasKey($identifier)) {
+                // Fetch entity
+                $this->items->put($identifier, $this->referenceStore->get(Item::class, ['identifier' => $identifier]));
+            }
+            /** @var \App\Entity\Item $item */
+            $item = $this->items->get($identifier);
+            $versionGroupItems->put($identifier, $item->findChildByGrouping($versionGroup));
+        }
+
+        return $versionGroupItems->get($identifier);
+    }
+
 }
