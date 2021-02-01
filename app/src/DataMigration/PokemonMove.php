@@ -3,11 +3,12 @@
 namespace App\DataMigration;
 
 
-use Doctrine\Common\Collections\ArrayCollection;
+use App\DataMigration\Helpers\PokemonLookup;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
-use DragoonBoots\A2B\Exception\MigrationException;
+use DragoonBoots\A2B\DataMigration\MigrationReferenceStoreInterface;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 /**
  * Pokemon Move migration.
@@ -38,6 +39,18 @@ use DragoonBoots\A2B\Exception\MigrationException;
  */
 class PokemonMove extends AbstractDoctrineDataMigration implements DataMigrationInterface
 {
+    private PokemonLookup $pokemonLookupHelper;
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct(
+        MigrationReferenceStoreInterface $referenceStore,
+        PropertyAccessorInterface $propertyAccess
+    ) {
+        parent::__construct($referenceStore, $propertyAccess);
+        $this->pokemonLookupHelper = new PokemonLookup($referenceStore);
+    }
 
     /**
      * {@inheritdoc}
@@ -54,24 +67,11 @@ class PokemonMove extends AbstractDoctrineDataMigration implements DataMigration
 
         // Find the correct pokemon
         $versionGroup = $this->referenceStore->get(VersionGroup::class, ['identifier' => $sourceData['version_group']]);
-        /** @var \App\Entity\PokemonSpecies $species */
-        $species = $this->referenceStore->get(PokemonSpecies::class, ['identifier' => $sourceData['species']]);
-        $species = $species->findChildByGrouping($versionGroup);
-        $pokemon = null;
-        foreach ($species->getPokemon() as $checkPokemon) {
-            if ($checkPokemon->getSlug() === $sourceData['pokemon']) {
-                $pokemon = $checkPokemon;
-                break;
-            }
-        }
-        if (!$pokemon) {
-            throw new MigrationException(
-                sprintf(
-                    'Species "%s", Pokemon "%s", VersionGroup "%s" does not exist.',
-                    $sourceData['species'], $sourceData['pokemon'], $sourceData['version_group']
-                )
-            );
-        }
+        $pokemon = $this->pokemonLookupHelper->lookupPokemon(
+            $versionGroup,
+            $sourceData['species'],
+            $sourceData['pokemon']
+        );
         $sourceData['pokemon_id'] = $pokemon->getId();
         unset($sourceData['version_group'], $sourceData['species'], $sourceData['pokemon']);
 
@@ -88,7 +88,10 @@ class PokemonMove extends AbstractDoctrineDataMigration implements DataMigration
             }
         );
 
-        $sourceData['learn_method'] = $this->referenceStore->get(MoveLearnMethod::class, ['identifier' => $sourceData['learn_method']]);
+        $sourceData['learn_method'] = $this->referenceStore->get(
+            MoveLearnMethod::class,
+            ['identifier' => $sourceData['learn_method']]
+        );
         $sourceData['learn_method_id'] = $sourceData['learn_method']->getId();
         unset($sourceData['learn_method']);
 

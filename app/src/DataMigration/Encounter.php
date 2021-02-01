@@ -4,12 +4,15 @@ namespace App\DataMigration;
 
 use App\A2B\Drivers\Destination\DbalDestinationDriver;
 use App\DataMigration\Helpers\Normalizer;
+use App\DataMigration\Helpers\PokemonLookup;
 use App\Entity\Embeddable\Range;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
+use DragoonBoots\A2B\DataMigration\MigrationReferenceStoreInterface;
 use DragoonBoots\A2B\Drivers\DestinationDriverInterface;
 use DragoonBoots\A2B\Exception\MigrationException;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 /**
  * Encounter migration.
@@ -33,6 +36,19 @@ use DragoonBoots\A2B\Exception\MigrationException;
  */
 class Encounter extends AbstractDoctrineDataMigration implements DataMigrationInterface
 {
+    private PokemonLookup $pokemonLookupHelper;
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct(
+        MigrationReferenceStoreInterface $referenceStore,
+        PropertyAccessorInterface $propertyAccess
+    ) {
+        parent::__construct($referenceStore, $propertyAccess);
+        $this->pokemonLookupHelper = new PokemonLookup($referenceStore);
+    }
+
     /**
      * @inheritDoc
      *
@@ -115,25 +131,11 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
         $destinationData['encounter']['method_id'] = $encounterMethod->getId();
 
         // Pokemon
-        /** @var \App\Entity\PokemonSpecies $species */
-        $species = $this->referenceStore->get(PokemonSpecies::class, ['identifier' => $sourceData['species']]);
-        $species = $species->findChildByGrouping($versionGroup);
-        $pokemon = null;
-        foreach ($species->getPokemon() as $checkPokemon) {
-            if ($checkPokemon->getSlug() === $sourceData['pokemon']) {
-                $pokemon = $checkPokemon;
-                break;
-            }
-        }
-        if (is_null($pokemon)) {
-            throw new MigrationException(
-                sprintf(
-                    'Encounter %u is with the pokemon "%s".  The pokemon does not exist.',
-                    $encounterId,
-                    $sourceData['pokemon']
-                )
-            );
-        }
+        $pokemon = $this->pokemonLookupHelper->lookupPokemon(
+            $versionGroup,
+            $sourceData['species'],
+            $sourceData['pokemon']
+        );
         $destinationData['encounter']['pokemon_id'] = $pokemon->getId();
 
         // Level range
@@ -186,4 +188,13 @@ class Encounter extends AbstractDoctrineDataMigration implements DataMigrationIn
             'encounter_encounter_condition_state' => [],
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function cleanup(): void
+    {
+        unset($this->pokemonLookupHelper);
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\DataMigration;
 
+use App\DataMigration\Helpers\PokemonLookup;
 use App\Entity\EvolutionTrigger;
 use App\Entity\Pokemon;
 use App\Entity\PokemonEvolutionCondition;
@@ -29,6 +30,8 @@ use App\Entity\VersionGroup;
 use DragoonBoots\A2B\Annotations\DataMigration;
 use DragoonBoots\A2B\Annotations\IdField;
 use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
+use DragoonBoots\A2B\DataMigration\MigrationReferenceStoreInterface;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 /**
  * Pokemon Evolution migration.
@@ -57,6 +60,18 @@ use DragoonBoots\A2B\DataMigration\DataMigrationInterface;
  */
 class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigrationInterface
 {
+    private PokemonLookup $pokemonLookupHelper;
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct(
+        MigrationReferenceStoreInterface $referenceStore,
+        PropertyAccessorInterface $propertyAccess
+    ) {
+        parent::__construct($referenceStore, $propertyAccess);
+        $this->pokemonLookupHelper = new PokemonLookup($referenceStore);
+    }
 
     /**
      * {@inheritdoc}
@@ -162,36 +177,12 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
         Pokemon $destinationData,
         VersionGroup $versionGroup
     ): ?Pokemon {
-        /** @var \App\Entity\PokemonSpecies $evolutionParentSpecies */
         $evolvesFrom = explode('/', $sourceData['evolution_parent']);
-        $evolutionParentSpecies = $this->referenceStore->get(PokemonSpecies::class, ['identifier' => $evolvesFrom[0]]);
-        $evolutionParentSpecies = $evolutionParentSpecies->findChildByGrouping($versionGroup);
-        if (!$evolutionParentSpecies) {
-            throw new \DomainException(
-                sprintf(
-                    '"%s" does not exist in the "%s" version group.',
-                    $sourceData['evolution_parent'],
-                    $versionGroup->getName()
-                )
-            );
-        }
-        $evolutionParentPokemon = null;
-        foreach ($evolutionParentSpecies->getPokemon() as $checkPokemon) {
-            if ($checkPokemon->getSlug() === $evolvesFrom[1]) {
-                $evolutionParentPokemon = $checkPokemon;
-                break;
-            }
-        }
-        if (!$evolutionParentPokemon) {
-            throw new \DomainException(
-                sprintf(
-                    '"%s" does not exist in the "%s" version group.',
-                    $sourceData['evolution_parent'],
-                    $versionGroup->getName()
-                )
-            );
-        }
-        $sourceData['evolution_parent'] = $evolutionParentPokemon;
+        $sourceData['evolution_parent'] = $this->pokemonLookupHelper->lookupPokemon(
+            $versionGroup,
+            $evolvesFrom[0],
+            $evolvesFrom[1]
+        );
 
         $pokemonEvolutionConditions = [];
         foreach ($sourceData['evolution_conditions'] as $trigger => $conditions) {
@@ -334,6 +325,7 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
      * @param \App\Entity\PokemonEvolutionCondition\ItemInBagEvolutionCondition $condition
      * @param \App\Entity\VersionGroup $versionGroup
      * @param array $value
+     *
      * @return \App\Entity\PokemonEvolutionCondition\ItemInBagEvolutionCondition
      */
     protected function itemInBagEvolutionCondition(
@@ -671,19 +663,7 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
         array $value
     ): PartySpeciesEvolutionCondition {
         $speciesName = array_pop($value);
-        /** @var \App\Entity\PokemonSpecies $species */
-        $species = $this->referenceStore->get(PokemonSpecies::class, ['identifier' => $speciesName]);
-        $species = $species->findChildByGrouping($versionGroup);
-        if (!$species) {
-            throw new \DomainException(
-                sprintf(
-                    'The species "%s" is not available in the version group "%s".',
-                    $speciesName,
-                    $versionGroup->getName()
-                )
-            );
-        }
-        $condition->setPartySpecies($species);
+        $condition->setPartySpecies($this->pokemonLookupHelper->lookupSpecies($versionGroup, $speciesName));
 
         return $condition;
     }
@@ -781,19 +761,7 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
         array $value
     ): TradedForSpeciesEvolutionCondition {
         $speciesName = array_pop($value);
-        /** @var \App\Entity\PokemonSpecies $species */
-        $species = $this->referenceStore->get(PokemonSpecies::class, ['identifier' => $speciesName]);
-        $species = $species->findChildByGrouping($versionGroup);
-        if (!$species) {
-            throw new \DomainException(
-                sprintf(
-                    'The species "%s" is not available in the version group "%s".',
-                    $speciesName,
-                    $versionGroup->getName()
-                )
-            );
-        }
-        $condition->setTradedForSpecies($species);
+        $condition->setTradedForSpecies($this->pokemonLookupHelper->lookupSpecies($versionGroup, $speciesName));
 
         return $condition;
     }
@@ -832,4 +800,13 @@ class PokemonEvolution extends AbstractDoctrineDataMigration implements DataMigr
 
         return $condition;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function cleanup(): void
+    {
+        unset($this->pokemonLookupHelper);
+    }
+
 }
