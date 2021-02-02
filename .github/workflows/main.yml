@@ -86,3 +86,39 @@ jobs:
           path: |
             var/dex.db
             resources/data/data_migration_map.sqlite
+
+  docs:
+    name: Build data docs
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: './doc'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        with:
+          php-version: '8.0'
+          ini-values: display_errors=On
+          extensions: mbstring, xml
+      - name: Get cache directories
+        id: cache_dirs
+        run: |
+          echo "::set-output name=composer::$(composer config cache-files-dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.cache_dirs.outputs.composer }}
+          key: ${{ runner.os }}-docs-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-docs-
+      - name: Install PHP dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader
+      - name: Build docs
+        run: vendor/bin/daux generate --destination public
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ github.workspace }}/doc/public
