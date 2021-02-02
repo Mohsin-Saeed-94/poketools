@@ -10,7 +10,7 @@ RUN cp ${PHP_INI_DIR}/php.ini-production ${PHP_INI_DIR}/php.ini
 
 # Install needed extensions
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-RUN install-php-extensions gd intl opcache pcntl pdo_pgsql zip; \
+RUN install-php-extensions gd intl opcache pcntl pdo_sqlite zip; \
     pecl install ds; \
     docker-php-ext-enable ds
 

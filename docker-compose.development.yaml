@@ -10,23 +10,11 @@ services:
     env_file:
       - app/.env
       - app/.env.local
-    depends_on:
-      - db
     environment:
       APP_SECRET: 1
       APP_ENV: dev
       APP_VERSION: dev
-      DATABASE_URL: postgres://poketools:secret@db:5432/poketools
     ports:
       - "8080:80"
     volumes:
       - ./app:/var/www
-      
-  db:
-    build:
-      target: db_dev
-    environment:
-      - POSTGRES_USER=poketools
-      - POSTGRES_PASSWORD=secret
-    volumes:
-      - /var/lib/postgresql/data

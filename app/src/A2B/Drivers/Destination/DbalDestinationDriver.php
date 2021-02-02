@@ -17,8 +17,6 @@ use DragoonBoots\A2B\Exception\MigrationException;
 /**
  * Doctrine DBAL source driver.
  *
- * Only supports Postgres.
- *
  * Supports a few modes of operation:
  * - Single table/single row (standard data format): pass write() an array of data,
  *   keyed by column name.
@@ -91,7 +89,13 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
     {
         parent::configure($definition);
 
-        $this->baseTable = parse_url($this->migrationDefinition->getDestination(), PHP_URL_FRAGMENT);
+        $destinationUri = $this->migrationDefinition->getDestination();
+        // Replace more than two consecutive slashes with only two - this can happen when filesystem paths get involved.
+        $destinationUri = preg_replace('`/{2,}`', '//', $destinationUri);
+        $this->baseTable = parse_url($destinationUri, PHP_URL_FRAGMENT);
+        if ($this->baseTable === false) {
+            throw new BadUriException('The destination URI is invalid: '.$destinationUri);
+        }
         $this->tables = [$this->baseTable];
         $this->tableIds = [];
         foreach ($this->ids as $destId) {
@@ -107,8 +111,6 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
             // Convert the Doctrine exception into our own.
             throw new BadUriException($destination, $e->getCode(), $e);
         }
-
-        $this->connection->beginTransaction();
     }
 
     /**
@@ -217,6 +219,33 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
     }
 
     /**
+     * Insert or update data
+     *
+     * @param string $table
+     * @param array $ids
+     * @param array $data
+     *
+     * @return int
+     * @throws DBALException
+     */
+    protected function upsert(string $table, array $ids, array $data): int
+    {
+        if (empty($data)) {
+            // No data to change
+            return 0;
+        }
+        if (!$this->isMultiRow($data)) {
+            $data = [$data];
+        }
+
+        return match ($this->connection->getDatabasePlatform()->getName()) {
+            'pdo_pgsql' => $this->postgresUpsert($table, $ids, $data),
+            'sqlite' => $this->sqliteUpsert($table, $ids, $data),
+            default => throw new \LogicException('Unhandled database type'),
+        };
+    }
+
+    /**
      * Perform a Postgres "Upsert" operation
      *
      * @see https://www.postgresql.org/docs/current/sql-insert.html
@@ -233,15 +262,8 @@ class DbalDestinationDriver extends AbstractDestinationDriver implements Destina
      *
      * @throws DBALException
      */
-    protected function upsert(string $table, array $ids, array $data): int
+    protected function postgresUpsert(string $table, array $ids, array $data): int
     {
-        if (empty($data)) {
-            // No data to change
-            return 0;
-        }
-        if (!$this->isMultiRow($data)) {
-            $data = [$data];
-        }
         $fields = array_keys($data[0]);
 
         // Values, params, and update set
@@ -286,6 +308,22 @@ SQL;
     }
 
     /**
+     * SQLite "Upsert"
+     *
+     * @param string $table
+     * @param array $ids
+     * @param array $data
+     *
+     * @return int
+     * @throws DBALException
+     */
+    protected function sqliteUpsert(string $table, array $ids, array $data): int
+    {
+        // SQLite borrowed Postgres' upsert syntax, so delegate there.
+        return $this->postgresUpsert($table, $ids, $data);
+    }
+
+    /**
      * Is this a multi-row data set?
      *
      * @param array $data
@@ -310,8 +348,6 @@ SQL;
     public function flush()
     {
         parent::flush();
-
-        $this->connection->commit();
     }
 
     /**

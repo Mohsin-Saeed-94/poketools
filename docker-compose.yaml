@@ -16,17 +16,3 @@ services:
     restart: always
     ports:
       - "80:80"
-      
-  db:
-    image: dragoonboots/poketools/db
-    build:
-      dockerfile: Dockerfile.data
-      context: docker/db
-      # Allows overriding to get a blank db if needed.
-      target: "${DB_TARGET:-db}"
-    environment:
-      - POSTGRES_USER=poketools
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=poketools
-    ports:
-      - "4321:5432"
