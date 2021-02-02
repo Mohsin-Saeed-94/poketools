@@ -58,7 +58,7 @@ Encore
      * https://symfony.com/doc/current/frontend.html#adding-more-features
      */
     .cleanupOutputBeforeBuild()
-    .enableBuildNotifications(!Encore.isProduction())
+    // .enableBuildNotifications(!Encore.isProduction())
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
@@ -67,10 +67,8 @@ Encore
     .enableSassLoader()
 
     // inline files where sensible
-    .configureUrlLoader({
-        fonts: {limit: 4096},
-        images: {limit: 8192}
-    })
+    .configureImageRule({type: 'asset', maxSize: 8192})
+    .configureFontRule({type: 'asset', maxSize: 4096})
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
