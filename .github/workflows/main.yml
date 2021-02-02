@@ -1,0 +1,40 @@
+name: CI
+on:
+  push: ~
+  pull_request: ~
+  workflow_dispatch: ~
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: './app'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        with:
+          php-version: '8.0'
+          ini-values: display_errors=On
+          extensions: ds, gd, intl, opcache, pcntl, pdo_sqlite, zip
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+      - name: Get cache directories
+        id: cache_dirs
+        run: |
+          echo "::set-output name=composer::$(composer config cache-files-dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.cache_dirs.outputs.composer }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-deps-
+      - name: Install PHP dependencies
+        run: |
+          composer install --prefer-dist --optimize-autoloader --no-scripts
+          php vendor/bin/simple-phpunit install
+      - name: Run Tests
+        run: php vendor/bin/simple-phpunit -c phpunit.xml.dist --testsuite="Data Schema"
