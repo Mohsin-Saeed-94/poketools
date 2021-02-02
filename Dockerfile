@@ -37,8 +37,6 @@ RUN rm -rf /var/www && mkdir /var/www
 WORKDIR /var/www
 
 COPY app/composer.* /var/www/
-# Wacky dest path allows same composer.json path both locally and inside the container.
-COPY a2b/ /var/a2b
 
 ARG APP_ENV=prod
 
@@ -99,8 +97,7 @@ ENV SENTRY_DSN $SENTRY_DSN
 ENV BUILD_NUMBER $BUILD_NUMBER
 
 COPY --from=build /var/www/ /var/www/
-COPY --from=webpack /var/www/public/build/manifest.json /var/www/public/build/manifest.json
-COPY --from=webpack /var/www/public/build/entrypoints.json /var/www/public/build/entrypoints.json
+COPY --from=webpack /var/www/public/build /var/www/public/build
 
 RUN mkdir -p var/cache; \
     chown -R www-data:www-data var

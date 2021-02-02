@@ -389,7 +389,7 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
      */
     public function searchResultTeaser(Environment $twig, array $context, array $result): string
     {
-        ['entity' => $entity, 'elastica' => $elastica] = $result;
+        ['entity' => $entity] = $result;
         $entityTemplates = [
             Pokemon::class => 'pokemon/teaser.html.twig',
             MoveInVersionGroup::class => 'move/teaser.html.twig',
@@ -403,7 +403,6 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
         $templateArgs = [
             'entity' => $entity,
             'version' => $context['version'] ?? $this->activeVersion,
-            'search_meta' => $elastica,
         ];
 
         // Must allow that the actual entity class may be different because of proxy objects.
