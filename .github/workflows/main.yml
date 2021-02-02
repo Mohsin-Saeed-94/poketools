@@ -79,6 +79,7 @@ jobs:
         run: |
           bin/console doctrine:schema:update --force
           bin/console a2b:migrate --preserve
+          sqlite3 var/dex.db 'VACUUM;'
       - name: Save database
         uses: actions/upload-artifact@v2
         with:
