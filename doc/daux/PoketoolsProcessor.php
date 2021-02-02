@@ -163,7 +163,7 @@ class PoketoolsProcessor extends BaseProcessor
         if ($dataPath) {
             $dataPath = $dataPathRoot.'/'.$dataPath;
             $summary['Data path'] = sprintf(
-                '[%s](https://gitlab.com/gamestuff.info/poketools/tree/master/app/%s)',
+                '[%s](https://github.com/gamestuff-info/poketools/blob/master/app/%s)',
                 $dataPath,
                 $dataPath
             );
