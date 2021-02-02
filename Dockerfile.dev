@@ -101,3 +101,24 @@ COPY --from=webpack /var/www/public/build /var/www/public/build
 
 RUN mkdir -p var/cache; \
     chown -R www-data:www-data var
+
+#######################################
+# DEVELOPMENT SUPPORT
+#######################################
+FROM app as app_dev
+
+RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+# Install some helper utilities for server debugging
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends bash less nano psmisc
+
+COPY --from=build /usr/local/bin/composer /usr/local/bin/composer
+
+# Install xdebug
+RUN install-php-extensions xdebug
+RUN { \
+		echo 'xdebug.mode=debug'; \
+		echo 'xdebug.discover_client_host=1'; \
+	} >> ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini
