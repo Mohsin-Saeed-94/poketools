@@ -13,7 +13,7 @@ Not affiliated with Nintendo, Game Freak, Creatures, or any of their affiliates.
 Download the database dump [here](https://gitlab.com/gamestuff.info/poketools/-/jobs/artifacts/master/download?job=data).
 
 ## Contribute
-Want to help fill in data gaps?  See the [data docs](https://poketools.gamestuff.info/doc/index.html).
+Want to help fill in data gaps?  See the [data docs](https://gamestuff-info.github.io/poketools/).
 
 All data has a schema associated with it that can help edit data if your editor
 supports it.  The schema URLs are listed in the docs.
