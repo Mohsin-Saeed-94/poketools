@@ -10,7 +10,7 @@ A web application all about Pokémon.
 Not affiliated with Nintendo, Game Freak, Creatures, or any of their affiliates.
 
 ## Data
-Download the database dump [here](https://gitlab.com/gamestuff.info/poketools/-/jobs/artifacts/master/download?job=data).
+Download the database dump [here](https://github.com/gamestuff-info/poketools/raw/master/app/db/dex.db).
 
 ## Contribute
 Want to help fill in data gaps?  See the [data docs](https://gamestuff-info.github.io/poketools/).
