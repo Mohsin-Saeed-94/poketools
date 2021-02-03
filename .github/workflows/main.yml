@@ -88,6 +88,34 @@ jobs:
   #            var/dex.db
   #            resources/data/data_migration_map.sqlite
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Create deployment
+        run: doctl app create-deployment b2188d27-5edc-427f-982b-da31a4feb43d
+
+  notify:
+    runs-on: ubuntu-latest
+    needs:
+      - deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: dan-keenan
+          SENTRY_PROJECT: poketools
+        with:
+          environment: prod
+
   docs:
     name: Build data docs
     if: ${{github.ref == 'refs/heads/master'}}
